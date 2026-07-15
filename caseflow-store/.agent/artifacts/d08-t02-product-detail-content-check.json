@@ -1,0 +1,12 @@
+{
+  "status": 200,
+  "imageMarkers": 2,
+  "priceMarkers": 2,
+  "stockMarkers": 1,
+  "descriptionMarkers": 2,
+  "compatibilityIphone15": 1,
+  "compatibilityIphone16": 1,
+  "priceTextFound": true,
+  "descriptionFound": true,
+  "pass": true
+}

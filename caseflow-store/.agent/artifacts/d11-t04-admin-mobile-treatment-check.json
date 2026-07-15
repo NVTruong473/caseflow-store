@@ -1,0 +1,68 @@
+{
+  "task": "D11-T04",
+  "seededOrderCodes": [
+    "CF-MRLS5FH2-9F78AF43",
+    "CF-MRLS5FHN-59491AC6",
+    "CF-MRLS5FI1-D154EE1E"
+  ],
+  "targetOrderCode": "CF-MRLS5FHN-59491AC6",
+  "focusedDetailCode": "CF-MRLS5FHN-59491AC6",
+  "statusAfterPatch": "shipping",
+  "detailScrollY": 1016,
+  "mobileSummaryLayout": [
+    {
+      "left": 16,
+      "top": 437,
+      "width": 168
+    },
+    {
+      "left": 192,
+      "top": 437,
+      "width": 168
+    },
+    {
+      "left": 16,
+      "top": 529,
+      "width": 168
+    },
+    {
+      "left": 16,
+      "top": 621,
+      "width": 343
+    }
+  ],
+  "overflow": {
+    "mobileInitial": {
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "hasHorizontalOverflow": false
+    },
+    "mobileAfterDetailFocus": {
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "hasHorizontalOverflow": false
+    },
+    "mobileAfterStatusUpdate": {
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "hasHorizontalOverflow": false
+    },
+    "tablet": {
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "hasHorizontalOverflow": false
+    },
+    "desktop": {
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "hasHorizontalOverflow": false
+    }
+  },
+  "screenshots": [
+    "d11-t04-admin-mobile-default-375.png",
+    "d11-t04-admin-mobile-detail-focus-375.png",
+    "d11-t04-admin-mobile-status-updated-375.png",
+    "d11-t04-admin-tablet-768.png",
+    "d11-t04-admin-desktop-regression-1440.png"
+  ]
+}

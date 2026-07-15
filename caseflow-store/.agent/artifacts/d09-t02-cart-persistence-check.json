@@ -1,0 +1,37 @@
+{
+  "task": "D09-T02",
+  "storageKey": "caseflow-store.cart.v1",
+  "storedAfterAdd": {
+    "raw": "{\"version\":1,\"items\":[{\"productId\":\"10000000-0000-4000-8000-000000000001\",\"quantity\":3}]}",
+    "parsed": {
+      "version": 1,
+      "items": [
+        {
+          "productId": "10000000-0000-4000-8000-000000000001",
+          "quantity": 3
+        }
+      ]
+    },
+    "topLevelKeys": [
+      "items",
+      "version"
+    ],
+    "itemKeys": [
+      [
+        "productId",
+        "quantity"
+      ]
+    ],
+    "containsForbiddenFields": false
+  },
+  "countAfterReload": "3",
+  "mobileCountAfterReload": "Cart (3) | Cart (3)",
+  "invalidVersionCheck": {
+    "count": "0",
+    "raw": "{\"version\":999,\"items\":[{\"productId\":\"bad-version-product\",\"quantity\":7}]}"
+  },
+  "screenshots": [
+    ".agent/artifacts/d09-t02-cart-persistence-after-reload-1440.png",
+    ".agent/artifacts/d09-t02-cart-persistence-mobile-menu-375.png"
+  ]
+}

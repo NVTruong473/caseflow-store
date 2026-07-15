@@ -1,0 +1,23 @@
+{
+  "task": "D08-T03",
+  "route": "/products/aeroguard-magsafe-case",
+  "selectors": {
+    "controls": true,
+    "quantityInput": true,
+    "addToCartButton": true,
+    "feedback": true
+  },
+  "interaction": {
+    "incrementsClicked": 2,
+    "expectedQuantity": "3",
+    "actualQuantity": "3",
+    "expectedFeedback": "Added 3 x AeroGuard MagSafe Case to cart.",
+    "actualFeedback": "Added 3 x AeroGuard MagSafe Case to cart.",
+    "feedbackTone": "success"
+  },
+  "screenshots": [
+    ".agent/artifacts/d08-t03-product-purchase-controls-1440.png",
+    ".agent/artifacts/d08-t03-product-purchase-controls-375.png",
+    ".agent/artifacts/d08-t03-add-to-cart-feedback-1440.png"
+  ]
+}

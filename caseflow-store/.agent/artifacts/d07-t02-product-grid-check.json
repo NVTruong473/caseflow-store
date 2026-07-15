@@ -1,0 +1,20 @@
+[
+  {
+    "innerWidth": 1440,
+    "scrollWidth": 1425,
+    "overflowX": -15,
+    "overflowingElements": [],
+    "productCards": 16,
+    "name": "grid-1440",
+    "pass": true
+  },
+  {
+    "innerWidth": 375,
+    "scrollWidth": 360,
+    "overflowX": -15,
+    "overflowingElements": [],
+    "productCards": 16,
+    "name": "grid-375",
+    "pass": true
+  }
+]

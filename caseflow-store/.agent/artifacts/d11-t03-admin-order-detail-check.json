@@ -1,0 +1,28 @@
+{
+  "task": "D11-T03",
+  "orderId": "e7c10a5f-54b1-41d6-8d1d-bc56a8fc0ab4",
+  "orderCode": "CF-MRLRQ9SZ-0BCF3FCB",
+  "selectedDetailCode": "CF-MRLRQ9SZ-0BCF3FCB",
+  "visibleViewButton": true,
+  "statusAfterPatch": "confirmed",
+  "desktopOverflowBefore": {
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "hasHorizontalOverflow": false
+  },
+  "desktopOverflowAfter": {
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "hasHorizontalOverflow": false
+  },
+  "mobileOverflow": {
+    "scrollWidth": 375,
+    "clientWidth": 375,
+    "hasHorizontalOverflow": false
+  },
+  "screenshots": [
+    "d11-t03-admin-order-detail-1440.png",
+    "d11-t03-admin-order-status-updated-1440.png",
+    "d11-t03-admin-order-detail-375.png"
+  ]
+}

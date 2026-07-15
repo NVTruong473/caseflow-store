@@ -1,0 +1,49 @@
+{
+  "task": "D09-T03",
+  "emptyDesktop": {
+    "title": true,
+    "emptyText": "Your cart is empty.Add a product from the catalog to review it here.Continue shopping",
+    "activeElement": "Close"
+  },
+  "withItemDesktop": {
+    "titleHasCount": true,
+    "itemText": "Phone casesIn stockAeroGuard MagSafe CaseQty 3 x 329.000 ₫987.000 ₫Remove",
+    "subtotal": "987.000 ₫",
+    "storedCart": {
+      "version": 1,
+      "items": [
+        {
+          "productId": "10000000-0000-4000-8000-000000000001",
+          "quantity": 3
+        }
+      ]
+    },
+    "containsForbiddenFields": false
+  },
+  "mobileDrawer": {
+    "titleHasCount": true,
+    "itemText": "Phone casesIn stockAeroGuard MagSafe CaseQty 3 x 329.000 ₫987.000 ₫Remove"
+  },
+  "escapeClosed": true,
+  "removeCheck": {
+    "count": "0",
+    "storedCart": {
+      "version": 1,
+      "items": []
+    },
+    "emptyText": "Your cart is empty.Add a product from the catalog to review it here.Continue shopping"
+  },
+  "clearCheck": {
+    "count": "0",
+    "storedCart": {
+      "version": 1,
+      "items": []
+    },
+    "emptyText": "Your cart is empty.Add a product from the catalog to review it here.Continue shopping"
+  },
+  "screenshots": [
+    ".agent/artifacts/d09-t03-cart-drawer-empty-1440.png",
+    ".agent/artifacts/d09-t03-cart-drawer-with-item-1440.png",
+    ".agent/artifacts/d09-t03-cart-drawer-mobile-375.png"
+  ]
+}

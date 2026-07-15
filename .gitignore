@@ -1,0 +1,9 @@
+# Local operating-system metadata.
+.DS_Store
+
+# Local environment files at any repository depth.
+.env*
+!.env.example
+
+# Unrelated local credential storage. Never include it in this repository.
+password manager/

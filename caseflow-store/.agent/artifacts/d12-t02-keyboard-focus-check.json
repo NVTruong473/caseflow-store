@@ -1,0 +1,59 @@
+{
+  "task": "D12-T02",
+  "name": "Check keyboard navigation and focus states",
+  "date": "2026-07-15",
+  "status": "passed",
+  "checks": [
+    {
+      "flow": "mobile navigation and cart drawer",
+      "viewport": "375x812",
+      "assertions": [
+        "mobile menu button is reachable by Tab and has visible focus",
+        "mobile cart button is reachable by Tab and has visible focus",
+        "cart drawer receives focus on open",
+        "Tab stays inside the cart drawer while open",
+        "Escape closes the cart drawer and returns focus to a visible control"
+      ]
+    },
+    {
+      "flow": "product detail and checkout",
+      "viewport": "1024x900",
+      "assertions": [
+        "product quantity input is reachable by Tab and has visible focus",
+        "add-to-cart button is reachable by Tab and has visible focus",
+        "checkout customer inputs are reachable in logical order and have visible focus"
+      ]
+    },
+    {
+      "flow": "admin login and mobile order detail",
+      "viewport": "768x900 and 375x812",
+      "assertions": [
+        "admin token input is reachable by Tab and has visible focus",
+        "mobile admin Detail button is reachable by Tab and has visible focus",
+        "mobile admin Detail action focuses the order detail panel with visible focus"
+      ]
+    }
+  ],
+  "fixes": [
+    "Cart drawer close now restores focus only to a visible previous element.",
+    "If the previous element is hidden after mobile menu close, focus falls back to the visible cart opener, mobile menu toggle, or home link.",
+    "Mobile menu toggle now has a stable data-mobile-navigation-toggle selector for focus return and testing.",
+    "Playwright webServer now supplies CASEFLOW_ADMIN_API_TOKEN for admin E2E when no external token is configured."
+  ],
+  "screenshots": [
+    ".agent/artifacts/d12-t02-mobile-menu-focus-375.png",
+    ".agent/artifacts/d12-t02-cart-drawer-focus-375.png",
+    ".agent/artifacts/d12-t02-product-detail-focus-1024.png",
+    ".agent/artifacts/d12-t02-checkout-focus-1024.png",
+    ".agent/artifacts/d12-t02-admin-login-focus-768.png",
+    ".agent/artifacts/d12-t02-admin-orders-focus-375.png"
+  ],
+  "verification": {
+    "npm run lint": "passed",
+    "npx tsc --noEmit": "passed",
+    "git diff --check": "passed",
+    "npm run build": "passed",
+    "npx playwright test tests/e2e/keyboard-focus.spec.ts": "passed, 3 tests",
+    "npm run test:e2e": "passed, 5 tests"
+  }
+}

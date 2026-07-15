@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "authRequiredVisible": true,
+  "desktopOverflow": false,
+  "mobileOverflow": false,
+  "orderRowCount": 2,
+  "orderCardCount": 2,
+  "summaryText": "Orders\n2\nPending\n2\nItems\n5\nServer total\n1.675.000 ₫",
+  "totalText": "1.675.000 ₫",
+  "hasQaOrder": true,
+  "missingSelectors": [],
+  "generatedAt": "2026-07-15T07:24:16.630Z"
+}

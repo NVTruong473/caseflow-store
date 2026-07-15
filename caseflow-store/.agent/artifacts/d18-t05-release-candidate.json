@@ -1,0 +1,27 @@
+{
+  "task": "D18-T05",
+  "candidate": "v1.0.0-rc.1",
+  "date": "2026-07-16",
+  "status": "accepted_for_production",
+  "quality": {
+    "lint": "passed",
+    "typescript": "passed",
+    "productionBuildStart": "passed",
+    "playwright": "20 of 20 passed",
+    "failed": 0,
+    "flaky": 0,
+    "skipped": 0
+  },
+  "security": {
+    "commitCandidatesScanned": 327,
+    "exactSecretMatches": 0,
+    "criticalVulnerabilities": 0,
+    "highVulnerabilities": 0,
+    "acceptedModerateVulnerabilities": 2
+  },
+  "cleanup": {
+    "qaOrders": 0,
+    "temporaryUsers": 0
+  },
+  "resolvedGateFinding": "Test-only cart storage seeding races were fixed before the final full-suite pass."
+}

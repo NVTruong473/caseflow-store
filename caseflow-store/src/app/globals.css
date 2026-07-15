@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f8fafc;
+  --foreground: #111827;
+  --surface: #ffffff;
+  --surface-muted: #f1f5f9;
+  --text-muted: #64748b;
+  --border: #cbd5e1;
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --accent: #f59e0b;
+  --success: #15803d;
+  --warning: #b45309;
+  --error: #dc2626;
+  --case-radius-sm: 4px;
+  --case-radius-md: 8px;
+  --case-radius-lg: 12px;
+  --case-space-xs: 4px;
+  --case-space-sm: 8px;
+  --case-space-md: 16px;
+  --case-space-lg: 24px;
+  --case-space-xl: 32px;
+  --case-space-2xl: 48px;
+  --case-text-body: 16px;
+  --case-text-small: 14px;
+  --case-text-h1: 40px;
+  --case-text-h2: 28px;
+  --case-text-h3: 20px;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-text: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-text-muted: var(--text-muted);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-accent: var(--accent);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+  --radius-sm: var(--case-radius-sm);
+  --radius-md: var(--case-radius-md);
+  --radius-lg: var(--case-radius-lg);
+  --spacing-case-xs: var(--case-space-xs);
+  --spacing-case-sm: var(--case-space-sm);
+  --spacing-case-md: var(--case-space-md);
+  --spacing-case-lg: var(--case-space-lg);
+  --spacing-case-xl: var(--case-space-xl);
+  --spacing-case-2xl: var(--case-space-2xl);
+  --text-body: var(--case-text-body);
+  --text-body--line-height: 1.5;
+  --text-small: var(--case-text-small);
+  --text-small--line-height: 1.45;
+  --text-heading-1: var(--case-text-h1);
+  --text-heading-1--line-height: 1.15;
+  --text-heading-2: var(--case-text-h2);
+  --text-heading-2--line-height: 1.2;
+  --text-heading-3: var(--case-text-h3);
+  --text-heading-3--line-height: 1.3;
+  --font-sans: var(--font-inter);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-size: var(--case-text-body);
+}
+
+::selection {
+  background: var(--primary);
+  color: var(--surface);
+}
+
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}

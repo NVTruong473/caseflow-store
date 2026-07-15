@@ -1,0 +1,387 @@
+{
+  "task": "D12-T01",
+  "seededAdminOrderCode": "CF-MRLSGGTM-94A2BD66",
+  "viewports": [
+    "375",
+    "768",
+    "1024",
+    "1440"
+  ],
+  "scenarios": [
+    "home",
+    "product-detail",
+    "cart-drawer",
+    "checkout",
+    "checkout-success",
+    "admin-login",
+    "admin-orders"
+  ],
+  "resultCount": 28,
+  "failures": [],
+  "results": [
+    {
+      "scenario": "home",
+      "path": "/",
+      "viewport": "375",
+      "screenshot": "d12-t01-home-375.png",
+      "overflow": {
+        "documentScrollWidth": 375,
+        "bodyScrollWidth": 375,
+        "clientWidth": 375,
+        "hasHorizontalOverflow": false,
+        "overflowingElements": []
+      }
+    },
+    {
+      "scenario": "product-detail",
+      "path": "/products/aeroguard-magsafe-case",
+      "viewport": "375",
+      "screenshot": "d12-t01-product-detail-375.png",
+      "overflow": {
+        "documentScrollWidth": 375,
+        "bodyScrollWidth": 375,
+        "clientWidth": 375,
+        "hasHorizontalOverflow": false,
+        "overflowingElements": []
+      }
+    },
+    {
+      "scenario": "cart-drawer",
+      "path": "/",
+      "viewport": "375",
+      "screenshot": "d12-t01-cart-drawer-375.png",
+      "overflow": {
+        "documentScrollWidth": 375,
+        "bodyScrollWidth": 375,
+        "clientWidth": 375,
+        "hasHorizontalOverflow": false,
+        "overflowingElements": []
+      }
+    },
+    {
+      "scenario": "checkout",
+      "path": "/checkout",
+      "viewport": "375",
+      "screenshot": "d12-t01-checkout-375.png",
+      "overflow": {
+        "documentScrollWidth": 375,
+        "bodyScrollWidth": 375,
+        "clientWidth": 375,
+        "hasHorizontalOverflow": false,
+        "overflowingElements": []
+      }
+    },
+    {
+      "scenario": "checkout-success",
+      "path": "/checkout/success?orderCode=CF-D12-QA",
+      "viewport": "375",
+      "screenshot": "d12-t01-checkout-success-375.png",
+      "overflow": {
+        "documentScrollWidth": 375,
+        "bodyScrollWidth": 375,
+        "clientWidth": 375,
+        "hasHorizontalOverflow": false,
+        "overflowingElements": []
+      }
+    },
+    {
+      "scenario": "admin-login",
+      "path": "/admin/login",
+      "viewport": "375",
+      "screenshot": "d12-t01-admin-login-375.png",
+      "overflow": {
+        "documentScrollWidth": 375,
+        "bodyScrollWidth": 375,
+        "clientWidth": 375,
+        "hasHorizontalOverflow": false,
+        "overflowingElements": []
+      }
+    },
+    {
+      "scenario": "admin-orders",
+      "path": "/admin/orders",
+      "viewport": "375",
+      "screenshot": "d12-t01-admin-orders-375.png",
+      "overflow": {
+        "documentScrollWidth": 375,
+        "bodyScrollWidth": 375,
+        "clientWidth": 375,
+        "hasHorizontalOverflow": false,
+        "overflowingElements": []
+      }
+    },
+    {
+      "scenario": "home",
+      "path": "/",
+      "viewport": "768",
+      "screenshot": "d12-t01-home-768.png",
+      "overflow": {
+        "documentScrollWidth": 768,
+        "bodyScrollWidth": 768,
+        "clientWidth": 768,
+        "hasHorizontalOverflow": false,
+        "overflowingElements": []
+      }
+    },
+    {
+      "scenario": "product-detail",
+      "path": "/products/aeroguard-magsafe-case",
+      "viewport": "768",
+      "screenshot": "d12-t01-product-detail-768.png",
+      "overflow": {
+        "documentScrollWidth": 768,
+        "bodyScrollWidth": 768,
+        "clientWidth": 768,
+        "hasHorizontalOverflow": false,
+        "overflowingElements": []
+      }
+    },
+    {
+      "scenario": "cart-drawer",
+      "path": "/",
+      "viewport": "768",
+      "screenshot": "d12-t01-cart-drawer-768.png",
+      "overflow": {
+        "documentScrollWidth": 768,
+        "bodyScrollWidth": 768,
+        "clientWidth": 768,
+        "hasHorizontalOverflow": false,
+        "overflowingElements": []
+      }
+    },
+    {
+      "scenario": "checkout",
+      "path": "/checkout",
+      "viewport": "768",
+      "screenshot": "d12-t01-checkout-768.png",
+      "overflow": {
+        "documentScrollWidth": 768,
+        "bodyScrollWidth": 768,
+        "clientWidth": 768,
+        "hasHorizontalOverflow": false,
+        "overflowingElements": []
+      }
+    },
+    {
+      "scenario": "checkout-success",
+      "path": "/checkout/success?orderCode=CF-D12-QA",
+      "viewport": "768",
+      "screenshot": "d12-t01-checkout-success-768.png",
+      "overflow": {
+        "documentScrollWidth": 768,
+        "bodyScrollWidth": 768,
+        "clientWidth": 768,
+        "hasHorizontalOverflow": false,
+        "overflowingElements": []
+      }
+    },
+    {
+      "scenario": "admin-login",
+      "path": "/admin/login",
+      "viewport": "768",
+      "screenshot": "d12-t01-admin-login-768.png",
+      "overflow": {
+        "documentScrollWidth": 768,
+        "bodyScrollWidth": 768,
+        "clientWidth": 768,
+        "hasHorizontalOverflow": false,
+        "overflowingElements": []
+      }
+    },
+    {
+      "scenario": "admin-orders",
+      "path": "/admin/orders",
+      "viewport": "768",
+      "screenshot": "d12-t01-admin-orders-768.png",
+      "overflow": {
+        "documentScrollWidth": 768,
+        "bodyScrollWidth": 768,
+        "clientWidth": 768,
+        "hasHorizontalOverflow": false,
+        "overflowingElements": []
+      }
+    },
+    {
+      "scenario": "home",
+      "path": "/",
+      "viewport": "1024",
+      "screenshot": "d12-t01-home-1024.png",
+      "overflow": {
+        "documentScrollWidth": 1024,
+        "bodyScrollWidth": 1024,
+        "clientWidth": 1024,
+        "hasHorizontalOverflow": false,
+        "overflowingElements": []
+      }
+    },
+    {
+      "scenario": "product-detail",
+      "path": "/products/aeroguard-magsafe-case",
+      "viewport": "1024",
+      "screenshot": "d12-t01-product-detail-1024.png",
+      "overflow": {
+        "documentScrollWidth": 1024,
+        "bodyScrollWidth": 1024,
+        "clientWidth": 1024,
+        "hasHorizontalOverflow": false,
+        "overflowingElements": []
+      }
+    },
+    {
+      "scenario": "cart-drawer",
+      "path": "/",
+      "viewport": "1024",
+      "screenshot": "d12-t01-cart-drawer-1024.png",
+      "overflow": {
+        "documentScrollWidth": 1024,
+        "bodyScrollWidth": 1024,
+        "clientWidth": 1024,
+        "hasHorizontalOverflow": false,
+        "overflowingElements": []
+      }
+    },
+    {
+      "scenario": "checkout",
+      "path": "/checkout",
+      "viewport": "1024",
+      "screenshot": "d12-t01-checkout-1024.png",
+      "overflow": {
+        "documentScrollWidth": 1024,
+        "bodyScrollWidth": 1024,
+        "clientWidth": 1024,
+        "hasHorizontalOverflow": false,
+        "overflowingElements": []
+      }
+    },
+    {
+      "scenario": "checkout-success",
+      "path": "/checkout/success?orderCode=CF-D12-QA",
+      "viewport": "1024",
+      "screenshot": "d12-t01-checkout-success-1024.png",
+      "overflow": {
+        "documentScrollWidth": 1024,
+        "bodyScrollWidth": 1024,
+        "clientWidth": 1024,
+        "hasHorizontalOverflow": false,
+        "overflowingElements": []
+      }
+    },
+    {
+      "scenario": "admin-login",
+      "path": "/admin/login",
+      "viewport": "1024",
+      "screenshot": "d12-t01-admin-login-1024.png",
+      "overflow": {
+        "documentScrollWidth": 1024,
+        "bodyScrollWidth": 1024,
+        "clientWidth": 1024,
+        "hasHorizontalOverflow": false,
+        "overflowingElements": []
+      }
+    },
+    {
+      "scenario": "admin-orders",
+      "path": "/admin/orders",
+      "viewport": "1024",
+      "screenshot": "d12-t01-admin-orders-1024.png",
+      "overflow": {
+        "documentScrollWidth": 1024,
+        "bodyScrollWidth": 1024,
+        "clientWidth": 1024,
+        "hasHorizontalOverflow": false,
+        "overflowingElements": []
+      }
+    },
+    {
+      "scenario": "home",
+      "path": "/",
+      "viewport": "1440",
+      "screenshot": "d12-t01-home-1440.png",
+      "overflow": {
+        "documentScrollWidth": 1440,
+        "bodyScrollWidth": 1440,
+        "clientWidth": 1440,
+        "hasHorizontalOverflow": false,
+        "overflowingElements": []
+      }
+    },
+    {
+      "scenario": "product-detail",
+      "path": "/products/aeroguard-magsafe-case",
+      "viewport": "1440",
+      "screenshot": "d12-t01-product-detail-1440.png",
+      "overflow": {
+        "documentScrollWidth": 1440,
+        "bodyScrollWidth": 1440,
+        "clientWidth": 1440,
+        "hasHorizontalOverflow": false,
+        "overflowingElements": []
+      }
+    },
+    {
+      "scenario": "cart-drawer",
+      "path": "/",
+      "viewport": "1440",
+      "screenshot": "d12-t01-cart-drawer-1440.png",
+      "overflow": {
+        "documentScrollWidth": 1440,
+        "bodyScrollWidth": 1440,
+        "clientWidth": 1440,
+        "hasHorizontalOverflow": false,
+        "overflowingElements": []
+      }
+    },
+    {
+      "scenario": "checkout",
+      "path": "/checkout",
+      "viewport": "1440",
+      "screenshot": "d12-t01-checkout-1440.png",
+      "overflow": {
+        "documentScrollWidth": 1440,
+        "bodyScrollWidth": 1440,
+        "clientWidth": 1440,
+        "hasHorizontalOverflow": false,
+        "overflowingElements": []
+      }
+    },
+    {
+      "scenario": "checkout-success",
+      "path": "/checkout/success?orderCode=CF-D12-QA",
+      "viewport": "1440",
+      "screenshot": "d12-t01-checkout-success-1440.png",
+      "overflow": {
+        "documentScrollWidth": 1440,
+        "bodyScrollWidth": 1440,
+        "clientWidth": 1440,
+        "hasHorizontalOverflow": false,
+        "overflowingElements": []
+      }
+    },
+    {
+      "scenario": "admin-login",
+      "path": "/admin/login",
+      "viewport": "1440",
+      "screenshot": "d12-t01-admin-login-1440.png",
+      "overflow": {
+        "documentScrollWidth": 1440,
+        "bodyScrollWidth": 1440,
+        "clientWidth": 1440,
+        "hasHorizontalOverflow": false,
+        "overflowingElements": []
+      }
+    },
+    {
+      "scenario": "admin-orders",
+      "path": "/admin/orders",
+      "viewport": "1440",
+      "screenshot": "d12-t01-admin-orders-1440.png",
+      "overflow": {
+        "documentScrollWidth": 1440,
+        "bodyScrollWidth": 1440,
+        "clientWidth": 1440,
+        "hasHorizontalOverflow": false,
+        "overflowingElements": []
+      }
+    }
+  ]
+}

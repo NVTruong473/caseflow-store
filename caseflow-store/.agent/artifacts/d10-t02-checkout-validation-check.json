@@ -1,0 +1,108 @@
+{
+  "url": "http://localhost:3001/checkout",
+  "createdAt": "2026-07-15T05:51:52.461Z",
+  "testCart": {
+    "result": {
+      "type": "string",
+      "value": "{\"version\":1,\"items\":[{\"productId\":\"10000000-0000-4000-8000-000000000001\",\"quantity\":2}]}"
+    }
+  },
+  "invalidEmptyState": {
+    "alertTexts": [
+      "!Enter your full name.",
+      "!Enter your email address.",
+      "!Enter your phone number.",
+      "!Enter your shipping address."
+    ],
+    "cardLikeFieldCount": 0,
+    "expectedErrorsPresent": true,
+    "formStatus": "idle",
+    "inputs": [
+      {
+        "invalid": "true",
+        "name": "customerName",
+        "type": "text",
+        "value": ""
+      },
+      {
+        "invalid": "true",
+        "name": "customerEmail",
+        "type": "email",
+        "value": ""
+      },
+      {
+        "invalid": "true",
+        "name": "customerPhone",
+        "type": "tel",
+        "value": ""
+      },
+      {
+        "invalid": "true",
+        "name": "shippingAddress",
+        "type": "text",
+        "value": ""
+      }
+    ],
+    "messageTexts": [
+      "Enter your full name.",
+      "Enter your email address.",
+      "Enter your phone number.",
+      "Enter your shipping address."
+    ]
+  },
+  "invalidFormatState": {
+    "formStatus": "idle",
+    "hasEmailFormatError": true,
+    "hasPhoneFormatError": true,
+    "messageTexts": [
+      "Enter a valid email address.",
+      "Enter a phone number using 7-24 digits and phone symbols."
+    ]
+  },
+  "validState": {
+    "cardLikeFieldCount": 0,
+    "cartLineCount": 1,
+    "formStatus": "valid",
+    "inputs": [
+      {
+        "invalid": null,
+        "name": "customerName",
+        "type": "text",
+        "value": "Van Truong"
+      },
+      {
+        "invalid": null,
+        "name": "customerEmail",
+        "type": "email",
+        "value": "van.truong@example.com"
+      },
+      {
+        "invalid": null,
+        "name": "customerPhone",
+        "type": "tel",
+        "value": "+84 912 345 678"
+      },
+      {
+        "invalid": null,
+        "name": "shippingAddress",
+        "type": "text",
+        "value": "123 Nguyen Hue, District 1, Ho Chi Minh City"
+      }
+    ],
+    "messageTexts": [],
+    "subtotalText": "658.000 ₫",
+    "successText": "Customer details are valid for the next checkout step."
+  },
+  "mobileState": {
+    "formStatus": "valid",
+    "horizontalOverflow": false,
+    "successVisible": true,
+    "viewportWidth": 375
+  },
+  "screenshots": {
+    "invalidDesktop": "/Users/vantruong/Documents/TSNN 2/caseflow-store/.agent/artifacts/d10-t02-checkout-invalid-1440.png",
+    "validDesktop": "/Users/vantruong/Documents/TSNN 2/caseflow-store/.agent/artifacts/d10-t02-checkout-valid-1440.png",
+    "validMobile": "/Users/vantruong/Documents/TSNN 2/caseflow-store/.agent/artifacts/d10-t02-checkout-valid-375.png"
+  },
+  "passed": true
+}

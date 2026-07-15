@@ -1,0 +1,34 @@
+{
+  "taskId": "D10-T01",
+  "verifiedAt": "2026-07-15T05:39:00.282Z",
+  "baseUrl": "http://localhost:3001/checkout",
+  "checks": {
+    "emptyStateVisible": true,
+    "subtotalText": "658.000 ₫",
+    "submitDisabled": true,
+    "drawerCheckoutNavigationUrl": "http://localhost:3001/checkout",
+    "storageKeys": [
+      "productId",
+      "quantity"
+    ],
+    "mobileLineItemVisible": true,
+    "validationErrorVisible": true,
+    "validationErrorCode": "OUT_OF_STOCK",
+    "validationErrorBadge": "Needs fix"
+  },
+  "screenshots": {
+    "emptyDesktop": "/Users/vantruong/Documents/TSNN 2/caseflow-store/.agent/artifacts/d10-t01-checkout-empty-1440.png",
+    "withCartDesktop": "/Users/vantruong/Documents/TSNN 2/caseflow-store/.agent/artifacts/d10-t01-checkout-with-cart-1440.png",
+    "withCartMobile": "/Users/vantruong/Documents/TSNN 2/caseflow-store/.agent/artifacts/d10-t01-checkout-with-cart-375.png",
+    "validationErrorMobile": "/Users/vantruong/Documents/TSNN 2/caseflow-store/.agent/artifacts/d10-t01-checkout-validation-error-375.png"
+  },
+  "storageAfterCheckoutReview": {
+    "version": 1,
+    "items": [
+      {
+        "productId": "10000000-0000-4000-8000-000000000001",
+        "quantity": 2
+      }
+    ]
+  }
+}

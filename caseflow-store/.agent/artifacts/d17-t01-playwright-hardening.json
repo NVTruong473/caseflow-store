@@ -1,0 +1,22 @@
+{
+  "task": "D17-T01",
+  "date": "2026-07-16",
+  "status": "passed",
+  "playwright": {
+    "version": "1.61.1",
+    "browser": "chromium",
+    "workers": 1,
+    "globalEnvironmentValidation": true,
+    "externalBaseUrlValidation": true,
+    "portValidation": true,
+    "reusesExistingServer": false
+  },
+  "verification": {
+    "lint": "passed",
+    "typescript": "passed",
+    "testDiscovery": "14 tests in 5 files",
+    "invalidPortGuard": "passed",
+    "focusedProductionSpec": "2 of 2 passed on a clean port"
+  },
+  "finding": "A stale Next.js server on port 3001 returned an obsolete admin API response. Disabling server reuse makes local E2E runs deterministic and fails clearly on a port conflict."
+}

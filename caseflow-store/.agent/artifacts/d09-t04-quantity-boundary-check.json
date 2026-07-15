@@ -1,0 +1,48 @@
+{
+  "taskId": "D09-T04",
+  "verifiedAt": "2026-07-15T05:19:50.209Z",
+  "baseUrl": "http://localhost:3001/products/aeroguard-magsafe-case",
+  "productId": "10000000-0000-4000-8000-000000000001",
+  "stock": 18,
+  "checks": {
+    "productBoundaryText": "In cart: 18. Remaining to add: 0.",
+    "productQuantityInputAtMax": "0",
+    "addButtonDisabledAtMax": true,
+    "cartCountAfterMax": "18",
+    "localStorageOnlyStoresProductIdAndQuantity": true,
+    "drawerQuantityAtMax": "18",
+    "drawerIncrementDisabledAtMax": true,
+    "drawerDecrementEnabledAtMax": true,
+    "quantityAfterDecrement": "17",
+    "incrementEnabledAfterDecrement": true,
+    "quantityAfterIncrement": "18",
+    "incrementDisabledAfterReturnToMax": true,
+    "tamperedCartCountBeforeFix": "99",
+    "tamperedBoundaryErrorVisible": true,
+    "quantityAfterSetMax": "18",
+    "storageQuantityAfterSetMax": 18
+  },
+  "screenshots": {
+    "productBoundaryDesktop": "/Users/vantruong/Documents/TSNN 2/caseflow-store/.agent/artifacts/d09-t04-product-boundary-1440.png",
+    "drawerBoundaryDesktop": "/Users/vantruong/Documents/TSNN 2/caseflow-store/.agent/artifacts/d09-t04-cart-boundary-drawer-1440.png",
+    "tamperedBoundaryMobile": "/Users/vantruong/Documents/TSNN 2/caseflow-store/.agent/artifacts/d09-t04-cart-boundary-tampered-375.png"
+  },
+  "storageAfterMax": {
+    "version": 1,
+    "items": [
+      {
+        "productId": "10000000-0000-4000-8000-000000000001",
+        "quantity": 18
+      }
+    ]
+  },
+  "storageAfterSetMax": {
+    "version": 1,
+    "items": [
+      {
+        "productId": "10000000-0000-4000-8000-000000000001",
+        "quantity": 18
+      }
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "route": "/admin/login",
+  "checks": {
+    "desktopOverflow": false,
+    "invalidErrorText": "!\nAdmin authorization required",
+    "missingSelectors": [],
+    "storedSessionVersion": 1,
+    "storedTokenMatches": true,
+    "successText": "Admin access verified for 1 order."
+  },
+  "generatedAt": "2026-07-15T07:10:24.130Z"
+}

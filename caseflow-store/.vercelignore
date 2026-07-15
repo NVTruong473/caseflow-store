@@ -1,0 +1,8 @@
+/.agent/
+/docs/
+/playwright-report/
+/supabase/
+/test-results/
+/tests/
+
+*.md

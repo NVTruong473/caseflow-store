@@ -1,0 +1,376 @@
+{
+  "url": "http://localhost:3001/",
+  "pass": true,
+  "checks": [
+    {
+      "suffix": "1440",
+      "chargerState": {
+        "cards": [
+          "gan-duo-65w-charger",
+          "voltmini-30w-usb-c-charger"
+        ],
+        "count": 2,
+        "resultText": "Showing Chargers matching \"charger\": 2 products",
+        "searchValue": "charger",
+        "sortValue": "price-desc",
+        "filters": [
+          {
+            "filter": "all",
+            "count": 2,
+            "label": "All categories, 2 products",
+            "text": "All2",
+            "pressed": "false"
+          },
+          {
+            "filter": "phone-cases",
+            "count": 0,
+            "label": "Phone cases, 0 products",
+            "text": "Phone cases0",
+            "pressed": "false"
+          },
+          {
+            "filter": "screen-protectors",
+            "count": 0,
+            "label": "Screen protectors, 0 products",
+            "text": "Screen protectors0",
+            "pressed": "false"
+          },
+          {
+            "filter": "chargers",
+            "count": 2,
+            "label": "Chargers, 2 products",
+            "text": "Chargers2",
+            "pressed": "true"
+          },
+          {
+            "filter": "cables-adapters",
+            "count": 0,
+            "label": "Cables and adapters, 0 products",
+            "text": "Cables and adapters0",
+            "pressed": "false"
+          },
+          {
+            "filter": "stands-mounts",
+            "count": 0,
+            "label": "Stands and mounts, 0 products",
+            "text": "Stands and mounts0",
+            "pressed": "false"
+          }
+        ],
+        "overflowX": 0,
+        "overflowElements": []
+      },
+      "glassState": {
+        "cards": [
+          "edgeclear-glass-protector",
+          "galaxy-glass-shield"
+        ],
+        "count": 2,
+        "resultText": "Showing Screen protectors matching \"glass\": 2 products",
+        "searchValue": "glass",
+        "sortValue": "price-desc",
+        "filters": [
+          {
+            "filter": "all",
+            "count": 2,
+            "label": "All categories, 2 products",
+            "text": "All2",
+            "pressed": "false"
+          },
+          {
+            "filter": "phone-cases",
+            "count": 0,
+            "label": "Phone cases, 0 products",
+            "text": "Phone cases0",
+            "pressed": "false"
+          },
+          {
+            "filter": "screen-protectors",
+            "count": 2,
+            "label": "Screen protectors, 2 products",
+            "text": "Screen protectors2",
+            "pressed": "true"
+          },
+          {
+            "filter": "chargers",
+            "count": 0,
+            "label": "Chargers, 0 products",
+            "text": "Chargers0",
+            "pressed": "false"
+          },
+          {
+            "filter": "cables-adapters",
+            "count": 0,
+            "label": "Cables and adapters, 0 products",
+            "text": "Cables and adapters0",
+            "pressed": "false"
+          },
+          {
+            "filter": "stands-mounts",
+            "count": 0,
+            "label": "Stands and mounts, 0 products",
+            "text": "Stands and mounts0",
+            "pressed": "false"
+          }
+        ],
+        "overflowX": 0,
+        "overflowElements": []
+      },
+      "clearedState": {
+        "cards": [
+          "aeroguard-magsafe-case",
+          "clearshield-slim-case",
+          "galaxy-armor-grip-case",
+          "pixel-softgrip-case",
+          "edgeclear-glass-protector",
+          "galaxy-glass-shield",
+          "pixel-matte-film-pack",
+          "voltmini-30w-usb-c-charger",
+          "gan-duo-65w-charger",
+          "magdock-wireless-pad",
+          "flexline-usb-c-cable",
+          "lightninglink-usb-c-cable",
+          "audiocharge-usb-c-adapter",
+          "foldstand-aluminum-dock",
+          "magvent-car-mount",
+          "creatorclamp-video-mount"
+        ],
+        "count": 16,
+        "resultText": "Showing all accessories: 16 products",
+        "searchValue": "",
+        "sortValue": "newest",
+        "filters": [
+          {
+            "filter": "all",
+            "count": 16,
+            "label": "All categories, 16 products",
+            "text": "All16",
+            "pressed": "true"
+          },
+          {
+            "filter": "phone-cases",
+            "count": 4,
+            "label": "Phone cases, 4 products",
+            "text": "Phone cases4",
+            "pressed": "false"
+          },
+          {
+            "filter": "screen-protectors",
+            "count": 3,
+            "label": "Screen protectors, 3 products",
+            "text": "Screen protectors3",
+            "pressed": "false"
+          },
+          {
+            "filter": "chargers",
+            "count": 3,
+            "label": "Chargers, 3 products",
+            "text": "Chargers3",
+            "pressed": "false"
+          },
+          {
+            "filter": "cables-adapters",
+            "count": 3,
+            "label": "Cables and adapters, 3 products",
+            "text": "Cables and adapters3",
+            "pressed": "false"
+          },
+          {
+            "filter": "stands-mounts",
+            "count": 3,
+            "label": "Stands and mounts, 3 products",
+            "text": "Stands and mounts3",
+            "pressed": "false"
+          }
+        ],
+        "overflowX": 0,
+        "overflowElements": []
+      }
+    },
+    {
+      "suffix": "375",
+      "chargerState": {
+        "cards": [
+          "gan-duo-65w-charger",
+          "voltmini-30w-usb-c-charger"
+        ],
+        "count": 2,
+        "resultText": "Showing Chargers matching \"charger\": 2 products",
+        "searchValue": "charger",
+        "sortValue": "price-desc",
+        "filters": [
+          {
+            "filter": "all",
+            "count": 2,
+            "label": "All categories, 2 products",
+            "text": "All2",
+            "pressed": "false"
+          },
+          {
+            "filter": "phone-cases",
+            "count": 0,
+            "label": "Phone cases, 0 products",
+            "text": "Phone cases0",
+            "pressed": "false"
+          },
+          {
+            "filter": "screen-protectors",
+            "count": 0,
+            "label": "Screen protectors, 0 products",
+            "text": "Screen protectors0",
+            "pressed": "false"
+          },
+          {
+            "filter": "chargers",
+            "count": 2,
+            "label": "Chargers, 2 products",
+            "text": "Chargers2",
+            "pressed": "true"
+          },
+          {
+            "filter": "cables-adapters",
+            "count": 0,
+            "label": "Cables and adapters, 0 products",
+            "text": "Cables and adapters0",
+            "pressed": "false"
+          },
+          {
+            "filter": "stands-mounts",
+            "count": 0,
+            "label": "Stands and mounts, 0 products",
+            "text": "Stands and mounts0",
+            "pressed": "false"
+          }
+        ],
+        "overflowX": 0,
+        "overflowElements": []
+      },
+      "glassState": {
+        "cards": [
+          "edgeclear-glass-protector",
+          "galaxy-glass-shield"
+        ],
+        "count": 2,
+        "resultText": "Showing Screen protectors matching \"glass\": 2 products",
+        "searchValue": "glass",
+        "sortValue": "price-desc",
+        "filters": [
+          {
+            "filter": "all",
+            "count": 2,
+            "label": "All categories, 2 products",
+            "text": "All2",
+            "pressed": "false"
+          },
+          {
+            "filter": "phone-cases",
+            "count": 0,
+            "label": "Phone cases, 0 products",
+            "text": "Phone cases0",
+            "pressed": "false"
+          },
+          {
+            "filter": "screen-protectors",
+            "count": 2,
+            "label": "Screen protectors, 2 products",
+            "text": "Screen protectors2",
+            "pressed": "true"
+          },
+          {
+            "filter": "chargers",
+            "count": 0,
+            "label": "Chargers, 0 products",
+            "text": "Chargers0",
+            "pressed": "false"
+          },
+          {
+            "filter": "cables-adapters",
+            "count": 0,
+            "label": "Cables and adapters, 0 products",
+            "text": "Cables and adapters0",
+            "pressed": "false"
+          },
+          {
+            "filter": "stands-mounts",
+            "count": 0,
+            "label": "Stands and mounts, 0 products",
+            "text": "Stands and mounts0",
+            "pressed": "false"
+          }
+        ],
+        "overflowX": 0,
+        "overflowElements": []
+      },
+      "clearedState": {
+        "cards": [
+          "aeroguard-magsafe-case",
+          "clearshield-slim-case",
+          "galaxy-armor-grip-case",
+          "pixel-softgrip-case",
+          "edgeclear-glass-protector",
+          "galaxy-glass-shield",
+          "pixel-matte-film-pack",
+          "voltmini-30w-usb-c-charger",
+          "gan-duo-65w-charger",
+          "magdock-wireless-pad",
+          "flexline-usb-c-cable",
+          "lightninglink-usb-c-cable",
+          "audiocharge-usb-c-adapter",
+          "foldstand-aluminum-dock",
+          "magvent-car-mount",
+          "creatorclamp-video-mount"
+        ],
+        "count": 16,
+        "resultText": "Showing all accessories: 16 products",
+        "searchValue": "",
+        "sortValue": "newest",
+        "filters": [
+          {
+            "filter": "all",
+            "count": 16,
+            "label": "All categories, 16 products",
+            "text": "All16",
+            "pressed": "true"
+          },
+          {
+            "filter": "phone-cases",
+            "count": 4,
+            "label": "Phone cases, 4 products",
+            "text": "Phone cases4",
+            "pressed": "false"
+          },
+          {
+            "filter": "screen-protectors",
+            "count": 3,
+            "label": "Screen protectors, 3 products",
+            "text": "Screen protectors3",
+            "pressed": "false"
+          },
+          {
+            "filter": "chargers",
+            "count": 3,
+            "label": "Chargers, 3 products",
+            "text": "Chargers3",
+            "pressed": "false"
+          },
+          {
+            "filter": "cables-adapters",
+            "count": 3,
+            "label": "Cables and adapters, 3 products",
+            "text": "Cables and adapters3",
+            "pressed": "false"
+          },
+          {
+            "filter": "stands-mounts",
+            "count": 3,
+            "label": "Stands and mounts, 3 products",
+            "text": "Stands and mounts3",
+            "pressed": "false"
+          }
+        ],
+        "overflowX": 0,
+        "overflowElements": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "route": "/products/[slug]",
+  "samplePath": "/products/aeroguard-magsafe-case",
+  "homeStatus": 200,
+  "detailStatus": 200,
+  "missingStatus": 404,
+  "productCardLinks": 16,
+  "detailMarkers": 1,
+  "detailTitleFound": true,
+  "pass": true
+}

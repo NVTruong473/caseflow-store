@@ -1,0 +1,67 @@
+[
+  {
+    "path": "/",
+    "hash": "",
+    "innerWidth": 1440,
+    "scrollWidth": 1425,
+    "overflowX": -15,
+    "overflowingElements": [],
+    "headerPresent": true,
+    "footerPresent": true,
+    "mobileMenuDisplay": "none",
+    "name": "home-1440",
+    "pass": true
+  },
+  {
+    "path": "/",
+    "hash": "",
+    "innerWidth": 375,
+    "scrollWidth": 360,
+    "overflowX": -15,
+    "overflowingElements": [],
+    "headerPresent": true,
+    "footerPresent": true,
+    "mobileMenuDisplay": "none",
+    "name": "home-375",
+    "pass": true
+  },
+  {
+    "path": "/",
+    "hash": "",
+    "innerWidth": 375,
+    "scrollWidth": 360,
+    "overflowX": -15,
+    "overflowingElements": [],
+    "headerPresent": true,
+    "footerPresent": true,
+    "mobileMenuDisplay": "block",
+    "name": "home-375-menu",
+    "pass": true
+  },
+  {
+    "path": "/ui-preview",
+    "hash": "",
+    "innerWidth": 1440,
+    "scrollWidth": 1425,
+    "overflowX": -15,
+    "overflowingElements": [],
+    "headerPresent": true,
+    "footerPresent": true,
+    "mobileMenuDisplay": "none",
+    "name": "ui-preview-1440",
+    "pass": true
+  },
+  {
+    "path": "/ui-preview",
+    "hash": "",
+    "innerWidth": 375,
+    "scrollWidth": 360,
+    "overflowX": -15,
+    "overflowingElements": [],
+    "headerPresent": true,
+    "footerPresent": true,
+    "mobileMenuDisplay": "none",
+    "name": "ui-preview-375",
+    "pass": true
+  }
+]

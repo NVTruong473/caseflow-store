@@ -1,0 +1,23 @@
+{
+  "task": "D16-T04",
+  "status": "passed",
+  "deploymentTarget": "preview",
+  "deploymentStatus": "Ready",
+  "url": "https://caseflow-store-74nu9i3d7-nvt-ruong473.vercel.app",
+  "vercelAuthentication": true,
+  "runtimeEnvironmentVariables": 3,
+  "homeStatus": 200,
+  "categoryCount": 5,
+  "productCount": 16,
+  "missingProductStatus": 404,
+  "anonymousAdminStatus": 401,
+  "orderCreateStatus": 201,
+  "orderSubtotal": 329000,
+  "orderCleanupDeleted": 1,
+  "adminLoginStatus": 200,
+  "adminOrderListStatus": 200,
+  "adminLogoutStatus": 200,
+  "adminAfterLogoutStatus": 401,
+  "browserErrorOrWarningLogs": 0,
+  "visualArtifact": "d16-t04-vercel-preview.png"
+}

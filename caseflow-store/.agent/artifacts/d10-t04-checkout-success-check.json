@@ -1,0 +1,53 @@
+{
+  "url": "http://localhost:3001/checkout",
+  "createdAt": "2026-07-15T06:44:59.137Z",
+  "submitEnabled": true,
+  "submitText": "Place simulated order",
+  "successState": {
+    "cardLikeFieldCount": 0,
+    "cartCountText": "Cart (0)",
+    "horizontalOverflow": false,
+    "itemText": "AeroGuard MagSafe CaseQuantity: 2658.000 ₫",
+    "orderCode": "CF-MRLPTL9Y-62CF4D0D",
+    "status": "pending",
+    "total": "658.000 ₫",
+    "url": "http://localhost:3001/checkout/success?orderCode=CF-MRLPTL9Y-62CF4D0D"
+  },
+  "mobileState": {
+    "horizontalOverflow": false,
+    "orderCode": "CF-MRLPTL9Y-62CF4D0D",
+    "successPageVisible": true,
+    "total": "658.000 ₫",
+    "viewportWidth": 375
+  },
+  "fallbackState": {
+    "horizontalOverflow": false,
+    "missingVisible": true,
+    "orderCode": "CF-MRLPTL9Y-62CF4D0D"
+  },
+  "parsedSuccessStorage": {
+    "version": 1,
+    "orderCode": "CF-MRLPTL9Y-62CF4D0D",
+    "status": "pending",
+    "subtotal": 658000,
+    "itemCount": 2,
+    "createdAt": "2026-07-15T06:44:53.878Z",
+    "items": [
+      {
+        "productName": "AeroGuard MagSafe Case",
+        "quantity": 2,
+        "lineTotal": 658000
+      }
+    ]
+  },
+  "parsedCartStorage": {
+    "version": 1,
+    "items": []
+  },
+  "screenshots": {
+    "desktop": "/Users/vantruong/Documents/TSNN 2/caseflow-store/.agent/artifacts/d10-t04-checkout-success-1440.png",
+    "mobile": "/Users/vantruong/Documents/TSNN 2/caseflow-store/.agent/artifacts/d10-t04-checkout-success-375.png",
+    "fallback": "/Users/vantruong/Documents/TSNN 2/caseflow-store/.agent/artifacts/d10-t04-checkout-success-fallback-1440.png"
+  },
+  "passed": true
+}

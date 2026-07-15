@@ -1,0 +1,78 @@
+{
+  "task": "D12-T03",
+  "name": "Check loading, empty, error, and success states",
+  "date": "2026-07-15",
+  "status": "passed",
+  "checks": [
+    {
+      "flow": "catalog preview",
+      "viewport": "375x812",
+      "states": ["loading", "empty", "error"],
+      "assertions": [
+        "loading state shows disabled controls and skeleton placeholders",
+        "empty state shows reset guidance",
+        "error state shows unavailable messaging and disabled catalog controls",
+        "no horizontal overflow"
+      ]
+    },
+    {
+      "flow": "cart, checkout, and product fallback",
+      "viewport": "1024x900",
+      "states": ["empty", "not-found"],
+      "assertions": [
+        "cart drawer empty state is explicit",
+        "checkout empty state directs users back to shopping",
+        "product not-found state provides recovery links",
+        "no horizontal overflow"
+      ]
+    },
+    {
+      "flow": "checkout validation and success",
+      "viewport": "1024x900",
+      "states": ["error", "success"],
+      "assertions": [
+        "over-stock cart validation shows an error and hides order summary",
+        "valid checkout creates a simulated order and shows success details",
+        "success page shows order code, pending status, and server total",
+        "no horizontal overflow"
+      ]
+    },
+    {
+      "flow": "admin",
+      "viewport": "768x900",
+      "states": ["auth-required", "loading", "empty", "error", "success"],
+      "assertions": [
+        "orders page shows auth-required state without a session",
+        "orders page shows loading skeleton while order API is pending",
+        "orders page shows empty state when API returns no orders",
+        "orders page shows error state when API fails",
+        "admin login shows invalid-token error and valid-token success",
+        "no horizontal overflow"
+      ]
+    }
+  ],
+  "screenshots": [
+    ".agent/artifacts/d12-t03-catalog-loading-375.png",
+    ".agent/artifacts/d12-t03-catalog-empty-375.png",
+    ".agent/artifacts/d12-t03-catalog-error-375.png",
+    ".agent/artifacts/d12-t03-cart-empty-1024.png",
+    ".agent/artifacts/d12-t03-checkout-empty-1024.png",
+    ".agent/artifacts/d12-t03-product-not-found-1024.png",
+    ".agent/artifacts/d12-t03-checkout-error-1024.png",
+    ".agent/artifacts/d12-t03-checkout-success-1024.png",
+    ".agent/artifacts/d12-t03-admin-auth-required-768.png",
+    ".agent/artifacts/d12-t03-admin-loading-768.png",
+    ".agent/artifacts/d12-t03-admin-empty-768.png",
+    ".agent/artifacts/d12-t03-admin-error-768.png",
+    ".agent/artifacts/d12-t03-admin-login-error-768.png",
+    ".agent/artifacts/d12-t03-admin-login-success-768.png"
+  ],
+  "verification": {
+    "npx playwright test tests/e2e/ui-states.spec.ts": "passed, 4 tests",
+    "npm run test:e2e": "passed, 9 tests",
+    "npm run lint": "passed",
+    "npx tsc --noEmit": "passed",
+    "git diff --check": "passed",
+    "npm run build": "passed"
+  }
+}

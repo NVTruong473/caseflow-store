@@ -1,0 +1,41 @@
+{
+  "url": "http://localhost:3001/checkout",
+  "createdAt": "2026-07-15T06:07:41.442Z",
+  "validCartStorage": {
+    "result": {
+      "type": "string",
+      "value": "{\"version\":1,\"items\":[{\"productId\":\"10000000-0000-4000-8000-000000000001\",\"quantity\":2}]}"
+    }
+  },
+  "validState": {
+    "cardLikeFieldCount": 0,
+    "cartSubtotal": "658.000 ₫",
+    "checkedBadgeVisible": true,
+    "horizontalOverflow": false,
+    "items": "2 items",
+    "orderSummaryVisible": true,
+    "payment": "No payment collected",
+    "shipping": "Not charged in demo",
+    "subtotal": "658.000 ₫",
+    "successText": "Customer details are valid for the next checkout step.",
+    "total": "658.000 ₫"
+  },
+  "mobileState": {
+    "horizontalOverflow": false,
+    "orderSummaryVisible": true,
+    "total": "658.000 ₫",
+    "viewportWidth": 375
+  },
+  "errorState": {
+    "horizontalOverflow": false,
+    "orderSummaryCount": 0,
+    "subtotalCount": 0,
+    "validationErrorCode": "OUT_OF_STOCK"
+  },
+  "screenshots": {
+    "desktop": "/Users/vantruong/Documents/TSNN 2/caseflow-store/.agent/artifacts/d10-t03-order-summary-1440.png",
+    "mobile": "/Users/vantruong/Documents/TSNN 2/caseflow-store/.agent/artifacts/d10-t03-order-summary-375.png",
+    "error": "/Users/vantruong/Documents/TSNN 2/caseflow-store/.agent/artifacts/d10-t03-order-summary-error-1440.png"
+  },
+  "passed": true
+}

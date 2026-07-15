@@ -1,0 +1,144 @@
+{
+  "desktop": [
+    {
+      "selectedFilter": "all",
+      "productCards": 16,
+      "productSlugs": [
+        "aeroguard-magsafe-case",
+        "clearshield-slim-case",
+        "galaxy-armor-grip-case",
+        "pixel-softgrip-case",
+        "edgeclear-glass-protector",
+        "galaxy-glass-shield",
+        "pixel-matte-film-pack",
+        "voltmini-30w-usb-c-charger",
+        "gan-duo-65w-charger",
+        "magdock-wireless-pad",
+        "flexline-usb-c-cable",
+        "lightninglink-usb-c-cable",
+        "audiocharge-usb-c-adapter",
+        "foldstand-aluminum-dock",
+        "magvent-car-mount",
+        "creatorclamp-video-mount"
+      ],
+      "resultCount": 16,
+      "resultText": "Showing all accessories: 16 products",
+      "innerWidth": 1440,
+      "scrollWidth": 1425,
+      "overflowX": -15,
+      "overflowingElements": [],
+      "name": "all",
+      "expectedCount": 16,
+      "pass": true
+    },
+    {
+      "selectedFilter": "phone-cases",
+      "productCards": 4,
+      "productSlugs": [
+        "aeroguard-magsafe-case",
+        "clearshield-slim-case",
+        "galaxy-armor-grip-case",
+        "pixel-softgrip-case"
+      ],
+      "resultCount": 4,
+      "resultText": "Showing Phone cases: 4 products",
+      "innerWidth": 1440,
+      "scrollWidth": 1440,
+      "overflowX": 0,
+      "overflowingElements": [],
+      "name": "phone-cases",
+      "expectedCount": 4,
+      "pass": true
+    },
+    {
+      "selectedFilter": "screen-protectors",
+      "productCards": 3,
+      "productSlugs": [
+        "edgeclear-glass-protector",
+        "galaxy-glass-shield",
+        "pixel-matte-film-pack"
+      ],
+      "resultCount": 3,
+      "resultText": "Showing Screen protectors: 3 products",
+      "innerWidth": 1440,
+      "scrollWidth": 1440,
+      "overflowX": 0,
+      "overflowingElements": [],
+      "name": "screen-protectors",
+      "expectedCount": 3,
+      "pass": true
+    },
+    {
+      "selectedFilter": "chargers",
+      "productCards": 3,
+      "productSlugs": [
+        "voltmini-30w-usb-c-charger",
+        "gan-duo-65w-charger",
+        "magdock-wireless-pad"
+      ],
+      "resultCount": 3,
+      "resultText": "Showing Chargers: 3 products",
+      "innerWidth": 1440,
+      "scrollWidth": 1440,
+      "overflowX": 0,
+      "overflowingElements": [],
+      "name": "chargers",
+      "expectedCount": 3,
+      "pass": true
+    },
+    {
+      "selectedFilter": "cables-adapters",
+      "productCards": 3,
+      "productSlugs": [
+        "flexline-usb-c-cable",
+        "lightninglink-usb-c-cable",
+        "audiocharge-usb-c-adapter"
+      ],
+      "resultCount": 3,
+      "resultText": "Showing Cables and adapters: 3 products",
+      "innerWidth": 1440,
+      "scrollWidth": 1440,
+      "overflowX": 0,
+      "overflowingElements": [],
+      "name": "cables-adapters",
+      "expectedCount": 3,
+      "pass": true
+    },
+    {
+      "selectedFilter": "stands-mounts",
+      "productCards": 3,
+      "productSlugs": [
+        "foldstand-aluminum-dock",
+        "magvent-car-mount",
+        "creatorclamp-video-mount"
+      ],
+      "resultCount": 3,
+      "resultText": "Showing Stands and mounts: 3 products",
+      "innerWidth": 1440,
+      "scrollWidth": 1440,
+      "overflowX": 0,
+      "overflowingElements": [],
+      "name": "stands-mounts",
+      "expectedCount": 3,
+      "pass": true
+    }
+  ],
+  "mobileChargers": {
+    "selectedFilter": "chargers",
+    "productCards": 3,
+    "productSlugs": [
+      "voltmini-30w-usb-c-charger",
+      "gan-duo-65w-charger",
+      "magdock-wireless-pad"
+    ],
+    "resultCount": 3,
+    "resultText": "Showing Chargers: 3 products",
+    "innerWidth": 375,
+    "scrollWidth": 360,
+    "overflowX": -15,
+    "overflowingElements": [],
+    "name": "chargers",
+    "expectedCount": 3,
+    "pass": true
+  }
+}
