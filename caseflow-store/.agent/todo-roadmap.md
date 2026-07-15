@@ -11,9 +11,9 @@
 
 - Project: CaseFlow Store
 - Mode: implementation enabled
-- Current gate: Release candidate `v1.0.0-rc.1` accepted; production deployment pending
-- Current task: `D19-T01 - Push repository`
-- Implementation day: Day 19 in progress
+- Current gate: Production accepted; portfolio packaging and release tag pending
+- Current task: `D20-T06 - Create release tag v1.0.0`
+- Implementation day: Day 20 in progress
 - Last updated: 2026-07-16
 
 ## Pre-Implementation Checklist
@@ -484,20 +484,50 @@ No app code was created before `CONFIRM-001` was complete.
 
 ### Day 19 - Production deployment
 
-- [/] `D19-T01` Push repository.
-- [ ] `D19-T02` Configure production environment variables.
-- [ ] `D19-T03` Deploy preview and smoke test.
-- [ ] `D19-T04` Deploy production.
-- [ ] `D19-T05` Test storefront, checkout, and admin on production.
+- [x] `D19-T01` Push repository. - 2026-07-16
+  - Result: created public GitHub repository `NVTruong473/caseflow-store`, committed the release candidate, and pushed `main`.
+  - Verification: local and remote commit both equal `c4e4dfa4a7962057652045134ccbc81b7006fe04`; pre-push scan found 0 exact secrets across 331 candidates; `.env.local` and `.vercel` remained ignored.
+  - Evidence: `caseflow-store/.agent/artifacts/d19-t01-github-push.json`.
+- [x] `D19-T02` Configure production environment variables. - 2026-07-16
+  - Result: configured the three runtime Supabase variables as sensitive Production values without deploying Playwright credentials.
+  - Verification: Vercel lists all three as Encrypted for Production and all three existing Preview entries remain intact; no values were logged.
+  - Evidence: `caseflow-store/.agent/artifacts/d19-t02-production-env.json`.
+- [x] `D19-T03` Deploy preview and smoke test. - 2026-07-16
+  - Result: deployed preview `dpl_EDqtfK9XuinEoKmCQjMMuY9GDagw` in Ready state.
+  - Verification: protected smoke test returned home 200, categories/products 5/16, missing product 404, anonymous admin 401, order 201 with server subtotal `329000`, and cleanup 0.
+  - Evidence: `caseflow-store/.agent/artifacts/d19-t03-preview-smoke.json`.
+- [x] `D19-T04` Deploy production. - 2026-07-16
+  - Result: deployed production `dpl_4Wocg3yqgFoSUSCR76jvN6xL2esu` in Ready state with canonical alias `https://caseflow-store.vercel.app`.
+  - Verification: the canonical alias returned HTTP 200 and a full-page browser capture showed the live 5-category, 16-product storefront without layout failures.
+  - Evidence: `caseflow-store/.agent/artifacts/d19-t04-production.json` and `d19-t04-production.png`.
+- [x] `D19-T05` Test storefront, checkout, and admin on production. - 2026-07-16
+  - Result: fixed a production-only admin navigation race, redeployed `dpl_D5GLc5s5WbDs4xB3d22kXieyDCpz`, and accepted the public production application.
+  - Verification: lint/build passed with 16 routes; the full Chromium suite passed 20/20 against the canonical production URL in 2.8 minutes with 0 failed/flaky/skipped; QA orders/users returned 0/0.
+  - Evidence: `caseflow-store/.agent/artifacts/d19-t05-production-acceptance.json` and `d19-t05-production-report.png`.
 
 ### Day 20 - Acceptance and portfolio packaging
 
-- [ ] `D20-T01` Finalize README.
-- [ ] `D20-T02` Finalize architecture summary and ADR index.
-- [ ] `D20-T03` Capture desktop/mobile screenshots.
-- [ ] `D20-T04` Document known limitations.
-- [ ] `D20-T05` Write CV bullets using only verified evidence.
-- [ ] `D20-T06` Create release tag `v1.0.0`.
+- [x] `D20-T01` Finalize README. - 2026-07-16
+  - Result: replaced the scaffold README with a repository portfolio overview and an application-level setup guide grounded in verified release evidence.
+  - Verification: both README files passed whitespace checks; all relative links resolve; production, simulated checkout, environment boundaries, setup, commands, and 20/20 release evidence are documented without secret values.
+  - Evidence: `README.md`, `caseflow-store/README.md`, and `caseflow-store/.agent/artifacts/d20-t01-readme.json`.
+- [x] `D20-T02` Finalize architecture summary and ADR index. - 2026-07-16
+  - Result: replaced planning-era architecture text with the verified production runtime, request flows, data/security boundaries, deployment gate, and a five-record ADR index.
+  - Verification: root/app mirrors match; 4 files passed whitespace and relative-link checks with 0 missing links; the order RPC scope and lack of stock decrement are explicit.
+  - Evidence: `docs/architecture.md`, `docs/adr/README.md`, and `caseflow-store/.agent/artifacts/d20-t02-architecture.json`.
+- [x] `D20-T03` Capture desktop/mobile screenshots. - 2026-07-16
+  - Result: captured and embedded production storefront/product-detail views at desktop 1440px and mobile 375px.
+  - Verification: all 4 non-empty PNGs were opened and visually checked with 0 blank, crop, or overlap failures; dimensions match the intended viewports.
+  - Evidence: `caseflow-store/docs/screenshots/` and `caseflow-store/.agent/artifacts/d20-t03-screenshots.json`.
+- [x] `D20-T04` Document known limitations. - 2026-07-16
+  - Result: documented 8 verified MVP/product/operational boundaries with impact, current controls, and credible next steps; also recorded the accepted dependency advisory.
+  - Verification: root/app mirrors match and pass whitespace checks; current audit is 0 critical/high/low and 2 moderate, with the breaking Next 9.3.3 force-downgrade explicitly rejected.
+  - Evidence: `docs/known-limitations.md` and `caseflow-store/.agent/artifacts/d20-t04-known-limitations.json`.
+- [x] `D20-T05` Write CV bullets using only verified evidence. - 2026-07-16
+  - Result: created a 3-bullet CV version, 6 focus-specific alternatives, interview summary, caveats, and a 9-entry evidence ledger.
+  - Verification: root/app mirrors match and pass whitespace checks; 0 unverified scale, percentage, or elapsed-time claims; simulated checkout is explicit.
+  - Evidence: `docs/cv-bullets.md` and `caseflow-store/.agent/artifacts/d20-t05-cv-bullets.json`.
+- [/] `D20-T06` Create release tag `v1.0.0`.
 
 ## 30 Journal Entries
 

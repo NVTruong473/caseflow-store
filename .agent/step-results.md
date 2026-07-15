@@ -5435,3 +5435,202 @@ Release candidate `v1.0.0-rc.1` is accepted for production deployment.
 ### Next Task
 
 `D19-T01 - Push repository`
+
+---
+
+## SR-089 - D19-T01: Push repository
+
+- Date: 2026-07-16
+- Status: completed
+- Phase: Day 19 - Production deployment
+
+### Verification
+
+- Public repository: `https://github.com/NVTruong473/caseflow-store`.
+- Branch: `main`.
+- Local/remote commit: `c4e4dfa4a7962057652045134ccbc81b7006fe04`.
+- Pre-push exact secret matches: 0 across 331 files.
+- `.env.local` and `.vercel`: ignored.
+
+### Next Task
+
+`D19-T02 - Configure production environment variables`
+
+---
+
+## SR-090 - D19-T02: Configure production environment variables
+
+- Date: 2026-07-16
+- Status: completed
+- Phase: Day 19 - Production deployment
+
+### Verification
+
+- Required Production variables: 3/3 configured.
+- Vercel storage: Encrypted.
+- Preview variables preserved: 3/3.
+- Playwright credentials deployed: no.
+- Secret values logged: no.
+
+### Next Task
+
+`D19-T03 - Deploy preview and smoke test`
+
+---
+
+## SR-091 - D19-T03: Deploy preview and smoke test
+
+- Date: 2026-07-16
+- Status: completed
+- Phase: Day 19 - Production deployment
+
+### Verification
+
+- Deployment: `dpl_EDqtfK9XuinEoKmCQjMMuY9GDagw`, Ready.
+- Home/categories/products: 200 / 5 / 16.
+- Missing product: `404/PRODUCT_NOT_FOUND`.
+- Anonymous admin: `401/UNAUTHORIZED`.
+- Order: 201 with server subtotal `329000`.
+- QA cleanup: 0.
+
+### Next Task
+
+`D19-T04 - Deploy production`
+
+---
+
+## SR-092 - D19-T04: Deploy production
+
+- Date: 2026-07-16
+- Status: completed
+- Phase: Day 19 - Production deployment
+
+### Verification
+
+- Deployment: `dpl_4Wocg3yqgFoSUSCR76jvN6xL2esu`, Ready.
+- Canonical alias: `https://caseflow-store.vercel.app`.
+- Canonical alias HTTP status: 200.
+- Visual check: full 5-category, 16-product storefront rendered without layout failures.
+
+### Next Task
+
+`D19-T05 - Test storefront, checkout, and admin on production`
+
+---
+
+## SR-093 - D19-T05: Test storefront, checkout, and admin on production
+
+- Date: 2026-07-16
+- Status: completed
+- Phase: Day 19 - Production deployment
+
+### Verification
+
+- Initial production suite: 18/20; exposed and fixed an admin post-login navigation race.
+- Replacement deployment: `dpl_D5GLc5s5WbDs4xB3d22kXieyDCpz`, Ready.
+- Lint/build: passed; 16 routes generated.
+- Final production suite: 20 passed, 0 failed/flaky/skipped in 2.8 minutes.
+- QA cleanup: 0 orders, 0 temporary users.
+
+### Next Task
+
+`D20-T01 - Finalize README`
+
+---
+
+## SR-094 - D20-T01: Finalize README
+
+- Date: 2026-07-16
+- Status: completed
+- Phase: Day 20 - Acceptance and portfolio packaging
+
+### Verification
+
+- Repository README: portfolio overview, production URL, verified scope, stack, architecture, setup, commands, and release evidence.
+- Application README: focused local setup and quality gates.
+- Relative link check: 0 missing across 2 README files.
+- Whitespace check: passed.
+- Secret values: none documented.
+
+### Next Task
+
+`D20-T02 - Finalize architecture summary and ADR index`
+
+---
+
+## SR-095 - D20-T02: Finalize architecture summary and ADR index
+
+- Date: 2026-07-16
+- Status: completed
+- Phase: Day 20 - Acceptance and portfolio packaging
+
+### Verification
+
+- As-built architecture: production containers, boundaries, flows, data, security, deployment, and limitations documented.
+- ADR index: 5 accepted decisions with production outcomes.
+- Root/application mirrors: identical.
+- Relative link check: 0 missing across 4 files.
+- Whitespace check: passed.
+
+### Next Task
+
+`D20-T03 - Capture desktop/mobile screenshots`
+
+---
+
+## SR-096 - D20-T03: Capture desktop/mobile screenshots
+
+- Date: 2026-07-16
+- Status: completed
+- Phase: Day 20 - Acceptance and portfolio packaging
+
+### Verification
+
+- Production screenshots: 4 PNG files.
+- Widths: 1440px desktop and 375px mobile.
+- Visual inspection: 0 blank, crop, or overlap failures.
+- README embedding: complete with descriptive alt text.
+
+### Next Task
+
+`D20-T04 - Document known limitations`
+
+---
+
+## SR-097 - D20-T04: Document known limitations
+
+- Date: 2026-07-16
+- Status: completed
+- Phase: Day 20 - Acceptance and portfolio packaging
+
+### Verification
+
+- Verified limitations documented: 8.
+- Each item includes impact, current control, and next step.
+- Dependency audit: 0 critical/high/low, 2 moderate.
+- Root/application mirrors: identical; whitespace check passed.
+- README link: present.
+
+### Next Task
+
+`D20-T05 - Write CV bullets using only verified evidence`
+
+---
+
+## SR-098 - D20-T05: Write CV bullets using only verified evidence
+
+- Date: 2026-07-16
+- Status: completed
+- Phase: Day 20 - Acceptance and portfolio packaging
+
+### Verification
+
+- Recommended CV bullets: 3.
+- Focus-specific alternatives: 6.
+- Evidence ledger entries: 9.
+- Unverified scale/percentage/elapsed-time claims: 0.
+- Root/application mirrors: identical; whitespace check passed.
+
+### Next Task
+
+`D20-T06 - Create release tag v1.0.0`

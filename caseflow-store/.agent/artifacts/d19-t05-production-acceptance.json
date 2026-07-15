@@ -1,0 +1,34 @@
+{
+  "task": "D19-T05",
+  "status": "completed",
+  "date": "2026-07-16",
+  "production": {
+    "deploymentId": "dpl_D5GLc5s5WbDs4xB3d22kXieyDCpz",
+    "status": "Ready",
+    "canonicalUrl": "https://caseflow-store.vercel.app"
+  },
+  "verification": {
+    "lint": "passed",
+    "build": "passed",
+    "generatedRoutes": 16,
+    "playwright": {
+      "passed": 20,
+      "failed": 0,
+      "flaky": 0,
+      "skipped": 0,
+      "durationMinutes": 2.8,
+      "baseUrl": "https://caseflow-store.vercel.app"
+    },
+    "cleanup": {
+      "qaOrders": 0,
+      "temporaryUsers": 0
+    }
+  },
+  "fix": {
+    "finding": "Successful admin sessions could remain on the login route when client router replacement raced a refresh on production.",
+    "resolution": "Use a full-document location replacement after the session cookie is set."
+  },
+  "evidence": [
+    ".agent/artifacts/d19-t05-production-report.png"
+  ]
+}

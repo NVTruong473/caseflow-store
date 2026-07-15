@@ -1,0 +1,14 @@
+{
+  "task": "D19-T02",
+  "date": "2026-07-16",
+  "status": "passed",
+  "vercelProject": "nvt-ruong473/caseflow-store",
+  "productionVariables": [
+    "NEXT_PUBLIC_SUPABASE_URL",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY",
+    "SUPABASE_SERVICE_ROLE_KEY"
+  ],
+  "storage": "Encrypted",
+  "playwrightCredentialsDeployed": false,
+  "valuesLogged": false
+}

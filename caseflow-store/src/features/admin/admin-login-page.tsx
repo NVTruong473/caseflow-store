@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import * as React from "react";
 
 import { Badge, Button, Container, ErrorMessage, Input } from "@/components/ui";
@@ -34,7 +33,6 @@ type FieldErrors = {
 };
 
 export function AdminLoginPage() {
-  const router = useRouter();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [fieldErrors, setFieldErrors] = React.useState<FieldErrors>({});
@@ -88,8 +86,7 @@ export function AdminLoginPage() {
         status: "success",
         displayName: payload.data.displayName,
       });
-      router.replace("/admin/orders");
-      router.refresh();
+      window.location.replace("/admin/orders");
     } catch {
       setLoginState({
         status: "error",

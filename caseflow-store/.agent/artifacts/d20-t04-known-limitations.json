@@ -1,0 +1,19 @@
+{
+  "task": "D20-T04",
+  "status": "completed",
+  "date": "2026-07-16",
+  "document": "docs/known-limitations.md",
+  "verifiedBoundaries": 8,
+  "dependencyAudit": {
+    "critical": 0,
+    "high": 0,
+    "moderate": 2,
+    "low": 0,
+    "forceFixRejected": "Proposed a breaking downgrade to Next.js 9.3.3"
+  },
+  "verification": {
+    "rootAppMirrorsMatch": true,
+    "whitespaceErrors": 0,
+    "readmeLinked": true
+  }
+}

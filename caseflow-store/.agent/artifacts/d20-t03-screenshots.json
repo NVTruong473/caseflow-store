@@ -1,0 +1,38 @@
+{
+  "task": "D20-T03",
+  "status": "completed",
+  "date": "2026-07-16",
+  "source": "https://caseflow-store.vercel.app",
+  "screenshots": [
+    {
+      "path": "docs/screenshots/storefront-desktop.png",
+      "width": 1440,
+      "height": 3841,
+      "mode": "full-page"
+    },
+    {
+      "path": "docs/screenshots/storefront-mobile.png",
+      "width": 375,
+      "height": 812,
+      "mode": "viewport"
+    },
+    {
+      "path": "docs/screenshots/product-desktop.png",
+      "width": 1440,
+      "height": 1367,
+      "mode": "full-page"
+    },
+    {
+      "path": "docs/screenshots/product-mobile.png",
+      "width": 375,
+      "height": 2227,
+      "mode": "full-page"
+    }
+  ],
+  "visualVerification": {
+    "blankImages": 0,
+    "croppingFailures": 0,
+    "overlapFailures": 0,
+    "readmeEmbedded": true
+  }
+}

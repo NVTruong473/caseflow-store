@@ -1,143 +1,185 @@
 # CaseFlow Store Architecture
 
-## Context
+## Status
 
-CaseFlow Store is a small e-commerce MVP for portfolio use. The architecture must prove full-stack capability without pretending to be a large-scale commerce platform.
+This document describes the production architecture released after the 20-day
+implementation cycle. CaseFlow Store is intentionally a modular monolith: it
+demonstrates a complete commerce workflow without claiming marketplace-scale
+infrastructure.
 
-The main risk is not a lack of advanced architecture. The main risk is overengineering before the core store, checkout, admin, tests, and deployment work.
-
-## Quality Attributes
-
-Priority order:
-
-1. Development speed within 20 days
-2. Correct order and price handling
-3. Maintainability for one developer
-4. Responsive mobile usability
-5. Low operational cost
-6. Clear portfolio explanation
-7. Visual polish
-
-## System Overview
+## System context
 
 ```mermaid
 flowchart LR
-  Shopper["Shopper"] --> Web["CaseFlow Store Web App"]
-  Admin["Admin"] --> Web
-  Web --> Supabase["Supabase PostgreSQL/Auth"]
-  Web --> Vercel["Vercel Hosting"]
+  Shopper["Shopper browser"]
+  Admin["Admin browser"]
+  App["CaseFlow Store on Vercel"]
+  Database["Supabase PostgreSQL"]
+  Auth["Supabase Auth"]
+
+  Shopper --> App
+  Admin --> App
+  App --> Database
+  App --> Auth
 ```
 
-## Container View
+Vercel runs one Next.js application. Supabase is the only external data and
+identity service. There is no separate API deployment or payment provider.
+
+## Runtime containers
 
 ```mermaid
 flowchart TB
   Browser["Browser"]
-  UI["Next.js UI"]
-  API["Next.js Route Handlers"]
-  Cart["React Context + localStorage"]
-  Repo["Repository Layer"]
-  Mock["Mock Repository"]
-  DB["Supabase PostgreSQL"]
+  UI["Next.js Server and Client Components"]
+  Cart["React Context and localStorage"]
+  Routes["Next.js Route Handlers"]
+  Domain["Validation, repositories, and row mappers"]
+  Session["Supabase SSR cookie session"]
+  Service["Server-only service-role client"]
+  DB["PostgreSQL, RLS, and create-order RPC"]
   Auth["Supabase Auth"]
 
   Browser --> UI
-  UI --> Cart
-  UI --> API
-  API --> Repo
-  Repo --> Mock
-  Repo --> DB
-  API --> Auth
+  UI <--> Cart
+  UI --> Routes
+  UI --> Domain
+  Routes --> Domain
+  Domain --> Session
+  Domain --> Service
+  Session --> Auth
+  Session --> DB
+  Service --> DB
 ```
 
-## Request Flow
+Production pages and Route Handlers use the Supabase repositories. Mock
+repositories remain as development history and fixtures, but are not selected by
+the production runtime.
 
-### Product Listing
+## Application boundaries
+
+| Boundary | Responsibility |
+|---|---|
+| `src/app` | Pages, layouts, and same-origin Route Handlers |
+| `src/features` | Storefront, cart, checkout, and admin presentation/workflows |
+| `src/components/ui` | Shared accessible UI primitives |
+| `src/lib/domain` and `src/lib/validation` | Domain contracts and Zod input validation |
+| `src/lib/repositories` | Catalog/order persistence and server-owned calculations |
+| `src/lib/supabase` | Browser, SSR, proxy, and server-only Supabase clients |
+| `src/lib/auth` | Session and admin-role authorization |
+| `supabase/schema.sql` | Tables, constraints, indexes, RLS, grants, and order RPC |
+| `tests/e2e` | Release flows and access-control verification |
+
+Database rows use `snake_case`. Repository mappers convert them to
+`camelCase` domain objects before UI or API code consumes them.
+
+## Core request flows
+
+### Catalog read
 
 ```text
-Browser
-  -> Next.js page
-  -> product repository
-  -> mock data or Supabase
-  -> domain Product[]
-  -> UI
+Browser request
+  -> Next.js page or GET Route Handler
+  -> Supabase catalog repository
+  -> RLS-scoped active category/product query
+  -> row-to-domain mapping
+  -> rendered UI or API envelope
 ```
 
-### Checkout
+Anonymous catalog reads use the public key and RLS. The service-role key is not
+needed for storefront discovery.
+
+### Cart validation and checkout
 
 ```text
-Browser cart productId/quantity
-  -> POST /api/orders
-  -> Zod validation
-  -> server reads products from database
-  -> server recalculates price and subtotal
-  -> transaction/RPC creates order and order_items
-  -> order code returned
+Browser localStorage cart: productId + quantity
+  -> POST /api/cart/validate or POST /api/orders
+  -> Zod validates request shape
+  -> server reloads current active products
+  -> server checks stock and recalculates line totals/subtotal
+  -> server-only client invokes create_order_with_items
+  -> PostgreSQL inserts order and item snapshots atomically
+  -> order code and server-calculated total return to the browser
 ```
 
-## Important Boundaries
+The browser never supplies an authoritative price, subtotal, product name,
+stock value, role, or order status. Product name and unit price are copied into
+order-item snapshots so historical orders do not change with the catalog.
 
-- UI should consume domain objects, not raw database rows.
-- Database rows can be snake_case; domain objects should be camelCase.
-- Cart localStorage is not trusted.
-- Admin role is verified server-side.
-- Payment is simulated; no card data is collected.
+The order RPC atomically inserts the order and its items. It validates current
+stock but does not reserve or decrement stock; that is an explicit MVP
+limitation, not an implied inventory system.
 
-## Data Consistency
+### Admin authentication and authorization
 
-Required:
+```text
+Credentials
+  -> POST /api/admin/session
+  -> Supabase Auth session cookie
+  -> full navigation to /admin/orders
+  -> server page checks session and profiles.role
+  -> protected Route Handler repeats the same authorization
+  -> server-only repository reads or updates orders
+```
 
-- Product price stored as integer VND.
-- Server recalculates totals.
-- Order items store product name and unit price snapshots.
-- Order status is constrained.
-- Product and order slugs/codes are unique.
+The Next.js proxy refreshes Supabase cookies. UI visibility is not an
+authorization boundary: both server-rendered admin pages and every admin Route
+Handler reject missing sessions and non-admin roles.
 
-Open decision for implementation:
+## Data model
 
-- If stock decrement is included, order creation should be atomic through SQL transaction or Supabase RPC.
-- If true stock decrement is too risky for the 20-day MVP, document the limitation rather than implementing partial stock logic.
+- `categories` and `products` form the public active catalog.
+- `profiles` extends Supabase Auth identities with `customer` or `admin` roles.
+- `orders` stores guest contact/shipping data, status, currency, subtotal, and a
+  unique public order code.
+- `order_items` stores product references plus product-name and unit-price
+  snapshots.
+- Monetary values are integer VND amounts.
+- Foreign keys, checks, unique constraints, timestamps, and status constraints
+  are enforced in PostgreSQL.
 
-## Security Model
+The cart is deliberately absent from the database. It stores only
+`productId` and `quantity` in localStorage and is revalidated before checkout.
 
-Public users can:
+## Security model
 
-- Read active products.
-- Submit guest checkout data.
+| Actor | Catalog | Direct order tables | Admin APIs |
+|---|---|---|---|
+| Anonymous | Read active rows | Denied | 401 |
+| Authenticated customer | Read catalog and own profile | Denied | 403 |
+| Authenticated admin | Read catalog and own profile | Denied directly | Allowed after server role check |
+| Server service role | Trusted backend operations | Allowed | Internal only |
 
-Admins can:
+Additional controls:
 
-- Read all orders.
-- Update order status.
+- RLS is enabled on all five public tables.
+- Public and authenticated grants are explicit; order-table access is denied.
+- `SUPABASE_SERVICE_ROLE_KEY` is read only by server modules and is never
+  exposed through `NEXT_PUBLIC_*`.
+- Mutating bodies are validated on the server.
+- The application does not collect payment-card fields.
+- Production does not contain Playwright admin credentials.
 
-Rules:
+## Deployment and verification
 
-- RLS deny by default.
-- Anonymous users cannot read all orders.
-- Normal users cannot access admin APIs.
-- Admin check must happen in Route Handlers and server-rendered admin pages.
-
-## Deployment Model
-
-- Vercel hosts the Next.js app.
+- Vercel hosts the Next.js application at
+  `https://caseflow-store.vercel.app`.
 - Supabase hosts PostgreSQL and Auth.
-- Smoke deploy should happen early.
-- Day 19 must not be the first deployment attempt.
+- Production has three runtime variables: the public project URL, public anon
+  key, and server-only service-role key.
+- The release gate requires lint, TypeScript/production build, Playwright, and
+  cleanup checks.
+- The accepted production suite passed 20/20 with no failed, flaky, or skipped
+  tests.
 
-## Why Not Microservices
+## Decision record
 
-Microservices would add infrastructure, deployment, auth, API gateway, data consistency, and observability complexity that does not fit a 20-day portfolio MVP.
+The accepted decisions and their implementation outcomes are indexed in
+[the ADR index](adr/README.md).
 
-The project can still discuss an evolution path later, but implementation should remain modular monolith.
+## Evolution path
 
-## Evolution Path After MVP
-
-Only after the MVP is complete:
-
-- Add email notifications.
-- Add better order cleanup for demo data.
-- Add product image management.
-- Add stock reservation.
-- Add real payment provider.
-- Add search indexing if product count grows.
-- Add rate limiting and stronger abuse controls.
+The next architecture changes should respond to actual product requirements.
+Likely candidates are stock reservation/decrement, payment-provider integration,
+email notifications, rate limiting/abuse controls, managed product media, and
+cross-device carts. Each major change requires a new ADR before implementation.

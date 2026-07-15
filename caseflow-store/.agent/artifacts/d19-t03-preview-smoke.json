@@ -1,0 +1,21 @@
+{
+  "task": "D19-T03",
+  "date": "2026-07-16",
+  "status": "passed",
+  "deployment": {
+    "id": "dpl_EDqtfK9XuinEoKmCQjMMuY9GDagw",
+    "target": "preview",
+    "readyState": "READY",
+    "url": "https://caseflow-store-oh8lf9ayr-nvt-ruong473.vercel.app",
+    "protection": "Vercel Deployment Protection"
+  },
+  "smoke": {
+    "home": 200,
+    "categories": 5,
+    "products": 16,
+    "missingProduct": "404/PRODUCT_NOT_FOUND",
+    "anonymousAdmin": "401/UNAUTHORIZED",
+    "order": "201/subtotal 329000",
+    "qaOrdersRemaining": 0
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "task": "D20-T05",
+  "status": "completed",
+  "date": "2026-07-16",
+  "document": "docs/cv-bullets.md",
+  "content": {
+    "recommendedBullets": 3,
+    "alternativeBullets": 6,
+    "evidenceLedgerEntries": 9
+  },
+  "verification": {
+    "rootAppMirrorsMatch": true,
+    "whitespaceErrors": 0,
+    "unverifiedScaleClaims": 0,
+    "unverifiedPercentageClaims": 0,
+    "falseElapsedTimeClaims": 0,
+    "simulatedCheckoutDisclosed": true
+  }
+}

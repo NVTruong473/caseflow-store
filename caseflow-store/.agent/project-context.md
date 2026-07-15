@@ -2540,7 +2540,102 @@ Completed `D18-T05` on 2026-07-16.
 - Release candidate `v1.0.0-rc.1` is accepted for production deployment.
 - Evidence: `caseflow-store/docs/release-candidate.md`, `.agent/artifacts/d18-t05-release-candidate-report.png`, and `d18-t05-release-candidate.json`.
 
-Day 18 is complete. Next task: `D19-T01 - Push repository`.
+Day 18 is complete.
+
+Completed `D19-T01` on 2026-07-16.
+
+- Created public repository `https://github.com/NVTruong473/caseflow-store`.
+- Initial release-candidate commit `c4e4dfa4a7962057652045134ccbc81b7006fe04` was pushed to `main` and matches the remote branch.
+- Pre-push checks covered 331 files / 27,749,663 bytes with 0 exact secret matches; local environment and Vercel link files remained ignored.
+- Git 2.37 initially failed the 27 MB HTTP pack; a repository-local 500 MiB post buffer and HTTP/1.1 retry completed the push without changing commit contents.
+- Evidence: `caseflow-store/.agent/artifacts/d19-t01-github-push.json`.
+
+Completed `D19-T02` on 2026-07-16.
+
+- Configured `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, and `SUPABASE_SERVICE_ROLE_KEY` as sensitive Production variables through stdin.
+- Vercel lists all three Production entries as Encrypted and preserves their Preview counterparts.
+- Playwright admin credentials were not deployed and no values were printed.
+- Evidence: `caseflow-store/.agent/artifacts/d19-t02-production-env.json`.
+
+Completed `D19-T03` on 2026-07-16.
+
+- Preview `dpl_EDqtfK9XuinEoKmCQjMMuY9GDagw` deployed Ready at `https://caseflow-store-oh8lf9ayr-nvt-ruong473.vercel.app`.
+- Vercel-protected smoke checks verified home 200, 5 categories, 16 products, stable missing-product 404, anonymous admin 401, and live order 201 with server subtotal `329000`.
+- Preview QA orders were cleaned to 0.
+- Evidence: `caseflow-store/.agent/artifacts/d19-t03-preview-smoke.json`.
+
+Completed `D19-T04` on 2026-07-16.
+
+- Production deployment `dpl_4Wocg3yqgFoSUSCR76jvN6xL2esu` is Ready.
+- The stable public alias is `https://caseflow-store.vercel.app`; alternate Vercel aliases resolve to the same deployment.
+- The canonical alias returned HTTP 200 and the full-page browser capture rendered the live 5-category, 16-product storefront correctly.
+- Evidence: `caseflow-store/.agent/artifacts/d19-t04-production.json` and `d19-t04-production.png`.
+
+Current task: `D19-T05 - Test storefront, checkout, and admin on production`.
+
+Completed `D19-T05` on 2026-07-16.
+
+- The first production run passed 18/20 and exposed a real admin navigation race: the session succeeded, but paired client `replace`/`refresh` calls could leave the browser on the login route.
+- Admin login now performs a full-document replacement after the session cookie is set; lint and the 16-route production build passed before redeployment.
+- Production deployment `dpl_D5GLc5s5WbDs4xB3d22kXieyDCpz` is Ready at the canonical alias.
+- The final full Chromium suite passed 20/20 against production in 2.8 minutes with 0 failed, flaky, or skipped tests.
+- QA cleanup returned 0 orders and 0 temporary users.
+- Evidence: `caseflow-store/.agent/artifacts/d19-t05-production-acceptance.json` and `d19-t05-production-report.png`.
+
+Day 19 is complete.
+
+Current task: `D20-T01 - Finalize README`.
+
+Completed `D20-T01` on 2026-07-16.
+
+- Added a repository-root portfolio README and replaced the default application scaffold README with a focused setup guide.
+- The documentation covers only verified features, production evidence, stack, structure, setup, commands, environment boundaries, and security posture.
+- Simulated checkout and the prohibition on deployed Playwright credentials are explicit.
+- Both README files passed whitespace validation and all relative links resolve.
+- Evidence: `README.md`, `caseflow-store/README.md`, and `caseflow-store/.agent/artifacts/d20-t01-readme.json`.
+
+Current task: `D20-T02 - Finalize architecture summary and ADR index`.
+
+Completed `D20-T02` on 2026-07-16.
+
+- Replaced planning-era architecture text with an as-built production description covering containers, module boundaries, request flows, data model, security matrix, deployment, and evolution path.
+- Production Supabase repositories are distinguished from retained mock-first history.
+- The create-order RPC guarantees atomic order/item inserts but does not decrement stock; the limitation is explicit.
+- Added a five-record ADR index with each accepted decision and verified implementation outcome.
+- Root/app mirrors match; all four files passed whitespace and relative-link checks with 0 missing links.
+- Evidence: `docs/architecture.md`, `docs/adr/README.md`, and `caseflow-store/.agent/artifacts/d20-t02-architecture.json`.
+
+Current task: `D20-T03 - Capture desktop/mobile screenshots`.
+
+Completed `D20-T03` on 2026-07-16.
+
+- Captured production storefront and product-detail screenshots at 1440px desktop and 375px mobile widths.
+- The desktop storefront and both product views are full-page; the storefront mobile image uses the standard 375x812 viewport to avoid a 12,745px portfolio image while preserving the next-section cue.
+- Opened all four files and found 0 blank, crop, or overlap failures.
+- Embedded the images in the repository README with descriptive alt text.
+- Evidence: `caseflow-store/docs/screenshots/` and `caseflow-store/.agent/artifacts/d20-t03-screenshots.json`.
+
+Current task: `D20-T04 - Document known limitations`.
+
+Completed `D20-T04` on 2026-07-16.
+
+- Documented 8 verified boundaries across commerce, customer/admin scope, catalog management, and production operations.
+- Each limitation includes impact, the current control, and a concrete next step; stock validation is not misrepresented as reservation/decrement.
+- Recorded the current dependency audit: 0 critical/high/low and 2 moderate PostCSS-via-Next findings; the unsafe force downgrade to Next 9.3.3 remains rejected.
+- Root/app documents match, pass whitespace checks, and are linked from the repository README.
+- Evidence: `docs/known-limitations.md` and `caseflow-store/.agent/artifacts/d20-t04-known-limitations.json`.
+
+Current task: `D20-T05 - Write CV bullets using only verified evidence`.
+
+Completed `D20-T05` on 2026-07-16.
+
+- Created 3 recommended CV bullets, 6 alternatives grouped by full-stack/security/frontend focus, an interview summary, explicit caveats, and a 9-entry evidence ledger.
+- Claims are tied to production URLs, schema, source modules, Playwright specs, and release artifacts.
+- The file contains no unverified scale, percentage-improvement, or elapsed-calendar-time claims and explicitly identifies checkout as simulated.
+- Root/app mirrors match and pass whitespace checks.
+- Evidence: `docs/cv-bullets.md` and `caseflow-store/.agent/artifacts/d20-t05-cv-bullets.json`.
+
+Current task: `D20-T06 - Create release tag v1.0.0`.
 
 ## Domain Model Draft Reference
 

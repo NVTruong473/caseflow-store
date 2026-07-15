@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CaseFlow Store application
 
-## Getting Started
+This directory contains the Next.js application for
+[CaseFlow Store](https://caseflow-store.vercel.app). See the
+[repository README](../README.md) for the verified feature scope, architecture,
+security model, release evidence, and portfolio summary.
 
-First, run the development server:
+> Checkout is simulated. No card details are collected and no real payment is
+> processed.
+
+## Run locally
+
+Requires Node.js 20 or newer, npm, and a configured Supabase project.
 
 ```bash
+npm install
+cp .env.example .env.local
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Apply [`supabase/schema.sql`](supabase/schema.sql) and then
+[`supabase/seed.sql`](supabase/seed.sql) to the Supabase project before starting
+the app. Required and test-only variables are documented in
+[`.env.example`](.env.example).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Open [http://localhost:3000](http://localhost:3000).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Quality gates
 
-## Learn More
+```bash
+npm run lint
+npm run build
+npm run test:e2e
+```
 
-To learn more about Next.js, take a look at the following resources:
+The release suite can target the public deployment without starting a local
+server:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+PLAYWRIGHT_BASE_URL=https://caseflow-store.vercel.app npm run test:e2e
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Playwright requires `CASEFLOW_ADMIN_EMAIL` and `CASEFLOW_ADMIN_PASSWORD` in the
+local environment. Those credentials are not part of the deployed runtime.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Architecture and decision records are under [`docs/`](docs/).
