@@ -2637,6 +2637,19 @@ Completed `D20-T05` on 2026-07-16.
 
 Current task: `D20-T06 - Create release tag v1.0.0`.
 
+Completed `D20-T06` on 2026-07-16.
+
+- Final root/app mirror and staged-diff checks passed; 49 release candidates contained 0 exact or high-confidence secret matches.
+- ESLint passed; the production build passed TypeScript and generated 16 routes.
+- The final local Chromium suite passed 20/20 in 1.4 minutes with 0 failed, flaky, or skipped tests; the accepted production run remains 20/20 in 2.8 minutes.
+- Production smoke returned home 200, 5 categories, 16 products, and anonymous admin 401; QA cleanup returned 0 orders and 0 temporary users.
+- Created annotated release tag `v1.0.0` for the production and portfolio release.
+- Evidence: `caseflow-store/.agent/artifacts/d20-t06-release.json` and `d20-t06-release-report.png`.
+
+Day 20 and the 20-task implementation phase are complete. The 30 journal entries remain a separate documentation phase and must not be presented as additional development days.
+
+Next recommended task: `Entry 01 - Environment preflight`.
+
 ## Domain Model Draft Reference
 
 ```ts

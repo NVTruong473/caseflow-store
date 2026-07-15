@@ -11,9 +11,9 @@
 
 - Project: CaseFlow Store
 - Mode: implementation enabled
-- Current gate: Production accepted; portfolio packaging and release tag pending
-- Current task: `D20-T06 - Create release tag v1.0.0`
-- Implementation day: Day 20 in progress
+- Current gate: `v1.0.0` production and portfolio release accepted
+- Current task: `Entry 01 - Environment preflight`
+- Implementation day: Day 20 complete; journal phase not started
 - Last updated: 2026-07-16
 
 ## Pre-Implementation Checklist
@@ -527,7 +527,10 @@ No app code was created before `CONFIRM-001` was complete.
   - Result: created a 3-bullet CV version, 6 focus-specific alternatives, interview summary, caveats, and a 9-entry evidence ledger.
   - Verification: root/app mirrors match and pass whitespace checks; 0 unverified scale, percentage, or elapsed-time claims; simulated checkout is explicit.
   - Evidence: `docs/cv-bullets.md` and `caseflow-store/.agent/artifacts/d20-t05-cv-bullets.json`.
-- [/] `D20-T06` Create release tag `v1.0.0`.
+- [x] `D20-T06` Create release tag `v1.0.0`. - 2026-07-16
+  - Result: accepted the final release gates and created annotated tag `v1.0.0` for the production/portfolio release.
+  - Verification: mirrors/diff/secret scan passed; lint and 16-route build passed; local and production Playwright passed 20/20 with 0 failed/flaky/skipped; production smoke returned home 200, catalog 5/16, admin 401; QA cleanup returned 0/0.
+  - Evidence: `caseflow-store/.agent/artifacts/d20-t06-release.json` and `d20-t06-release-report.png`.
 
 ## 30 Journal Entries
 

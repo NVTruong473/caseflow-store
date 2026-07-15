@@ -5634,3 +5634,25 @@ Release candidate `v1.0.0-rc.1` is accepted for production deployment.
 ### Next Task
 
 `D20-T06 - Create release tag v1.0.0`
+
+---
+
+## SR-099 - D20-T06: Create release tag v1.0.0
+
+- Date: 2026-07-16
+- Status: completed
+- Phase: Day 20 - Acceptance and portfolio packaging
+
+### Verification
+
+- Mirror/diff/secret checks: passed; 49 candidates, 0 exact/high-confidence secret matches.
+- Lint/build: passed; 16 routes generated.
+- Local Playwright: 20 passed, 0 failed/flaky/skipped in 1.4 minutes.
+- Production Playwright: 20 passed, 0 failed/flaky/skipped in 2.8 minutes.
+- Production smoke: home 200, categories/products 5/16, anonymous admin 401.
+- QA cleanup: 0 orders, 0 temporary users.
+- Release tag: annotated `v1.0.0` created.
+
+### Next Task
+
+`Entry 01 - Environment preflight`

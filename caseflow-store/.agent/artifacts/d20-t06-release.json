@@ -1,0 +1,54 @@
+{
+  "task": "D20-T06",
+  "status": "completed",
+  "date": "2026-07-16",
+  "release": {
+    "tag": "v1.0.0",
+    "annotated": true,
+    "productionUrl": "https://caseflow-store.vercel.app",
+    "repositoryUrl": "https://github.com/NVTruong473/caseflow-store"
+  },
+  "verification": {
+    "agentMirrorsMatch": true,
+    "secretScanCandidates": 49,
+    "exactSecretMatches": 0,
+    "highConfidenceSecretMatches": 0,
+    "lint": "passed",
+    "build": "passed",
+    "generatedRoutes": 16,
+    "localPlaywright": {
+      "passed": 20,
+      "failed": 0,
+      "flaky": 0,
+      "skipped": 0,
+      "durationMinutes": 1.4
+    },
+    "productionPlaywright": {
+      "passed": 20,
+      "failed": 0,
+      "flaky": 0,
+      "skipped": 0,
+      "durationMinutes": 2.8
+    },
+    "productionSmoke": {
+      "home": 200,
+      "categories": 5,
+      "products": 16,
+      "anonymousAdmin": 401
+    },
+    "cleanup": {
+      "qaOrders": 0,
+      "temporaryUsers": 0
+    },
+    "dependencyAudit": {
+      "critical": 0,
+      "high": 0,
+      "moderate": 2,
+      "low": 0
+    }
+  },
+  "evidence": [
+    ".agent/artifacts/d20-t06-release-report.png",
+    ".agent/artifacts/d19-t05-production-report.png"
+  ]
+}
