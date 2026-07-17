@@ -2,19 +2,20 @@
 
 ## Project Identity
 
-- Project name: CaseFlow Store
+- Project name: CaseFlow Store `v1.0.0`; CaseFlow Books `v1.1` release candidate
 - Repository folder: `/Users/vantruong/Documents/TSNN 2`
-- Product domain: phone accessories
-- Project type: small full-stack e-commerce MVP
+- Product domain: books for active `v1.1`; phone accessories for released `v1.0.0`
+- Project type: full-stack e-commerce portfolio app evolving into a bookstore and small-business operations demo
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
 - Current mode: implementation enabled
-- Current gate: Release candidate `v1.0.0-rc.1` accepted; production deployment pending
+- Current gate: `D40-T04 - Tag v1.1.0 Only If Release Gates Pass` complete; CaseFlow Books `v1.1.0` release is ready to tag on the final release commit
 
 ## Confirmed Facts
 
-- The user wants a small MVP, not a large e-commerce platform.
+- The released `v1.0.0` is a small MVP, not a large e-commerce platform.
+- The accepted `v1.1` direction is still not a marketplace, but it expands the project into a focused bookstore plus small-business operations demo.
 - The project must be usable locally before public deployment.
 - The project must preserve context across future AI sessions using Markdown files.
 - The user wants critical evaluation of risks, assumptions, and missing data.
@@ -22,20 +23,38 @@
 - Implementation was unblocked by installing the official Node.js LTS binary after Homebrew failed.
 - The Next.js app has been initialized in `caseflow-store`.
 - The app runs locally at `http://localhost:3000` when `npm run dev` is active.
-- The user delegated the product-domain choice to the agent on 2026-07-14.
-- The selected product domain is phone accessories.
+- The user delegated the original `v1.0.0` product-domain choice to the agent on 2026-07-14.
+- The released `v1.0.0` product domain is phone accessories.
+- The accepted active `v1.1` product domain is books.
+- Production was deployed to `https://caseflow-store.vercel.app` on 2026-07-16.
+- The annotated release tag `v1.0.0` was created on 2026-07-16.
+- The 30-entry journal phase is complete as of 2026-07-16.
+- `ADR-0006: Pivot v1.1 To CaseFlow Books` was accepted on 2026-07-16.
+- `docs/v1.1-caseflow-books-roadmap.md` was accepted on 2026-07-16.
 
 ## Working Assumptions
 
 These are defaults that remain tentative until a later task or ADR freezes them:
 
 - Stack: Next.js App Router, TypeScript, Tailwind CSS, Route Handlers, Supabase, Zod, Playwright, Vercel.
-- Customer checkout: guest checkout.
+- Customer checkout: account-gated checkout for `v1.1`; guest checkout remains the released `v1.0.0` behavior.
 - Payment: simulated checkout only.
 - Admin authentication: required.
 - Cart persistence: localStorage.
 
-## Confirmed Product Domain
+## v1.1 Active Product Domain
+
+Confirmed by ADR-0006 and `D22-T01`.
+
+- Product identity: CaseFlow Books.
+- Domain: books and sellable book editions.
+- Source of truth: `docs/domain.md`.
+- Market focus: Vietnam-first, with English as a secondary language mode.
+- Catalog target: about 100 sellable book editions.
+- Domain-specific features: book works vs editions, English/Vietnamese edition relationships, book-specific filters, account-gated checkout, simulated Vietnam payment methods, staff/admin/customer roles, inventory and sales operations, and a rule-based bookstore assistant.
+- Content boundary: use factual metadata carefully; write summaries internally; do not copy commercial covers, publisher blurbs, reviews, or protected excerpts without a clearly permitted source.
+
+## v1.0 Released Product Domain
 
 Confirmed by user-delegated selection on 2026-07-14.
 
@@ -45,6 +64,7 @@ Confirmed by user-delegated selection on 2026-07-14.
 - Initial seed target: 16 demo products.
 - Compatibility labels: `iPhone 13`, `iPhone 14`, `iPhone 15`, `iPhone 16`, `Galaxy S23`, `Galaxy S24`, `Galaxy S25`, `Pixel 8`, `Pixel 9`, `Universal`.
 - Source of truth: `docs/domain.md`.
+- Historical note: this was the source of truth for the `v1.0.0` release. `docs/domain.md` now governs the accepted CaseFlow Books `v1.1` direction.
 - Scope boundary: compatibility is a simple string list for the MVP, not a full phone-model database.
 
 ## MVP Scope
@@ -92,6 +112,1133 @@ Confirmed by user-delegated selection on 2026-07-14.
 - Native mobile app
 - Complex CMS
 - Realtime analytics
+
+## Journal Status
+
+- Entries 01-20 document the real 20 implementation days for `v1.0.0`.
+- Entries 21-30 are retrospective notes written after the release.
+- Journal root: `docs/journal/README.md`.
+- Journal app mirror: `caseflow-store/docs/journal/README.md`.
+- Do not present Entries 21-30 as additional implementation days.
+
+## Post-v1.0 Direction Accepted For Day 21 Planning
+
+The user has requested a post-MVP `v1.1` planning phase after the `v1.0.0` release and journal phase.
+
+Accepted direction:
+
+- New product identity: `CaseFlow Books`.
+- Market focus: Vietnam-first e-commerce bookstore, with international patterns used only as reference.
+- Language strategy: Vietnamese and English site modes.
+- Catalog goal: about 100 book editions, with English originals and Vietnamese translations where appropriate.
+- Account strategy: login required before purchase; customer contact/address data required for checkout completion.
+- Payment strategy: simulated COD, bank transfer, MoMo, ZaloPay, and VNPay-style flows.
+- Role strategy: admin, staff/operator, and customer.
+- Business operations target: product/category/stock/promotion/customer/order management plus sales and inventory visibility.
+- Assistant target: rule-based bookstore assistant for finding books and guiding purchase steps.
+
+Guardrails:
+
+- Work one task ID at a time. Day 40 is complete; continue with post-release audit after the `v1.1.0` tag is created.
+- Storefront feature freeze is active after D30-T02; new storefront discovery,
+  catalog, detail, language, or cart-entry features now require explicit
+  roadmap approval.
+- Data/domain/API foundation is frozen after D25-T03; changing book schema,
+  domain enums/field names, seed licensing policy, public catalog API envelope,
+  or public query semantics now requires explicit review.
+- Avoid unlicensed copying of copyrighted book covers or descriptions.
+- Treat USD conversion, VAT, and international payment fees as configurable estimates, not legal/tax advice.
+- Do not claim real payment processing unless a real provider is integrated and tested.
+- Do not claim verified phone numbers without a real phone verification provider.
+
+## v1.1 Roadmap Status
+
+- Roadmap source of truth: `docs/v1.1-caseflow-books-roadmap.md`.
+- App mirror: `caseflow-store/docs/v1.1-caseflow-books-roadmap.md`.
+- Day 21 planning is complete.
+- `D22-T01 - Create Book Domain And Content Policy` is complete.
+- `D22-T02 - Define Book TypeScript Domain Contracts` is complete.
+- `D22-T03 - Create Book Zod Schemas` is complete.
+- `D23-T01 - Draft CaseFlow Books Schema Migration` is complete.
+- `D23-T02 - Plan Production Data Migration And Rollback` is complete.
+- `D23-T03 - Apply And Verify Book Schema In Supabase` is complete.
+- `D24-T01 - Build 100-Edition Book Seed Dataset` is complete.
+- `D24-T02 - Create Safe Cover Asset Strategy` is complete.
+- `D24-T03 - Seed Book Data Into Supabase` is complete.
+- `D25-T01 - Implement Book Row Mappers And Repositories` is complete.
+- `D25-T02 - Replace Product APIs With Book Catalog APIs` is complete.
+- `D25-T03 - Accept Data/Domain Freeze` is complete.
+- `D26-T01 - Rebrand UI To CaseFlow Books` is complete.
+- `D26-T02 - Implement Vietnamese/English Language Mode` is complete.
+- `D26-T03 - Add Currency Display Rules` is complete.
+- `D27-T01 - Build CaseFlow Books Homepage` is complete.
+- `D27-T02 - Add Book Category And Discovery Navigation` is complete.
+- `D28-T01 - Build Full Book Catalog Page` is complete.
+- `D28-T02 - Add Book-Specific Filters And Sorting` is complete.
+- `D28-T03 - Add Empty, Loading, And Error Catalog States` is complete.
+- `D29-T01 - Build Book Detail Page` is complete.
+- `D29-T02 - Add Related Books And Buying Confidence Content` is complete.
+- `D30-T01 - Adapt Cart To Book Editions` is complete.
+- `D30-T02 - Accept Storefront Feature Freeze` is complete.
+- `D31-T01 - Implement Customer Auth Pages` is complete.
+- `D31-T02 - Add Customer Profile And Address Requirements` is complete.
+- `D32-T01 - Gate Checkout Behind Customer Login` is complete.
+- `D32-T02 - Rebuild Checkout Steps For Books` is complete.
+- `D33-T01 - Add Vietnam Payment Method Simulation` is complete.
+- `D33-T02 - Add Shipping, VAT, And FX Estimate Engine` is complete.
+- `D34-T01 - Add Customer Order History` is complete.
+- `D34-T02 - Add Public Order Tracking With Guarded Lookup` is complete.
+- `D34-T03 - Accept Checkout/Auth Freeze` is complete.
+- `D35-T01 - Add Staff/Operator Role` is complete.
+- `D35-T02 - Rebuild Admin Navigation For Book Operations` is complete.
+- `D36-T01 - Add Admin Book Catalog Management` is complete.
+- `D36-T02 - Add Inventory Adjustment Workflow` is complete.
+- `D37-T01 - Add Promotion Management` is complete.
+- `D37-T02 - Add Customer Management` is complete.
+- `D37-T03 - Upgrade Order Operations` is complete.
+- `D38-T01 - Add Sales And Inventory Dashboard` is complete.
+- `D38-T02 - Add CSV Export For Orders Or Inventory` is complete.
+- `D38-T03 - Accept Operations Freeze` is complete.
+- `D39-T01 - Add Rule-Based Bookstore Assistant` is complete.
+- `D39-T02 - Add SEO And Metadata For Bookstore` is complete.
+- `D39-T03 - Run Accessibility, Mobile, And Performance Pass` is complete.
+- `D40-T01 - Run Full Local Quality Gate` is complete.
+- `D40-T02 - Deploy And Smoke Test v1.1` is complete.
+- `D40-T03 - Update Portfolio Documentation` is complete.
+- `D40-T04 - Tag v1.1.0 Only If Release Gates Pass` is complete.
+- Next task: post-release audit.
+- Data/domain freeze is active.
+- Data/domain freeze target: end of Day 25.
+- Storefront feature freeze is active as of Day 30.
+- Checkout/auth freeze is active as of Day 34.
+- Operations freeze is active as of Day 38.
+- Release candidate target: Day 40.
+
+## v1.1 Portfolio Documentation Status
+
+- D40-T03 is complete as of 2026-07-17.
+- The active public portfolio story is CaseFlow Books `v1.1`, not the
+  historical phone-accessory `v1.0.0` MVP.
+- Updated docs:
+  - `README.md`
+  - `caseflow-store/README.md`
+  - `docs/architecture.md`
+  - `docs/known-limitations.md`
+  - `docs/cv-bullets.md`
+  - `docs/release-candidate.md`
+  - `docs/adr/README.md`
+- App mirrors match for architecture, known limitations, CV bullets,
+  release-candidate notes, and ADR index.
+- Stable portfolio screenshots live in
+  `caseflow-store/docs/screenshots/`.
+- Verification artifact:
+  `caseflow-store/.agent/artifacts/d40-t03/portfolio-documentation-check.json`.
+- Verification passed: docs mirror check, local Markdown link check, screenshot
+  load/nonblank check, stale-claim scan, `npx tsc --noEmit`, `npm run lint`,
+  and `git diff --check`.
+
+## v1.1 Release Status
+
+- D40-T04 is complete as of 2026-07-17.
+- Release tag target: `v1.1.0`.
+- Production alias: `https://caseflow-store.vercel.app`.
+- Production deployment ID: `dpl_BkiJt9gDCh5d2cHwAhpFDbLotoAy`.
+- D40 release gates passed:
+  - D40-T01 local full quality gate.
+  - D40-T02 Vercel production deploy and smoke.
+  - D40-T03 portfolio documentation verification.
+- Known non-blockers are documented in `docs/known-limitations.md` and
+  `docs/v1.1-release-audit.md`.
+- Continue with post-release audit after the final release commit is tagged.
+
+## v1.1 Promotion Management Status
+
+- D37-T01 is complete as of 2026-07-17.
+- Promotions are intentionally admin-only because discounts affect revenue and
+  checkout totals.
+- Admin can create, edit, activate, and deactivate simple fixed-VND or
+  percentage promotion codes with bilingual names and validity windows.
+- Staff and customers cannot access promotion APIs; the admin navigation check
+  was updated so staff no longer expects the Promotions item.
+- Checkout accepts an optional promotion code, but the server evaluates the
+  code, clamps the discount to the order subtotal, recalculates VAT and total,
+  and writes the promotion snapshot to the order.
+- Expired, inactive, invalid, over-limit, and tampered promotion cases are
+  covered by `caseflow-store/scripts/verify-promotion-management.ts`.
+- Verification evidence:
+  - `caseflow-store/.agent/artifacts/d37-t01/promotion-management-check.json`
+  - `caseflow-store/.agent/artifacts/d37-t01/admin-promotions-desktop-en.png`
+
+## v1.1 Customer Management Status
+
+- D37-T02 is complete as of 2026-07-17.
+- Admin and staff can search customer profiles and inspect a read-only customer
+  detail panel from `/admin/customers`.
+- Customer management access is backed by the existing `orders:read`
+  permission; anonymous requests return `UNAUTHORIZED`, customer sessions return
+  `FORBIDDEN`, and admin/staff sessions can read the operational customer view.
+- The admin customer API intentionally minimizes sensitive data: it exposes
+  email, verification/profile state, masked phone last-four, district/province
+  shipping summary, and order metrics, but not full address lines or raw phone
+  numbers.
+- Customer metrics include order count, total spend, last order code/date, and
+  checkout-readiness fields derived from the stored profile.
+- Verification evidence:
+  - `caseflow-store/.agent/artifacts/d37-t02/admin-customers-check.json`
+  - `caseflow-store/.agent/artifacts/d37-t02/admin-customers-desktop-en.png`
+
+## v1.1 Order Operations Status
+
+- D37-T03 is complete as of 2026-07-17.
+- Admin/staff order list now supports server-backed filters for search, order
+  status, payment status, and shipping status.
+- Admin/staff order detail can update order status, payment status, shipping
+  status, and internal notes through `PATCH /api/admin/orders/[id]`.
+- Order, payment, and shipping transitions are enforced server-side. Invalid
+  transitions return `ORDER_INVALID_TRANSITION`.
+- `internal_notes` is stored on orders but intentionally remains outside
+  customer/public order payloads.
+- Supabase migration `0007_order_operations_fields.sql` was applied and
+  verified with `shipping_status`, `internal_notes`, constraints, and index.
+- Verification evidence:
+  - `caseflow-store/.agent/artifacts/d37-t03/admin-order-operations-check.json`
+  - `caseflow-store/.agent/artifacts/d37-t03/admin-order-operations-desktop-en.png`
+
+## v1.1 Sales And Inventory Dashboard Status
+
+- D38-T01 is complete as of 2026-07-17.
+- `/admin` now renders a real server-backed sales and inventory dashboard
+  instead of a placeholder shell.
+- `GET /api/admin/dashboard` requires `orders:read` and returns dashboard
+  metrics from Supabase.
+- Dashboard metrics include revenue estimate, order count, average order value,
+  payment summary, order status summary, top books, low-stock editions, recent
+  orders, and active/low/out-of-stock inventory counts.
+- Dashboard date filtering supports `7d`, `30d`, `all`, and custom `from/to`
+  ranges. Custom future ranges were used to verify empty-state rendering without
+  mutating real data.
+- Verification evidence:
+  - `caseflow-store/.agent/artifacts/d38-t01/admin-dashboard-check.json`
+  - `caseflow-store/.agent/artifacts/d38-t01/admin-dashboard-desktop-en.png`
+  - `caseflow-store/.agent/artifacts/d38-t01/admin-dashboard-empty-mobile-en.png`
+
+## v1.1 CSV Export Status
+
+- D38-T02 is complete as of 2026-07-17.
+- Admin and staff can export server-generated order CSV data from
+  `/api/admin/exports/orders`.
+- The dashboard date-range controls link to the export route and preserve
+  `7d`, `30d`, `all`, or custom `from/to` ranges.
+- The export requires `orders:read`; anonymous requests return `UNAUTHORIZED`,
+  and customer sessions return `FORBIDDEN`.
+- The CSV includes operational order fields such as order code, statuses,
+  payment/shipping methods, item count, totals, and promotion code. It
+  intentionally excludes customer email, phone, full address, customer id, and
+  internal notes.
+- D38-T01 dashboard verification was rerun after fixing its QA catalog fixture
+  so temporary active books now include valid author/category relationships.
+- Verification evidence:
+  - `caseflow-store/.agent/artifacts/d38-t02/admin-orders-csv-export-check.json`
+
+## v1.1 Operations Freeze Status
+
+- D38-T03 is complete as of 2026-07-17.
+- Operations freeze is now active for admin/staff navigation, role boundaries,
+  catalog management, inventory adjustments, promotion management, customer
+  management, order operations, dashboard metrics, and order CSV export.
+- Staff can operate dashboard, orders, catalog, inventory, and customers. Admin
+  can additionally manage promotions and the admin-only settings boundary.
+- New operations features now require explicit review unless they are
+  release-blocking fixes or security fixes that preserve or strengthen the
+  frozen permission model.
+- Remaining risks are explicit in `docs/v1.1-operations-freeze.md`: simulated
+  payment/shipping, no automatic stock decrement on order creation, no immutable
+  staff action audit trail, portfolio-scale CSV export, no production rate
+  limiter, and estimate-only dashboard revenue.
+- Verification evidence:
+  - `docs/v1.1-operations-freeze.md`
+  - `caseflow-store/.agent/artifacts/d38-t03/operations-freeze-check.json`
+  - `caseflow-store/.agent/artifacts/d38-t03/operations-freeze-staff-dashboard.png`
+  - `caseflow-store/.agent/artifacts/d38-t03/operations-freeze-admin-settings.png`
+
+## v1.1 Bookstore Assistant Status
+
+- D39-T01 is complete as of 2026-07-17.
+- A rule-based assistant widget is mounted in the app shell through
+  `AppProviders`.
+- The assistant can parse title/search queries plus category, edition language,
+  format, and VND price range hints, then link to matching catalog or book
+  detail routes.
+- The assistant includes suggested messages and no-result recovery links.
+- Checkout guidance can open the cart and link to account/checkout, but it does
+  not add cart items, create orders, bypass login, bypass profile requirements,
+  or bypass server-side checkout validation.
+- No external AI API is used; the verification script checks for common external
+  AI endpoint/API-key references in the assistant source.
+- Verification evidence:
+  - `caseflow-store/.agent/artifacts/d39-t01/bookstore-assistant-check.json`
+  - `caseflow-store/.agent/artifacts/d39-t01/assistant-find-book-desktop-en.png`
+  - `caseflow-store/.agent/artifacts/d39-t01/assistant-no-result-mobile-en.png`
+  - `caseflow-store/.agent/artifacts/d39-t01/assistant-checkout-guidance-desktop-en.png`
+
+## v1.1 Domain Contract Status
+
+- Source file: `caseflow-store/src/types/domain.ts`.
+- D22-T02 added CaseFlow Books constants and types while preserving legacy `v1.0.0` product/accessory exports needed by the current runtime.
+- New contracts cover book works, editions, authors, translators, publishers, categories, inventory status, language, format, VND pricing, tax/fee/FX estimates, roles, customer profile requirements, payment methods, book cart items, book orders, promotions, and inventory adjustments.
+- VND remains the source-of-truth currency; USD appears only as an approximate display estimate type.
+- Verification passed: `npm run lint`, `npx tsc --noEmit`, and `npm run build`.
+
+## v1.1 Validation Schema Status
+
+- Source file: `caseflow-store/src/lib/validation/domain.ts`.
+- D22-T03 added CaseFlow Books Zod schemas while preserving legacy `v1.0.0` validation schemas.
+- Schemas cover book categories, authors, translators, publishers, cover assets, works, editions, cart items, shipping addresses, customer/staff profiles, profile completeness, tax/fee/FX estimates, book orders, order items, promotions, inventory adjustments, checkout requests, and profile update requests.
+- Strict mutating request schemas reject browser-supplied trusted fields such as `role`, `status`, and `totals`.
+- Verification passed: `npm run lint`, `npx tsc --noEmit`, focused runtime schema checks, and `npm run build`.
+
+## v1.1 Schema Migration Draft Status
+
+- Source file: `caseflow-store/supabase/migrations/0006_caseflow_books_schema_draft.sql`.
+- D23-T01 drafted the CaseFlow Books v1.1 database expansion without applying SQL to Supabase.
+- The draft keeps the legacy v1.0.0 phone-accessory tables compatible while adding bookstore tables for book categories, authors, translators, publishers, cover assets, works, editions, edition translators, customer addresses, promotions, and inventory adjustments.
+- The draft extends `profiles` role support to `customer`, `staff`, and `admin`.
+- The draft extends `orders` and `order_items` with v1.1 customer, payment method, payment status, shipping method, tax/fee estimate, display estimate, and book edition snapshot fields.
+- The draft preserves deny-by-default posture: public/authenticated users receive read-only active catalog policies, customer addresses are readable only by owner, operational writes stay behind service-role usage, and no direct public order-table write policies were added.
+- The draft includes a service-role-only `create_book_order_with_items` RPC for account-gated book checkout snapshots.
+- Verification passed by SQL inspection, service-role source search, and `git diff --check`.
+- Local `psql` is not installed; D23-T03 used a verified direct PostgreSQL connection through a temporary JS PostgreSQL client because Supabase CLI dump required Docker in this local environment.
+
+## v1.1 Production Migration And Rollback Plan Status
+
+- Source file: `docs/v1.1-production-data-migration-rollback-plan.md`.
+- App mirror: `caseflow-store/docs/v1.1-production-data-migration-rollback-plan.md`.
+- D23-T02 accepted an expand-and-contract strategy: preserve v1.0.0 phone-accessory categories, products, profiles, orders, and order items in place while adding v1.1 book schema.
+- The plan states that phone-accessory data is not converted into book data; CaseFlow Books seed data starts separately in Day 24.
+- D23-T03 must create backup/export evidence before applying SQL.
+- D23-T03 must run pre-migration checks, apply the schema through a verified transactional path, run post-migration DB checks, and rerun v1.0.0 app regression checks.
+- Rollback preference is app rollback first if additive DB schema remains compatible, DB cleanup only before live v1.1 data exists, and provider backup restore for corruption or missing production data.
+- No SQL was applied and no destructive database operation was performed in D23-T02.
+
+## v1.1 Supabase Schema Apply Status
+
+- D23-T03 is complete as of 2026-07-16.
+- Target project: Supabase project `caseflow-store`, project ref `fcsuldrerhbynwotcvyn`.
+- Initial D23-T03 preflight correctly blocked before SQL apply because backup/export evidence was unavailable.
+- Retry proceeded after `SUPABASE_DB_URL` was added to `caseflow-store/.env.local`.
+- Supabase CLI dump was attempted but could not run because this local environment lacks Docker Desktop; D23-T03 used a verified direct PostgreSQL metadata/data export for the `public` schema instead.
+- Backup/export evidence exists under `caseflow-store/.agent/artifacts/d23-t03-backup/`.
+- SQL backup files are intentionally ignored by Git because they may contain app/customer PII.
+- Migration apply evidence exists at `caseflow-store/.agent/artifacts/d23-t03/migration-apply.json`.
+- Database verification evidence exists at:
+  - `caseflow-store/.agent/artifacts/d23-t03/pre-migration-checks.json`
+  - `caseflow-store/.agent/artifacts/d23-t03/post-migration-db-checks.json`
+  - `caseflow-store/.agent/artifacts/d23-t03/post-migration-access-control-checks.json`
+  - `caseflow-store/.agent/artifacts/d23-t03/verification-summary.md`
+- Applied migration: `caseflow-store/supabase/migrations/0006_caseflow_books_schema_draft.sql`.
+- Expected CaseFlow Books tables, order/order item v1.1 columns, RLS flags, policies, grants, constraints, triggers, and `create_book_order_with_items` were verified.
+- Anon and authenticated roles cannot directly read protected order/admin tables and have no direct write privileges on those protected tables.
+- v1.0.0 catalog/profile counts were preserved and direct book orders remain `0`.
+- Post-migration verification passed: `npm run lint`, `npm run build`, `npm run test:e2e` with `20/20`, and production smoke checks.
+- Day 23, Day 24, Day 25, Day 26, Day 27, and Day 28 are complete; next
+  task is `D29-T01 - Build Book Detail Page`.
+
+## v1.1 Book Seed Dataset Status
+
+- D24-T01 is complete as of 2026-07-16.
+- Source file: `caseflow-store/src/data/books/seed.ts`.
+- Verification artifact: `caseflow-store/.agent/artifacts/d24-t01/seed-summary.json`.
+- Dataset contains 50 real public-domain/classic works and 100 sellable CaseFlow Books demo editions.
+- Every work has one English edition and one Vietnamese edition relationship.
+- Dataset includes 11 categories, 41 authors, 1 demo publisher, 50 works, and 100 editions.
+- Language distribution is balanced: 50 English editions and 50 Vietnamese editions.
+- Edition data includes title, work/category/author relationship, language, format, VND price, stock, publication year where safe, and project-written summaries.
+- ISBNs are intentionally `null` to avoid fabricating real identifiers.
+- Cover strategy is now defined by D24-T02.
+- Content scan passed: no copied-blurb markers, no overlong summaries, no duplicate long summaries, no commercial cover references, and no fabricated ISBNs.
+- Verification passed: runtime import/count check, `npm run lint`, `npx tsc --noEmit`, `npm run build`, and `git diff --check`.
+
+## v1.1 Safe Cover Asset Status
+
+- D24-T02 is complete as of 2026-07-16.
+- Strategy docs:
+  - `docs/v1.1-safe-cover-asset-strategy.md`
+  - `caseflow-store/docs/v1.1-safe-cover-asset-strategy.md`
+- Placeholder asset: `caseflow-store/public/images/books/placeholders/book-cover-placeholder.svg`.
+- Seed file now includes one internal `BookCoverAsset` and maps all 100 editions to the stable placeholder cover ID.
+- No commercial cover URLs, publisher cover files, marketplace image links, or external hotlinked assets are used.
+- Verification artifact: `caseflow-store/.agent/artifacts/d24-t02/cover-strategy-check.json`.
+- Visual smoke screenshot: `caseflow-store/.agent/artifacts/d24-t02/cover-placeholder-smoke.png`.
+- Verification passed: local path exists, SVG has accessible title metadata, no external `href/src`, 100/100 editions have a stable cover ID, Playwright visual smoke rendered, `npm run lint`, `npx tsc --noEmit`, `npm run build`, and `git diff --check`.
+
+## v1.1 Book Supabase Seed Status
+
+- D24-T03 is complete as of 2026-07-16.
+- Seed script: `caseflow-store/scripts/seed-books.ts`.
+- Seed verification artifact: `caseflow-store/.agent/artifacts/d24-t03/seed-books-apply.json`.
+- Supabase seed counts:
+  - `book_categories`: 11
+  - `book_authors`: 41
+  - `book_publishers`: 1
+  - `book_cover_assets`: 1
+  - `book_works`: 50
+  - `book_work_authors`: 51
+  - `book_work_categories`: 100
+  - `book_editions`: 100
+  - `book_edition_translators`: 0
+- Active edition language distribution: 50 English and 50 Vietnamese.
+- Legacy phone-accessory tables remain preserved: `categories` 5 and `products` 16.
+- Public Supabase smoke query returned 100 active `book_editions` and sampled bookstore rows only.
+- Verification passed: dry-run, apply rerun/upsert, `npm run lint`, `npx tsc --noEmit`, `npm run build`, and `git diff --check`.
+- Day 24, Day 25, Day 26, Day 27, and Day 28 are complete; next task is
+  `D29-T01 - Build Book Detail Page`.
+
+## v1.1 Book Repository Status
+
+- D25-T01 is complete as of 2026-07-16.
+- Supabase database types now include the v1.1 book catalog tables and the order/order item columns added by the book schema migration.
+- Book row mappers live in `caseflow-store/src/lib/supabase/book-mappers.ts`.
+- Book catalog repository functions live in `caseflow-store/src/lib/repositories/supabase-books.ts`.
+- Repository support currently includes book category listing, edition catalog listing, category/language/format/author/price/search/featured/availability filtering, sort/pagination, edition detail lookup by slug, and related-edition lookup by work.
+- The old phone-accessory catalog repository remains available for legacy UI/cart flows, but public catalog APIs were cut over to book DTOs in `D25-T02`.
+- Runtime verification script: `caseflow-store/scripts/verify-book-repository.ts`.
+- Verification artifact: `caseflow-store/.agent/artifacts/d25-t01/book-repository-check.json`.
+- Runtime verification passed with 100 book records, 50 English editions, 50 Vietnamese editions, joined detail data for `pride-and-prejudice-english-special-edition`, a sibling Vietnamese related edition, and legacy phone products still readable at count 16.
+- Verification passed: `npx tsx scripts/verify-book-repository.ts`, `npm run lint`, `npx tsc --noEmit`, `npm run build`, and `git diff --check`.
+
+## v1.1 Book Catalog API Status
+
+- D25-T02 is complete as of 2026-07-16.
+- Public catalog APIs now return book DTOs while preserving the stable
+  `{ data, error, meta }` envelope.
+- Updated routes:
+  - `GET /api/categories` returns book categories with `type:
+    "book-category"`.
+  - `GET /api/products` returns book editions with `type: "book-edition"`.
+  - `GET /api/products/[slug]` returns book edition detail plus
+    `relatedEditions`.
+- Query validation source: `caseflow-store/src/lib/validation/books.ts`.
+- API DTO serializer source: `caseflow-store/src/lib/api/book-catalog.ts`.
+- Supported list query parameters: `category`, `language`, `format`, `author`,
+  `minPriceVnd`, `maxPriceVnd`, `q`, `search`, `featured`, `availability`,
+  `sort`, `limit`, and `offset`.
+- `BOOK_EDITION_NOT_FOUND` was added to the stable API error contract for
+  missing active book edition detail responses. `PRODUCT_NOT_FOUND` remains for
+  legacy cart/product flows until those are migrated.
+- Verification artifact:
+  `caseflow-store/.agent/artifacts/d25-t02/api-curl-checks.json`.
+- Curl/API smoke covered categories, default list, language/author filter,
+  category/format/price/availability filter, search, pagination, invalid query,
+  invalid price range, detail, and missing detail.
+- Verification passed: API curl smoke checks, `npm run lint`,
+  `npx tsc --noEmit`, `npm run build`, and `git diff --check`.
+- Temporary roadmap boundary: the storefront UI pages still use the legacy
+  phone-accessory repository until the Day 26-30 UI pivot tasks. Do not treat
+  that as final product behavior.
+
+## v1.1 Data/Domain Freeze Status
+
+- D25-T03 is complete as of 2026-07-16.
+- Freeze docs:
+  - `docs/v1.1-data-domain-freeze.md`
+  - `caseflow-store/docs/v1.1-data-domain-freeze.md`
+- Freeze artifact:
+  `caseflow-store/.agent/artifacts/d25-t03/data-domain-freeze-check.json`.
+- Frozen foundation includes book domain contracts, Zod schemas, Supabase book
+  schema, safe seed strategy, safe cover strategy, row mappers, repositories,
+  API DTOs, public catalog routes, and the stable `{ data, error, meta }`
+  envelope.
+- Known risks were documented before storefront expansion, including the
+  temporary `/api/products` book DTO path, legacy phone UI still active, old
+  v1.0 release API tests no longer matching the D25 catalog API, in-memory
+  filtering at 100-edition scale, placeholder-only covers, no translator rows,
+  and book checkout not yet wired.
+- Verification passed: freeze artifact/API smoke, `npm run lint`,
+  `npx tsc --noEmit`, and `git diff --check`.
+- Day 25 is complete. Day 26 starts the visible storefront pivot.
+
+## v1.1 UI Rebrand Status
+
+- D26-T01 is complete as of 2026-07-16.
+- Visible app identity is now CaseFlow Books in layout metadata, header,
+  footer, active homepage copy, book detail route copy, checkout metadata, admin
+  metadata, and README references.
+- Homepage now reads from `listSupabaseBookCatalog` and
+  `listSupabaseBookCategories` and renders bookstore-oriented hero, stats,
+  reading categories, featured editions, reading-path guidance, and support
+  cards.
+- `/products/[slug]` now renders a minimal book edition detail page with cover,
+  author, categories, language, format, price, stock, work context, and related
+  editions.
+- The public route path remains `/products/[slug]` for now, but visible copy is
+  book-oriented. Canonical route naming remains a known post-freeze API/UI risk.
+- Verification artifact:
+  `caseflow-store/.agent/artifacts/d26-t01/rebrand-visual-text-check.json`.
+- Screenshots:
+  - `caseflow-store/.agent/artifacts/d26-t01/home-desktop.png`
+  - `caseflow-store/.agent/artifacts/d26-t01/home-mobile.png`
+- Text search over active UI/README found no old phone-accessory marketing copy.
+- Verification passed: Playwright desktop/mobile screenshots, `npm run lint`,
+  `npx tsc --noEmit`, `npm run build`, and `git diff --check`.
+
+## v1.1 Bilingual Language Mode Status
+
+- D26-T02 is complete as of 2026-07-16.
+- Language preference is stored in the `caseflow-books.language` cookie and set
+  through the validated `POST /api/preferences/language` route.
+- The root layout reads the selected language server-side and sets `html lang`.
+- Header, mobile navigation, footer, homepage, book detail, book not-found,
+  cart drawer, checkout, checkout success, admin login, and admin orders now
+  receive or read the selected language for core visible labels where
+  implemented.
+- Homepage and book detail prefer localized book/category fields from the book
+  catalog data instead of hard-coding product text.
+- Verification artifact:
+  `caseflow-store/.agent/artifacts/d26-t02/language-mode-check.json`.
+- Screenshots:
+  - `caseflow-store/.agent/artifacts/d26-t02/header-en-desktop.png`
+  - `caseflow-store/.agent/artifacts/d26-t02/header-vi-desktop.png`
+  - `caseflow-store/.agent/artifacts/d26-t02/header-en-mobile.png`
+  - `caseflow-store/.agent/artifacts/d26-t02/header-vi-mobile.png`
+- Verification passed: `npm run lint`, `npx tsc --noEmit`, `npm run build`,
+  Playwright language switch checks, screenshot review, and `git diff --check`.
+- Known content-quality risk: existing seeded Vietnamese book/category content
+  still contains some unaccented text. This does not block the language-mode
+  infrastructure, but it should be corrected with explicit data-update evidence
+  before claiming polished Vietnamese content.
+
+## v1.1 Currency Display Rules Status
+
+- D26-T03 is complete as of 2026-07-16.
+- VND remains the authoritative stored/source currency.
+- English mode now displays approximate USD estimates on homepage and book
+  detail price surfaces while preserving VND as the primary visible price.
+- Vietnamese mode hides approximate USD estimates and continues to show VND.
+- FX/VAT/fee assumptions are server-owned and validated with Zod:
+  - default source: HSBC Vietnam telegraphic selling rate.
+  - default rate: `26,400 VND/USD`.
+  - quoted timestamp: `2026-07-16T08:35:00+07:00`.
+  - default VAT estimate: `1000` basis points.
+  - default international payment fee estimate: `300` basis points.
+- `.env.example` documents server-only override variables for exchange rate,
+  source label/source URL, quoted timestamp, VAT basis points, and
+  international payment fee basis points.
+- Verification artifacts:
+  - `caseflow-store/.agent/artifacts/d26-t03/currency-display-rules-check.json`
+  - `caseflow-store/.agent/artifacts/d26-t03/currency-display-visual-check.json`
+- Screenshots:
+  - `caseflow-store/.agent/artifacts/d26-t03/currency-en-home.png`
+  - `caseflow-store/.agent/artifacts/d26-t03/currency-vi-home.png`
+- Verification passed: runtime currency rule check, Playwright display smoke,
+  screenshot review, `npm run lint`, `npx tsc --noEmit`, `npm run build`, and
+  `git diff --check`.
+- Known follow-up risk: Next dev reported an LCP warning for the above-the-fold
+  placeholder cover image. This should be addressed during Day 27 homepage or
+  later SEO/performance work.
+
+## v1.1 Bookstore Homepage Status
+
+- D27-T01 is complete as of 2026-07-16.
+- Source file: `caseflow-store/src/app/page.tsx`.
+- Homepage now presents bookstore categories, featured books, new arrivals,
+  translated English/Vietnamese edition pairs, Vietnamese recommendations, and
+  trust/shipping signals.
+- Homepage reads the 100-edition Supabase-backed catalog but renders a curated
+  subset only: 14 unique editions and 12 visible book cards in the D27-T01
+  verification artifact.
+- Book cards and hero cards link to valid existing book detail routes.
+- The homepage does not create a full catalog route; D28-T01 owns that page to
+  avoid adding dead or placeholder links in D27-T01.
+- Vietnamese homepage category and selected title copy received scoped accent
+  polish without changing the frozen book schema, public catalog API, or seed
+  data contract.
+- The global footer disclosure was changed from demo/simulation wording to a
+  no-card/no-wallet-credential disclosure, preserving the guardrail against
+  collecting sensitive payment data without making the storefront read like a
+  project note.
+- Verification artifact:
+  `caseflow-store/.agent/artifacts/d27-t01/homepage-sections-check.json`.
+- Screenshots:
+  - `caseflow-store/.agent/artifacts/d27-t01/home-desktop-en.png`
+  - `caseflow-store/.agent/artifacts/d27-t01/home-mobile-vi.png`
+- Verification passed: `npm run lint`, `npx tsc --noEmit`, `npm run build`,
+  `npx tsx scripts/verify-homepage-sections.ts`, screenshot review, and
+  `git diff --check`.
+
+## v1.1 Discovery Navigation Status
+
+- D27-T02 is complete as of 2026-07-16.
+- Source files:
+  - `caseflow-store/src/components/layout/navigation.ts`
+  - `caseflow-store/src/components/layout/mobile-navigation.tsx`
+  - `caseflow-store/src/app/products/[slug]/page.tsx`
+  - `caseflow-store/src/app/products/[slug]/not-found.tsx`
+  - `caseflow-store/src/features/checkout/checkout-page.tsx`
+  - `caseflow-store/src/features/checkout/checkout-success-page.tsx`
+- Primary desktop navigation now links only to valid current routes/anchors:
+  home, categories, featured books, edition pairs, support, and admin.
+- Mobile navigation includes a Discovery group for new arrivals, current
+  offers, and Vietnamese recommendations without crowding the desktop header.
+- Footer navigation links to valid shop/help anchors and the admin entry point.
+- Product detail now has a Home / Books / current-edition breadcrumb; product
+  not-found and checkout recovery links now return to `/#featured`.
+- Old dead anchors `#books`, `#reading-path`, and `#checkout` were removed from
+  active source navigation.
+- Customer account, public order tracking, and real promotion management routes
+  remain deferred to their accepted roadmap tasks rather than being represented
+  by placeholder links.
+- Verification artifact:
+  `caseflow-store/.agent/artifacts/d27-t02/discovery-navigation-check.json`.
+- Screenshots:
+  - `caseflow-store/.agent/artifacts/d27-t02/navigation-desktop-en.png`
+  - `caseflow-store/.agent/artifacts/d27-t02/navigation-mobile-vi-open.png`
+- Verification passed: `npm run lint`, `npx tsc --noEmit`, `npm run build`,
+  `npx tsx scripts/verify-discovery-navigation.ts`, source anchor scan,
+  screenshot review, and `git diff --check`.
+
+## v1.1 Catalog Page Status
+
+- D28-T01 is complete as of 2026-07-16.
+- Source file: `caseflow-store/src/app/catalog/page.tsx`.
+- New route: `/catalog`.
+- The catalog page lists the seeded 100-edition bookstore catalog in
+  manageable pages of 24 cards per page.
+- Cards show cover/placeholder image, title, author, category, language,
+  format, VND price plus English-mode USD estimate, stock state/quantity, and
+  sale state (`Featured shelf` or `Standard price`).
+- Result count and active view chips are visible. The active view is intentionally
+  limited to all-category/all-language/all-format plus title A-Z/page state;
+  full filter and sorting behavior is owned by D28-T02.
+- Header/footer navigation now include the `/catalog` route.
+- Verification artifact:
+  `caseflow-store/.agent/artifacts/d28-t01/catalog-page-check.json`.
+- Screenshots:
+  - `caseflow-store/.agent/artifacts/d28-t01/catalog-desktop-en.png`
+  - `caseflow-store/.agent/artifacts/d28-t01/catalog-mobile-vi-page-2.png`
+- Verification passed: `npm run lint`, `npx tsc --noEmit`, `npm run build`,
+  `npx tsx scripts/verify-catalog-page.ts`, updated
+  `npx tsx scripts/verify-discovery-navigation.ts`, screenshot review, and
+  `git diff --check`.
+
+## v1.1 Catalog Filters And Sorting Status
+
+- D28-T02 is complete as of 2026-07-16.
+- Source file: `caseflow-store/src/app/catalog/page.tsx`.
+- Catalog filters are URL-backed and recoverable through search params.
+- Supported filters: category/genre, language, format, author, min/max VND
+  price, availability, featured-shelf promotion state, and search.
+- Supported UI sorts: relevance/default, newest, price low-high, price
+  high-low, title A-Z, and author A-Z.
+- Pagination preserves the active filter/sort query state.
+- Invalid query params are ignored safely rather than crashing the page.
+- Scope note: UI-only sorts `relevance` and `author-asc` did not expand the
+  frozen public `/api/products` sort contract. API/UI count agreement was
+  verified for representative filters already supported by the public API.
+- Verification artifact:
+  `caseflow-store/.agent/artifacts/d28-t02/catalog-filters-check.json`.
+- Screenshots:
+  - `caseflow-store/.agent/artifacts/d28-t02/catalog-filters-desktop-en.png`
+  - `caseflow-store/.agent/artifacts/d28-t02/catalog-invalid-mobile-vi.png`
+- Verification passed: `npm run lint`, `npx tsc --noEmit`, `npm run build`,
+  `npx tsx scripts/verify-catalog-page.ts`,
+  `npx tsx scripts/verify-catalog-filters.ts`, screenshot review, and
+  `git diff --check`.
+
+## v1.1 Catalog States Status
+
+- D28-T03 is complete as of 2026-07-16.
+- Shared state UI source:
+  `caseflow-store/src/features/books/catalog-states.tsx`.
+- Runtime catalog states:
+  - `caseflow-store/src/app/catalog/loading.tsx`
+  - `caseflow-store/src/app/catalog/error.tsx`
+- QA preview route:
+  `caseflow-store/src/app/catalog-state-preview/page.tsx`.
+- The catalog now has bilingual loading, empty, and error states.
+- Empty states include clear recovery actions for clearing filters or returning
+  to featured books.
+- Error states use customer-safe copy and do not expose stack traces, exception
+  names, SQL details, environment values, or implementation internals.
+- Verification script:
+  `caseflow-store/scripts/verify-catalog-states.ts`.
+- Verification artifact:
+  `caseflow-store/.agent/artifacts/d28-t03/catalog-states-check.json`.
+- Screenshots:
+  - `caseflow-store/.agent/artifacts/d28-t03/desktop-en-loading.png`
+  - `caseflow-store/.agent/artifacts/d28-t03/desktop-en-empty.png`
+  - `caseflow-store/.agent/artifacts/d28-t03/desktop-en-error.png`
+  - `caseflow-store/.agent/artifacts/d28-t03/mobile-vi-loading.png`
+  - `caseflow-store/.agent/artifacts/d28-t03/mobile-vi-empty.png`
+  - `caseflow-store/.agent/artifacts/d28-t03/mobile-vi-error.png`
+- Verification passed: `npm run lint`, `npx tsc --noEmit`, `npm run build`,
+  `npx tsx scripts/verify-catalog-states.ts`,
+  `npx tsx scripts/verify-catalog-page.ts`, screenshot review, and
+  `git diff --check`.
+- Day 28 is complete; `D29-T01 - Build Book Detail Page` is complete.
+
+## v1.1 Book Detail Page Status
+
+- D29-T01 is complete as of 2026-07-16.
+- Source files:
+  - `caseflow-store/src/app/products/[slug]/page.tsx`
+  - `caseflow-store/src/features/books/book-edition-purchase-controls.tsx`
+- The book detail page shows cover/placeholder, title, author, category,
+  language, format, price, stock, summary, publisher, translator, ISBN,
+  original title, original language, publication era, shipping/totals hints,
+  payment-method hints, and related edition links.
+- Add-to-cart behavior now targets the specific sellable book edition id using
+  the existing local cart context.
+- Scope note: D29-T01 intentionally does not replace cart validation or drawer
+  rendering with book-edition semantics. That belongs to `D30-T01 - Adapt Cart
+  To Book Editions`.
+- Verification script:
+  `caseflow-store/scripts/verify-book-detail-page.ts`.
+- Verification artifact:
+  `caseflow-store/.agent/artifacts/d29-t01/book-detail-check.json`.
+- Screenshots:
+  - `caseflow-store/.agent/artifacts/d29-t01/book-detail-desktop-en.png`
+  - `caseflow-store/.agent/artifacts/d29-t01/book-detail-mobile-vi.png`
+  - `caseflow-store/.agent/artifacts/d29-t01/book-detail-not-found.png`
+- Verification passed: `npm run lint`, `npx tsc --noEmit`, `npm run build`,
+  `npx tsx scripts/verify-book-detail-page.ts`, screenshot review, and
+  `git diff --check`.
+- Continue with `D40-T02 - Deploy And Smoke Test v1.1`.
+
+## v1.1 Related Books And Buying Confidence Status
+
+- D29-T02 is complete as of 2026-07-16.
+- Source file: `caseflow-store/src/app/products/[slug]/page.tsx`.
+- Verification script:
+  `caseflow-store/scripts/verify-book-detail-confidence.ts`.
+- Book detail pages now show related recommendations based on existing
+  author/category/language catalog data.
+- Recommendation cards include reason badges and link only to valid book detail
+  routes.
+- Buying-confidence content now includes shipping/totals, payment options, and
+  return support in both English and Vietnamese.
+- Focused source search confirmed the active detail page/book purchase source
+  no longer contains phone-accessory compatibility copy such as iPhone, Galaxy,
+  Pixel, screen protector, phone case, charger, cable, or accessory wording.
+- Verification artifact:
+  `caseflow-store/.agent/artifacts/d29-t02/book-confidence-check.json`.
+- Screenshots:
+  - `caseflow-store/.agent/artifacts/d29-t02/book-confidence-desktop-en.png`
+  - `caseflow-store/.agent/artifacts/d29-t02/book-confidence-mobile-vi.png`
+- Verification passed: `npm run lint`, `npx tsc --noEmit`, `npm run build`,
+  `npx tsx scripts/verify-book-detail-confidence.ts`, regression
+  `npx tsx scripts/verify-book-detail-page.ts`, screenshot review, focused
+  source search, and `git diff --check`.
+- Day 29 is complete. `D30-T01 - Adapt Cart To Book Editions` is complete.
+
+## v1.1 Book Cart Status
+
+- D30-T01 is complete as of 2026-07-16.
+- Source files:
+  - `caseflow-store/src/types/catalog.ts`
+  - `caseflow-store/src/lib/repositories/supabase-books.ts`
+  - `caseflow-store/src/app/api/cart/validate/route.ts`
+  - `caseflow-store/src/features/cart/cart-drawer.tsx`
+  - `caseflow-store/src/features/checkout/checkout-page.tsx`
+- `/api/cart/validate` now validates book edition ids against the Supabase book
+  catalog instead of the legacy phone-accessory products table.
+- Local cart storage still stores only `{ productId, quantity }`; for v1.1 the
+  `productId` value is the sellable book edition id.
+- Cart validation reloads book edition data server-side, checks stock/status,
+  and recalculates unit prices, line totals, and subtotal.
+- Cart drawer and checkout review now display book cover, title, author,
+  category, edition language, format, price, quantity, stock, line total, and
+  subtotal.
+- Tampered localStorage/client payloads cannot force title, price, stock, line
+  total, or subtotal into the validated cart.
+- Scope note: account-gated checkout and v1.1 book order creation were completed
+  by the Day 32 checkout/auth tasks.
+- Verification script: `caseflow-store/scripts/verify-book-cart.ts`.
+- Verification artifact:
+  `caseflow-store/.agent/artifacts/d30-t01/book-cart-check.json`.
+- Screenshots:
+  - `caseflow-store/.agent/artifacts/d30-t01/book-cart-desktop-en.png`
+  - `caseflow-store/.agent/artifacts/d30-t01/book-cart-mobile-vi.png`
+  - `caseflow-store/.agent/artifacts/d30-t01/book-cart-tampered-storage.png`
+- Verification passed: `npm run lint`, `npx tsc --noEmit`, `npm run build`,
+  `npx tsx scripts/verify-book-cart.ts`, screenshot review, and
+  `git diff --check`.
+- Continue with `D40-T02 - Deploy And Smoke Test v1.1`.
+
+## v1.1 Customer Order History Status
+
+- D34-T01 is complete as of 2026-07-16.
+- Customer order history page exists at `/account/orders`.
+- Customer-scoped APIs exist at:
+  - `GET /api/customer/orders`
+  - `GET /api/customer/orders/[orderCode]`
+- Repository reads filter by `customer_id` before returning customer order
+  records.
+- Order history displays order code, order status, payment method, payment
+  status, total, created time, and item snapshots.
+- Cross-customer detail lookup returns `ORDER_NOT_FOUND` and another customer's
+  order does not appear in the list.
+- Verification script:
+  `caseflow-store/scripts/verify-customer-order-history.ts`.
+- Verification artifact:
+  `caseflow-store/.agent/artifacts/d34-t01/customer-order-history-check.json`.
+- Screenshot:
+  `caseflow-store/.agent/artifacts/d34-t01/customer-order-history-desktop-en.png`.
+- Verification passed: `npm run lint`, `npx tsc --noEmit`, `npm run build`,
+  `npx tsx scripts/verify-customer-order-history.ts`, screenshot review, and
+  `git diff --check`.
+- Continue with `D40-T02 - Deploy And Smoke Test v1.1`.
+
+## v1.1 Public Order Tracking Status
+
+- D34-T02 is complete as of 2026-07-16.
+- Public order tracking page exists at `/orders/track`.
+- Public tracking API exists at `POST /api/orders/track`.
+- Lookup requires `orderCode` plus matching customer email or phone from the
+  checkout snapshot.
+- Order code casing, email casing, and common Vietnam phone formatting are
+  normalized before matching.
+- Wrong-contact and missing-order lookups return the same `ORDER_NOT_FOUND`
+  response.
+- Public tracking payload intentionally excludes customer email, phone,
+  shipping address, and item detail.
+- Tracking UI displays order status timeline plus payment method, payment
+  status, shipping method, total, and updated timestamp.
+- Navigation and footer link to `/orders/track`.
+- API contract and known limitations were updated to reflect the guarded public
+  lookup and remaining notification/rate-limit gaps.
+- Verification script:
+  `caseflow-store/scripts/verify-public-order-tracking.ts`.
+- Verification artifact:
+  `caseflow-store/.agent/artifacts/d34-t02/public-order-tracking-check.json`.
+- Screenshots:
+  - `caseflow-store/.agent/artifacts/d34-t02/public-tracking-success-desktop-en.png`
+  - `caseflow-store/.agent/artifacts/d34-t02/public-tracking-error-mobile-vi.png`
+- Verification passed: `npm run lint`, `npx tsc --noEmit`, `npm run build`,
+  `npx tsx scripts/verify-public-order-tracking.ts`, screenshot review, and
+  `git diff --check`.
+- Continue with `D40-T02 - Deploy And Smoke Test v1.1`.
+
+## v1.1 Checkout/Auth Freeze Status
+
+- D34-T03 is complete as of 2026-07-16.
+- Checkout/auth freeze is active.
+- Freeze document:
+  `docs/v1.1-checkout-auth-freeze.md`.
+- App mirror:
+  `caseflow-store/docs/v1.1-checkout-auth-freeze.md`.
+- Frozen behavior covers customer auth/profile requirements, checkout login
+  gate, server-owned totals, simulated payment methods, customer order history,
+  and guarded public order tracking.
+- Admin/staff work from Day 35 onward must not weaken the frozen checkout/auth
+  contracts without an explicit roadmap or ADR review.
+- Remaining documented risks include simulated payment, no phone OTP, Supabase
+  email verification dependence, no public tracking rate limiter/CAPTCHA, no
+  customer notifications, local-only cart, no stock reservation/decrement, and
+  estimate-only VAT/FX/payment fee assumptions.
+- Verification script:
+  `caseflow-store/scripts/verify-checkout-auth-freeze.ts`.
+- Verification artifact:
+  `caseflow-store/.agent/artifacts/d34-t03/checkout-auth-freeze-check.json`.
+- Screenshots:
+  - `caseflow-store/.agent/artifacts/d34-t03/checkout-auth-freeze-anonymous-gate.png`
+  - `caseflow-store/.agent/artifacts/d34-t03/checkout-auth-freeze-order-history-en.png`
+  - `caseflow-store/.agent/artifacts/d34-t03/checkout-auth-freeze-public-tracking-en.png`
+- Verification passed: `npm run lint`, `npx tsc --noEmit`, `npm run build`,
+  `npx tsx scripts/verify-checkout-auth-freeze.ts`, screenshot review, and
+  `git diff --check`.
+- Continue with `D40-T02 - Deploy And Smoke Test v1.1`.
+
+## v1.1 Staff/Operator Role Status
+
+- D35-T01 is complete as of 2026-07-16.
+- Role access policy exists at `docs/v1.1-role-access-policy.md`.
+- App mirror exists at `caseflow-store/docs/v1.1-role-access-policy.md`.
+- Server permission policy is implemented in
+  `caseflow-store/src/lib/auth/admin.ts`.
+- Current permissions:
+  - `catalog:manage`: staff and admin.
+  - `inventory:adjust`: staff and admin.
+  - `orders:read`: staff and admin.
+  - `orders:update-status`: staff and admin.
+  - `settings:manage`: admin only.
+- Staff/admin sessions can use the operations login and orders page.
+- `GET /api/admin/orders` requires `orders:read`.
+- `PATCH /api/admin/orders/[id]` requires `orders:update-status`.
+- `GET /api/admin/settings` requires `settings:manage`.
+- Anonymous admin/staff API calls return `UNAUTHORIZED`; customer calls return
+  `FORBIDDEN`.
+- Verification script:
+  `caseflow-store/scripts/verify-staff-role-access.ts`.
+- Verification artifact:
+  `caseflow-store/.agent/artifacts/d35-t01/staff-role-access-check.json`.
+- Screenshot:
+  `caseflow-store/.agent/artifacts/d35-t01/staff-operations-orders-page-en.png`.
+- Verification passed: `npm run lint`, `npx tsc --noEmit`, `npm run build`,
+  `npx tsx scripts/verify-staff-role-access.ts`, screenshot review, and
+  `git diff --check`.
+- Continue with `D40-T02 - Deploy And Smoke Test v1.1`.
+
+## v1.1 Inventory Adjustment Workflow Status
+
+- D36-T02 is complete as of 2026-07-17.
+- Admin/staff inventory permission exists as `inventory:adjust`.
+- Inventory UI at `/admin/inventory` now supports:
+  - listing tracked book editions by stock.
+  - searching by title, slug, or author.
+  - selecting an edition and submitting positive or negative stock adjustments.
+  - requiring a reason for every adjustment.
+  - showing recent adjustment audit records.
+  - showing low-stock and out-of-stock states.
+- Inventory APIs exist at:
+  - `GET /api/admin/inventory`
+  - `POST /api/admin/inventory/adjustments`
+- The `book_inventory_adjustments` Supabase table is now represented in
+  TypeScript database types.
+- Stock adjustments update `book_editions.stock_quantity`, derive
+  `inventory_status`, and insert an audit row with `created_by_user_id`.
+- Negative adjustments that would make stock below zero return `OUT_OF_STOCK`.
+- Public catalog/purchase boundary reflects adjusted stock: low-stock remains
+  visible in public detail data, out-of-stock blocks cart validation.
+- Scope boundary: D36-T02 does not implement stock reservation/decrement on
+  checkout. It adds operational stock adjustment and audit visibility only.
+- Verification script:
+  `caseflow-store/scripts/verify-inventory-adjustments.ts`.
+- Verification artifact:
+  `caseflow-store/.agent/artifacts/d36-t02/inventory-adjustments-check.json`.
+- Screenshot:
+  `caseflow-store/.agent/artifacts/d36-t02/inventory-adjustments-desktop-en.png`.
+- Verification passed: `npm run lint`, `npx tsc --noEmit`, `npm run build`,
+  `npx tsx scripts/verify-inventory-adjustments.ts`, screenshot dimension/no-overflow
+  review, and `git diff --check`.
+- Continue with `D40-T02 - Deploy And Smoke Test v1.1`.
+
+## v1.1 Admin Navigation Shell Status
+
+- D35-T02 is complete as of 2026-07-16.
+- Operations dashboard exists at `/admin`.
+- Admin/staff shell routes now exist for:
+  - `/admin/orders`
+  - `/admin/catalog`
+  - `/admin/inventory`
+  - `/admin/promotions`
+  - `/admin/customers`
+  - `/admin/settings`
+- Shared admin shell and navigation components exist at:
+  - `caseflow-store/src/features/admin/admin-navigation.tsx`
+  - `caseflow-store/src/features/admin/admin-shell-page.tsx`
+- The main site admin link and operations login now route to `/admin`.
+- Staff navigation shows dashboard, orders, catalog, inventory, promotions, and
+  customers, but hides settings. Catalog visibility is now backed by
+  `catalog:manage`.
+- Direct staff access to `/admin/settings` renders an access-denied state, and
+  the settings API still requires `settings:manage`.
+- Admin navigation includes settings and can access the settings shell.
+- Scope boundary: D35-T02 added navigation shells and permission-aware access
+  surfaces only. Real catalog, inventory, promotion, customer, and dashboard
+  operations remain Day 36-Day 38 work.
+- Verification script:
+  `caseflow-store/scripts/verify-admin-navigation.ts`.
+- Verification artifact:
+  `caseflow-store/.agent/artifacts/d35-t02/admin-navigation-check.json`.
+- Screenshots:
+  - `caseflow-store/.agent/artifacts/d35-t02/admin-navigation-desktop-en.png`
+  - `caseflow-store/.agent/artifacts/d35-t02/staff-admin-navigation-mobile-en.png`
+- Verification passed: `npm run lint`, `npx tsc --noEmit`, `npm run build`,
+  `npx tsx scripts/verify-admin-navigation.ts`, screenshot dimension/no-overflow
+  review, and `git diff --check`.
+- Continue with `D40-T02 - Deploy And Smoke Test v1.1`.
+
+## v1.1 Admin Book Catalog Management Status
+
+- D36-T01 is complete as of 2026-07-17.
+- Admin/staff catalog permission exists as `catalog:manage`.
+- Admin catalog UI at `/admin/catalog` now supports:
+  - listing active and inactive book editions.
+  - local search by title, slug, author, and category.
+  - creating a sellable edition for an existing book work.
+  - editing core edition fields: slug, display title, localized titles,
+    language, format, price, stock, low-stock threshold, inventory status,
+    summaries, featured state, and active state.
+  - activating/deactivating editions.
+- Admin catalog APIs exist at:
+  - `GET /api/admin/books/editions`
+  - `POST /api/admin/books/editions`
+  - `PATCH /api/admin/books/editions/[id]`
+- Mutating catalog payloads are validated server-side with Zod.
+- Mutations run through the service-role client only after a verified
+  admin/staff session has `catalog:manage`.
+- Public catalog behavior remains frozen: active editions are visible, inactive
+  editions are excluded from `/api/products` and `/api/products/[slug]`.
+- Scope boundary: D36-T01 manages book editions only. Creating new works,
+  authors, categories, publishers, or media assets remains outside this task.
+- Verification script:
+  `caseflow-store/scripts/verify-admin-book-catalog.ts`.
+- Verification artifact:
+  `caseflow-store/.agent/artifacts/d36-t01/admin-book-catalog-check.json`.
+- Screenshot:
+  `caseflow-store/.agent/artifacts/d36-t01/admin-book-catalog-desktop-en.png`.
+- Verification passed: `npm run lint`, `npx tsc --noEmit`, `npm run build`,
+  `npx tsx scripts/verify-admin-book-catalog.ts`, screenshot dimension/no-overflow
+  review, and `git diff --check`.
+- Continue with `D40-T02 - Deploy And Smoke Test v1.1`.
+
+## v1.1 Shipping, VAT, And FX Estimate Status
+
+- D33-T02 is complete as of 2026-07-16.
+- Checkout totals use server-owned/configured assumptions for shipping, VAT, and
+  USD display estimates.
+- VND remains authoritative for persisted order totals.
+- English checkout displays approximate USD total with source, rate, timestamp,
+  and display-only international payment fee assumption.
+- Current default FX rule is HSBC Vietnam telegraphic selling rate:
+  `26,400 VND/USD`, quoted `2026-07-16T08:35:00+07:00`.
+- Server ignores browser-supplied shipping, tax, payment fee, total, and USD
+  display values.
+- Verification script:
+  `caseflow-store/scripts/verify-order-totals-engine.ts`.
+- Verification artifact:
+  `caseflow-store/.agent/artifacts/d33-t02/order-totals-engine-check.json`.
+- Screenshot:
+  `caseflow-store/.agent/artifacts/d33-t02/checkout-usd-estimate-desktop-en.png`.
+- Verification passed: `npm run lint`, `npx tsc --noEmit`, `npm run build`,
+  `npx tsx scripts/verify-order-totals-engine.ts`, screenshot review, HSBC FX
+  source verification, and `git diff --check`.
+- Continue with `D40-T02 - Deploy And Smoke Test v1.1`.
+
+## v1.1 Payment Method Simulation Status
+
+- D33-T01 is complete as of 2026-07-16.
+- Checkout supports COD, bank transfer, MoMo, ZaloPay, and VNPay-style choices.
+- Success snapshots now persist `paymentMethod` and `paymentStatus`.
+- Success UI displays payment method and payment status:
+  - COD: `pending`.
+  - bank transfer: `awaiting-transfer`.
+  - MoMo, ZaloPay, VNPay: `awaiting-provider-confirmation`.
+- Unknown payment methods are rejected by API validation.
+- No card-number, CVV, expiry, wallet credential, bank credential, or provider
+  login fields are collected.
+- Verification script: `caseflow-store/scripts/verify-payment-methods.ts`.
+- Verification artifact:
+  `caseflow-store/.agent/artifacts/d33-t01/payment-methods-check.json`.
+- Screenshots:
+  - `caseflow-store/.agent/artifacts/d33-t01/payment-cod-success-desktop-en.png`
+  - `caseflow-store/.agent/artifacts/d33-t01/payment-vnpay-success-desktop-en.png`
+- Verification passed: `npm run lint`, `npx tsc --noEmit`, `npm run build`,
+  `npx tsx scripts/verify-payment-methods.ts`, screenshot review, targeted
+  input source search for card/CVV/expiry/wallet credential fields, and
+  `git diff --check`.
+- Continue with `D40-T02 - Deploy And Smoke Test v1.1`.
+
+## v1.1 Account-Gated Checkout Status
+
+- D32-T01 and D32-T02 are complete as of 2026-07-16.
+- `/checkout` now redirects anonymous and non-customer sessions to
+  `/account?next=/checkout`.
+- Anonymous users can still browse and add books to the local cart.
+- After login, customer users return to `/checkout` and the local cart remains
+  preserved.
+- Checkout now shows cart review, read-only customer/contact confirmation,
+  shipping method, payment method, server-backed total review, and final submit.
+- `POST /api/orders` now requires a customer session, validates contact
+  confirmation, validates book cart items, recalculates server-owned totals,
+  and creates v1.1 book order/item snapshots through
+  `create_book_order_with_items`.
+- UI checkout/success copy does not expose simulated/demo wording; docs and ADRs
+  still document the payment limitation truthfully.
+- Verification script:
+  `caseflow-store/scripts/verify-book-checkout-steps.ts`.
+- Verification artifact:
+  `caseflow-store/.agent/artifacts/d32-t02/book-checkout-steps-check.json`.
+- Screenshots:
+  - `caseflow-store/.agent/artifacts/d32-t02/book-checkout-steps-desktop-en.png`
+  - `caseflow-store/.agent/artifacts/d32-t02/book-checkout-success-desktop-en.png`
+- Verification passed: `npm run lint`, `npx tsc --noEmit`, `npm run build`,
+  `npx tsx scripts/verify-book-checkout-steps.ts`, screenshot review, UI source
+  search for simulated/demo checkout wording, and `git diff --check`.
+- Continue with `D40-T02 - Deploy And Smoke Test v1.1`.
+
+## v1.1 Customer Auth Page Status
+
+- D31-T01 is complete as of 2026-07-16.
+- Customer account page exists at `/account`.
+- Customer sign-in, sign-up form, logout, and header/mobile auth state UI are
+  implemented.
+- Customer auth uses Supabase Auth sessions and creates/backfills `profiles`
+  server-side; browser payloads cannot set `role`.
+- Access expectations are documented in
+  `docs/v1.1-auth-access-expectations.md`.
+- No phone verification is claimed.
+- Supabase Auth email sign-up was provider rate-limited during final
+  verification. The route now returns a clear `429` with
+  `CUSTOMER_AUTH_FAILED`, and the verification uses a verified customer test
+  user as the configured local equivalent for login/logout.
+- Verification script: `caseflow-store/scripts/verify-customer-auth.ts`.
+- Verification artifact:
+  `caseflow-store/.agent/artifacts/d31-t01/customer-auth-check.json`.
+- Screenshots:
+  - `caseflow-store/.agent/artifacts/d31-t01/customer-account-signed-out-desktop-en.png`
+  - `caseflow-store/.agent/artifacts/d31-t01/customer-account-signed-in-desktop-en.png`
+  - `caseflow-store/.agent/artifacts/d31-t01/customer-account-signup-mobile-vi.png`
+- Verification passed: `npm run lint`, `npx tsc --noEmit`, `npm run build`,
+  `npx tsx scripts/verify-customer-auth.ts`, screenshot review, focused source
+  search for phone-verification claims, and `git diff --check`.
+- Continue with `D40-T02 - Deploy And Smoke Test v1.1`.
+
+## v1.1 Customer Profile And Address Status
+
+- D31-T02 is complete as of 2026-07-16.
+- Customer profile save API exists at `PATCH /api/customer/profile`.
+- Customer account page supports full name, read-only account email, phone,
+  recipient name, recipient phone, and default Vietnamese shipping address.
+- Profile updates are validated with Zod and saved server-side through the
+  service-role client after Supabase session checks.
+- Browser payloads cannot set role.
+- Checkout now blocks signed-in customer checkout when required profile fields
+  are missing and links to `/account?next=/checkout`.
+- D32-T01 later made `/checkout` account-gated.
+- Verification script: `caseflow-store/scripts/verify-customer-profile.ts`.
+- Verification artifact:
+  `caseflow-store/.agent/artifacts/d31-t02/customer-profile-check.json`.
+- Screenshots:
+  - `caseflow-store/.agent/artifacts/d31-t02/checkout-profile-blocked-desktop-en.png`
+  - `caseflow-store/.agent/artifacts/d31-t02/customer-profile-complete-desktop-en.png`
+  - `caseflow-store/.agent/artifacts/d31-t02/checkout-profile-ready-desktop-en.png`
+  - `caseflow-store/.agent/artifacts/d31-t02/customer-profile-validation-mobile-vi.png`
+- Verification passed: `npm run lint`, `npx tsc --noEmit`, `npm run build`,
+  `npx tsx scripts/verify-customer-profile.ts`, screenshot review, focused
+  source search for phone-verification claims, and `git diff --check`.
+- Continue with `D40-T02 - Deploy And Smoke Test v1.1`.
+
+## v1.1 Storefront Feature Freeze Status
+
+- D30-T02 is complete as of 2026-07-16.
+- Storefront feature freeze is active.
+- Freeze coverage: homepage, catalog, filters/sorting, catalog states, detail
+  page, related recommendations, buying-confidence content, bilingual mode,
+  currency display, and cart entry.
+- No known blocker remains in product discovery or cart entry at the freeze
+  gate.
+- New storefront discovery/catalog/detail/language/cart-entry features now
+  require explicit roadmap approval. Day 31-34 should focus on customer auth
+  and checkout/account gating.
+- Verification script:
+  `caseflow-store/scripts/verify-storefront-freeze.ts`.
+- Verification artifact:
+  `caseflow-store/.agent/artifacts/d30-t02/storefront-freeze-check.json`.
+- Screenshots:
+  - `caseflow-store/.agent/artifacts/d30-t02/home-desktop-en.png`
+  - `caseflow-store/.agent/artifacts/d30-t02/home-mobile-vi.png`
+  - `caseflow-store/.agent/artifacts/d30-t02/catalog-desktop-en.png`
+  - `caseflow-store/.agent/artifacts/d30-t02/catalog-mobile-vi.png`
+  - `caseflow-store/.agent/artifacts/d30-t02/detail-desktop-en.png`
+  - `caseflow-store/.agent/artifacts/d30-t02/detail-mobile-vi.png`
+  - `caseflow-store/.agent/artifacts/d30-t02/cart-desktop-en.png`
+  - `caseflow-store/.agent/artifacts/d30-t02/cart-mobile-vi.png`
+  - `caseflow-store/.agent/artifacts/d30-t02/language-switch-desktop-vi.png`
+- Verification passed: `npm run lint`, `npx tsc --noEmit`, `npm run build`,
+  `npx tsx scripts/verify-storefront-freeze.ts`, screenshot review, and
+  `git diff --check`.
+- Continue with `D40-T02 - Deploy And Smoke Test v1.1`.
 
 ## Architecture Decision
 

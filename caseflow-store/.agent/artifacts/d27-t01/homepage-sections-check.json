@@ -1,0 +1,81 @@
+{
+  "generatedAt": "2026-07-16T08:02:36.228Z",
+  "baseURL": "http://127.0.0.1:3005",
+  "desktop": {
+    "counts": {
+      "bookCards": 12,
+      "categories": 8,
+      "curatedEditions": 14,
+      "detailLinks": 21,
+      "featuredCards": 4,
+      "heroCards": 3,
+      "newArrivalCards": 4,
+      "totalEditions": 100,
+      "translatedGroups": 3,
+      "translatedLinks": 6,
+      "trustCards": 4,
+      "vietnameseCards": 4
+    },
+    "hasHorizontalOverflow": false,
+    "language": "en",
+    "screenshotPath": ".agent/artifacts/d27-t01/home-desktop-en.png",
+    "viewport": {
+      "height": 1200,
+      "width": 1440
+    },
+    "visibleTextChecks": {
+      "category": true,
+      "hero": true,
+      "sections": true
+    }
+  },
+  "expectedCounts": {
+    "categories": 8,
+    "featuredCards": 4,
+    "heroCards": 3,
+    "newArrivalCards": 4,
+    "totalEditions": 100,
+    "translatedGroups": 3,
+    "translatedLinks": 6,
+    "trustCards": 4,
+    "vietnameseCards": 4
+  },
+  "mobile": {
+    "counts": {
+      "bookCards": 12,
+      "categories": 8,
+      "curatedEditions": 14,
+      "detailLinks": 21,
+      "featuredCards": 4,
+      "heroCards": 3,
+      "newArrivalCards": 4,
+      "totalEditions": 100,
+      "translatedGroups": 3,
+      "translatedLinks": 6,
+      "trustCards": 4,
+      "vietnameseCards": 4
+    },
+    "hasHorizontalOverflow": false,
+    "language": "vi",
+    "screenshotPath": ".agent/artifacts/d27-t01/home-mobile-vi.png",
+    "viewport": {
+      "height": 900,
+      "width": 375
+    },
+    "visibleTextChecks": {
+      "category": true,
+      "hero": true,
+      "sections": true
+    }
+  },
+  "ok": true,
+  "pass": {
+    "desktopNoOverflow": true,
+    "mobileNoOverflow": true,
+    "totalCatalogCountVisible": true,
+    "homepageDoesNotRenderAllEditions": true,
+    "curatedSectionCounts": true,
+    "detailLinksPresent": true,
+    "languageSpecificCopy": true
+  }
+}

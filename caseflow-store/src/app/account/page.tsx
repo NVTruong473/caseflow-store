@@ -1,0 +1,56 @@
+import type { Metadata } from "next";
+
+import { CustomerAuthPage } from "@/features/customer";
+import { getCustomerAuthState } from "@/lib/auth/customer";
+import { getRequestLanguage } from "@/lib/i18n/server";
+import { createPageMetadata } from "@/lib/seo/metadata";
+
+type AccountPageProps = {
+  searchParams?: Promise<Record<string, string | string[] | undefined>>;
+};
+
+export async function generateMetadata(): Promise<Metadata> {
+  const language = await getRequestLanguage();
+
+  return createPageMetadata({
+    description:
+      language === "vi"
+        ? "Đăng nhập hoặc tạo tài khoản CaseFlow Books để hoàn tất hồ sơ, địa chỉ giao hàng và xem đơn hàng."
+        : "Sign in or create a CaseFlow Books account to complete your profile, shipping address, and order access.",
+    language,
+    path: "/account",
+    robots: {
+      follow: false,
+      index: false,
+    },
+    title:
+      language === "vi"
+        ? "Tài khoản - CaseFlow Books"
+        : "Customer account - CaseFlow Books",
+  });
+}
+
+export default async function AccountPage({ searchParams }: AccountPageProps) {
+  const language = await getRequestLanguage();
+  const params = await searchParams;
+  const authState = await getCustomerAuthState();
+  const nextPath = normalizeNextPath(params?.next);
+
+  return (
+    <CustomerAuthPage
+      authState={authState}
+      language={language}
+      nextPath={nextPath}
+    />
+  );
+}
+
+function normalizeNextPath(value: string | string[] | undefined) {
+  const rawValue = Array.isArray(value) ? value[0] : value;
+
+  if (!rawValue || !rawValue.startsWith("/") || rawValue.startsWith("//")) {
+    return null;
+  }
+
+  return rawValue;
+}

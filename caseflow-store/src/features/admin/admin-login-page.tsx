@@ -4,6 +4,7 @@ import Link from "next/link";
 import * as React from "react";
 
 import { Badge, Button, Container, ErrorMessage, Input } from "@/components/ui";
+import type { Language } from "@/lib/i18n/language";
 
 type ApiErrorBody = {
   code: string;
@@ -32,7 +33,53 @@ type FieldErrors = {
   password?: string;
 };
 
-export function AdminLoginPage() {
+const adminLoginCopy = {
+  en: {
+    access: "Access",
+    adminEmailError: "Enter the operations email address.",
+    adminPasswordError: "Enter the admin password.",
+    adminServiceUnavailable:
+      "Operations service is unavailable. Try again before continuing.",
+    adminSignInFailed: "Operations sign-in failed.",
+    adminWorkspace: "Operations workspace",
+    backToStorefront: "Back to storefront",
+    emailAddress: "Email address",
+    identity: "Identity",
+    openingOrders: (name: string) => `Signed in as ${name}. Opening orders.`,
+    password: "Password",
+    scope: "Scope",
+    signIn: "Sign in",
+    signInDescription: "Use a CaseFlow admin or staff account.",
+    signInIntro: "Sign in to review orders and update fulfillment status.",
+    signingIn: "Signing in",
+    signedOut: "Signed out",
+    title: "Operations login",
+  },
+  vi: {
+    access: "Quyền truy cập",
+    adminEmailError: "Nhập email vận hành.",
+    adminPasswordError: "Nhập mật khẩu admin/staff.",
+    adminServiceUnavailable:
+      "Dịch vụ vận hành chưa khả dụng. Vui lòng thử lại trước khi tiếp tục.",
+    adminSignInFailed: "Đăng nhập vận hành thất bại.",
+    adminWorkspace: "Khu vực vận hành",
+    backToStorefront: "Quay lại cửa hàng",
+    emailAddress: "Địa chỉ email",
+    identity: "Định danh",
+    openingOrders: (name: string) => `Đã đăng nhập với tên ${name}. Đang mở đơn hàng.`,
+    password: "Mật khẩu",
+    scope: "Phạm vi",
+    signIn: "Đăng nhập",
+    signInDescription: "Dùng tài khoản admin hoặc staff của CaseFlow.",
+    signInIntro: "Đăng nhập để xem đơn hàng và cập nhật trạng thái xử lý.",
+    signingIn: "Đang đăng nhập",
+    signedOut: "Đã đăng xuất",
+    title: "Đăng nhập vận hành",
+  },
+} as const;
+
+export function AdminLoginPage({ language }: { language: Language }) {
+  const copy = adminLoginCopy[language];
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [fieldErrors, setFieldErrors] = React.useState<FieldErrors>({});
@@ -47,11 +94,11 @@ export function AdminLoginPage() {
     const nextErrors: FieldErrors = {};
 
     if (!normalizedEmail) {
-      nextErrors.email = "Enter the admin email address.";
+      nextErrors.email = copy.adminEmailError;
     }
 
     if (password.length < 8) {
-      nextErrors.password = "Enter the admin password.";
+      nextErrors.password = copy.adminPasswordError;
     }
 
     setEmail(normalizedEmail);
@@ -76,7 +123,7 @@ export function AdminLoginPage() {
         setPassword("");
         setLoginState({
           status: "error",
-          message: payload.error?.message ?? "Admin sign-in failed.",
+          message: payload.error?.message ?? copy.adminSignInFailed,
         });
         return;
       }
@@ -86,11 +133,11 @@ export function AdminLoginPage() {
         status: "success",
         displayName: payload.data.displayName,
       });
-      window.location.replace("/admin/orders");
+      window.location.replace("/admin");
     } catch {
       setLoginState({
         status: "error",
-        message: "Admin service is unavailable. Try again before continuing.",
+        message: copy.adminServiceUnavailable,
       });
     }
   }
@@ -106,23 +153,23 @@ export function AdminLoginPage() {
             href="/"
             className="w-fit text-small font-medium text-primary hover:text-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
           >
-            Back to storefront
+            {copy.backToStorefront}
           </Link>
 
           <div className="flex max-w-3xl flex-col gap-case-sm">
-            <Badge variant="primary">Admin workspace</Badge>
+            <Badge variant="primary">{copy.adminWorkspace}</Badge>
             <h1 className="text-heading-1 font-semibold text-foreground">
-              Admin login
+              {copy.title}
             </h1>
             <p className="text-body leading-7 text-text-muted">
-              Sign in to review guest orders and update fulfillment status.
+              {copy.signInIntro}
             </p>
           </div>
 
           <dl className="grid gap-case-sm sm:grid-cols-3">
-            <LoginMetric label="Identity" value="Supabase Auth" />
-            <LoginMetric label="Access" value="Admin role" />
-            <LoginMetric label="Scope" value="Orders" />
+            <LoginMetric label={copy.identity} value="Supabase Auth" />
+            <LoginMetric label={copy.access} value="Admin or staff role" />
+            <LoginMetric label={copy.scope} value="Orders" />
           </dl>
         </section>
 
@@ -133,14 +180,14 @@ export function AdminLoginPage() {
           <div className="flex items-start justify-between gap-case-md">
             <div className="min-w-0">
               <h2 className="text-heading-2 font-semibold text-foreground">
-                Sign in
+                {copy.signIn}
               </h2>
               <p className="mt-case-xs text-small leading-6 text-text-muted">
-                Use the dedicated CaseFlow admin account.
+                {copy.signInDescription}
               </p>
             </div>
             <Badge variant="neutral" data-admin-login-session-state="empty">
-              Signed out
+              {copy.signedOut}
             </Badge>
           </div>
 
@@ -152,7 +199,7 @@ export function AdminLoginPage() {
           >
             <Input
               id="admin-email"
-              label="Email address"
+              label={copy.emailAddress}
               name="email"
               type="email"
               autoComplete="username"
@@ -170,7 +217,7 @@ export function AdminLoginPage() {
 
             <Input
               id="admin-password"
-              label="Password"
+              label={copy.password}
               name="password"
               type="password"
               autoComplete="current-password"
@@ -201,7 +248,7 @@ export function AdminLoginPage() {
                 className="rounded-md border border-success bg-success/10 p-case-md text-small leading-6 text-success"
                 data-admin-login-success
               >
-                Signed in as {loginState.displayName}. Opening orders.
+                {copy.openingOrders(loginState.displayName)}
               </div>
             ) : null}
 
@@ -211,7 +258,7 @@ export function AdminLoginPage() {
               isLoading={loginState.status === "checking"}
               data-admin-login-submit
             >
-              {loginState.status === "checking" ? "Signing in" : "Sign in"}
+              {loginState.status === "checking" ? copy.signingIn : copy.signIn}
             </Button>
           </form>
         </section>

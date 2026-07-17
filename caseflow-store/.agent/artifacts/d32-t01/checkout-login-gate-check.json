@@ -1,0 +1,26 @@
+{
+  "generatedAt": "2026-07-16T11:40:46.542Z",
+  "baseURL": "http://127.0.0.1:3005",
+  "gateFlow": {
+    "accountRedirectHasOverflow": false,
+    "addToCartFeedbackVisible": true,
+    "cartStoredAfterLogin": true,
+    "cartStoredAfterRedirect": true,
+    "cartStoredBeforeCheckout": true,
+    "checkoutAfterLoginHasOverflow": false,
+    "checkoutCartItemVisibleAfterLogin": true,
+    "redirectedToAccountWithNext": true
+  },
+  "ok": true,
+  "pass": {
+    "anonymousCanAddToCart": true,
+    "checkoutRedirectsToLogin": true,
+    "cartPreservedAfterLogin": true,
+    "noOverflow": true
+  },
+  "target": {
+    "editionId": "00000000-0000-4000-8000-000000003027",
+    "slug": "a-christmas-carol-english-paperback"
+  },
+  "testEmail": "caseflow-d32-gate-mrnftqke-c96wur@example.com"
+}

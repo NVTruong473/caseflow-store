@@ -1,0 +1,165 @@
+{
+  "mode": "apply",
+  "generatedAt": "2026-07-16T06:18:59.198Z",
+  "seedSummary": {
+    "categoryCount": 11,
+    "authorCount": 41,
+    "publisherCount": 1,
+    "workCount": 50,
+    "editionCount": 100,
+    "languageCounts": {
+      "en": 50,
+      "vi": 50
+    },
+    "formatCounts": {
+      "special-edition": 6,
+      "paperback": 86,
+      "hardcover": 8
+    },
+    "categoryWorkCounts": {
+      "fiction": 20,
+      "classic-literature": 38,
+      "mystery-thriller": 4,
+      "fantasy-sci-fi": 10,
+      "romance": 4,
+      "business-economics": 3,
+      "self-development": 7,
+      "children-young-adult": 13,
+      "language-learning": 1,
+      "vietnamese-books": 0,
+      "english-books": 0
+    },
+    "featuredEditionCount": 12
+  },
+  "batchCounts": {
+    "book_categories": 11,
+    "book_authors": 41,
+    "book_publishers": 1,
+    "book_cover_assets": 1,
+    "book_works": 50,
+    "book_work_authors": 51,
+    "book_work_categories": 100,
+    "book_editions": 100,
+    "book_edition_translators": 0
+  },
+  "applied": [
+    {
+      "table": "book_categories",
+      "rows": 11,
+      "skipped": false
+    },
+    {
+      "table": "book_authors",
+      "rows": 41,
+      "skipped": false
+    },
+    {
+      "table": "book_publishers",
+      "rows": 1,
+      "skipped": false
+    },
+    {
+      "table": "book_cover_assets",
+      "rows": 1,
+      "skipped": false
+    },
+    {
+      "table": "book_works",
+      "rows": 50,
+      "skipped": false
+    },
+    {
+      "table": "book_work_authors",
+      "rows": 51,
+      "skipped": false
+    },
+    {
+      "table": "book_work_categories",
+      "rows": 100,
+      "skipped": false
+    },
+    {
+      "table": "book_editions",
+      "rows": 100,
+      "skipped": false
+    },
+    {
+      "table": "book_edition_translators",
+      "rows": 0,
+      "skipped": true
+    }
+  ],
+  "verification": {
+    "counts": {
+      "book_categories": 11,
+      "book_authors": 41,
+      "book_publishers": 1,
+      "book_cover_assets": 1,
+      "book_works": 50,
+      "book_work_authors": 51,
+      "book_work_categories": 100,
+      "book_editions": 100,
+      "book_edition_translators": 0
+    },
+    "languageCounts": {
+      "en": 50,
+      "vi": 50
+    },
+    "legacyCounts": {
+      "categories": 5,
+      "products": 16
+    },
+    "publicBookSmoke": {
+      "ok": true,
+      "count": 100,
+      "rows": [
+        {
+          "id": "00000000-0000-4000-8000-000000003044",
+          "slug": "the-odyssey-english-paperback",
+          "display_title": "The Odyssey",
+          "language": "en",
+          "price_vnd": 155000,
+          "source": "book_editions"
+        },
+        {
+          "id": "00000000-0000-4000-8000-000000003000",
+          "slug": "pride-and-prejudice-english-special-edition",
+          "display_title": "Pride and Prejudice",
+          "language": "en",
+          "price_vnd": 107000,
+          "source": "book_editions"
+        },
+        {
+          "id": "00000000-0000-4000-8000-000000004000",
+          "slug": "pride-and-prejudice-vietnamese-special-edition",
+          "display_title": "Kieu hanh va dinh kien",
+          "language": "vi",
+          "price_vnd": 89000,
+          "source": "book_editions"
+        },
+        {
+          "id": "00000000-0000-4000-8000-000000003001",
+          "slug": "jane-eyre-english-paperback",
+          "display_title": "Jane Eyre",
+          "language": "en",
+          "price_vnd": 119000,
+          "source": "book_editions"
+        },
+        {
+          "id": "00000000-0000-4000-8000-000000004001",
+          "slug": "jane-eyre-vietnamese-paperback",
+          "display_title": "Jane Eyre",
+          "language": "vi",
+          "price_vnd": 101000,
+          "source": "book_editions"
+        }
+      ]
+    }
+  },
+  "pass": {
+    "countsMatchSeed": true,
+    "languageDistributionMatches": true,
+    "legacyPhoneCatalogPreserved": true,
+    "publicBookSmokeReturnsOnlyBookRows": true
+  }
+}

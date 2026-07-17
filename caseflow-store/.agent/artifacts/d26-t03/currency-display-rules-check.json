@@ -1,0 +1,68 @@
+{
+  "task": "D26-T03",
+  "ok": true,
+  "rules": {
+    "displayCurrency": "USD",
+    "exchangeRateVndPerUsd": 26400,
+    "internationalPaymentFeeBasisPoints": 300,
+    "quotedAt": "2026-07-16T08:35:00+07:00",
+    "sourceCurrency": "VND",
+    "sourceLabel": "HSBC Vietnam telegraphic selling rate",
+    "sourceUrl": "https://www.hsbc.com.vn/en-vn/foreign-exchange/rate/",
+    "vatBasisPoints": 1000,
+    "internationalPaymentFeePercent": "3%",
+    "vatPercent": "10%"
+  },
+  "sample": {
+    "estimate": {
+      "approximateAmountUsd": 7.148106060606061,
+      "displayCurrency": "USD",
+      "estimatedDisplayBaseVnd": 188710,
+      "estimatedInternationalPaymentFeeVnd": 5010,
+      "estimatedVatVnd": 16700,
+      "exchangeRateVndPerUsd": 26400,
+      "feeBasisPoints": 300,
+      "quotedAt": "2026-07-16T08:35:00+07:00",
+      "sourceAmountVnd": 167000,
+      "sourceCurrency": "VND",
+      "sourceNote": {
+        "checkedAt": "2026-07-16T08:35:00+07:00",
+        "label": "HSBC Vietnam telegraphic selling rate",
+        "license": null,
+        "url": "https://www.hsbc.com.vn/en-vn/foreign-exchange/rate/"
+      }
+    },
+    "sourceAmountVnd": 167000
+  },
+  "checks": [
+    {
+      "name": "source currency remains VND",
+      "ok": true
+    },
+    {
+      "name": "display currency is USD only for estimates",
+      "ok": true
+    },
+    {
+      "name": "source amount is unchanged",
+      "ok": true
+    },
+    {
+      "name": "vat estimate is derived from basis points",
+      "ok": true
+    },
+    {
+      "name": "international payment fee estimate is derived from basis points",
+      "ok": true
+    },
+    {
+      "name": "usd estimate is derived from vnd display base",
+      "ok": true
+    },
+    {
+      "name": "source and timestamp are present",
+      "ok": true
+    }
+  ],
+  "checkedAt": "2026-07-16T07:39:29.542Z"
+}

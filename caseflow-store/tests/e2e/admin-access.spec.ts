@@ -2,16 +2,14 @@ import { expect, test } from "@playwright/test";
 
 import {
   addSupabaseSessionCookies,
+  createOrderThroughApi,
   createTemporaryCustomer,
   createTestPublicClient,
-  deleteOrdersByCustomerEmail,
   deleteTemporaryCustomer,
+  findAvailableBook,
   getAdminCredentials,
   loginAsAdmin,
 } from "./helpers/supabase";
-
-const TEST_PRODUCT_ID = "10000000-0000-4000-8000-000000000001";
-const ADMIN_ORDER_EMAIL = "d15-access-admin@example.com";
 
 test.describe.serial("Supabase admin access matrix", () => {
   let customer: Awaited<ReturnType<typeof createTemporaryCustomer>>;
@@ -21,7 +19,6 @@ test.describe.serial("Supabase admin access matrix", () => {
   });
 
   test.afterAll(async () => {
-    await deleteOrdersByCustomerEmail(ADMIN_ORDER_EMAIL);
     await deleteTemporaryCustomer(customer);
   });
 
@@ -39,7 +36,10 @@ test.describe.serial("Supabase admin access matrix", () => {
     await expect(page).toHaveURL(/\/admin\/login\?reason=unauthorized/);
 
     const directClient = createTestPublicClient();
-    const catalogRead = await directClient.from("products").select("id").limit(1);
+    const catalogRead = await directClient
+      .from("book_editions")
+      .select("id")
+      .limit(1);
     expect(catalogRead.error).toBeNull();
     expect(catalogRead.data).toHaveLength(1);
 
@@ -70,7 +70,7 @@ test.describe.serial("Supabase admin access matrix", () => {
     await expect(page.locator("[data-admin-login-page]")).toBeVisible();
     await page.screenshot({
       fullPage: true,
-      path: ".agent/artifacts/d15-t05-customer-forbidden.png",
+      path: ".agent/artifacts/d40-t01-customer-forbidden.png",
     });
 
     const directClient = createTestPublicClient();
@@ -94,20 +94,22 @@ test.describe.serial("Supabase admin access matrix", () => {
   });
 
   test("admins can list and update live orders only through protected APIs", async ({
+    baseURL,
+    context,
     page,
   }) => {
-    const createResponse = await page.request.post("/api/orders", {
-      data: {
-        customerName: "D15 Access Admin QA",
-        customerEmail: ADMIN_ORDER_EMAIL,
-        customerPhone: "+84 901 234 567",
-        shippingAddress: "12 Nguyen Hue, District 1, Ho Chi Minh City",
-        items: [{ productId: TEST_PRODUCT_ID, quantity: 1 }],
-      },
-    });
-    expect(createResponse.status()).toBe(201);
-    const createdRecord = (await createResponse.json()).data;
+    expect(baseURL).toBeTruthy();
+    await addSupabaseSessionCookies(
+      context,
+      baseURL!,
+      customer.email,
+      customer.password,
+    );
+    const book = await findAvailableBook(page.request);
+    const createdPayload = await createOrderThroughApi(page, customer, book);
+    const createdRecord = createdPayload.data!;
 
+    await page.request.delete("/api/customer/session");
     await loginAsAdmin(page);
     await expect(
       page.locator(`[data-admin-order-row='${createdRecord.order.id}']`),
@@ -132,7 +134,7 @@ test.describe.serial("Supabase admin access matrix", () => {
     const updatedResponse = await page.request.get("/api/admin/orders");
     const updatedPayload = await updatedResponse.json();
     const updatedRecord = updatedPayload.data.find(
-      (record: { order: { id: string } }) =>
+      (record: { order: { id: string; status: string } }) =>
         record.order.id === createdRecord.order.id,
     );
     expect(updatedRecord.order.status).toBe("confirmed");
@@ -153,7 +155,7 @@ test.describe.serial("Supabase admin access matrix", () => {
 
     await page.screenshot({
       fullPage: true,
-      path: ".agent/artifacts/d15-t05-admin-access-matrix.png",
+      path: ".agent/artifacts/d40-t01-admin-access-matrix.png",
     });
 
     await page.locator("[data-admin-sign-out]").click();

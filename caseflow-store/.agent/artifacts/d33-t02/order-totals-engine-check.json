@@ -1,0 +1,59 @@
+{
+  "generatedAt": "2026-07-16T12:38:47.459Z",
+  "baseURL": "http://127.0.0.1:3005",
+  "currencyRules": {
+    "displayCurrency": "USD",
+    "exchangeRateVndPerUsd": 26400,
+    "internationalPaymentFeeBasisPoints": 300,
+    "quotedAt": "2026-07-16T08:35:00+07:00",
+    "sourceCurrency": "VND",
+    "sourceLabel": "HSBC Vietnam telegraphic selling rate",
+    "sourceUrl": "https://www.hsbc.com.vn/en-vn/foreign-exchange/rate/",
+    "vatBasisPoints": 1000
+  },
+  "domesticTotals": {
+    "displayEstimateIsNull": true,
+    "expectedTaxTotalVnd": 14300,
+    "expectedTotalVnd": 182300,
+    "taxTotalVnd": 14300,
+    "totalMatchesExpected": true,
+    "totalVnd": 182300,
+    "vatUsesConfiguredBasisPoints": true
+  },
+  "englishCheckout": {
+    "hasOverflow": false,
+    "hasSourceDisclosure": true,
+    "hasUsdEstimate": true,
+    "usdEstimateText": "$7.11"
+  },
+  "ok": true,
+  "pass": {
+    "domesticVndTotal": true,
+    "englishUsdDisplay": true,
+    "tamperedValuesIgnored": true
+  },
+  "tamperCheck": {
+    "created": true,
+    "expectedPaymentFeeVnd": 0,
+    "expectedShippingFeeVnd": 45000,
+    "expectedTaxTotalVnd": 14300,
+    "expectedTotalVnd": 202300,
+    "orderCode": "CF-MRNHWJHV-2061F84C81",
+    "paymentFeeIgnored": true,
+    "responseTotalVnd": 202300,
+    "rowPaymentFeeVnd": 0,
+    "rowShippingFeeVnd": 45000,
+    "rowTaxTotalVnd": 14300,
+    "rowTotalVnd": 202300,
+    "shippingIgnored": true,
+    "taxIgnored": true,
+    "totalIgnored": true,
+    "usdIgnored": true
+  },
+  "target": {
+    "editionId": "00000000-0000-4000-8000-000000003027",
+    "priceVnd": 143000,
+    "slug": "a-christmas-carol-english-paperback"
+  },
+  "testEmail": "caseflow-d33-totals-mrnhwdkq-0rsl9j@example.com"
+}

@@ -1,0 +1,50 @@
+{
+  "generatedAt": "2026-07-16T11:09:05.531Z",
+  "anonymous": {
+    "hasAuthForm": true,
+    "hasBadPhoneVerificationClaim": false,
+    "hasHorizontalOverflow": false,
+    "hasSignedOutState": true,
+    "headerState": "signed-out"
+  },
+  "apiChecks": {
+    "invalidLoginCode": "UNAUTHORIZED",
+    "invalidLoginRejected": true,
+    "strictRoleInjectionCode": "VALIDATION_ERROR",
+    "strictRoleInjectionRejected": true
+  },
+  "baseURL": "http://127.0.0.1:3005",
+  "loginLogout": {
+    "emailVisible": true,
+    "hasHorizontalOverflow": false,
+    "headerStateSignedIn": "signed-in",
+    "headerStateSignedOut": "signed-out",
+    "signedInPanelVisible": true,
+    "signedOutAfterLogout": true
+  },
+  "ok": true,
+  "pass": {
+    "accessExpectationsDocumented": true,
+    "anonymousAccountState": true,
+    "apiValidation": true,
+    "headerAuthState": true,
+    "loginLogoutFlow": true,
+    "noOverflow": true,
+    "signupFlow": true
+  },
+  "signup": {
+    "accountPanelVisible": false,
+    "completed": false,
+    "errorText": "!\nCustomer sign-up is temporarily rate-limited. Try again later.",
+    "formModeSwitched": true,
+    "hasBadPhoneVerificationClaim": false,
+    "hasHorizontalOverflow": false,
+    "providerRateLimitedLocalEquivalent": true,
+    "successVisible": false,
+    "verification": "provider-rate-limited-local-equivalent"
+  },
+  "testEmails": {
+    "loginEmail": "caseflow-d31-login-mrneozyg-nw1oli@example.com",
+    "signupEmail": "caseflow-d31-signup-mrneozyg-nw1oli@example.com"
+  }
+}

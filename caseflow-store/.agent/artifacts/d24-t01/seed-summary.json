@@ -1,0 +1,69 @@
+{
+  "task": "D24-T01",
+  "generatedAt": "2026-07-16T06:07:23.998Z",
+  "summary": {
+    "categoryCount": 11,
+    "authorCount": 41,
+    "publisherCount": 1,
+    "workCount": 50,
+    "editionCount": 100,
+    "languageCounts": {
+      "en": 50,
+      "vi": 50
+    },
+    "formatCounts": {
+      "special-edition": 6,
+      "paperback": 86,
+      "hardcover": 8
+    },
+    "categoryWorkCounts": {
+      "fiction": 20,
+      "classic-literature": 38,
+      "mystery-thriller": 4,
+      "fantasy-sci-fi": 10,
+      "romance": 4,
+      "business-economics": 3,
+      "self-development": 7,
+      "children-young-adult": 13,
+      "language-learning": 1,
+      "vietnamese-books": 0,
+      "english-books": 0
+    },
+    "featuredEditionCount": 12
+  },
+  "sourcePolicy": {
+    "works": "Real public-domain/classic works are used as bibliographic anchors.",
+    "editions": "Sellable editions are CaseFlow Books demo SKUs; ISBNs and commercial covers are intentionally null for D24-T01.",
+    "summaries": "Short summaries are project-written and do not copy publisher blurbs.",
+    "sourcesConsulted": [
+      "https://www.gutenberg.org/",
+      "https://openlibrary.org/developers/api"
+    ]
+  },
+  "counts": {
+    "categories": 11,
+    "authors": 41,
+    "translators": 0,
+    "publishers": 1,
+    "coverAssets": 0,
+    "works": 50,
+    "editions": 100
+  },
+  "checks": {
+    "editionCountIs100": true,
+    "workCountIs50": true,
+    "languageDistributionIsBalanced": true,
+    "everyEditionHasCoreCommerceFields": true,
+    "noLongSummaryViolations": true,
+    "noCopiedTextMarkersFound": true,
+    "noDuplicateLongSummaries": true,
+    "noCommercialCoverReferencesYet": true,
+    "noFabricatedIsbns": true
+  },
+  "violations": {
+    "missingRequiredEditionData": [],
+    "longSummaryViolations": [],
+    "markerHits": [],
+    "duplicateLongSummaries": []
+  }
+}

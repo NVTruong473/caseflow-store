@@ -7,3 +7,7 @@
 
 # Unrelated local credential storage. Never include it in this repository.
 password manager/
+
+# Production database exports may contain PII and must stay local.
+caseflow-store/.agent/artifacts/d23-t03-backup/*.sql
+caseflow-store/.agent/artifacts/d23-t03-backup/*.dump

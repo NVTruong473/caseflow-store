@@ -1,0 +1,41 @@
+{
+  "baseURL": "https://caseflow-store.vercel.app",
+  "filterGuide": {
+    "catalogHref": "/catalog?language=en&format=paperback&maxPriceVnd=200000",
+    "catalogStatus": 200
+  },
+  "findBook": {
+    "catalogHref": "/catalog?q=Pride+and+Prejudice",
+    "catalogStatus": 200,
+    "detailHref": "/products/pride-and-prejudice-vietnamese-special-edition",
+    "detailStatus": 200,
+    "hasOverflow": false,
+    "resultCount": 2
+  },
+  "generatedAt": "2026-07-17T07:48:49.864Z",
+  "noResult": {
+    "catalogHref": "/catalog?language=en",
+    "catalogStatus": 200,
+    "hasOverflow": false,
+    "recoveryVisible": true
+  },
+  "ok": true,
+  "pass": {
+    "filterGuide": true,
+    "findBook": true,
+    "noResult": true,
+    "purchaseGuidance": true,
+    "sourceBoundary": true
+  },
+  "purchaseGuidance": {
+    "accountLinkVisible": true,
+    "cartOpened": true,
+    "checkoutLinkVisible": true,
+    "hasOverflow": false,
+    "orderPostCount": 0
+  },
+  "sourceBoundary": {
+    "matches": [],
+    "noExternalAiApi": true
+  }
+}

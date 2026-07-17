@@ -1,30 +1,31 @@
-# CaseFlow Store Architecture
+# CaseFlow Books Architecture
 
 ## Status
 
-This document describes the production architecture released after the 20-day
-implementation cycle. CaseFlow Store is intentionally a modular monolith: it
-demonstrates a complete commerce workflow without claiming marketplace-scale
-infrastructure.
+This document describes the deployed CaseFlow Books `v1.1` architecture after
+the Day 21-40 upgrade. The system is intentionally a Next.js modular monolith:
+it demonstrates a realistic specialist e-commerce workflow without claiming
+marketplace scale, real payment processing, or enterprise operations.
 
 ## System context
 
 ```mermaid
 flowchart LR
-  Shopper["Shopper browser"]
-  Admin["Admin browser"]
-  App["CaseFlow Store on Vercel"]
+  Shopper["Customer browser"]
+  Operator["Admin or staff browser"]
+  App["CaseFlow Books on Vercel"]
   Database["Supabase PostgreSQL"]
   Auth["Supabase Auth"]
 
   Shopper --> App
-  Admin --> App
+  Operator --> App
   App --> Database
   App --> Auth
 ```
 
 Vercel runs one Next.js application. Supabase is the only external data and
-identity service. There is no separate API deployment or payment provider.
+identity service. There is no separate API deployment, payment provider,
+shipping-carrier integration, SMS provider, or external AI assistant service.
 
 ## Runtime containers
 
@@ -34,10 +35,10 @@ flowchart TB
   UI["Next.js Server and Client Components"]
   Cart["React Context and localStorage"]
   Routes["Next.js Route Handlers"]
-  Domain["Validation, repositories, and row mappers"]
+  Domain["Zod validation, mappers, repositories"]
   Session["Supabase SSR cookie session"]
   Service["Server-only service-role client"]
-  DB["PostgreSQL, RLS, and create-order RPC"]
+  DB["PostgreSQL, RLS, order RPCs"]
   Auth["Supabase Auth"]
 
   Browser --> UI
@@ -52,22 +53,28 @@ flowchart TB
   Service --> DB
 ```
 
-Production pages and Route Handlers use the Supabase repositories. Mock
-repositories remain as development history and fixtures, but are not selected by
-the production runtime.
+Production pages and Route Handlers use Supabase repositories. Earlier mock
+repositories remain as development history and test fixtures, not the selected
+production runtime path.
 
 ## Application boundaries
 
 | Boundary | Responsibility |
 |---|---|
-| `src/app` | Pages, layouts, and same-origin Route Handlers |
-| `src/features` | Storefront, cart, checkout, and admin presentation/workflows |
+| `src/app` | Pages, layouts, metadata, robots/sitemap, and same-origin Route Handlers |
+| `src/features/books` | Storefront discovery, catalog, cards, filters, detail, and related books |
+| `src/features/cart` | Browser-local cart drawer and cart summary |
+| `src/features/checkout` | Account-gated checkout, totals display, payment-method choice, success state |
+| `src/features/customer` | Account, profile readiness, order history, and public tracking UI |
+| `src/features/admin` | Dashboard, orders, catalog, inventory, promotions, customers, settings, exports |
+| `src/features/assistant` | Rule-based bookstore assistant and guided result links |
 | `src/components/ui` | Shared accessible UI primitives |
-| `src/lib/domain` and `src/lib/validation` | Domain contracts and Zod input validation |
-| `src/lib/repositories` | Catalog/order persistence and server-owned calculations |
-| `src/lib/supabase` | Browser, SSR, proxy, and server-only Supabase clients |
-| `src/lib/auth` | Session and admin-role authorization |
-| `supabase/schema.sql` | Tables, constraints, indexes, RLS, grants, and order RPC |
+| `src/lib/validation` | Zod schemas for public, customer, checkout, and admin inputs |
+| `src/lib/repositories` | Supabase persistence, trusted calculations, and operational queries |
+| `src/lib/auth` | Customer/admin/staff session and role checks |
+| `src/lib/checkout` | Server-owned shipping, VAT, payment fee, promotion, and FX estimate rules |
+| `src/lib/seo` | Canonical URL, Open Graph, robots, sitemap, and JSON-LD helpers |
+| `supabase/schema.sql` and `supabase/migrations` | Base schema, v1.1 book schema, RLS, grants, constraints, and RPCs |
 | `tests/e2e` | Release flows and access-control verification |
 
 Database rows use `snake_case`. Repository mappers convert them to
@@ -80,106 +87,159 @@ Database rows use `snake_case`. Repository mappers convert them to
 ```text
 Browser request
   -> Next.js page or GET Route Handler
-  -> Supabase catalog repository
-  -> RLS-scoped active category/product query
-  -> row-to-domain mapping
-  -> rendered UI or API envelope
+  -> Supabase book repository
+  -> RLS-scoped active category/work/edition query
+  -> row-to-domain mapping and Zod validation
+  -> rendered UI or { data, error, meta } API envelope
 ```
 
-Anonymous catalog reads use the public key and RLS. The service-role key is not
-needed for storefront discovery.
+Anonymous catalog reads use public RLS-scoped access. Public catalog results
+include active book categories, works, sellable editions, author/publisher
+metadata, safe cover references, pagination metadata, and stable error
+envelopes.
 
-### Cart validation and checkout
+### Local cart
 
 ```text
-Browser localStorage cart: productId + quantity
-  -> POST /api/cart/validate or POST /api/orders
-  -> Zod validates request shape
-  -> server reloads current active products
-  -> server checks stock and recalculates line totals/subtotal
-  -> server-only client invokes create_order_with_items
-  -> PostgreSQL inserts order and item snapshots atomically
-  -> order code and server-calculated total return to the browser
+Browser localStorage cart
+  -> editionId + quantity only
+  -> cart drawer/detail/cart entry points
+  -> POST /api/cart/validate before checkout display
+  -> server reloads active edition records and recalculates line totals
 ```
 
-The browser never supplies an authoritative price, subtotal, product name,
-stock value, role, or order status. Product name and unit price are copied into
-order-item snapshots so historical orders do not change with the catalog.
+The cart deliberately does not store trusted price, subtotal, tax, role, or
+order status. It remains browser-local rather than cross-device.
 
-The order RPC atomically inserts the order and its items. It validates current
-stock but does not reserve or decrement stock; that is an explicit MVP
-limitation, not an implied inventory system.
-
-### Admin authentication and authorization
+### Account-gated checkout
 
 ```text
-Credentials
-  -> POST /api/admin/session
-  -> Supabase Auth session cookie
-  -> full navigation to /admin/orders
-  -> server page checks session and profiles.role
-  -> protected Route Handler repeats the same authorization
-  -> server-only repository reads or updates orders
+Customer session
+  -> profile readiness check
+  -> checkout cart validation
+  -> payment/shipping method selection
+  -> server-owned subtotal, promotion, VAT, shipping, payment fee, total
+  -> create_book_order_with_items RPC
+  -> order snapshot and confirmation state
 ```
 
-The Next.js proxy refreshes Supabase cookies. UI visibility is not an
-authorization boundary: both server-rendered admin pages and every admin Route
-Handler reject missing sessions and non-admin roles.
+Checkout requires a signed-in customer and enough profile/contact/address data
+to submit the order. The server ignores browser-supplied totals and reloads
+trusted edition records before creating the order. Simulated payment states
+represent pending COD, bank transfer, or provider confirmation; no external
+payment credential is collected or submitted.
+
+### Customer order history and public tracking
+
+```text
+Signed-in customer
+  -> own order API/page
+  -> server session check
+  -> own-order response only
+
+Public lookup
+  -> order code plus matching email or phone
+  -> tracking-safe response
+```
+
+Public tracking intentionally returns the same not-found response for missing
+orders and wrong-contact lookups to reduce order enumeration risk. It does not
+expose raw address, raw phone, or customer email.
+
+### Admin and staff operations
+
+```text
+Supabase Auth session
+  -> profile role lookup
+  -> admin/staff permission check
+  -> protected admin page or Route Handler
+  -> server-only repository
+  -> operational mutation or read
+```
+
+UI navigation is not an authorization boundary. Protected admin Route Handlers
+repeat role and permission checks server-side. Staff can access operational
+screens allowed by policy; high-risk settings and promotion changes remain
+admin-only where implemented.
 
 ## Data model
 
-- `categories` and `products` form the public active catalog.
-- `profiles` extends Supabase Auth identities with `customer` or `admin` roles.
-- `orders` stores guest contact/shipping data, status, currency, subtotal, and a
-  unique public order code.
-- `order_items` stores product references plus product-name and unit-price
-  snapshots.
-- Monetary values are integer VND amounts.
-- Foreign keys, checks, unique constraints, timestamps, and status constraints
-  are enforced in PostgreSQL.
+The active `v1.1` schema adds a bookstore domain while preserving the original
+project history:
 
-The cart is deliberately absent from the database. It stores only
-`productId` and `quantity` in localStorage and is revalidated before checkout.
+- `book_categories`, `book_works`, `book_editions`, author/category join
+  tables, translators, publishers, and cover assets form the public catalog.
+- `profiles` stores customer/admin/staff role and checkout-readiness profile
+  fields.
+- `orders` stores customer/order status, payment status, shipping status,
+  shipping/tax/payment-fee/promotion snapshots, and guarded tracking fields.
+- `order_items` stores book edition/work snapshots so historical orders do not
+  change when catalog records change.
+- `book_promotions` stores simple fixed-VND or percentage promotion codes.
+- `book_inventory_adjustments` records operational stock adjustments.
+- Monetary values are stored as integer VND amounts. USD display is an
+  estimate, not a source-of-truth value.
+
+The cart is absent from the database. It stores only `editionId` and `quantity`
+in localStorage and is revalidated before checkout.
 
 ## Security model
 
-| Actor | Catalog | Direct order tables | Admin APIs |
-|---|---|---|---|
-| Anonymous | Read active rows | Denied | 401 |
-| Authenticated customer | Read catalog and own profile | Denied | 403 |
-| Authenticated admin | Read catalog and own profile | Denied directly | Allowed after server role check |
-| Server service role | Trusted backend operations | Allowed | Internal only |
+| Actor | Catalog | Customer order history | Public tracking | Admin/staff APIs |
+|---|---|---|---|---|
+| Anonymous | Read active rows | Denied | Guarded lookup only | 401 |
+| Authenticated customer | Read catalog and own profile | Own orders only | Guarded lookup only | 403 |
+| Staff | Read catalog and allowed operations | Operational reads as allowed | Guarded lookup only | Permission-scoped |
+| Admin | Read catalog and all operations in scope | Operational reads | Guarded lookup only | Allowed after role check |
+| Server service role | Trusted backend operations | Trusted backend operations | Trusted backend operations | Internal only |
 
 Additional controls:
 
-- RLS is enabled on all five public tables.
-- Public and authenticated grants are explicit; order-table access is denied.
-- `SUPABASE_SERVICE_ROLE_KEY` is read only by server modules and is never
-  exposed through `NEXT_PUBLIC_*`.
-- Mutating bodies are validated on the server.
-- The application does not collect payment-card fields.
-- Production does not contain Playwright admin credentials.
+- RLS is enabled on catalog, profile, order, promotion, and inventory tables.
+- Public/admin mutating bodies are validated with Zod.
+- The service-role key is read only by server modules and never exposed through
+  `NEXT_PUBLIC_*`.
+- Server code recalculates price, promotion, VAT, shipping, payment fee, and
+  total values.
+- The application does not collect card fields, real e-wallet credentials, or
+  bank credentials.
+- Phone/email profile fields are not backed by real SMS/OTP or email-provider
+  verification in `v1.1`.
+- Production does not contain Playwright admin/customer credentials.
+
+## Content and asset model
+
+CaseFlow Books uses factual classic/public-domain-style book metadata where
+practical, self-written summaries, and internal placeholder cover assets. The
+project does not hotlink commercial book covers or copy publisher blurbs,
+reviews, or protected excerpts. The current policy is documented in
+[`domain.md`](domain.md) and
+[`v1.1-safe-cover-asset-strategy.md`](v1.1-safe-cover-asset-strategy.md).
 
 ## Deployment and verification
 
-- Vercel hosts the Next.js application at
-  `https://caseflow-store.vercel.app`.
+- Production alias: `https://caseflow-store.vercel.app`.
+- Vercel deployment ID: `dpl_BkiJt9gDCh5d2cHwAhpFDbLotoAy`.
 - Supabase hosts PostgreSQL and Auth.
-- Production has three runtime variables: the public project URL, public anon
-  key, and server-only service-role key.
-- The release gate requires lint, TypeScript/production build, Playwright, and
-  cleanup checks.
-- The accepted production suite passed 20/20 with no failed, flaky, or skipped
-  tests.
+- Production runtime variables include the public Supabase URL, public anon key,
+  server-only service-role key, and canonical site URL.
+- The local release gate passed TypeScript, ESLint, production build, cleanup,
+  and 20 Playwright tests.
+- The production smoke gate passed public page/API checks, protected admin
+  boundary checks, robots/sitemap checks, assistant smoke, secret scan, and a
+  5-test Playwright subset.
+- Dependency audit status is recorded in
+  [`v1.1-release-audit.md`](v1.1-release-audit.md).
 
 ## Decision record
 
 The accepted decisions and their implementation outcomes are indexed in
-[the ADR index](adr/README.md).
+[`adr/README.md`](adr/README.md).
 
 ## Evolution path
 
-The next architecture changes should respond to actual product requirements.
-Likely candidates are stock reservation/decrement, payment-provider integration,
-email notifications, rate limiting/abuse controls, managed product media, and
-cross-device carts. Each major change requires a new ADR before implementation.
+The next architecture changes should respond to real product requirements.
+Likely candidates are real payment-provider integration, SMS/email
+verification, stock reservation/decrement inside checkout, shipping-carrier
+quotes, rate limiting, audit logs, managed product media, and cross-device
+carts. Each major change requires a new ADR before implementation.

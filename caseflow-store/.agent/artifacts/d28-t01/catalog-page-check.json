@@ -1,0 +1,71 @@
+{
+  "generatedAt": "2026-07-16T09:04:30.320Z",
+  "baseURL": "http://127.0.0.1:3005",
+  "desktop": {
+    "activeFilterCount": 9,
+    "firstCard": {
+      "hasAuthor": true,
+      "hasDetailLink": true,
+      "hasFormat": true,
+      "hasImage": true,
+      "hasLanguage": true,
+      "hasPrice": true,
+      "hasSaleState": true,
+      "hasStock": true
+    },
+    "hasHorizontalOverflow": false,
+    "paginationLinks": 5,
+    "renderedCards": 24,
+    "resultCountText": "Showing 1-24 of 100 editions",
+    "totalEditions": 100,
+    "viewport": {
+      "height": 1100,
+      "width": 1440
+    }
+  },
+  "expected": {
+    "initialRenderedCards": 24,
+    "totalEditions": 100,
+    "totalPages": 5
+  },
+  "mobile": {
+    "activeFilterCount": 9,
+    "firstCard": {
+      "hasAuthor": false,
+      "hasDetailLink": true,
+      "hasFormat": true,
+      "hasImage": true,
+      "hasLanguage": true,
+      "hasPrice": true,
+      "hasSaleState": true,
+      "hasStock": true
+    },
+    "hasHorizontalOverflow": false,
+    "paginationLinks": 5,
+    "renderedCards": 24,
+    "resultCountText": "Đang hiển thị 25-48 trong 100 ấn bản",
+    "totalEditions": 100,
+    "viewport": {
+      "height": 900,
+      "width": 375
+    }
+  },
+  "ok": true,
+  "pagination": {
+    "pageTwoCurrent": "2",
+    "pageTwoRenderedCards": 24,
+    "pageTwoUrl": "http://127.0.0.1:3005/catalog?page=2"
+  },
+  "pass": {
+    "activeViewVisible": true,
+    "cardMetadataVisible": true,
+    "desktopNoOverflow": true,
+    "initialPageDoesNotRenderAllEditions": true,
+    "mobileNoOverflow": true,
+    "pageTwoRendersExpectedCards": true,
+    "paginationWorks": true,
+    "resultCountsVisible": true,
+    "totalCatalogCount": true,
+    "totalPagesVisible": true
+  }
+}

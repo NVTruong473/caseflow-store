@@ -1,0 +1,116 @@
+{
+  "anonymousChecks": {
+    "apiCode": "UNAUTHORIZED",
+    "apiStatus": 401,
+    "redirectedToAccount": true
+  },
+  "authenticatedCheckout": {
+    "formReady": true,
+    "profileState": "ready"
+  },
+  "baseURL": "http://127.0.0.1:3005",
+  "createdOrder": {
+    "orderCode": "CF-MRNLP8G8-AC50E95461",
+    "status": 201,
+    "subtotal": 202300
+  },
+  "customerHistory": {
+    "cardVisible": true,
+    "hasOverflow": false,
+    "itemSnapshotVisible": true,
+    "paymentMethodVisible": true,
+    "paymentStatusVisible": true,
+    "totalText": "202.300 ₫"
+  },
+  "expectedTotals": {
+    "currency": "VND",
+    "discountTotalVnd": 0,
+    "displayEstimate": {
+      "approximateAmountUsd": 7.892765151515151,
+      "displayCurrency": "USD",
+      "estimatedDisplayBaseVnd": 208369,
+      "estimatedInternationalPaymentFeeVnd": 6069,
+      "estimatedVatVnd": 0,
+      "exchangeRateVndPerUsd": 26400,
+      "feeBasisPoints": 300,
+      "quotedAt": "2026-07-16T08:35:00+07:00",
+      "sourceAmountVnd": 202300,
+      "sourceCurrency": "VND",
+      "sourceNote": {
+        "checkedAt": "2026-07-16T08:35:00+07:00",
+        "label": "HSBC Vietnam telegraphic selling rate",
+        "license": null,
+        "url": "https://www.hsbc.com.vn/en-vn/foreign-exchange/rate/"
+      }
+    },
+    "feeEstimates": [
+      {
+        "amountVnd": 0,
+        "label": "Payment method fee estimate",
+        "sourceNote": {
+          "checkedAt": "2026-07-16T14:25:06.841Z",
+          "label": "CaseFlow Books checkout totals configuration",
+          "license": null,
+          "url": null
+        }
+      }
+    ],
+    "paymentFeeVnd": 0,
+    "shippingFeeVnd": 45000,
+    "subtotalVnd": 143000,
+    "taxEstimates": [
+      {
+        "amountVnd": 14300,
+        "label": "VAT estimate",
+        "rateBasisPoints": 1000,
+        "sourceNote": {
+          "checkedAt": "2026-07-16T14:25:06.841Z",
+          "label": "CaseFlow Books checkout totals configuration",
+          "license": null,
+          "url": null
+        }
+      }
+    ],
+    "taxTotalVnd": 14300,
+    "totalVnd": 202300
+  },
+  "freezeDoc": {
+    "exists": true,
+    "hasAllowedChanges": true,
+    "hasGuardedTrackingBoundary": true,
+    "hasRemainingRisks": true
+  },
+  "generatedAt": "2026-07-16T14:25:06.960Z",
+  "ok": true,
+  "orderRow": {
+    "order_code": "CF-MRNLP8G8-AC50E95461",
+    "payment_method": "vnpay",
+    "payment_status": "awaiting-provider-confirmation",
+    "shipping_method": "express",
+    "total_vnd": 202300
+  },
+  "pass": {
+    "anonymousCheckoutGate": true,
+    "authenticatedCheckout": true,
+    "orderCreation": true,
+    "customerHistory": true,
+    "publicTracking": true,
+    "sourceCredentialSearch": true,
+    "freezeDoc": true
+  },
+  "publicTracking": {
+    "hasOverflow": false,
+    "paymentVisible": true,
+    "resultVisible": true,
+    "shippingVisible": true,
+    "totalText": "Order total\n202.300 ₫"
+  },
+  "sourceCredentialSearch": {
+    "matches": []
+  },
+  "target": {
+    "editionId": "00000000-0000-4000-8000-000000003027",
+    "priceVnd": 143000,
+    "slug": "a-christmas-carol-english-paperback"
+  }
+}

@@ -1,9 +1,15 @@
-import { ORDER_STATUSES } from "@/types/domain";
-import type { Order, OrderItem, OrderStatus } from "@/types/domain";
+import { ORDER_STATUSES, PAYMENT_METHODS, PAYMENT_STATUSES } from "@/types/domain";
+import type {
+  Order,
+  OrderItem,
+  OrderStatus,
+  PaymentMethod,
+  PaymentStatus,
+} from "@/types/domain";
 
 export const CHECKOUT_SUCCESS_STORAGE_KEY =
   "caseflow-store.checkout.success.v1";
-export const CHECKOUT_SUCCESS_STORAGE_VERSION = 1;
+export const CHECKOUT_SUCCESS_STORAGE_VERSION = 2;
 
 export type CheckoutSuccessOrderData = {
   order: Order;
@@ -16,6 +22,8 @@ export type CheckoutSuccessSnapshot = {
   status: OrderStatus;
   subtotal: number;
   itemCount: number;
+  paymentMethod: PaymentMethod;
+  paymentStatus: PaymentStatus;
   createdAt: string;
   items: CheckoutSuccessSnapshotItem[];
 };
@@ -34,6 +42,8 @@ export function createCheckoutSuccessSnapshot({
     version: CHECKOUT_SUCCESS_STORAGE_VERSION,
     orderCode: order.orderCode,
     status: order.status,
+    paymentMethod: order.paymentMethod ?? "cod",
+    paymentStatus: order.paymentStatus ?? "pending",
     subtotal: order.subtotal,
     itemCount: items.reduce((total, item) => total + item.quantity, 0),
     createdAt: order.createdAt,
@@ -89,6 +99,8 @@ function parseCheckoutSuccessSnapshot(
       itemCount,
       items,
       orderCode,
+      paymentMethod,
+      paymentStatus,
       status,
       subtotal,
       version,
@@ -99,6 +111,8 @@ function parseCheckoutSuccessSnapshot(
       typeof orderCode !== "string" ||
       orderCode.trim().length === 0 ||
       !isOrderStatus(status) ||
+      !isPaymentMethod(paymentMethod) ||
+      !isPaymentStatus(paymentStatus) ||
       typeof subtotal !== "number" ||
       !Number.isFinite(subtotal) ||
       typeof itemCount !== "number" ||
@@ -113,6 +127,8 @@ function parseCheckoutSuccessSnapshot(
     return {
       version: CHECKOUT_SUCCESS_STORAGE_VERSION,
       orderCode,
+      paymentMethod,
+      paymentStatus,
       status,
       subtotal,
       itemCount,
@@ -132,6 +148,20 @@ function isOrderStatus(value: unknown): value is OrderStatus {
   return (
     typeof value === "string" &&
     ORDER_STATUSES.includes(value as OrderStatus)
+  );
+}
+
+function isPaymentMethod(value: unknown): value is PaymentMethod {
+  return (
+    typeof value === "string" &&
+    PAYMENT_METHODS.includes(value as PaymentMethod)
+  );
+}
+
+function isPaymentStatus(value: unknown): value is PaymentStatus {
+  return (
+    typeof value === "string" &&
+    PAYMENT_STATUSES.includes(value as PaymentStatus)
   );
 }
 

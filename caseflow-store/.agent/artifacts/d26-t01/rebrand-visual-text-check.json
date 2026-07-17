@@ -1,0 +1,22 @@
+{
+  "generatedAt": "2026-07-16T07:04:34.789Z",
+  "ok": true,
+  "checks": [
+    {
+      "viewport": "desktop",
+      "missingRequired": [],
+      "forbiddenHits": [],
+      "textLength": 3231
+    },
+    {
+      "viewport": "mobile",
+      "missingRequired": [],
+      "forbiddenHits": [],
+      "textLength": 3174
+    }
+  ],
+  "screenshots": [
+    ".agent/artifacts/d26-t01/home-desktop.png",
+    ".agent/artifacts/d26-t01/home-mobile.png"
+  ]
+}

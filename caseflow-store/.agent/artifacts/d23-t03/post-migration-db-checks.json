@@ -1,0 +1,1867 @@
+{
+  "task": "D23-T03",
+  "phase": "post-migration-db",
+  "capturedAt": "2026-07-16T05:49:45.363Z",
+  "projectRef": "fcsuldrerhbynwotcvyn",
+  "tableChecks": [
+    {
+      "name": "book_authors",
+      "regclass": "book_authors"
+    },
+    {
+      "name": "book_categories",
+      "regclass": "book_categories"
+    },
+    {
+      "name": "book_cover_assets",
+      "regclass": "book_cover_assets"
+    },
+    {
+      "name": "book_edition_translators",
+      "regclass": "book_edition_translators"
+    },
+    {
+      "name": "book_editions",
+      "regclass": "book_editions"
+    },
+    {
+      "name": "book_inventory_adjustments",
+      "regclass": "book_inventory_adjustments"
+    },
+    {
+      "name": "book_promotions",
+      "regclass": "book_promotions"
+    },
+    {
+      "name": "book_publishers",
+      "regclass": "book_publishers"
+    },
+    {
+      "name": "book_translators",
+      "regclass": "book_translators"
+    },
+    {
+      "name": "book_work_authors",
+      "regclass": "book_work_authors"
+    },
+    {
+      "name": "book_work_categories",
+      "regclass": "book_work_categories"
+    },
+    {
+      "name": "book_works",
+      "regclass": "book_works"
+    },
+    {
+      "name": "customer_addresses",
+      "regclass": "customer_addresses"
+    }
+  ],
+  "orderColumnsExpected": [
+    "customer_id",
+    "payment_method",
+    "payment_status",
+    "shipping_method",
+    "tax_estimates",
+    "fee_estimates",
+    "display_estimate",
+    "total_vnd",
+    "discount_total_vnd",
+    "shipping_fee_vnd",
+    "tax_total_vnd",
+    "payment_fee_vnd",
+    "promotion_code",
+    "shipping_address_json",
+    "currency"
+  ],
+  "orderColumns": [
+    {
+      "column_name": "currency",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": "'VND'::text",
+      "generation_expression": null
+    },
+    {
+      "column_name": "customer_id",
+      "data_type": "uuid",
+      "is_nullable": "YES",
+      "column_default": null,
+      "generation_expression": null
+    },
+    {
+      "column_name": "discount_total_vnd",
+      "data_type": "integer",
+      "is_nullable": "NO",
+      "column_default": "0",
+      "generation_expression": null
+    },
+    {
+      "column_name": "display_estimate",
+      "data_type": "jsonb",
+      "is_nullable": "YES",
+      "column_default": null,
+      "generation_expression": null
+    },
+    {
+      "column_name": "fee_estimates",
+      "data_type": "jsonb",
+      "is_nullable": "NO",
+      "column_default": "'[]'::jsonb",
+      "generation_expression": null
+    },
+    {
+      "column_name": "payment_fee_vnd",
+      "data_type": "integer",
+      "is_nullable": "NO",
+      "column_default": "0",
+      "generation_expression": null
+    },
+    {
+      "column_name": "payment_method",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": "'cod'::text",
+      "generation_expression": null
+    },
+    {
+      "column_name": "payment_status",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": "'pending'::text",
+      "generation_expression": null
+    },
+    {
+      "column_name": "promotion_code",
+      "data_type": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "generation_expression": null
+    },
+    {
+      "column_name": "shipping_address_json",
+      "data_type": "jsonb",
+      "is_nullable": "YES",
+      "column_default": null,
+      "generation_expression": null
+    },
+    {
+      "column_name": "shipping_fee_vnd",
+      "data_type": "integer",
+      "is_nullable": "NO",
+      "column_default": "0",
+      "generation_expression": null
+    },
+    {
+      "column_name": "shipping_method",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": "'standard'::text",
+      "generation_expression": null
+    },
+    {
+      "column_name": "tax_estimates",
+      "data_type": "jsonb",
+      "is_nullable": "NO",
+      "column_default": "'[]'::jsonb",
+      "generation_expression": null
+    },
+    {
+      "column_name": "tax_total_vnd",
+      "data_type": "integer",
+      "is_nullable": "NO",
+      "column_default": "0",
+      "generation_expression": null
+    },
+    {
+      "column_name": "total_vnd",
+      "data_type": "integer",
+      "is_nullable": "YES",
+      "column_default": null,
+      "generation_expression": "((((subtotal - discount_total_vnd) + shipping_fee_vnd) + tax_total_vnd) + payment_fee_vnd)"
+    }
+  ],
+  "orderItemColumnsExpected": [
+    "book_edition_id",
+    "book_work_id",
+    "edition_title",
+    "edition_language",
+    "edition_format",
+    "unit_price_vnd",
+    "line_total_vnd"
+  ],
+  "orderItemColumns": [
+    {
+      "column_name": "book_edition_id",
+      "data_type": "uuid",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "column_name": "book_work_id",
+      "data_type": "uuid",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "column_name": "edition_format",
+      "data_type": "text",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "column_name": "edition_language",
+      "data_type": "text",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "column_name": "edition_title",
+      "data_type": "text",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "column_name": "line_total_vnd",
+      "data_type": "integer",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "column_name": "unit_price_vnd",
+      "data_type": "integer",
+      "is_nullable": "YES",
+      "column_default": null
+    }
+  ],
+  "rlsFlags": [
+    {
+      "relname": "book_authors",
+      "relrowsecurity": true,
+      "relforcerowsecurity": false
+    },
+    {
+      "relname": "book_categories",
+      "relrowsecurity": true,
+      "relforcerowsecurity": false
+    },
+    {
+      "relname": "book_cover_assets",
+      "relrowsecurity": true,
+      "relforcerowsecurity": false
+    },
+    {
+      "relname": "book_edition_translators",
+      "relrowsecurity": true,
+      "relforcerowsecurity": false
+    },
+    {
+      "relname": "book_editions",
+      "relrowsecurity": true,
+      "relforcerowsecurity": false
+    },
+    {
+      "relname": "book_inventory_adjustments",
+      "relrowsecurity": true,
+      "relforcerowsecurity": false
+    },
+    {
+      "relname": "book_promotions",
+      "relrowsecurity": true,
+      "relforcerowsecurity": false
+    },
+    {
+      "relname": "book_publishers",
+      "relrowsecurity": true,
+      "relforcerowsecurity": false
+    },
+    {
+      "relname": "book_translators",
+      "relrowsecurity": true,
+      "relforcerowsecurity": false
+    },
+    {
+      "relname": "book_work_authors",
+      "relrowsecurity": true,
+      "relforcerowsecurity": false
+    },
+    {
+      "relname": "book_work_categories",
+      "relrowsecurity": true,
+      "relforcerowsecurity": false
+    },
+    {
+      "relname": "book_works",
+      "relrowsecurity": true,
+      "relforcerowsecurity": false
+    },
+    {
+      "relname": "customer_addresses",
+      "relrowsecurity": true,
+      "relforcerowsecurity": false
+    },
+    {
+      "relname": "order_items",
+      "relrowsecurity": true,
+      "relforcerowsecurity": false
+    },
+    {
+      "relname": "orders",
+      "relrowsecurity": true,
+      "relforcerowsecurity": false
+    },
+    {
+      "relname": "profiles",
+      "relrowsecurity": true,
+      "relforcerowsecurity": false
+    }
+  ],
+  "functions": [
+    {
+      "proname": "create_book_order_with_items",
+      "args": "p_order_code text, p_customer_id uuid, p_customer_name text, p_customer_email text, p_customer_phone text, p_shipping_address jsonb, p_shipping_method text, p_payment_method text, p_discount_total_vnd integer, p_shipping_fee_vnd integer, p_tax_total_vnd integer, p_payment_fee_vnd integer, p_tax_estimates jsonb, p_fee_estimates jsonb, p_display_estimate jsonb, p_promotion_code text, p_items jsonb",
+      "owner": "postgres"
+    }
+  ],
+  "policies": [
+    {
+      "schemaname": "public",
+      "tablename": "book_authors",
+      "policyname": "Public can read active book authors",
+      "permissive": "PERMISSIVE",
+      "roles": [
+        "anon",
+        "authenticated"
+      ],
+      "cmd": "SELECT",
+      "qual": "(is_active = true)",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "book_categories",
+      "policyname": "Public can read active book categories",
+      "permissive": "PERMISSIVE",
+      "roles": [
+        "anon",
+        "authenticated"
+      ],
+      "cmd": "SELECT",
+      "qual": "(is_active = true)",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "book_cover_assets",
+      "policyname": "Public can read book cover assets",
+      "permissive": "PERMISSIVE",
+      "roles": [
+        "anon",
+        "authenticated"
+      ],
+      "cmd": "SELECT",
+      "qual": "true",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "book_edition_translators",
+      "policyname": "Public can read active edition translators",
+      "permissive": "PERMISSIVE",
+      "roles": [
+        "anon",
+        "authenticated"
+      ],
+      "cmd": "SELECT",
+      "qual": "(EXISTS ( SELECT 1\n   FROM book_editions\n  WHERE ((book_editions.id = book_edition_translators.edition_id) AND (book_editions.is_active = true))))",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "book_editions",
+      "policyname": "Public can read active book editions",
+      "permissive": "PERMISSIVE",
+      "roles": [
+        "anon",
+        "authenticated"
+      ],
+      "cmd": "SELECT",
+      "qual": "((is_active = true) AND (EXISTS ( SELECT 1\n   FROM book_works\n  WHERE ((book_works.id = book_editions.work_id) AND (book_works.is_active = true)))))",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "book_publishers",
+      "policyname": "Public can read active book publishers",
+      "permissive": "PERMISSIVE",
+      "roles": [
+        "anon",
+        "authenticated"
+      ],
+      "cmd": "SELECT",
+      "qual": "(is_active = true)",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "book_translators",
+      "policyname": "Public can read active book translators",
+      "permissive": "PERMISSIVE",
+      "roles": [
+        "anon",
+        "authenticated"
+      ],
+      "cmd": "SELECT",
+      "qual": "(is_active = true)",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "book_work_authors",
+      "policyname": "Public can read active work authors",
+      "permissive": "PERMISSIVE",
+      "roles": [
+        "anon",
+        "authenticated"
+      ],
+      "cmd": "SELECT",
+      "qual": "(EXISTS ( SELECT 1\n   FROM book_works\n  WHERE ((book_works.id = book_work_authors.work_id) AND (book_works.is_active = true))))",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "book_work_categories",
+      "policyname": "Public can read active work categories",
+      "permissive": "PERMISSIVE",
+      "roles": [
+        "anon",
+        "authenticated"
+      ],
+      "cmd": "SELECT",
+      "qual": "(EXISTS ( SELECT 1\n   FROM book_works\n  WHERE ((book_works.id = book_work_categories.work_id) AND (book_works.is_active = true))))",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "book_works",
+      "policyname": "Public can read active book works",
+      "permissive": "PERMISSIVE",
+      "roles": [
+        "anon",
+        "authenticated"
+      ],
+      "cmd": "SELECT",
+      "qual": "(is_active = true)",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "customer_addresses",
+      "policyname": "Users can read own customer addresses",
+      "permissive": "PERMISSIVE",
+      "roles": [
+        "authenticated"
+      ],
+      "cmd": "SELECT",
+      "qual": "(user_id = auth.uid())",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "profiles",
+      "policyname": "Users can read own profile",
+      "permissive": "PERMISSIVE",
+      "roles": [
+        "authenticated"
+      ],
+      "cmd": "SELECT",
+      "qual": "(id = auth.uid())",
+      "with_check": null
+    }
+  ],
+  "grants": [
+    {
+      "table_name": "book_authors",
+      "grantee": "anon",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "book_authors",
+      "grantee": "anon",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "book_authors",
+      "grantee": "anon",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "book_authors",
+      "grantee": "anon",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "book_authors",
+      "grantee": "authenticated",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "book_authors",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "book_authors",
+      "grantee": "authenticated",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "book_authors",
+      "grantee": "authenticated",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "book_categories",
+      "grantee": "anon",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "book_categories",
+      "grantee": "anon",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "book_categories",
+      "grantee": "anon",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "book_categories",
+      "grantee": "anon",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "book_categories",
+      "grantee": "authenticated",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "book_categories",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "book_categories",
+      "grantee": "authenticated",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "book_categories",
+      "grantee": "authenticated",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "book_cover_assets",
+      "grantee": "anon",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "book_cover_assets",
+      "grantee": "anon",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "book_cover_assets",
+      "grantee": "anon",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "book_cover_assets",
+      "grantee": "anon",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "book_cover_assets",
+      "grantee": "authenticated",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "book_cover_assets",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "book_cover_assets",
+      "grantee": "authenticated",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "book_cover_assets",
+      "grantee": "authenticated",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "book_edition_translators",
+      "grantee": "anon",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "book_edition_translators",
+      "grantee": "anon",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "book_edition_translators",
+      "grantee": "anon",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "book_edition_translators",
+      "grantee": "anon",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "book_edition_translators",
+      "grantee": "authenticated",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "book_edition_translators",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "book_edition_translators",
+      "grantee": "authenticated",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "book_edition_translators",
+      "grantee": "authenticated",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "book_editions",
+      "grantee": "anon",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "book_editions",
+      "grantee": "anon",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "book_editions",
+      "grantee": "anon",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "book_editions",
+      "grantee": "anon",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "book_editions",
+      "grantee": "authenticated",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "book_editions",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "book_editions",
+      "grantee": "authenticated",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "book_editions",
+      "grantee": "authenticated",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "book_publishers",
+      "grantee": "anon",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "book_publishers",
+      "grantee": "anon",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "book_publishers",
+      "grantee": "anon",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "book_publishers",
+      "grantee": "anon",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "book_publishers",
+      "grantee": "authenticated",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "book_publishers",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "book_publishers",
+      "grantee": "authenticated",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "book_publishers",
+      "grantee": "authenticated",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "book_translators",
+      "grantee": "anon",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "book_translators",
+      "grantee": "anon",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "book_translators",
+      "grantee": "anon",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "book_translators",
+      "grantee": "anon",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "book_translators",
+      "grantee": "authenticated",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "book_translators",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "book_translators",
+      "grantee": "authenticated",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "book_translators",
+      "grantee": "authenticated",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "book_work_authors",
+      "grantee": "anon",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "book_work_authors",
+      "grantee": "anon",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "book_work_authors",
+      "grantee": "anon",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "book_work_authors",
+      "grantee": "anon",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "book_work_authors",
+      "grantee": "authenticated",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "book_work_authors",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "book_work_authors",
+      "grantee": "authenticated",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "book_work_authors",
+      "grantee": "authenticated",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "book_work_categories",
+      "grantee": "anon",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "book_work_categories",
+      "grantee": "anon",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "book_work_categories",
+      "grantee": "anon",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "book_work_categories",
+      "grantee": "anon",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "book_work_categories",
+      "grantee": "authenticated",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "book_work_categories",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "book_work_categories",
+      "grantee": "authenticated",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "book_work_categories",
+      "grantee": "authenticated",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "book_works",
+      "grantee": "anon",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "book_works",
+      "grantee": "anon",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "book_works",
+      "grantee": "anon",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "book_works",
+      "grantee": "anon",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "book_works",
+      "grantee": "authenticated",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "book_works",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "book_works",
+      "grantee": "authenticated",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "book_works",
+      "grantee": "authenticated",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "customer_addresses",
+      "grantee": "anon",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "customer_addresses",
+      "grantee": "anon",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "customer_addresses",
+      "grantee": "anon",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "customer_addresses",
+      "grantee": "authenticated",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "customer_addresses",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "customer_addresses",
+      "grantee": "authenticated",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "customer_addresses",
+      "grantee": "authenticated",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "profiles",
+      "grantee": "authenticated",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "profiles",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "profiles",
+      "grantee": "authenticated",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "profiles",
+      "grantee": "authenticated",
+      "privilege_type": "TRUNCATE"
+    }
+  ],
+  "constraints": [
+    {
+      "table_name": "book_authors",
+      "conname": "book_authors_bio_shape",
+      "contype": "c",
+      "definition": "CHECK (bio_short IS NULL OR jsonb_typeof(bio_short) = 'object'::text AND char_length(COALESCE(bio_short ->> 'vi'::text, ''::text)) >= 1 AND char_length(COALESCE(bio_short ->> 'vi'::text, ''::text)) <= 1200 AND char_length(COALESCE(bio_short ->> 'en'::text, ''::text)) >= 1 AND char_length(COALESCE(bio_short ->> 'en'::text, ''::text)) <= 1200)"
+    },
+    {
+      "table_name": "book_authors",
+      "conname": "book_authors_country_length",
+      "contype": "c",
+      "definition": "CHECK (country IS NULL OR char_length(country) >= 2 AND char_length(country) <= 80)"
+    },
+    {
+      "table_name": "book_authors",
+      "conname": "book_authors_death_year_range",
+      "contype": "c",
+      "definition": "CHECK (death_year IS NULL OR death_year >= '-4000'::integer AND death_year <= 3000)"
+    },
+    {
+      "table_name": "book_authors",
+      "conname": "book_authors_name_length",
+      "contype": "c",
+      "definition": "CHECK (char_length(name) >= 1 AND char_length(name) <= 160)"
+    },
+    {
+      "table_name": "book_authors",
+      "conname": "book_authors_pkey",
+      "contype": "p",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "book_authors",
+      "conname": "book_authors_slug_format",
+      "contype": "c",
+      "definition": "CHECK (slug ~ '^[a-z0-9]+(-[a-z0-9]+)*$'::text)"
+    },
+    {
+      "table_name": "book_authors",
+      "conname": "book_authors_slug_unique",
+      "contype": "u",
+      "definition": "UNIQUE (slug)"
+    },
+    {
+      "table_name": "book_authors",
+      "conname": "book_authors_year_order",
+      "contype": "c",
+      "definition": "CHECK (birth_year IS NULL OR death_year IS NULL OR death_year >= birth_year)"
+    },
+    {
+      "table_name": "book_authors",
+      "conname": "book_authors_year_range",
+      "contype": "c",
+      "definition": "CHECK (birth_year IS NULL OR birth_year >= '-4000'::integer AND birth_year <= 3000)"
+    },
+    {
+      "table_name": "book_categories",
+      "conname": "book_categories_description_shape",
+      "contype": "c",
+      "definition": "CHECK (jsonb_typeof(description) = 'object'::text AND char_length(COALESCE(description ->> 'vi'::text, ''::text)) >= 1 AND char_length(COALESCE(description ->> 'vi'::text, ''::text)) <= 300 AND char_length(COALESCE(description ->> 'en'::text, ''::text)) >= 1 AND char_length(COALESCE(description ->> 'en'::text, ''::text)) <= 300)"
+    },
+    {
+      "table_name": "book_categories",
+      "conname": "book_categories_labels_shape",
+      "contype": "c",
+      "definition": "CHECK (jsonb_typeof(labels) = 'object'::text AND char_length(COALESCE(labels ->> 'vi'::text, ''::text)) >= 1 AND char_length(COALESCE(labels ->> 'vi'::text, ''::text)) <= 120 AND char_length(COALESCE(labels ->> 'en'::text, ''::text)) >= 1 AND char_length(COALESCE(labels ->> 'en'::text, ''::text)) <= 120)"
+    },
+    {
+      "table_name": "book_categories",
+      "conname": "book_categories_pkey",
+      "contype": "p",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "book_categories",
+      "conname": "book_categories_slug_allowed",
+      "contype": "c",
+      "definition": "CHECK (slug = ANY (ARRAY['fiction'::text, 'classic-literature'::text, 'mystery-thriller'::text, 'fantasy-sci-fi'::text, 'romance'::text, 'business-economics'::text, 'self-development'::text, 'children-young-adult'::text, 'language-learning'::text, 'vietnamese-books'::text, 'english-books'::text]))"
+    },
+    {
+      "table_name": "book_categories",
+      "conname": "book_categories_slug_format",
+      "contype": "c",
+      "definition": "CHECK (slug ~ '^[a-z0-9]+(-[a-z0-9]+)*$'::text)"
+    },
+    {
+      "table_name": "book_categories",
+      "conname": "book_categories_slug_unique",
+      "contype": "u",
+      "definition": "UNIQUE (slug)"
+    },
+    {
+      "table_name": "book_categories",
+      "conname": "book_categories_sort_order_nonnegative",
+      "contype": "c",
+      "definition": "CHECK (sort_order >= 0)"
+    },
+    {
+      "table_name": "book_cover_assets",
+      "conname": "book_cover_assets_alt_text_shape",
+      "contype": "c",
+      "definition": "CHECK (jsonb_typeof(alt_text) = 'object'::text AND char_length(COALESCE(alt_text ->> 'vi'::text, ''::text)) >= 1 AND char_length(COALESCE(alt_text ->> 'vi'::text, ''::text)) <= 180 AND char_length(COALESCE(alt_text ->> 'en'::text, ''::text)) >= 1 AND char_length(COALESCE(alt_text ->> 'en'::text, ''::text)) <= 180)"
+    },
+    {
+      "table_name": "book_cover_assets",
+      "conname": "book_cover_assets_path_format",
+      "contype": "c",
+      "definition": "CHECK (path ~ '^(https?://|/).+'::text)"
+    },
+    {
+      "table_name": "book_cover_assets",
+      "conname": "book_cover_assets_path_unique",
+      "contype": "u",
+      "definition": "UNIQUE (path)"
+    },
+    {
+      "table_name": "book_cover_assets",
+      "conname": "book_cover_assets_pkey",
+      "contype": "p",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "book_cover_assets",
+      "conname": "book_cover_assets_source_check",
+      "contype": "c",
+      "definition": "CHECK (source = ANY (ARRAY['placeholder'::text, 'generated'::text, 'internal'::text, 'licensed'::text, 'public-domain'::text]))"
+    },
+    {
+      "table_name": "book_edition_translators",
+      "conname": "book_edition_translators_edition_id_fkey",
+      "contype": "f",
+      "definition": "FOREIGN KEY (edition_id) REFERENCES book_editions(id) ON UPDATE CASCADE ON DELETE CASCADE"
+    },
+    {
+      "table_name": "book_edition_translators",
+      "conname": "book_edition_translators_pkey",
+      "contype": "p",
+      "definition": "PRIMARY KEY (edition_id, translator_id)"
+    },
+    {
+      "table_name": "book_edition_translators",
+      "conname": "book_edition_translators_sort_order_nonnegative",
+      "contype": "c",
+      "definition": "CHECK (sort_order >= 0)"
+    },
+    {
+      "table_name": "book_edition_translators",
+      "conname": "book_edition_translators_translator_id_fkey",
+      "contype": "f",
+      "definition": "FOREIGN KEY (translator_id) REFERENCES book_translators(id) ON UPDATE CASCADE ON DELETE RESTRICT"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_compare_at_price_gte_price",
+      "contype": "c",
+      "definition": "CHECK (compare_at_price_vnd IS NULL OR compare_at_price_vnd >= price_vnd)"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_compare_at_price_vnd_range",
+      "contype": "c",
+      "definition": "CHECK (compare_at_price_vnd IS NULL OR compare_at_price_vnd >= 0 AND compare_at_price_vnd <= 50000000)"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_cover_asset_id_fkey",
+      "contype": "f",
+      "definition": "FOREIGN KEY (cover_asset_id) REFERENCES book_cover_assets(id) ON UPDATE CASCADE ON DELETE SET NULL"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_dimensions_shape",
+      "contype": "c",
+      "definition": "CHECK (\nCASE\n    WHEN dimensions IS NULL THEN true\n    WHEN jsonb_typeof(dimensions) <> 'object'::text THEN false\n    ELSE\n    CASE\n        WHEN jsonb_typeof(dimensions -> 'widthMm'::text) = 'number'::text THEN ((dimensions ->> 'widthMm'::text)::numeric) >= 1::numeric AND ((dimensions ->> 'widthMm'::text)::numeric) <= 1000::numeric\n        ELSE false\n    END AND\n    CASE\n        WHEN jsonb_typeof(dimensions -> 'heightMm'::text) = 'number'::text THEN ((dimensions ->> 'heightMm'::text)::numeric) >= 1::numeric AND ((dimensions ->> 'heightMm'::text)::numeric) <= 1000::numeric\n        ELSE false\n    END AND\n    CASE\n        WHEN NOT dimensions ? 'thicknessMm'::text OR (dimensions -> 'thicknessMm'::text) = 'null'::jsonb THEN true\n        WHEN jsonb_typeof(dimensions -> 'thicknessMm'::text) = 'number'::text THEN ((dimensions ->> 'thicknessMm'::text)::numeric) >= 1::numeric AND ((dimensions ->> 'thicknessMm'::text)::numeric) <= 1000::numeric\n        ELSE false\n    END\nEND)"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_display_title_length",
+      "contype": "c",
+      "definition": "CHECK (char_length(display_title) >= 1 AND char_length(display_title) <= 180)"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_format_check",
+      "contype": "c",
+      "definition": "CHECK (format = ANY (ARRAY['paperback'::text, 'hardcover'::text, 'box-set'::text, 'special-edition'::text]))"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_inventory_status_check",
+      "contype": "c",
+      "definition": "CHECK (inventory_status = ANY (ARRAY['in-stock'::text, 'low-stock'::text, 'out-of-stock'::text, 'preorder'::text, 'discontinued'::text]))"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_isbn10_format",
+      "contype": "c",
+      "definition": "CHECK (isbn10 IS NULL OR isbn10 ~ '^\\d{9}[\\dX]$'::text)"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_isbn13_format",
+      "contype": "c",
+      "definition": "CHECK (isbn13 IS NULL OR isbn13 ~ '^(978|979)\\d{10}$'::text)"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_language_check",
+      "contype": "c",
+      "definition": "CHECK (language = ANY (ARRAY['vi'::text, 'en'::text]))"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_localized_display_title_shape",
+      "contype": "c",
+      "definition": "CHECK (jsonb_typeof(localized_display_title) = 'object'::text)"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_low_stock_threshold_range",
+      "contype": "c",
+      "definition": "CHECK (low_stock_threshold >= 0 AND low_stock_threshold <= 1000000)"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_page_count_range",
+      "contype": "c",
+      "definition": "CHECK (page_count IS NULL OR page_count >= 1 AND page_count <= 20000)"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_pkey",
+      "contype": "p",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_price_vnd_range",
+      "contype": "c",
+      "definition": "CHECK (price_vnd >= 0 AND price_vnd <= 50000000)"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_publication_year_range",
+      "contype": "c",
+      "definition": "CHECK (publication_year IS NULL OR publication_year >= 1400 AND publication_year <= 3000)"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_publisher_id_fkey",
+      "contype": "f",
+      "definition": "FOREIGN KEY (publisher_id) REFERENCES book_publishers(id) ON UPDATE CASCADE ON DELETE SET NULL"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_sample_excerpt_policy_length",
+      "contype": "c",
+      "definition": "CHECK (sample_excerpt_policy IS NULL OR char_length(sample_excerpt_policy) >= 1 AND char_length(sample_excerpt_policy) <= 300)"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_slug_format",
+      "contype": "c",
+      "definition": "CHECK (slug ~ '^[a-z0-9]+(-[a-z0-9]+)*$'::text)"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_slug_unique",
+      "contype": "u",
+      "definition": "UNIQUE (slug)"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_stock_quantity_range",
+      "contype": "c",
+      "definition": "CHECK (stock_quantity >= 0 AND stock_quantity <= 1000000)"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_subtitle_length",
+      "contype": "c",
+      "definition": "CHECK (subtitle IS NULL OR char_length(subtitle) >= 1 AND char_length(subtitle) <= 220)"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_summary_shape",
+      "contype": "c",
+      "definition": "CHECK (jsonb_typeof(summary) = 'object'::text AND char_length(COALESCE(summary ->> 'vi'::text, ''::text)) >= 1 AND char_length(COALESCE(summary ->> 'vi'::text, ''::text)) <= 1200 AND char_length(COALESCE(summary ->> 'en'::text, ''::text)) >= 1 AND char_length(COALESCE(summary ->> 'en'::text, ''::text)) <= 1200)"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_table_of_contents_shape",
+      "contype": "c",
+      "definition": "CHECK (table_of_contents IS NULL OR jsonb_typeof(table_of_contents) = 'object'::text AND char_length(COALESCE(table_of_contents ->> 'vi'::text, ''::text)) >= 1 AND char_length(COALESCE(table_of_contents ->> 'vi'::text, ''::text)) <= 5000 AND char_length(COALESCE(table_of_contents ->> 'en'::text, ''::text)) >= 1 AND char_length(COALESCE(table_of_contents ->> 'en'::text, ''::text)) <= 5000)"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_weight_grams_range",
+      "contype": "c",
+      "definition": "CHECK (weight_grams IS NULL OR weight_grams >= 1 AND weight_grams <= 50000)"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_work_id_fkey",
+      "contype": "f",
+      "definition": "FOREIGN KEY (work_id) REFERENCES book_works(id) ON UPDATE CASCADE ON DELETE RESTRICT"
+    },
+    {
+      "table_name": "book_inventory_adjustments",
+      "conname": "book_inventory_adjustments_created_by_user_id_fkey",
+      "contype": "f",
+      "definition": "FOREIGN KEY (created_by_user_id) REFERENCES auth.users(id) ON DELETE RESTRICT"
+    },
+    {
+      "table_name": "book_inventory_adjustments",
+      "conname": "book_inventory_adjustments_edition_id_fkey",
+      "contype": "f",
+      "definition": "FOREIGN KEY (edition_id) REFERENCES book_editions(id) ON UPDATE CASCADE ON DELETE RESTRICT"
+    },
+    {
+      "table_name": "book_inventory_adjustments",
+      "conname": "book_inventory_adjustments_pkey",
+      "contype": "p",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "book_inventory_adjustments",
+      "conname": "book_inventory_adjustments_quantity_delta_range",
+      "contype": "c",
+      "definition": "CHECK (quantity_delta >= '-1000000'::integer AND quantity_delta <= 1000000 AND quantity_delta <> 0)"
+    },
+    {
+      "table_name": "book_inventory_adjustments",
+      "conname": "book_inventory_adjustments_reason_length",
+      "contype": "c",
+      "definition": "CHECK (char_length(reason) >= 1 AND char_length(reason) <= 240)"
+    },
+    {
+      "table_name": "book_promotions",
+      "conname": "book_promotions_code_format",
+      "contype": "c",
+      "definition": "CHECK (code ~ '^[A-Z0-9-]{4,40}$'::text)"
+    },
+    {
+      "table_name": "book_promotions",
+      "conname": "book_promotions_code_unique",
+      "contype": "u",
+      "definition": "UNIQUE (code)"
+    },
+    {
+      "table_name": "book_promotions",
+      "conname": "book_promotions_date_order",
+      "contype": "c",
+      "definition": "CHECK (ends_at IS NULL OR ends_at > starts_at)"
+    },
+    {
+      "table_name": "book_promotions",
+      "conname": "book_promotions_discount_type_check",
+      "contype": "c",
+      "definition": "CHECK (discount_type = ANY (ARRAY['fixed-vnd'::text, 'percentage'::text]))"
+    },
+    {
+      "table_name": "book_promotions",
+      "conname": "book_promotions_discount_value_check",
+      "contype": "c",
+      "definition": "CHECK (discount_type = 'fixed-vnd'::text AND amount_vnd IS NOT NULL AND amount_vnd >= 0 AND percentage_basis_points IS NULL OR discount_type = 'percentage'::text AND amount_vnd IS NULL AND percentage_basis_points >= 0 AND percentage_basis_points <= 10000)"
+    },
+    {
+      "table_name": "book_promotions",
+      "conname": "book_promotions_name_shape",
+      "contype": "c",
+      "definition": "CHECK (jsonb_typeof(name) = 'object'::text AND char_length(COALESCE(name ->> 'vi'::text, ''::text)) >= 1 AND char_length(COALESCE(name ->> 'vi'::text, ''::text)) <= 120 AND char_length(COALESCE(name ->> 'en'::text, ''::text)) >= 1 AND char_length(COALESCE(name ->> 'en'::text, ''::text)) <= 120)"
+    },
+    {
+      "table_name": "book_promotions",
+      "conname": "book_promotions_pkey",
+      "contype": "p",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "book_publishers",
+      "conname": "book_publishers_country_length",
+      "contype": "c",
+      "definition": "CHECK (country IS NULL OR char_length(country) >= 2 AND char_length(country) <= 80)"
+    },
+    {
+      "table_name": "book_publishers",
+      "conname": "book_publishers_name_length",
+      "contype": "c",
+      "definition": "CHECK (char_length(name) >= 1 AND char_length(name) <= 160)"
+    },
+    {
+      "table_name": "book_publishers",
+      "conname": "book_publishers_pkey",
+      "contype": "p",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "book_publishers",
+      "conname": "book_publishers_slug_format",
+      "contype": "c",
+      "definition": "CHECK (slug ~ '^[a-z0-9]+(-[a-z0-9]+)*$'::text)"
+    },
+    {
+      "table_name": "book_publishers",
+      "conname": "book_publishers_slug_unique",
+      "contype": "u",
+      "definition": "UNIQUE (slug)"
+    },
+    {
+      "table_name": "book_publishers",
+      "conname": "book_publishers_website_format",
+      "contype": "c",
+      "definition": "CHECK (website IS NULL OR char_length(website) <= 500 AND website ~ '^https?://.+'::text)"
+    },
+    {
+      "table_name": "book_translators",
+      "conname": "book_translators_bio_shape",
+      "contype": "c",
+      "definition": "CHECK (bio_short IS NULL OR jsonb_typeof(bio_short) = 'object'::text AND char_length(COALESCE(bio_short ->> 'vi'::text, ''::text)) >= 1 AND char_length(COALESCE(bio_short ->> 'vi'::text, ''::text)) <= 1200 AND char_length(COALESCE(bio_short ->> 'en'::text, ''::text)) >= 1 AND char_length(COALESCE(bio_short ->> 'en'::text, ''::text)) <= 1200)"
+    },
+    {
+      "table_name": "book_translators",
+      "conname": "book_translators_name_length",
+      "contype": "c",
+      "definition": "CHECK (char_length(name) >= 1 AND char_length(name) <= 160)"
+    },
+    {
+      "table_name": "book_translators",
+      "conname": "book_translators_pkey",
+      "contype": "p",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "book_translators",
+      "conname": "book_translators_slug_format",
+      "contype": "c",
+      "definition": "CHECK (slug ~ '^[a-z0-9]+(-[a-z0-9]+)*$'::text)"
+    },
+    {
+      "table_name": "book_translators",
+      "conname": "book_translators_slug_unique",
+      "contype": "u",
+      "definition": "UNIQUE (slug)"
+    },
+    {
+      "table_name": "book_work_authors",
+      "conname": "book_work_authors_author_id_fkey",
+      "contype": "f",
+      "definition": "FOREIGN KEY (author_id) REFERENCES book_authors(id) ON UPDATE CASCADE ON DELETE RESTRICT"
+    },
+    {
+      "table_name": "book_work_authors",
+      "conname": "book_work_authors_pkey",
+      "contype": "p",
+      "definition": "PRIMARY KEY (work_id, author_id)"
+    },
+    {
+      "table_name": "book_work_authors",
+      "conname": "book_work_authors_sort_order_nonnegative",
+      "contype": "c",
+      "definition": "CHECK (sort_order >= 0)"
+    },
+    {
+      "table_name": "book_work_authors",
+      "conname": "book_work_authors_work_id_fkey",
+      "contype": "f",
+      "definition": "FOREIGN KEY (work_id) REFERENCES book_works(id) ON UPDATE CASCADE ON DELETE CASCADE"
+    },
+    {
+      "table_name": "book_work_categories",
+      "conname": "book_work_categories_category_id_fkey",
+      "contype": "f",
+      "definition": "FOREIGN KEY (category_id) REFERENCES book_categories(id) ON UPDATE CASCADE ON DELETE RESTRICT"
+    },
+    {
+      "table_name": "book_work_categories",
+      "conname": "book_work_categories_pkey",
+      "contype": "p",
+      "definition": "PRIMARY KEY (work_id, category_id)"
+    },
+    {
+      "table_name": "book_work_categories",
+      "conname": "book_work_categories_sort_order_nonnegative",
+      "contype": "c",
+      "definition": "CHECK (sort_order >= 0)"
+    },
+    {
+      "table_name": "book_work_categories",
+      "conname": "book_work_categories_work_id_fkey",
+      "contype": "f",
+      "definition": "FOREIGN KEY (work_id) REFERENCES book_works(id) ON UPDATE CASCADE ON DELETE CASCADE"
+    },
+    {
+      "table_name": "book_works",
+      "conname": "book_works_age_rating_length",
+      "contype": "c",
+      "definition": "CHECK (age_rating IS NULL OR char_length(age_rating) >= 1 AND char_length(age_rating) <= 40)"
+    },
+    {
+      "table_name": "book_works",
+      "conname": "book_works_canonical_summary_shape",
+      "contype": "c",
+      "definition": "CHECK (jsonb_typeof(canonical_summary) = 'object'::text AND char_length(COALESCE(canonical_summary ->> 'vi'::text, ''::text)) >= 1 AND char_length(COALESCE(canonical_summary ->> 'vi'::text, ''::text)) <= 1200 AND char_length(COALESCE(canonical_summary ->> 'en'::text, ''::text)) >= 1 AND char_length(COALESCE(canonical_summary ->> 'en'::text, ''::text)) <= 1200)"
+    },
+    {
+      "table_name": "book_works",
+      "conname": "book_works_localized_title_shape",
+      "contype": "c",
+      "definition": "CHECK (jsonb_typeof(localized_title) = 'object'::text)"
+    },
+    {
+      "table_name": "book_works",
+      "conname": "book_works_original_language_length",
+      "contype": "c",
+      "definition": "CHECK (char_length(original_language) >= 2 AND char_length(original_language) <= 80)"
+    },
+    {
+      "table_name": "book_works",
+      "conname": "book_works_original_title_length",
+      "contype": "c",
+      "definition": "CHECK (original_title IS NULL OR char_length(original_title) >= 1 AND char_length(original_title) <= 180)"
+    },
+    {
+      "table_name": "book_works",
+      "conname": "book_works_pkey",
+      "contype": "p",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "book_works",
+      "conname": "book_works_publication_era_length",
+      "contype": "c",
+      "definition": "CHECK (publication_era IS NULL OR char_length(publication_era) >= 1 AND char_length(publication_era) <= 80)"
+    },
+    {
+      "table_name": "book_works",
+      "conname": "book_works_slug_format",
+      "contype": "c",
+      "definition": "CHECK (slug ~ '^[a-z0-9]+(-[a-z0-9]+)*$'::text)"
+    },
+    {
+      "table_name": "book_works",
+      "conname": "book_works_slug_unique",
+      "contype": "u",
+      "definition": "UNIQUE (slug)"
+    },
+    {
+      "table_name": "book_works",
+      "conname": "book_works_themes_limit",
+      "contype": "c",
+      "definition": "CHECK (cardinality(themes) <= 20 AND array_position(themes, NULL::text) IS NULL)"
+    },
+    {
+      "table_name": "book_works",
+      "conname": "book_works_title_length",
+      "contype": "c",
+      "definition": "CHECK (char_length(title) >= 1 AND char_length(title) <= 180)"
+    },
+    {
+      "table_name": "customer_addresses",
+      "conname": "customer_addresses_country_code_check",
+      "contype": "c",
+      "definition": "CHECK (country_code = 'VN'::text)"
+    },
+    {
+      "table_name": "customer_addresses",
+      "conname": "customer_addresses_district_length",
+      "contype": "c",
+      "definition": "CHECK (char_length(district) >= 1 AND char_length(district) <= 120)"
+    },
+    {
+      "table_name": "customer_addresses",
+      "conname": "customer_addresses_line1_length",
+      "contype": "c",
+      "definition": "CHECK (char_length(line1) >= 1 AND char_length(line1) <= 180)"
+    },
+    {
+      "table_name": "customer_addresses",
+      "conname": "customer_addresses_line2_length",
+      "contype": "c",
+      "definition": "CHECK (line2 IS NULL OR char_length(line2) >= 1 AND char_length(line2) <= 180)"
+    },
+    {
+      "table_name": "customer_addresses",
+      "conname": "customer_addresses_phone_format",
+      "contype": "c",
+      "definition": "CHECK (char_length(phone) >= 7 AND char_length(phone) <= 24 AND phone ~ '^[0-9+(). -]+$'::text)"
+    },
+    {
+      "table_name": "customer_addresses",
+      "conname": "customer_addresses_pkey",
+      "contype": "p",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "customer_addresses",
+      "conname": "customer_addresses_province_length",
+      "contype": "c",
+      "definition": "CHECK (char_length(province) >= 1 AND char_length(province) <= 120)"
+    },
+    {
+      "table_name": "customer_addresses",
+      "conname": "customer_addresses_recipient_name_length",
+      "contype": "c",
+      "definition": "CHECK (char_length(recipient_name) >= 1 AND char_length(recipient_name) <= 120)"
+    },
+    {
+      "table_name": "customer_addresses",
+      "conname": "customer_addresses_user_id_fkey",
+      "contype": "f",
+      "definition": "FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "customer_addresses",
+      "conname": "customer_addresses_ward_length",
+      "contype": "c",
+      "definition": "CHECK (ward IS NULL OR char_length(ward) >= 1 AND char_length(ward) <= 120)"
+    },
+    {
+      "table_name": "order_items",
+      "conname": "order_items_book_edition_id_fkey",
+      "contype": "f",
+      "definition": "FOREIGN KEY (book_edition_id) REFERENCES book_editions(id) ON UPDATE CASCADE ON DELETE RESTRICT"
+    },
+    {
+      "table_name": "order_items",
+      "conname": "order_items_book_snapshot_complete",
+      "contype": "c",
+      "definition": "CHECK (book_edition_id IS NULL OR book_work_id IS NOT NULL AND char_length(COALESCE(edition_title, ''::text)) >= 1 AND char_length(COALESCE(edition_title, ''::text)) <= 180 AND (edition_language = ANY (ARRAY['vi'::text, 'en'::text])) AND (edition_format = ANY (ARRAY['paperback'::text, 'hardcover'::text, 'box-set'::text, 'special-edition'::text])) AND unit_price_vnd IS NOT NULL AND unit_price_vnd >= 0 AND line_total_vnd IS NOT NULL AND line_total_vnd = (unit_price_vnd * quantity))"
+    },
+    {
+      "table_name": "order_items",
+      "conname": "order_items_book_work_id_fkey",
+      "contype": "f",
+      "definition": "FOREIGN KEY (book_work_id) REFERENCES book_works(id) ON UPDATE CASCADE ON DELETE RESTRICT"
+    },
+    {
+      "table_name": "order_items",
+      "conname": "order_items_line_total_matches",
+      "contype": "c",
+      "definition": "CHECK (line_total = (unit_price * quantity))"
+    },
+    {
+      "table_name": "order_items",
+      "conname": "order_items_order_id_fkey",
+      "contype": "f",
+      "definition": "FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "order_items",
+      "conname": "order_items_order_product_unique",
+      "contype": "u",
+      "definition": "UNIQUE (order_id, product_id)"
+    },
+    {
+      "table_name": "order_items",
+      "conname": "order_items_pkey",
+      "contype": "p",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "order_items",
+      "conname": "order_items_product_id_fkey",
+      "contype": "f",
+      "definition": "FOREIGN KEY (product_id) REFERENCES products(id) ON UPDATE CASCADE ON DELETE RESTRICT"
+    },
+    {
+      "table_name": "order_items",
+      "conname": "order_items_product_name_length",
+      "contype": "c",
+      "definition": "CHECK (char_length(product_name) >= 1 AND char_length(product_name) <= 120)"
+    },
+    {
+      "table_name": "order_items",
+      "conname": "order_items_quantity_positive",
+      "contype": "c",
+      "definition": "CHECK (quantity > 0)"
+    },
+    {
+      "table_name": "order_items",
+      "conname": "order_items_unit_price_nonnegative",
+      "contype": "c",
+      "definition": "CHECK (unit_price >= 0)"
+    },
+    {
+      "table_name": "orders",
+      "conname": "orders_book_totals_nonnegative",
+      "contype": "c",
+      "definition": "CHECK (subtotal >= 0 AND discount_total_vnd >= 0 AND shipping_fee_vnd >= 0 AND tax_total_vnd >= 0 AND payment_fee_vnd >= 0 AND total_vnd >= 0)"
+    },
+    {
+      "table_name": "orders",
+      "conname": "orders_currency_check",
+      "contype": "c",
+      "definition": "CHECK (currency = 'VND'::text)"
+    },
+    {
+      "table_name": "orders",
+      "conname": "orders_customer_email_length",
+      "contype": "c",
+      "definition": "CHECK (char_length(customer_email) >= 3 AND char_length(customer_email) <= 254)"
+    },
+    {
+      "table_name": "orders",
+      "conname": "orders_customer_id_fkey",
+      "contype": "f",
+      "definition": "FOREIGN KEY (customer_id) REFERENCES auth.users(id) ON DELETE RESTRICT"
+    },
+    {
+      "table_name": "orders",
+      "conname": "orders_customer_name_length",
+      "contype": "c",
+      "definition": "CHECK (char_length(customer_name) >= 1 AND char_length(customer_name) <= 120)"
+    },
+    {
+      "table_name": "orders",
+      "conname": "orders_customer_phone_format",
+      "contype": "c",
+      "definition": "CHECK (char_length(customer_phone) >= 7 AND char_length(customer_phone) <= 24 AND customer_phone ~ '^[0-9+(). -]+$'::text)"
+    },
+    {
+      "table_name": "orders",
+      "conname": "orders_display_estimate_shape",
+      "contype": "c",
+      "definition": "CHECK (display_estimate IS NULL OR jsonb_typeof(display_estimate) = 'object'::text)"
+    },
+    {
+      "table_name": "orders",
+      "conname": "orders_fee_estimates_shape",
+      "contype": "c",
+      "definition": "CHECK (jsonb_typeof(fee_estimates) = 'array'::text)"
+    },
+    {
+      "table_name": "orders",
+      "conname": "orders_order_code_format",
+      "contype": "c",
+      "definition": "CHECK (order_code ~ '^[A-Z0-9-]{4,40}$'::text)"
+    },
+    {
+      "table_name": "orders",
+      "conname": "orders_order_code_unique",
+      "contype": "u",
+      "definition": "UNIQUE (order_code)"
+    },
+    {
+      "table_name": "orders",
+      "conname": "orders_payment_method_check",
+      "contype": "c",
+      "definition": "CHECK (payment_method = ANY (ARRAY['cod'::text, 'bank-transfer'::text, 'momo'::text, 'zalopay'::text, 'vnpay'::text]))"
+    },
+    {
+      "table_name": "orders",
+      "conname": "orders_payment_status_check",
+      "contype": "c",
+      "definition": "CHECK (payment_status = ANY (ARRAY['pending'::text, 'awaiting-transfer'::text, 'awaiting-provider-confirmation'::text, 'confirmed'::text, 'failed'::text, 'cancelled'::text]))"
+    },
+    {
+      "table_name": "orders",
+      "conname": "orders_pkey",
+      "contype": "p",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "orders",
+      "conname": "orders_promotion_code_format",
+      "contype": "c",
+      "definition": "CHECK (promotion_code IS NULL OR promotion_code ~ '^[A-Z0-9-]{4,40}$'::text)"
+    },
+    {
+      "table_name": "orders",
+      "conname": "orders_shipping_address_json_shape",
+      "contype": "c",
+      "definition": "CHECK (shipping_address_json IS NULL OR jsonb_typeof(shipping_address_json) = 'object'::text AND (shipping_address_json ->> 'countryCode'::text) = 'VN'::text AND char_length(COALESCE(shipping_address_json ->> 'recipientName'::text, ''::text)) >= 1 AND char_length(COALESCE(shipping_address_json ->> 'recipientName'::text, ''::text)) <= 120 AND char_length(COALESCE(shipping_address_json ->> 'phone'::text, ''::text)) >= 7 AND char_length(COALESCE(shipping_address_json ->> 'phone'::text, ''::text)) <= 24 AND char_length(COALESCE(shipping_address_json ->> 'line1'::text, ''::text)) >= 1 AND char_length(COALESCE(shipping_address_json ->> 'line1'::text, ''::text)) <= 180 AND char_length(COALESCE(shipping_address_json ->> 'district'::text, ''::text)) >= 1 AND char_length(COALESCE(shipping_address_json ->> 'district'::text, ''::text)) <= 120 AND char_length(COALESCE(shipping_address_json ->> 'province'::text, ''::text)) >= 1 AND char_length(COALESCE(shipping_address_json ->> 'province'::text, ''::text)) <= 120)"
+    },
+    {
+      "table_name": "orders",
+      "conname": "orders_shipping_address_length",
+      "contype": "c",
+      "definition": "CHECK (char_length(shipping_address) >= 1 AND char_length(shipping_address) <= 500)"
+    },
+    {
+      "table_name": "orders",
+      "conname": "orders_shipping_method_check",
+      "contype": "c",
+      "definition": "CHECK (shipping_method = ANY (ARRAY['standard'::text, 'express'::text]))"
+    },
+    {
+      "table_name": "orders",
+      "conname": "orders_subtotal_nonnegative",
+      "contype": "c",
+      "definition": "CHECK (subtotal >= 0)"
+    },
+    {
+      "table_name": "orders",
+      "conname": "orders_tax_estimates_shape",
+      "contype": "c",
+      "definition": "CHECK (jsonb_typeof(tax_estimates) = 'array'::text)"
+    },
+    {
+      "table_name": "profiles",
+      "conname": "profiles_default_shipping_address_shape",
+      "contype": "c",
+      "definition": "CHECK (default_shipping_address IS NULL OR jsonb_typeof(default_shipping_address) = 'object'::text AND (default_shipping_address ->> 'countryCode'::text) = 'VN'::text AND char_length(COALESCE(default_shipping_address ->> 'recipientName'::text, ''::text)) >= 1 AND char_length(COALESCE(default_shipping_address ->> 'recipientName'::text, ''::text)) <= 120 AND char_length(COALESCE(default_shipping_address ->> 'phone'::text, ''::text)) >= 7 AND char_length(COALESCE(default_shipping_address ->> 'phone'::text, ''::text)) <= 24 AND char_length(COALESCE(default_shipping_address ->> 'line1'::text, ''::text)) >= 1 AND char_length(COALESCE(default_shipping_address ->> 'line1'::text, ''::text)) <= 180 AND char_length(COALESCE(default_shipping_address ->> 'district'::text, ''::text)) >= 1 AND char_length(COALESCE(default_shipping_address ->> 'district'::text, ''::text)) <= 120 AND char_length(COALESCE(default_shipping_address ->> 'province'::text, ''::text)) >= 1 AND char_length(COALESCE(default_shipping_address ->> 'province'::text, ''::text)) <= 120)"
+    },
+    {
+      "table_name": "profiles",
+      "conname": "profiles_email_format",
+      "contype": "c",
+      "definition": "CHECK (email IS NULL OR char_length(email) >= 3 AND char_length(email) <= 254 AND email ~* '^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$'::text)"
+    },
+    {
+      "table_name": "profiles",
+      "conname": "profiles_full_name_length",
+      "contype": "c",
+      "definition": "CHECK (full_name IS NULL OR char_length(full_name) >= 1 AND char_length(full_name) <= 120)"
+    },
+    {
+      "table_name": "profiles",
+      "conname": "profiles_id_fkey",
+      "contype": "f",
+      "definition": "FOREIGN KEY (id) REFERENCES auth.users(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "profiles",
+      "conname": "profiles_phone_format",
+      "contype": "c",
+      "definition": "CHECK (phone IS NULL OR char_length(phone) >= 7 AND char_length(phone) <= 24 AND phone ~ '^[0-9+(). -]+$'::text)"
+    },
+    {
+      "table_name": "profiles",
+      "conname": "profiles_pkey",
+      "contype": "p",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "profiles",
+      "conname": "profiles_role_check",
+      "contype": "c",
+      "definition": "CHECK (role = ANY (ARRAY['customer'::text, 'staff'::text, 'admin'::text]))"
+    }
+  ],
+  "triggers": [
+    {
+      "table_name": "book_authors",
+      "trigger_name": "book_authors_set_updated_at",
+      "action_timing": "BEFORE",
+      "event_manipulation": "UPDATE"
+    },
+    {
+      "table_name": "book_categories",
+      "trigger_name": "book_categories_set_updated_at",
+      "action_timing": "BEFORE",
+      "event_manipulation": "UPDATE"
+    },
+    {
+      "table_name": "book_cover_assets",
+      "trigger_name": "book_cover_assets_set_updated_at",
+      "action_timing": "BEFORE",
+      "event_manipulation": "UPDATE"
+    },
+    {
+      "table_name": "book_editions",
+      "trigger_name": "book_editions_set_updated_at",
+      "action_timing": "BEFORE",
+      "event_manipulation": "UPDATE"
+    },
+    {
+      "table_name": "book_promotions",
+      "trigger_name": "book_promotions_set_updated_at",
+      "action_timing": "BEFORE",
+      "event_manipulation": "UPDATE"
+    },
+    {
+      "table_name": "book_publishers",
+      "trigger_name": "book_publishers_set_updated_at",
+      "action_timing": "BEFORE",
+      "event_manipulation": "UPDATE"
+    },
+    {
+      "table_name": "book_translators",
+      "trigger_name": "book_translators_set_updated_at",
+      "action_timing": "BEFORE",
+      "event_manipulation": "UPDATE"
+    },
+    {
+      "table_name": "book_works",
+      "trigger_name": "book_works_set_updated_at",
+      "action_timing": "BEFORE",
+      "event_manipulation": "UPDATE"
+    },
+    {
+      "table_name": "customer_addresses",
+      "trigger_name": "customer_addresses_set_updated_at",
+      "action_timing": "BEFORE",
+      "event_manipulation": "UPDATE"
+    },
+    {
+      "table_name": "orders",
+      "trigger_name": "orders_set_updated_at",
+      "action_timing": "BEFORE",
+      "event_manipulation": "UPDATE"
+    },
+    {
+      "table_name": "profiles",
+      "trigger_name": "profiles_set_updated_at",
+      "action_timing": "BEFORE",
+      "event_manipulation": "UPDATE"
+    }
+  ],
+  "counts": {
+    "categories": 5,
+    "products": 16,
+    "orders": 0,
+    "orderItems": 0,
+    "profiles": 1,
+    "directBookOrders": 0
+  },
+  "pass": {
+    "allExpectedTablesExist": true,
+    "allExpectedOrderColumnsExist": true,
+    "allExpectedOrderItemColumnsExist": true,
+    "allExpectedRlsEnabled": true,
+    "createBookOrderWithItemsExists": true,
+    "legacyCountsPreserved": true,
+    "directBookOrdersZero": true,
+    "noAnonOrAuthenticatedOrderTableGrants": true
+  }
+}

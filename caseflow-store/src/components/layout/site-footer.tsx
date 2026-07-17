@@ -1,10 +1,27 @@
 import Link from "next/link";
 
 import { Container } from "@/components/ui";
+import type { Language } from "@/lib/i18n/language";
 
-import { footerNavigation } from "./navigation";
+import { getFooterNavigation } from "./navigation";
 
-export function SiteFooter() {
+const footerCopy = {
+  en: {
+    description:
+      "A focused bookstore storefront for bilingual discovery, edition choice, and small-business catalog operations.",
+    note: "No card numbers, wallet credentials, or provider login details are collected.",
+  },
+  vi: {
+    description:
+      "Nhà sách trực tuyến tập trung vào khám phá song ngữ, lựa chọn ấn bản và vận hành danh mục cho doanh nghiệp nhỏ.",
+    note: "Website không thu thập số thẻ, thông tin ví điện tử hoặc tài khoản đăng nhập nhà cung cấp thanh toán.",
+  },
+} as const;
+
+export function SiteFooter({ language }: { language: Language }) {
+  const copy = footerCopy[language];
+  const footerNavigation = getFooterNavigation(language);
+
   return (
     <footer className="border-t border-border bg-surface">
       <Container className="grid gap-case-xl py-case-xl md:grid-cols-[minmax(0,1fr)_minmax(360px,520px)]">
@@ -13,11 +30,10 @@ export function SiteFooter() {
             href="/"
             className="w-fit rounded-md text-heading-3 font-semibold text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
           >
-            CaseFlow Store
+            CaseFlow Books
           </Link>
           <p className="text-small leading-6 text-text-muted">
-            A focused phone accessories storefront for cases, charging, screen
-            protection, and desk setup essentials.
+            {copy.description}
           </p>
         </div>
 
@@ -45,8 +61,7 @@ export function SiteFooter() {
       </Container>
       <Container className="border-t border-border py-case-md">
         <p className="text-small text-text-muted">
-          Demo checkout is simulated for this project. No real payment is
-          collected.
+          {copy.note}
         </p>
       </Container>
     </footer>

@@ -1,0 +1,70 @@
+{
+  "generatedAt": "2026-07-16T09:04:21.425Z",
+  "baseURL": "http://127.0.0.1:3005",
+  "englishDesktop": [
+    {
+      "doesNotLeakInternals": true,
+      "hasHorizontalOverflow": false,
+      "recoveryActions": 0,
+      "screenshotPath": ".agent/artifacts/d28-t03/desktop-en-loading.png",
+      "state": "loading",
+      "text": "Loading catalog\n\nPreparing book editions, prices, stock states, and cover assets.",
+      "visible": true
+    },
+    {
+      "doesNotLeakInternals": true,
+      "hasHorizontalOverflow": false,
+      "recoveryActions": 2,
+      "screenshotPath": ".agent/artifacts/d28-t03/desktop-en-empty.png",
+      "state": "empty",
+      "text": "No editions match these filters\n\nTry a broader search, remove one or more filters, or return to the featured shelf.\n\nClear filters\nBrowse featured books",
+      "visible": true
+    },
+    {
+      "doesNotLeakInternals": true,
+      "hasHorizontalOverflow": false,
+      "recoveryActions": 0,
+      "screenshotPath": ".agent/artifacts/d28-t03/desktop-en-error.png",
+      "state": "error",
+      "text": "Book catalog is unavailable\n\nThe catalog could not be loaded right now. Try again or return to the storefront.\n\nTry again",
+      "visible": true
+    }
+  ],
+  "ok": true,
+  "pass": {
+    "allEnglishStatesVisible": true,
+    "allVietnameseStatesVisible": true,
+    "emptyRecoveryActions": true,
+    "errorDoesNotLeakInternals": true,
+    "noOverflow": true
+  },
+  "vietnameseMobile": [
+    {
+      "doesNotLeakInternals": true,
+      "hasHorizontalOverflow": false,
+      "recoveryActions": 0,
+      "screenshotPath": ".agent/artifacts/d28-t03/mobile-vi-loading.png",
+      "state": "loading",
+      "text": "Đang tải catalog\n\nĐang chuẩn bị ấn bản, giá, tồn kho và bìa sách.",
+      "visible": true
+    },
+    {
+      "doesNotLeakInternals": true,
+      "hasHorizontalOverflow": false,
+      "recoveryActions": 2,
+      "screenshotPath": ".agent/artifacts/d28-t03/mobile-vi-empty.png",
+      "state": "empty",
+      "text": "Không có ấn bản phù hợp\n\nHãy mở rộng từ khóa, bỏ bớt bộ lọc hoặc quay lại kệ sách nổi bật.\n\nXóa bộ lọc\nXem sách nổi bật",
+      "visible": true
+    },
+    {
+      "doesNotLeakInternals": true,
+      "hasHorizontalOverflow": false,
+      "recoveryActions": 0,
+      "screenshotPath": ".agent/artifacts/d28-t03/mobile-vi-error.png",
+      "state": "error",
+      "text": "Không tải được catalog sách\n\nCatalog hiện không tải được. Hãy thử lại hoặc quay về trang cửa hàng.\n\nThử lại",
+      "visible": true
+    }
+  ]
+}

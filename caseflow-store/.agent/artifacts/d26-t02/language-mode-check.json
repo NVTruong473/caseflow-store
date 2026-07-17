@@ -1,0 +1,50 @@
+{
+  "task": "D26-T02",
+  "baseURL": "http://localhost:3010",
+  "ok": true,
+  "screenshots": [
+    "header-en-desktop.png",
+    "header-vi-desktop.png",
+    "header-en-mobile.png",
+    "header-vi-mobile.png"
+  ],
+  "results": [
+    {
+      "check": "desktop english text",
+      "ok": true
+    },
+    {
+      "check": "desktop english no horizontal overflow",
+      "ok": true
+    },
+    {
+      "check": "desktop vietnamese text after switch",
+      "ok": true
+    },
+    {
+      "check": "desktop vietnamese no horizontal overflow",
+      "ok": true
+    },
+    {
+      "check": "mobile english menu text",
+      "ok": true
+    },
+    {
+      "check": "mobile english no horizontal overflow",
+      "ok": true
+    },
+    {
+      "check": "mobile vietnamese menu text after switch",
+      "ok": true
+    },
+    {
+      "check": "mobile vietnamese no horizontal overflow",
+      "ok": true
+    },
+    {
+      "check": "language preference api",
+      "ok": true
+    }
+  ],
+  "checkedAt": "2026-07-16T07:25:09.543Z"
+}

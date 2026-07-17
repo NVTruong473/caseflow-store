@@ -1,0 +1,281 @@
+{
+  "generatedAt": "2026-07-16T06:46:23.601Z",
+  "ok": true,
+  "checks": [
+    {
+      "label": "book categories",
+      "pathname": "/api/categories",
+      "status": 200,
+      "meta": {
+        "resource": "book-categories",
+        "count": 11
+      },
+      "sample": {
+        "id": "00000000-0000-4000-8000-000000000100",
+        "type": "book-category",
+        "slug": "fiction",
+        "labels": {
+          "vi": "Van hoc",
+          "en": "Fiction"
+        },
+        "description": {
+          "vi": "Tieu thuyet va tac pham hu cau de doc theo chu de, tac gia va ngon ngu.",
+          "en": "Novels and fiction works browsed by theme, author, and language."
+        },
+        "sortOrder": 0
+      }
+    },
+    {
+      "label": "book edition list",
+      "pathname": "/api/products",
+      "status": 200,
+      "meta": {
+        "resource": "book-editions",
+        "count": 24,
+        "total": 100,
+        "limit": 24,
+        "offset": 0,
+        "hasMore": true
+      },
+      "sample": {
+        "id": "00000000-0000-4000-8000-000000003027",
+        "type": "book-edition",
+        "slug": "a-christmas-carol-english-paperback",
+        "title": "A Christmas Carol",
+        "edition": {
+          "id": "00000000-0000-4000-8000-000000003027",
+          "slug": "a-christmas-carol-english-paperback",
+          "displayTitle": "A Christmas Carol",
+          "localizedDisplayTitle": {
+            "vi": "Bai ca Giang sinh",
+            "en": "A Christmas Carol"
+          },
+          "subtitle": null,
+          "language": "en",
+          "format": "paperback",
+          "isbn13": null,
+          "isbn10": null,
+          "publicationYear": 1843,
+          "pageCount": null,
+          "dimensions": {
+            "widthMm": 130,
+            "heightMm": 205,
+            "thicknessMm": null
+          },
+          "weightGrams": 360,
+          "priceVnd": 143000,
+          "compareAtPriceVnd": null,
+          "stockQuantity": 11,
+          "lowStockThreshold": 5,
+          "inventoryStatus": "in-stock",
+          "summary": {
+            "vi": "Mot cau chuyen dao duc ngan gon noi ky uc va tuong tuong thuc day mot ke keo kiet huong den rong luong va sua sai. An ban tieng Anh phu hop cho doc gia song ngu va nhu cau doc hoc thuat.",
+            "en": "A compact moral tale where memory and imagination push a miser toward generosity and repair. This English edition is positioned for bilingual readers and classroom-friendly browsing."
+          },
+          "tableOfContents": null,
+          "sampleExcerptPolicy": "No commercial excerpt is stored in seed data; use short internal preview copy only.",
+          "isFeatured": false,
+          "createdAt": "2026-07-16T00:00:00+00:00",
+          "updatedAt": "2026-07-16T06:19:00.769299+00:00"
+        },
+        "work": {
+          "id": "00000000-0000-4000-8000-000000002027",
+          "slug": "a-christmas-carol",
+          "title": "A Christmas Carol",
+          "originalTitle": null,
+          "localizedTitle": {
+            "vi": "Bai ca Giang sinh",
+            "en": "A Christmas Carol"
+          },
+          "originalLanguage": "English",
+          "themes": [
+            "redemption",
+            "generosity",
+            "memory"
+          ],
+          "ageRating": null,
+          "publicationEra": "1843",
+          "canonicalSummary": {
+            "vi": "Mot cau chuyen dao duc ngan gon noi ky uc va tuong tuong thuc day mot ke keo kiet huong den rong luong va sua sai.",
+            "en": "A compact moral tale where memory and imagination push a miser toward generosity and repair."
+          }
+        },
+        "authors": [
+          {
+            "id": "00000000-0000-4000-8000-000000001003",
+            "slug": "charles-dickens",
+            "name": "Charles Dickens",
+            "country": "United Kingdom"
+          }
+        ],
+        "categories": [
+          {
+            "id": "00000000-0000-4000-8000-000000000101",
+            "type": "book-category",
+            "slug": "classic-literature",
+            "labels": {
+              "vi": "Van hoc kinh dien",
+              "en": "Classic literature"
+            },
+            "description": {
+              "vi": "Nhung tac pham lau ben, phu hop cho tu sach ca nhan va hoc thuat.",
+              "en": "Enduring works suited for personal libraries and study shelves."
+            },
+            "sortOrder": 1
+          },
+          {
+            "id": "00000000-0000-4000-8000-000000000100",
+            "type": "book-category",
+            "slug": "fiction",
+            "labels": {
+              "vi": "Van hoc",
+              "en": "Fiction"
+            },
+            "description": {
+              "vi": "Tieu thuyet va tac pham hu cau de doc theo chu de, tac gia va ngon ngu.",
+              "en": "Novels and fiction works browsed by theme, author, and language."
+            },
+            "sortOrder": 0
+          }
+        ],
+        "translators": [],
+        "publisher": {
+          "id": "00000000-0000-4000-8000-000000000001",
+          "slug": "caseflow-books-demo-editions",
+          "name": "CaseFlow Books Demo Editions",
+          "country": "Vietnam",
+          "website": null
+        },
+        "coverAsset": {
+          "id": "00000000-0000-4000-8000-000000000050",
+          "path": "/images/books/placeholders/book-cover-placeholder.svg",
+          "altText": {
+            "vi": "Bia sach tam thoi noi bo cua CaseFlow Books",
+            "en": "CaseFlow Books internal placeholder cover"
+          },
+          "source": "internal"
+        }
+      }
+    },
+    {
+      "label": "language and author filter",
+      "pathname": "/api/products?language=en&author=jane-austen",
+      "status": 200,
+      "meta": {
+        "resource": "book-editions",
+        "count": 1,
+        "total": 1,
+        "limit": 24,
+        "offset": 0,
+        "hasMore": false
+      },
+      "slugs": [
+        "pride-and-prejudice-english-special-edition"
+      ]
+    },
+    {
+      "label": "category format price availability filter",
+      "pathname": "/api/products?category=classic-literature&format=paperback&availability=available&minPriceVnd=100000&maxPriceVnd=200000&sort=price-asc&limit=5",
+      "status": 200,
+      "meta": {
+        "resource": "book-editions",
+        "count": 5,
+        "total": 60,
+        "limit": 5,
+        "offset": 0,
+        "hasMore": true
+      },
+      "prices": [
+        101000,
+        101000,
+        101000,
+        101000,
+        107000
+      ]
+    },
+    {
+      "label": "search filter",
+      "pathname": "/api/products?search=Pride",
+      "status": 200,
+      "meta": {
+        "resource": "book-editions",
+        "count": 6,
+        "total": 6,
+        "limit": 24,
+        "offset": 0,
+        "hasMore": false
+      },
+      "slugs": [
+        "aesops-fables-english-paperback",
+        "wuthering-heights-vietnamese-paperback",
+        "pride-and-prejudice-vietnamese-special-edition",
+        "aesops-fables-vietnamese-paperback",
+        "pride-and-prejudice-english-special-edition",
+        "wuthering-heights-english-paperback"
+      ]
+    },
+    {
+      "label": "pagination",
+      "pathname": "/api/products?limit=5&offset=10&sort=title-asc",
+      "status": 200,
+      "meta": {
+        "resource": "book-editions",
+        "count": 5,
+        "total": 100,
+        "limit": 5,
+        "offset": 10,
+        "hasMore": true
+      },
+      "slugs": [
+        "anne-of-green-gables-english-paperback",
+        "anne-of-green-gables-vietnamese-paperback",
+        "around-the-world-in-eighty-days-english-paperback",
+        "the-three-musketeers-vietnamese-paperback",
+        "the-count-of-monte-cristo-vietnamese-paperback"
+      ]
+    },
+    {
+      "label": "invalid language query",
+      "pathname": "/api/products?language=fr",
+      "status": 400,
+      "error": {
+        "code": "VALIDATION_ERROR",
+        "message": "Invalid book catalog query"
+      },
+      "meta": null
+    },
+    {
+      "label": "invalid price range query",
+      "pathname": "/api/products?minPriceVnd=200000&maxPriceVnd=100000",
+      "status": 400,
+      "error": {
+        "code": "VALIDATION_ERROR",
+        "message": "Invalid book catalog query"
+      },
+      "meta": null
+    },
+    {
+      "label": "book detail",
+      "pathname": "/api/products/pride-and-prejudice-english-special-edition",
+      "status": 200,
+      "meta": {
+        "resource": "book-edition",
+        "relatedCount": 1
+      },
+      "slug": "pride-and-prejudice-english-special-edition",
+      "related": [
+        "pride-and-prejudice-vietnamese-special-edition"
+      ]
+    },
+    {
+      "label": "missing book detail",
+      "pathname": "/api/products/not-a-real-book-edition",
+      "status": 404,
+      "error": {
+        "code": "BOOK_EDITION_NOT_FOUND",
+        "message": "Book edition not found"
+      },
+      "meta": null
+    }
+  ]
+}

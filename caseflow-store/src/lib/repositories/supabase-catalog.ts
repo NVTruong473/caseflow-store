@@ -168,14 +168,41 @@ export async function validateSupabaseCart(
       };
     }
 
+    const category = categoriesById.get(product.categoryId) ?? null;
+    const cartCategory = category
+      ? {
+          id: category.id,
+          labels: {
+            en: category.name,
+            vi: category.name,
+          },
+          name: category.name,
+          slug: category.slug,
+        }
+      : null;
+
     lines.push({
+      availableStock: product.stock,
+      categories: cartCategory ? [cartCategory] : [],
+      category: cartCategory,
+      editionId: productId,
+      lineTotal: product.price * quantity,
       productId,
-      product,
-      category: categoriesById.get(product.categoryId) ?? null,
+      product: {
+        authors: [],
+        coverAlt: product.name,
+        coverPath: "/images/books/placeholders/book-cover-placeholder.svg",
+        format: "paperback",
+        id: product.id,
+        inventoryStatus: product.stock > 0 ? "in-stock" : "out-of-stock",
+        language: "en",
+        name: product.name,
+        price: product.price,
+        slug: product.slug,
+        stock: product.stock,
+      },
       quantity,
       unitPrice: product.price,
-      lineTotal: product.price * quantity,
-      availableStock: product.stock,
     });
   }
 

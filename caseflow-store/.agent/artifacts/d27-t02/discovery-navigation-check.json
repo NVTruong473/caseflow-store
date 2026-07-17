@@ -1,0 +1,176 @@
+{
+  "generatedAt": "2026-07-16T08:26:18.131Z",
+  "baseURL": "http://127.0.0.1:3005",
+  "desktop": {
+    "adminEntryPointWorks": true,
+    "clickedLinks": [
+      {
+        "href": "/",
+        "label": "Home"
+      },
+      {
+        "href": "/catalog",
+        "label": "Catalog"
+      },
+      {
+        "href": "/#categories",
+        "label": "Categories"
+      },
+      {
+        "href": "/#translated-editions",
+        "label": "Editions"
+      },
+      {
+        "href": "/#support",
+        "label": "Support"
+      },
+      {
+        "href": "/admin/orders",
+        "label": "Admin"
+      }
+    ],
+    "footerLinksHaveValidTargets": true,
+    "hasHorizontalOverflow": false,
+    "homeAnchors": {
+      "categories": true,
+      "featured": true,
+      "new-arrivals": true,
+      "translated-editions": true,
+      "offers": true,
+      "vietnamese-recommendations": true,
+      "support": true
+    }
+  },
+  "expected": {
+    "desktopNavigation": [
+      {
+        "href": "/",
+        "label": "Home"
+      },
+      {
+        "href": "/catalog",
+        "label": "Catalog"
+      },
+      {
+        "href": "/#categories",
+        "label": "Categories"
+      },
+      {
+        "href": "/#translated-editions",
+        "label": "Editions"
+      },
+      {
+        "href": "/#support",
+        "label": "Support"
+      },
+      {
+        "href": "/admin/orders",
+        "label": "Admin"
+      }
+    ],
+    "homeAnchors": [
+      "categories",
+      "featured",
+      "new-arrivals",
+      "translated-editions",
+      "offers",
+      "vietnamese-recommendations",
+      "support"
+    ],
+    "mobileNavigation": [
+      {
+        "href": "/",
+        "label": "Trang chủ"
+      },
+      {
+        "href": "/catalog",
+        "label": "Catalog"
+      },
+      {
+        "href": "/#categories",
+        "label": "Danh mục"
+      },
+      {
+        "href": "/#translated-editions",
+        "label": "Ấn bản"
+      },
+      {
+        "href": "/#support",
+        "label": "Hỗ trợ"
+      },
+      {
+        "href": "/admin/orders",
+        "label": "Quản trị"
+      },
+      {
+        "href": "/#new-arrivals",
+        "label": "Ấn bản mới"
+      },
+      {
+        "href": "/#offers",
+        "label": "Ưu đãi hiện có"
+      },
+      {
+        "href": "/#vietnamese-recommendations",
+        "label": "Gợi ý tiếng Việt"
+      }
+    ]
+  },
+  "mobile": {
+    "hasHorizontalOverflow": false,
+    "visibleLinks": [
+      {
+        "href": "/",
+        "label": "Trang chủ"
+      },
+      {
+        "href": "/catalog",
+        "label": "Catalog"
+      },
+      {
+        "href": "/#categories",
+        "label": "Danh mục"
+      },
+      {
+        "href": "/#translated-editions",
+        "label": "Ấn bản"
+      },
+      {
+        "href": "/#support",
+        "label": "Hỗ trợ"
+      },
+      {
+        "href": "/admin/orders",
+        "label": "Quản trị"
+      },
+      {
+        "href": "/#new-arrivals",
+        "label": "Ấn bản mới"
+      },
+      {
+        "href": "/#offers",
+        "label": "Ưu đãi hiện có"
+      },
+      {
+        "href": "/#vietnamese-recommendations",
+        "label": "Gợi ý tiếng Việt"
+      }
+    ]
+  },
+  "ok": true,
+  "pass": {
+    "adminEntryPointWorks": true,
+    "allDesktopLinksClickable": true,
+    "allHomeAnchorsExist": true,
+    "desktopNoOverflow": true,
+    "detailBreadcrumbWorks": true,
+    "footerLinksHaveValidTargets": true,
+    "mobileLinksVisible": true,
+    "mobileNoOverflow": true,
+    "notFoundRecoveryWorks": true
+  },
+  "recovery": {
+    "detailBreadcrumbWorks": true,
+    "notFoundRecoveryWorks": true
+  }
+}

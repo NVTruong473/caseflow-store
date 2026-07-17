@@ -1,0 +1,121 @@
+{
+  "adminAccess": {
+    "ordersCode": null,
+    "ordersCount": 1,
+    "ordersStatus": 200,
+    "pageRole": "admin",
+    "patchCode": null,
+    "patchStatus": 200,
+    "settingsCode": null,
+    "settingsStatus": 200
+  },
+  "anonymousAccess": {
+    "ordersCode": "UNAUTHORIZED",
+    "ordersStatus": 401,
+    "settingsCode": "UNAUTHORIZED",
+    "settingsStatus": 401
+  },
+  "baseURL": "http://127.0.0.1:3005",
+  "customerAccess": {
+    "ordersCode": "FORBIDDEN",
+    "ordersCount": null,
+    "ordersStatus": 403,
+    "pageRole": null,
+    "patchCode": "FORBIDDEN",
+    "patchStatus": 403,
+    "settingsCode": "FORBIDDEN",
+    "settingsStatus": 403
+  },
+  "expectedTotals": {
+    "currency": "VND",
+    "discountTotalVnd": 0,
+    "displayEstimate": {
+      "approximateAmountUsd": 7.112462121212121,
+      "displayCurrency": "USD",
+      "estimatedDisplayBaseVnd": 187769,
+      "estimatedInternationalPaymentFeeVnd": 5469,
+      "estimatedVatVnd": 0,
+      "exchangeRateVndPerUsd": 26400,
+      "feeBasisPoints": 300,
+      "quotedAt": "2026-07-16T08:35:00+07:00",
+      "sourceAmountVnd": 182300,
+      "sourceCurrency": "VND",
+      "sourceNote": {
+        "checkedAt": "2026-07-16T08:35:00+07:00",
+        "label": "HSBC Vietnam telegraphic selling rate",
+        "license": null,
+        "url": "https://www.hsbc.com.vn/en-vn/foreign-exchange/rate/"
+      }
+    },
+    "feeEstimates": [
+      {
+        "amountVnd": 0,
+        "label": "Payment method fee estimate",
+        "sourceNote": {
+          "checkedAt": "2026-07-16T14:39:23.432Z",
+          "label": "CaseFlow Books checkout totals configuration",
+          "license": null,
+          "url": null
+        }
+      }
+    ],
+    "paymentFeeVnd": 0,
+    "shippingFeeVnd": 25000,
+    "subtotalVnd": 143000,
+    "taxEstimates": [
+      {
+        "amountVnd": 14300,
+        "label": "VAT estimate",
+        "rateBasisPoints": 1000,
+        "sourceNote": {
+          "checkedAt": "2026-07-16T14:39:23.432Z",
+          "label": "CaseFlow Books checkout totals configuration",
+          "license": null,
+          "url": null
+        }
+      }
+    ],
+    "taxTotalVnd": 14300,
+    "totalVnd": 182300
+  },
+  "generatedAt": "2026-07-16T14:39:23.432Z",
+  "ok": true,
+  "order": {
+    "id": "ea787c8e-f69f-4076-8a57-70eada838c2b",
+    "orderCode": "CF-MRNM7AVA-7C18FCB7FB",
+    "totalVnd": 182300
+  },
+  "orderRow": {
+    "id": "ea787c8e-f69f-4076-8a57-70eada838c2b",
+    "status": "shipping",
+    "total_vnd": 182300
+  },
+  "pass": {
+    "anonymous": true,
+    "customer": true,
+    "staff": true,
+    "admin": true,
+    "orderUpdated": true,
+    "rolePolicyDoc": true
+  },
+  "rolePolicyDoc": {
+    "exists": true,
+    "hasPermissionMatrix": true,
+    "hasStaffBoundary": true
+  },
+  "staffAccess": {
+    "ordersCode": null,
+    "ordersCount": 1,
+    "ordersStatus": 200,
+    "pageRole": "staff",
+    "patchCode": null,
+    "patchStatus": 200,
+    "settingsCode": "FORBIDDEN",
+    "settingsStatus": 403
+  },
+  "target": {
+    "editionId": "00000000-0000-4000-8000-000000003027",
+    "priceVnd": 143000,
+    "slug": "a-christmas-carol-english-paperback"
+  }
+}

@@ -1,0 +1,349 @@
+{
+  "anonymousAccess": {
+    "code": "UNAUTHORIZED",
+    "status": 401
+  },
+  "baseURL": "http://127.0.0.1:3006",
+  "cleanup": {
+    "removedRows": 1
+  },
+  "customerAccess": {
+    "code": "FORBIDDEN",
+    "status": 403
+  },
+  "generatedAt": "2026-07-17T03:57:21.633Z",
+  "ok": true,
+  "pass": {
+    "anonymousDenied": true,
+    "cleanupRemovedRows": true,
+    "customerDenied": true,
+    "invalidPayloadRejected": true,
+    "publicCatalogReflectsActiveState": true,
+    "staffCrud": true,
+    "uiHealthy": true
+  },
+  "qaSlug": "qa-d36-catalog-mroeph8j-eupuae",
+  "rowAfterFlow": {
+    "id": "3f5df86a-540c-4145-9ae9-2ab0b18881fd",
+    "slug": "qa-d36-catalog-mroeph8j-eupuae",
+    "display_title": "QA D36 Catalog Updated mroeph8j-eupuae",
+    "is_active": true,
+    "stock_quantity": 8
+  },
+  "staffFlow": {
+    "created": {
+      "code": null,
+      "data": {
+        "id": "3f5df86a-540c-4145-9ae9-2ab0b18881fd",
+        "type": "admin-book-edition",
+        "edition": {
+          "id": "3f5df86a-540c-4145-9ae9-2ab0b18881fd",
+          "workId": "00000000-0000-4000-8000-000000002027",
+          "slug": "qa-d36-catalog-mroeph8j-eupuae",
+          "displayTitle": "QA D36 Catalog qa-d36-catalog-mroeph8j-eupuae",
+          "localizedDisplayTitle": {
+            "vi": "QA D36 Catalog qa-d36-catalog-mroeph8j-eupuae",
+            "en": "QA D36 Catalog qa-d36-catalog-mroeph8j-eupuae"
+          },
+          "subtitle": null,
+          "language": "en",
+          "format": "paperback",
+          "publisherId": null,
+          "isbn13": null,
+          "isbn10": null,
+          "publicationYear": null,
+          "pageCount": null,
+          "coverImageId": null,
+          "priceVnd": 188000,
+          "compareAtPriceVnd": null,
+          "stockQuantity": 8,
+          "lowStockThreshold": 2,
+          "inventoryStatus": "in-stock",
+          "summary": {
+            "vi": "Tom tat QA cho kiem thu quan ly catalog D36.",
+            "en": "QA summary written for D36 admin catalog verification."
+          },
+          "sampleExcerptPolicy": "No excerpt is displayed for this managed edition.",
+          "isFeatured": false,
+          "isActive": true,
+          "createdAt": "2026-07-17T03:57:14.948581+00:00",
+          "updatedAt": "2026-07-17T03:57:14.948581+00:00"
+        },
+        "work": {
+          "id": "00000000-0000-4000-8000-000000002027",
+          "slug": "a-christmas-carol",
+          "title": "A Christmas Carol",
+          "localizedTitle": {
+            "vi": "Bai ca Giang sinh",
+            "en": "A Christmas Carol"
+          }
+        },
+        "authors": [
+          {
+            "id": "00000000-0000-4000-8000-000000001003",
+            "slug": "charles-dickens",
+            "name": "Charles Dickens"
+          }
+        ],
+        "categories": [
+          {
+            "id": "00000000-0000-4000-8000-000000000101",
+            "slug": "classic-literature",
+            "labels": {
+              "vi": "Van hoc kinh dien",
+              "en": "Classic literature"
+            }
+          },
+          {
+            "id": "00000000-0000-4000-8000-000000000100",
+            "slug": "fiction",
+            "labels": {
+              "vi": "Van hoc",
+              "en": "Fiction"
+            }
+          }
+        ],
+        "publisher": null
+      },
+      "status": 201
+    },
+    "deactivated": {
+      "code": null,
+      "data": {
+        "id": "3f5df86a-540c-4145-9ae9-2ab0b18881fd",
+        "type": "admin-book-edition",
+        "edition": {
+          "id": "3f5df86a-540c-4145-9ae9-2ab0b18881fd",
+          "workId": "00000000-0000-4000-8000-000000002027",
+          "slug": "qa-d36-catalog-mroeph8j-eupuae",
+          "displayTitle": "QA D36 Catalog Updated mroeph8j-eupuae",
+          "localizedDisplayTitle": {
+            "vi": "QA D36 Catalog qa-d36-catalog-mroeph8j-eupuae",
+            "en": "QA D36 Catalog qa-d36-catalog-mroeph8j-eupuae"
+          },
+          "subtitle": null,
+          "language": "en",
+          "format": "paperback",
+          "publisherId": null,
+          "isbn13": null,
+          "isbn10": null,
+          "publicationYear": null,
+          "pageCount": null,
+          "coverImageId": null,
+          "priceVnd": 188000,
+          "compareAtPriceVnd": null,
+          "stockQuantity": 8,
+          "lowStockThreshold": 2,
+          "inventoryStatus": "in-stock",
+          "summary": {
+            "vi": "Tom tat QA cho kiem thu quan ly catalog D36.",
+            "en": "QA summary written for D36 admin catalog verification."
+          },
+          "sampleExcerptPolicy": null,
+          "isFeatured": false,
+          "isActive": false,
+          "createdAt": "2026-07-17T03:57:14.948581+00:00",
+          "updatedAt": "2026-07-17T03:57:18.239432+00:00"
+        },
+        "work": {
+          "id": "00000000-0000-4000-8000-000000002027",
+          "slug": "a-christmas-carol",
+          "title": "A Christmas Carol",
+          "localizedTitle": {
+            "vi": "Bai ca Giang sinh",
+            "en": "A Christmas Carol"
+          }
+        },
+        "authors": [
+          {
+            "id": "00000000-0000-4000-8000-000000001003",
+            "slug": "charles-dickens",
+            "name": "Charles Dickens"
+          }
+        ],
+        "categories": [
+          {
+            "id": "00000000-0000-4000-8000-000000000101",
+            "slug": "classic-literature",
+            "labels": {
+              "vi": "Van hoc kinh dien",
+              "en": "Classic literature"
+            }
+          },
+          {
+            "id": "00000000-0000-4000-8000-000000000100",
+            "slug": "fiction",
+            "labels": {
+              "vi": "Van hoc",
+              "en": "Fiction"
+            }
+          }
+        ],
+        "publisher": null
+      },
+      "status": 200
+    },
+    "edited": {
+      "code": null,
+      "data": {
+        "id": "3f5df86a-540c-4145-9ae9-2ab0b18881fd",
+        "type": "admin-book-edition",
+        "edition": {
+          "id": "3f5df86a-540c-4145-9ae9-2ab0b18881fd",
+          "workId": "00000000-0000-4000-8000-000000002027",
+          "slug": "qa-d36-catalog-mroeph8j-eupuae",
+          "displayTitle": "QA D36 Catalog Updated mroeph8j-eupuae",
+          "localizedDisplayTitle": {
+            "vi": "QA D36 Catalog qa-d36-catalog-mroeph8j-eupuae",
+            "en": "QA D36 Catalog qa-d36-catalog-mroeph8j-eupuae"
+          },
+          "subtitle": null,
+          "language": "en",
+          "format": "paperback",
+          "publisherId": null,
+          "isbn13": null,
+          "isbn10": null,
+          "publicationYear": null,
+          "pageCount": null,
+          "coverImageId": null,
+          "priceVnd": 188000,
+          "compareAtPriceVnd": null,
+          "stockQuantity": 8,
+          "lowStockThreshold": 2,
+          "inventoryStatus": "in-stock",
+          "summary": {
+            "vi": "Tom tat QA cho kiem thu quan ly catalog D36.",
+            "en": "QA summary written for D36 admin catalog verification."
+          },
+          "sampleExcerptPolicy": "No excerpt is displayed for this managed edition.",
+          "isFeatured": false,
+          "isActive": true,
+          "createdAt": "2026-07-17T03:57:14.948581+00:00",
+          "updatedAt": "2026-07-17T03:57:16.976563+00:00"
+        },
+        "work": {
+          "id": "00000000-0000-4000-8000-000000002027",
+          "slug": "a-christmas-carol",
+          "title": "A Christmas Carol",
+          "localizedTitle": {
+            "vi": "Bai ca Giang sinh",
+            "en": "A Christmas Carol"
+          }
+        },
+        "authors": [
+          {
+            "id": "00000000-0000-4000-8000-000000001003",
+            "slug": "charles-dickens",
+            "name": "Charles Dickens"
+          }
+        ],
+        "categories": [
+          {
+            "id": "00000000-0000-4000-8000-000000000101",
+            "slug": "classic-literature",
+            "labels": {
+              "vi": "Van hoc kinh dien",
+              "en": "Classic literature"
+            }
+          },
+          {
+            "id": "00000000-0000-4000-8000-000000000100",
+            "slug": "fiction",
+            "labels": {
+              "vi": "Van hoc",
+              "en": "Fiction"
+            }
+          }
+        ],
+        "publisher": null
+      },
+      "status": 200
+    },
+    "hasOverflow": false,
+    "invalidPayload": {
+      "code": "VALIDATION_ERROR",
+      "status": 400
+    },
+    "pageReady": true,
+    "pageShowsUpdatedTitle": true,
+    "publicAfterCreate": 200,
+    "publicAfterDeactivate": 404,
+    "publicAfterReactivate": 200,
+    "reactivated": {
+      "code": null,
+      "data": {
+        "id": "3f5df86a-540c-4145-9ae9-2ab0b18881fd",
+        "type": "admin-book-edition",
+        "edition": {
+          "id": "3f5df86a-540c-4145-9ae9-2ab0b18881fd",
+          "workId": "00000000-0000-4000-8000-000000002027",
+          "slug": "qa-d36-catalog-mroeph8j-eupuae",
+          "displayTitle": "QA D36 Catalog Updated mroeph8j-eupuae",
+          "localizedDisplayTitle": {
+            "vi": "QA D36 Catalog qa-d36-catalog-mroeph8j-eupuae",
+            "en": "QA D36 Catalog qa-d36-catalog-mroeph8j-eupuae"
+          },
+          "subtitle": null,
+          "language": "en",
+          "format": "paperback",
+          "publisherId": null,
+          "isbn13": null,
+          "isbn10": null,
+          "publicationYear": null,
+          "pageCount": null,
+          "coverImageId": null,
+          "priceVnd": 188000,
+          "compareAtPriceVnd": null,
+          "stockQuantity": 8,
+          "lowStockThreshold": 2,
+          "inventoryStatus": "in-stock",
+          "summary": {
+            "vi": "Tom tat QA cho kiem thu quan ly catalog D36.",
+            "en": "QA summary written for D36 admin catalog verification."
+          },
+          "sampleExcerptPolicy": null,
+          "isFeatured": false,
+          "isActive": true,
+          "createdAt": "2026-07-17T03:57:14.948581+00:00",
+          "updatedAt": "2026-07-17T03:57:19.398589+00:00"
+        },
+        "work": {
+          "id": "00000000-0000-4000-8000-000000002027",
+          "slug": "a-christmas-carol",
+          "title": "A Christmas Carol",
+          "localizedTitle": {
+            "vi": "Bai ca Giang sinh",
+            "en": "A Christmas Carol"
+          }
+        },
+        "authors": [
+          {
+            "id": "00000000-0000-4000-8000-000000001003",
+            "slug": "charles-dickens",
+            "name": "Charles Dickens"
+          }
+        ],
+        "categories": [
+          {
+            "id": "00000000-0000-4000-8000-000000000101",
+            "slug": "classic-literature",
+            "labels": {
+              "vi": "Van hoc kinh dien",
+              "en": "Classic literature"
+            }
+          },
+          {
+            "id": "00000000-0000-4000-8000-000000000100",
+            "slug": "fiction",
+            "labels": {
+              "vi": "Van hoc",
+              "en": "Fiction"
+            }
+          }
+        ],
+        "publisher": null
+      },
+      "status": 200
+    }
+  }
+}

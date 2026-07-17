@@ -1,0 +1,195 @@
+{
+  "task": "D23-T03",
+  "phase": "post-migration-access-control",
+  "capturedAt": "2026-07-16T05:50:53.835Z",
+  "protectedTables": [
+    "orders",
+    "order_items",
+    "book_promotions",
+    "book_inventory_adjustments"
+  ],
+  "rolePrivileges": [
+    {
+      "role_name": "anon",
+      "table_name": "book_inventory_adjustments",
+      "can_select": false,
+      "can_insert": false,
+      "can_update": false,
+      "can_delete": false
+    },
+    {
+      "role_name": "anon",
+      "table_name": "book_promotions",
+      "can_select": false,
+      "can_insert": false,
+      "can_update": false,
+      "can_delete": false
+    },
+    {
+      "role_name": "anon",
+      "table_name": "order_items",
+      "can_select": false,
+      "can_insert": false,
+      "can_update": false,
+      "can_delete": false
+    },
+    {
+      "role_name": "anon",
+      "table_name": "orders",
+      "can_select": false,
+      "can_insert": false,
+      "can_update": false,
+      "can_delete": false
+    },
+    {
+      "role_name": "authenticated",
+      "table_name": "book_inventory_adjustments",
+      "can_select": false,
+      "can_insert": false,
+      "can_update": false,
+      "can_delete": false
+    },
+    {
+      "role_name": "authenticated",
+      "table_name": "book_promotions",
+      "can_select": false,
+      "can_insert": false,
+      "can_update": false,
+      "can_delete": false
+    },
+    {
+      "role_name": "authenticated",
+      "table_name": "order_items",
+      "can_select": false,
+      "can_insert": false,
+      "can_update": false,
+      "can_delete": false
+    },
+    {
+      "role_name": "authenticated",
+      "table_name": "orders",
+      "can_select": false,
+      "can_insert": false,
+      "can_update": false,
+      "can_delete": false
+    }
+  ],
+  "authSignIn": {
+    "attempted": true,
+    "ok": true,
+    "error": null
+  },
+  "restChecks": [
+    {
+      "label": "anon",
+      "table": "orders",
+      "status": 401,
+      "allowed": false,
+      "rowCount": null,
+      "error": {
+        "message": "permission denied for table orders",
+        "code": "42501",
+        "details": null,
+        "hint": "Grant the required privileges to the current role with: GRANT SELECT ON public.orders TO anon;"
+      }
+    },
+    {
+      "label": "anon",
+      "table": "order_items",
+      "status": 401,
+      "allowed": false,
+      "rowCount": null,
+      "error": {
+        "message": "permission denied for table order_items",
+        "code": "42501",
+        "details": null,
+        "hint": "Grant the required privileges to the current role with: GRANT SELECT ON public.order_items TO anon;"
+      }
+    },
+    {
+      "label": "anon",
+      "table": "book_promotions",
+      "status": 401,
+      "allowed": false,
+      "rowCount": null,
+      "error": {
+        "message": "permission denied for table book_promotions",
+        "code": "42501",
+        "details": null,
+        "hint": "Grant the required privileges to the current role with: GRANT SELECT ON public.book_promotions TO anon;"
+      }
+    },
+    {
+      "label": "anon",
+      "table": "book_inventory_adjustments",
+      "status": 401,
+      "allowed": false,
+      "rowCount": null,
+      "error": {
+        "message": "permission denied for table book_inventory_adjustments",
+        "code": "42501",
+        "details": null,
+        "hint": "Grant the required privileges to the current role with: GRANT SELECT ON public.book_inventory_adjustments TO anon;"
+      }
+    },
+    {
+      "label": "authenticated-admin-session",
+      "table": "orders",
+      "status": 403,
+      "allowed": false,
+      "rowCount": null,
+      "error": {
+        "message": "permission denied for table orders",
+        "code": "42501",
+        "details": null,
+        "hint": "Grant the required privileges to the current role with: GRANT SELECT ON public.orders TO authenticated;"
+      }
+    },
+    {
+      "label": "authenticated-admin-session",
+      "table": "order_items",
+      "status": 403,
+      "allowed": false,
+      "rowCount": null,
+      "error": {
+        "message": "permission denied for table order_items",
+        "code": "42501",
+        "details": null,
+        "hint": "Grant the required privileges to the current role with: GRANT SELECT ON public.order_items TO authenticated;"
+      }
+    },
+    {
+      "label": "authenticated-admin-session",
+      "table": "book_promotions",
+      "status": 403,
+      "allowed": false,
+      "rowCount": null,
+      "error": {
+        "message": "permission denied for table book_promotions",
+        "code": "42501",
+        "details": null,
+        "hint": "Grant the required privileges to the current role with: GRANT SELECT ON public.book_promotions TO authenticated;"
+      }
+    },
+    {
+      "label": "authenticated-admin-session",
+      "table": "book_inventory_adjustments",
+      "status": 403,
+      "allowed": false,
+      "rowCount": null,
+      "error": {
+        "message": "permission denied for table book_inventory_adjustments",
+        "code": "42501",
+        "details": null,
+        "hint": "Grant the required privileges to the current role with: GRANT SELECT ON public.book_inventory_adjustments TO authenticated;"
+      }
+    }
+  ],
+  "pass": {
+    "noAnonProtectedTablePrivileges": true,
+    "noAuthenticatedProtectedTablePrivileges": true,
+    "restAnonProtectedReadsDenied": true,
+    "restAuthenticatedProtectedReadsDenied": true,
+    "authenticatedSignInAvailable": true
+  }
+}

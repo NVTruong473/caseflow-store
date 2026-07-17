@@ -1,124 +1,168 @@
 # Known Limitations
 
-This document records the intentional boundaries and accepted risks of CaseFlow
-Store `v1.0.0`. These items are not hidden production capabilities; they define
-where the portfolio MVP stops.
+This document records the intentional boundaries and accepted risks of
+CaseFlow Books `v1.1`. These items are not hidden production capabilities; they
+define where the portfolio release stops.
 
 ## Commerce scope
 
-### Simulated payment and shipping
+### Payments are simulated
 
-The checkout persists a real order but does not process payment, calculate tax,
-quote shipping, or collect card details. The displayed order total equals the
-server-calculated product subtotal.
+Checkout supports COD, bank transfer, MoMo, ZaloPay, and VNPay-style choices,
+but no real provider is integrated. The app does not collect card numbers, CVV,
+card expiry, bank-login data, wallet credentials, QR payment confirmations, or
+webhook callbacks.
 
-**Current control:** the checkout, success page, footer, and README state that no
-payment is collected.
+**Current control:** payment method choices produce pending or awaiting
+confirmation states, and server code calculates the final stored VND totals.
 
-**Next step:** integrate a payment provider and shipping/tax rules only after a
-new ADR covers webhook verification, idempotency, refunds, and data handling.
+**Next step:** integrate a real provider only after a new ADR covers provider
+selection, webhook verification, idempotency, reconciliation, refunds, failure
+states, and sensitive-data handling.
 
-### Stock is validated, not reserved or decremented
+### Phone and email are not truly verified
 
-The server reloads each product and rejects quantities above current stock. The
-`create_order_with_items` RPC atomically inserts the order and item snapshots,
-but it does not decrement `products.stock` or reserve inventory. Concurrent
-orders can therefore oversell the displayed quantity.
+Customer checkout requires profile/contact fields, and those fields are
+validated for shape and completeness. CaseFlow Books `v1.1` does not send real
+SMS OTPs or provider-backed email verification.
 
-**Current control:** stock is checked immediately before order creation and
-quantity boundaries are enforced in the UI and API.
+**Current control:** checkout readiness prevents missing or malformed profile
+data, but documentation avoids claiming verified phone numbers or verified email
+ownership.
 
-**Next step:** lock product rows and decrement stock in the same transaction, or
-introduce expiring reservations with explicit release behavior.
+**Next step:** add SMS/email verification through a real provider with rate
+limits, retry windows, abuse monitoring, and recovery flows.
 
-### Cart is browser-local
+### Shipping, VAT, FX, and fees are estimates
 
-The cart stores only product IDs and quantities in React Context/localStorage.
-It does not sync across devices, browsers, or authenticated identities and can
-become stale between visits.
+The app calculates server-owned shipping, VAT, payment fee, and English-mode
+USD estimates. These are configurable demo assumptions, not legal tax advice,
+shipping-carrier quotes, or bank-guaranteed exchange rates.
 
-**Current control:** the server revalidates product activity, price, and stock at
-checkout; stale or invalid carts are blocked.
+**Current control:** VND remains the source-of-truth stored currency. USD is
+displayed as an approximation.
 
-**Next step:** add a server cart only when account or cross-device requirements
-justify the extra persistence and merge rules.
+**Next step:** connect real shipping/tax/FX providers only after documenting
+jurisdiction, rounding, invoice, refund, and reconciliation rules.
+
+### Stock is validated, not fully reserved
+
+The server reloads each book edition and rejects quantities above current stock
+before order creation. The current flow records order and item snapshots, but it
+is not a full reservation system with expiring holds and conflict recovery.
+
+**Current control:** inventory status and stock quantity are checked server-side
+and admin inventory adjustments are recorded.
+
+**Next step:** decrement or reserve stock inside the same database transaction,
+add conflict messaging, and define restock/cancel behavior.
+
+### Cart remains browser-local
+
+The cart stores only edition IDs and quantities in React Context/localStorage.
+It does not sync across devices, browsers, or authenticated identities.
+
+**Current control:** the server revalidates active edition status, price,
+promotion, stock, VAT, shipping, payment fee, and totals before checkout.
+
+**Next step:** add a server cart only when cross-device account behavior justifies
+merge rules, expiry rules, and abandoned-cart cleanup.
 
 ## Customer and admin scope
 
-### Guest order follow-up is manual
+### Public tracking lacks production abuse protection
 
-Customers do not have accounts, order history, a public order lookup, or email
-notifications. The success summary is stored in sessionStorage, so a direct link
-can show the order code but not reconstruct private order details.
+Public order tracking requires order code plus matching email or phone and
+returns tracking-safe fields. It is not protected by production CAPTCHA, request
+rate limiting, device fingerprinting, or abuse-alert workflows.
 
-**Current control:** the confirmation page tells the shopper to retain the order
-code and does not expose order records through public RLS/API access.
+**Current control:** wrong-contact and missing-order lookups use the same
+not-found response, and raw customer email, phone, address, and item details are
+not exposed in the public tracking response.
 
-**Next step:** add verified-email notifications or a short-lived, signed order
-lookup mechanism without making order codes authorization tokens.
+**Next step:** add rate limiting, alerting, signed lookup links, or CAPTCHA
+before accepting real customer traffic.
 
-### Personal-data retention and abuse controls are incomplete
+### Personal-data governance is incomplete
 
-Guest name, email, phone, and shipping address are stored for the admin workflow.
-There is no automated retention/deletion policy, rate limiter, CAPTCHA, or
-production abuse-monitoring workflow.
+Customer profile, order, contact, and shipping data are stored for the demo
+workflow. There is no automated retention/deletion workflow, consent-management
+screen, export/delete request handling, or privacy operations runbook.
 
-**Current control:** server validation limits field shapes and lengths; no card
-data is collected; release tests remove synthetic QA records.
+**Current control:** field shapes and lengths are validated, sensitive payment
+data is not collected, and operational customer views minimize raw address/phone
+exposure.
 
-**Next step:** define retention, deletion, consent, rate limits, alerting, and
-demo-data cleanup before accepting real customer traffic. The public deployment
-should be treated as a portfolio demo and used with synthetic data.
+**Next step:** define retention, deletion, consent, access logging, and data
+subject request workflows before using the deployment as a live business system.
 
-### Admin authorization is coarse-grained
+### Admin operations are functional but not enterprise-grade
 
-The data model supports only `customer` and `admin` roles. Admins can list
-orders and update status, but there is no MFA requirement, per-action permission
-model, status-change audit trail, or staff management UI.
+Admin/staff roles cover dashboard, order operations, catalog, inventory,
+promotions, customers, settings, and exports. The system does not yet include
+MFA enforcement, append-only audit logs for every admin action, staff invitation
+flows, or per-record approval workflows.
 
-**Current control:** Supabase Auth supplies cookie sessions; both server pages and
-Route Handlers repeat the server-side admin-role check; direct order-table access
-remains denied by RLS.
+**Current control:** server pages and Route Handlers repeat session, role, and
+permission checks. UI hiding is not treated as an authorization boundary.
 
-**Next step:** add MFA, least-privilege staff roles, and append-only audit events
-before expanding the admin team or operational impact.
+**Next step:** add MFA, audit events, staff lifecycle management, finer-grained
+permissions, and alerting before expanding real operational access.
 
-## Catalog and operations
+## Catalog and content scope
 
-### Catalog management and media are seed-driven
+### Book metadata is curated demo content
 
-Products and categories are loaded from SQL seed data. Product visuals are
-code-rendered representations rather than managed product photography. There is
-no catalog CRUD UI, media upload pipeline, CDN policy, or merchandising workflow.
+The 100-edition catalog uses factual classic/public-domain-style metadata where
+practical and self-written summaries. It is not a licensed commercial book data
+feed, publisher inventory sync, or bibliographic authority database.
 
-**Next step:** add managed media and catalog administration only after defining
-ownership, validation, image processing, and cache invalidation.
+**Current control:** the project avoids copied publisher blurbs, reviews, and
+protected excerpts. Rights assumptions are documented in `docs/domain.md`.
 
-### Production operations are lightweight
+**Next step:** use a licensed metadata provider or explicitly permitted source
+before presenting the catalog as commercial production data.
+
+### Cover assets are safe placeholders
+
+The active cover strategy uses an internal placeholder SVG and stable local
+references. It does not hotlink or copy commercial book covers.
+
+**Current control:** missing or placeholder cover states are designed and
+documented in `docs/v1.1-safe-cover-asset-strategy.md`.
+
+**Next step:** add a media pipeline only after defining licensing, uploads,
+image processing, CDN caching, alt text, and takedown handling.
+
+## Production operations
+
+### Managed deployment is not a full operations program
 
 The application uses managed Vercel and Supabase services without a documented
-SLO, load test, custom alerting, disaster-recovery exercise, or automated backup
-restore test.
+SLO, load test, alert routing, incident response runbook, disaster-recovery
+exercise, or automated backup-restore test.
 
-**Current control:** release acceptance covers HTTP smoke checks, 20 Playwright
-flows, database cleanup, and managed-platform deployment status.
+**Current control:** release acceptance covers local gates, production smoke,
+Playwright checks, cleanup, deployment status, and secret scan.
 
-**Next step:** add error monitoring, request metrics, alerts, load baselines, and
-restore drills before claiming commercial availability.
+**Next step:** add request metrics, error monitoring, alerts, load baselines,
+backup-restore drills, and incident playbooks before claiming commercial
+availability.
 
 ## Accepted dependency advisory
 
-At the release audit, `npm audit` reports:
+At the `v1.1` release audit, `npm audit --audit-level=moderate` reported:
 
 - 0 critical
 - 0 high
 - 2 moderate
 - 0 low
 
-Both moderate findings refer to PostCSS bundled through Next.js 16.2.10. The
-available automated `--force` remediation proposes a breaking downgrade to
-Next.js 9.3.3, so it was rejected rather than presenting a downgrade as a safe
-fix.
+Both moderate findings are inherited through Next.js 16.2.10 and PostCSS
+8.4.31. `npm view next version` reported Next.js 16.2.10 as the current latest
+version during the check, and `npm audit fix --force` proposed a breaking
+downgrade to Next.js 9.3.3, so the unsafe automated fix was rejected.
 
-**Next step:** monitor the upstream Next.js dependency and apply a compatible
-patched release, then rerun lint, build, Playwright, and production acceptance.
+**Next step:** monitor upstream Next.js/PostCSS updates and apply a compatible
+patched release, then rerun TypeScript, lint, build, Playwright, production
+smoke, and dependency audit.

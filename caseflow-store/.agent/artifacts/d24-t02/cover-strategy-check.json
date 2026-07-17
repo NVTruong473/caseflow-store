@@ -1,0 +1,36 @@
+{
+  "task": "D24-T02",
+  "generatedAt": "2026-07-16T06:13:28.960Z",
+  "coverAssetCount": 1,
+  "editionCount": 100,
+  "editionsWithCover": 100,
+  "coverAsset": {
+    "id": "00000000-0000-4000-8000-000000000050",
+    "path": "/images/books/placeholders/book-cover-placeholder.svg",
+    "altText": {
+      "vi": "Bia sach tam thoi noi bo cua CaseFlow Books",
+      "en": "CaseFlow Books internal placeholder cover"
+    },
+    "source": "internal",
+    "sourceNote": {
+      "label": "Project-created SVG placeholder",
+      "url": null,
+      "license": "Internal project asset",
+      "checkedAt": "2026-07-16T00:00:00.000Z"
+    },
+    "createdAt": "2026-07-16T00:00:00.000Z",
+    "updatedAt": "2026-07-16T00:00:00.000Z"
+  },
+  "checks": {
+    "hasOneInternalPlaceholderAsset": true,
+    "everyEditionHasStableCoverId": true,
+    "coverPathIsLocal": true,
+    "coverFileExists": true,
+    "svgHasNoExternalHrefOrSrc": true,
+    "svgHasAccessibleTitle": true,
+    "visualSmokeImageRendered": true
+  },
+  "artifacts": {
+    "screenshot": ".agent/artifacts/d24-t02/cover-placeholder-smoke.png"
+  }
+}

@@ -9,13 +9,72 @@ import {
   type CheckoutSuccessSnapshot,
 } from "@/features/checkout/checkout-success-storage";
 import { formatVnd } from "@/lib/format/currency";
+import type { Language } from "@/lib/i18n/language";
+import type { PaymentMethod, PaymentStatus } from "@/types/domain";
 
 type SuccessPageState =
   | { status: "loading" }
   | { status: "ready"; snapshot: CheckoutSuccessSnapshot }
   | { status: "missing"; orderCode: string | null };
 
-export function CheckoutSuccessPage() {
+const checkoutSuccessCopy = {
+  en: {
+    browseMoreBooks: "Browse more books",
+    cartCleared: "Cart was cleared after the order was created.",
+    continueShopping: "Continue shopping",
+    directOpenDescription:
+      "This page stores the success details in the current browser session. If the session data is cleared or the page is opened directly, the full order summary cannot be reconstructed here.",
+    directOpenTitle: "Order details are not available here",
+    items: "Items",
+    missingBadge: "Order lookup unavailable",
+    nextSteps: "Next steps",
+    noCard: "No card number, expiry date, or CVV was collected.",
+    orderCode: "Order code",
+    orderCodeFromUrl: "Order code from URL",
+    orderPlaced: "Order placed",
+    orderStatus:
+      "Order status starts as pending for admin review.",
+    orderTotal: "Order total",
+    paymentMethod: "Payment method",
+    paymentStatus: "Payment status",
+    quantity: "Quantity",
+    returnToCheckout: "Return to checkout",
+    status: "Status",
+    successDescription:
+      "The order was created without collecting payment details. Keep the order code for support and admin review.",
+    successTitle: "Order confirmed",
+    viewCheckout: "View checkout",
+  },
+  vi: {
+    browseMoreBooks: "Duyệt thêm sách",
+    cartCleared: "Giỏ hàng đã được xóa sau khi đơn hàng được tạo.",
+    continueShopping: "Tiếp tục mua sách",
+    directOpenDescription:
+      "Trang này lưu chi tiết đặt hàng trong phiên trình duyệt hiện tại. Nếu dữ liệu phiên bị xóa hoặc trang được mở trực tiếp, bản tóm tắt đầy đủ chưa thể dựng lại tại đây.",
+    directOpenTitle: "Không có chi tiết đơn hàng tại đây",
+    items: "Sản phẩm",
+    missingBadge: "Chưa tra cứu được đơn hàng",
+    nextSteps: "Bước tiếp theo",
+    noCard: "Không thu số thẻ, ngày hết hạn hoặc CVV.",
+    orderCode: "Mã đơn hàng",
+    orderCodeFromUrl: "Mã đơn hàng từ URL",
+    orderPlaced: "Đã đặt đơn",
+    orderStatus: "Trạng thái đơn bắt đầu là đang chờ để admin kiểm tra.",
+    orderTotal: "Tổng đơn hàng",
+    paymentMethod: "Phương thức thanh toán",
+    paymentStatus: "Trạng thái thanh toán",
+    quantity: "Số lượng",
+    returnToCheckout: "Quay lại thanh toán",
+    status: "Trạng thái",
+    successDescription:
+      "Đơn hàng đã được tạo mà không thu thông tin thanh toán. Hãy giữ mã đơn để hỗ trợ và admin kiểm tra.",
+    successTitle: "Đơn hàng đã được xác nhận",
+    viewCheckout: "Xem thanh toán",
+  },
+} as const;
+
+export function CheckoutSuccessPage({ language }: { language: Language }) {
+  const copy = checkoutSuccessCopy[language];
   const [state, setState] = React.useState<SuccessPageState>({
     status: "loading",
   });
@@ -44,18 +103,22 @@ export function CheckoutSuccessPage() {
     >
       <Container className="flex flex-col gap-case-xl">
         <Link
-          href="/#products"
+          href="/#featured"
           className="w-fit text-small font-medium text-primary hover:text-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
         >
-          Continue shopping
+          {copy.continueShopping}
         </Link>
 
         {state.status === "loading" ? <CheckoutSuccessLoading /> : null}
         {state.status === "ready" ? (
-          <CheckoutSuccessDetails snapshot={state.snapshot} />
+          <CheckoutSuccessDetails
+            copy={copy}
+            language={language}
+            snapshot={state.snapshot}
+          />
         ) : null}
         {state.status === "missing" ? (
-          <CheckoutSuccessMissing orderCode={state.orderCode} />
+          <CheckoutSuccessMissing copy={copy} orderCode={state.orderCode} />
         ) : null}
       </Container>
     </main>
@@ -80,27 +143,30 @@ function CheckoutSuccessLoading() {
 }
 
 function CheckoutSuccessDetails({
+  copy,
+  language,
   snapshot,
 }: {
+  copy: (typeof checkoutSuccessCopy)[Language];
+  language: Language;
   snapshot: CheckoutSuccessSnapshot;
 }) {
   return (
     <section className="grid gap-case-xl lg:grid-cols-[minmax(0,1fr)_380px]">
       <div className="min-w-0">
-        <Badge variant="success">Order placed</Badge>
+        <Badge variant="success">{copy.orderPlaced}</Badge>
         <div className="mt-case-md max-w-3xl">
           <h1 className="text-heading-1 font-semibold text-foreground">
-            Simulated order confirmed
+            {copy.successTitle}
           </h1>
           <p className="mt-case-sm text-body leading-7 text-text-muted">
-            The order was created without collecting payment details. Keep the
-            order code for support and admin review.
+            {copy.successDescription}
           </p>
         </div>
 
         <dl className="mt-case-xl divide-y divide-border border-y border-border bg-surface">
           <div className="flex flex-col gap-case-xs py-case-md sm:flex-row sm:items-center sm:justify-between">
-            <dt className="text-small text-text-muted">Order code</dt>
+            <dt className="text-small text-text-muted">{copy.orderCode}</dt>
             <dd
               className="break-words font-semibold text-foreground"
               data-checkout-success-code
@@ -109,7 +175,7 @@ function CheckoutSuccessDetails({
             </dd>
           </div>
           <div className="flex flex-col gap-case-xs py-case-md sm:flex-row sm:items-center sm:justify-between">
-            <dt className="text-small text-text-muted">Status</dt>
+            <dt className="text-small text-text-muted">{copy.status}</dt>
             <dd
               className="font-semibold capitalize text-foreground"
               data-checkout-success-status
@@ -118,7 +184,29 @@ function CheckoutSuccessDetails({
             </dd>
           </div>
           <div className="flex flex-col gap-case-xs py-case-md sm:flex-row sm:items-center sm:justify-between">
-            <dt className="text-small text-text-muted">Order total</dt>
+            <dt className="text-small text-text-muted">
+              {copy.paymentMethod}
+            </dt>
+            <dd
+              className="font-semibold text-foreground"
+              data-checkout-success-payment-method
+            >
+              {getPaymentMethodLabel(snapshot.paymentMethod, language)}
+            </dd>
+          </div>
+          <div className="flex flex-col gap-case-xs py-case-md sm:flex-row sm:items-center sm:justify-between">
+            <dt className="text-small text-text-muted">
+              {copy.paymentStatus}
+            </dt>
+            <dd
+              className="font-semibold text-foreground"
+              data-checkout-success-payment-status
+            >
+              {getPaymentStatusLabel(snapshot.paymentStatus, language)}
+            </dd>
+          </div>
+          <div className="flex flex-col gap-case-xs py-case-md sm:flex-row sm:items-center sm:justify-between">
+            <dt className="text-small text-text-muted">{copy.orderTotal}</dt>
             <dd
               className="text-heading-3 font-semibold text-foreground"
               data-checkout-success-total
@@ -130,7 +218,7 @@ function CheckoutSuccessDetails({
 
         <div className="mt-case-xl">
           <h2 className="text-heading-2 font-semibold text-foreground">
-            Items
+            {copy.items}
           </h2>
           <ul
             className="mt-case-md divide-y divide-border border-y border-border"
@@ -146,7 +234,7 @@ function CheckoutSuccessDetails({
                     {item.productName}
                   </p>
                   <p className="mt-case-xs text-small text-text-muted">
-                    Quantity: {item.quantity}
+                    {copy.quantity}: {item.quantity}
                   </p>
                 </div>
                 <p className="shrink-0 font-semibold text-foreground">
@@ -160,25 +248,25 @@ function CheckoutSuccessDetails({
 
       <aside className="rounded-lg border border-border bg-surface p-case-lg">
         <h2 className="text-heading-3 font-semibold text-foreground">
-          Next steps
+          {copy.nextSteps}
         </h2>
         <ul className="mt-case-md flex flex-col gap-case-sm text-small leading-6 text-text-muted">
-          <li>Order status starts as pending for admin review.</li>
-          <li>No card number, expiry date, or CVV was collected.</li>
-          <li>Cart was cleared after the simulated order was created.</li>
+          <li>{copy.orderStatus}</li>
+          <li>{copy.noCard}</li>
+          <li>{copy.cartCleared}</li>
         </ul>
         <div className="mt-case-lg grid gap-case-sm">
           <Link
-            href="/#products"
+            href="/#featured"
             className="inline-flex min-h-11 items-center justify-center rounded-md border border-primary bg-primary px-4 py-2 text-body font-medium text-surface transition-colors hover:border-primary-hover hover:bg-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
           >
-            Shop more products
+            {copy.browseMoreBooks}
           </Link>
           <Link
             href="/checkout"
             className="inline-flex min-h-11 items-center justify-center rounded-md border border-border bg-surface px-4 py-2 text-body font-medium text-foreground transition-colors hover:border-primary hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
           >
-            View checkout
+            {copy.viewCheckout}
           </Link>
         </div>
       </aside>
@@ -186,28 +274,31 @@ function CheckoutSuccessDetails({
   );
 }
 
-function CheckoutSuccessMissing({ orderCode }: { orderCode: string | null }) {
+function CheckoutSuccessMissing({
+  copy,
+  orderCode,
+}: {
+  copy: (typeof checkoutSuccessCopy)[Language];
+  orderCode: string | null;
+}) {
   return (
     <section
       className="rounded-lg border border-border bg-surface p-case-xl"
       data-checkout-success-missing
     >
-      <Badge variant="neutral">Order lookup unavailable</Badge>
+      <Badge variant="neutral">{copy.missingBadge}</Badge>
       <div className="mt-case-md max-w-3xl">
         <h1 className="text-heading-1 font-semibold text-foreground">
-          Order details are not available here
+          {copy.directOpenTitle}
         </h1>
         <p className="mt-case-sm text-body leading-7 text-text-muted">
-          This demo stores the success details in the current browser session.
-          If the session data is cleared or the page is opened directly, the
-          full order summary cannot be reconstructed without the later database
-          integration.
+          {copy.directOpenDescription}
         </p>
       </div>
 
       {orderCode ? (
         <dl className="mt-case-lg border-y border-border py-case-md">
-          <dt className="text-small text-text-muted">Order code from URL</dt>
+          <dt className="text-small text-text-muted">{copy.orderCodeFromUrl}</dt>
           <dd
             className="mt-case-xs break-words font-semibold text-foreground"
             data-checkout-success-code
@@ -219,18 +310,62 @@ function CheckoutSuccessMissing({ orderCode }: { orderCode: string | null }) {
 
       <div className="mt-case-lg flex flex-col gap-case-sm sm:flex-row">
         <Link
-          href="/#products"
+          href="/#featured"
           className="inline-flex min-h-11 items-center justify-center rounded-md border border-primary bg-primary px-4 py-2 text-body font-medium text-surface transition-colors hover:border-primary-hover hover:bg-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
         >
-          Continue shopping
+          {copy.continueShopping}
         </Link>
         <Link
           href="/checkout"
           className="inline-flex min-h-11 items-center justify-center rounded-md border border-border bg-surface px-4 py-2 text-body font-medium text-foreground transition-colors hover:border-primary hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
         >
-          Return to checkout
+          {copy.returnToCheckout}
         </Link>
       </div>
     </section>
   );
+}
+
+function getPaymentMethodLabel(method: PaymentMethod, language: Language) {
+  const labels: Record<Language, Record<PaymentMethod, string>> = {
+    en: {
+      "bank-transfer": "Bank transfer",
+      cod: "Cash on delivery",
+      momo: "MoMo",
+      vnpay: "VNPay",
+      zalopay: "ZaloPay",
+    },
+    vi: {
+      "bank-transfer": "Chuyển khoản",
+      cod: "COD",
+      momo: "MoMo",
+      vnpay: "VNPay",
+      zalopay: "ZaloPay",
+    },
+  };
+
+  return labels[language][method];
+}
+
+function getPaymentStatusLabel(status: PaymentStatus, language: Language) {
+  const labels: Record<Language, Record<PaymentStatus, string>> = {
+    en: {
+      "awaiting-provider-confirmation": "Awaiting provider confirmation",
+      "awaiting-transfer": "Awaiting bank transfer",
+      cancelled: "Cancelled",
+      confirmed: "Confirmed",
+      failed: "Failed",
+      pending: "Pending",
+    },
+    vi: {
+      "awaiting-provider-confirmation": "Đang chờ nhà cung cấp xác nhận",
+      "awaiting-transfer": "Đang chờ chuyển khoản",
+      cancelled: "Đã hủy",
+      confirmed: "Đã xác nhận",
+      failed: "Thất bại",
+      pending: "Đang chờ",
+    },
+  };
+
+  return labels[language][status];
 }

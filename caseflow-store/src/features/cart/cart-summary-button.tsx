@@ -6,11 +6,14 @@ import { cn } from "@/lib/utils/cn";
 
 import { useCart } from "./cart-context";
 
-type CartSummaryButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
+type CartSummaryButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  label?: string;
+};
 
 export function CartSummaryButton({
   children,
   className,
+  label = "Cart",
   onClick,
   ...props
 }: CartSummaryButtonProps) {
@@ -32,7 +35,7 @@ export function CartSummaryButton({
       suppressHydrationWarning
       {...props}
     >
-      {children ?? `Cart (${totalQuantity})`}
+      {children ?? `${label} (${totalQuantity})`}
     </button>
   );
 }

@@ -1,5 +1,9 @@
 import { apiError, apiSuccess } from "@/lib/api/response";
-import { getSupabaseProductBySlug } from "@/lib/repositories/supabase-catalog";
+import { toBookDetailApiItem } from "@/lib/api/book-catalog";
+import {
+  getSupabaseBookEditionBySlug,
+  listSupabaseRelatedBookEditions,
+} from "@/lib/repositories/supabase-books";
 import { slugSchema } from "@/lib/validation/domain";
 
 type ProductDetailRouteContext = {
@@ -19,35 +23,57 @@ export async function GET(
     return apiError(
       {
         code: "VALIDATION_ERROR",
-        message: "Invalid product slug",
+        message: "Invalid book edition slug",
       },
       400,
     );
   }
 
-  let product;
+  let record;
 
   try {
-    product = await getSupabaseProductBySlug(parsedSlug.data);
+    record = await getSupabaseBookEditionBySlug(parsedSlug.data);
   } catch {
     return apiError(
       {
         code: "CATALOG_READ_FAILED",
-        message: "Product could not be loaded",
+        message: "Book edition could not be loaded",
       },
       500,
     );
   }
 
-  if (!product) {
+  if (!record) {
     return apiError(
       {
-        code: "PRODUCT_NOT_FOUND",
-        message: "Product not found",
+        code: "BOOK_EDITION_NOT_FOUND",
+        message: "Book edition not found",
       },
       404,
     );
   }
 
-  return apiSuccess(product);
+  let relatedRecords;
+
+  try {
+    relatedRecords = await listSupabaseRelatedBookEditions(record.work.id, {
+      excludeEditionId: record.edition.id,
+      sort: "title-asc",
+    });
+  } catch {
+    return apiError(
+      {
+        code: "CATALOG_READ_FAILED",
+        message: "Related book editions could not be loaded",
+      },
+      500,
+    );
+  }
+
+  return apiSuccess(toBookDetailApiItem(record, relatedRecords), {
+    meta: {
+      resource: "book-edition",
+      relatedCount: relatedRecords.length,
+    },
+  });
 }

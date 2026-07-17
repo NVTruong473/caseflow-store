@@ -1,0 +1,42 @@
+{
+  "generatedAt": "2026-07-16T12:12:53.677Z",
+  "apiValidation": {
+    "emptyCartStatus": 400,
+    "expectedServerTotal": 182300,
+    "invalidPhoneEmailStatus": 400,
+    "missingContactStatus": 400,
+    "outOfStockStatus": 409,
+    "tamperedTotalsStatus": 201,
+    "tamperedTotalsValue": 182300
+  },
+  "baseURL": "http://127.0.0.1:3005",
+  "browserFlow": {
+    "cartClearedAfterSubmit": true,
+    "cartReviewVisible": true,
+    "checkoutHasOverflow": false,
+    "checkoutStepsVisible": true,
+    "contactStepVisible": true,
+    "finalReviewVisible": true,
+    "paymentStepVisible": true,
+    "shippingStepVisible": true,
+    "successCodeVisible": true,
+    "successHasOverflow": false,
+    "successPageReached": true,
+    "successShowsServerTotal": true
+  },
+  "ok": true,
+  "pass": {
+    "apiIgnoresTamperedTotals": true,
+    "browserCreatesOrder": true,
+    "checkoutStepsVisible": true,
+    "validationCases": true,
+    "noOverflow": true
+  },
+  "target": {
+    "editionId": "00000000-0000-4000-8000-000000003027",
+    "priceVnd": 143000,
+    "slug": "a-christmas-carol-english-paperback",
+    "stockQuantity": 11
+  },
+  "testEmail": "caseflow-d32-checkout-mrngz1wx-8tdj3n@example.com"
+}

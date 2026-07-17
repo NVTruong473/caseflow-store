@@ -23,7 +23,7 @@ test("public API errors keep stable codes and response envelopes", async ({
   await expectApiError(
     await request.get("/api/products/contract-test-product-does-not-exist"),
     404,
-    API_ERROR_CODES.PRODUCT_NOT_FOUND,
+    API_ERROR_CODES.BOOK_EDITION_NOT_FOUND,
   );
 
   await expectApiError(
@@ -47,7 +47,7 @@ test("public API errors keep stable codes and response envelopes", async ({
       },
     }),
     404,
-    API_ERROR_CODES.PRODUCT_NOT_FOUND,
+    API_ERROR_CODES.BOOK_EDITION_NOT_FOUND,
   );
 });
 

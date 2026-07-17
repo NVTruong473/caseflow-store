@@ -1,8 +1,8 @@
 import { apiError, apiSuccess } from "@/lib/api/response";
-import { requireAdminRequest } from "@/lib/auth/admin";
-import { updateSupabaseOrderStatus } from "@/lib/repositories/supabase-orders";
+import { requireAdminPermission } from "@/lib/auth/admin";
+import { updateSupabaseAdminOrderOperations } from "@/lib/repositories/supabase-orders";
 import { idSchema } from "@/lib/validation/domain";
-import { updateOrderStatusRequestSchema } from "@/lib/validation/orders";
+import { updateAdminOrderOperationsRequestSchema } from "@/lib/validation/orders";
 
 type AdminOrderRouteContext = {
   params: Promise<{
@@ -14,7 +14,7 @@ export async function PATCH(
   request: Request,
   { params }: AdminOrderRouteContext,
 ) {
-  const adminAuth = await requireAdminRequest();
+  const adminAuth = await requireAdminPermission("orders:update-status");
 
   if (!adminAuth.authorized) {
     return apiError(
@@ -53,22 +53,22 @@ export async function PATCH(
     );
   }
 
-  const parsedBody = updateOrderStatusRequestSchema.safeParse(body);
+  const parsedBody = updateAdminOrderOperationsRequestSchema.safeParse(body);
 
   if (!parsedBody.success) {
     return apiError(
       {
         code: "VALIDATION_ERROR",
-        message: "Invalid order status payload",
+        message: "Invalid order operations payload",
       },
       400,
     );
   }
 
-  let updatedOrder;
+  let updateResult;
 
   try {
-    updatedOrder = await updateSupabaseOrderStatus(
+    updateResult = await updateSupabaseAdminOrderOperations(
       parsedOrderId.data,
       parsedBody.data,
     );
@@ -82,15 +82,15 @@ export async function PATCH(
     );
   }
 
-  if (!updatedOrder) {
+  if (!updateResult.success) {
     return apiError(
       {
-        code: "ORDER_NOT_FOUND",
-        message: "Order not found",
+        code: updateResult.code,
+        message: updateResult.message,
       },
-      404,
+      updateResult.status,
     );
   }
 
-  return apiSuccess(updatedOrder);
+  return apiSuccess(updateResult.record);
 }

@@ -1,2 +1,9 @@
+export { AdminCatalogPage } from "./admin-catalog-page";
+export { AdminCustomersPage } from "./admin-customers-page";
+export { AdminDashboardPage } from "./admin-dashboard-page";
+export { AdminInventoryPage } from "./admin-inventory-page";
 export { AdminLoginPage } from "./admin-login-page";
+export { AdminOperationsNavigation } from "./admin-navigation";
 export { AdminOrdersPage } from "./admin-orders-page";
+export { AdminPromotionsPage } from "./admin-promotions-page";
+export { AdminShellPage } from "./admin-shell-page";

@@ -1,0 +1,48 @@
+{
+  "generatedAt": "2026-07-16T12:23:10.277Z",
+  "baseURL": "http://127.0.0.1:3005",
+  "browserResults": {
+    "cod": {
+      "hasOverflow": false,
+      "methodText": "Cash on delivery",
+      "reachedExpectedState": true,
+      "statusText": "Pending"
+    },
+    "bank-transfer": {
+      "hasOverflow": false,
+      "methodText": "Bank transfer",
+      "reachedExpectedState": true,
+      "statusText": "Awaiting bank transfer"
+    },
+    "momo": {
+      "hasOverflow": false,
+      "methodText": "MoMo",
+      "reachedExpectedState": true,
+      "statusText": "Awaiting provider confirmation"
+    },
+    "zalopay": {
+      "hasOverflow": false,
+      "methodText": "ZaloPay",
+      "reachedExpectedState": true,
+      "statusText": "Awaiting provider confirmation"
+    },
+    "vnpay": {
+      "hasOverflow": false,
+      "methodText": "VNPay",
+      "reachedExpectedState": true,
+      "statusText": "Awaiting provider confirmation"
+    }
+  },
+  "invalidMethodStatus": 400,
+  "ok": true,
+  "pass": {
+    "allMethodsReachExpectedState": true,
+    "noOverflow": true,
+    "unknownPaymentRejected": true
+  },
+  "target": {
+    "editionId": "00000000-0000-4000-8000-000000003027",
+    "slug": "a-christmas-carol-english-paperback"
+  },
+  "testEmail": "caseflow-d33-payment-mrnhc4eh-fuwhhn@example.com"
+}

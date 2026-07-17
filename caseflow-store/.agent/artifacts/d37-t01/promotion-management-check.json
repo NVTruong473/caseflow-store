@@ -1,0 +1,226 @@
+{
+  "adminFlow": {
+    "created": {
+      "code": null,
+      "data": {
+        "id": "9fa62725-fe46-4623-b81b-8c63cc989760",
+        "code": "D37VALID-MROGABQ9-0Z0XHS",
+        "name": {
+          "vi": "Khuyen mai QA D37 hop le",
+          "en": "QA D37 valid promotion"
+        },
+        "discountType": "fixed-vnd",
+        "amountVnd": 10000,
+        "percentageBasisPoints": null,
+        "startsAt": "2026-07-16T21:40:00+00:00",
+        "endsAt": "2026-07-17T21:41:00+00:00",
+        "isActive": true,
+        "createdAt": "2026-07-17T04:41:28.902997+00:00",
+        "updatedAt": "2026-07-17T04:41:28.902997+00:00"
+      },
+      "status": 201
+    },
+    "deactivated": {
+      "code": null,
+      "data": {
+        "id": "9fa62725-fe46-4623-b81b-8c63cc989760",
+        "code": "D37VALID-MROGABQ9-0Z0XHS",
+        "name": {
+          "vi": "Khuyen mai QA D37 hop le",
+          "en": "QA D37 valid promotion"
+        },
+        "discountType": "fixed-vnd",
+        "amountVnd": 10000,
+        "percentageBasisPoints": null,
+        "startsAt": "2026-07-16T21:40:00+00:00",
+        "endsAt": "2026-07-17T21:41:00+00:00",
+        "isActive": false,
+        "createdAt": "2026-07-17T04:41:28.902997+00:00",
+        "updatedAt": "2026-07-17T04:41:29.455305+00:00"
+      },
+      "status": 200
+    },
+    "expired": {
+      "code": null,
+      "data": {
+        "id": "023bef3a-3239-46a3-a193-962f5826fa8c",
+        "code": "D37EXPIRED-MROGABQ9-0Z0XHS",
+        "name": {
+          "vi": "Khuyen mai QA D37 het han",
+          "en": "QA D37 expired promotion"
+        },
+        "discountType": "fixed-vnd",
+        "amountVnd": 10000,
+        "percentageBasisPoints": null,
+        "startsAt": "2026-07-15T04:41:29.854+00:00",
+        "endsAt": "2026-07-16T04:41:29.854+00:00",
+        "isActive": true,
+        "createdAt": "2026-07-17T04:41:30.407759+00:00",
+        "updatedAt": "2026-07-17T04:41:30.407759+00:00"
+      },
+      "status": 201
+    },
+    "hasOverflow": false,
+    "inactive": {
+      "code": null,
+      "data": {
+        "id": "6f51c177-e27c-4414-b99f-cea289f381fd",
+        "code": "D37INACTIVE-MROGABQ9-0Z0XHS",
+        "name": {
+          "vi": "Khuyen mai QA D37 da tat",
+          "en": "QA D37 inactive promotion"
+        },
+        "discountType": "fixed-vnd",
+        "amountVnd": 10000,
+        "percentageBasisPoints": null,
+        "startsAt": "2026-07-17T04:40:30.264+00:00",
+        "endsAt": "2026-07-18T04:41:30.264+00:00",
+        "isActive": false,
+        "createdAt": "2026-07-17T04:41:30.79346+00:00",
+        "updatedAt": "2026-07-17T04:41:30.79346+00:00"
+      },
+      "status": 201
+    },
+    "invalidOverLimit": {
+      "code": "VALIDATION_ERROR",
+      "data": null,
+      "status": 400
+    },
+    "pageReady": true,
+    "reactivated": {
+      "code": null,
+      "data": {
+        "id": "9fa62725-fe46-4623-b81b-8c63cc989760",
+        "code": "D37VALID-MROGABQ9-0Z0XHS",
+        "name": {
+          "vi": "Khuyen mai QA D37 hop le",
+          "en": "QA D37 valid promotion"
+        },
+        "discountType": "fixed-vnd",
+        "amountVnd": 10000,
+        "percentageBasisPoints": null,
+        "startsAt": "2026-07-16T21:40:00+00:00",
+        "endsAt": "2026-07-17T21:41:00+00:00",
+        "isActive": true,
+        "createdAt": "2026-07-17T04:41:28.902997+00:00",
+        "updatedAt": "2026-07-17T04:41:29.990084+00:00"
+      },
+      "status": 200
+    }
+  },
+  "anonymousAccess": {
+    "code": "UNAUTHORIZED",
+    "status": 401
+  },
+  "baseURL": "http://127.0.0.1:3006",
+  "checkoutFlow": {
+    "expired": {
+      "code": "PROMOTION_INVALID",
+      "status": 400
+    },
+    "inactive": {
+      "code": "PROMOTION_INVALID",
+      "status": 400
+    },
+    "invalidCode": {
+      "code": "PROMOTION_INVALID",
+      "status": 400
+    },
+    "validOrder": {
+      "expectedTotals": {
+        "currency": "VND",
+        "discountTotalVnd": 10000,
+        "displayEstimate": {
+          "approximateAmountUsd": 7.463598484848485,
+          "displayCurrency": "USD",
+          "estimatedDisplayBaseVnd": 197039,
+          "estimatedInternationalPaymentFeeVnd": 5739,
+          "estimatedVatVnd": 0,
+          "exchangeRateVndPerUsd": 26400,
+          "feeBasisPoints": 300,
+          "quotedAt": "2026-07-16T08:35:00+07:00",
+          "sourceAmountVnd": 191300,
+          "sourceCurrency": "VND",
+          "sourceNote": {
+            "checkedAt": "2026-07-16T08:35:00+07:00",
+            "label": "HSBC Vietnam telegraphic selling rate",
+            "license": null,
+            "url": "https://www.hsbc.com.vn/en-vn/foreign-exchange/rate/"
+          }
+        },
+        "feeEstimates": [
+          {
+            "amountVnd": 0,
+            "label": "Payment method fee estimate",
+            "sourceNote": {
+              "checkedAt": "2026-07-17T04:41:33.979Z",
+              "label": "CaseFlow Books checkout totals configuration",
+              "license": null,
+              "url": null
+            }
+          }
+        ],
+        "paymentFeeVnd": 0,
+        "shippingFeeVnd": 45000,
+        "subtotalVnd": 143000,
+        "taxEstimates": [
+          {
+            "amountVnd": 13300,
+            "label": "VAT estimate",
+            "rateBasisPoints": 1000,
+            "sourceNote": {
+              "checkedAt": "2026-07-17T04:41:33.979Z",
+              "label": "CaseFlow Books checkout totals configuration",
+              "license": null,
+              "url": null
+            }
+          }
+        ],
+        "taxTotalVnd": 13300,
+        "totalVnd": 191300
+      },
+      "orderCode": "CF-MROGAOJ3-6DA3330105",
+      "responseTotalVnd": 191300,
+      "row": {
+        "discount_total_vnd": 10000,
+        "payment_fee_vnd": 0,
+        "promotion_code": "D37VALID-MROGABQ9-0Z0XHS",
+        "shipping_fee_vnd": 45000,
+        "tax_total_vnd": 13300,
+        "total_vnd": 191300
+      },
+      "status": 201
+    }
+  },
+  "cleanup": {
+    "removedRows": 3
+  },
+  "customerAccess": {
+    "code": "FORBIDDEN",
+    "status": 403
+  },
+  "generatedAt": "2026-07-17T04:41:35.547Z",
+  "ok": true,
+  "pass": {
+    "accessControl": true,
+    "adminCrud": true,
+    "checkoutApplication": true,
+    "invalidPromotionsRejected": true,
+    "tamperedValuesIgnored": true,
+    "cleanupRemovedRows": true
+  },
+  "promotionCodes": {
+    "expired": "D37EXPIRED-MROGABQ9-0Z0XHS",
+    "inactive": "D37INACTIVE-MROGABQ9-0Z0XHS",
+    "valid": "D37VALID-MROGABQ9-0Z0XHS"
+  },
+  "staffAccess": {
+    "code": "FORBIDDEN",
+    "status": 403
+  },
+  "target": {
+    "editionId": "00000000-0000-4000-8000-000000003027",
+    "priceVnd": 143000,
+    "slug": "a-christmas-carol-english-paperback"
+  }
+}

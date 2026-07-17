@@ -1,0 +1,14 @@
+[
+  {
+    "label": "schema",
+    "exitCode": 1,
+    "signal": null,
+    "startedAt": "2026-07-16T05:41:35.066Z",
+    "endedAt": "2026-07-16T05:41:42.913Z",
+    "file": ".agent/artifacts/d23-t03-backup/schema-before-v1-1.sql",
+    "exists": true,
+    "sizeBytes": 0,
+    "stdoutTail": "{\"_tag\":\"Error\",\"error\":{\"code\":\"LegacyDockerRunError\",\"message\":\"failed to run docker. Docker Desktop is a prerequisite for local development. Follow the official docs to install: https://docs.docker.com/desktop\"}}\n",
+    "stderrTail": "Dumping schemas from remote database...\n"
+  }
+]

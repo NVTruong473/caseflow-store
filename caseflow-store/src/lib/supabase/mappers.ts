@@ -49,7 +49,10 @@ export function mapOrderRowToDomain(row: TableRow<"orders">): Order {
     customerPhone: row.customer_phone,
     shippingAddress: row.shipping_address,
     status: row.status,
-    subtotal: row.subtotal,
+    paymentMethod: row.payment_method,
+    paymentStatus: row.payment_status,
+    shippingMethod: row.shipping_method,
+    subtotal: row.total_vnd,
     createdAt: row.created_at,
     updatedAt: row.updated_at,
   });
@@ -61,10 +64,10 @@ export function mapOrderItemRowToDomain(
   return orderItemSchema.parse({
     id: row.id,
     orderId: row.order_id,
-    productId: row.product_id,
-    productName: row.product_name,
-    unitPrice: row.unit_price,
+    productId: row.product_id ?? row.book_edition_id ?? row.id,
+    productName: row.edition_title ?? row.product_name,
+    unitPrice: row.unit_price_vnd ?? row.unit_price,
     quantity: row.quantity,
-    lineTotal: row.line_total,
+    lineTotal: row.line_total_vnd ?? row.line_total,
   });
 }

@@ -1,0 +1,44 @@
+{
+  "generatedAt": "2026-07-16T11:32:47.261Z",
+  "baseURL": "http://127.0.0.1:3005",
+  "ok": true,
+  "pass": {
+    "checkoutBlockedUntilProfileComplete": true,
+    "noOverflow": true,
+    "noPhoneVerificationClaim": true,
+    "profileCompleted": true,
+    "profilePrefill": true,
+    "zodValidation": true,
+    "bilingualValidation": true
+  },
+  "profileFlow": {
+    "checkoutBlockedBeforeProfile": true,
+    "checkoutBlockedHasOverflow": false,
+    "checkoutPrefilledAddress": true,
+    "checkoutPrefilledName": true,
+    "checkoutPrefilledPhone": true,
+    "checkoutReadyAfterProfile": true,
+    "checkoutReadyHasOverflow": false,
+    "hasBadPhoneVerificationClaim": false,
+    "profileCompleteAfterSave": true,
+    "profileCompleteHasOverflow": false,
+    "profileIncompleteBeforeSave": true,
+    "profileSaveSuccess": true,
+    "vietnameseValidation": {
+      "hasBadPhoneVerificationClaim": false,
+      "hasHorizontalOverflow": false,
+      "hasVietnameseAddressError": true,
+      "hasVietnamesePhoneError": true
+    }
+  },
+  "target": {
+    "editionId": "00000000-0000-4000-8000-000000003027",
+    "slug": "a-christmas-carol-english-paperback"
+  },
+  "testEmail": "caseflow-d31-profile-mrnfjgmp-4ip9ch@example.com",
+  "zodValidation": {
+    "invalidPhoneRejected": true,
+    "missingFieldsRejected": true,
+    "validProfileAccepted": true
+  }
+}

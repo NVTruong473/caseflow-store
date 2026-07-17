@@ -1,0 +1,51 @@
+{
+  "task": "D23-T03",
+  "phase": "pre-migration",
+  "capturedAt": "2026-07-16T05:46:25.168Z",
+  "projectRef": "fcsuldrerhbynwotcvyn",
+  "counts": {
+    "categories": 5,
+    "products": 16,
+    "orders": 0,
+    "orderItems": 0,
+    "profiles": 1
+  },
+  "roleCounts": [
+    {
+      "role": "admin",
+      "count": 1
+    }
+  ],
+  "orderItemsBookEditionColumnExists": false,
+  "directBookOrders": {
+    "applicable": false,
+    "count": 0,
+    "note": "book_edition_id is absent before migration, so direct book order count is treated as 0."
+  },
+  "bookTablesBeforeMigration": [
+    {
+      "name": "book_categories",
+      "regclass": null
+    },
+    {
+      "name": "book_editions",
+      "regclass": null
+    },
+    {
+      "name": "book_inventory_adjustments",
+      "regclass": null
+    },
+    {
+      "name": "book_promotions",
+      "regclass": null
+    },
+    {
+      "name": "book_works",
+      "regclass": null
+    }
+  ],
+  "expected": {
+    "noBookTablesYet": true,
+    "directBookOrdersIsZero": true
+  }
+}

@@ -1,7 +1,12 @@
 import { apiError, apiSuccess } from "@/lib/api/response";
-import { validateSupabaseCart } from "@/lib/repositories/supabase-catalog";
-import { createSupabaseOrder } from "@/lib/repositories/supabase-orders";
-import { createOrderRequestSchema } from "@/lib/validation/orders";
+import { getCustomerAuthState } from "@/lib/auth/customer";
+import { calculateBookCheckoutTotals } from "@/lib/checkout/book-totals";
+import { getCurrencyDisplayRules } from "@/lib/format/currency-display.server";
+import { getRequestLanguage } from "@/lib/i18n/server";
+import { validateSupabaseBookCart } from "@/lib/repositories/supabase-books";
+import { createSupabaseBookOrder } from "@/lib/repositories/supabase-orders";
+import { evaluateSupabaseBookPromotion } from "@/lib/repositories/supabase-promotions";
+import { createBookOrderRequestSchema } from "@/lib/validation/orders";
 
 export async function POST(request: Request) {
   let body: unknown;
@@ -18,7 +23,7 @@ export async function POST(request: Request) {
     );
   }
 
-  const parsedBody = createOrderRequestSchema.safeParse(body);
+  const parsedBody = createBookOrderRequestSchema.safeParse(body);
 
   if (!parsedBody.success) {
     return apiError(
@@ -31,7 +36,71 @@ export async function POST(request: Request) {
   }
 
   try {
-    const cartValidation = await validateSupabaseCart(parsedBody.data.items);
+    const customerAuthState = await getCustomerAuthState();
+
+    if (customerAuthState.status === "anonymous") {
+      return apiError(
+        {
+          code: "UNAUTHORIZED",
+          message: "Customer login is required before checkout",
+        },
+        401,
+      );
+    }
+
+    if (customerAuthState.status === "error") {
+      return apiError(
+        {
+          code: "CUSTOMER_PROFILE_UNAVAILABLE",
+          message: customerAuthState.message,
+        },
+        503,
+      );
+    }
+
+    if (customerAuthState.user.role !== "customer") {
+      return apiError(
+        {
+          code: "FORBIDDEN",
+          message: "Customer role is required before checkout",
+        },
+        403,
+      );
+    }
+
+    if (!customerAuthState.user.profileCompleteness.isCompleteForCheckout) {
+      return apiError(
+        {
+          code: "VALIDATION_ERROR",
+          message: "Customer profile is incomplete for checkout",
+        },
+        400,
+      );
+    }
+
+    const customerName =
+      customerAuthState.user.fullName ?? customerAuthState.user.displayName;
+    const customerEmail = customerAuthState.user.email;
+    const customerPhone = customerAuthState.user.phone;
+
+    if (
+      parsedBody.data.customerName !== customerName ||
+      parsedBody.data.customerEmail !== customerEmail ||
+      parsedBody.data.customerPhone !== customerPhone ||
+      !customerPhone
+    ) {
+      return apiError(
+        {
+          code: "VALIDATION_ERROR",
+          message: "Customer contact confirmation does not match account",
+        },
+        400,
+      );
+    }
+
+    const cartValidation = await validateSupabaseBookCart(
+      parsedBody.data.items,
+    );
 
     if (!cartValidation.success) {
       return apiError(
@@ -43,18 +112,48 @@ export async function POST(request: Request) {
       );
     }
 
-    const result = await createSupabaseOrder({
-      customerName: parsedBody.data.customerName,
-      customerEmail: parsedBody.data.customerEmail,
-      customerPhone: parsedBody.data.customerPhone,
+    const language = await getRequestLanguage();
+    const currencyRules = getCurrencyDisplayRules();
+    const promotionCode = parsedBody.data.promotionCode;
+    const promotionEvaluation = promotionCode
+      ? await evaluateSupabaseBookPromotion({
+          code: promotionCode,
+          subtotalVnd: cartValidation.data.subtotal,
+        })
+      : null;
+
+    if (promotionEvaluation && !promotionEvaluation.success) {
+      return apiError(
+        {
+          code: promotionEvaluation.code,
+          message: promotionEvaluation.message,
+        },
+        400,
+      );
+    }
+
+    const totals = calculateBookCheckoutTotals({
+      currencyRules,
+      discountTotalVnd: promotionEvaluation?.discountTotalVnd ?? 0,
+      includeDisplayEstimate: language === "en",
+      paymentMethod: parsedBody.data.paymentMethod,
+      shippingMethod: parsedBody.data.shippingMethod,
+      subtotalVnd: cartValidation.data.subtotal,
+    });
+
+    const result = await createSupabaseBookOrder({
+      customerId: customerAuthState.user.id,
+      customerName,
+      customerEmail,
+      customerPhone,
+      paymentMethod: parsedBody.data.paymentMethod,
+      promotionCode: promotionEvaluation?.promotion.code ?? null,
       shippingAddress: parsedBody.data.shippingAddress,
-      subtotal: cartValidation.data.subtotal,
+      shippingMethod: parsedBody.data.shippingMethod,
+      totals,
       items: cartValidation.data.items.map((line) => ({
-        productId: line.productId,
-        productName: line.product.name,
-        unitPrice: line.unitPrice,
+        editionId: line.editionId,
         quantity: line.quantity,
-        lineTotal: line.lineTotal,
       })),
     });
 

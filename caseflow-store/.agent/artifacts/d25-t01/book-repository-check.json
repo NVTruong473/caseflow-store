@@ -1,0 +1,56 @@
+{
+  "generatedAt": "2026-07-16T06:36:08.014Z",
+  "mapperChecks": {
+    "validRowsAccepted": true,
+    "invalidPriceRejected": true,
+    "invalidLanguageRejected": true,
+    "invalidStockRejected": true
+  },
+  "repositoryChecks": {
+    "categories": 11,
+    "totalRecords": 100,
+    "languageCounts": {
+      "en": 50,
+      "vi": 50
+    },
+    "classicRecords": 76,
+    "janeAustenRecords": 2,
+    "prideSearchRecords": 6,
+    "pageSizeAtOffset10": 10,
+    "detail": {
+      "slug": "pride-and-prejudice-english-special-edition",
+      "workSlug": "pride-and-prejudice",
+      "authors": [
+        "jane-austen"
+      ],
+      "categories": [
+        "classic-literature",
+        "romance"
+      ],
+      "coverPath": "/images/books/placeholders/book-cover-placeholder.svg"
+    },
+    "relatedRecords": [
+      {
+        "slug": "pride-and-prejudice-vietnamese-special-edition",
+        "language": "vi",
+        "format": "special-edition"
+      }
+    ],
+    "legacyProductsCount": 16
+  },
+  "pass": {
+    "validRowsAccepted": true,
+    "invalidPriceRejected": true,
+    "invalidLanguageRejected": true,
+    "invalidStockRejected": true,
+    "categoryCountMatchesSeed": true,
+    "totalRecordsMatchesSeed": true,
+    "languageCountsMatchSeed": true,
+    "filtersReturnExpectedRecords": true,
+    "paginationReturnsExpectedSize": true,
+    "detailReturnsJoinedBookData": true,
+    "relatedLookupReturnsSiblingEdition": true,
+    "legacyPhoneProductsRemainReadable": true
+  },
+  "ok": true
+}

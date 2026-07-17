@@ -1,0 +1,73 @@
+{
+  "generatedAt": "2026-07-16T14:12:00.950Z",
+  "baseURL": "http://127.0.0.1:3005",
+  "expectedTotal": 182300,
+  "invalidCodeLookup": {
+    "code": "VALIDATION_ERROR",
+    "message": "Invalid order tracking details",
+    "orderCode": null,
+    "paymentMethod": null,
+    "paymentStatus": null,
+    "shippingMethod": null,
+    "status": 400,
+    "totalVnd": null
+  },
+  "missingOrderLookup": {
+    "code": "ORDER_NOT_FOUND",
+    "message": "No order was found for the provided details",
+    "orderCode": null,
+    "paymentMethod": null,
+    "paymentStatus": null,
+    "shippingMethod": null,
+    "status": 404,
+    "totalVnd": null
+  },
+  "ok": true,
+  "order": {
+    "orderCode": "CF-MRNL8D9O-72CC2E679A",
+    "total": 182300
+  },
+  "pass": {
+    "apiGuards": true,
+    "publicPayloadMinimal": true,
+    "trackingData": true,
+    "browserEnglish": true,
+    "browserVietnamese": true
+  },
+  "target": {
+    "editionId": "00000000-0000-4000-8000-000000003027",
+    "priceVnd": 143000,
+    "slug": "a-christmas-carol-english-paperback"
+  },
+  "validEmailLookup": {
+    "code": null,
+    "message": null,
+    "orderCode": "CF-MRNL8D9O-72CC2E679A",
+    "paymentMethod": "bank-transfer",
+    "paymentStatus": "awaiting-transfer",
+    "shippingMethod": "standard",
+    "status": 200,
+    "totalVnd": 182300
+  },
+  "validPhoneLookup": {
+    "code": null,
+    "message": null,
+    "orderCode": "CF-MRNL8D9O-72CC2E679A",
+    "paymentMethod": "bank-transfer",
+    "paymentStatus": "awaiting-transfer",
+    "shippingMethod": "standard",
+    "status": 200,
+    "totalVnd": 182300
+  },
+  "wrongAndMissingSameError": true,
+  "wrongContactLookup": {
+    "code": "ORDER_NOT_FOUND",
+    "message": "No order was found for the provided details",
+    "orderCode": null,
+    "paymentMethod": null,
+    "paymentStatus": null,
+    "shippingMethod": null,
+    "status": 404,
+    "totalVnd": null
+  }
+}

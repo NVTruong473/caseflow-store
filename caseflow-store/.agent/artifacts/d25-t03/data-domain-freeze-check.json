@@ -1,0 +1,108 @@
+{
+  "generatedAt": "2026-07-16T06:51:52.985Z",
+  "ok": true,
+  "freeze": {
+    "status": "accepted",
+    "gate": "D25-T03",
+    "statement": "CaseFlow Books data/domain/API foundation is frozen for Day 26 storefront expansion."
+  },
+  "evidenceFiles": [
+    {
+      "path": "docs/v1.1-data-domain-freeze.md",
+      "exists": true
+    },
+    {
+      "path": "caseflow-store/docs/v1.1-data-domain-freeze.md",
+      "exists": true
+    },
+    {
+      "path": "caseflow-store/src/types/domain.ts",
+      "exists": true
+    },
+    {
+      "path": "caseflow-store/src/lib/validation/domain.ts",
+      "exists": true
+    },
+    {
+      "path": "caseflow-store/src/lib/validation/books.ts",
+      "exists": true
+    },
+    {
+      "path": "caseflow-store/supabase/migrations/0006_caseflow_books_schema_draft.sql",
+      "exists": true
+    },
+    {
+      "path": "caseflow-store/src/data/books/seed.ts",
+      "exists": true
+    },
+    {
+      "path": "caseflow-store/public/images/books/placeholders/book-cover-placeholder.svg",
+      "exists": true
+    },
+    {
+      "path": "caseflow-store/src/lib/supabase/book-mappers.ts",
+      "exists": true
+    },
+    {
+      "path": "caseflow-store/src/lib/repositories/supabase-books.ts",
+      "exists": true
+    },
+    {
+      "path": "caseflow-store/src/lib/api/book-catalog.ts",
+      "exists": true
+    },
+    {
+      "path": "caseflow-store/.agent/artifacts/d23-t03/post-migration-db-checks.json",
+      "exists": true
+    },
+    {
+      "path": "caseflow-store/.agent/artifacts/d24-t03/seed-books-apply.json",
+      "exists": true
+    },
+    {
+      "path": "caseflow-store/.agent/artifacts/d25-t01/book-repository-check.json",
+      "exists": true
+    },
+    {
+      "path": "caseflow-store/.agent/artifacts/d25-t02/api-curl-checks.json",
+      "exists": true
+    }
+  ],
+  "apiArtifact": {
+    "path": "caseflow-store/.agent/artifacts/d25-t02/api-curl-checks.json",
+    "ok": true,
+    "checks": 10
+  },
+  "apiSmoke": [
+    {
+      "pathname": "/api/products?limit=1",
+      "status": 200,
+      "meta": {
+        "resource": "book-editions",
+        "count": 1,
+        "total": 100,
+        "limit": 1,
+        "offset": 0,
+        "hasMore": true
+      }
+    },
+    {
+      "pathname": "/api/products/pride-and-prejudice-english-special-edition",
+      "status": 200,
+      "meta": {
+        "resource": "book-edition",
+        "relatedCount": 1
+      },
+      "slug": "pride-and-prejudice-english-special-edition"
+    },
+    {
+      "pathname": "/api/products/not-a-real-book-edition",
+      "status": 404,
+      "error": {
+        "code": "BOOK_EDITION_NOT_FOUND",
+        "message": "Book edition not found"
+      }
+    }
+  ],
+  "knownTemporaryBoundary": "Storefront UI remains legacy phone-accessory until Day 26-30 UI pivot tasks."
+}

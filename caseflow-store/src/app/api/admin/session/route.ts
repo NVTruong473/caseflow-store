@@ -1,4 +1,8 @@
 import { apiError, apiSuccess } from "@/lib/api/response";
+import {
+  getAdminPermissions,
+  isAdminWorkspaceRole,
+} from "@/lib/auth/admin";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { adminLoginRequestSchema } from "@/lib/validation/auth";
 
@@ -51,17 +55,21 @@ export async function POST(request: Request) {
     );
   }
 
-  if (!profile || profile.role !== "admin") {
+  if (!profile || !isAdminWorkspaceRole(profile.role)) {
     await supabase.auth.signOut();
     return apiError(
-      { code: "FORBIDDEN", message: "Admin role required" },
+      { code: "FORBIDDEN", message: "Admin or staff role required" },
       403,
     );
   }
 
   return apiSuccess({
     email: authData.user.email ?? "",
-    displayName: profile.display_name?.trim() || "CaseFlow Admin",
+    displayName:
+      profile.display_name?.trim() ||
+      (profile.role === "admin" ? "CaseFlow Admin" : "CaseFlow Staff"),
+    permissions: getAdminPermissions(profile.role),
+    role: profile.role,
   });
 }
 

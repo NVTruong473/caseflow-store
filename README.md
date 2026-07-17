@@ -1,13 +1,17 @@
-# CaseFlow Store
+# CaseFlow Books
 
-CaseFlow Store is a production-deployed phone accessories storefront built as a
-Next.js modular monolith. It covers catalog discovery, a local cart, guest
-checkout, Supabase-backed order persistence, and a protected admin workflow.
+CaseFlow Books is a deployed full-stack bookstore and small-business operations
+demo. The project started as the 20-day CaseFlow Store `v1.0.0` MVP and was
+upgraded through the Day 21-40 roadmap into a Vietnam-first, bilingual
+e-commerce application for book discovery, account-gated checkout, order
+tracking, and admin/staff operations.
 
-[Open the production storefront](https://caseflow-store.vercel.app)
+[Open the production deployment](https://caseflow-store.vercel.app)
 
-> Checkout is simulated for this portfolio project. The application does not
-> collect card details or process real payments.
+> Payments are simulated. The app does not collect card numbers, CVV, card
+> expiry, real bank credentials, or real MoMo/ZaloPay/VNPay credentials. Phone
+> and email fields are validated for shape and checkout readiness, but no real SMS/OTP
+> or email-verification provider is integrated.
 
 ## Screenshots
 
@@ -17,58 +21,118 @@ checkout, Supabase-backed order persistence, and a protected admin workflow.
     <th>Storefront mobile</th>
   </tr>
   <tr>
-    <td width="72%"><img src="caseflow-store/docs/screenshots/storefront-desktop.png" alt="CaseFlow Store production storefront at 1440 pixels" /></td>
-    <td width="28%"><img src="caseflow-store/docs/screenshots/storefront-mobile.png" alt="CaseFlow Store production storefront at 375 pixels" /></td>
+    <td width="70%"><img src="caseflow-store/docs/screenshots/storefront-desktop.png" alt="CaseFlow Books v1.1 homepage at 1440 pixels" /></td>
+    <td width="30%"><img src="caseflow-store/docs/screenshots/storefront-mobile.png" alt="CaseFlow Books v1.1 homepage at 375 pixels" /></td>
   </tr>
   <tr>
-    <th>Product detail desktop</th>
-    <th>Product detail mobile</th>
+    <th>Catalog desktop</th>
+    <th>Catalog mobile</th>
   </tr>
   <tr>
-    <td><img src="caseflow-store/docs/screenshots/product-desktop.png" alt="CaseFlow Store product detail at 1440 pixels" /></td>
-    <td><img src="caseflow-store/docs/screenshots/product-mobile.png" alt="CaseFlow Store product detail at 375 pixels" /></td>
+    <td><img src="caseflow-store/docs/screenshots/catalog-desktop.png" alt="CaseFlow Books catalog filters and book grid at 1440 pixels" /></td>
+    <td><img src="caseflow-store/docs/screenshots/catalog-mobile.png" alt="CaseFlow Books catalog filters and book grid at 375 pixels" /></td>
+  </tr>
+  <tr>
+    <th>Book detail desktop</th>
+    <th>Checkout mobile</th>
+  </tr>
+  <tr>
+    <td><img src="caseflow-store/docs/screenshots/product-desktop.png" alt="CaseFlow Books book detail page at 1440 pixels" /></td>
+    <td><img src="caseflow-store/docs/screenshots/checkout-mobile.png" alt="CaseFlow Books account-gated checkout on mobile" /></td>
+  </tr>
+  <tr>
+    <th>Admin dashboard desktop</th>
+    <th>Admin orders mobile</th>
+  </tr>
+  <tr>
+    <td><img src="caseflow-store/docs/screenshots/admin-dashboard-desktop.png" alt="CaseFlow Books admin sales and inventory dashboard at 1440 pixels" /></td>
+    <td><img src="caseflow-store/docs/screenshots/admin-orders-mobile.png" alt="CaseFlow Books admin order operations on mobile" /></td>
   </tr>
 </table>
 
 ## Product scope
 
-- Browse 16 seeded products across 5 accessory categories.
-- Search, sort, filter by category, and check phone compatibility.
-- Manage a persistent local cart with stock-aware quantity boundaries.
-- Complete a validated guest checkout and receive an order confirmation.
-- Sign in as an admin to review orders and update fulfillment status.
-- Use explicit loading, empty, error, and success states across core flows.
-- Navigate responsive layouts and visible keyboard focus states from 375px to
-  1440px viewports.
+- Browse a seeded catalog of 100 sellable book editions across 50 works.
+- Filter and sort by category, author, language, format, price, stock state,
+  publication era, and search text.
+- Compare English originals and Vietnamese editions where the dataset includes
+  both.
+- Switch between Vietnamese and English UI modes.
+- Show VND as the authoritative currency and, in English mode, display
+  approximate USD estimates using configurable VAT, FX, and payment-fee
+  assumptions.
+- Use a local cart that stores only edition IDs and quantities.
+- Require customer login and a checkout-ready profile before order submission.
+- Complete simulated COD, bank transfer, MoMo, ZaloPay, and VNPay-style
+  checkout flows.
+- View customer order history and guarded public order tracking.
+- Use a rule-based bookstore assistant for finding books and buying guidance.
+
+## Admin and operations scope
+
+- Separate `admin`, `staff`, and `customer` roles.
+- Admin/staff navigation for dashboard, orders, catalog, inventory, promotions,
+  customers, and settings.
+- Book catalog management with server-validated product/category data.
+- Inventory adjustment workflow with stock snapshots and operational notes.
+- Promotion management for fixed-VND and percentage discounts.
+- Customer management with minimized operational customer data.
+- Order operations for order, payment, shipping status, and internal notes.
+- Sales and inventory dashboard plus CSV export for operational reporting.
 
 ## Technical highlights
 
-- Next.js App Router keeps UI and Route Handlers in one deployable application.
-- Supabase PostgreSQL stores categories, products, profiles, orders, and order
-  items; Supabase Auth supplies admin sessions.
-- Row Level Security denies public order access while allowing public catalog
-  reads. Admin authorization is checked server-side on every protected request.
-- The server reloads product records and recalculates line totals and subtotal;
-  price, stock, role, and order status are never trusted from the browser.
-- Order and order-item inserts run through one PostgreSQL function.
-- Zod validates mutating request bodies and API errors use stable response codes.
-- Playwright covers storefront, checkout, quantity limits, API errors, access
-  roles, admin updates, UI states, and keyboard focus.
+- Next.js App Router modular monolith with UI and Route Handlers in one Vercel
+  deployment.
+- Supabase PostgreSQL/Auth with RLS, SSR cookie sessions, and server-only
+  service-role operations.
+- Book domain modeled as categories, works, editions, authors, translators,
+  publishers, cover assets, promotions, inventory adjustments, profiles,
+  orders, and order items.
+- Server reloads trusted book records and recalculates subtotal, promotion,
+  VAT, shipping, payment fee, and total values.
+- Browser-supplied price, subtotal, stock, tax, fee, role, and order status are
+  ignored.
+- Zod validates mutating request bodies and public/admin APIs return stable
+  `{ data, error, meta }` envelopes.
+- Public SEO includes robots, sitemap, canonical metadata, and book JSON-LD for
+  eligible book detail pages.
+- Playwright covers storefront, checkout, account-gated flows, access control,
+  admin operations, UI states, keyboard focus, and release edge cases.
 
-## Verified release
+## Data and content policy
+
+- The catalog uses factual classic/public-domain-style book metadata where
+  practical.
+- self-written summaries and merchandising copy are created inside the project
+  instead of copied from publisher blurbs or reviews.
+- The current cover strategy uses an internal placeholder SVG and safe local
+  asset mappings. It does not hotlink commercial book covers.
+- Source and rights assumptions are documented in
+  [`caseflow-store/docs/v1.1-safe-cover-asset-strategy.md`](caseflow-store/docs/v1.1-safe-cover-asset-strategy.md)
+  and [`caseflow-store/docs/domain.md`](caseflow-store/docs/domain.md).
+
+## Verified v1.1 release
 
 | Gate | Result |
 |---|---|
-| ESLint | Passed |
-| TypeScript / production build | Passed, 16 routes generated |
-| Local release suite | 20 passed, 0 failed/flaky/skipped |
-| Production release suite | 20 passed, 0 failed/flaky/skipped |
-| Production deployment | Vercel `Ready` |
-| QA cleanup | 0 test orders, 0 temporary users |
+| Release tag | `v1.1.0` |
+| Production URL | `https://caseflow-store.vercel.app` |
+| Vercel deployment | `READY`, deployment `dpl_BkiJt9gDCh5d2cHwAhpFDbLotoAy` |
+| TypeScript | `npx tsc --noEmit` passed |
+| ESLint | `npm run lint` passed |
+| Production build | 41 app routes generated |
+| Local Playwright | 20 passed |
+| Production Playwright subset | 5 passed |
+| Production smoke | Home, catalog, detail, account, tracking, API, admin boundary, robots, and sitemap passed |
+| Assistant smoke | Passed against production |
+| Secret scan | Clean |
+| Cleanup check | Zero stale legacy/test matches |
 
 Release evidence is recorded in
-[`caseflow-store/docs/release-candidate.md`](caseflow-store/docs/release-candidate.md)
-and the project execution log under `.agent/`.
+[`caseflow-store/docs/release-candidate.md`](caseflow-store/docs/release-candidate.md),
+[`caseflow-store/docs/v1.1-release-audit.md`](caseflow-store/docs/v1.1-release-audit.md),
+and `.agent/step-results.md`.
 
 ## Stack
 
@@ -85,18 +149,18 @@ and the project execution log under `.agent/`.
 .
 ├── caseflow-store/           # Next.js application package
 │   ├── src/app/              # Pages and Route Handlers
-│   ├── src/features/         # Storefront, cart, checkout, and admin UI
-│   ├── src/lib/              # Domain, repository, auth, and Supabase code
-│   ├── supabase/             # Schema, RLS policies, RPC, and seed data
+│   ├── src/features/         # Storefront, customer, assistant, and admin UI
+│   ├── src/lib/              # Domain, validation, repositories, auth, SEO
+│   ├── supabase/             # Base schema plus v1.1 migrations
 │   ├── tests/e2e/            # Playwright release suite
-│   └── docs/                 # Architecture, ADRs, and release evidence
+│   └── docs/                 # Architecture, ADRs, release evidence
 ├── docs/                     # Mirrored project-level documentation
 └── .agent/                   # Roadmap, context, and verified task results
 ```
 
 ## Local setup
 
-Prerequisites: Node.js 20 or newer, npm, and a Supabase project.
+Prerequisites: Node.js 20 or newer, npm, and a configured Supabase project.
 
 ```bash
 cd caseflow-store
@@ -104,11 +168,10 @@ npm install
 cp .env.example .env.local
 ```
 
-1. Run `supabase/schema.sql` in the Supabase SQL editor.
-2. Run `supabase/seed.sql` to load the catalog.
-3. Fill the three required runtime variables in `.env.local`.
-4. Create a dedicated Supabase Auth admin user and assign the matching
-   `profiles.role` value to `admin` when testing the admin workspace.
+1. Apply the base schema and the `supabase/migrations/` files to Supabase.
+2. Seed the CaseFlow Books data with the project seed scripts/data.
+3. Fill the required runtime variables in `.env.local`.
+4. Create admin/staff/customer Supabase Auth users as needed for local testing.
 5. Start the application:
 
 ```bash
@@ -124,8 +187,11 @@ Open [http://localhost:3000](http://localhost:3000).
 | `NEXT_PUBLIC_SUPABASE_URL` | Browser and server | Supabase project URL |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Browser and server | Public RLS-scoped key |
 | `SUPABASE_SERVICE_ROLE_KEY` | Server only | Trusted order/admin operations |
+| `NEXT_PUBLIC_SITE_URL` | Browser and server | Canonical URL for metadata, robots, and sitemap |
 | `CASEFLOW_ADMIN_EMAIL` | Playwright only | Admin release-test identity |
 | `CASEFLOW_ADMIN_PASSWORD` | Playwright only | Admin release-test password |
+| `CASEFLOW_CUSTOMER_EMAIL` | Playwright only | Customer release-test identity |
+| `CASEFLOW_CUSTOMER_PASSWORD` | Playwright only | Customer release-test password |
 
 Never expose `SUPABASE_SERVICE_ROLE_KEY` through a `NEXT_PUBLIC_*` variable or a
 Client Component. Playwright credentials are not deployed to Vercel.
@@ -137,7 +203,7 @@ npm run dev       # development server
 npm run lint      # ESLint
 npm run build     # production build and TypeScript validation
 npm run start     # serve the production build
-npm run test:e2e  # Playwright suite; requires all test environment variables
+npm run test:e2e  # Playwright suite; requires test environment variables
 ```
 
 To run Playwright against an existing deployment:
@@ -149,8 +215,8 @@ PLAYWRIGHT_BASE_URL=https://caseflow-store.vercel.app npm run test:e2e
 ## Design decisions
 
 The decisions behind the modular monolith, Supabase, mock-first delivery, local
-cart, and simulated checkout are documented in
-[`caseflow-store/docs/adr/`](caseflow-store/docs/adr/). Release boundaries and
+cart, simulated checkout, and CaseFlow Books pivot are documented in
+[`caseflow-store/docs/adr/`](caseflow-store/docs/adr/). Current boundaries and
 accepted risks are listed in
 [`caseflow-store/docs/known-limitations.md`](caseflow-store/docs/known-limitations.md).
 Evidence-backed portfolio bullets are available in

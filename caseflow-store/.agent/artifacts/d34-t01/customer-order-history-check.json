@@ -1,0 +1,46 @@
+{
+  "generatedAt": "2026-07-16T13:59:48.329Z",
+  "baseURL": "http://127.0.0.1:3005",
+  "crossCustomer": {
+    "detailCode": "ORDER_NOT_FOUND",
+    "detailStatus": 404,
+    "listContainsForeignOrder": false,
+    "listStatus": 200
+  },
+  "expectedTotal": 182300,
+  "ok": true,
+  "order": {
+    "orderCode": "CF-MRNKSMX9-0F4A385CDB",
+    "total": 182300
+  },
+  "ownApi": {
+    "detailContainsSnapshot": true,
+    "detailPaymentStatus": "awaiting-transfer",
+    "detailStatus": 200,
+    "listContainsOrder": true,
+    "listStatus": 200
+  },
+  "ownPage": {
+    "cardVisible": true,
+    "detailVisible": true,
+    "hasOverflow": false,
+    "itemSnapshotVisible": true,
+    "paymentMethodVisible": true,
+    "paymentStatusVisible": true,
+    "totalText": "182.300 ₫"
+  },
+  "pass": {
+    "crossCustomerDenied": true,
+    "ownApi": true,
+    "ownPage": true
+  },
+  "target": {
+    "editionId": "00000000-0000-4000-8000-000000003027",
+    "priceVnd": 143000,
+    "slug": "a-christmas-carol-english-paperback"
+  },
+  "testEmails": {
+    "customerA": "caseflow-d34-a-mrnksha9-r8oti8@example.com",
+    "customerB": "caseflow-d34-b-mrnksha9-r8oti8@example.com"
+  }
+}

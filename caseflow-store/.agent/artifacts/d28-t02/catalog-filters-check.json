@@ -1,0 +1,76 @@
+{
+  "generatedAt": "2026-07-16T08:55:54.003Z",
+  "authorSort": {
+    "authors": [
+      "Adam Smith",
+      "Adam Smith",
+      "Aesop",
+      "Aesop",
+      "Alexandre Dumas",
+      "Alexandre Dumas",
+      "Alexandre Dumas",
+      "Alexandre Dumas",
+      "Arthur Conan Doyle",
+      "Arthur Conan Doyle",
+      "Bram Stoker",
+      "Bram Stoker",
+      "Charles Dickens",
+      "Charles Dickens",
+      "Charles Dickens",
+      "Charles Dickens",
+      "Charles Dickens",
+      "Charles Dickens",
+      "Charles Dickens",
+      "Charles Dickens",
+      "Charlotte Bronte",
+      "Charlotte Bronte",
+      "Dante Alighieri",
+      "Dante Alighieri"
+    ],
+    "authorsAscending": true,
+    "hasHorizontalOverflow": false
+  },
+  "baseURL": "http://127.0.0.1:3005",
+  "combined": {
+    "activeChipText": "\"Dickens\"\nClassic literature\nEnglish\nPaperback\nAll authors\nAvailable\nFeatured shelf\nPrice low-high\nPage 1",
+    "apiMeta": {
+      "resource": "book-editions",
+      "count": 3,
+      "total": 3,
+      "limit": 24,
+      "offset": 0,
+      "hasMore": false
+    },
+    "clearRenderedCards": 24,
+    "clearResultTotal": 100,
+    "hasHorizontalOverflow": false,
+    "pricesAscending": true,
+    "uiRenderedCards": 3,
+    "uiResultTotal": 3,
+    "urlIncludes": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  "invalid": {
+    "hasHorizontalOverflow": false,
+    "headingVisible": true,
+    "renderedCards": 24,
+    "resultTotal": 100
+  },
+  "ok": true,
+  "pass": {
+    "apiAndUiCountsAgree": true,
+    "clearFiltersWorks": true,
+    "combinedFiltersApplied": true,
+    "invalidParamsDoNotCrash": true,
+    "noOverflow": true,
+    "priceSortAscending": true,
+    "sortAuthorAscending": true
+  }
+}

@@ -1,12 +1,24 @@
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import type { UserRole } from "@/types/domain";
 
-type AdminIdentity = {
+export type AdminWorkspaceRole = Extract<UserRole, "admin" | "staff">;
+export type AdminPermission =
+  | "catalog:manage"
+  | "inventory:adjust"
+  | "orders:read"
+  | "orders:update-status"
+  | "promotions:manage"
+  | "settings:manage";
+
+export type AdminIdentity = {
   id: string;
   email: string;
   displayName: string;
+  permissions: AdminPermission[];
+  role: AdminWorkspaceRole;
 };
 
-type AdminAuthResult =
+export type AdminAuthResult =
   | { authorized: true; user: AdminIdentity }
   | {
       authorized: false;
@@ -15,7 +27,30 @@ type AdminAuthResult =
       message: string;
     };
 
+const permissionsByRole: Record<AdminWorkspaceRole, AdminPermission[]> = {
+  admin: [
+    "catalog:manage",
+    "inventory:adjust",
+    "orders:read",
+    "orders:update-status",
+    "promotions:manage",
+    "settings:manage",
+  ],
+  staff: [
+    "catalog:manage",
+    "inventory:adjust",
+    "orders:read",
+    "orders:update-status",
+  ],
+};
+
 export async function requireAdminRequest(): Promise<AdminAuthResult> {
+  return requireAdminPermission("settings:manage");
+}
+
+export async function requireAdminPermission(
+  permission: AdminPermission,
+): Promise<AdminAuthResult> {
   const supabase = await createSupabaseServerClient();
   const {
     data: { user },
@@ -27,7 +62,7 @@ export async function requireAdminRequest(): Promise<AdminAuthResult> {
       authorized: false,
       status: 401,
       code: "UNAUTHORIZED",
-      message: "Admin authentication required",
+      message: "Operations authentication required",
     };
   }
 
@@ -46,12 +81,23 @@ export async function requireAdminRequest(): Promise<AdminAuthResult> {
     };
   }
 
-  if (!profile || profile.role !== "admin") {
+  if (!profile || !isAdminWorkspaceRole(profile.role)) {
     return {
       authorized: false,
       status: 403,
       code: "FORBIDDEN",
-      message: "Admin role required",
+      message: "Admin or staff role required",
+    };
+  }
+
+  const permissions = permissionsByRole[profile.role];
+
+  if (!permissions.includes(permission)) {
+    return {
+      authorized: false,
+      status: 403,
+      code: "FORBIDDEN",
+      message: "Role is not allowed to perform this operation",
     };
   }
 
@@ -60,7 +106,23 @@ export async function requireAdminRequest(): Promise<AdminAuthResult> {
     user: {
       id: user.id,
       email: user.email ?? "",
-      displayName: profile.display_name?.trim() || "CaseFlow Admin",
+      displayName: profile.display_name?.trim() || getRoleFallbackName(profile.role),
+      permissions,
+      role: profile.role,
     },
   };
+}
+
+export function isAdminWorkspaceRole(
+  role: UserRole | null | undefined,
+): role is AdminWorkspaceRole {
+  return role === "admin" || role === "staff";
+}
+
+export function getAdminPermissions(role: AdminWorkspaceRole) {
+  return permissionsByRole[role];
+}
+
+function getRoleFallbackName(role: AdminWorkspaceRole) {
+  return role === "admin" ? "CaseFlow Admin" : "CaseFlow Staff";
 }

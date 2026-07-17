@@ -1,0 +1,172 @@
+{
+  "anonymousAccess": {
+    "code": "UNAUTHORIZED",
+    "data": null,
+    "status": 401
+  },
+  "baseURL": "http://127.0.0.1:3006",
+  "cleanup": {
+    "removedRows": 1
+  },
+  "customerAccess": {
+    "code": "FORBIDDEN",
+    "data": null,
+    "status": 403
+  },
+  "finalRow": {
+    "status": "shipping",
+    "payment_status": "confirmed",
+    "shipping_status": "shipped",
+    "internal_notes": "UI note: packed and handed to carrier."
+  },
+  "generatedAt": "2026-07-17T05:29:53.058Z",
+  "ok": true,
+  "orderCode": "CF-D37OPS-MROI0FZR",
+  "pass": {
+    "accessControl": true,
+    "apiTransitions": true,
+    "uiWorkflow": true,
+    "persisted": true,
+    "cleanupRemovedOrder": true
+  },
+  "staffApi": {
+    "filteredRead": {
+      "code": null,
+      "data": [
+        {
+          "items": [
+            {
+              "id": "479b0faf-3f88-449e-ad91-b85119574d92",
+              "orderId": "db566a46-136c-4d51-9df3-22c01a99e896",
+              "productId": "479b0faf-3f88-449e-ad91-b85119574d92",
+              "productName": "D37 QA Book Edition",
+              "unitPrice": 220000,
+              "quantity": 1,
+              "lineTotal": 220000
+            }
+          ],
+          "operations": {
+            "internalNotes": "",
+            "paymentStatus": "pending",
+            "shippingMethod": "standard",
+            "shippingStatus": "pending"
+          },
+          "order": {
+            "id": "db566a46-136c-4d51-9df3-22c01a99e896",
+            "orderCode": "CF-D37OPS-MROI0FZR",
+            "customerName": "D37 Orders Customer",
+            "customerEmail": "caseflow-d37-orders-customer-mroi0fzr-k9q5lg@example.com",
+            "customerPhone": "+84 912 345 678",
+            "shippingAddress": "12 Nguyen Hue, Ben Nghe, District 1, Ho Chi Minh City, VN",
+            "status": "pending",
+            "paymentMethod": "cod",
+            "paymentStatus": "pending",
+            "shippingMethod": "standard",
+            "subtotal": 220000,
+            "createdAt": "2026-07-17T05:29:38.712875+00:00",
+            "updatedAt": "2026-07-17T05:29:38.712875+00:00"
+          },
+          "transitions": {
+            "orderStatus": [
+              "pending",
+              "confirmed",
+              "cancelled"
+            ],
+            "paymentStatus": [
+              "pending",
+              "awaiting-transfer",
+              "awaiting-provider-confirmation",
+              "confirmed",
+              "failed",
+              "cancelled"
+            ],
+            "shippingStatus": [
+              "pending",
+              "preparing",
+              "cancelled"
+            ]
+          }
+        }
+      ],
+      "status": 200
+    },
+    "invalidOrderTransition": {
+      "code": "ORDER_INVALID_TRANSITION",
+      "data": null,
+      "status": 409
+    },
+    "invalidPostConfirmTransition": {
+      "code": "ORDER_INVALID_TRANSITION",
+      "data": null,
+      "status": 409
+    },
+    "invalidShippingTransition": {
+      "code": "ORDER_INVALID_TRANSITION",
+      "data": null,
+      "status": 409
+    },
+    "validOperations": {
+      "code": null,
+      "data": {
+        "items": [
+          {
+            "id": "479b0faf-3f88-449e-ad91-b85119574d92",
+            "orderId": "db566a46-136c-4d51-9df3-22c01a99e896",
+            "productId": "479b0faf-3f88-449e-ad91-b85119574d92",
+            "productName": "D37 QA Book Edition",
+            "unitPrice": 220000,
+            "quantity": 1,
+            "lineTotal": 220000
+          }
+        ],
+        "operations": {
+          "internalNotes": "API checked payment and shipping handoff.",
+          "paymentStatus": "confirmed",
+          "shippingMethod": "standard",
+          "shippingStatus": "preparing"
+        },
+        "order": {
+          "id": "db566a46-136c-4d51-9df3-22c01a99e896",
+          "orderCode": "CF-D37OPS-MROI0FZR",
+          "customerName": "D37 Orders Customer",
+          "customerEmail": "caseflow-d37-orders-customer-mroi0fzr-k9q5lg@example.com",
+          "customerPhone": "+84 912 345 678",
+          "shippingAddress": "12 Nguyen Hue, Ben Nghe, District 1, Ho Chi Minh City, VN",
+          "status": "confirmed",
+          "paymentMethod": "cod",
+          "paymentStatus": "confirmed",
+          "shippingMethod": "standard",
+          "subtotal": 220000,
+          "createdAt": "2026-07-17T05:29:38.712875+00:00",
+          "updatedAt": "2026-07-17T05:29:47.317981+00:00"
+        },
+        "transitions": {
+          "orderStatus": [
+            "confirmed",
+            "shipping",
+            "cancelled"
+          ],
+          "paymentStatus": [
+            "confirmed"
+          ],
+          "shippingStatus": [
+            "preparing",
+            "shipped",
+            "cancelled"
+          ]
+        }
+      },
+      "status": 200
+    }
+  },
+  "staffUi": {
+    "finalNotes": "UI note: packed and handed to carrier.",
+    "finalShippingStatus": "shipped",
+    "finalStatus": "shipping",
+    "filteredToOrder": true,
+    "hasOverflow": false,
+    "notesVisible": true,
+    "pageReady": true,
+    "statusSuccessVisible": true
+  }
+}

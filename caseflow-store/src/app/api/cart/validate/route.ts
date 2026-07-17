@@ -1,5 +1,5 @@
 import { apiError, apiSuccess } from "@/lib/api/response";
-import { validateSupabaseCart } from "@/lib/repositories/supabase-catalog";
+import { validateSupabaseBookCart } from "@/lib/repositories/supabase-books";
 import { cartValidationRequestSchema } from "@/lib/validation/cart";
 
 export async function POST(request: Request) {
@@ -32,7 +32,7 @@ export async function POST(request: Request) {
   let validation;
 
   try {
-    validation = await validateSupabaseCart(parsedBody.data.items);
+    validation = await validateSupabaseBookCart(parsedBody.data.items);
   } catch {
     return apiError(
       {

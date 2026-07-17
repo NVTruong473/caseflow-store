@@ -1,10 +1,29 @@
 import { createServerClient } from "@supabase/ssr";
 import { createClient } from "@supabase/supabase-js";
-import { expect, type BrowserContext, type Page } from "@playwright/test";
+import {
+  expect,
+  type APIRequestContext,
+  type BrowserContext,
+  type Page,
+} from "@playwright/test";
 
 import type { Database } from "@/types/supabase";
 
-type TestCustomer = {
+export const CART_STORAGE_KEY = "caseflow-store.cart.v1";
+export const CHECKOUT_SUCCESS_STORAGE_KEY =
+  "caseflow-store.checkout.success.v1";
+
+export type TestBook = {
+  slug: string;
+  title: string;
+  edition: {
+    id: string;
+    priceVnd: number;
+    stockQuantity: number;
+  };
+};
+
+export type TestCustomer = {
   id: string;
   email: string;
   password: string;
@@ -13,6 +32,12 @@ type TestCustomer = {
 type CapturedCookie = {
   name: string;
   value: string;
+};
+
+type ApiResponse<TData> = {
+  data: TData | null;
+  error: { code: string; message: string } | null;
+  meta: Record<string, unknown> | null;
 };
 
 export function getAdminCredentials() {
@@ -44,8 +69,14 @@ export async function loginAsAdmin(page: Page) {
   await page.goto("/admin/login");
   await page.locator("[data-admin-login-email]").fill(credentials.email);
   await page.locator("[data-admin-login-password]").fill(credentials.password);
+  const sessionResponse = page.waitForResponse(
+    (response) =>
+      new URL(response.url()).pathname === "/api/admin/session" &&
+      response.request().method() === "POST",
+  );
   await page.locator("[data-admin-login-submit]").click();
-  await expect(page).toHaveURL(/\/admin\/orders$/);
+  expect((await sessionResponse).ok()).toBe(true);
+  await page.goto("/admin/orders");
   await expect(page.locator("[data-admin-orders-page]")).toBeVisible();
 }
 
@@ -54,22 +85,33 @@ export async function createTemporaryCustomer(): Promise<TestCustomer> {
   const suffix = `${Date.now()}-${crypto.randomUUID().slice(0, 8)}`;
   const email = `caseflow.customer.${suffix}@example.com`;
   const password = `Customer-${crypto.randomUUID()}-9a`;
+  const fullName = "CaseFlow Customer QA";
   const { data, error } = await service.auth.admin.createUser({
     email,
     password,
     email_confirm: true,
-    user_metadata: { display_name: "CaseFlow Customer QA" },
+    user_metadata: { display_name: fullName, full_name: fullName },
   });
 
   if (error) {
     throw error;
   }
 
-  const { error: profileError } = await service.from("profiles").upsert({
-    id: data.user.id,
-    display_name: "CaseFlow Customer QA",
-    role: "customer",
-  });
+  const now = new Date().toISOString();
+  const { error: profileError } = await service.from("profiles").upsert(
+    {
+      id: data.user.id,
+      default_shipping_address: createShippingAddress(fullName),
+      display_name: fullName,
+      email,
+      email_verified_at: now,
+      full_name: fullName,
+      phone: "+84 912 345 678",
+      phone_verified_at: null,
+      role: "customer",
+    },
+    { onConflict: "id" },
+  );
 
   if (profileError) {
     await service.auth.admin.deleteUser(data.user.id);
@@ -80,6 +122,8 @@ export async function createTemporaryCustomer(): Promise<TestCustomer> {
 }
 
 export async function deleteTemporaryCustomer(customer: TestCustomer) {
+  await deleteOrdersByCustomerEmail(customer.email);
+
   const service = createTestServiceClient();
   const { error } = await service.auth.admin.deleteUser(customer.id);
 
@@ -131,13 +175,134 @@ export async function addSupabaseSessionCookies(
   );
 }
 
+export async function findAvailableBook(
+  request: APIRequestContext,
+  options: { maxStock?: number; minStock?: number } = {},
+) {
+  const response = await request.get(
+    "/api/products?availability=available&language=en&limit=100&sort=title-asc",
+  );
+  expect(response.status()).toBe(200);
+
+  const payload = (await response.json()) as ApiResponse<TestBook[]>;
+  const minStock = options.minStock ?? 1;
+  const target = (payload.data ?? []).find((book) => {
+    const stock = book.edition.stockQuantity;
+
+    return (
+      stock >= minStock &&
+      (options.maxStock === undefined || stock <= options.maxStock)
+    );
+  });
+
+  if (!target) {
+    throw new Error("No available test book found");
+  }
+
+  return target;
+}
+
+export async function seedCart(
+  page: Page,
+  items: Array<{ productId: string; quantity: number }>,
+) {
+  await page.goto("/");
+  await page.evaluate(
+    ({ cartKey, cartItems, successKey }) => {
+      window.localStorage.setItem(
+        cartKey,
+        JSON.stringify({ version: 1, items: cartItems }),
+      );
+      window.sessionStorage.removeItem(successKey);
+    },
+    {
+      cartKey: CART_STORAGE_KEY,
+      cartItems: items,
+      successKey: CHECKOUT_SUCCESS_STORAGE_KEY,
+    },
+  );
+}
+
+export async function clearClientOrderState(page: Page) {
+  await page.goto("/");
+  await page.evaluate(
+    ({ cartKey, successKey }) => {
+      window.localStorage.removeItem(cartKey);
+      window.sessionStorage.removeItem(successKey);
+    },
+    {
+      cartKey: CART_STORAGE_KEY,
+      successKey: CHECKOUT_SUCCESS_STORAGE_KEY,
+    },
+  );
+}
+
+export async function createOrderThroughApi(
+  page: Page,
+  customer: TestCustomer,
+  book: TestBook,
+  quantity = 1,
+) {
+  const response = await page.request.post("/api/orders", {
+    data: createOrderPayload(customer, book, quantity),
+  });
+
+  expect(response.status()).toBe(201);
+
+  return (await response.json()) as ApiResponse<{
+    order: { id: string; orderCode: string; status: string; subtotal: number };
+  }>;
+}
+
+export function createOrderPayload(
+  customer: TestCustomer,
+  book: TestBook,
+  quantity = 1,
+) {
+  return {
+    customerEmail: customer.email,
+    customerName: "CaseFlow Customer QA",
+    customerPhone: "+84 912 345 678",
+    items: [{ productId: book.edition.id, quantity }],
+    paymentMethod: "cod",
+    shippingAddress: createShippingAddress("CaseFlow Customer QA"),
+    shippingMethod: "standard",
+  };
+}
+
 export async function deleteOrdersByCustomerEmail(email: string) {
   const service = createTestServiceClient();
-  const { error } = await service.from("orders").delete().eq("customer_email", email);
+  const { error } = await service
+    .from("orders")
+    .delete()
+    .eq("customer_email", email);
 
   if (error) {
     throw error;
   }
+}
+
+export async function expectNoHorizontalOverflow(page: Page) {
+  const overflow = await page.evaluate(() => {
+    const documentElement = document.documentElement;
+
+    return documentElement.scrollWidth - documentElement.clientWidth;
+  });
+
+  expect(overflow).toBeLessThanOrEqual(1);
+}
+
+function createShippingAddress(recipientName: string) {
+  return {
+    countryCode: "VN",
+    district: "District 1",
+    line1: "12 Nguyen Hue",
+    line2: null,
+    phone: "+84 912 345 678",
+    province: "Ho Chi Minh City",
+    recipientName,
+    ward: "Ben Nghe",
+  };
 }
 
 function requireEnvironmentValue(name: string) {

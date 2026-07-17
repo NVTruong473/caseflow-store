@@ -1,12 +1,18 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
 
 import { Badge, Button, ErrorMessage, Skeleton } from "@/components/ui";
-import { ProductVisual } from "@/features/products";
 import { formatVnd } from "@/lib/format/currency";
+import {
+  getEditionLanguageLabel,
+  pickLocalizedText,
+  type Language,
+} from "@/lib/i18n/language";
 import { cn } from "@/lib/utils/cn";
+import type { BookFormat } from "@/types/domain";
 import type { ValidatedCartData } from "@/types/catalog";
 
 import { useCart } from "./cart-context";
@@ -37,6 +43,59 @@ const focusReturnFallbackSelectors = [
   "[data-mobile-navigation-toggle]",
   "a[href='/']",
 ];
+
+const cartDrawerCopy = {
+  en: {
+    cart: "Cart",
+    checkedError: "Cart could not be checked against current catalog data.",
+    checkout: "Checkout",
+    clearCart: "Clear cart",
+    close: "Close",
+    continueShopping: "Continue shopping",
+    decreaseQuantity: (name: string) => `Decrease ${name} quantity`,
+    emptyDescription: "Add a book from the catalog to review it here.",
+    emptyTitle: "Your cart is empty.",
+    estimatedSubtotal: "Estimated subtotal",
+    inStock: "In stock",
+    increaseQuantity: (name: string) => `Increase ${name} quantity`,
+    item: "item",
+    items: "items",
+    left: (count: number) => `Only ${count} left. Reduce this quantity before checkout.`,
+    networkError: "Cart validation is unavailable. Try again shortly.",
+    outOfStock: "Out of stock",
+    quantity: "Quantity",
+    quantityShort: "Qty",
+    remove: "Remove",
+    setToMax: "Set to max",
+    unavailableProduct: "Unavailable book",
+    unitPriceSuffix: "each",
+  },
+  vi: {
+    cart: "Giỏ hàng",
+    checkedError: "Không thể kiểm tra giỏ hàng với dữ liệu danh mục hiện tại.",
+    checkout: "Thanh toán",
+    clearCart: "Xóa giỏ hàng",
+    close: "Đóng",
+    continueShopping: "Tiếp tục mua sách",
+    decreaseQuantity: (name: string) => `Giảm số lượng ${name}`,
+    emptyDescription: "Thêm sách từ danh mục để xem lại tại đây.",
+    emptyTitle: "Giỏ hàng của bạn đang trống.",
+    estimatedSubtotal: "Tạm tính",
+    inStock: "Còn hàng",
+    increaseQuantity: (name: string) => `Tăng số lượng ${name}`,
+    item: "sản phẩm",
+    items: "sản phẩm",
+    left: (count: number) => `Chỉ còn ${count}. Hãy giảm số lượng trước khi thanh toán.`,
+    networkError: "Chưa thể kiểm tra giỏ hàng. Vui lòng thử lại sau.",
+    outOfStock: "Hết hàng",
+    quantity: "Số lượng",
+    quantityShort: "SL",
+    remove: "Xóa",
+    setToMax: "Đặt mức tối đa",
+    unavailableProduct: "Sách không khả dụng",
+    unitPriceSuffix: "mỗi cuốn",
+  },
+} as const;
 
 function isVisibleFocusTarget(element: HTMLElement) {
   if (element === document.body) {
@@ -76,7 +135,7 @@ function focusAfterCartDrawerClose(previousElement: Element | null) {
   }
 }
 
-export function CartDrawer() {
+export function CartDrawer({ language }: { language: Language }) {
   const {
     clearCart,
     closeCart,
@@ -86,6 +145,7 @@ export function CartDrawer() {
     totalQuantity,
     updateItemQuantity,
   } = useCart();
+  const copy = cartDrawerCopy[language];
   const closeButtonRef = React.useRef<HTMLButtonElement>(null);
   const panelRef = React.useRef<HTMLElement>(null);
   const previousActiveElementRef = React.useRef<Element | null>(null);
@@ -161,9 +221,7 @@ export function CartDrawer() {
         if (!response.ok || payload.error || !payload.data) {
           setReviewState({
             status: "error",
-            message:
-              payload.error?.message ??
-              "Cart could not be checked against current catalog data.",
+            message: payload.error?.message ?? copy.checkedError,
           });
           return;
         }
@@ -176,7 +234,7 @@ export function CartDrawer() {
 
         setReviewState({
           status: "error",
-          message: "Cart validation is unavailable. Try again shortly.",
+          message: copy.networkError,
         });
       }
     }
@@ -184,7 +242,7 @@ export function CartDrawer() {
     void validateCart();
 
     return () => abortController.abort();
-  }, [isCartOpen, items]);
+  }, [copy.checkedError, copy.networkError, isCartOpen, items]);
 
   if (!isCartOpen) {
     return null;
@@ -245,14 +303,14 @@ export function CartDrawer() {
         <div className="flex items-start justify-between gap-case-md border-b border-border p-case-lg">
           <div className="min-w-0">
             <p className="text-small font-medium uppercase text-text-muted">
-              Cart
+              {copy.cart}
             </p>
             <h2
               id="cart-drawer-title"
               className="text-heading-3 font-semibold text-foreground"
               suppressHydrationWarning
             >
-              {totalQuantity} {totalQuantity === 1 ? "item" : "items"}
+              {totalQuantity} {totalQuantity === 1 ? copy.item : copy.items}
             </h2>
           </div>
 
@@ -264,7 +322,7 @@ export function CartDrawer() {
             onClick={closeCart}
             data-cart-drawer-close
           >
-            Close
+            {copy.close}
           </Button>
         </div>
 
@@ -274,13 +332,13 @@ export function CartDrawer() {
             data-cart-drawer-empty
           >
             <h3 className="text-heading-3 font-semibold text-foreground">
-              Your cart is empty.
+              {copy.emptyTitle}
             </h3>
             <p className="text-body leading-7 text-text-muted">
-              Add a product from the catalog to review it here.
+              {copy.emptyDescription}
             </p>
             <Button type="button" variant="primary" onClick={closeCart}>
-              Continue shopping
+              {copy.continueShopping}
             </Button>
           </div>
         ) : reviewState.status === "loading" ||
@@ -301,14 +359,14 @@ export function CartDrawer() {
             <ErrorMessage>{reviewState.message}</ErrorMessage>
             <div className="grid gap-case-sm sm:grid-cols-2">
               <Button type="button" variant="secondary" onClick={closeCart}>
-                Continue shopping
+                {copy.continueShopping}
               </Button>
               <Button
                 type="button"
                 variant="destructive"
                 onClick={clearCart}
               >
-                Clear cart
+                {copy.clearCart}
               </Button>
             </div>
           </div>
@@ -324,9 +382,13 @@ export function CartDrawer() {
                   >
                     {product ? (
                       <div className="grid min-w-0 grid-cols-[72px_minmax(0,1fr)] gap-case-md">
-                        <div className="aspect-square overflow-hidden rounded-md border border-border bg-surface-muted p-1">
-                          <ProductVisual
-                            categorySlug={category?.slug ?? "phone-cases"}
+                        <div className="aspect-[3/4] overflow-hidden rounded-md border border-border bg-surface-muted p-1">
+                          <Image
+                            src={product.coverPath}
+                            alt={product.coverAlt}
+                            width={72}
+                            height={96}
+                            className="h-full w-full rounded-sm object-cover"
                           />
                         </div>
 
@@ -334,14 +396,23 @@ export function CartDrawer() {
                           <div className="flex flex-wrap gap-case-xs">
                             {category ? (
                               <Badge variant="neutral" size="sm">
-                                {category.name}
+                                {getCartCategoryName(category, language)}
                               </Badge>
                             ) : null}
                             <Badge
                               variant={product.stock > 0 ? "success" : "error"}
                               size="sm"
                             >
-                              {product.stock > 0 ? "In stock" : "Out of stock"}
+                              {product.stock > 0 ? copy.inStock : copy.outOfStock}
+                            </Badge>
+                            <Badge variant="neutral" size="sm">
+                              {getEditionLanguageLabel(
+                                product.language,
+                                language,
+                              )}
+                            </Badge>
+                            <Badge variant="neutral" size="sm">
+                              {getFormatLabel(product.format, language)}
                             </Badge>
                           </div>
 
@@ -352,11 +423,16 @@ export function CartDrawer() {
                           >
                             {product.name}
                           </Link>
+                          {product.authors.length > 0 ? (
+                            <p className="mt-case-xs truncate text-small text-text-muted">
+                              {product.authors.join(", ")}
+                            </p>
+                          ) : null}
 
                           <div className="mt-case-sm flex flex-col gap-case-sm">
                             <div className="flex flex-wrap items-center justify-between gap-case-sm">
                               <p className="text-small text-text-muted">
-                                {formatVnd(product.price)} each
+                                {formatVnd(product.price)} {copy.unitPriceSuffix}
                               </p>
                               <p className="font-semibold text-foreground">
                                 {formatVnd(lineTotal)}
@@ -370,14 +446,16 @@ export function CartDrawer() {
                               }
                             >
                               <p className="text-small font-medium text-foreground">
-                                Quantity
+                                {copy.quantity}
                               </p>
                               <div className="inline-flex items-center gap-case-xs">
                                 <Button
                                   type="button"
                                   variant="secondary"
                                   size="icon"
-                                  aria-label={`Decrease ${product.name} quantity`}
+                                  aria-label={copy.decreaseQuantity(
+                                    product.name,
+                                  )}
                                   disabled={item.quantity <= 1}
                                   onClick={() =>
                                     updateBoundedQuantity(
@@ -402,7 +480,9 @@ export function CartDrawer() {
                                   type="button"
                                   variant="secondary"
                                   size="icon"
-                                  aria-label={`Increase ${product.name} quantity`}
+                                  aria-label={copy.increaseQuantity(
+                                    product.name,
+                                  )}
                                   disabled={
                                     product.stock <= 0 ||
                                     item.quantity >= product.stock
@@ -428,10 +508,10 @@ export function CartDrawer() {
                     ) : (
                       <div className="flex min-w-0 flex-col gap-case-sm">
                         <h3 className="font-semibold text-foreground">
-                          Unavailable product
+                          {copy.unavailableProduct}
                         </h3>
                         <p className="text-small text-text-muted">
-                          Qty {item.quantity}
+                          {copy.quantityShort} {item.quantity}
                         </p>
                       </div>
                     )}
@@ -442,8 +522,7 @@ export function CartDrawer() {
                         data-cart-drawer-boundary-error={item.productId}
                       >
                         <ErrorMessage>
-                          Only {product.stock} left. Reduce this quantity before
-                          checkout.
+                          {copy.left(product.stock)}
                         </ErrorMessage>
                         {product.stock > 0 ? (
                           <Button
@@ -459,7 +538,7 @@ export function CartDrawer() {
                             }
                             data-cart-drawer-set-max={item.productId}
                           >
-                            Set to max
+                            {copy.setToMax}
                           </Button>
                         ) : null}
                       </div>
@@ -473,7 +552,7 @@ export function CartDrawer() {
                         onClick={() => removeItem(item.productId)}
                         data-cart-drawer-remove={item.productId}
                       >
-                        Remove
+                        {copy.remove}
                       </Button>
                     </div>
                   </li>
@@ -484,7 +563,7 @@ export function CartDrawer() {
             <div className="border-t border-border p-case-lg">
               <div className="flex items-center justify-between gap-case-md">
                 <p className="font-medium text-foreground">
-                  Estimated subtotal
+                  {copy.estimatedSubtotal}
                 </p>
                 <p
                   className="text-heading-3 font-semibold text-foreground"
@@ -501,11 +580,11 @@ export function CartDrawer() {
                   onClick={closeCart}
                   data-cart-drawer-checkout
                 >
-                  Checkout
+                  {copy.checkout}
                 </Link>
                 <div className="grid gap-case-sm sm:grid-cols-2">
                   <Button type="button" variant="secondary" onClick={closeCart}>
-                    Continue shopping
+                    {copy.continueShopping}
                   </Button>
                   <Button
                     type="button"
@@ -513,7 +592,7 @@ export function CartDrawer() {
                     onClick={clearCart}
                     data-cart-drawer-clear
                   >
-                    Clear cart
+                    {copy.clearCart}
                   </Button>
                 </div>
               </div>
@@ -523,4 +602,34 @@ export function CartDrawer() {
       </section>
     </div>
   );
+}
+
+function getFormatLabel(format: BookFormat, language: Language) {
+  const labels: Record<Language, Record<BookFormat, string>> = {
+    en: {
+      "box-set": "Box set",
+      hardcover: "Hardcover",
+      paperback: "Paperback",
+      "special-edition": "Special edition",
+    },
+    vi: {
+      "box-set": "Bộ sách",
+      hardcover: "Bìa cứng",
+      paperback: "Bìa mềm",
+      "special-edition": "Ấn bản đặc biệt",
+    },
+  };
+
+  return labels[language][format];
+}
+
+function getCartCategoryName(
+  category: ValidatedCartData["items"][number]["category"],
+  language: Language,
+) {
+  if (!category) {
+    return "";
+  }
+
+  return pickLocalizedText(category.labels, language, category.name);
 }

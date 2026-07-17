@@ -1,0 +1,45 @@
+{
+  "mode": "dry-run",
+  "generatedAt": "2026-07-16T06:18:13.952Z",
+  "seedSummary": {
+    "categoryCount": 11,
+    "authorCount": 41,
+    "publisherCount": 1,
+    "workCount": 50,
+    "editionCount": 100,
+    "languageCounts": {
+      "en": 50,
+      "vi": 50
+    },
+    "formatCounts": {
+      "special-edition": 6,
+      "paperback": 86,
+      "hardcover": 8
+    },
+    "categoryWorkCounts": {
+      "fiction": 20,
+      "classic-literature": 38,
+      "mystery-thriller": 4,
+      "fantasy-sci-fi": 10,
+      "romance": 4,
+      "business-economics": 3,
+      "self-development": 7,
+      "children-young-adult": 13,
+      "language-learning": 1,
+      "vietnamese-books": 0,
+      "english-books": 0
+    },
+    "featuredEditionCount": 12
+  },
+  "batchCounts": {
+    "book_categories": 11,
+    "book_authors": 41,
+    "book_publishers": 1,
+    "book_cover_assets": 1,
+    "book_works": 50,
+    "book_work_authors": 51,
+    "book_work_categories": 100,
+    "book_editions": 100,
+    "book_edition_translators": 0
+  }
+}

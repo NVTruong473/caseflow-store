@@ -1,0 +1,32 @@
+{
+  "task": "D26-T03",
+  "baseURL": "http://localhost:3010",
+  "ok": true,
+  "screenshots": [
+    "currency-en-home.png",
+    "currency-vi-home.png"
+  ],
+  "results": [
+    {
+      "check": "english mode shows approximate USD estimate",
+      "ok": true
+    },
+    {
+      "check": "english mode shows source/timestamp assumptions",
+      "ok": true
+    },
+    {
+      "check": "english currency page no horizontal overflow",
+      "ok": true
+    },
+    {
+      "check": "vietnamese mode hides approximate USD estimate",
+      "ok": true
+    },
+    {
+      "check": "vietnamese currency page no horizontal overflow",
+      "ok": true
+    }
+  ],
+  "checkedAt": "2026-07-16T07:38:57.158Z"
+}

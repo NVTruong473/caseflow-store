@@ -1,0 +1,9 @@
+{
+  "task": "D23-T03",
+  "migrationPath": "supabase/migrations/0006_caseflow_books_schema_draft.sql",
+  "projectRef": "fcsuldrerhbynwotcvyn",
+  "startedAt": "2026-07-16T05:47:46.695Z",
+  "endedAt": "2026-07-16T05:47:47.517Z",
+  "status": "applied",
+  "statementBytes": 41805
+}

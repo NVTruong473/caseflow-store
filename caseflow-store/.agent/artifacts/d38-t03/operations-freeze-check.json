@@ -1,0 +1,440 @@
+{
+  "adminAccess": [
+    {
+      "code": null,
+      "contentType": "application/json",
+      "key": "dashboard",
+      "status": 200,
+      "url": "/api/admin/dashboard?from=2099-03-01&to=2099-03-01"
+    },
+    {
+      "code": null,
+      "contentType": "text/csv; charset=utf-8",
+      "key": "ordersCsv",
+      "status": 200,
+      "url": "/api/admin/exports/orders?from=2099-03-01&to=2099-03-01"
+    },
+    {
+      "code": null,
+      "contentType": "application/json",
+      "key": "orders",
+      "status": 200,
+      "url": "/api/admin/orders"
+    },
+    {
+      "code": null,
+      "contentType": "application/json",
+      "key": "catalog",
+      "status": 200,
+      "url": "/api/admin/books/editions"
+    },
+    {
+      "code": null,
+      "contentType": "application/json",
+      "key": "inventory",
+      "status": 200,
+      "url": "/api/admin/inventory"
+    },
+    {
+      "code": null,
+      "contentType": "application/json",
+      "key": "customers",
+      "status": 200,
+      "url": "/api/admin/customers"
+    },
+    {
+      "code": null,
+      "contentType": "application/json",
+      "key": "promotions",
+      "status": 200,
+      "url": "/api/admin/promotions"
+    },
+    {
+      "code": null,
+      "contentType": "application/json",
+      "key": "settings",
+      "status": 200,
+      "url": "/api/admin/settings"
+    }
+  ],
+  "adminPages": [
+    {
+      "hasOverflow": false,
+      "key": "dashboard",
+      "path": "/admin",
+      "ready": true
+    },
+    {
+      "hasOverflow": false,
+      "key": "promotions",
+      "path": "/admin/promotions",
+      "ready": true
+    },
+    {
+      "hasOverflow": false,
+      "key": "settingsAllowed",
+      "path": "/admin/settings",
+      "ready": true
+    }
+  ],
+  "anonymousAccess": [
+    {
+      "code": "UNAUTHORIZED",
+      "contentType": "application/json",
+      "key": "dashboard",
+      "status": 401,
+      "url": "/api/admin/dashboard?from=2099-03-01&to=2099-03-01"
+    },
+    {
+      "code": "UNAUTHORIZED",
+      "contentType": "application/json",
+      "key": "ordersCsv",
+      "status": 401,
+      "url": "/api/admin/exports/orders?from=2099-03-01&to=2099-03-01"
+    },
+    {
+      "code": "UNAUTHORIZED",
+      "contentType": "application/json",
+      "key": "orders",
+      "status": 401,
+      "url": "/api/admin/orders"
+    },
+    {
+      "code": "UNAUTHORIZED",
+      "contentType": "application/json",
+      "key": "catalog",
+      "status": 401,
+      "url": "/api/admin/books/editions"
+    },
+    {
+      "code": "UNAUTHORIZED",
+      "contentType": "application/json",
+      "key": "inventory",
+      "status": 401,
+      "url": "/api/admin/inventory"
+    },
+    {
+      "code": "UNAUTHORIZED",
+      "contentType": "application/json",
+      "key": "customers",
+      "status": 401,
+      "url": "/api/admin/customers"
+    },
+    {
+      "code": "UNAUTHORIZED",
+      "contentType": "application/json",
+      "key": "promotions",
+      "status": 401,
+      "url": "/api/admin/promotions"
+    },
+    {
+      "code": "UNAUTHORIZED",
+      "contentType": "application/json",
+      "key": "settings",
+      "status": 401,
+      "url": "/api/admin/settings"
+    }
+  ],
+  "artifactLedger": [
+    {
+      "exists": true,
+      "ok": true,
+      "passKeys": [
+        "anonymous",
+        "customer",
+        "staff",
+        "admin",
+        "orderUpdated",
+        "rolePolicyDoc"
+      ],
+      "path": ".agent/artifacts/d35-t01/staff-role-access-check.json"
+    },
+    {
+      "exists": true,
+      "ok": true,
+      "passKeys": [
+        "staffNavigation",
+        "adminNavigation"
+      ],
+      "path": ".agent/artifacts/d35-t02/admin-navigation-check.json"
+    },
+    {
+      "exists": true,
+      "ok": true,
+      "passKeys": [
+        "anonymousDenied",
+        "cleanupRemovedRows",
+        "customerDenied",
+        "invalidPayloadRejected",
+        "publicCatalogReflectsActiveState",
+        "staffCrud",
+        "uiHealthy"
+      ],
+      "path": ".agent/artifacts/d36-t01/admin-book-catalog-check.json"
+    },
+    {
+      "exists": true,
+      "ok": true,
+      "passKeys": [
+        "anonymousDenied",
+        "auditTrailStored",
+        "cleanupRemovedRows",
+        "customerDenied",
+        "invalidAdjustmentRejected",
+        "lowStockVisible",
+        "outOfStockBoundary",
+        "staffUiFlow"
+      ],
+      "path": ".agent/artifacts/d36-t02/inventory-adjustments-check.json"
+    },
+    {
+      "exists": true,
+      "ok": true,
+      "passKeys": [
+        "accessControl",
+        "adminCrud",
+        "checkoutApplication",
+        "invalidPromotionsRejected",
+        "tamperedValuesIgnored",
+        "cleanupRemovedRows"
+      ],
+      "path": ".agent/artifacts/d37-t01/promotion-management-check.json"
+    },
+    {
+      "exists": true,
+      "ok": true,
+      "passKeys": [
+        "accessControl",
+        "adminStaffCanRead",
+        "customerDataMinimized",
+        "staffUiHealthy",
+        "cleanupRemovedOrder"
+      ],
+      "path": ".agent/artifacts/d37-t02/admin-customers-check.json"
+    },
+    {
+      "exists": true,
+      "ok": true,
+      "passKeys": [
+        "accessControl",
+        "apiTransitions",
+        "uiWorkflow",
+        "persisted",
+        "cleanupRemovedOrder"
+      ],
+      "path": ".agent/artifacts/d37-t03/admin-order-operations-check.json"
+    },
+    {
+      "exists": true,
+      "ok": true,
+      "passKeys": [
+        "accessControl",
+        "apiMetrics",
+        "uiMetrics",
+        "emptyState",
+        "cleanup"
+      ],
+      "path": ".agent/artifacts/d38-t01/admin-dashboard-check.json"
+    },
+    {
+      "exists": true,
+      "ok": true,
+      "passKeys": [
+        "accessControl",
+        "csvHeaders",
+        "csvRows",
+        "sensitiveFieldsExcluded",
+        "dashboardLink",
+        "cleanupRemovedOrder"
+      ],
+      "path": ".agent/artifacts/d38-t02/admin-orders-csv-export-check.json"
+    }
+  ],
+  "baseURL": "http://127.0.0.1:3006",
+  "cleanupScan": {
+    "operationOrdersByCode": 0,
+    "operationOrdersByEmail": 0,
+    "operationProfiles": 0,
+    "qaAuthors": 0,
+    "qaEditions": 0,
+    "qaInventoryAdjustments": 0,
+    "qaPromotions": 0,
+    "totalMatches": 0
+  },
+  "customerAccess": [
+    {
+      "code": "FORBIDDEN",
+      "contentType": "application/json",
+      "key": "dashboard",
+      "status": 403,
+      "url": "/api/admin/dashboard?from=2099-03-01&to=2099-03-01"
+    },
+    {
+      "code": "FORBIDDEN",
+      "contentType": "application/json",
+      "key": "ordersCsv",
+      "status": 403,
+      "url": "/api/admin/exports/orders?from=2099-03-01&to=2099-03-01"
+    },
+    {
+      "code": "FORBIDDEN",
+      "contentType": "application/json",
+      "key": "orders",
+      "status": 403,
+      "url": "/api/admin/orders"
+    },
+    {
+      "code": "FORBIDDEN",
+      "contentType": "application/json",
+      "key": "catalog",
+      "status": 403,
+      "url": "/api/admin/books/editions"
+    },
+    {
+      "code": "FORBIDDEN",
+      "contentType": "application/json",
+      "key": "inventory",
+      "status": 403,
+      "url": "/api/admin/inventory"
+    },
+    {
+      "code": "FORBIDDEN",
+      "contentType": "application/json",
+      "key": "customers",
+      "status": 403,
+      "url": "/api/admin/customers"
+    },
+    {
+      "code": "FORBIDDEN",
+      "contentType": "application/json",
+      "key": "promotions",
+      "status": 403,
+      "url": "/api/admin/promotions"
+    },
+    {
+      "code": "FORBIDDEN",
+      "contentType": "application/json",
+      "key": "settings",
+      "status": 403,
+      "url": "/api/admin/settings"
+    }
+  ],
+  "freezeDoc": {
+    "exists": true,
+    "hasAllowedChanges": true,
+    "hasCsvPiiBoundary": true,
+    "hasRemainingRisks": true,
+    "hasReviewBoundary": true,
+    "hasServerAuthorization": true
+  },
+  "generatedAt": "2026-07-17T06:12:10.380Z",
+  "ok": true,
+  "pass": {
+    "adminEndpoints": true,
+    "adminPages": true,
+    "anonymousDenied": true,
+    "artifactLedger": true,
+    "cleanupZero": true,
+    "customerDenied": true,
+    "freezeDoc": true,
+    "staffEndpoints": true,
+    "staffPages": true
+  },
+  "runError": null,
+  "staffAccess": [
+    {
+      "code": null,
+      "contentType": "application/json",
+      "key": "dashboard",
+      "status": 200,
+      "url": "/api/admin/dashboard?from=2099-03-01&to=2099-03-01"
+    },
+    {
+      "code": null,
+      "contentType": "text/csv; charset=utf-8",
+      "key": "ordersCsv",
+      "status": 200,
+      "url": "/api/admin/exports/orders?from=2099-03-01&to=2099-03-01"
+    },
+    {
+      "code": null,
+      "contentType": "application/json",
+      "key": "orders",
+      "status": 200,
+      "url": "/api/admin/orders"
+    },
+    {
+      "code": null,
+      "contentType": "application/json",
+      "key": "catalog",
+      "status": 200,
+      "url": "/api/admin/books/editions"
+    },
+    {
+      "code": null,
+      "contentType": "application/json",
+      "key": "inventory",
+      "status": 200,
+      "url": "/api/admin/inventory"
+    },
+    {
+      "code": null,
+      "contentType": "application/json",
+      "key": "customers",
+      "status": 200,
+      "url": "/api/admin/customers"
+    },
+    {
+      "code": "FORBIDDEN",
+      "contentType": "application/json",
+      "key": "promotions",
+      "status": 403,
+      "url": "/api/admin/promotions"
+    },
+    {
+      "code": "FORBIDDEN",
+      "contentType": "application/json",
+      "key": "settings",
+      "status": 403,
+      "url": "/api/admin/settings"
+    }
+  ],
+  "staffPages": [
+    {
+      "hasOverflow": false,
+      "key": "dashboard",
+      "path": "/admin",
+      "ready": true
+    },
+    {
+      "hasOverflow": false,
+      "key": "orders",
+      "path": "/admin/orders",
+      "ready": true
+    },
+    {
+      "hasOverflow": false,
+      "key": "catalog",
+      "path": "/admin/catalog",
+      "ready": true
+    },
+    {
+      "hasOverflow": false,
+      "key": "inventory",
+      "path": "/admin/inventory",
+      "ready": true
+    },
+    {
+      "hasOverflow": false,
+      "key": "customers",
+      "path": "/admin/customers",
+      "ready": true
+    },
+    {
+      "hasOverflow": false,
+      "key": "settingsDenied",
+      "path": "/admin/settings",
+      "ready": true
+    }
+  ]
+}

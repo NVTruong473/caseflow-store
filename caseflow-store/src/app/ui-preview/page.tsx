@@ -16,7 +16,7 @@ import {
 } from "@/components/ui";
 
 export const metadata: Metadata = {
-  title: "UI Preview - CaseFlow Store",
+  title: "UI Preview - CaseFlow Books",
   robots: {
     index: false,
     follow: false,
@@ -40,7 +40,7 @@ export default function UiPreviewPage() {
           <div className="flex max-w-3xl flex-col gap-case-sm">
             <h1 className="text-heading-1 font-semibold">UI primitives</h1>
             <p className="text-body leading-7 text-text-muted">
-              Visual QA surface for the shared CaseFlow Store components before
+              Visual QA surface for the shared CaseFlow Books components before
               building the storefront layout.
             </p>
           </div>
@@ -146,7 +146,7 @@ export default function UiPreviewPage() {
                 <div className="flex items-start justify-between gap-case-sm">
                   <div>
                     <p className="font-semibold">MagSafe Clear Case</p>
-                    <p className="text-small text-text-muted">Phone cases</p>
+                    <p className="text-small text-text-muted">Book editions</p>
                   </div>
                   <Badge variant="success">In stock</Badge>
                 </div>

@@ -1,0 +1,198 @@
+{
+  "baseURL": "http://127.0.0.1:3006",
+  "generatedAt": "2026-07-17T06:44:18.787Z",
+  "metadata": {
+    "account": {
+      "canonical": "https://caseflow-store.vercel.app/account",
+      "description": "Sign in or create a CaseFlow Books account to complete your profile, shipping address, and order access.",
+      "ogTitle": "Customer account - CaseFlow Books",
+      "robots": "noindex, nofollow",
+      "title": "Customer account - CaseFlow Books"
+    },
+    "catalog": {
+      "canonical": "https://caseflow-store.vercel.app/catalog",
+      "description": "Browse CaseFlow Books by title, author, category, language, format, VND price, and stock state.",
+      "ogTitle": "Book catalog - CaseFlow Books",
+      "robots": "",
+      "title": "Book catalog - CaseFlow Books"
+    },
+    "detail": {
+      "canonical": "https://caseflow-store.vercel.app/products/pride-and-prejudice-vietnamese-special-edition",
+      "description": "A sharp social novel about judgment, family pressure, and the cost of confusing first impressions with truth. This Vietnamese edition is positioned for local d…",
+      "ogTitle": "Pride and Prejudice - CaseFlow Books",
+      "robots": "",
+      "title": "Pride and Prejudice - CaseFlow Books"
+    },
+    "homeEn": {
+      "canonical": "https://caseflow-store.vercel.app",
+      "description": "CaseFlow Books is a Vietnam-first bilingual bookstore with English/Vietnamese editions, VND pricing, stock visibility, and account-gated checkout.",
+      "ogTitle": "CaseFlow Books - Bilingual bookstore",
+      "robots": "",
+      "title": "CaseFlow Books - Bilingual bookstore"
+    },
+    "homeVi": {
+      "canonical": "https://caseflow-store.vercel.app",
+      "description": "CaseFlow Books là nhà sách song ngữ ưu tiên Việt Nam, có catalog ấn bản Anh/Việt, giá VND, tồn kho và checkout theo tài khoản.",
+      "ogTitle": "CaseFlow Books - Nhà sách song ngữ",
+      "robots": "",
+      "title": "CaseFlow Books - Nhà sách song ngữ"
+    },
+    "tracking": {
+      "canonical": "https://caseflow-store.vercel.app/orders/track",
+      "description": "Track a CaseFlow Books order with an order code and matching email or phone contact.",
+      "ogTitle": "Track order - CaseFlow Books",
+      "robots": "",
+      "title": "Track order - CaseFlow Books"
+    }
+  },
+  "ok": true,
+  "pass": {
+    "accountNoindex": true,
+    "catalogMetadata": true,
+    "detailMetadata": true,
+    "homeMetadata": true,
+    "robots": true,
+    "sitemap": true,
+    "structuredData": true,
+    "trackingMetadata": true
+  },
+  "robots": {
+    "body": "User-Agent: *\nAllow: /\nAllow: /catalog\nAllow: /orders/track\nAllow: /products/\nDisallow: /account\nDisallow: /admin\nDisallow: /api\nDisallow: /catalog-state-preview\nDisallow: /checkout\nDisallow: /ui-preview\n\nSitemap: https://caseflow-store.vercel.app/sitemap.xml\n",
+    "status": 200
+  },
+  "sitemap": {
+    "includesAdmin": false,
+    "includesApi": false,
+    "includesCatalog": true,
+    "includesCheckout": false,
+    "includesHome": true,
+    "includesTargetBook": true,
+    "includesTracking": true,
+    "status": 200
+  },
+  "structuredData": {
+    "name": "Pride and Prejudice",
+    "offerUrl": "https://caseflow-store.vercel.app/products/pride-and-prejudice-vietnamese-special-edition",
+    "priceCurrency": "VND",
+    "type": "Book"
+  },
+  "target": {
+    "id": "00000000-0000-4000-8000-000000004000",
+    "type": "book-edition",
+    "slug": "pride-and-prejudice-vietnamese-special-edition",
+    "title": "Kieu hanh va dinh kien",
+    "edition": {
+      "id": "00000000-0000-4000-8000-000000004000",
+      "slug": "pride-and-prejudice-vietnamese-special-edition",
+      "displayTitle": "Kieu hanh va dinh kien",
+      "localizedDisplayTitle": {
+        "vi": "Kieu hanh va dinh kien",
+        "en": "Pride and Prejudice"
+      },
+      "subtitle": null,
+      "language": "vi",
+      "format": "special-edition",
+      "isbn13": null,
+      "isbn10": null,
+      "publicationYear": 1813,
+      "pageCount": null,
+      "dimensions": {
+        "widthMm": 130,
+        "heightMm": 205,
+        "thicknessMm": null
+      },
+      "weightGrams": 360,
+      "priceVnd": 89000,
+      "compareAtPriceVnd": 114000,
+      "stockQuantity": 8,
+      "lowStockThreshold": 5,
+      "inventoryStatus": "low-stock",
+      "summary": {
+        "vi": "Mot tieu thuyet xa hoi sac sat ve dinh kien, ap luc gia dinh va cai gia cua viec danh gia nguoi khac qua an tuong dau tien. An ban tieng Viet phu hop cho doc gia trong nuoc va viec so sanh song song voi ban tieng Anh.",
+        "en": "A sharp social novel about judgment, family pressure, and the cost of confusing first impressions with truth. This Vietnamese edition is positioned for local discovery and step-by-step comparison with the English edition."
+      },
+      "tableOfContents": null,
+      "sampleExcerptPolicy": "No commercial excerpt is stored in seed data; use short internal preview copy only.",
+      "isFeatured": false,
+      "createdAt": "2026-07-16T00:00:00+00:00",
+      "updatedAt": "2026-07-16T06:19:00.769299+00:00"
+    },
+    "work": {
+      "id": "00000000-0000-4000-8000-000000002000",
+      "slug": "pride-and-prejudice",
+      "title": "Pride and Prejudice",
+      "originalTitle": null,
+      "localizedTitle": {
+        "vi": "Kieu hanh va dinh kien",
+        "en": "Pride and Prejudice"
+      },
+      "originalLanguage": "English",
+      "themes": [
+        "family",
+        "manners",
+        "marriage"
+      ],
+      "ageRating": null,
+      "publicationEra": "1813",
+      "canonicalSummary": {
+        "vi": "Mot tieu thuyet xa hoi sac sat ve dinh kien, ap luc gia dinh va cai gia cua viec danh gia nguoi khac qua an tuong dau tien.",
+        "en": "A sharp social novel about judgment, family pressure, and the cost of confusing first impressions with truth."
+      }
+    },
+    "authors": [
+      {
+        "id": "00000000-0000-4000-8000-000000001000",
+        "slug": "jane-austen",
+        "name": "Jane Austen",
+        "country": "United Kingdom"
+      }
+    ],
+    "categories": [
+      {
+        "id": "00000000-0000-4000-8000-000000000101",
+        "type": "book-category",
+        "slug": "classic-literature",
+        "labels": {
+          "vi": "Van hoc kinh dien",
+          "en": "Classic literature"
+        },
+        "description": {
+          "vi": "Nhung tac pham lau ben, phu hop cho tu sach ca nhan va hoc thuat.",
+          "en": "Enduring works suited for personal libraries and study shelves."
+        },
+        "sortOrder": 1
+      },
+      {
+        "id": "00000000-0000-4000-8000-000000000104",
+        "type": "book-category",
+        "slug": "romance",
+        "labels": {
+          "vi": "Lang man",
+          "en": "Romance"
+        },
+        "description": {
+          "vi": "Nhung cau chuyen ve tinh cam, hon nhan, lua chon va truong thanh.",
+          "en": "Stories of affection, marriage, choice, and personal growth."
+        },
+        "sortOrder": 4
+      }
+    ],
+    "translators": [],
+    "publisher": {
+      "id": "00000000-0000-4000-8000-000000000001",
+      "slug": "caseflow-books-demo-editions",
+      "name": "CaseFlow Books Demo Editions",
+      "country": "Vietnam",
+      "website": null
+    },
+    "coverAsset": {
+      "id": "00000000-0000-4000-8000-000000000050",
+      "path": "/images/books/placeholders/book-cover-placeholder.svg",
+      "altText": {
+        "vi": "Bia sach tam thoi noi bo cua CaseFlow Books",
+        "en": "CaseFlow Books internal placeholder cover"
+      },
+      "source": "internal"
+    }
+  }
+}

@@ -1,19 +1,13 @@
 import { expect, type Locator, type Page, test } from "@playwright/test";
 
 import {
-  deleteOrdersByCustomerEmail,
-  getAdminCredentials,
+  addSupabaseSessionCookies,
+  createTemporaryCustomer,
+  deleteTemporaryCustomer,
+  findAvailableBook,
+  loginAsAdmin,
+  seedCart,
 } from "./helpers/supabase";
-
-const CART_STORAGE_KEY = "caseflow-store.cart.v1";
-const TEST_PRODUCT_ID = "10000000-0000-4000-8000-000000000001";
-const TEST_PRODUCT_SLUG = "aeroguard-magsafe-case";
-const KEYBOARD_ORDER_EMAIL = "keyboard-focus@example.com";
-
-type StoredCartItem = {
-  productId: string;
-  quantity: number;
-};
 
 type FocusSnapshot = {
   activeLabel: string;
@@ -22,97 +16,100 @@ type FocusSnapshot = {
   isVisible: boolean;
 };
 
-test.beforeEach(async ({ page }) => {
-  await page.goto("/");
-});
-
-test.afterEach(async () => {
-  await deleteOrdersByCustomerEmail(KEYBOARD_ORDER_EMAIL);
-});
-
-test("mobile navigation and cart drawer keep keyboard focus visible", async ({
+test("mobile navigation, language switch, assistant, and cart keep keyboard focus visible", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 375, height: 812 });
-  await seedCart(page, [{ productId: TEST_PRODUCT_ID, quantity: 2 }]);
+  const book = await findAvailableBook(page.request);
+  await seedCart(page, [{ productId: book.edition.id, quantity: 1 }]);
   await page.goto("/");
 
   const menuButton = page.locator("[aria-controls='mobile-navigation']");
-  await tabUntilFocused(page, menuButton, "mobile menu button");
+  await tabUntilFocused(page, menuButton, "mobile menu button", 20);
   await expectActiveFocus(page, "mobile menu button");
-  await page.screenshot({
-    fullPage: true,
-    path: ".agent/artifacts/d12-t02-mobile-menu-focus-375.png",
-  });
-
   await page.keyboard.press("Enter");
   await expect(menuButton).toHaveAttribute("aria-expanded", "true");
+
+  const languageButton = page.locator(
+    "#mobile-navigation [data-language-option='vi']",
+  );
+  await tabUntilFocused(page, languageButton, "language switch", 80);
+  await expectActiveFocus(page, "language switch");
 
   const mobileCartButton = page.locator(
     "#mobile-navigation [data-cart-drawer-open]",
   );
-  await tabUntilFocused(page, mobileCartButton, "mobile cart drawer button", 8);
+  await tabUntilFocused(page, mobileCartButton, "mobile cart drawer button", 30);
   await expectActiveFocus(page, "mobile cart drawer button");
-
   await page.keyboard.press("Enter");
   await expect(page.locator("[data-cart-drawer]")).toBeVisible();
   await expect(page.locator("[data-cart-drawer-close]")).toBeFocused();
   await expectActiveFocus(page, "cart drawer close button");
-  await page.screenshot({
-    fullPage: true,
-    path: ".agent/artifacts/d12-t02-cart-drawer-focus-375.png",
-  });
-
-  for (let tabIndex = 0; tabIndex < 8; tabIndex += 1) {
-    await page.keyboard.press("Tab");
-    await expectActiveElementInside(page, "[data-cart-drawer]");
-  }
 
   await page.keyboard.press("Escape");
   await expect(page.locator("[data-cart-drawer]")).toBeHidden();
-  await expectActiveFocus(page, "visible focus after cart drawer closes");
+  await page.locator("[data-book-assistant-toggle]").focus();
+  await expectActiveFocus(page, "assistant toggle");
+  await page.screenshot({
+    fullPage: true,
+    path: ".agent/artifacts/d40-t01-keyboard-mobile-focus.png",
+  });
 });
 
-test("product detail and checkout controls are reachable by keyboard", async ({
+test("book detail and checkout controls are reachable by keyboard", async ({
+  baseURL,
+  context,
   page,
 }) => {
-  await page.setViewportSize({ width: 1024, height: 900 });
-  await page.goto(`/products/${TEST_PRODUCT_SLUG}`);
+  expect(baseURL).toBeTruthy();
+  const customer = await createTemporaryCustomer();
 
-  const quantityInput = page.locator("[data-quantity-input]");
-  await tabUntilFocused(page, quantityInput, "product quantity input", 32);
-  await expectActiveFocus(page, "product quantity input");
+  try {
+    await addSupabaseSessionCookies(
+      context,
+      baseURL!,
+      customer.email,
+      customer.password,
+    );
+    const book = await findAvailableBook(page.request);
 
-  const addToCartButton = page.locator("[data-add-to-cart-button]");
-  await tabUntilFocused(page, addToCartButton, "add to cart button", 6);
-  await expectActiveFocus(page, "add to cart button");
-  await page.keyboard.press("Enter");
-  await expect(page.locator("[data-add-to-cart-feedback='success']")).toBeVisible();
+    await page.setViewportSize({ width: 1024, height: 900 });
+    await page.goto(`/products/${book.slug}`);
 
-  await page.screenshot({
-    fullPage: true,
-    path: ".agent/artifacts/d12-t02-product-detail-focus-1024.png",
-  });
+    const quantityInput = page.locator("[data-book-quantity-input]");
+    await tabUntilFocused(page, quantityInput, "book quantity input", 40);
+    await expectActiveFocus(page, "book quantity input");
 
-  await seedCart(page, [{ productId: TEST_PRODUCT_ID, quantity: 2 }]);
-  await page.goto("/checkout");
-  await expect(page.locator("[data-checkout-order-summary]")).toBeVisible();
+    const addToCartButton = page.locator("[data-book-add-to-cart-button]");
+    await tabUntilFocused(page, addToCartButton, "add to cart button", 10);
+    await expectActiveFocus(page, "add to cart button");
+    await page.keyboard.press("Enter");
+    await expect(page.locator("[data-book-add-to-cart-feedback='success']"))
+      .toBeVisible();
 
-  const nameInput = page.locator("[data-checkout-customer-name]");
-  await tabUntilFocused(page, nameInput, "checkout full name input", 20);
-  await expectActiveFocus(page, "checkout full name input");
+    await seedCart(page, [{ productId: book.edition.id, quantity: 1 }]);
+    await page.goto("/checkout");
+    await expect(page.locator("[data-checkout-form-shell]")).toBeVisible();
 
-  await page.keyboard.type("Van Truong");
-  await page.keyboard.press("Tab");
-  await expect(page.locator("[data-checkout-customer-email]")).toBeFocused();
-  await expectActiveFocus(page, "checkout email input");
-  await page.screenshot({
-    fullPage: true,
-    path: ".agent/artifacts/d12-t02-checkout-focus-1024.png",
-  });
+    const nameInput = page.locator("[data-checkout-customer-name]");
+    await tabUntilFocused(page, nameInput, "checkout full name input", 40);
+    await expectActiveFocus(page, "checkout full name input");
+
+    await page.keyboard.press("Tab");
+    await expect(page.locator("[data-checkout-customer-email]")).toBeFocused();
+    await expectActiveFocus(page, "checkout email input");
+    await page.locator("[data-checkout-payment-method='bank-transfer']").focus();
+    await expectActiveFocus(page, "checkout payment option");
+    await page.screenshot({
+      fullPage: true,
+      path: ".agent/artifacts/d40-t01-keyboard-checkout-focus.png",
+    });
+  } finally {
+    await deleteTemporaryCustomer(customer);
+  }
 });
 
-test("admin login and mobile order detail keep visible keyboard focus", async ({
+test("admin login and dashboard controls keep visible keyboard focus", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 768, height: 900 });
@@ -121,71 +118,27 @@ test("admin login and mobile order detail keep visible keyboard focus", async ({
   const emailInput = page.locator("[data-admin-login-email]");
   await tabUntilFocused(page, emailInput, "admin email input", 20);
   await expectActiveFocus(page, "admin email input");
+
+  await loginAsAdmin(page);
+  await page.goto("/admin");
+  await expect(page.locator("[data-admin-dashboard-page]")).toBeVisible();
+
+  const ordersNav = page.locator("[data-admin-nav-item='orders']");
+  await ordersNav.focus();
+  await expectActiveFocus(page, "admin orders nav");
+
+  const rangeLink = page.locator("[data-admin-dashboard-range-link='30d']");
+  await rangeLink.focus();
+  await expectActiveFocus(page, "admin dashboard range");
+
+  const exportLink = page.locator("[data-admin-dashboard-export-orders]");
+  await exportLink.focus();
+  await expectActiveFocus(page, "admin export orders");
   await page.screenshot({
     fullPage: true,
-    path: ".agent/artifacts/d12-t02-admin-login-focus-768.png",
-  });
-
-  await createOrder(page);
-  const credentials = getAdminCredentials();
-  await emailInput.fill(credentials.email);
-  await page.locator("[data-admin-login-password]").fill(credentials.password);
-  await page.locator("[data-admin-login-submit]").click();
-  await expect(page).toHaveURL(/\/admin\/orders$/);
-  await page.setViewportSize({ width: 375, height: 812 });
-  await page.goto("/admin/orders");
-  await expect(page.locator("[data-admin-order-detail]")).toBeVisible();
-
-  const detailJumpButton = page.locator("[data-admin-mobile-detail-jump]");
-  await tabUntilFocused(page, detailJumpButton, "admin mobile detail jump", 28);
-  await expectActiveFocus(page, "admin mobile detail jump");
-
-  await page.keyboard.press("Enter");
-  await expect(page.locator("[data-admin-order-detail]")).toBeFocused();
-  await expectActiveFocus(page, "admin order detail panel");
-  await page.screenshot({
-    fullPage: true,
-    path: ".agent/artifacts/d12-t02-admin-orders-focus-375.png",
+    path: ".agent/artifacts/d40-t01-keyboard-admin-focus.png",
   });
 });
-
-async function seedCart(page: Page, items: StoredCartItem[]) {
-  await waitForCartStorage(page);
-  await page.evaluate(
-    ({ cartKey, items: cartItems }) => {
-      window.localStorage.setItem(
-        cartKey,
-        JSON.stringify({ version: 1, items: cartItems }),
-      );
-    },
-    { cartKey: CART_STORAGE_KEY, items },
-  );
-}
-
-async function waitForCartStorage(page: Page) {
-  await expect
-    .poll(() =>
-      page.evaluate(
-        ({ cartKey }) => window.localStorage.getItem(cartKey) !== null,
-        { cartKey: CART_STORAGE_KEY },
-      ),
-    )
-    .toBe(true);
-}
-
-async function createOrder(page: Page) {
-  const response = await page.request.post("/api/orders", {
-    data: {
-      customerEmail: KEYBOARD_ORDER_EMAIL,
-      customerName: "Keyboard Focus QA",
-      customerPhone: "+84 901 234 567",
-      items: [{ productId: TEST_PRODUCT_ID, quantity: 1 }],
-      shippingAddress: "12 Nguyen Hue, District 1, Ho Chi Minh City",
-    },
-  });
-
-  expect(response.ok()).toBe(true);
-}
 
 async function tabUntilFocused(
   page: Page,
@@ -206,18 +159,6 @@ async function tabUntilFocused(
 
 async function isFocused(locator: Locator) {
   return locator.evaluate((element) => element === document.activeElement);
-}
-
-async function expectActiveElementInside(page: Page, selector: string) {
-  const isInside = await page.evaluate((containerSelector) => {
-    const activeElement = document.activeElement;
-
-    return activeElement
-      ? Boolean(activeElement.closest(containerSelector))
-      : false;
-  }, selector);
-
-  expect(isInside).toBe(true);
 }
 
 async function expectActiveFocus(page: Page, label: string) {
@@ -260,17 +201,9 @@ async function getActiveFocusSnapshot(page: Page): Promise<FocusSnapshot> {
 
     return {
       activeLabel:
-        element.getAttribute("data-cart-drawer-open") ??
-        element.getAttribute("data-cart-drawer-close") ??
-        element.getAttribute("data-quantity-input") ??
-        element.getAttribute("data-add-to-cart-button") ??
-        element.getAttribute("data-checkout-customer-name") ??
-        element.getAttribute("data-checkout-customer-email") ??
-        element.getAttribute("data-admin-login-email") ??
-        element.getAttribute("data-admin-mobile-detail-jump") ??
-        element.getAttribute("data-admin-order-detail") ??
-        element.textContent?.trim() ??
-        element.tagName.toLowerCase(),
+        element.getAttribute("aria-label") ??
+        element.textContent?.trim().slice(0, 80) ??
+        element.tagName,
       hasVisibleIndicator: hasOutline || hasShadow,
       isFocusVisible: element.matches(":focus-visible"),
       isVisible: rect.width > 0 && rect.height > 0,

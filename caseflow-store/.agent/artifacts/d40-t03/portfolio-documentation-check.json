@@ -1,0 +1,347 @@
+{
+  "claimChecks": {
+    "missingRequired": [],
+    "staleMatches": []
+  },
+  "generatedAt": "2026-07-17T08:14:22.386Z",
+  "linkChecks": {
+    "broken": [],
+    "checked": [
+      {
+        "file": "README.md",
+        "target": "caseflow-store/docs/v1.1-safe-cover-asset-strategy.md"
+      },
+      {
+        "file": "README.md",
+        "target": "caseflow-store/docs/domain.md"
+      },
+      {
+        "file": "README.md",
+        "target": "caseflow-store/docs/release-candidate.md"
+      },
+      {
+        "file": "README.md",
+        "target": "caseflow-store/docs/v1.1-release-audit.md"
+      },
+      {
+        "file": "README.md",
+        "target": "caseflow-store/docs/adr/"
+      },
+      {
+        "file": "README.md",
+        "target": "caseflow-store/docs/known-limitations.md"
+      },
+      {
+        "file": "README.md",
+        "target": "caseflow-store/docs/cv-bullets.md"
+      },
+      {
+        "file": "README.md",
+        "target": "caseflow-store/docs/screenshots/storefront-desktop.png"
+      },
+      {
+        "file": "README.md",
+        "target": "caseflow-store/docs/screenshots/storefront-mobile.png"
+      },
+      {
+        "file": "README.md",
+        "target": "caseflow-store/docs/screenshots/catalog-desktop.png"
+      },
+      {
+        "file": "README.md",
+        "target": "caseflow-store/docs/screenshots/catalog-mobile.png"
+      },
+      {
+        "file": "README.md",
+        "target": "caseflow-store/docs/screenshots/product-desktop.png"
+      },
+      {
+        "file": "README.md",
+        "target": "caseflow-store/docs/screenshots/checkout-mobile.png"
+      },
+      {
+        "file": "README.md",
+        "target": "caseflow-store/docs/screenshots/admin-dashboard-desktop.png"
+      },
+      {
+        "file": "README.md",
+        "target": "caseflow-store/docs/screenshots/admin-orders-mobile.png"
+      },
+      {
+        "file": "caseflow-store/README.md",
+        "target": "../README.md"
+      },
+      {
+        "file": "caseflow-store/README.md",
+        "target": "supabase/schema.sql"
+      },
+      {
+        "file": "caseflow-store/README.md",
+        "target": "supabase/migrations/"
+      },
+      {
+        "file": "caseflow-store/README.md",
+        "target": ".env.example"
+      },
+      {
+        "file": "caseflow-store/README.md",
+        "target": "docs/"
+      },
+      {
+        "file": "docs/architecture.md",
+        "target": "domain.md"
+      },
+      {
+        "file": "docs/architecture.md",
+        "target": "v1.1-safe-cover-asset-strategy.md"
+      },
+      {
+        "file": "docs/architecture.md",
+        "target": "v1.1-release-audit.md"
+      },
+      {
+        "file": "docs/architecture.md",
+        "target": "adr/README.md"
+      },
+      {
+        "file": "docs/adr/README.md",
+        "target": "0001-use-nextjs-modular-monolith.md"
+      },
+      {
+        "file": "docs/adr/README.md",
+        "target": "0002-use-supabase.md"
+      },
+      {
+        "file": "docs/adr/README.md",
+        "target": "0003-use-mock-first-development.md"
+      },
+      {
+        "file": "docs/adr/README.md",
+        "target": "0004-use-local-cart.md"
+      },
+      {
+        "file": "docs/adr/README.md",
+        "target": "0005-use-simulated-checkout.md"
+      },
+      {
+        "file": "docs/adr/README.md",
+        "target": "0006-pivot-to-caseflow-books.md"
+      },
+      {
+        "file": "caseflow-store/docs/architecture.md",
+        "target": "domain.md"
+      },
+      {
+        "file": "caseflow-store/docs/architecture.md",
+        "target": "v1.1-safe-cover-asset-strategy.md"
+      },
+      {
+        "file": "caseflow-store/docs/architecture.md",
+        "target": "v1.1-release-audit.md"
+      },
+      {
+        "file": "caseflow-store/docs/architecture.md",
+        "target": "adr/README.md"
+      },
+      {
+        "file": "caseflow-store/docs/adr/README.md",
+        "target": "0001-use-nextjs-modular-monolith.md"
+      },
+      {
+        "file": "caseflow-store/docs/adr/README.md",
+        "target": "0002-use-supabase.md"
+      },
+      {
+        "file": "caseflow-store/docs/adr/README.md",
+        "target": "0003-use-mock-first-development.md"
+      },
+      {
+        "file": "caseflow-store/docs/adr/README.md",
+        "target": "0004-use-local-cart.md"
+      },
+      {
+        "file": "caseflow-store/docs/adr/README.md",
+        "target": "0005-use-simulated-checkout.md"
+      },
+      {
+        "file": "caseflow-store/docs/adr/README.md",
+        "target": "0006-pivot-to-caseflow-books.md"
+      }
+    ]
+  },
+  "mirrorChecks": [
+    {
+      "left": "docs/architecture.md",
+      "leftHash": "8e93163e2d332557d68bcd497b5c745af08807b77fbd3b7b94b3920199c38759",
+      "match": true,
+      "right": "caseflow-store/docs/architecture.md",
+      "rightHash": "8e93163e2d332557d68bcd497b5c745af08807b77fbd3b7b94b3920199c38759"
+    },
+    {
+      "left": "docs/known-limitations.md",
+      "leftHash": "d70867a0cf88ec6d42095e7922601620efe28c368d7883769bec85261e8af792",
+      "match": true,
+      "right": "caseflow-store/docs/known-limitations.md",
+      "rightHash": "d70867a0cf88ec6d42095e7922601620efe28c368d7883769bec85261e8af792"
+    },
+    {
+      "left": "docs/cv-bullets.md",
+      "leftHash": "29f9e4f55d49249507505a17a63d3345780e610aaf134920b7652499edba55a6",
+      "match": true,
+      "right": "caseflow-store/docs/cv-bullets.md",
+      "rightHash": "29f9e4f55d49249507505a17a63d3345780e610aaf134920b7652499edba55a6"
+    },
+    {
+      "left": "docs/release-candidate.md",
+      "leftHash": "2a3bc2273b6f482210c364478b7170c3297f14d3333cb1ce05f685591bf3b70d",
+      "match": true,
+      "right": "caseflow-store/docs/release-candidate.md",
+      "rightHash": "2a3bc2273b6f482210c364478b7170c3297f14d3333cb1ce05f685591bf3b70d"
+    },
+    {
+      "left": "docs/adr/README.md",
+      "leftHash": "00c9dc17c055d96038b69f0f8e3cde9603b55020d00ef9370640b7b3659f9297",
+      "match": true,
+      "right": "caseflow-store/docs/adr/README.md",
+      "rightHash": "00c9dc17c055d96038b69f0f8e3cde9603b55020d00ef9370640b7b3659f9297"
+    }
+  ],
+  "ok": true,
+  "screenshotChecks": [
+    {
+      "alphaAverage": 255,
+      "colorRange": 233,
+      "height": 2188,
+      "loaded": true,
+      "width": 1440,
+      "expected": {
+        "file": "admin-dashboard-desktop.png",
+        "minHeight": 900,
+        "width": 1440
+      },
+      "file": "admin-dashboard-desktop.png",
+      "ok": true,
+      "sizeBytes": 238319
+    },
+    {
+      "alphaAverage": 255,
+      "colorRange": 238,
+      "height": 2169,
+      "loaded": true,
+      "width": 375,
+      "expected": {
+        "file": "admin-orders-mobile.png",
+        "minHeight": 900,
+        "width": 375
+      },
+      "file": "admin-orders-mobile.png",
+      "ok": true,
+      "sizeBytes": 82597
+    },
+    {
+      "alphaAverage": 255,
+      "colorRange": 233,
+      "height": 5931,
+      "loaded": true,
+      "width": 1440,
+      "expected": {
+        "file": "catalog-desktop.png",
+        "minHeight": 900,
+        "width": 1440
+      },
+      "file": "catalog-desktop.png",
+      "ok": true,
+      "sizeBytes": 550847
+    },
+    {
+      "alphaAverage": 255,
+      "colorRange": 238,
+      "height": 22438,
+      "loaded": true,
+      "width": 375,
+      "expected": {
+        "file": "catalog-mobile.png",
+        "minHeight": 900,
+        "width": 375
+      },
+      "file": "catalog-mobile.png",
+      "ok": true,
+      "sizeBytes": 974803
+    },
+    {
+      "alphaAverage": 255,
+      "colorRange": 238,
+      "height": 4787,
+      "loaded": true,
+      "width": 375,
+      "expected": {
+        "file": "checkout-mobile.png",
+        "minHeight": 900,
+        "width": 375
+      },
+      "file": "checkout-mobile.png",
+      "ok": true,
+      "sizeBytes": 318540
+    },
+    {
+      "alphaAverage": 255,
+      "colorRange": 233,
+      "height": 2961,
+      "loaded": true,
+      "width": 1440,
+      "expected": {
+        "file": "product-desktop.png",
+        "minHeight": 900,
+        "width": 1440
+      },
+      "file": "product-desktop.png",
+      "ok": true,
+      "sizeBytes": 322741
+    },
+    {
+      "alphaAverage": 255,
+      "colorRange": 238,
+      "height": 4791,
+      "loaded": true,
+      "width": 375,
+      "expected": {
+        "file": "product-mobile.png",
+        "minHeight": 900,
+        "width": 375
+      },
+      "file": "product-mobile.png",
+      "ok": true,
+      "sizeBytes": 294977
+    },
+    {
+      "alphaAverage": 255,
+      "colorRange": 233,
+      "height": 4453,
+      "loaded": true,
+      "width": 1440,
+      "expected": {
+        "file": "storefront-desktop.png",
+        "minHeight": 900,
+        "width": 1440
+      },
+      "file": "storefront-desktop.png",
+      "ok": true,
+      "sizeBytes": 619858
+    },
+    {
+      "alphaAverage": 255,
+      "colorRange": 238,
+      "height": 13046,
+      "loaded": true,
+      "width": 375,
+      "expected": {
+        "file": "storefront-mobile.png",
+        "minHeight": 900,
+        "width": 375
+      },
+      "file": "storefront-mobile.png",
+      "ok": true,
+      "sizeBytes": 759838
+    }
+  ]
+}

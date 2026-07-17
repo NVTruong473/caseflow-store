@@ -1,0 +1,183 @@
+{
+  "anonymousAccess": {
+    "code": "UNAUTHORIZED",
+    "status": 401
+  },
+  "auditTrail": [
+    {
+      "id": "082ccd8f-2ae6-49da-b2fd-fcab95d0a152",
+      "edition_id": "2c3f5ef6-4aad-4419-8cd6-10f7843467ab",
+      "quantity_delta": -1,
+      "reason": "QA final sell-through boundary",
+      "created_at": "2026-07-17T04:10:16.303156+00:00"
+    },
+    {
+      "id": "a8c5522e-0a91-4853-abb8-f3b4c7868a55",
+      "edition_id": "2c3f5ef6-4aad-4419-8cd6-10f7843467ab",
+      "quantity_delta": -6,
+      "reason": "QA stock correction",
+      "created_at": "2026-07-17T04:10:14.889423+00:00"
+    },
+    {
+      "id": "5d60efd2-8cdb-4416-aade-0e14183c9517",
+      "edition_id": "2c3f5ef6-4aad-4419-8cd6-10f7843467ab",
+      "quantity_delta": 5,
+      "reason": "QA restock adjustment",
+      "created_at": "2026-07-17T04:10:14.004472+00:00"
+    }
+  ],
+  "baseURL": "http://127.0.0.1:3006",
+  "cartBoundary": {
+    "code": "OUT_OF_STOCK",
+    "status": 409
+  },
+  "cleanup": {
+    "adjustmentsRemoved": 3,
+    "editionsRemoved": 1
+  },
+  "customerAccess": {
+    "code": "FORBIDDEN",
+    "status": 403
+  },
+  "finalOutOfStock": {
+    "code": null,
+    "data": {
+      "adjustment": {
+        "id": "082ccd8f-2ae6-49da-b2fd-fcab95d0a152",
+        "editionId": "2c3f5ef6-4aad-4419-8cd6-10f7843467ab",
+        "quantityDelta": -1,
+        "reason": "QA final sell-through boundary",
+        "createdByUserId": "f9251f33-d33a-4ee1-be4f-8ff9db6a4274",
+        "createdAt": "2026-07-17T04:10:16.303156+00:00"
+      },
+      "item": {
+        "id": "2c3f5ef6-4aad-4419-8cd6-10f7843467ab",
+        "title": "QA D36 Inventory qa-d36-inventory-mrof65ja-6368aa",
+        "slug": "qa-d36-inventory-mrof65ja-6368aa",
+        "authors": [
+          {
+            "id": "00000000-0000-4000-8000-000000001000",
+            "name": "Jane Austen",
+            "slug": "jane-austen"
+          }
+        ],
+        "language": "en",
+        "format": "paperback",
+        "isActive": true,
+        "stockQuantity": 0,
+        "lowStockThreshold": 2,
+        "inventoryStatus": "out-of-stock",
+        "publicPath": "/products/qa-d36-inventory-mrof65ja-6368aa"
+      }
+    },
+    "status": 201
+  },
+  "generatedAt": "2026-07-17T04:10:17.380Z",
+  "ok": true,
+  "pass": {
+    "anonymousDenied": true,
+    "auditTrailStored": true,
+    "cleanupRemovedRows": true,
+    "customerDenied": true,
+    "invalidAdjustmentRejected": true,
+    "lowStockVisible": true,
+    "outOfStockBoundary": true,
+    "staffUiFlow": true
+  },
+  "publicLowStock": {
+    "inventoryStatus": "low-stock",
+    "status": 200,
+    "stockQuantity": 1
+  },
+  "publicOutOfStock": {
+    "inventoryStatus": "out-of-stock",
+    "status": 200,
+    "stockQuantity": 0
+  },
+  "qaEdition": {
+    "id": "2c3f5ef6-4aad-4419-8cd6-10f7843467ab",
+    "slug": "qa-d36-inventory-mrof65ja-6368aa",
+    "stock_quantity": 2,
+    "inventory_status": "low-stock"
+  },
+  "staffFlow": {
+    "hasOverflow": false,
+    "invalidNegative": {
+      "code": "OUT_OF_STOCK",
+      "data": null,
+      "status": 409
+    },
+    "invalidZero": {
+      "code": "VALIDATION_ERROR",
+      "data": null,
+      "status": 400
+    },
+    "negative": {
+      "code": null,
+      "data": {
+        "adjustment": {
+          "id": "a8c5522e-0a91-4853-abb8-f3b4c7868a55",
+          "editionId": "2c3f5ef6-4aad-4419-8cd6-10f7843467ab",
+          "quantityDelta": -6,
+          "reason": "QA stock correction",
+          "createdByUserId": "f9251f33-d33a-4ee1-be4f-8ff9db6a4274",
+          "createdAt": "2026-07-17T04:10:14.889423+00:00"
+        },
+        "item": {
+          "id": "2c3f5ef6-4aad-4419-8cd6-10f7843467ab",
+          "title": "QA D36 Inventory qa-d36-inventory-mrof65ja-6368aa",
+          "slug": "qa-d36-inventory-mrof65ja-6368aa",
+          "authors": [
+            {
+              "id": "00000000-0000-4000-8000-000000001000",
+              "name": "Jane Austen",
+              "slug": "jane-austen"
+            }
+          ],
+          "language": "en",
+          "format": "paperback",
+          "isActive": true,
+          "stockQuantity": 1,
+          "lowStockThreshold": 2,
+          "inventoryStatus": "low-stock",
+          "publicPath": "/products/qa-d36-inventory-mrof65ja-6368aa"
+        }
+      },
+      "status": 201
+    },
+    "pageShowsLowStock": true,
+    "positive": {
+      "code": null,
+      "data": {
+        "adjustment": {
+          "id": "5d60efd2-8cdb-4416-aade-0e14183c9517",
+          "editionId": "2c3f5ef6-4aad-4419-8cd6-10f7843467ab",
+          "quantityDelta": 5,
+          "reason": "QA restock adjustment",
+          "createdByUserId": "f9251f33-d33a-4ee1-be4f-8ff9db6a4274",
+          "createdAt": "2026-07-17T04:10:14.004472+00:00"
+        },
+        "item": {
+          "id": "2c3f5ef6-4aad-4419-8cd6-10f7843467ab",
+          "title": "QA D36 Inventory qa-d36-inventory-mrof65ja-6368aa",
+          "slug": "qa-d36-inventory-mrof65ja-6368aa",
+          "authors": [
+            {
+              "id": "00000000-0000-4000-8000-000000001000",
+              "name": "Jane Austen",
+              "slug": "jane-austen"
+            }
+          ],
+          "language": "en",
+          "format": "paperback",
+          "isActive": true,
+          "stockQuantity": 7,
+          "lowStockThreshold": 2,
+          "inventoryStatus": "in-stock",
+          "publicPath": "/products/qa-d36-inventory-mrof65ja-6368aa"
+        }
+      },
+      "status": 201
+    }
+  }
+}
