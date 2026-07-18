@@ -116,6 +116,7 @@ async function inspectDefaultCatalog(browser: Browser) {
 
   const resultSignalsText = await page
     .locator("[data-catalog-result-signals]")
+    .first()
     .innerText();
   const cardSources = await page
     .locator("[data-catalog-card]")
@@ -136,9 +137,12 @@ async function inspectDefaultCatalog(browser: Browser) {
         };
       }),
   );
-  const text = await page.locator("[data-catalog-page]").innerText();
+  const text = await page.locator("[data-catalog-page]").first().innerText();
   const result = {
-    activeChipText: await page.locator("[data-catalog-active-filters]").innerText(),
+    activeChipText: await page
+      .locator("[data-catalog-active-filters]")
+      .first()
+      .innerText(),
     editorialCards: await page.locator("[data-catalog-editorial='true']").count(),
     hasHorizontalOverflow: await hasOverflow(page),
     imagesLoaded:
@@ -218,9 +222,11 @@ async function inspectCombinedFilters(browser: Browser) {
   const url = new URL(page.url());
   const activeChipText = await page
     .locator("[data-catalog-active-filters]")
+    .first()
     .innerText();
   const resultSignalsText = await page
     .locator("[data-catalog-result-signals]")
+    .first()
     .innerText();
   const prices = await readNumberAttributes(
     page,
@@ -277,7 +283,7 @@ async function inspectLongTitleSearch(browser: Browser) {
   const screenshotPath = path.join(ARTIFACT_DIR, "catalog-long-title-mobile-en.png");
   await page.screenshot({ fullPage: true, path: screenshotPath });
 
-  const text = await page.locator("[data-catalog-page]").innerText();
+  const text = await page.locator("[data-catalog-page]").first().innerText();
   const result = {
     hasHorizontalOverflow: await hasOverflow(page),
     maxCardOverflowPx: await readMaxCardOverflowPx(page),
@@ -316,7 +322,7 @@ async function inspectAvailabilityStates(browser: Browser) {
   await outOfStockPage.goto("/catalog?availability=out-of-stock", {
     waitUntil: "domcontentloaded",
   });
-  await outOfStockPage.locator("[data-catalog-page]").waitFor();
+  await outOfStockPage.locator("[data-catalog-page]").first().waitFor();
   const outOfStockEmptyVisible = await outOfStockPage
     .locator("[data-book-catalog-empty-state]")
     .isVisible();
@@ -341,8 +347,8 @@ async function inspectAvailabilityStates(browser: Browser) {
 }
 
 async function waitForCatalog(page: Page) {
-  await page.locator("[data-catalog-page]").waitFor();
-  await page.locator("[data-catalog-result-signals]").waitFor();
+  await page.locator("[data-catalog-page]").first().waitFor();
+  await page.locator("[data-catalog-result-signals]").first().waitFor();
 }
 
 async function newLanguageContext(
@@ -411,7 +417,7 @@ async function readNumberAttribute(
   selector: string,
   attribute: string,
 ) {
-  return Number(await page.locator(selector).getAttribute(attribute));
+  return Number(await page.locator(selector).first().getAttribute(attribute));
 }
 
 async function readNumberAttributes(

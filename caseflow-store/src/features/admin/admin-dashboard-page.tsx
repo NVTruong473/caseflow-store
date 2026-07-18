@@ -197,7 +197,7 @@ export function AdminDashboardPage({
 
         {dashboard.orderCount === 0 ? (
           <section
-            className="rounded-lg border border-border bg-surface p-case-md"
+            className="rounded-lg border border-admin/20 bg-surface p-case-md shadow-[var(--case-shadow-soft)]"
             data-admin-dashboard-empty-orders
           >
             <Badge variant="neutral">{copy.orderCount}: 0</Badge>
@@ -243,7 +243,7 @@ function DashboardRangeLinks({
   const copy = dashboardCopy[language];
 
   return (
-    <section className="rounded-lg border border-border bg-surface p-case-md">
+    <section className="rounded-lg border border-admin/20 bg-surface p-case-md shadow-[var(--case-shadow-soft)]">
       <div className="flex flex-col gap-case-sm md:flex-row md:items-center md:justify-between">
         <div>
           <h2 className="text-heading-3 font-semibold text-foreground">
@@ -293,7 +293,7 @@ function StatusSummarySection<TStatus extends string>({
 }) {
   return (
     <section
-      className="rounded-lg border border-border bg-surface p-case-md"
+      className="rounded-lg border border-admin/20 bg-surface p-case-md shadow-[var(--case-shadow-soft)]"
       {...{ [dataAttribute]: true }}
     >
       <h2 className="text-heading-3 font-semibold text-foreground">
@@ -331,7 +331,7 @@ function TopBooksSection({
 
   return (
     <section
-      className="rounded-lg border border-border bg-surface p-case-md"
+      className="rounded-lg border border-discovery/20 bg-surface p-case-md shadow-[var(--case-shadow-soft)]"
       data-admin-dashboard-top-books
     >
       <h2 className="text-heading-3 font-semibold text-foreground">
@@ -377,7 +377,7 @@ function LowStockSection({
 
   return (
     <section
-      className="rounded-lg border border-border bg-surface p-case-md"
+      className="rounded-lg border border-warning/30 bg-offer-muted p-case-md shadow-[var(--case-shadow-soft)]"
       data-admin-dashboard-low-stock
     >
       <div className="flex items-start justify-between gap-case-sm">
@@ -441,7 +441,7 @@ function RecentOrdersSection({
 
   return (
     <section
-      className="rounded-lg border border-border bg-surface p-case-md"
+      className="rounded-lg border border-admin/20 bg-surface p-case-md shadow-[var(--case-shadow-soft)]"
       data-admin-dashboard-recent-orders
     >
       <h2 className="text-heading-3 font-semibold text-foreground">
@@ -454,7 +454,7 @@ function RecentOrdersSection({
       ) : (
         <div className="mt-case-md overflow-x-auto">
           <table className="w-full min-w-[720px] border-collapse text-left text-small">
-            <thead className="bg-surface-muted text-text-muted">
+            <thead className="bg-admin-muted text-text-muted">
               <tr>
                 <th className="px-case-sm py-case-sm font-semibold uppercase tracking-normal">
                   {copy.orderCount}

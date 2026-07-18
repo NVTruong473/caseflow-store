@@ -531,7 +531,7 @@ export function AdminCatalogPage({
           className="grid gap-case-lg xl:grid-cols-[minmax(0,1fr)_minmax(360px,440px)]"
           data-admin-catalog-page
         >
-        <div className="min-w-0 rounded-lg border border-border bg-surface p-case-lg">
+        <div className="min-w-0 rounded-lg border border-admin/20 bg-surface p-case-lg shadow-[var(--case-shadow-soft)]">
           <div className="flex flex-col gap-case-sm sm:flex-row sm:items-end sm:justify-between">
             <Input
               label={copy.search}
@@ -721,8 +721,8 @@ export function AdminCatalogPage({
                     "rounded-md border p-case-md text-left transition-colors",
                     "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary",
                     selectedId === item.id
-                      ? "border-primary bg-surface-muted"
-                      : "border-border bg-surface hover:border-primary",
+                      ? "border-admin bg-admin-muted"
+                      : "border-border bg-surface hover:border-admin",
                   )}
                   data-admin-catalog-item={item.edition.slug}
                 >
@@ -768,11 +768,11 @@ export function AdminCatalogPage({
                         {copy.filterOptions.cover[item.operations.coverStatus]}
                       </Badge>
                       {item.operations.shelfSlugs.length > 0 ? (
-                        <Badge variant="primary">
+                        <Badge className="border-admin bg-admin text-surface" variant="primary">
                           {item.operations.shelfSlugs.length} shelf
                         </Badge>
                       ) : null}
-                      <Badge variant="primary">
+                      <Badge className="border-discovery bg-discovery-muted text-discovery" variant="primary">
                         {formatVnd(item.edition.priceVnd)}
                       </Badge>
                     </div>
@@ -789,7 +789,7 @@ export function AdminCatalogPage({
 
         <form
           onSubmit={saveEdition}
-          className="rounded-lg border border-border bg-surface p-case-lg"
+          className="rounded-lg border border-admin/20 bg-surface p-case-lg shadow-[var(--case-shadow-soft)]"
           data-admin-catalog-form
         >
           <div className="flex flex-col gap-case-sm sm:flex-row sm:items-start sm:justify-between">
@@ -817,7 +817,7 @@ export function AdminCatalogPage({
           </div>
 
           {selectedEdition && !isCreating ? (
-            <div className="mt-case-md rounded-md border border-border bg-surface-muted p-case-md">
+            <div className="mt-case-md rounded-md border border-admin/20 bg-admin-muted p-case-md">
               <h3 className="text-small font-semibold uppercase text-text-muted">
                 {copy.operationsSummary.title}
               </h3>

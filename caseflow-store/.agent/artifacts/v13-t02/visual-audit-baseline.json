@@ -1,0 +1,194 @@
+{
+  "baseURL": "http://localhost:3000",
+  "generatedAt": "2026-07-18T14:39:03.696Z",
+  "ok": true,
+  "product": {
+    "id": "00000000-0000-4000-8000-000000003027",
+    "slug": "a-christmas-carol-english-paperback",
+    "title": "A Christmas Carol"
+  },
+  "findings": [
+    {
+      "severity": "P1",
+      "surface": "global",
+      "finding": "The released palette still reads as a narrow blue/white/slate MVP system, so the richer bookstore catalog does not yet have a distinct paper/ink/editorial identity.",
+      "mappedTask": "V13-T03"
+    },
+    {
+      "severity": "P1",
+      "surface": "homepage",
+      "finding": "The hero and shelf rhythm is commercially clear but visually conservative; existing cover assets should become a stronger cover-led merchandising composition without hiding catalog entry points.",
+      "mappedTask": "V13-T04,V13-T05"
+    },
+    {
+      "severity": "P2",
+      "surface": "catalog",
+      "finding": "Filters, result signals, and product cards are functional but visually similar. Discovery needs clearer product hierarchy, warmer surfaces, and stronger card rhythm while staying compact on mobile.",
+      "mappedTask": "V13-T06"
+    },
+    {
+      "severity": "P2",
+      "surface": "book-detail",
+      "finding": "The detail page has the right purchase order, but the cover, edition comparison, facts, and reason-to-read blocks still feel like separate panels instead of one bookstore product story.",
+      "mappedTask": "V13-T07"
+    },
+    {
+      "severity": "P2",
+      "surface": "admin",
+      "finding": "Admin screens use the same neutral panel language as storefront pages. Operations need a calmer trust palette and denser scan signals without becoming decorative.",
+      "mappedTask": "V13-T08"
+    },
+    {
+      "severity": "P3",
+      "surface": "checkout-account-boundary",
+      "finding": "Checkout/account-gated states are understandable and should not be redesigned heavily, but they should inherit the richer token system and no-overflow visual QA.",
+      "mappedTask": "V13-T03,V13-T09"
+    }
+  ],
+  "surfaces": {
+    "homepage": [
+      {
+        "height": 11957,
+        "horizontalOverflow": 0,
+        "imageCount": 29,
+        "interactiveCount": 67,
+        "selectorVisible": true,
+        "textLength": 6306,
+        "width": 375,
+        "screenshot": ".agent/artifacts/v13-t02/homepage-mobile.png",
+        "viewport": "mobile"
+      },
+      {
+        "height": 4797,
+        "horizontalOverflow": 0,
+        "imageCount": 29,
+        "interactiveCount": 67,
+        "selectorVisible": true,
+        "textLength": 6582,
+        "width": 1440,
+        "screenshot": ".agent/artifacts/v13-t02/homepage-desktop.png",
+        "viewport": "desktop"
+      }
+    ],
+    "catalog": [
+      {
+        "height": 11234,
+        "horizontalOverflow": 0,
+        "imageCount": 24,
+        "interactiveCount": 80,
+        "selectorVisible": true,
+        "textLength": 7849,
+        "width": 375,
+        "screenshot": ".agent/artifacts/v13-t02/catalog-mobile.png",
+        "viewport": "mobile"
+      },
+      {
+        "height": 5855,
+        "horizontalOverflow": 0,
+        "imageCount": 24,
+        "interactiveCount": 80,
+        "selectorVisible": true,
+        "textLength": 7942,
+        "width": 1440,
+        "screenshot": ".agent/artifacts/v13-t02/catalog-desktop.png",
+        "viewport": "desktop"
+      }
+    ],
+    "book-detail": [
+      {
+        "height": 5210,
+        "horizontalOverflow": 0,
+        "imageCount": 7,
+        "interactiveCount": 48,
+        "selectorVisible": true,
+        "textLength": 2776,
+        "width": 375,
+        "screenshot": ".agent/artifacts/v13-t02/book-detail-mobile.png",
+        "viewport": "mobile"
+      },
+      {
+        "height": 2832,
+        "horizontalOverflow": 0,
+        "imageCount": 7,
+        "interactiveCount": 48,
+        "selectorVisible": true,
+        "textLength": 2869,
+        "width": 1440,
+        "screenshot": ".agent/artifacts/v13-t02/book-detail-desktop.png",
+        "viewport": "desktop"
+      }
+    ],
+    "checkout-account-boundary": [
+      {
+        "height": 1715,
+        "horizontalOverflow": 0,
+        "imageCount": 0,
+        "interactiveCount": 42,
+        "selectorVisible": true,
+        "textLength": 856,
+        "width": 375,
+        "screenshot": ".agent/artifacts/v13-t02/checkout-account-boundary-mobile.png",
+        "viewport": "mobile"
+      },
+      {
+        "height": 1100,
+        "horizontalOverflow": 0,
+        "imageCount": 0,
+        "interactiveCount": 42,
+        "selectorVisible": true,
+        "textLength": 951,
+        "width": 1440,
+        "screenshot": ".agent/artifacts/v13-t02/checkout-account-boundary-desktop.png",
+        "viewport": "desktop"
+      }
+    ],
+    "admin-dashboard": [
+      {
+        "height": 3781,
+        "horizontalOverflow": 0,
+        "imageCount": 0,
+        "interactiveCount": 48,
+        "selectorVisible": true,
+        "textLength": 1778,
+        "width": 375,
+        "screenshot": ".agent/artifacts/v13-t02/admin-dashboard-mobile.png",
+        "viewport": "mobile"
+      },
+      {
+        "height": 2204,
+        "horizontalOverflow": 0,
+        "imageCount": 0,
+        "interactiveCount": 48,
+        "selectorVisible": true,
+        "textLength": 1875,
+        "width": 1440,
+        "screenshot": ".agent/artifacts/v13-t02/admin-dashboard-desktop.png",
+        "viewport": "desktop"
+      }
+    ],
+    "admin-catalog": [
+      {
+        "height": 29126,
+        "horizontalOverflow": 0,
+        "imageCount": 0,
+        "interactiveCount": 205,
+        "selectorVisible": true,
+        "textLength": 18549,
+        "width": 375,
+        "screenshot": ".agent/artifacts/v13-t02/admin-catalog-mobile.png",
+        "viewport": "mobile"
+      },
+      {
+        "height": 14628,
+        "horizontalOverflow": 0,
+        "imageCount": 0,
+        "interactiveCount": 205,
+        "selectorVisible": true,
+        "textLength": 18646,
+        "width": 1440,
+        "screenshot": ".agent/artifacts/v13-t02/admin-catalog-desktop.png",
+        "viewport": "desktop"
+      }
+    ]
+  }
+}

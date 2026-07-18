@@ -6,22 +6,33 @@ project: CaseFlow Store
 purpose: Keep UI decisions stable across AI coding sessions
 tokens:
   colors:
-    background: "#F8FAFC"
-    surface: "#FFFFFF"
-    surfaceMuted: "#F1F5F9"
-    text: "#111827"
-    textMuted: "#64748B"
-    border: "#CBD5E1"
-    primary: "#2563EB"
-    primaryHover: "#1D4ED8"
-    accent: "#F59E0B"
-    success: "#15803D"
-    warning: "#B45309"
-    error: "#DC2626"
+    background: "#FBFAF7"
+    surface: "#FFFDF8"
+    surfaceMuted: "#EEF2EB"
+    text: "#1F1B16"
+    textMuted: "#6F665C"
+    border: "#D8D2C7"
+    primary: "#176B5B"
+    primaryHover: "#0F5146"
+    accent: "#B7791F"
+    editorial: "#8F2440"
+    editorialMuted: "#F8E6EC"
+    discovery: "#176B5B"
+    discoveryMuted: "#E4F2ED"
+    offer: "#B7791F"
+    offerMuted: "#FFF3D6"
+    admin: "#243247"
+    adminMuted: "#E7EDF3"
+    paper: "#FBFAF7"
+    paperDeep: "#EADCC6"
+    ink: "#1F1B16"
+    success: "#247857"
+    warning: "#A16207"
+    error: "#B42318"
   radius:
     sm: "4px"
-    md: "8px"
-    lg: "12px"
+    md: "6px"
+    lg: "8px"
   spacing:
     xs: "4px"
     sm: "8px"
@@ -42,15 +53,17 @@ tokens:
 
 ## Design Goal
 
-CaseFlow Store should feel like a practical small e-commerce product, not a decorative landing page. The UI should be clear, responsive, fast to scan, and useful for demonstrating full-stack engineering quality.
+CaseFlow Books should feel like a practical specialist bookstore and small-business commerce system, not a decorative landing page. The UI should be clear, responsive, fast to scan, and useful for demonstrating full-stack engineering quality.
 
 ## Visual Direction
 
-- Clean, commerce-focused, and workmanlike.
+- Clean, commerce-focused, and book-led.
 - Mobile-first with a strong desktop layout.
-- Product images and product data are the main visual signal.
+- Book covers, edition metadata, and merchandising shelves are the main visual signal.
+- Use a balanced bookstore palette: warm paper/ink foundations, moss/teal for discovery, wine for editorial emphasis, amber for offers, and navy for admin trust surfaces.
 - Avoid overly decorative gradients, floating blobs, oversized hero cards, or animation-heavy UI.
-- Use restrained polish: consistent spacing, clear hierarchy, good focus states, and stable layouts.
+- Use restrained polish: consistent spacing, clear hierarchy, good focus states, stable layouts, and visible cover density.
+- Avoid one-note blue/slate, beige-only, purple-gradient, or random one-off color systems.
 
 ## Layout Rules
 
@@ -58,7 +71,7 @@ CaseFlow Store should feel like a practical small e-commerce product, not a deco
 - Desktop baseline: `1440px`.
 - Main content should use a constrained max width.
 - Product grid must not overflow horizontally.
-- Product image containers must use a stable aspect ratio, preferably `1 / 1`.
+- Book cover containers must use stable cover ratios, preferably `2 / 3`; non-book operational thumbnails may use `1 / 1`.
 - Do not place cards inside cards.
 - Use cards only for repeated product/order items, modals, and framed tools.
 - Admin table on mobile should become compact cards or intentional horizontal scroll.
@@ -67,7 +80,7 @@ CaseFlow Store should feel like a practical small e-commerce product, not a deco
 
 ### Buttons
 
-- Primary action: blue background, white text.
+- Primary action: moss/teal background, white text.
 - Secondary action: white background, border.
 - Destructive action: error color.
 - Every button must have hover, focus, disabled, and loading states when relevant.
@@ -84,6 +97,7 @@ CaseFlow Store should feel like a practical small e-commerce product, not a deco
 - Image first, then name, price, category, and action.
 - Product cards must remain stable when loading images.
 - Do not put long marketing copy inside product cards.
+- Cards should use cover art, language/format chips, price clarity, and one primary action.
 
 ### Cart Drawer
 
@@ -96,7 +110,7 @@ CaseFlow Store should feel like a practical small e-commerce product, not a deco
 
 - Dense but readable.
 - Prioritize status, customer, total, and created date.
-- Avoid dashboard decoration until the order workflow is complete.
+- Use admin trust colors for operational surfaces, but keep dense tables and task flows more important than decoration.
 
 ## Accessibility Rules
 
@@ -111,3 +125,4 @@ CaseFlow Store should feel like a practical small e-commerce product, not a deco
 - Map tokens into `src/app/globals.css` when the app exists.
 - Components should use shared tokens or Tailwind theme values, not random one-off colors.
 - Read this file before changing component colors, typography, radius, spacing, or layout.
+- Any new visual polish must preserve existing routes, checkout/auth boundaries, server-side validation, and content provenance guardrails.

@@ -1,0 +1,90 @@
+{
+  "taskId": "V13-T04",
+  "generatedAt": "2026-07-18T14:02:10.007Z",
+  "componentPath": "src/features/books/cover-merchandising.tsx",
+  "forbiddenChecks": [
+    {
+      "fragment": "http://",
+      "ok": true
+    },
+    {
+      "fragment": "https://",
+      "ok": true
+    },
+    {
+      "fragment": "Math.random",
+      "ok": true
+    },
+    {
+      "fragment": "Date.now",
+      "ok": true
+    },
+    {
+      "fragment": "createClient(",
+      "ok": true
+    },
+    {
+      "fragment": "from(\"book_",
+      "ok": true
+    },
+    {
+      "fragment": "from('book_",
+      "ok": true
+    }
+  ],
+  "ok": true,
+  "requiredChecks": [
+    {
+      "fragment": "import Image from \"next/image\";",
+      "ok": true
+    },
+    {
+      "fragment": "import Link from \"next/link\";",
+      "ok": true
+    },
+    {
+      "fragment": "export function BookCoverFrame",
+      "ok": true
+    },
+    {
+      "fragment": "export function BookCoverStack",
+      "ok": true
+    },
+    {
+      "fragment": "export function BookCoverShelf",
+      "ok": true
+    },
+    {
+      "fragment": "export function getBookCoverPath",
+      "ok": true
+    },
+    {
+      "fragment": "/images/books/placeholders/book-cover-placeholder.svg",
+      "ok": true
+    },
+    {
+      "fragment": ".startsWith(\"/images/books/\")",
+      "ok": true
+    },
+    {
+      "fragment": "aspect-[2/3]",
+      "ok": true
+    },
+    {
+      "fragment": "data-v13-cover-frame",
+      "ok": true
+    },
+    {
+      "fragment": "data-v13-cover-stack",
+      "ok": true
+    },
+    {
+      "fragment": "data-v13-cover-shelf",
+      "ok": true
+    },
+    {
+      "fragment": "shadow-[var(--case-shadow-cover)]",
+      "ok": true
+    }
+  ]
+}

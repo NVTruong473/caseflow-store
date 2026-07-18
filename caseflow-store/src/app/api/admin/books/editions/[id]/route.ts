@@ -75,8 +75,12 @@ export async function PATCH(
     "sourceEditionKey",
     "sourceReviewStatus",
   ] as const;
+  const bodyRecord =
+    typeof body === "object" && body !== null && !Array.isArray(body)
+      ? (body as Record<string, unknown>)
+      : {};
   const changesSourceReview = sourceFields.some(
-    (field) => parsedBody.data[field] !== undefined,
+    (field) => Object.prototype.hasOwnProperty.call(bodyRecord, field),
   );
 
   if (changesSourceReview && adminAuth.user.role !== "admin") {
@@ -89,7 +93,10 @@ export async function PATCH(
     );
   }
 
-  if (parsedBody.data.sourceReviewStatus === "approved") {
+  if (
+    Object.prototype.hasOwnProperty.call(bodyRecord, "sourceReviewStatus") &&
+    parsedBody.data.sourceReviewStatus === "approved"
+  ) {
     const approvalCheck =
       await validateSupabaseAdminBookEditionSourceApproval(
         parsedEditionId.data,

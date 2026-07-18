@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -8,6 +7,7 @@ import {
   CurrencyEstimateDisclosure,
 } from "@/components/currency/currency-amount";
 import { Badge, Card, Container } from "@/components/ui";
+import { BookCoverFrame } from "@/features/books/cover-merchandising";
 import { BookEditionPurchaseControls } from "@/features/books/book-edition-purchase-controls";
 import { formatVnd } from "@/lib/format/currency";
 import { getCurrencyDisplayRules } from "@/lib/format/currency-display.server";
@@ -200,8 +200,6 @@ export default async function ProductDetailPage({
     .filter((candidate) => !candidate.reasons.includes("author"))
     .slice(0, 4);
   const editionOptions = getEditionOptions(record, relatedEditions);
-  const coverPath = getCoverPath(record);
-  const coverAlt = getCoverAlt(record, language);
   const editionTitle = getEditionTitle(record, language);
   const authorLine = getAuthorLine(record);
   const displayFacts = record.edition.displayFacts;
@@ -263,17 +261,18 @@ export default async function ProductDetailPage({
         >
           <div className="flex min-w-0 flex-col gap-case-md lg:sticky lg:top-case-xl">
             <div
-              className="mx-auto aspect-[2/3] w-full max-w-[220px] rounded-lg border border-border bg-surface p-case-md sm:max-w-[280px] lg:max-w-none"
+              className="mx-auto w-full max-w-[220px] rounded-lg border border-discovery/20 bg-surface p-case-md shadow-[var(--case-shadow-soft)] sm:max-w-[280px] lg:max-w-none"
               data-book-detail-image
             >
-              <Image
-                src={coverPath}
-                alt={coverAlt}
-                width={420}
-                height={630}
+              <BookCoverFrame
+                className="w-full"
+                imageClassName="transition duration-300 hover:scale-[1.01]"
+                language={language}
                 priority
                 sizes="(min-width: 1024px) 400px, 100vw"
-                className="h-full w-full rounded-md border border-border bg-surface-muted object-cover"
+                record={record}
+                showBadges={false}
+                size="hero"
               />
             </div>
           </div>
@@ -282,7 +281,11 @@ export default async function ProductDetailPage({
             <div className="flex flex-col gap-case-sm">
               <div className="flex flex-wrap gap-case-xs">
                 {record.categories.map((category) => (
-                  <Badge key={category.id} variant="primary">
+                  <Badge
+                    key={category.id}
+                    className="border-discovery bg-discovery-muted text-discovery"
+                    variant="primary"
+                  >
                     {pickLocalizedText(category.labels, language)}
                   </Badge>
                 ))}
@@ -301,7 +304,7 @@ export default async function ProductDetailPage({
                   )}
                 </Badge>
               </div>
-              <h1 className="break-words text-heading-2 font-semibold leading-tight text-foreground">
+              <h1 className="break-words text-heading-2 font-semibold leading-tight text-foreground md:text-heading-1">
                 {editionTitle}
               </h1>
               {authorLine ? (
@@ -313,7 +316,7 @@ export default async function ProductDetailPage({
 
             <div className="grid gap-case-md xl:grid-cols-[minmax(0,1fr)_320px] xl:items-start">
               <aside className="order-first flex min-w-0 flex-col gap-case-md xl:order-last xl:sticky xl:top-case-xl">
-                <div className="rounded-lg border border-border bg-surface p-case-lg">
+                <div className="rounded-lg border border-offer/30 bg-offer-muted p-case-md shadow-[var(--case-shadow-soft)] lg:p-case-lg">
                   <div className="grid grid-cols-3 gap-case-sm xl:grid-cols-1 xl:gap-case-md">
                     <div className="min-w-0">
                       <p className="text-small font-medium uppercase text-text-muted">
@@ -327,7 +330,7 @@ export default async function ProductDetailPage({
                         </p>
                       ) : null}
                       <p
-                        className="mt-case-xs text-heading-2 font-semibold text-foreground"
+                        className="mt-case-xs text-body font-semibold text-foreground sm:text-heading-3 md:text-heading-2"
                         data-book-detail-price
                       >
                         <CurrencyAmount
@@ -347,7 +350,7 @@ export default async function ProductDetailPage({
                       <p className="text-small font-medium uppercase text-text-muted">
                         {copy.stock}
                       </p>
-                      <p className="mt-case-xs text-heading-3 font-semibold text-foreground">
+                      <p className="mt-case-xs text-body font-semibold text-foreground md:text-heading-3">
                         {stockLabel}
                       </p>
                     </div>
@@ -356,7 +359,7 @@ export default async function ProductDetailPage({
                       <p className="text-small font-medium uppercase text-text-muted">
                         {copy.format}
                       </p>
-                      <p className="mt-case-xs text-heading-3 font-semibold text-foreground">
+                      <p className="mt-case-xs text-body font-semibold text-foreground md:text-heading-3">
                         {getFormatLabel(record.edition.format, language)}
                       </p>
                     </div>
@@ -381,7 +384,7 @@ export default async function ProductDetailPage({
                 </p>
 
                 <section
-                  className="rounded-lg border border-border bg-surface p-case-lg"
+                  className="rounded-lg border border-discovery/20 bg-surface p-case-lg"
                   data-book-edition-comparison
                 >
                   <div className="flex flex-col gap-case-xs">
@@ -408,7 +411,7 @@ export default async function ProductDetailPage({
 
                 {reasonToRead ? (
                   <section
-                    className="rounded-lg border border-border bg-surface p-case-lg"
+                    className="rounded-lg border border-editorial/20 bg-editorial-muted p-case-lg"
                     data-book-detail-reason
                   >
                     <h2 className="text-heading-3 font-semibold text-foreground">
@@ -421,7 +424,7 @@ export default async function ProductDetailPage({
                 ) : null}
 
                 <section
-                  className="rounded-lg border border-border bg-surface p-case-lg"
+                  className="rounded-lg border border-discovery/20 bg-surface p-case-lg"
                   data-book-edition-details
                   data-book-verified-facts
                 >
@@ -447,7 +450,7 @@ export default async function ProductDetailPage({
                 </section>
 
                 {workFacts.length > 0 ? (
-                  <section className="rounded-lg border border-border bg-surface p-case-lg">
+                  <section className="rounded-lg border border-border bg-paper p-case-lg">
                     <h2 className="text-heading-3 font-semibold text-foreground">
                       {copy.workContext}
                     </h2>
@@ -466,7 +469,7 @@ export default async function ProductDetailPage({
             </div>
 
             <section
-              className="grid gap-case-md rounded-lg border border-border bg-surface p-case-lg lg:grid-cols-3"
+              className="grid gap-case-md rounded-lg border border-admin/20 bg-admin-muted p-case-lg lg:grid-cols-3"
               data-book-commerce-hints
               data-book-confidence
             >
@@ -564,15 +567,14 @@ function EditionOption({
   const content = (
     <>
       <div className="flex min-w-0 items-start gap-case-sm">
-        <div className="aspect-[2/3] w-14 shrink-0 overflow-hidden rounded-md border border-border bg-surface-muted p-1">
-          <Image
-            src={getCoverPath(option)}
-            alt={getCoverAlt(option, language)}
-            width={56}
-            height={84}
-            className="h-full w-full rounded-sm object-cover"
-          />
-        </div>
+        <BookCoverFrame
+          className="w-14 shrink-0"
+          language={language}
+          record={option}
+          showBadges={false}
+          size="compact"
+          sizes="56px"
+        />
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap gap-case-xs">
             <Badge variant="neutral" size="sm">
@@ -684,15 +686,14 @@ function RecommendationGrid({
               className="grid min-w-0 grid-cols-[72px_minmax(0,1fr)] gap-case-md rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
               data-book-recommendation-link
             >
-              <div className="aspect-[3/4] overflow-hidden rounded-md border border-border bg-surface-muted p-1">
-                <Image
-                  src={getCoverPath(recommended)}
-                  alt={getCoverAlt(recommended, language)}
-                  width={72}
-                  height={96}
-                  className="h-full w-full rounded-sm object-cover"
-                />
-              </div>
+              <BookCoverFrame
+                className="w-full"
+                language={language}
+                record={recommended}
+                showBadges={false}
+                size="compact"
+                sizes="72px"
+              />
               <div className="min-w-0">
                 <div className="flex flex-wrap gap-case-xs">
                   {reasons.map((reason) => (

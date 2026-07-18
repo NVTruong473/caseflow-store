@@ -142,22 +142,24 @@ async function inspectCatalog(
   const page = await context.newPage();
 
   await page.goto(options.path, { waitUntil: "domcontentloaded" });
-  await page.locator("[data-catalog-page]").waitFor();
+  const catalogPage = page.locator("[data-catalog-page]").first();
+  await catalogPage.waitFor();
 
-  const catalogPage = page.locator("[data-catalog-page]");
   const totalEditions = Number(
     await catalogPage.getAttribute("data-catalog-total-count"),
   );
-  const renderedCards = await page.locator("[data-catalog-card]").count();
-  const activeFilterCount = await page
+  const renderedCards = await catalogPage.locator("[data-catalog-card]").count();
+  const activeFilterCount = await catalogPage
     .locator("[data-catalog-active-filters] span")
     .count();
-  const resultCountText = await page
+  const resultCountText = await catalogPage
     .locator("[data-catalog-result-count]")
     .innerText();
   const firstCard = await readFirstCard(page);
   const hasHorizontalOverflow = await hasOverflow(page);
-  const paginationLinks = await page.locator("[data-catalog-page-link]").count();
+  const paginationLinks = await catalogPage
+    .locator("[data-catalog-page-link]")
+    .count();
 
   await page.screenshot({
     fullPage: true,

@@ -11,11 +11,9 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: v1.2 release complete; next roadmap requires a new accepted
-  task/ADR before more feature work.
-- Current gate: `V12-T18` complete; production v1.2 deploy, smoke,
-  documentation, release commit, and `v1.2.0` tag complete.
-- Current task: no active task after `V12-T18`.
+- Current mode: v1.3 production release in progress.
+- Current gate: `V13-T10` in progress; deploy, smoke test, document, and tag.
+- Current task: `V13-T10 - Deploy, Smoke Test, Document, And Tag v1.3.0`.
 
 ## Confirmed Facts
 
@@ -111,6 +109,19 @@
   active primary placeholder covers, full production Playwright `20/20`,
   cleanup `totalMatches: 0`, release documentation, release commit, and
   annotated `v1.2.0` tag.
+- The user approved automatic execution of the v1.3 visual merchandising and
+  brand polish roadmap on 2026-07-18, with verification after each task and no
+  per-step confirmation required.
+- `ADR-0008: Visual Merchandising And Brand Polish For v1.3` was accepted on
+  2026-07-18 as a bounded polish phase that must not add new payment,
+  shipping, database, external-service, commercial-cover, fake-review, or
+  marketplace scope.
+- `V13-T09` passed on 2026-07-18 with refreshed visual evidence, affected
+  regression checks, TypeScript/lint/build, cleanup, stale-claim scan,
+  secret-like scan, and mirrored release notes. No deployment, release commit,
+  or `v1.3.0` tag was created.
+- The user explicitly approved `V13-T10 - Deploy, Smoke Test, Document, And Tag
+  v1.3.0` on 2026-07-18.
 
 ## v1.2 Canonical Catalog
 
@@ -260,6 +271,28 @@ These are defaults that remain tentative until a later task or ADR freezes them:
 - Payment: simulated checkout only.
 - Admin authentication: required.
 - Cart persistence: localStorage.
+
+## v1.3 Visual Merchandising And Brand Polish
+
+- Governing ADR: `docs/adr/0008-visual-merchandising-brand-polish.md`.
+- Roadmap:
+  `docs/v1.3-visual-merchandising-brand-polish-roadmap.md`.
+- Runtime status: ADR and roadmap accepted in `V13-T01`; visual audit baseline
+  completed in `V13-T02`; bookstore token expansion completed in `V13-T03`;
+  cover-led merchandising components completed in `V13-T04`; homepage visual
+  merchandising completed in `V13-T05`; catalog card and discovery polish
+  completed in `V13-T06`; book detail visual hierarchy polish completed in
+  `V13-T07`; admin operations visual system polish completed in `V13-T08`;
+  full visual QA and documentation gate completed in `V13-T09`.
+- Design intent: warmer bookstore palette, cover-led merchandising, stronger
+  hierarchy, and Hallmark-informed audit discipline without deleting routes or
+  turning commerce surfaces into decorative landing pages.
+- Guardrails: no schema migration, no real payment/shipping/verification
+  integrations, no external stock imagery, no commercial cover copying, no
+  fake ratings/sold counts/bestseller claims, and no stable API contract
+  change under v1.3 polish.
+- Release status: local QA passed only. The latest production release remains
+  `v1.2.0`; `v1.3.0` deployment/tagging requires explicit user instruction.
 
 ## v1.1 Active Product Domain
 

@@ -66,18 +66,23 @@ export function AdminShellPage({
 
   return (
     <main
-      className="bg-background py-case-2xl text-foreground"
+      className="bg-admin-muted py-case-2xl text-foreground"
       data-admin-shell-page={active}
       data-admin-workspace-role={role}
     >
       <Container className="flex flex-col gap-case-lg">
-        <div className="flex flex-col gap-case-md lg:flex-row lg:items-start lg:justify-between">
+        <div className="flex flex-col gap-case-md rounded-lg border border-admin/20 bg-surface p-case-lg shadow-[var(--case-shadow-soft)] lg:flex-row lg:items-start lg:justify-between">
           <div className="min-w-0">
             <p className="text-small font-medium text-text-muted">
               {copy.signedInAs(userName)}
             </p>
             <div className="mt-case-md flex flex-wrap gap-case-sm">
-              <Badge variant="primary">{badge}</Badge>
+              <Badge
+                className="border-admin/20 bg-admin-muted text-admin"
+                variant="neutral"
+              >
+                {badge}
+              </Badge>
               <Badge variant="neutral" data-admin-role-badge={role}>
                 {copy.roleLabel}: {copy.roleNames[role]}
               </Badge>
@@ -91,7 +96,7 @@ export function AdminShellPage({
           </div>
           <Link
             href="/"
-            className="inline-flex min-h-11 w-fit items-center justify-center rounded-md border border-border bg-surface px-4 py-2 text-body font-medium text-foreground transition-colors hover:border-primary hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            className="inline-flex min-h-11 w-fit items-center justify-center rounded-md border border-admin/20 bg-admin px-4 py-2 text-body font-medium text-surface transition-colors hover:bg-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
           >
             {copy.backToStorefront}
           </Link>
@@ -109,7 +114,7 @@ export function AdminShellPage({
             {metrics.map((metric) => (
               <div
                 key={metric.label}
-                className="rounded-md border border-border bg-surface p-case-md"
+                className="rounded-md border border-admin/20 bg-surface p-case-md shadow-[var(--case-shadow-soft)]"
               >
                 <dt className="text-small text-text-muted">{metric.label}</dt>
                 <dd className="mt-case-xs text-heading-3 font-semibold text-foreground">

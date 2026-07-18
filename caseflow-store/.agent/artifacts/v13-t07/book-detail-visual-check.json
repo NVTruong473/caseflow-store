@@ -1,0 +1,316 @@
+{
+  "taskId": "V13-T07",
+  "generatedAt": "2026-07-18T14:08:29.207Z",
+  "baseURL": "http://localhost:3000",
+  "ok": true,
+  "pass": {
+    "commerceVisible": true,
+    "coverAspectRatio": true,
+    "coverFrameVisible": true,
+    "editionComparisonVisible": true,
+    "localImagesOnly": true,
+    "noOverflow": true
+  },
+  "target": {
+    "id": "00000000-0000-4000-8000-000000003027",
+    "type": "book-edition",
+    "slug": "a-christmas-carol-english-paperback",
+    "title": "A Christmas Carol",
+    "edition": {
+      "id": "00000000-0000-4000-8000-000000003027",
+      "slug": "a-christmas-carol-english-paperback",
+      "displayTitle": "A Christmas Carol",
+      "localizedDisplayTitle": {
+        "vi": "Bài ca Giáng sinh",
+        "en": "A Christmas Carol"
+      },
+      "subtitle": null,
+      "language": "en",
+      "format": "paperback",
+      "isbn13": "9780141389479",
+      "isbn10": "0141389478",
+      "publicationYear": 2012,
+      "pageCount": null,
+      "dimensions": null,
+      "weightGrams": null,
+      "priceVnd": 143000,
+      "compareAtPriceVnd": null,
+      "stockQuantity": 11,
+      "lowStockThreshold": 10,
+      "inventoryStatus": "in-stock",
+      "summary": {
+        "vi": "Câu chuyện đạo đức cô đọng nơi ký ức và tưởng tượng thúc đẩy một người keo kiệt hướng tới rộng lượng và sửa sai.",
+        "en": "A compact moral tale where memory and imagination push a miser toward generosity and repair."
+      },
+      "tableOfContents": null,
+      "sampleExcerptPolicy": "No copyrighted excerpt is stored; use project-written preview guidance only.",
+      "pairId": "00000000-0000-4000-8000-000000006027",
+      "pairedEditionId": "00000000-0000-4000-8000-000000004027",
+      "reasonToRead": {
+        "vi": "Ấn bản tiếng Anh của Bài ca Giáng sinh, dành cho độc giả muốn đọc và đối chiếu tác phẩm ở cả hai ngôn ngữ trong danh mục.",
+        "en": "English edition of A Christmas Carol for readers comparing the work across both catalog languages."
+      },
+      "displayFacts": [
+        {
+          "key": "isbn",
+          "label": {
+            "vi": "ISBN",
+            "en": "ISBN"
+          },
+          "value": {
+            "vi": "9780141389479",
+            "en": "9780141389479"
+          },
+          "provenanceRecordId": "00000000-0000-4000-8000-000000011082"
+        },
+        {
+          "key": "publisher",
+          "label": {
+            "vi": "Nhà xuất bản",
+            "en": "Publisher"
+          },
+          "value": {
+            "vi": "Penguin English Library",
+            "en": "Penguin English Library"
+          },
+          "provenanceRecordId": "00000000-0000-4000-8000-000000011081"
+        },
+        {
+          "key": "publication-year",
+          "label": {
+            "vi": "Năm xuất bản",
+            "en": "Publication year"
+          },
+          "value": {
+            "vi": "2012",
+            "en": "2012"
+          },
+          "provenanceRecordId": "00000000-0000-4000-8000-000000011084"
+        }
+      ],
+      "omittedOptionalFactKeys": [
+        "translator",
+        "page-count",
+        "source-physical-format"
+      ],
+      "isFeatured": false,
+      "createdAt": "2026-07-16T00:00:00+00:00",
+      "updatedAt": "2026-07-17T21:02:08.622433+00:00"
+    },
+    "work": {
+      "id": "00000000-0000-4000-8000-000000002027",
+      "slug": "a-christmas-carol",
+      "title": "A Christmas Carol",
+      "originalTitle": null,
+      "localizedTitle": {
+        "vi": "Bài ca Giáng sinh",
+        "en": "A Christmas Carol"
+      },
+      "originalLanguage": "English",
+      "themes": [
+        "redemption",
+        "generosity",
+        "memory"
+      ],
+      "ageRating": null,
+      "publicationEra": "1843",
+      "canonicalSummary": {
+        "vi": "Câu chuyện đạo đức cô đọng nơi ký ức và tưởng tượng thúc đẩy một người keo kiệt hướng tới rộng lượng và sửa sai.",
+        "en": "A compact moral tale where memory and imagination push a miser toward generosity and repair."
+      }
+    },
+    "authors": [
+      {
+        "id": "00000000-0000-4000-8000-000000001003",
+        "slug": "charles-dickens",
+        "name": "Charles Dickens",
+        "country": "United Kingdom"
+      }
+    ],
+    "categories": [
+      {
+        "id": "00000000-0000-4000-8000-000000000101",
+        "type": "book-category",
+        "slug": "classic-literature",
+        "labels": {
+          "vi": "Van hoc kinh dien",
+          "en": "Classic literature"
+        },
+        "description": {
+          "vi": "Nhung tac pham lau ben, phu hop cho tu sach ca nhan va hoc thuat.",
+          "en": "Enduring works suited for personal libraries and study shelves."
+        },
+        "sortOrder": 1
+      },
+      {
+        "id": "00000000-0000-4000-8000-000000000100",
+        "type": "book-category",
+        "slug": "fiction",
+        "labels": {
+          "vi": "Van hoc",
+          "en": "Fiction"
+        },
+        "description": {
+          "vi": "Tieu thuyet va tac pham hu cau de doc theo chu de, tac gia va ngon ngu.",
+          "en": "Novels and fiction works browsed by theme, author, and language."
+        },
+        "sortOrder": 0
+      }
+    ],
+    "translators": [],
+    "publisher": {
+      "id": "5e5621f7-bf82-44b2-81ee-9ec438f5c36c",
+      "slug": "penguin-english-library",
+      "name": "Penguin English Library",
+      "country": null,
+      "website": null
+    },
+    "coverAsset": {
+      "id": "00000000-0000-4000-8000-000000009001",
+      "path": "/images/books/v12-covers/a-christmas-carol-english-paperback.svg",
+      "altText": {
+        "vi": "Bìa minh họa CaseFlow Books cho Bài ca Giáng sinh của Charles Dickens.",
+        "en": "CaseFlow Books illustrative cover for A Christmas Carol by Charles Dickens."
+      },
+      "source": "generated"
+    }
+  },
+  "viewportChecks": [
+    {
+      "counts": {
+        "confidenceSections": 1,
+        "coverFrames": 7,
+        "detailImages": 1,
+        "editionComparison": 1,
+        "pricePanels": 1,
+        "purchaseControls": 1
+      },
+      "coverFrameBoxes": [
+        {
+          "height": 279,
+          "ratio": 0.667,
+          "width": 186
+        },
+        {
+          "height": 120,
+          "ratio": 0.667,
+          "width": 80
+        },
+        {
+          "height": 120,
+          "ratio": 0.667,
+          "width": 80
+        },
+        {
+          "height": 108,
+          "ratio": 0.667,
+          "width": 72
+        },
+        {
+          "height": 108,
+          "ratio": 0.667,
+          "width": 72
+        },
+        {
+          "height": 108,
+          "ratio": 0.667,
+          "width": 72
+        },
+        {
+          "height": 108,
+          "ratio": 0.667,
+          "width": 72
+        }
+      ],
+      "imageSourceCount": 7,
+      "layout": {
+        "documentWidth": 375,
+        "hasHorizontalOverflow": false,
+        "viewportWidth": 375
+      },
+      "localImageSourceProblems": [],
+      "name": "mobile-vi",
+      "pass": {
+        "commerceVisible": true,
+        "coverAspectRatio": true,
+        "coverFrameVisible": true,
+        "editionComparisonVisible": true,
+        "localImagesOnly": true,
+        "noOverflow": true
+      },
+      "screenshotPath": ".agent/artifacts/v13-t07/book-detail-v13-mobile-vi.png",
+      "viewport": {
+        "height": 1100,
+        "width": 375
+      }
+    },
+    {
+      "counts": {
+        "confidenceSections": 1,
+        "coverFrames": 7,
+        "detailImages": 1,
+        "editionComparison": 1,
+        "pricePanels": 1,
+        "purchaseControls": 1
+      },
+      "coverFrameBoxes": [
+        {
+          "height": 264,
+          "ratio": 0.667,
+          "width": 176
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        }
+      ],
+      "imageSourceCount": 7,
+      "layout": {
+        "documentWidth": 1440,
+        "hasHorizontalOverflow": false,
+        "viewportWidth": 1440
+      },
+      "localImageSourceProblems": [],
+      "name": "desktop-en",
+      "pass": {
+        "commerceVisible": true,
+        "coverAspectRatio": true,
+        "coverFrameVisible": true,
+        "editionComparisonVisible": true,
+        "localImagesOnly": true,
+        "noOverflow": true
+      },
+      "screenshotPath": ".agent/artifacts/v13-t07/book-detail-v13-desktop-en.png",
+      "viewport": {
+        "height": 1200,
+        "width": 1440
+      }
+    }
+  ]
+}

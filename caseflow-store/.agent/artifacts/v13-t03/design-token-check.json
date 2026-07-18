@@ -1,0 +1,203 @@
+{
+  "taskId": "V13-T03",
+  "generatedAt": "2026-07-18T14:02:09.510Z",
+  "cssPath": "src/app/globals.css",
+  "designDocsMatch": true,
+  "ok": true,
+  "oldColorMatches": [],
+  "paletteFamilies": {
+    "admin": true,
+    "editorial": true,
+    "ink": true,
+    "moss": true,
+    "offer": true,
+    "paper": true
+  },
+  "rootDesignPath": "../DESIGN.md",
+  "themeAliasChecks": [
+    {
+      "alias": "--color-editorial",
+      "ok": true
+    },
+    {
+      "alias": "--color-editorial-muted",
+      "ok": true
+    },
+    {
+      "alias": "--color-discovery",
+      "ok": true
+    },
+    {
+      "alias": "--color-discovery-muted",
+      "ok": true
+    },
+    {
+      "alias": "--color-offer",
+      "ok": true
+    },
+    {
+      "alias": "--color-offer-muted",
+      "ok": true
+    },
+    {
+      "alias": "--color-admin",
+      "ok": true
+    },
+    {
+      "alias": "--color-admin-muted",
+      "ok": true
+    },
+    {
+      "alias": "--color-paper",
+      "ok": true
+    },
+    {
+      "alias": "--color-paper-deep",
+      "ok": true
+    },
+    {
+      "alias": "--color-ink",
+      "ok": true
+    }
+  ],
+  "variableChecks": [
+    {
+      "actual": "#fbfaf7",
+      "expected": "#fbfaf7",
+      "ok": true,
+      "variable": "--background"
+    },
+    {
+      "actual": "#1f1b16",
+      "expected": "#1f1b16",
+      "ok": true,
+      "variable": "--foreground"
+    },
+    {
+      "actual": "#fffdf8",
+      "expected": "#fffdf8",
+      "ok": true,
+      "variable": "--surface"
+    },
+    {
+      "actual": "#eef2eb",
+      "expected": "#eef2eb",
+      "ok": true,
+      "variable": "--surface-muted"
+    },
+    {
+      "actual": "#6f665c",
+      "expected": "#6f665c",
+      "ok": true,
+      "variable": "--text-muted"
+    },
+    {
+      "actual": "#d8d2c7",
+      "expected": "#d8d2c7",
+      "ok": true,
+      "variable": "--border"
+    },
+    {
+      "actual": "#176b5b",
+      "expected": "#176b5b",
+      "ok": true,
+      "variable": "--primary"
+    },
+    {
+      "actual": "#0f5146",
+      "expected": "#0f5146",
+      "ok": true,
+      "variable": "--primary-hover"
+    },
+    {
+      "actual": "#b7791f",
+      "expected": "#b7791f",
+      "ok": true,
+      "variable": "--accent"
+    },
+    {
+      "actual": "#8f2440",
+      "expected": "#8f2440",
+      "ok": true,
+      "variable": "--editorial"
+    },
+    {
+      "actual": "#f8e6ec",
+      "expected": "#f8e6ec",
+      "ok": true,
+      "variable": "--editorial-muted"
+    },
+    {
+      "actual": "#176b5b",
+      "expected": "#176b5b",
+      "ok": true,
+      "variable": "--discovery"
+    },
+    {
+      "actual": "#e4f2ed",
+      "expected": "#e4f2ed",
+      "ok": true,
+      "variable": "--discovery-muted"
+    },
+    {
+      "actual": "#b7791f",
+      "expected": "#b7791f",
+      "ok": true,
+      "variable": "--offer"
+    },
+    {
+      "actual": "#fff3d6",
+      "expected": "#fff3d6",
+      "ok": true,
+      "variable": "--offer-muted"
+    },
+    {
+      "actual": "#243247",
+      "expected": "#243247",
+      "ok": true,
+      "variable": "--admin"
+    },
+    {
+      "actual": "#e7edf3",
+      "expected": "#e7edf3",
+      "ok": true,
+      "variable": "--admin-muted"
+    },
+    {
+      "actual": "#fbfaf7",
+      "expected": "#fbfaf7",
+      "ok": true,
+      "variable": "--paper"
+    },
+    {
+      "actual": "#eadcc6",
+      "expected": "#eadcc6",
+      "ok": true,
+      "variable": "--paper-deep"
+    },
+    {
+      "actual": "#1f1b16",
+      "expected": "#1f1b16",
+      "ok": true,
+      "variable": "--ink"
+    },
+    {
+      "actual": "#247857",
+      "expected": "#247857",
+      "ok": true,
+      "variable": "--success"
+    },
+    {
+      "actual": "#a16207",
+      "expected": "#a16207",
+      "ok": true,
+      "variable": "--warning"
+    },
+    {
+      "actual": "#b42318",
+      "expected": "#b42318",
+      "ok": true,
+      "variable": "--error"
+    }
+  ]
+}

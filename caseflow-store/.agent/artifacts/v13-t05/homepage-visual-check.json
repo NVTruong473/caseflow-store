@@ -1,0 +1,206 @@
+{
+  "taskId": "V13-T05",
+  "generatedAt": "2026-07-18T14:36:19.249Z",
+  "baseURL": "http://localhost:3000",
+  "ok": true,
+  "pass": {
+    "coverAspectRatio": true,
+    "coverStackVisible": true,
+    "heroCardCountPreserved": true,
+    "localImagesOnly": true,
+    "noOverflow": true,
+    "visibleNextSection": true
+  },
+  "viewportChecks": [
+    {
+      "counts": {
+        "coverFrames": 29,
+        "coverShelves": 0,
+        "coverStacks": 1,
+        "heroCards": 3,
+        "productLinks": 29
+      },
+      "coverFrameBoxes": [
+        {
+          "height": 140,
+          "ratio": 0.667,
+          "width": 93
+        },
+        {
+          "height": 140,
+          "ratio": 0.667,
+          "width": 93
+        },
+        {
+          "height": 140,
+          "ratio": 0.667,
+          "width": 93
+        },
+        {
+          "height": 464,
+          "ratio": 0.667,
+          "width": 309
+        },
+        {
+          "height": 464,
+          "ratio": 0.667,
+          "width": 309
+        },
+        {
+          "height": 464,
+          "ratio": 0.667,
+          "width": 309
+        },
+        {
+          "height": 464,
+          "ratio": 0.667,
+          "width": 309
+        },
+        {
+          "height": 108,
+          "ratio": 0.667,
+          "width": 72
+        },
+        {
+          "height": 108,
+          "ratio": 0.667,
+          "width": 72
+        },
+        {
+          "height": 108,
+          "ratio": 0.667,
+          "width": 72
+        },
+        {
+          "height": 108,
+          "ratio": 0.667,
+          "width": 72
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        }
+      ],
+      "coverStackVisible": false,
+      "imageSourceCount": 29,
+      "layout": {
+        "categoriesTop": 722.984375,
+        "documentWidth": 375,
+        "hasHorizontalOverflow": false,
+        "innerHeight": 900,
+        "viewportWidth": 375
+      },
+      "localImageSourceProblems": [],
+      "name": "mobile-vi",
+      "pass": {
+        "coverAspectRatio": true,
+        "coverStackVisible": true,
+        "heroCardCountPreserved": true,
+        "localImagesOnly": true,
+        "noOverflow": true,
+        "visibleNextSection": true
+      },
+      "screenshotPath": ".agent/artifacts/v13-t05/home-v13-mobile-vi.png",
+      "viewport": {
+        "height": 900,
+        "width": 375
+      }
+    },
+    {
+      "counts": {
+        "coverFrames": 29,
+        "coverShelves": 0,
+        "coverStacks": 1,
+        "heroCards": 3,
+        "productLinks": 29
+      },
+      "coverFrameBoxes": [
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        }
+      ],
+      "coverStackVisible": true,
+      "imageSourceCount": 29,
+      "layout": {
+        "categoriesTop": 980.453125,
+        "documentWidth": 1440,
+        "hasHorizontalOverflow": false,
+        "innerHeight": 1100,
+        "viewportWidth": 1440
+      },
+      "localImageSourceProblems": [],
+      "name": "desktop-en",
+      "pass": {
+        "coverAspectRatio": true,
+        "coverStackVisible": true,
+        "heroCardCountPreserved": true,
+        "localImagesOnly": true,
+        "noOverflow": true,
+        "visibleNextSection": true
+      },
+      "screenshotPath": ".agent/artifacts/v13-t05/home-v13-desktop-en.png",
+      "viewport": {
+        "height": 1100,
+        "width": 1440
+      }
+    }
+  ]
+}

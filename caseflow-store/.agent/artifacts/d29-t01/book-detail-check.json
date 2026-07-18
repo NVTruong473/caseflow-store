@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-18T05:07:52.945Z",
+  "generatedAt": "2026-07-18T14:27:12.000Z",
   "apiDetail": {
     "editionId": "00000000-0000-4000-8000-000000003027",
     "relatedCount": 1,
@@ -142,8 +142,6 @@
         "page-count",
         "source-physical-format"
       ],
-      "sourceEditionKey": "google-books:my2meaaaqbaj",
-      "sourceReviewStatus": "approved",
       "isFeatured": false,
       "createdAt": "2026-07-16T00:00:00+00:00",
       "updatedAt": "2026-07-17T21:02:08.622433+00:00"

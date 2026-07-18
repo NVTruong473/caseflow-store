@@ -1,20 +1,22 @@
 {
-  "generatedAt": "2026-07-16T08:02:36.228Z",
-  "baseURL": "http://127.0.0.1:3005",
+  "generatedAt": "2026-07-18T14:19:51.898Z",
+  "baseURL": "http://localhost:3000",
   "desktop": {
     "counts": {
-      "bookCards": 12,
+      "bookCards": 20,
       "categories": 8,
-      "curatedEditions": 14,
-      "detailLinks": 21,
+      "curatedEditions": 23,
+      "detailLinks": 29,
+      "englishCards": 4,
       "featuredCards": 4,
       "heroCards": 3,
-      "newArrivalCards": 4,
+      "promotionCards": 4,
       "totalEditions": 100,
       "translatedGroups": 3,
       "translatedLinks": 6,
       "trustCards": 4,
-      "vietnameseCards": 4
+      "vietnameseCards": 4,
+      "weekendCards": 4
     },
     "hasHorizontalOverflow": false,
     "language": "en",
@@ -31,29 +33,33 @@
   },
   "expectedCounts": {
     "categories": 8,
+    "englishCards": 4,
     "featuredCards": 4,
     "heroCards": 3,
-    "newArrivalCards": 4,
+    "promotionCards": 4,
     "totalEditions": 100,
     "translatedGroups": 3,
     "translatedLinks": 6,
     "trustCards": 4,
-    "vietnameseCards": 4
+    "vietnameseCards": 4,
+    "weekendCards": 4
   },
   "mobile": {
     "counts": {
-      "bookCards": 12,
+      "bookCards": 20,
       "categories": 8,
-      "curatedEditions": 14,
-      "detailLinks": 21,
+      "curatedEditions": 23,
+      "detailLinks": 29,
+      "englishCards": 4,
       "featuredCards": 4,
       "heroCards": 3,
-      "newArrivalCards": 4,
+      "promotionCards": 4,
       "totalEditions": 100,
       "translatedGroups": 3,
       "translatedLinks": 6,
       "trustCards": 4,
-      "vietnameseCards": 4
+      "vietnameseCards": 4,
+      "weekendCards": 4
     },
     "hasHorizontalOverflow": false,
     "language": "vi",

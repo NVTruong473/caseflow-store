@@ -1,0 +1,318 @@
+{
+  "taskId": "V13-T06",
+  "generatedAt": "2026-07-18T14:07:38.672Z",
+  "baseURL": "http://localhost:3000",
+  "ok": true,
+  "pass": {
+    "cardCountPreserved": true,
+    "coverAspectRatio": true,
+    "filterPanelVisible": true,
+    "localImagesOnly": true,
+    "noOverflow": true,
+    "productLinksPreserved": true
+  },
+  "viewportChecks": [
+    {
+      "counts": {
+        "cards": 24,
+        "coverFrames": 24,
+        "filterPanels": 1,
+        "productLinks": 24
+      },
+      "coverFrameBoxes": [
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        }
+      ],
+      "imageSourceCount": 24,
+      "layout": {
+        "documentWidth": 375,
+        "hasHorizontalOverflow": false,
+        "viewportWidth": 375
+      },
+      "localImageSourceProblems": [],
+      "name": "mobile-vi",
+      "pass": {
+        "cardCountPreserved": true,
+        "coverAspectRatio": true,
+        "filterPanelVisible": true,
+        "localImagesOnly": true,
+        "noOverflow": true,
+        "productLinksPreserved": true
+      },
+      "screenshotPath": ".agent/artifacts/v13-t06/catalog-v13-mobile-vi-page-2.png",
+      "viewport": {
+        "height": 900,
+        "width": 375
+      }
+    },
+    {
+      "counts": {
+        "cards": 24,
+        "coverFrames": 24,
+        "filterPanels": 1,
+        "productLinks": 24
+      },
+      "coverFrameBoxes": [
+        {
+          "height": 339,
+          "ratio": 0.667,
+          "width": 226
+        },
+        {
+          "height": 339,
+          "ratio": 0.667,
+          "width": 226
+        },
+        {
+          "height": 339,
+          "ratio": 0.667,
+          "width": 226
+        },
+        {
+          "height": 339,
+          "ratio": 0.667,
+          "width": 226
+        },
+        {
+          "height": 339,
+          "ratio": 0.667,
+          "width": 226
+        },
+        {
+          "height": 339,
+          "ratio": 0.667,
+          "width": 226
+        },
+        {
+          "height": 339,
+          "ratio": 0.667,
+          "width": 226
+        },
+        {
+          "height": 339,
+          "ratio": 0.667,
+          "width": 226
+        },
+        {
+          "height": 339,
+          "ratio": 0.667,
+          "width": 226
+        },
+        {
+          "height": 339,
+          "ratio": 0.667,
+          "width": 226
+        },
+        {
+          "height": 339,
+          "ratio": 0.667,
+          "width": 226
+        },
+        {
+          "height": 339,
+          "ratio": 0.667,
+          "width": 226
+        },
+        {
+          "height": 339,
+          "ratio": 0.667,
+          "width": 226
+        },
+        {
+          "height": 339,
+          "ratio": 0.667,
+          "width": 226
+        },
+        {
+          "height": 339,
+          "ratio": 0.667,
+          "width": 226
+        },
+        {
+          "height": 339,
+          "ratio": 0.667,
+          "width": 226
+        },
+        {
+          "height": 339,
+          "ratio": 0.667,
+          "width": 226
+        },
+        {
+          "height": 339,
+          "ratio": 0.667,
+          "width": 226
+        },
+        {
+          "height": 339,
+          "ratio": 0.667,
+          "width": 226
+        },
+        {
+          "height": 339,
+          "ratio": 0.667,
+          "width": 226
+        },
+        {
+          "height": 339,
+          "ratio": 0.667,
+          "width": 226
+        },
+        {
+          "height": 339,
+          "ratio": 0.667,
+          "width": 226
+        },
+        {
+          "height": 339,
+          "ratio": 0.667,
+          "width": 226
+        },
+        {
+          "height": 339,
+          "ratio": 0.667,
+          "width": 226
+        }
+      ],
+      "imageSourceCount": 24,
+      "layout": {
+        "documentWidth": 1440,
+        "hasHorizontalOverflow": false,
+        "viewportWidth": 1440
+      },
+      "localImageSourceProblems": [],
+      "name": "desktop-en",
+      "pass": {
+        "cardCountPreserved": true,
+        "coverAspectRatio": true,
+        "filterPanelVisible": true,
+        "localImagesOnly": true,
+        "noOverflow": true,
+        "productLinksPreserved": true
+      },
+      "screenshotPath": ".agent/artifacts/v13-t06/catalog-v13-desktop-en.png",
+      "viewport": {
+        "height": 1100,
+        "width": 1440
+      }
+    }
+  ]
+}

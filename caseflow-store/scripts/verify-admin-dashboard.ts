@@ -761,18 +761,27 @@ async function cleanupUsers(userIds: string[]) {
 
 async function loginOperationsUser(page: Page, email: string) {
   await page.goto("/admin/login", { waitUntil: "domcontentloaded" });
-  await page.locator("[data-admin-login-email]").fill(email);
-  await page.locator("[data-admin-login-password]").fill(TEST_PASSWORD);
-  const sessionResponse = page.waitForResponse(
-    (response) =>
-      response.url().includes("/api/admin/session") &&
-      response.request().method() === "POST",
-  );
-  await page.locator("[data-admin-login-submit]").click();
-  const response = await sessionResponse;
+  const response = await page.evaluate(
+    async ({ operationsEmail, password }) => {
+      const result = await fetch("/api/admin/session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: operationsEmail, password }),
+      });
 
-  if (!response.ok()) {
-    throw new Error(`Operations login failed with ${response.status()}`);
+      return {
+        body: await result.text(),
+        ok: result.ok,
+        status: result.status,
+      };
+    },
+    { operationsEmail: email, password: TEST_PASSWORD },
+  );
+
+  if (!response.ok) {
+    throw new Error(
+      `Operations login failed with ${response.status}: ${response.body}`,
+    );
   }
 
   await page.goto("/admin", { waitUntil: "domcontentloaded" });
@@ -783,9 +792,34 @@ async function loginOperationsUser(page: Page, email: string) {
 
 async function loginCustomer(page: Page, email: string) {
   await page.goto("/account", { waitUntil: "domcontentloaded" });
-  await page.locator("[data-customer-auth-email]").fill(email);
-  await page.locator("[data-customer-auth-password]").fill(TEST_PASSWORD);
-  await page.locator("[data-customer-auth-submit]").click();
+  const response = await page.evaluate(
+    async ({ customerEmail, password }) => {
+      const result = await fetch("/api/customer/session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: customerEmail,
+          intent: "sign-in",
+          password,
+        }),
+      });
+
+      return {
+        body: await result.text(),
+        ok: result.ok,
+        status: result.status,
+      };
+    },
+    { customerEmail: email, password: TEST_PASSWORD },
+  );
+
+  if (!response.ok) {
+    throw new Error(
+      `Customer login failed with ${response.status}: ${response.body}`,
+    );
+  }
+
+  await page.goto("/account", { waitUntil: "domcontentloaded" });
   await page
     .locator("[data-customer-account-panel][data-customer-auth-state='signed-in']")
     .waitFor({ timeout: 20_000 });

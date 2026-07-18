@@ -3,7 +3,7 @@
     "code": "UNAUTHORIZED",
     "status": 401
   },
-  "baseURL": "http://127.0.0.1:3006",
+  "baseURL": "http://localhost:3000",
   "cleanup": {
     "removedRows": 1
   },
@@ -11,7 +11,7 @@
     "code": "FORBIDDEN",
     "status": 403
   },
-  "generatedAt": "2026-07-17T03:57:21.633Z",
+  "generatedAt": "2026-07-18T14:30:16.237Z",
   "ok": true,
   "pass": {
     "anonymousDenied": true,
@@ -22,11 +22,11 @@
     "staffCrud": true,
     "uiHealthy": true
   },
-  "qaSlug": "qa-d36-catalog-mroeph8j-eupuae",
+  "qaSlug": "qa-d36-catalog-mrqgqh3z-5l7kih",
   "rowAfterFlow": {
-    "id": "3f5df86a-540c-4145-9ae9-2ab0b18881fd",
-    "slug": "qa-d36-catalog-mroeph8j-eupuae",
-    "display_title": "QA D36 Catalog Updated mroeph8j-eupuae",
+    "id": "871907a8-66c0-4479-9b6b-2ef2ee730f42",
+    "slug": "qa-d36-catalog-mrqgqh3z-5l7kih",
+    "display_title": "QA D36 Catalog Updated mrqgqh3z-5l7kih",
     "is_active": true,
     "stock_quantity": 8
   },
@@ -34,16 +34,16 @@
     "created": {
       "code": null,
       "data": {
-        "id": "3f5df86a-540c-4145-9ae9-2ab0b18881fd",
+        "id": "871907a8-66c0-4479-9b6b-2ef2ee730f42",
         "type": "admin-book-edition",
         "edition": {
-          "id": "3f5df86a-540c-4145-9ae9-2ab0b18881fd",
+          "id": "871907a8-66c0-4479-9b6b-2ef2ee730f42",
           "workId": "00000000-0000-4000-8000-000000002027",
-          "slug": "qa-d36-catalog-mroeph8j-eupuae",
-          "displayTitle": "QA D36 Catalog qa-d36-catalog-mroeph8j-eupuae",
+          "slug": "qa-d36-catalog-mrqgqh3z-5l7kih",
+          "displayTitle": "QA D36 Catalog qa-d36-catalog-mrqgqh3z-5l7kih",
           "localizedDisplayTitle": {
-            "vi": "QA D36 Catalog qa-d36-catalog-mroeph8j-eupuae",
-            "en": "QA D36 Catalog qa-d36-catalog-mroeph8j-eupuae"
+            "vi": "QA D36 Catalog qa-d36-catalog-mrqgqh3z-5l7kih",
+            "en": "QA D36 Catalog qa-d36-catalog-mrqgqh3z-5l7kih"
           },
           "subtitle": null,
           "language": "en",
@@ -64,17 +64,27 @@
             "en": "QA summary written for D36 admin catalog verification."
           },
           "sampleExcerptPolicy": "No excerpt is displayed for this managed edition.",
+          "pairId": null,
+          "pairedEditionId": null,
+          "reasonToRead": {
+            "vi": "Phu hop voi doc gia can mot an ban sach duoc gioi thieu ro rang.",
+            "en": "A clear fit for readers who want a well-positioned bookstore edition."
+          },
+          "displayFacts": [],
+          "omittedOptionalFactKeys": [],
+          "sourceEditionKey": null,
+          "sourceReviewStatus": null,
           "isFeatured": false,
           "isActive": true,
-          "createdAt": "2026-07-17T03:57:14.948581+00:00",
-          "updatedAt": "2026-07-17T03:57:14.948581+00:00"
+          "createdAt": "2026-07-18T14:30:00.569179+00:00",
+          "updatedAt": "2026-07-18T14:30:00.569179+00:00"
         },
         "work": {
           "id": "00000000-0000-4000-8000-000000002027",
           "slug": "a-christmas-carol",
           "title": "A Christmas Carol",
           "localizedTitle": {
-            "vi": "Bai ca Giang sinh",
+            "vi": "Bài ca Giáng sinh",
             "en": "A Christmas Carol"
           }
         },
@@ -103,23 +113,63 @@
             }
           }
         ],
-        "publisher": null
+        "publisher": null,
+        "operations": {
+          "contentQuality": {
+            "editionId": "",
+            "qualityScore": 0,
+            "releaseReady": false,
+            "blocking": {
+              "total": 12,
+              "verified": 0,
+              "missing": 12,
+              "unverified": 0,
+              "failures": [
+                "title",
+                "authors",
+                "language",
+                "format",
+                "price",
+                "stock",
+                "category",
+                "bilingual-summary",
+                "primary-cover",
+                "source-review",
+                "edition-facts-consistent",
+                "rights-complete"
+              ]
+            },
+            "optional": {
+              "total": 8,
+              "applicable": 0,
+              "verified": 0,
+              "missing": 8,
+              "unverified": 0
+            },
+            "state": "unchecked",
+            "updatedAt": null
+          },
+          "coverSource": null,
+          "coverStatus": "missing",
+          "shelfSlugs": []
+        }
       },
+      "message": null,
       "status": 201
     },
     "deactivated": {
       "code": null,
       "data": {
-        "id": "3f5df86a-540c-4145-9ae9-2ab0b18881fd",
+        "id": "871907a8-66c0-4479-9b6b-2ef2ee730f42",
         "type": "admin-book-edition",
         "edition": {
-          "id": "3f5df86a-540c-4145-9ae9-2ab0b18881fd",
+          "id": "871907a8-66c0-4479-9b6b-2ef2ee730f42",
           "workId": "00000000-0000-4000-8000-000000002027",
-          "slug": "qa-d36-catalog-mroeph8j-eupuae",
-          "displayTitle": "QA D36 Catalog Updated mroeph8j-eupuae",
+          "slug": "qa-d36-catalog-mrqgqh3z-5l7kih",
+          "displayTitle": "QA D36 Catalog Updated mrqgqh3z-5l7kih",
           "localizedDisplayTitle": {
-            "vi": "QA D36 Catalog qa-d36-catalog-mroeph8j-eupuae",
-            "en": "QA D36 Catalog qa-d36-catalog-mroeph8j-eupuae"
+            "vi": "QA D36 Catalog qa-d36-catalog-mrqgqh3z-5l7kih",
+            "en": "QA D36 Catalog qa-d36-catalog-mrqgqh3z-5l7kih"
           },
           "subtitle": null,
           "language": "en",
@@ -140,17 +190,24 @@
             "en": "QA summary written for D36 admin catalog verification."
           },
           "sampleExcerptPolicy": null,
+          "pairId": null,
+          "pairedEditionId": null,
+          "reasonToRead": null,
+          "displayFacts": [],
+          "omittedOptionalFactKeys": [],
+          "sourceEditionKey": null,
+          "sourceReviewStatus": null,
           "isFeatured": false,
           "isActive": false,
-          "createdAt": "2026-07-17T03:57:14.948581+00:00",
-          "updatedAt": "2026-07-17T03:57:18.239432+00:00"
+          "createdAt": "2026-07-18T14:30:00.569179+00:00",
+          "updatedAt": "2026-07-18T14:30:06.888473+00:00"
         },
         "work": {
           "id": "00000000-0000-4000-8000-000000002027",
           "slug": "a-christmas-carol",
           "title": "A Christmas Carol",
           "localizedTitle": {
-            "vi": "Bai ca Giang sinh",
+            "vi": "Bài ca Giáng sinh",
             "en": "A Christmas Carol"
           }
         },
@@ -179,23 +236,64 @@
             }
           }
         ],
-        "publisher": null
+        "publisher": null,
+        "operations": {
+          "contentQuality": {
+            "editionId": "",
+            "qualityScore": 0,
+            "releaseReady": false,
+            "blocking": {
+              "total": 12,
+              "verified": 0,
+              "missing": 12,
+              "unverified": 0,
+              "failures": [
+                "title",
+                "authors",
+                "language",
+                "format",
+                "price",
+                "stock",
+                "category",
+                "bilingual-summary",
+                "primary-cover",
+                "source-review",
+                "edition-facts-consistent",
+                "rights-complete"
+              ]
+            },
+            "optional": {
+              "total": 8,
+              "applicable": 0,
+              "verified": 0,
+              "missing": 8,
+              "unverified": 0
+            },
+            "state": "unchecked",
+            "updatedAt": null
+          },
+          "coverSource": null,
+          "coverStatus": "missing",
+          "shelfSlugs": []
+        }
       },
+      "message": null,
       "status": 200
     },
+    "deactivateRequestBody": "{\"isActive\":false}",
     "edited": {
       "code": null,
       "data": {
-        "id": "3f5df86a-540c-4145-9ae9-2ab0b18881fd",
+        "id": "871907a8-66c0-4479-9b6b-2ef2ee730f42",
         "type": "admin-book-edition",
         "edition": {
-          "id": "3f5df86a-540c-4145-9ae9-2ab0b18881fd",
+          "id": "871907a8-66c0-4479-9b6b-2ef2ee730f42",
           "workId": "00000000-0000-4000-8000-000000002027",
-          "slug": "qa-d36-catalog-mroeph8j-eupuae",
-          "displayTitle": "QA D36 Catalog Updated mroeph8j-eupuae",
+          "slug": "qa-d36-catalog-mrqgqh3z-5l7kih",
+          "displayTitle": "QA D36 Catalog Updated mrqgqh3z-5l7kih",
           "localizedDisplayTitle": {
-            "vi": "QA D36 Catalog qa-d36-catalog-mroeph8j-eupuae",
-            "en": "QA D36 Catalog qa-d36-catalog-mroeph8j-eupuae"
+            "vi": "QA D36 Catalog qa-d36-catalog-mrqgqh3z-5l7kih",
+            "en": "QA D36 Catalog qa-d36-catalog-mrqgqh3z-5l7kih"
           },
           "subtitle": null,
           "language": "en",
@@ -216,17 +314,27 @@
             "en": "QA summary written for D36 admin catalog verification."
           },
           "sampleExcerptPolicy": "No excerpt is displayed for this managed edition.",
+          "pairId": null,
+          "pairedEditionId": null,
+          "reasonToRead": {
+            "vi": "Phu hop voi doc gia can mot an ban sach duoc gioi thieu ro rang.",
+            "en": "A clear fit for readers who want a well-positioned bookstore edition."
+          },
+          "displayFacts": [],
+          "omittedOptionalFactKeys": [],
+          "sourceEditionKey": null,
+          "sourceReviewStatus": null,
           "isFeatured": false,
           "isActive": true,
-          "createdAt": "2026-07-17T03:57:14.948581+00:00",
-          "updatedAt": "2026-07-17T03:57:16.976563+00:00"
+          "createdAt": "2026-07-18T14:30:00.569179+00:00",
+          "updatedAt": "2026-07-18T14:30:04.304002+00:00"
         },
         "work": {
           "id": "00000000-0000-4000-8000-000000002027",
           "slug": "a-christmas-carol",
           "title": "A Christmas Carol",
           "localizedTitle": {
-            "vi": "Bai ca Giang sinh",
+            "vi": "Bài ca Giáng sinh",
             "en": "A Christmas Carol"
           }
         },
@@ -255,10 +363,51 @@
             }
           }
         ],
-        "publisher": null
+        "publisher": null,
+        "operations": {
+          "contentQuality": {
+            "editionId": "",
+            "qualityScore": 0,
+            "releaseReady": false,
+            "blocking": {
+              "total": 12,
+              "verified": 0,
+              "missing": 12,
+              "unverified": 0,
+              "failures": [
+                "title",
+                "authors",
+                "language",
+                "format",
+                "price",
+                "stock",
+                "category",
+                "bilingual-summary",
+                "primary-cover",
+                "source-review",
+                "edition-facts-consistent",
+                "rights-complete"
+              ]
+            },
+            "optional": {
+              "total": 8,
+              "applicable": 0,
+              "verified": 0,
+              "missing": 8,
+              "unverified": 0
+            },
+            "state": "unchecked",
+            "updatedAt": null
+          },
+          "coverSource": null,
+          "coverStatus": "missing",
+          "shelfSlugs": []
+        }
       },
+      "message": null,
       "status": 200
     },
+    "editRequestBody": "{\"compareAtPriceVnd\":null,\"displayTitle\":\"QA D36 Catalog Updated mrqgqh3z-5l7kih\",\"format\":\"paperback\",\"inventoryStatus\":\"in-stock\",\"isActive\":true,\"isFeatured\":false,\"language\":\"en\",\"localizedDisplayTitle\":{\"en\":\"QA D36 Catalog qa-d36-catalog-mrqgqh3z-5l7kih\",\"vi\":\"QA D36 Catalog qa-d36-catalog-mrqgqh3z-5l7kih\"},\"lowStockThreshold\":2,\"priceVnd\":188000,\"reasonToRead\":{\"en\":\"A clear fit for readers who want a well-positioned bookstore edition.\",\"vi\":\"Phu hop voi doc gia can mot an ban sach duoc gioi thieu ro rang.\"},\"sampleExcerptPolicy\":\"No excerpt is displayed for this managed edition.\",\"slug\":\"qa-d36-catalog-mrqgqh3z-5l7kih\",\"stockQuantity\":8,\"subtitle\":null,\"summary\":{\"en\":\"QA summary written for D36 admin catalog verification.\",\"vi\":\"Tom tat QA cho kiem thu quan ly catalog D36.\"},\"workId\":\"00000000-0000-4000-8000-000000002027\"}",
     "hasOverflow": false,
     "invalidPayload": {
       "code": "VALIDATION_ERROR",
@@ -272,16 +421,16 @@
     "reactivated": {
       "code": null,
       "data": {
-        "id": "3f5df86a-540c-4145-9ae9-2ab0b18881fd",
+        "id": "871907a8-66c0-4479-9b6b-2ef2ee730f42",
         "type": "admin-book-edition",
         "edition": {
-          "id": "3f5df86a-540c-4145-9ae9-2ab0b18881fd",
+          "id": "871907a8-66c0-4479-9b6b-2ef2ee730f42",
           "workId": "00000000-0000-4000-8000-000000002027",
-          "slug": "qa-d36-catalog-mroeph8j-eupuae",
-          "displayTitle": "QA D36 Catalog Updated mroeph8j-eupuae",
+          "slug": "qa-d36-catalog-mrqgqh3z-5l7kih",
+          "displayTitle": "QA D36 Catalog Updated mrqgqh3z-5l7kih",
           "localizedDisplayTitle": {
-            "vi": "QA D36 Catalog qa-d36-catalog-mroeph8j-eupuae",
-            "en": "QA D36 Catalog qa-d36-catalog-mroeph8j-eupuae"
+            "vi": "QA D36 Catalog qa-d36-catalog-mrqgqh3z-5l7kih",
+            "en": "QA D36 Catalog qa-d36-catalog-mrqgqh3z-5l7kih"
           },
           "subtitle": null,
           "language": "en",
@@ -302,17 +451,24 @@
             "en": "QA summary written for D36 admin catalog verification."
           },
           "sampleExcerptPolicy": null,
+          "pairId": null,
+          "pairedEditionId": null,
+          "reasonToRead": null,
+          "displayFacts": [],
+          "omittedOptionalFactKeys": [],
+          "sourceEditionKey": null,
+          "sourceReviewStatus": null,
           "isFeatured": false,
           "isActive": true,
-          "createdAt": "2026-07-17T03:57:14.948581+00:00",
-          "updatedAt": "2026-07-17T03:57:19.398589+00:00"
+          "createdAt": "2026-07-18T14:30:00.569179+00:00",
+          "updatedAt": "2026-07-18T14:30:09.045327+00:00"
         },
         "work": {
           "id": "00000000-0000-4000-8000-000000002027",
           "slug": "a-christmas-carol",
           "title": "A Christmas Carol",
           "localizedTitle": {
-            "vi": "Bai ca Giang sinh",
+            "vi": "Bài ca Giáng sinh",
             "en": "A Christmas Carol"
           }
         },
@@ -341,9 +497,50 @@
             }
           }
         ],
-        "publisher": null
+        "publisher": null,
+        "operations": {
+          "contentQuality": {
+            "editionId": "",
+            "qualityScore": 0,
+            "releaseReady": false,
+            "blocking": {
+              "total": 12,
+              "verified": 0,
+              "missing": 12,
+              "unverified": 0,
+              "failures": [
+                "title",
+                "authors",
+                "language",
+                "format",
+                "price",
+                "stock",
+                "category",
+                "bilingual-summary",
+                "primary-cover",
+                "source-review",
+                "edition-facts-consistent",
+                "rights-complete"
+              ]
+            },
+            "optional": {
+              "total": 8,
+              "applicable": 0,
+              "verified": 0,
+              "missing": 8,
+              "unverified": 0
+            },
+            "state": "unchecked",
+            "updatedAt": null
+          },
+          "coverSource": null,
+          "coverStatus": "missing",
+          "shelfSlugs": []
+        }
       },
+      "message": null,
       "status": 200
-    }
+    },
+    "reactivateRequestBody": "{\"isActive\":true}"
   }
 }

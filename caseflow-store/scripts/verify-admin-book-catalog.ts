@@ -35,6 +35,13 @@ type TestUser = {
   role: Extract<UserRole, "customer" | "staff">;
 };
 
+type AdminCatalogApiResult<TData> = {
+  code: string | null;
+  data: TData | null;
+  message: string | null;
+  status: number;
+};
+
 async function main() {
   fs.mkdirSync(ARTIFACT_DIR, { recursive: true });
 
@@ -243,7 +250,9 @@ async function exerciseStaffCatalogFlow(
       response.request().method() === "PATCH",
   );
   await page.locator("[data-admin-catalog-save]").click();
-  const edited = await readApiResponse<AdminCatalogItem>(await editResponse);
+  const editApiResponse = await editResponse;
+  const editRequestBody = editApiResponse.request().postData();
+  const edited = await readApiResponse<AdminCatalogItem>(editApiResponse);
   const pageShowsUpdatedTitle = await page
     .locator(`[data-admin-catalog-item='${options.qaSlug}']`)
     .filter({ hasText: options.updatedTitle })
@@ -255,8 +264,10 @@ async function exerciseStaffCatalogFlow(
       response.request().method() === "PATCH",
   );
   await page.locator("[data-admin-catalog-toggle]").click();
+  const deactivateApiResponse = await deactivateResponse;
+  const deactivateRequestBody = deactivateApiResponse.request().postData();
   const deactivated = await readApiResponse<AdminCatalogItem>(
-    await deactivateResponse,
+    deactivateApiResponse,
   );
   const publicAfterDeactivate = await getPublicDetailStatus(
     baseURL,
@@ -269,8 +280,10 @@ async function exerciseStaffCatalogFlow(
       response.request().method() === "PATCH",
   );
   await page.locator("[data-admin-catalog-toggle]").click();
+  const reactivateApiResponse = await reactivateResponse;
+  const reactivateRequestBody = reactivateApiResponse.request().postData();
   const reactivated = await readApiResponse<AdminCatalogItem>(
-    await reactivateResponse,
+    reactivateApiResponse,
   );
   const publicAfterReactivate = await getPublicDetailStatus(
     baseURL,
@@ -287,7 +300,9 @@ async function exerciseStaffCatalogFlow(
   return {
     created,
     deactivated,
+    deactivateRequestBody,
     edited,
+    editRequestBody,
     hasOverflow,
     invalidPayload,
     pageReady,
@@ -296,6 +311,7 @@ async function exerciseStaffCatalogFlow(
     publicAfterDeactivate,
     publicAfterReactivate,
     reactivated,
+    reactivateRequestBody,
   };
 }
 
@@ -333,12 +349,13 @@ async function postInvalidCatalogPayload(page: Page) {
 async function readApiResponse<TData>(response: {
   json: () => Promise<unknown>;
   status: () => number;
-}) {
+}): Promise<AdminCatalogApiResult<TData>> {
   const payload = (await response.json()) as ApiResponse<TData>;
 
   return {
     code: payload.error?.code ?? null,
     data: payload.data,
+    message: payload.error?.message ?? null,
     status: response.status(),
   };
 }
@@ -407,22 +424,68 @@ async function createProfiledUser(user: TestUser) {
 
 async function loginOperationsUser(page: Page, email: string) {
   await page.goto("/admin/login", { waitUntil: "domcontentloaded" });
-  await page.locator("[data-admin-login-email]").fill(email);
-  await page.locator("[data-admin-login-password]").fill(TEST_PASSWORD);
-  await page.locator("[data-admin-login-submit]").click();
-  await page.waitForURL("**/admin", { waitUntil: "domcontentloaded" });
+  const response = await page.evaluate(
+    async ({ operationsEmail, password }) => {
+      const result = await fetch("/api/admin/session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: operationsEmail, password }),
+      });
+
+      return {
+        body: await result.text(),
+        ok: result.ok,
+        status: result.status,
+      };
+    },
+    { operationsEmail: email, password: TEST_PASSWORD },
+  );
+
+  if (!response.ok) {
+    throw new Error(
+      `Operations login failed with ${response.status}: ${response.body}`,
+    );
+  }
+
+  await page.goto("/admin", { waitUntil: "domcontentloaded" });
+  await page.locator("[data-admin-shell-page='dashboard']").waitFor({
+    timeout: 20_000,
+  });
 }
 
 async function loginCustomer(page: Page, email: string) {
   await page.goto("/account", { waitUntil: "domcontentloaded" });
-  await page.locator("[data-customer-auth-email]").fill(email);
-  await page.locator("[data-customer-auth-password]").fill(TEST_PASSWORD);
-  await page.locator("[data-customer-auth-submit]").click();
+  const response = await page.evaluate(
+    async ({ customerEmail, password }) => {
+      const result = await fetch("/api/customer/session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: customerEmail,
+          intent: "sign-in",
+          password,
+        }),
+      });
+
+      return {
+        body: await result.text(),
+        ok: result.ok,
+        status: result.status,
+      };
+    },
+    { customerEmail: email, password: TEST_PASSWORD },
+  );
+
+  if (!response.ok) {
+    throw new Error(
+      `Customer login failed with ${response.status}: ${response.body}`,
+    );
+  }
+
+  await page.goto("/account", { waitUntil: "domcontentloaded" });
   await page
     .locator("[data-customer-account-panel][data-customer-auth-state='signed-in']")
-    .waitFor({
-    timeout: 20_000,
-  });
+    .waitFor({ timeout: 20_000 });
 }
 
 async function cleanupUsers(userIds: string[]) {

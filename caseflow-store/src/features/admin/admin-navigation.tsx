@@ -97,7 +97,7 @@ export function AdminOperationsNavigation({
   return (
     <nav
       aria-label={copy.ariaLabel}
-      className="rounded-lg border border-border bg-surface p-case-sm"
+      className="rounded-lg border border-admin bg-admin p-case-sm shadow-[var(--case-shadow-soft)]"
       data-admin-operations-navigation
       data-admin-navigation-role={role}
     >
@@ -111,8 +111,8 @@ export function AdminOperationsNavigation({
                 "flex min-h-11 items-center justify-center rounded-md border px-3 py-2 text-small font-medium transition-colors",
                 "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary",
                 item.key === active
-                  ? "border-primary bg-primary text-surface"
-                  : "border-transparent text-text-muted hover:bg-surface-muted hover:text-foreground",
+                  ? "border-surface bg-surface text-admin"
+                  : "border-transparent text-admin-muted hover:bg-surface/10 hover:text-surface",
               )}
               data-admin-nav-item={item.key}
             >

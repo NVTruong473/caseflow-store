@@ -4,7 +4,7 @@
     "data": null,
     "status": 401
   },
-  "baseURL": "http://127.0.0.1:3006",
+  "baseURL": "http://localhost:3000",
   "cleanup": {
     "removedAuthors": 1,
     "removedEditions": 1,
@@ -24,12 +24,12 @@
     "pageReady": true,
     "revenueZeroVisible": true
   },
-  "generatedAt": "2026-07-17T06:01:16.407Z",
+  "generatedAt": "2026-07-18T14:29:08.133Z",
   "ok": true,
   "orderCodes": [
-    "CF-D38A-MROJ4RNC",
-    "CF-D38B-MROJ4RNC",
-    "CF-D38C-MROJ4RNC"
+    "CF-D38A-MRQGP8VW",
+    "CF-D38B-MRQGP8VW",
+    "CF-D38C-MRQGP8VW"
   ],
   "pass": {
     "accessControl": true,
@@ -39,17 +39,17 @@
     "cleanup": true
   },
   "qaCatalog": {
-    "authorId": "dee63a90-14b7-4fb4-810b-a75567cd743c",
+    "authorId": "bf3898bf-e7ba-4374-a22f-689b7d342de7",
     "categoryId": "00000000-0000-4000-8000-000000000100",
-    "editionId": "df3beb75-b75a-452d-aaf3-3809e436381d",
-    "title": "D38 Dashboard QA Book mroj4rnc-7m7e67",
-    "workId": "6974955e-3270-4222-9522-bbbc83f8f4c7"
+    "editionId": "c55ac412-0547-48fc-b4a9-4cc8a5b2d0fe",
+    "title": "D38 Dashboard QA Book mrqgp8vw-yexcu3",
+    "workId": "29e8c2f4-1430-494a-8434-112013d36d79"
   },
   "staffApi": {
     "code": null,
     "data": {
       "averageOrderValueVnd": 166667,
-      "generatedAt": "2026-07-17T06:01:09.018Z",
+      "generatedAt": "2026-07-18T14:28:49.995Z",
       "inventorySummary": {
         "activeEditions": 101,
         "lowStockCount": 9,
@@ -57,25 +57,25 @@
       },
       "lowStockEditions": [
         {
-          "id": "df3beb75-b75a-452d-aaf3-3809e436381d",
+          "id": "c55ac412-0547-48fc-b4a9-4cc8a5b2d0fe",
           "inventoryStatus": "low-stock",
           "lowStockThreshold": 5,
-          "slug": "d38-dashboard-qa-mroj4rnc-7m7e67-paperback",
+          "slug": "d38-dashboard-qa-mrqgp8vw-yexcu3-paperback",
           "stockQuantity": 2,
-          "title": "D38 Dashboard QA Book mroj4rnc-7m7e67"
+          "title": "D38 Dashboard QA Book mrqgp8vw-yexcu3"
         },
         {
           "id": "00000000-0000-4000-8000-000000004000",
           "inventoryStatus": "low-stock",
-          "lowStockThreshold": 5,
+          "lowStockThreshold": 10,
           "slug": "pride-and-prejudice-vietnamese-special-edition",
           "stockQuantity": 8,
-          "title": "Kieu hanh va dinh kien"
+          "title": "Kiêu hãnh và định kiến"
         },
         {
           "id": "00000000-0000-4000-8000-000000004044",
           "inventoryStatus": "low-stock",
-          "lowStockThreshold": 5,
+          "lowStockThreshold": 10,
           "slug": "the-odyssey-vietnamese-paperback",
           "stockQuantity": 8,
           "title": "Odyssey"
@@ -83,7 +83,7 @@
         {
           "id": "00000000-0000-4000-8000-000000003000",
           "inventoryStatus": "low-stock",
-          "lowStockThreshold": 5,
+          "lowStockThreshold": 10,
           "slug": "pride-and-prejudice-english-special-edition",
           "stockQuantity": 8,
           "title": "Pride and Prejudice"
@@ -91,7 +91,7 @@
         {
           "id": "00000000-0000-4000-8000-000000003044",
           "inventoryStatus": "low-stock",
-          "lowStockThreshold": 5,
+          "lowStockThreshold": 10,
           "slug": "the-odyssey-english-paperback",
           "stockQuantity": 8,
           "title": "The Odyssey"
@@ -99,15 +99,15 @@
         {
           "id": "00000000-0000-4000-8000-000000004019",
           "inventoryStatus": "low-stock",
-          "lowStockThreshold": 5,
+          "lowStockThreshold": 10,
           "slug": "alice-in-wonderland-vietnamese-paperback",
           "stockQuantity": 9,
-          "title": "Alice o xu so than tien"
+          "title": "Cuộc phiêu lưu của Alice ở xứ sở thần tiên"
         },
         {
           "id": "00000000-0000-4000-8000-000000003009",
           "inventoryStatus": "low-stock",
-          "lowStockThreshold": 5,
+          "lowStockThreshold": 10,
           "slug": "dracula-english-paperback",
           "stockQuantity": 9,
           "title": "Dracula"
@@ -115,10 +115,10 @@
         {
           "id": "00000000-0000-4000-8000-000000004038",
           "inventoryStatus": "low-stock",
-          "lowStockThreshold": 5,
+          "lowStockThreshold": 10,
           "slug": "meditations-vietnamese-paperback",
           "stockQuantity": 10,
-          "title": "Suy tuong"
+          "title": "Suy tưởng"
         }
       ],
       "orderCount": 3,
@@ -190,7 +190,7 @@
         {
           "createdAt": "2099-01-15T03:00:00+00:00",
           "customerName": "D38 Dashboard Customer",
-          "orderCode": "CF-D38C-MROJ4RNC",
+          "orderCode": "CF-D38C-MRQGP8VW",
           "paymentStatus": "cancelled",
           "shippingStatus": "cancelled",
           "status": "cancelled",
@@ -199,7 +199,7 @@
         {
           "createdAt": "2099-01-15T02:00:00+00:00",
           "customerName": "D38 Dashboard Customer",
-          "orderCode": "CF-D38B-MROJ4RNC",
+          "orderCode": "CF-D38B-MRQGP8VW",
           "paymentStatus": "pending",
           "shippingStatus": "pending",
           "status": "pending",
@@ -208,7 +208,7 @@
         {
           "createdAt": "2099-01-15T01:00:00+00:00",
           "customerName": "D38 Dashboard Customer",
-          "orderCode": "CF-D38A-MROJ4RNC",
+          "orderCode": "CF-D38A-MRQGP8VW",
           "paymentStatus": "confirmed",
           "shippingStatus": "delivered",
           "status": "completed",
@@ -218,10 +218,10 @@
       "revenueEstimateVnd": 500000,
       "topBooks": [
         {
-          "editionId": "df3beb75-b75a-452d-aaf3-3809e436381d",
+          "editionId": "c55ac412-0547-48fc-b4a9-4cc8a5b2d0fe",
           "quantitySold": 3,
           "revenueVnd": 500000,
-          "title": "D38 Dashboard QA Book mroj4rnc-7m7e67"
+          "title": "D38 Dashboard QA Book mrqgp8vw-yexcu3"
         }
       ]
     },

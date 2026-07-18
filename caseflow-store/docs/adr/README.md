@@ -12,6 +12,7 @@ verified implementation outcome of each decision.
 | [ADR-0005](0005-use-simulated-checkout.md) | Accepted | Simulate checkout without collecting card data | Production creates database orders with simulated COD, bank transfer, MoMo, ZaloPay, and VNPay-style states, but processes no real payment and renders no card/e-wallet credential fields. |
 | [ADR-0006](0006-pivot-to-caseflow-books.md) | Accepted | Pivot `v1.1` to CaseFlow Books | Implemented as a Vietnam-first bilingual bookstore with 100 editions, account-gated checkout, customer tracking, admin/staff operations, rule-based assistant, SEO, and documented content/payment limits. |
 | [ADR-0007](0007-realistic-bookstore-content-merchandising-upgrade.md) | Accepted | Use a provenance-first content and merchandising upgrade for `v1.2` | Released as `v1.2.0` with a 100-edition catalog, 100 project-created covers, truthful merchandising shelves, content-quality gates, and bounded storefront/admin polish. |
+| [ADR-0008](0008-visual-merchandising-brand-polish.md) | Accepted | Use a bounded visual merchandising and brand polish phase for `v1.3` | Governs post-`v1.2.0` visual polish: richer bookstore tokens, cover-led merchandising, Hallmark-informed audit discipline, and no new commerce/integration scope. |
 
 ## Status meanings
 

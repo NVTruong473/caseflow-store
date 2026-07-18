@@ -1,7 +1,7 @@
 {
   "taskId": "V12-T13",
-  "generatedAt": "2026-07-18T08:51:50.939Z",
-  "baseURL": "http://127.0.0.1:3001",
+  "generatedAt": "2026-07-18T14:26:00.600Z",
+  "baseURL": "http://localhost:3000",
   "availability": {
     "lowStockCardsAllLowStock": true,
     "lowStockCount": 8,

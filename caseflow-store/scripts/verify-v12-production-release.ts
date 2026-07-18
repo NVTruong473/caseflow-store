@@ -3,7 +3,8 @@ import path from "node:path";
 
 import { chromium, type Browser, type Page } from "@playwright/test";
 
-const ARTIFACT_DIR = path.join(".agent", "artifacts", "v12-t18");
+const RELEASE_TASK_ID = process.env.PRODUCTION_RELEASE_TASK_ID ?? "v12-t18";
+const ARTIFACT_DIR = path.join(".agent", "artifacts", RELEASE_TASK_ID);
 const REPORT_PATH = path.join(ARTIFACT_DIR, "production-release-smoke.json");
 const LANGUAGE_COOKIE = "caseflow-books.language";
 const CART_STORAGE_KEY = "caseflow-store.cart.v1";
@@ -49,13 +50,25 @@ async function main() {
   fs.mkdirSync(ARTIFACT_DIR, { recursive: true });
 
   const baseURL = parseBaseURL(
-    process.env.V12_PRODUCTION_BASE_URL ?? "https://caseflow-store.vercel.app",
+    process.env.PRODUCTION_RELEASE_BASE_URL ??
+      process.env.V12_PRODUCTION_BASE_URL ??
+      "https://caseflow-store.vercel.app",
   );
   const deployment = {
     canonicalUrl: baseURL,
-    deploymentId: process.env.V12_DEPLOYMENT_ID ?? null,
-    deploymentUrl: process.env.V12_DEPLOYMENT_URL ?? null,
-    inspectorUrl: process.env.V12_INSPECTOR_URL ?? null,
+    deploymentId:
+      process.env.PRODUCTION_RELEASE_DEPLOYMENT_ID ??
+      process.env.V12_DEPLOYMENT_ID ??
+      null,
+    deploymentUrl:
+      process.env.PRODUCTION_RELEASE_DEPLOYMENT_URL ??
+      process.env.V12_DEPLOYMENT_URL ??
+      null,
+    inspectorUrl:
+      process.env.PRODUCTION_RELEASE_INSPECTOR_URL ??
+      process.env.V12_INSPECTOR_URL ??
+      null,
+    taskId: RELEASE_TASK_ID,
   };
   const catalog = await fetchJson<CatalogItem[]>(
     new URL("/api/products?limit=100", baseURL),

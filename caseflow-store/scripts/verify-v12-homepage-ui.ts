@@ -122,6 +122,7 @@ async function inspectViewport(
   const hasHorizontalOverflow = await page.evaluate(
     () => document.documentElement.scrollWidth > document.documentElement.clientWidth,
   );
+  await warmLazyImages(page);
   const heroImageChecks = await page.locator("[data-home-hero-card] img").evaluateAll(
     (images) =>
       images.map((image) => {
@@ -136,7 +137,6 @@ async function inspectViewport(
   const language = await page.locator("html").getAttribute("lang");
   const h1Text = await page.locator("h1").first().innerText();
 
-  await warmLazyImages(page);
   await page.screenshot({ fullPage: true, path: screenshotPath });
   await context.close();
 
@@ -144,6 +144,7 @@ async function inspectViewport(
     counts,
     firstViewport,
     hasHorizontalOverflow,
+    heroImageChecks,
     h1Text,
     language,
     name: config.name,
@@ -265,25 +266,47 @@ async function readCounts(page: Page) {
 }
 
 async function warmLazyImages(page: Page) {
-  await page.evaluate(`
-    (async () => {
-      const step = Math.max(240, Math.floor(window.innerHeight * 0.7));
-      const delay = (durationMs) =>
-        new Promise((resolve) => window.setTimeout(resolve, durationMs));
+  await Promise.race([
+    page.evaluate(`
+      (async () => {
+        const step = Math.max(240, Math.floor(window.innerHeight * 0.7));
+        const delay = (durationMs) =>
+          new Promise((resolve) => window.setTimeout(resolve, durationMs));
 
-      for (
-        let position = 0;
-        position < document.body.scrollHeight;
-        position += step
-      ) {
-        window.scrollTo(0, position);
-        await delay(120);
-      }
+        for (
+          let position = 0;
+          position < document.body.scrollHeight;
+          position += step
+        ) {
+          window.scrollTo(0, position);
+          await delay(120);
+        }
 
-      window.scrollTo(0, 0);
-      await delay(250);
-    })()
-  `);
+        window.scrollTo(0, 0);
+        await delay(250);
+
+        await Promise.all(
+          Array.from(document.images).map((image) => {
+            if (image.complete && image.naturalWidth > 0) {
+              return Promise.resolve();
+            }
+
+            return new Promise((resolve) => {
+              const timeout = window.setTimeout(resolve, 2500);
+              const finish = () => {
+                window.clearTimeout(timeout);
+                resolve();
+              };
+
+              image.addEventListener("load", finish, { once: true });
+              image.addEventListener("error", finish, { once: true });
+            });
+          }),
+        );
+      })()
+    `),
+    page.waitForTimeout(5000),
+  ]);
 }
 
 async function setLanguageCookie(

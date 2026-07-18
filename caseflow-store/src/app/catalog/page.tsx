@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
 import { Badge, Button, Card, Container } from "@/components/ui";
 import { CurrencyAmount } from "@/components/currency/currency-amount";
+import { BookCoverFrame } from "@/features/books/cover-merchandising";
 import { BookCatalogEmptyState } from "@/features/books/catalog-states";
 import { formatVnd } from "@/lib/format/currency";
 import { getCurrencyDisplayRules } from "@/lib/format/currency-display.server";
@@ -291,9 +291,14 @@ export default async function CatalogPage({ searchParams }: CatalogPageProps) {
           </span>
         </nav>
 
-        <section className="grid gap-case-lg rounded-lg border border-border bg-surface p-case-lg lg:grid-cols-[minmax(0,1fr)_320px]">
+        <section className="grid gap-case-lg rounded-lg border border-discovery/20 bg-surface p-case-lg shadow-[var(--case-shadow-soft)] lg:grid-cols-[minmax(0,1fr)_320px]">
           <div className="flex min-w-0 flex-col gap-case-sm">
-            <Badge variant="primary">{copy.eyebrow}</Badge>
+            <Badge
+              className="border-discovery bg-discovery-muted text-discovery"
+              variant="primary"
+            >
+              {copy.eyebrow}
+            </Badge>
             <h1 className="max-w-3xl text-heading-1 font-semibold text-foreground">
               {copy.title}
             </h1>
@@ -306,7 +311,7 @@ export default async function CatalogPage({ searchParams }: CatalogPageProps) {
           </div>
 
           <dl className="grid gap-case-sm sm:grid-cols-2 lg:grid-cols-1">
-            <div className="rounded-md border border-border bg-background px-3 py-3">
+            <div className="rounded-md border border-border bg-paper px-3 py-3">
               <dt className="text-small text-text-muted">
                 {copy.totalEditions}
               </dt>
@@ -314,7 +319,7 @@ export default async function CatalogPage({ searchParams }: CatalogPageProps) {
                 {totalEditions}
               </dd>
             </div>
-            <div className="rounded-md border border-border bg-background px-3 py-3">
+            <div className="rounded-md border border-border bg-paper px-3 py-3">
               <dt className="text-small text-text-muted">{copy.activeView}</dt>
               <dd className="mt-1 text-heading-3 font-semibold text-foreground">
                 {copy.pageOf(currentPage, totalPages)}
@@ -480,7 +485,7 @@ function CatalogFilterForm({
 }) {
   return (
     <section
-      className="rounded-lg border border-border bg-surface p-case-lg"
+      className="rounded-lg border border-discovery/20 bg-surface p-case-lg shadow-[var(--case-shadow-soft)]"
       data-catalog-filter-panel
     >
       <div className="flex max-w-3xl flex-col gap-case-sm">
@@ -707,7 +712,7 @@ function CatalogBookCard({
 
   return (
     <Card
-      className="h-full overflow-hidden"
+      className="h-full overflow-hidden shadow-[var(--case-shadow-soft)] transition-colors hover:border-discovery"
       data-catalog-author={getPrimaryAuthorName(record)}
       data-catalog-card={record.edition.slug}
       data-catalog-card-title={title}
@@ -723,20 +728,19 @@ function CatalogBookCard({
     >
       <Link
         aria-label={`${title} - ${authorLine}`}
-        className="grid h-full grid-cols-[96px_minmax(0,1fr)] gap-case-sm rounded-lg p-case-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:flex sm:flex-col sm:p-0"
+        className="group grid h-full grid-cols-[96px_minmax(0,1fr)] gap-case-sm rounded-lg p-case-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:flex sm:flex-col sm:p-0"
         href={`/products/${record.edition.slug}`}
       >
-        <div className="aspect-[3/4] overflow-hidden rounded-md border border-border bg-surface-muted sm:m-case-md sm:mb-0">
-          <Image
-            alt={getCoverAlt(record, language)}
-            className="h-full w-full object-cover"
-            height={320}
-            priority={priority}
-            sizes="(max-width: 639px) 96px, (max-width: 1023px) 42vw, (max-width: 1279px) 30vw, 240px"
-            src={getCoverPath(record)}
-            width={240}
-          />
-        </div>
+        <BookCoverFrame
+          className="w-full sm:m-case-md sm:mb-0 sm:w-auto"
+          imageClassName="transition duration-300 group-hover:scale-[1.025]"
+          language={language}
+          priority={priority}
+          record={record}
+          showBadges={false}
+          size="shelf"
+          sizes="(max-width: 639px) 96px, (max-width: 1023px) 42vw, (max-width: 1279px) 30vw, 240px"
+        />
         <div className="flex min-w-0 flex-1 flex-col gap-case-sm sm:px-case-md sm:pb-case-md">
           <div className="flex flex-wrap gap-case-xs">
             <Badge variant="neutral">
@@ -746,10 +750,17 @@ function CatalogBookCard({
               {getFormatLabel(record.edition.format, language)}
             </Badge>
             {merchandising.hasEditorialShelf ? (
-              <Badge variant="primary">{copy.editorialBadge}</Badge>
+              <Badge
+                className="border-editorial bg-editorial-muted text-editorial"
+                variant="primary"
+              >
+                {copy.editorialBadge}
+              </Badge>
             ) : null}
             {hasOffer ? (
-              <Badge variant="warning">{copy.promotionBadge}</Badge>
+              <Badge className="bg-offer-muted text-offer" variant="warning">
+                {copy.promotionBadge}
+              </Badge>
             ) : null}
             {merchandising.hasPairedShelf ? (
               <Badge variant="neutral">{copy.pairedBadge}</Badge>
@@ -1335,20 +1346,6 @@ function getEditionTitle(record: SupabaseBookCatalogRecord, language: Language) 
     record.edition.localizedDisplayTitle,
     language,
     record.edition.displayTitle,
-  );
-}
-
-function getCoverAlt(record: SupabaseBookCatalogRecord, language: Language) {
-  return pickLocalizedText(
-    record.coverAsset?.altText,
-    language,
-    `${getEditionTitle(record, language)} cover`,
-  );
-}
-
-function getCoverPath(record: SupabaseBookCatalogRecord) {
-  return (
-    record.coverAsset?.path ?? "/images/books/placeholders/book-cover-placeholder.svg"
   );
 }
 

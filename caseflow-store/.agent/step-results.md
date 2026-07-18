@@ -4,10 +4,10 @@
 
 | Field | Value |
 |---|---|
-| Current mode | v1.2 release complete; next work needs a new accepted task/ADR |
-| Current gate | `V12-T18` complete; production v1.2 deploy, smoke, docs, release commit, and tag complete |
+| Current mode | v1.3 production release in progress |
+| Current gate | `V13-T10` in progress; deploy, smoke test, document, and tag |
 | Implementation started | Yes |
-| Next implementation task | TBD after `v1.2.0` |
+| Next implementation task | `V13-T10 - Deploy, Smoke Test, Document, And Tag v1.3.0` |
 | App initialized | Yes, in `caseflow-store` |
 | Local server verified | Yes, V12-T17 full Playwright and aggregate gate passed on a fresh production build at `http://127.0.0.1:3001` |
 | Lint verified | Yes, V12-T18 final lint passed |
@@ -117,6 +117,15 @@
 | SR-169 | 2026-07-18 | V12-T16 | completed | Integrated accepted v1.2 catalog content across search, assistant, SEO/social metadata, cart/order snapshots, CSV export, legacy recovery, and docs with production-style runtime evidence |
 | SR-170 | 2026-07-18 | V12-T17 | completed | Passed the full v1.2 local quality gate with type/lint/build, Playwright 20/20, aggregate content/asset/runtime reports, cleanup, secret scan, and documented dependency/performance residuals |
 | SR-171 | 2026-07-18 | V12-T18 | completed | Deployed v1.2.0 to Vercel production, passed production smoke and full production Playwright 20/20, refreshed release docs/evidence, cleaned verification data, and created the release commit/tag |
+| SR-172 | 2026-07-18 | V13-T01 | completed | Accepted ADR-0008 and the v1.3 visual merchandising roadmap, bounding polish to richer tokens, cover-led merchandising, visual QA, and no new commerce/integration scope |
+| SR-173 | 2026-07-18 | V13-T02 | completed | Captured Hallmark-informed visual baseline screenshots for six surfaces at mobile/desktop, confirmed zero overflow, and mapped six ranked findings to V13 tasks |
+| SR-174 | 2026-07-18 | V13-T03 | completed | Expanded bookstore design tokens into paper/ink, moss discovery, wine editorial, amber offer, and admin trust palette with CSS/theme/docs verification |
+| SR-175 | 2026-07-18 | V13-T04 | completed | Added reusable local-cover merchandising frame, stack, shelf, and display helpers with static contract, type, lint, and diff verification |
+| SR-176 | 2026-07-18 | V13-T05 | completed | Upgraded homepage hero and product cards with cover-led merchandising, preserved released counts/flows, and passed V13/V12 homepage visual gates |
+| SR-177 | 2026-07-18 | V13-T06 | completed | Polished catalog cards and discovery surfaces with shared cover frames and token accents while preserving pagination, filters, and V12 discovery gates |
+| SR-178 | 2026-07-18 | V13-T07 | completed | Polished book detail hierarchy with shared cover frames, compact mobile commerce, and V13 visual gates while preserving cart, SEO, and edition comparison behavior |
+| SR-179 | 2026-07-18 | V13-T08 | completed | Polished admin operations surfaces with admin trust tokens, fixed staff catalog PATCH source-review default detection, and passed visual/admin/static gates |
+| SR-180 | 2026-07-18 | V13-T09 | completed | Passed the full v1.3 local visual/documentation QA gate, added release notes, verified cleanup/stale/secret scans, and left deploy/tag pending explicit instruction |
 
 ---
 
@@ -10661,3 +10670,543 @@ annotated tag.
 
 No active task after `v1.2.0`; future changes should start from a new accepted
 task ID or ADR.
+
+## SR-172 - V13-T01: Create Visual Merchandising ADR And Roadmap
+
+- Date: 2026-07-18
+- Status: completed
+- Phase: CaseFlow Books v1.3 visual merchandising and brand polish
+
+### Objective
+
+Create the governing ADR and roadmap needed to apply the user's requested
+visual merchandising improvements automatically while preserving the released
+e-commerce architecture, product scope, and content/provenance guardrails.
+
+### Actual Result
+
+- Added ADR-0008 for a bounded `v1.3` Visual Merchandising & Brand Polish
+  phase.
+- Added the v1.3 roadmap with task IDs `V13-T01` through `V13-T09`,
+  acceptance criteria, verification expectations, and final gate rules.
+- Updated ADR indexes and `.agent` trackers to make v1.3 the active polish
+  phase.
+- Documented that Hallmark is used as audit inspiration only, not as a runtime
+  dependency or permission to rebuild/delete route trees.
+
+### Evidence
+
+- `docs/adr/0008-visual-merchandising-brand-polish.md`
+- `caseflow-store/docs/adr/0008-visual-merchandising-brand-polish.md`
+- `docs/v1.3-visual-merchandising-brand-polish-roadmap.md`
+- `caseflow-store/docs/v1.3-visual-merchandising-brand-polish-roadmap.md`
+- `docs/adr/README.md`
+- `caseflow-store/docs/adr/README.md`
+
+### Verification
+
+- Root/app ADR mirrors: passed.
+- Root/app roadmap mirrors: passed.
+- ADR index mirror: passed.
+- ADR/reference search: passed.
+- `git diff --check`: passed.
+
+### Guardrails Preserved
+
+- No runtime files, database schema, production data, deployment, payment,
+  shipping, auth, or API integration boundary changed in this task.
+- The final v1.3 tag/deploy remains out of scope until the final gate passes
+  and the user approves it.
+
+### Next Task
+
+`V13-T02 - Run Hallmark-Informed Visual Audit Baseline`.
+
+## SR-173 - V13-T02: Run Hallmark-Informed Visual Audit Baseline
+
+- Date: 2026-07-18
+- Status: completed
+- Phase: CaseFlow Books v1.3 visual merchandising and brand polish
+
+### Objective
+
+Capture a visual baseline before runtime polish, audit the released surfaces
+against Hallmark-informed anti-generic design principles, and map concrete
+issues to the accepted V13 task plan without changing the storefront/admin UI.
+
+### Actual Result
+
+- Added `scripts/verify-v13-visual-audit.ts` for reproducible visual baseline
+  capture.
+- Captured mobile and desktop screenshots for homepage, catalog, book detail,
+  checkout/account boundary, admin dashboard, and admin catalog.
+- Confirmed all audited surfaces render their expected selector and have zero
+  horizontal overflow at `375px` and `1440px`.
+- Produced a ranked punch list with 6 findings mapped to `V13-T03` through
+  `V13-T09`.
+
+### Evidence
+
+- `caseflow-store/scripts/verify-v13-visual-audit.ts`
+- `caseflow-store/.agent/artifacts/v13-t02/visual-audit-baseline.json`
+- `caseflow-store/.agent/artifacts/v13-t02/visual-audit-baseline.md`
+- `caseflow-store/.agent/artifacts/v13-t02/homepage-mobile.png`
+- `caseflow-store/.agent/artifacts/v13-t02/homepage-desktop.png`
+- `caseflow-store/.agent/artifacts/v13-t02/catalog-mobile.png`
+- `caseflow-store/.agent/artifacts/v13-t02/catalog-desktop.png`
+- `caseflow-store/.agent/artifacts/v13-t02/book-detail-mobile.png`
+- `caseflow-store/.agent/artifacts/v13-t02/book-detail-desktop.png`
+- `caseflow-store/.agent/artifacts/v13-t02/checkout-account-boundary-mobile.png`
+- `caseflow-store/.agent/artifacts/v13-t02/checkout-account-boundary-desktop.png`
+- `caseflow-store/.agent/artifacts/v13-t02/admin-dashboard-mobile.png`
+- `caseflow-store/.agent/artifacts/v13-t02/admin-dashboard-desktop.png`
+- `caseflow-store/.agent/artifacts/v13-t02/admin-catalog-mobile.png`
+- `caseflow-store/.agent/artifacts/v13-t02/admin-catalog-desktop.png`
+
+### Verification
+
+- `npx tsx scripts/verify-v13-visual-audit.ts`: passed with `ok: true`.
+- Baseline artifacts inspected: passed.
+- No UI runtime files changed by the audit.
+- `git diff --check`: passed.
+
+### Guardrails Preserved
+
+- No UI implementation, schema migration, production data, external media,
+  payment/shipping/verification integration, API contract, deployment, tag, or
+  runtime route behavior changed in this task.
+
+### Next Task
+
+`V13-T03 - Expand Bookstore Design Tokens`.
+
+## SR-174 - V13-T03: Expand Bookstore Design Tokens
+
+- Date: 2026-07-18
+- Status: completed
+- Phase: CaseFlow Books v1.3 visual merchandising and brand polish
+
+### Objective
+
+Replace the MVP blue/slate visual foundation with a richer bookstore token
+system that can support the later merchandising polish without random page-level
+colors or a one-note palette.
+
+### Actual Result
+
+- Updated root and app `DESIGN.md` files to describe CaseFlow Books as a
+  specialist bookstore and small-business commerce system.
+- Added paper/ink, moss/teal discovery, wine editorial, amber offer, and admin
+  trust tokens.
+- Updated `src/app/globals.css` with matching CSS variables, Tailwind theme
+  aliases, tighter radius tokens, and selection/focus compatibility.
+- Added a reproducible token verifier that confirms the CSS, root design doc,
+  and app design doc stay aligned.
+- Cleaned the two lint warnings in the V13 visual audit script.
+
+### Evidence
+
+- `DESIGN.md`
+- `caseflow-store/DESIGN.md`
+- `caseflow-store/src/app/globals.css`
+- `caseflow-store/scripts/verify-v13-design-tokens.ts`
+- `caseflow-store/.agent/artifacts/v13-t03/design-token-check.json`
+- `caseflow-store/scripts/verify-v13-visual-audit.ts`
+
+### Verification
+
+- `npx tsx scripts/verify-v13-design-tokens.ts`: passed with `ok: true`.
+- `npx tsc --noEmit --pretty false`: passed.
+- `npm run lint`: passed with zero warnings after cleanup.
+- `git diff --check`: passed.
+
+### Guardrails Preserved
+
+- No route, schema, production data, external media, payment/shipping/auth
+  integration, API contract, deployment, or tag changed in this task.
+- The change is limited to design tokens, design docs, verifier artifacts, and
+  cleanup of the V13 audit script warnings.
+
+### Next Task
+
+`V13-T04 - Build Cover-Led Merchandising Components`.
+
+## SR-175 - V13-T04: Build Cover-Led Merchandising Components
+
+- Date: 2026-07-18
+- Status: completed
+- Phase: CaseFlow Books v1.3 visual merchandising and brand polish
+
+### Objective
+
+Create reusable cover-led merchandising components that can make homepage,
+catalog, and detail pages feel more like a real bookstore while staying within
+the accepted local-cover and content provenance policy.
+
+### Actual Result
+
+- Added `BookCoverFrame`, `BookCoverStack`, and `BookCoverShelf` for stable
+  local-cover display.
+- Added shared display helpers for edition title, cover alt text, local cover
+  path fallback, author line, and format label.
+- Enforced local `/images/books/` cover paths with a placeholder fallback.
+- Used stable `2/3` cover aspect ratios and shared V13 token colors for badges
+  and cover shadow.
+- Added a static verifier to check required exports, local-cover guardrails,
+  forbidden external URLs, and deterministic component behavior.
+
+### Evidence
+
+- `caseflow-store/src/features/books/cover-merchandising.tsx`
+- `caseflow-store/scripts/verify-v13-cover-merchandising.ts`
+- `caseflow-store/.agent/artifacts/v13-t04/cover-merchandising-check.json`
+
+### Verification
+
+- `npx tsx scripts/verify-v13-cover-merchandising.ts`: passed with `ok: true`.
+- `npx tsc --noEmit --pretty false`: passed.
+- `npm run lint`: passed.
+- `git diff --check`: passed.
+
+### Guardrails Preserved
+
+- No route, schema, production data, external media, new dependency, payment,
+  shipping, auth, API contract, deployment, or tag changed in this task.
+- Components are available for later page integration but do not change page
+  behavior by themselves.
+
+### Next Task
+
+`V13-T05 - Upgrade Homepage Visual Merchandising`.
+
+## SR-176 - V13-T05: Upgrade Homepage Visual Merchandising
+
+- Date: 2026-07-18
+- Status: completed
+- Phase: CaseFlow Books v1.3 visual merchandising and brand polish
+
+### Objective
+
+Upgrade the homepage so it feels less like a generic commerce grid and more
+like a real bookstore, while preserving released merchandising rules, counts,
+links, language behavior, cart entry, and content guardrails.
+
+### Actual Result
+
+- Reworked the hero with the V13 paper/discovery palette, desktop cover stack,
+  and compact mobile/tablet cover-led cards.
+- Replaced homepage cover image rendering with reusable `BookCoverFrame`
+  instances for hero, featured, compact shelf, and translated-edition cards.
+- Improved the post-hero spacing so the next section remains visible in the
+  first viewport across mobile, tablet, and desktop verification sizes.
+- Updated the homepage sections verifier from older "new arrivals" copy/counts
+  to the current v1.2 shelf model: weekend, Vietnamese, English, promotion,
+  translated editions, and trust sections.
+- Added a V13 homepage visual verifier with mobile/desktop screenshots,
+  overflow checks, local-image checks, cover-frame checks, and hero-count
+  preservation.
+
+### Evidence
+
+- `caseflow-store/src/app/page.tsx`
+- `caseflow-store/scripts/verify-v13-homepage-visual-merchandising.ts`
+- `caseflow-store/scripts/verify-homepage-sections.ts`
+- `caseflow-store/.agent/artifacts/v13-t05/homepage-visual-check.json`
+- `caseflow-store/.agent/artifacts/v13-t05/home-v13-mobile-vi.png`
+- `caseflow-store/.agent/artifacts/v13-t05/home-v13-desktop-en.png`
+- `caseflow-store/.agent/artifacts/v12-t12/homepage-ui-check.json`
+- `caseflow-store/.agent/artifacts/d27-t01/homepage-sections-check.json`
+
+### Verification
+
+- `HOMEPAGE_VERIFY_BASE_URL=http://localhost:3000 npx tsx scripts/verify-v13-homepage-visual-merchandising.ts`:
+  passed with `ok: true`.
+- `HOMEPAGE_VERIFY_BASE_URL=http://localhost:3000 npx tsx scripts/verify-v12-homepage-ui.ts`:
+  passed with `ok: true`.
+- `HOMEPAGE_VERIFY_BASE_URL=http://localhost:3000 npx tsx scripts/verify-homepage-sections.ts`:
+  passed with `ok: true`.
+- `npx tsc --noEmit --pretty false`: passed.
+- `npm run lint`: passed.
+- `git diff --check`: passed.
+- Mobile and desktop V13 screenshots were inspected visually.
+
+### Guardrails Preserved
+
+- No route, schema, production data, external image source, payment/shipping/
+  auth integration, API contract, deployment, or tag changed in this task.
+- No fake reviews, sales counts, bestseller claims, or commercial cover assets
+  were introduced.
+
+### Next Task
+
+`V13-T06 - Polish Catalog Cards And Discovery`.
+
+## SR-177 - V13-T06: Polish Catalog Cards And Discovery
+
+- Date: 2026-07-18
+- Status: completed
+- Phase: CaseFlow Books v1.3 visual merchandising and brand polish
+
+### Objective
+
+Polish catalog cards and discovery surfaces so browsing feels more like a real
+bookstore catalog, while preserving the released filter, sort, pagination,
+search, product-link, and merchandising-label behavior.
+
+### Actual Result
+
+- Replaced catalog card image rendering with the shared `BookCoverFrame`.
+- Added V13 discovery/editorial/offer token accents to the catalog intro,
+  filter panel, card hover state, and merchandising badges.
+- Added a V13 catalog visual verifier with mobile/desktop screenshots, local
+  image checks, cover aspect checks, product-link preservation, and overflow
+  checks.
+- Improved the V13 catalog verifier screenshot warm-up so lazy images below
+  the fold are scrolled into view before screenshot capture.
+- Hardened the V12 catalog discovery verifier against duplicate transient
+  `data-catalog-page` and `data-catalog-result-signals` nodes by selecting the
+  first matched summary node.
+
+### Evidence
+
+- `caseflow-store/src/app/catalog/page.tsx`
+- `caseflow-store/scripts/verify-v13-catalog-visual-merchandising.ts`
+- `caseflow-store/scripts/verify-v12-catalog-discovery.ts`
+- `caseflow-store/.agent/artifacts/v13-t06/catalog-visual-check.json`
+- `caseflow-store/.agent/artifacts/v13-t06/catalog-v13-mobile-vi-page-2.png`
+- `caseflow-store/.agent/artifacts/v13-t06/catalog-v13-desktop-en.png`
+- `caseflow-store/.agent/artifacts/d28-t01/catalog-page-check.json`
+- `caseflow-store/.agent/artifacts/d28-t02/catalog-filters-check.json`
+- `caseflow-store/.agent/artifacts/v12-t13/catalog-discovery-check.json`
+
+### Verification
+
+- `CATALOG_VERIFY_BASE_URL=http://localhost:3000 npx tsx scripts/verify-v13-catalog-visual-merchandising.ts`:
+  passed with `ok: true`.
+- `CATALOG_VERIFY_BASE_URL=http://localhost:3000 npx tsx scripts/verify-catalog-page.ts`:
+  passed with `ok: true`.
+- `CATALOG_FILTER_VERIFY_BASE_URL=http://localhost:3000 npx tsx scripts/verify-catalog-filters.ts`:
+  passed with `ok: true`.
+- `CATALOG_V12_VERIFY_BASE_URL=http://localhost:3000 npx tsx scripts/verify-v12-catalog-discovery.ts`:
+  passed with `ok: true`.
+- `npx tsc --noEmit --pretty false`: passed.
+- `npm run lint`: passed.
+- `git diff --check`: passed.
+- V13 catalog mobile and desktop screenshots were inspected visually.
+
+### Guardrails Preserved
+
+- No route, schema, production data, external image source, payment/shipping/
+  auth integration, API contract, deployment, or tag changed in this task.
+- No fake ratings, sales velocity, bestseller claims, or commercial cover
+  assets were introduced.
+
+### Next Task
+
+`V13-T07 - Polish Book Detail Visual Hierarchy`.
+
+## SR-178 - V13-T07: Polish Book Detail Visual Hierarchy
+
+- Date: 2026-07-18
+- Status: completed
+- Phase: CaseFlow Books v1.3 visual merchandising and brand polish
+
+### Objective
+
+Polish the book detail page hierarchy so the cover, title, price, stock,
+edition comparison, reason/facts, purchase controls, and confidence sections
+feel more coherent and bookstore-specific without changing commerce behavior.
+
+### Actual Result
+
+- Replaced the main detail cover, edition comparison covers, and recommendation
+  covers with the shared `BookCoverFrame`.
+- Applied V13 discovery, offer, editorial, paper, and admin trust accents to
+  category badges, price/stock panel, edition comparison, reason/facts, work
+  context, and confidence sections.
+- Kept mobile commerce compact enough for the add-to-cart button to remain in
+  the first viewport for the V12 hierarchy gate.
+- Reduced mobile price/stock/format typography to avoid cramped value overlap.
+- Added a V13 detail visual verifier with mobile/desktop screenshots, cover
+  frame checks, local image checks, commerce visibility, comparison visibility,
+  and overflow checks.
+- Improved V13 detail screenshot warm-up so lazy cover images are scrolled and
+  decoded before screenshot capture.
+
+### Evidence
+
+- `caseflow-store/src/app/products/[slug]/page.tsx`
+- `caseflow-store/scripts/verify-v13-book-detail-visual-hierarchy.ts`
+- `caseflow-store/.agent/artifacts/v13-t07/book-detail-visual-check.json`
+- `caseflow-store/.agent/artifacts/v13-t07/book-detail-v13-mobile-vi.png`
+- `caseflow-store/.agent/artifacts/v13-t07/book-detail-v13-desktop-en.png`
+- `caseflow-store/.agent/artifacts/d29-t01/book-detail-check.json`
+- `caseflow-store/.agent/artifacts/v12-t14/book-detail-edition-comparison-check.json`
+
+### Verification
+
+- `BOOK_DETAIL_VERIFY_BASE_URL=http://localhost:3000 npx tsx scripts/verify-v13-book-detail-visual-hierarchy.ts`:
+  passed with `ok: true`.
+- `BOOK_DETAIL_VERIFY_BASE_URL=http://localhost:3000 npx tsx scripts/verify-book-detail-page.ts`:
+  passed with `ok: true`.
+- `V12_BOOK_DETAIL_VERIFY_BASE_URL=http://localhost:3000 npx tsx scripts/verify-v12-book-detail-edition-comparison.ts`:
+  passed with `ok: true`.
+- `npx tsc --noEmit --pretty false`: passed.
+- `npm run lint`: passed.
+- `git diff --check`: passed.
+- V13 detail mobile screenshot was inspected visually after fixing the mobile
+  price/stock/format spacing.
+
+### Guardrails Preserved
+
+- No route, schema, production data, external image source, payment/shipping/
+  auth integration, API contract, deployment, or tag changed in this task.
+- Add-to-cart still targets the current edition; SEO Book structured data still
+  uses VND offer data; unsupported sales/rating/shipping claims remain absent.
+
+### Next Task
+
+`V13-T08 - Polish Admin Operations Visual System`.
+
+## SR-179 - V13-T08: Polish Admin Operations Visual System
+
+- Date: 2026-07-18
+- Status: completed
+- Phase: CaseFlow Books v1.3 visual merchandising and brand polish
+
+### Objective
+
+Polish admin dashboard and catalog operations so they feel like a coherent
+operations workspace while preserving server-side permissions, API contracts,
+catalog management behavior, and existing regression coverage.
+
+### Actual Result
+
+- Applied the V13 admin trust palette to the admin shell, operations
+  navigation, dashboard metrics/panels, catalog list/form, content-quality
+  signals, and merchandising operations.
+- Adjusted the admin shell badge after screenshot review so the workspace
+  label has readable contrast.
+- Added a V13 admin visual verifier for dashboard and catalog at mobile and
+  desktop sizes.
+- Hardened admin dashboard/catalog verifier sign-in helpers to use the app's
+  session APIs directly, reducing flaky form-submission waits without changing
+  runtime behavior.
+- Fixed a real staff catalog PATCH regression: source-review schema defaults
+  were being treated as explicit source-review edits even when the request body
+  only changed operational fields such as `isActive`.
+
+### Evidence
+
+- `caseflow-store/src/features/admin/admin-shell-page.tsx`
+- `caseflow-store/src/features/admin/admin-navigation.tsx`
+- `caseflow-store/src/features/admin/admin-dashboard-page.tsx`
+- `caseflow-store/src/features/admin/admin-catalog-page.tsx`
+- `caseflow-store/src/app/api/admin/books/editions/[id]/route.ts`
+- `caseflow-store/scripts/verify-v13-admin-visual-system.ts`
+- `caseflow-store/scripts/verify-admin-dashboard.ts`
+- `caseflow-store/scripts/verify-admin-book-catalog.ts`
+- `caseflow-store/.agent/artifacts/v13-t08/admin-visual-check.json`
+- `caseflow-store/.agent/artifacts/v13-t08/admin-dashboard-mobile-vi.png`
+- `caseflow-store/.agent/artifacts/v13-t08/admin-dashboard-desktop-en.png`
+- `caseflow-store/.agent/artifacts/v13-t08/admin-catalog-mobile-vi.png`
+- `caseflow-store/.agent/artifacts/v13-t08/admin-catalog-desktop-en.png`
+- `caseflow-store/.agent/artifacts/d38-t01/admin-dashboard-check.json`
+- `caseflow-store/.agent/artifacts/d36-t01/admin-book-catalog-check.json`
+
+### Verification
+
+- `ADMIN_VISUAL_VERIFY_BASE_URL=http://localhost:3000 npx tsx scripts/verify-v13-admin-visual-system.ts`:
+  passed with `ok: true`.
+- `ADMIN_DASHBOARD_VERIFY_BASE_URL=http://localhost:3000 npx tsx scripts/verify-admin-dashboard.ts`:
+  passed with `ok: true`.
+- `ADMIN_BOOK_CATALOG_VERIFY_BASE_URL=http://localhost:3000 npx tsx scripts/verify-admin-book-catalog.ts`:
+  passed with `ok: true`.
+- `npx tsc --noEmit --pretty false`: passed.
+- `npm run lint`: passed.
+- `git diff --check`: passed.
+- Admin desktop screenshot was inspected visually after contrast correction.
+
+### Guardrails Preserved
+
+- No schema migration, production data write, external imagery, payment,
+  shipping, auth-provider, deployment, or tag was introduced.
+- Server still blocks non-admin source-review mutations; the fix only checks
+  source-review permissions against keys actually present in the PATCH body.
+
+### Next Task
+
+`V13-T09 - Run Full Visual QA And Documentation Gate`.
+
+## SR-180 - V13-T09: Run Full Visual QA And Documentation Gate
+
+- Date: 2026-07-18
+- Status: completed
+- Phase: CaseFlow Books v1.3 visual merchandising and brand polish
+
+### Objective
+
+Run the final local gate for the v1.3 visual merchandising polish phase,
+refresh representative evidence, document what changed and did not change, and
+avoid claiming a deployment or release tag that has not happened.
+
+### Actual Result
+
+- Refreshed V13 visual audit and focused homepage, catalog, detail, and admin
+  visual artifacts after the final homepage cover-loading polish.
+- Added mirrored v1.3 release notes documenting that local QA passed and that
+  no deployment, release commit, or `v1.3.0` tag was created.
+- Hardened affected visual/regression verifiers for lazy-loaded full-page
+  screenshots and transient duplicate dev-server nodes.
+- Confirmed cleanup, stale release/deploy claim scan, release-notes mirror
+  check, and secret-like pattern scan.
+
+### Evidence
+
+- `docs/v1.3-visual-merchandising-brand-polish-release-notes.md`
+- `caseflow-store/docs/v1.3-visual-merchandising-brand-polish-release-notes.md`
+- `caseflow-store/.agent/artifacts/v13-t02/visual-audit-baseline.json`
+- `caseflow-store/.agent/artifacts/v13-t05/homepage-visual-check.json`
+- `caseflow-store/.agent/artifacts/v13-t06/catalog-visual-check.json`
+- `caseflow-store/.agent/artifacts/v13-t07/book-detail-visual-check.json`
+- `caseflow-store/.agent/artifacts/v13-t08/admin-visual-check.json`
+- `caseflow-store/.agent/artifacts/v12-t12/homepage-ui-check.json`
+- `caseflow-store/.agent/artifacts/v12-t13/catalog-discovery-check.json`
+- `caseflow-store/.agent/artifacts/v12-t14/book-detail-edition-comparison-check.json`
+- `caseflow-store/.agent/artifacts/d40-t01/release-cleanup-check.json`
+
+### Verification
+
+- V13 audit: passed with `ok: true` across homepage, catalog, book detail,
+  checkout/account boundary, admin dashboard, and admin catalog at mobile and
+  desktop sizes.
+- V13 focused checks passed: design tokens, cover merchandising components,
+  homepage visual merchandising, catalog visual merchandising, book detail
+  visual hierarchy, and admin visual system.
+- Affected regressions passed: homepage UI, homepage sections, catalog page,
+  catalog filters, V12 catalog discovery, book detail page, V12 edition
+  comparison, admin dashboard, and admin catalog CRUD.
+- `npx tsx scripts/verify-release-cleanup.ts`: passed with
+  `totalMatches: 0`.
+- v1.3 release-notes mirror check: passed.
+- Stale v1.3 release/deploy claim scan: no matches.
+- Secret-like pattern scan: no matches.
+- `npx tsc --noEmit --pretty false`: passed.
+- `npm run lint`: passed with no warnings.
+- `npm run build`: passed; Next.js generated 42 app routes plus proxy.
+- `git diff --check`: passed.
+- Final homepage mobile, catalog desktop, detail mobile, and admin desktop
+  screenshots were inspected visually.
+
+### Guardrails Preserved
+
+- No database schema migration, production data import, real payment/shipping/
+  verification provider, external commercial cover imagery, fake reviews,
+  fake sold counts, deployment, release commit, or tag was introduced.
+- Latest production release remains `v1.2.0` until deployment/tagging is
+  explicitly requested and completed.
+
+### Next Task
+
+No active implementation task. Optional `v1.3.0` deployment/tagging requires
+explicit user instruction.

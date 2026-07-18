@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 
 import {
@@ -14,6 +13,10 @@ import {
   CurrencyAmount,
   CurrencyEstimateDisclosure,
 } from "@/components/currency/currency-amount";
+import {
+  BookCoverFrame,
+  BookCoverStack,
+} from "@/features/books/cover-merchandising";
 import { getCurrencyDisplayRules } from "@/lib/format/currency-display.server";
 import {
   getEditionLanguageLabel,
@@ -376,17 +379,22 @@ export default async function Home() {
       data-homepage-total-editions={records.length}
     >
       <section
-        className="border-b border-border bg-surface"
+        className="border-b border-border bg-paper"
         data-home-section="hero"
       >
-        <Container className="grid gap-case-xl py-case-lg md:grid-cols-[minmax(0,1fr)_340px] md:items-center lg:grid-cols-[minmax(0,1fr)_440px] lg:py-case-xl">
-          <div className="flex min-w-0 flex-col gap-case-lg">
+        <Container className="grid gap-case-lg py-case-md md:grid-cols-[minmax(0,1fr)_minmax(320px,440px)] md:items-center lg:py-case-lg">
+          <div className="flex min-w-0 flex-col gap-case-md md:gap-case-lg">
             <div className="flex flex-col gap-case-sm">
-              <Badge variant="primary">{copy.sectionLabel}</Badge>
+              <Badge
+                className="border-discovery bg-discovery-muted text-discovery"
+                variant="primary"
+              >
+                {copy.sectionLabel}
+              </Badge>
               <h1 className="max-w-3xl text-heading-1 font-semibold text-foreground">
                 {copy.heroTitle}
               </h1>
-              <p className="max-w-2xl text-body leading-7 text-text-muted">
+              <p className="max-w-2xl text-body leading-6 text-text-muted md:leading-7">
                 {copy.heroDescription}
               </p>
             </div>
@@ -405,7 +413,7 @@ export default async function Home() {
               {stats.map((stat) => (
                 <div
                   key={stat.label}
-                  className="rounded-md border border-border bg-background px-3 py-3"
+                  className="rounded-md border border-border bg-surface px-3 py-3 shadow-[var(--case-shadow-soft)]"
                 >
                   <dt className="text-small text-text-muted">{stat.label}</dt>
                   <dd className="mt-1 text-heading-3 font-semibold text-foreground">
@@ -422,25 +430,32 @@ export default async function Home() {
           </div>
 
           <div
-            className="grid grid-cols-3 gap-case-sm md:grid-cols-1"
+            className="min-w-0 rounded-lg border border-border bg-surface p-case-sm shadow-[var(--case-shadow-soft)] md:p-case-md"
             data-home-hero-books
           >
-            {heroRecords.map((record, index) => (
-              <HeroBookLink
-                key={record.edition.id}
-                language={language}
-                offerLabel={copy.offerLabel}
-                priority={index === 0}
-                record={record}
-                rules={currencyRules}
-                stockLabel={copy.stockLabel}
-              />
-            ))}
+            <BookCoverStack
+              className="mx-auto hidden lg:block"
+              language={language}
+              records={heroRecords}
+            />
+            <div className="grid grid-cols-3 gap-case-sm lg:mt-case-md lg:grid-cols-1">
+              {heroRecords.map((record) => (
+                <HeroBookLink
+                  key={record.edition.id}
+                  language={language}
+                  offerLabel={copy.offerLabel}
+                  priority
+                  record={record}
+                  rules={currencyRules}
+                  stockLabel={copy.stockLabel}
+                />
+              ))}
+            </div>
           </div>
         </Container>
       </section>
 
-      <Container className="flex flex-col gap-case-2xl py-case-2xl">
+      <Container className="flex flex-col gap-case-2xl pb-case-2xl pt-case-lg">
         <section
           id="categories"
           className="flex flex-col gap-case-lg"
@@ -456,7 +471,7 @@ export default async function Home() {
             {categoryCards.map((category) => (
               <Card
                 key={category.id}
-                className="h-full"
+                className="h-full transition-colors hover:bg-discovery-muted/50"
                 data-home-category-card={category.slug}
                 variant="interactive"
               >
@@ -491,13 +506,13 @@ export default async function Home() {
           />
 
           <div className="grid gap-case-md sm:grid-cols-2 lg:grid-cols-4">
-            {editorRecords.map((record, index) => (
+            {editorRecords.map((record) => (
               <BookCard
                 key={record.edition.id}
                 detailsLabel={copy.details}
                 language={language}
                 offerLabel={copy.offerLabel}
-                priority={index === 0}
+                priority
                 record={record}
                 rules={currencyRules}
                 stockLabel={copy.stockLabel}
@@ -541,7 +556,7 @@ export default async function Home() {
           </div>
 
           <aside
-            className="flex flex-col gap-case-md rounded-lg border border-border bg-surface p-case-lg"
+            className="flex flex-col gap-case-md rounded-lg border border-admin/20 bg-admin-muted p-case-lg"
             data-home-section="trust-summary"
           >
             <p className="text-small font-medium uppercase text-text-muted">
@@ -765,21 +780,22 @@ function HeroBookLink({
 }) {
   return (
     <Link
-      className="flex min-w-0 flex-col gap-case-sm rounded-md border border-border bg-background p-case-xs transition-colors hover:border-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary md:grid md:grid-cols-[88px_minmax(0,1fr)] md:gap-case-md md:p-case-sm"
+      className="group flex min-w-0 flex-col gap-case-sm rounded-md border border-border bg-background p-case-xs transition-colors hover:border-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary lg:grid lg:grid-cols-[88px_minmax(0,1fr)] lg:gap-case-md lg:p-case-sm"
       data-home-hero-card={record.edition.slug}
       href={`/products/${record.edition.slug}`}
     >
-      <Image
-        alt={getCoverAlt(record, language)}
-        className="aspect-[3/4] w-full rounded-md border border-border bg-surface object-cover md:h-full"
-        height={240}
-        loading="eager"
+      <BookCoverFrame
+        className="w-full"
+        imageClassName="transition duration-300 group-hover:scale-[1.025]"
+        language={language}
         priority={priority}
-        src={getCoverPath(record)}
-        width={180}
+        record={record}
+        showBadges={false}
+        size="compact"
+        sizes="(max-width: 1024px) 28vw, 88px"
       />
-      <div className="flex min-w-0 flex-col gap-case-xs md:justify-center">
-        <div className="hidden flex-wrap gap-case-xs md:flex">
+      <div className="flex min-w-0 flex-col gap-case-xs lg:justify-center">
+        <div className="hidden flex-wrap gap-case-xs lg:flex">
           <Badge variant="neutral">
             {getEditionLanguageLabel(record.edition.language, language)}
           </Badge>
@@ -790,18 +806,18 @@ function HeroBookLink({
             <Badge variant="warning">{offerLabel}</Badge>
           ) : null}
         </div>
-        <p className="line-clamp-2 text-small font-semibold text-foreground md:text-body">
+        <p className="line-clamp-2 text-small font-semibold text-foreground lg:text-body">
           {getEditionTitle(record, language)}
         </p>
-        <p className="hidden text-small text-text-muted md:block">
+        <p className="hidden text-small text-text-muted lg:block">
           {record.authors.map((author) => author.name).join(", ")}
         </p>
-        <p className="hidden text-small text-text-muted md:block">
+        <p className="hidden text-small text-text-muted lg:block">
           {stockLabel}: {record.edition.stockQuantity}
         </p>
         <CurrencyAmount
           amountVnd={record.edition.priceVnd}
-          className="hidden text-small font-medium text-primary md:inline-flex"
+          className="hidden text-small font-medium text-primary lg:inline-flex"
           estimateClassName="text-text-muted"
           language={language}
           rules={rules}
@@ -840,18 +856,20 @@ function BookCard({
       variant="interactive"
     >
       <Link
-        className="flex h-full flex-col rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+        className="group flex h-full flex-col rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
         href={`/products/${record.edition.slug}`}
         {...{ [trackingAttribute]: record.edition.slug }}
       >
-        <div className="aspect-[3/4] p-case-md">
-          <Image
-            alt={getCoverAlt(record, language)}
-            className="h-full w-full rounded-md border border-border bg-surface-muted object-cover"
-            height={320}
+        <div className="p-case-md">
+          <BookCoverFrame
+            className="w-full"
+            imageClassName="transition duration-300 group-hover:scale-[1.025]"
+            language={language}
             priority={priority}
-            src={getCoverPath(record)}
-            width={240}
+            record={record}
+            showBadges={false}
+            size="shelf"
+            sizes="(max-width: 768px) 45vw, 260px"
           />
         </div>
         <div className="flex flex-1 flex-col gap-case-sm px-case-md pb-case-md">
@@ -913,12 +931,13 @@ function CompactBookLink({
       href={`/products/${record.edition.slug}`}
       {...{ [trackingAttribute]: record.edition.slug }}
     >
-      <Image
-        alt={getCoverAlt(record, language)}
-        className="aspect-[3/4] h-full w-full rounded-md border border-border bg-surface-muted object-cover"
-        height={192}
-        src={getCoverPath(record)}
-        width={144}
+      <BookCoverFrame
+        className="w-full"
+        language={language}
+        record={record}
+        showBadges={false}
+        size="compact"
+        sizes="72px"
       />
       <div className="flex min-w-0 flex-col gap-case-xs">
         <div className="flex flex-wrap gap-case-xs">
@@ -972,12 +991,13 @@ function TranslatedEditionCard({
     >
       <div className="flex h-full flex-col gap-case-md p-case-md">
         <div className="flex gap-case-md">
-          <Image
-            alt={getCoverAlt(group.english, language)}
-            className="aspect-[3/4] w-24 rounded-md border border-border bg-surface-muted object-cover"
-            height={192}
-            src={getCoverPath(group.english)}
-            width={144}
+          <BookCoverFrame
+            className="w-24 shrink-0"
+            language={language}
+            record={group.english}
+            showBadges={false}
+            size="compact"
+            sizes="96px"
           />
           <div className="flex min-w-0 flex-col gap-case-xs">
             <Badge variant="primary">
@@ -1170,20 +1190,6 @@ function getCategoryDescription(category: BookCategory, language: Language) {
   return (
     categoryDisplayCopy[language][category.slug]?.description ??
     pickLocalizedText(category.description, language)
-  );
-}
-
-function getCoverAlt(record: SupabaseBookCatalogRecord, language: Language) {
-  return pickLocalizedText(
-    record.coverAsset?.altText,
-    language,
-    `${getEditionTitle(record, language)} cover`,
-  );
-}
-
-function getCoverPath(record: SupabaseBookCatalogRecord) {
-  return (
-    record.coverAsset?.path ?? "/images/books/placeholders/book-cover-placeholder.svg"
   );
 }
 

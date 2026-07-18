@@ -1,21 +1,34 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f8fafc;
-  --foreground: #111827;
-  --surface: #ffffff;
-  --surface-muted: #f1f5f9;
-  --text-muted: #64748b;
-  --border: #cbd5e1;
-  --primary: #2563eb;
-  --primary-hover: #1d4ed8;
-  --accent: #f59e0b;
-  --success: #15803d;
-  --warning: #b45309;
-  --error: #dc2626;
+  --background: #fbfaf7;
+  --foreground: #1f1b16;
+  --surface: #fffdf8;
+  --surface-muted: #eef2eb;
+  --text-muted: #6f665c;
+  --border: #d8d2c7;
+  --primary: #176b5b;
+  --primary-hover: #0f5146;
+  --accent: #b7791f;
+  --editorial: #8f2440;
+  --editorial-muted: #f8e6ec;
+  --discovery: #176b5b;
+  --discovery-muted: #e4f2ed;
+  --offer: #b7791f;
+  --offer-muted: #fff3d6;
+  --admin: #243247;
+  --admin-muted: #e7edf3;
+  --paper: #fbfaf7;
+  --paper-deep: #eadcc6;
+  --ink: #1f1b16;
+  --success: #247857;
+  --warning: #a16207;
+  --error: #b42318;
   --case-radius-sm: 4px;
-  --case-radius-md: 8px;
-  --case-radius-lg: 12px;
+  --case-radius-md: 6px;
+  --case-radius-lg: 8px;
+  --case-shadow-soft: 0 18px 45px rgb(31 27 22 / 0.08);
+  --case-shadow-cover: 0 16px 35px rgb(31 27 22 / 0.18);
   --case-space-xs: 4px;
   --case-space-sm: 8px;
   --case-space-md: 16px;
@@ -40,6 +53,17 @@
   --color-primary: var(--primary);
   --color-primary-hover: var(--primary-hover);
   --color-accent: var(--accent);
+  --color-editorial: var(--editorial);
+  --color-editorial-muted: var(--editorial-muted);
+  --color-discovery: var(--discovery);
+  --color-discovery-muted: var(--discovery-muted);
+  --color-offer: var(--offer);
+  --color-offer-muted: var(--offer-muted);
+  --color-admin: var(--admin);
+  --color-admin-muted: var(--admin-muted);
+  --color-paper: var(--paper);
+  --color-paper-deep: var(--paper-deep);
+  --color-ink: var(--ink);
   --color-success: var(--success);
   --color-warning: var(--warning);
   --color-error: var(--error);
@@ -78,10 +102,11 @@ body {
   color: var(--foreground);
   font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   font-size: var(--case-text-body);
+  text-rendering: optimizeLegibility;
 }
 
 ::selection {
-  background: var(--primary);
+  background: var(--editorial);
   color: var(--surface);
 }
 

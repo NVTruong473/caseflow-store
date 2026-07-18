@@ -8,14 +8,16 @@ import { LANGUAGE_COOKIE, type Language } from "../src/lib/i18n/language";
 const ARTIFACT_DIR = path.join(".agent", "artifacts", "d27-t01");
 const EXPECTED_COUNTS = {
   categories: 8,
+  englishCards: 4,
   featuredCards: 4,
   heroCards: 3,
-  newArrivalCards: 4,
+  promotionCards: 4,
   totalEditions: 100,
   translatedGroups: 3,
   translatedLinks: 6,
   trustCards: 4,
   vietnameseCards: 4,
+  weekendCards: 4,
 } as const;
 
 async function main() {
@@ -51,18 +53,22 @@ async function main() {
         desktop.counts.heroCards === EXPECTED_COUNTS.heroCards &&
         desktop.counts.categories === EXPECTED_COUNTS.categories &&
         desktop.counts.featuredCards === EXPECTED_COUNTS.featuredCards &&
-        desktop.counts.newArrivalCards === EXPECTED_COUNTS.newArrivalCards &&
+        desktop.counts.weekendCards === EXPECTED_COUNTS.weekendCards &&
         desktop.counts.translatedGroups === EXPECTED_COUNTS.translatedGroups &&
         desktop.counts.translatedLinks === EXPECTED_COUNTS.translatedLinks &&
         desktop.counts.vietnameseCards === EXPECTED_COUNTS.vietnameseCards &&
+        desktop.counts.englishCards === EXPECTED_COUNTS.englishCards &&
+        desktop.counts.promotionCards === EXPECTED_COUNTS.promotionCards &&
         desktop.counts.trustCards === EXPECTED_COUNTS.trustCards,
       detailLinksPresent:
         desktop.counts.detailLinks >=
         EXPECTED_COUNTS.heroCards +
           EXPECTED_COUNTS.featuredCards +
-          EXPECTED_COUNTS.newArrivalCards +
+          EXPECTED_COUNTS.weekendCards +
           EXPECTED_COUNTS.translatedLinks +
-          EXPECTED_COUNTS.vietnameseCards,
+          EXPECTED_COUNTS.vietnameseCards +
+          EXPECTED_COUNTS.englishCards +
+          EXPECTED_COUNTS.promotionCards,
       languageSpecificCopy:
         desktop.language === "en" &&
         mobile.language === "vi" &&
@@ -160,14 +166,16 @@ async function readHomepageCounts(page: Page) {
     categories: await page.locator("[data-home-category-card]").count(),
     curatedEditions,
     detailLinks: await page.locator("a[href^='/products/']").count(),
+    englishCards: await page.locator("[data-home-english-card]").count(),
     featuredCards: await page.locator("[data-home-featured-card]").count(),
     heroCards: await page.locator("[data-home-hero-card]").count(),
-    newArrivalCards: await page.locator("[data-home-new-arrival-card]").count(),
+    promotionCards: await page.locator("[data-home-promotion-card]").count(),
     totalEditions,
     translatedGroups: await page.locator("[data-home-translated-group]").count(),
     translatedLinks: await page.locator("[data-home-translated-link]").count(),
     trustCards: await page.locator("[data-home-trust-card]").count(),
     vietnameseCards: await page.locator("[data-home-vietnamese-card]").count(),
+    weekendCards: await page.locator("[data-home-weekend-card]").count(),
   };
 }
 
@@ -176,34 +184,27 @@ async function readVisibleTextChecks(page: Page, language: Language) {
     language === "vi"
       ? {
           category: "Văn học kinh điển",
-          hero: "CaseFlow Books là nhà sách song ngữ thực tế hơn.",
-          sections: [
-            "Sách nổi bật",
-            "Ấn bản mới",
-            "Cặp ấn bản dịch",
-            "Gợi ý bản tiếng Việt",
-            "Tín hiệu tin cậy và giao hàng",
-          ],
+          hero: "CaseFlow Books",
         }
       : {
           category: "Classic literature",
-          hero: "CaseFlow Books is now a practical bilingual bookstore.",
-          sections: [
-            "Featured books",
-            "New arrivals",
-            "Translated edition pairs",
-            "Vietnamese recommendations",
-            "Trust and shipping signals",
-          ],
+          hero: "CaseFlow Books",
         };
+  const sectionSelectors = [
+    "[data-home-section='featured']",
+    "[data-home-section='weekend-starter']",
+    "[data-home-section='translated-editions']",
+    "[data-home-section='language-offers']",
+    "[data-home-section='trust-shipping']",
+  ];
 
   return {
     category: await page.getByText(expected.category).first().isVisible(),
     hero: await page.getByRole("heading", { name: expected.hero }).isVisible(),
     sections: (
       await Promise.all(
-        expected.sections.map((section) =>
-          page.getByRole("heading", { name: section }).first().isVisible(),
+        sectionSelectors.map((selector) =>
+          page.locator(selector).first().isVisible(),
         ),
       )
     ).every(Boolean),

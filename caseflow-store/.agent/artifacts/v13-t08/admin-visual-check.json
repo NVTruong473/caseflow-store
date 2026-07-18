@@ -1,0 +1,119 @@
+{
+  "taskId": "V13-T08",
+  "generatedAt": "2026-07-18T14:09:54.983Z",
+  "baseURL": "http://localhost:3000",
+  "checks": [
+    {
+      "classes": {
+        "main": "bg-admin-muted py-case-2xl text-foreground",
+        "navigation": "rounded-lg border border-admin bg-admin p-case-sm shadow-[var(--case-shadow-soft)]"
+      },
+      "counts": {
+        "catalogForm": 0,
+        "catalogItems": 0,
+        "dashboardPanels": 4,
+        "metrics": 4,
+        "navigationItems": 7,
+        "ready": 1,
+        "shell": 1
+      },
+      "hasHorizontalOverflow": false,
+      "pass": {
+        "adminPaletteApplied": true,
+        "navigationVisible": true,
+        "noOverflow": true,
+        "pageReady": true,
+        "scanSignalsVisible": true
+      },
+      "screenshotPath": ".agent/artifacts/v13-t08/admin-dashboard-mobile-vi.png",
+      "surface": "dashboard",
+      "viewport": "mobile-vi"
+    },
+    {
+      "classes": {
+        "main": "bg-admin-muted py-case-2xl text-foreground",
+        "navigation": "rounded-lg border border-admin bg-admin p-case-sm shadow-[var(--case-shadow-soft)]"
+      },
+      "counts": {
+        "catalogForm": 0,
+        "catalogItems": 0,
+        "dashboardPanels": 4,
+        "metrics": 4,
+        "navigationItems": 7,
+        "ready": 1,
+        "shell": 1
+      },
+      "hasHorizontalOverflow": false,
+      "pass": {
+        "adminPaletteApplied": true,
+        "navigationVisible": true,
+        "noOverflow": true,
+        "pageReady": true,
+        "scanSignalsVisible": true
+      },
+      "screenshotPath": ".agent/artifacts/v13-t08/admin-dashboard-desktop-en.png",
+      "surface": "dashboard",
+      "viewport": "desktop-en"
+    },
+    {
+      "classes": {
+        "main": "bg-admin-muted py-case-2xl text-foreground",
+        "navigation": "rounded-lg border border-admin bg-admin p-case-sm shadow-[var(--case-shadow-soft)]"
+      },
+      "counts": {
+        "catalogForm": 1,
+        "catalogItems": 102,
+        "dashboardPanels": 0,
+        "metrics": 10,
+        "navigationItems": 7,
+        "ready": 1,
+        "shell": 1
+      },
+      "hasHorizontalOverflow": false,
+      "pass": {
+        "adminPaletteApplied": true,
+        "navigationVisible": true,
+        "noOverflow": true,
+        "pageReady": true,
+        "scanSignalsVisible": true
+      },
+      "screenshotPath": ".agent/artifacts/v13-t08/admin-catalog-mobile-vi.png",
+      "surface": "catalog",
+      "viewport": "mobile-vi"
+    },
+    {
+      "classes": {
+        "main": "bg-admin-muted py-case-2xl text-foreground",
+        "navigation": "rounded-lg border border-admin bg-admin p-case-sm shadow-[var(--case-shadow-soft)]"
+      },
+      "counts": {
+        "catalogForm": 1,
+        "catalogItems": 102,
+        "dashboardPanels": 0,
+        "metrics": 10,
+        "navigationItems": 7,
+        "ready": 1,
+        "shell": 1
+      },
+      "hasHorizontalOverflow": false,
+      "pass": {
+        "adminPaletteApplied": true,
+        "navigationVisible": true,
+        "noOverflow": true,
+        "pageReady": true,
+        "scanSignalsVisible": true
+      },
+      "screenshotPath": ".agent/artifacts/v13-t08/admin-catalog-desktop-en.png",
+      "surface": "catalog",
+      "viewport": "desktop-en"
+    }
+  ],
+  "ok": true,
+  "pass": {
+    "adminPaletteApplied": true,
+    "navigationVisible": true,
+    "noOverflow": true,
+    "pageReady": true,
+    "scanSignalsVisible": true
+  }
+}

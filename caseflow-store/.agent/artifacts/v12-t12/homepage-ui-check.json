@@ -1,7 +1,7 @@
 {
   "taskId": "V12-T12",
-  "generatedAt": "2026-07-18T08:52:19.386Z",
-  "baseURL": "http://127.0.0.1:3001",
+  "generatedAt": "2026-07-18T14:18:49.858Z",
+  "baseURL": "http://localhost:3000",
   "interactionChecks": {
     "pass": {
       "browseActionWorks": true,
@@ -37,11 +37,28 @@
         "weekendCards": 4
       },
       "firstViewport": {
-        "categoriesTop": 777.484375,
-        "heroBottom": 729.484375,
+        "categoriesTop": 722.984375,
+        "heroBottom": 698.984375,
         "innerHeight": 812
       },
       "hasHorizontalOverflow": false,
+      "heroImageChecks": [
+        {
+          "naturalHeight": 900,
+          "naturalWidth": 600,
+          "src": "http://localhost:3000/images/books/v12-covers/pride-and-prejudice-english-special-edition.svg"
+        },
+        {
+          "naturalHeight": 900,
+          "naturalWidth": 600,
+          "src": "http://localhost:3000/images/books/v12-covers/jane-eyre-english-paperback.svg"
+        },
+        {
+          "naturalHeight": 900,
+          "naturalWidth": 600,
+          "src": "http://localhost:3000/images/books/v12-covers/wuthering-heights-english-paperback.svg"
+        }
+      ],
       "h1Text": "CaseFlow Books",
       "language": "vi",
       "name": "mobile-vi",
@@ -70,11 +87,28 @@
         "weekendCards": 4
       },
       "firstViewport": {
-        "categoriesTop": 698.59375,
-        "heroBottom": 650.59375,
+        "categoriesTop": 830.59375,
+        "heroBottom": 806.59375,
         "innerHeight": 900
       },
       "hasHorizontalOverflow": false,
+      "heroImageChecks": [
+        {
+          "naturalHeight": 900,
+          "naturalWidth": 600,
+          "src": "http://localhost:3000/images/books/v12-covers/pride-and-prejudice-english-special-edition.svg"
+        },
+        {
+          "naturalHeight": 900,
+          "naturalWidth": 600,
+          "src": "http://localhost:3000/images/books/v12-covers/jane-eyre-english-paperback.svg"
+        },
+        {
+          "naturalHeight": 900,
+          "naturalWidth": 600,
+          "src": "http://localhost:3000/images/books/v12-covers/wuthering-heights-english-paperback.svg"
+        }
+      ],
       "h1Text": "CaseFlow Books",
       "language": "en",
       "name": "tablet-en",
@@ -103,11 +137,28 @@
         "weekendCards": 4
       },
       "firstViewport": {
-        "categoriesTop": 690.453125,
-        "heroBottom": 642.453125,
+        "categoriesTop": 980.453125,
+        "heroBottom": 956.453125,
         "innerHeight": 1000
       },
       "hasHorizontalOverflow": false,
+      "heroImageChecks": [
+        {
+          "naturalHeight": 900,
+          "naturalWidth": 600,
+          "src": "http://localhost:3000/images/books/v12-covers/pride-and-prejudice-english-special-edition.svg"
+        },
+        {
+          "naturalHeight": 900,
+          "naturalWidth": 600,
+          "src": "http://localhost:3000/images/books/v12-covers/jane-eyre-english-paperback.svg"
+        },
+        {
+          "naturalHeight": 900,
+          "naturalWidth": 600,
+          "src": "http://localhost:3000/images/books/v12-covers/wuthering-heights-english-paperback.svg"
+        }
+      ],
       "h1Text": "CaseFlow Books",
       "language": "en",
       "name": "desktop-en",
