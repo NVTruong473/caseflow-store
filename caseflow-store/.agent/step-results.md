@@ -4,16 +4,16 @@
 
 | Field | Value |
 |---|---|
-| Current mode | v1.3 production release in progress |
-| Current gate | `V13-T10` in progress; deploy, smoke test, document, and tag |
+| Current mode | v1.3.0 released |
+| Current gate | `V13-T10` complete; production deploy, smoke test, documentation, and tag complete |
 | Implementation started | Yes |
-| Next implementation task | `V13-T10 - Deploy, Smoke Test, Document, And Tag v1.3.0` |
+| Next implementation task | No active implementation task |
 | App initialized | Yes, in `caseflow-store` |
 | Local server verified | Yes, V12-T17 full Playwright and aggregate gate passed on a fresh production build at `http://127.0.0.1:3001` |
 | Lint verified | Yes, V12-T18 final lint passed |
 | Build verified | Yes, V12-T18 production build generated 42 App Router routes plus proxy |
 | Database connected | Yes; live catalog, orders, Auth, role checks, and admin status updates use Supabase |
-| Deployed | Yes, v1.2 production deployment `dpl_7Y2Qsf4VJRBuzaMGXZMi81Rq5pKQ` is aliased to `https://caseflow-store.vercel.app` |
+| Deployed | Yes, v1.3 production deployment `dpl_6in3zn6CsXKtj3mR2xjGVh4X3q59` is aliased to `https://caseflow-store.vercel.app` |
 | Last updated | 2026-07-18 |
 
 ## Result Index
@@ -126,6 +126,7 @@
 | SR-178 | 2026-07-18 | V13-T07 | completed | Polished book detail hierarchy with shared cover frames, compact mobile commerce, and V13 visual gates while preserving cart, SEO, and edition comparison behavior |
 | SR-179 | 2026-07-18 | V13-T08 | completed | Polished admin operations surfaces with admin trust tokens, fixed staff catalog PATCH source-review default detection, and passed visual/admin/static gates |
 | SR-180 | 2026-07-18 | V13-T09 | completed | Passed the full v1.3 local visual/documentation QA gate, added release notes, verified cleanup/stale/secret scans, and left deploy/tag pending explicit instruction |
+| SR-181 | 2026-07-18 | V13-T10 | completed | Deployed v1.3.0 to Vercel production, passed production smoke, refreshed release docs/evidence, and created the release commit/tag |
 
 ---
 
@@ -11155,7 +11156,8 @@ avoid claiming a deployment or release tag that has not happened.
 - Refreshed V13 visual audit and focused homepage, catalog, detail, and admin
   visual artifacts after the final homepage cover-loading polish.
 - Added mirrored v1.3 release notes documenting that local QA passed and that
-  no deployment, release commit, or `v1.3.0` tag was created.
+  production deployment/tagging was deferred to explicit user approval in
+  `V13-T10`.
 - Hardened affected visual/regression verifiers for lazy-loaded full-page
   screenshots and transient duplicate dev-server nodes.
 - Confirmed cleanup, stale release/deploy claim scan, release-notes mirror
@@ -11201,12 +11203,71 @@ avoid claiming a deployment or release tag that has not happened.
 ### Guardrails Preserved
 
 - No database schema migration, production data import, real payment/shipping/
-  verification provider, external commercial cover imagery, fake reviews,
-  fake sold counts, deployment, release commit, or tag was introduced.
-- Latest production release remains `v1.2.0` until deployment/tagging is
-  explicitly requested and completed.
+  verification provider, external commercial cover imagery, fake reviews, or
+  fake sold counts was introduced.
+- Production deployment, release commit, and tagging were intentionally
+  deferred until explicit user approval in `V13-T10`.
 
 ### Next Task
 
-No active implementation task. Optional `v1.3.0` deployment/tagging requires
-explicit user instruction.
+`V13-T10 - Deploy, Smoke Test, Document, And Tag v1.3.0`.
+
+## SR-181 - V13-T10: Deploy, Smoke Test, Document, And Tag v1.3.0
+
+- Date: 2026-07-18
+- Status: completed
+- Phase: CaseFlow Books v1.3 production release
+
+### Objective
+
+Deploy the verified v1.3 visual merchandising release to production, smoke
+test the live site, update release documentation/evidence, and create the
+annotated `v1.3.0` tag only after production smoke passes.
+
+### Actual Result
+
+- Created release-prep commit `79347b7`.
+- Deployed Vercel production deployment `dpl_6in3zn6CsXKtj3mR2xjGVh4X3q59`.
+- Confirmed the production alias `https://caseflow-store.vercel.app`.
+- Passed production smoke with 100 active editions, 100 cover responses, 50
+  English editions, 50 Vietnamese editions, and all public, account, admin,
+  cart/checkout, assistant, language, detail, robots, and sitemap checks
+  passing.
+- Refreshed release notes, roadmap, `.agent` trackers, and production smoke
+  screenshots before final release commit/tag.
+
+### Evidence
+
+- `docs/v1.3-visual-merchandising-brand-polish-release-notes.md`
+- `caseflow-store/docs/v1.3-visual-merchandising-brand-polish-release-notes.md`
+- `docs/v1.3-visual-merchandising-brand-polish-roadmap.md`
+- `caseflow-store/docs/v1.3-visual-merchandising-brand-polish-roadmap.md`
+- `caseflow-store/.agent/artifacts/v13-t10/production-release-smoke.json`
+- `caseflow-store/.agent/artifacts/v13-t10/production-home-desktop-en.png`
+- `caseflow-store/.agent/artifacts/v13-t10/production-catalog-mobile-vi.png`
+- `caseflow-store/.agent/artifacts/v13-t10/production-detail-desktop-en.png`
+- `caseflow-store/.agent/artifacts/v13-t10/production-detail-mobile-vi.png`
+- `caseflow-store/.agent/artifacts/v13-t10/production-admin-boundary-mobile-en.png`
+
+### Verification
+
+- `npx tsc --noEmit --pretty false`: passed.
+- `npm run lint`: passed with no warnings.
+- `npm run build`: passed; Next.js generated 42 app routes plus proxy.
+- `npx vercel --prod --yes`: deployed and aliased production deployment
+  `dpl_6in3zn6CsXKtj3mR2xjGVh4X3q59`.
+- `PRODUCTION_RELEASE_TASK_ID=v13-t10 PRODUCTION_RELEASE_BASE_URL=https://caseflow-store.vercel.app PRODUCTION_RELEASE_DEPLOYMENT_ID=dpl_6in3zn6CsXKtj3mR2xjGVh4X3q59 PRODUCTION_RELEASE_DEPLOYMENT_URL=https://caseflow-store-p5iqu2u3r-nvt-ruong473.vercel.app PRODUCTION_RELEASE_INSPECTOR_URL=https://vercel.com/nvt-ruong473/caseflow-store/6in3zn6CsXKtj3mR2xjGVh4X3q59 npx tsx scripts/verify-v12-production-release.ts`:
+  passed with `ok: true`.
+- `git diff --check`: passed before deploy.
+
+### Guardrails Preserved
+
+- No database schema migration, production data import, real payment/shipping/
+  verification provider, external commercial cover imagery, fake reviews,
+  fake sold counts, or marketplace behavior was introduced in v1.3.
+- Payment/account verification remain simulated and must not be represented as
+  real payment processing or real OTP/email verification.
+
+### Next Task
+
+No active implementation task.

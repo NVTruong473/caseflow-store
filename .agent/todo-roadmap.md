@@ -10,9 +10,10 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: v1.3 production release in progress
-- Current gate: `V13-T10` in progress; deploy, smoke test, document, and tag
-- Current task: `V13-T10 - Deploy, Smoke Test, Document, And Tag v1.3.0`
+- Mode: v1.3.0 released
+- Current gate: `V13-T10` complete; production deploy, smoke test,
+  documentation, and tag complete
+- Current task: No active implementation task
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-18
 
@@ -1924,8 +1925,9 @@ accepted; the next task is full 100-cover portfolio production.
 - [x] `V13-T09` Run Full Visual QA And Documentation Gate. - 2026-07-18
   - Result: refreshed V13 audit and focused screenshots after final homepage
     cover-loading polish.
-  - Result: added mirrored v1.3 release notes that state v1.3 local QA passed
-    but no deployment, release commit, or `v1.3.0` tag has been created.
+  - Result: added mirrored v1.3 release notes for the local QA gate and
+    deferred production deployment/tagging to explicit user approval in
+    `V13-T10`.
   - Result: completed affected homepage, catalog, detail, and admin
     regressions after verifier hardening for lazy images and duplicate dev
     nodes.
@@ -1946,9 +1948,28 @@ accepted; the next task is full 100-cover portfolio production.
     release-notes mirror check, stale v1.3 release/deploy claim scan,
     secret-like scan, `npx tsc --noEmit --pretty false`, `npm run lint`,
     `npm run build`, `git diff --check`, and visual artifact inspection.
-  - Deployment/tag status: not performed. `v1.3.0` can be deployed/tagged only
-    after explicit user instruction.
-- [/] `V13-T10` Deploy, Smoke Test, Document, And Tag v1.3.0. - 2026-07-18
+  - Deployment/tag status at this gate: deferred to `V13-T10` pending explicit
+    user instruction.
+- [x] `V13-T10` Deploy, Smoke Test, Document, And Tag v1.3.0. - 2026-07-18
+  - Result: created release-prep commit `79347b7`.
+  - Result: deployed Vercel production deployment
+    `dpl_6in3zn6CsXKtj3mR2xjGVh4X3q59`, aliased to
+    `https://caseflow-store.vercel.app`.
+  - Result: production smoke passed with 100 active editions, 100 cover
+    responses, 50 English editions, 50 Vietnamese editions, and all public,
+    account, admin, cart/checkout, assistant, language, detail, robots, and
+    sitemap checks passing.
+  - Result: release notes and trackers were updated with production evidence;
+    annotated `v1.3.0` tagging followed production smoke.
+  - Evidence:
+    - `caseflow-store/.agent/artifacts/v13-t10/production-release-smoke.json`
+    - `caseflow-store/.agent/artifacts/v13-t10/production-home-desktop-en.png`
+    - `caseflow-store/.agent/artifacts/v13-t10/production-catalog-mobile-vi.png`
+    - `caseflow-store/.agent/artifacts/v13-t10/production-detail-desktop-en.png`
+    - `caseflow-store/.agent/artifacts/v13-t10/production-detail-mobile-vi.png`
+    - `caseflow-store/.agent/artifacts/v13-t10/production-admin-boundary-mobile-en.png`
+    - `docs/v1.3-visual-merchandising-brand-polish-release-notes.md`
+    - `caseflow-store/docs/v1.3-visual-merchandising-brand-polish-release-notes.md`
   - Acceptance criteria:
     - Release tree is committed before production deploy.
     - Vercel production deployment succeeds for CaseFlow Books v1.3.
@@ -1969,4 +1990,4 @@ accepted; the next task is full 100-cover portfolio production.
     - `npx tsx scripts/verify-release-cleanup.ts`
     - stale release/deploy claim scan and secret-like scan
     - `git diff --check`
-    - `git tag -v v1.3.0` or annotated tag inspection
+    - annotated tag inspection

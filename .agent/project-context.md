@@ -2,8 +2,8 @@
 
 ## Project Identity
 
-- Project name: CaseFlow Store `v1.0.0`; CaseFlow Books `v1.1.0` released;
-  CaseFlow Books `v1.2.0` released
+- Project name: CaseFlow Store `v1.0.0`; CaseFlow Books `v1.1.0`, `v1.2.0`,
+  and `v1.3.0` released
 - Repository folder: `/Users/vantruong/Documents/TSNN 2`
 - Product domain: books for released `v1.1.0` and `v1.2.0`; phone
   accessories for released `v1.0.0`
@@ -11,9 +11,10 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: v1.3 production release in progress.
-- Current gate: `V13-T10` in progress; deploy, smoke test, document, and tag.
-- Current task: `V13-T10 - Deploy, Smoke Test, Document, And Tag v1.3.0`.
+- Current mode: v1.3.0 released.
+- Current gate: `V13-T10` complete; production deploy, smoke test,
+  documentation, and tag complete.
+- Current task: No active implementation task.
 
 ## Confirmed Facts
 
@@ -118,10 +119,15 @@
   marketplace scope.
 - `V13-T09` passed on 2026-07-18 with refreshed visual evidence, affected
   regression checks, TypeScript/lint/build, cleanup, stale-claim scan,
-  secret-like scan, and mirrored release notes. No deployment, release commit,
-  or `v1.3.0` tag was created.
+  secret-like scan, and mirrored release notes; production deployment and
+  tagging were intentionally deferred to explicit user approval in `V13-T10`.
 - The user explicitly approved `V13-T10 - Deploy, Smoke Test, Document, And Tag
   v1.3.0` on 2026-07-18.
+- `V13-T10` production release was accepted on 2026-07-18 with release-prep
+  commit `79347b7`, Vercel deployment `dpl_6in3zn6CsXKtj3mR2xjGVh4X3q59`
+  aliased to `https://caseflow-store.vercel.app`, production smoke `ok: true`,
+  100 active editions, 100 cover responses, 50 English and 50 Vietnamese
+  editions, release documentation, release commit, and annotated `v1.3.0` tag.
 
 ## v1.2 Canonical Catalog
 
@@ -283,7 +289,9 @@ These are defaults that remain tentative until a later task or ADR freezes them:
   merchandising completed in `V13-T05`; catalog card and discovery polish
   completed in `V13-T06`; book detail visual hierarchy polish completed in
   `V13-T07`; admin operations visual system polish completed in `V13-T08`;
-  full visual QA and documentation gate completed in `V13-T09`.
+  full visual QA and documentation gate completed in `V13-T09`; production
+  deployment, smoke, documentation, and release tagging completed in
+  `V13-T10`.
 - Design intent: warmer bookstore palette, cover-led merchandising, stronger
   hierarchy, and Hallmark-informed audit discipline without deleting routes or
   turning commerce surfaces into decorative landing pages.
@@ -291,8 +299,10 @@ These are defaults that remain tentative until a later task or ADR freezes them:
   integrations, no external stock imagery, no commercial cover copying, no
   fake ratings/sold counts/bestseller claims, and no stable API contract
   change under v1.3 polish.
-- Release status: local QA passed only. The latest production release remains
-  `v1.2.0`; `v1.3.0` deployment/tagging requires explicit user instruction.
+- Release status: `v1.3.0` is the latest production release. Vercel deployment
+  `dpl_6in3zn6CsXKtj3mR2xjGVh4X3q59` is aliased to
+  `https://caseflow-store.vercel.app`, production smoke passed, and the
+  annotated release tag is `v1.3.0`.
 
 ## v1.1 Active Product Domain
 
