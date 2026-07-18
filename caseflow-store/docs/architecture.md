@@ -3,11 +3,11 @@
 ## Status
 
 This document describes the deployed CaseFlow Books architecture after the Day
-21-40 upgrade, the realistic catalog/content merchandising release, and the
-`v1.3.0` visual merchandising polish. The system is intentionally a Next.js
-modular monolith: it demonstrates a realistic specialist e-commerce workflow
-without claiming marketplace scale, real payment processing, or enterprise
-operations.
+21-40 upgrade, the realistic catalog/content merchandising release, the
+`v1.3.0` visual merchandising polish, and the `v1.3.1` compact-card layout
+hotfix. The system is intentionally a Next.js modular monolith: it demonstrates
+a realistic specialist e-commerce workflow without claiming marketplace scale,
+real payment processing, or enterprise operations.
 
 ## System context
 

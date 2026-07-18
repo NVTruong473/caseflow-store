@@ -11355,3 +11355,87 @@ next work.
 No active implementation task. The practical next step is to push the local
 commits and tags if the user wants the Git remote to preserve `v1.3.0` and the
 QA audit evidence.
+
+---
+
+## HOTFIX-V13-T01 - Fix Compact Cover Card Layout Overlap
+
+- Date: 2026-07-18
+- Status: completed
+- Phase: CaseFlow Books v1.3.1 compact-card visual hotfix
+
+### Objective
+
+Fix the user-reported UI defect where related-book recommendation cards could
+overlap cover art, badges, title, author, and price text, then verify the same
+layout risk across nearby compact-cover storefront cards before creating the
+next patch release.
+
+### Actual Result
+
+- Fixed product-detail related-book cards by matching grid columns to the
+  responsive `BookCoverFrame size="compact"` width: 80px at base and 96px at
+  `sm+`.
+- Fixed homepage compact shelf cards and desktop hero compact cards that shared
+  the same fixed-column risk.
+- Added `scripts/verify-hotfix-compact-card-overlap.ts`, a Playwright verifier
+  that checks cover/content bounding boxes across mobile, tablet, and desktop
+  viewports.
+- Production deploy `dpl_CtyPPR1cExwXQWctsh7to98Vg3yb` was aliased to
+  `https://caseflow-store.vercel.app`.
+- Production overlap verification passed on the live alias.
+- Production release smoke passed on retry with 100 active editions, 100 cover
+  responses, 50 English editions, 50 Vietnamese editions, and all public,
+  language, assistant, cart/checkout, customer boundary, admin boundary, detail,
+  robots, sitemap, and catalog-quality checks passing.
+
+### Evidence
+
+- `caseflow-store/scripts/verify-hotfix-compact-card-overlap.ts`
+- `caseflow-store/.agent/artifacts/hotfix-v13-t01/compact-card-overlap-check.json`
+- `caseflow-store/.agent/artifacts/hotfix-v13-t01/detail-mobile-vi.png`
+- `caseflow-store/.agent/artifacts/hotfix-v13-t01/detail-tablet-vi.png`
+- `caseflow-store/.agent/artifacts/hotfix-v13-t01/detail-desktop-en.png`
+- `caseflow-store/.agent/artifacts/hotfix-v13-t01/home-mobile-vi.png`
+- `caseflow-store/.agent/artifacts/hotfix-v13-t01/home-tablet-vi.png`
+- `caseflow-store/.agent/artifacts/hotfix-v13-t01/home-desktop-en.png`
+- `caseflow-store/.agent/artifacts/hotfix-v13-t01/production-release-smoke.json`
+- `caseflow-store/docs/v1.3.1-compact-card-layout-hotfix-release-notes.md`
+
+### Verification
+
+- `HOTFIX_CARD_LAYOUT_BASE_URL=http://127.0.0.1:3003 npx tsx scripts/verify-hotfix-compact-card-overlap.ts`:
+  passed with `ok: true`.
+- `HOTFIX_CARD_LAYOUT_BASE_URL=https://caseflow-store.vercel.app npx tsx scripts/verify-hotfix-compact-card-overlap.ts`:
+  passed with `ok: true`.
+- `BOOK_DETAIL_VERIFY_BASE_URL=http://127.0.0.1:3003 npx tsx scripts/verify-v13-book-detail-visual-hierarchy.ts`:
+  passed with `ok: true`.
+- `HOME_VISUAL_VERIFY_BASE_URL=http://127.0.0.1:3003 npx tsx scripts/verify-v13-homepage-visual-merchandising.ts`:
+  passed with `ok: true`.
+- `PRODUCTION_RELEASE_TASK_ID=hotfix-v13-t01 PRODUCTION_RELEASE_BASE_URL=https://caseflow-store.vercel.app npx tsx scripts/verify-v12-production-release.ts`:
+  passed with `ok: true` on retry.
+- Direct production cart probe after the first broad smoke timeout confirmed
+  seeded localStorage, `data-cart-count="1"`, and no console/page errors.
+- `npx tsc --noEmit --pretty false`: passed.
+- `npm run lint`: passed.
+- `npm run build`: passed; Next.js generated 42 app routes plus proxy.
+- `npx tsx scripts/verify-release-cleanup.ts`: passed with
+  `totalMatches: 0`.
+- `npm audit --audit-level=high`: passed; the known moderate Next/PostCSS
+  advisory remains documented as non-blocking.
+- Targeted secret-value scan: passed with no matches.
+- `git diff --check`: passed.
+
+### Guardrails Preserved
+
+- No feature expansion, schema migration, production data import, external
+  provider integration, commercial cover source, fake review/sales signal,
+  marketplace behavior, or stable API contract change was introduced.
+- The existing `v1.3.0` tag and GitHub Release history were not rewritten; this
+  runtime hotfix should be tagged and released as `v1.3.1`.
+
+### Next Task
+
+Create and push the `v1.3.1` patch tag, create the GitHub Release, verify the
+remote release, and then consider the project complete unless a new defect is
+reported.

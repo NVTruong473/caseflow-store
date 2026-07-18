@@ -780,7 +780,7 @@ function HeroBookLink({
 }) {
   return (
     <Link
-      className="group flex min-w-0 flex-col gap-case-sm rounded-md border border-border bg-background p-case-xs transition-colors hover:border-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary lg:grid lg:grid-cols-[88px_minmax(0,1fr)] lg:gap-case-md lg:p-case-sm"
+      className="group flex min-w-0 flex-col gap-case-sm rounded-md border border-border bg-background p-case-xs transition-colors hover:border-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary lg:grid lg:grid-cols-[96px_minmax(0,1fr)] lg:items-start lg:gap-case-md lg:p-case-sm"
       data-home-hero-card={record.edition.slug}
       href={`/products/${record.edition.slug}`}
     >
@@ -792,9 +792,12 @@ function HeroBookLink({
         record={record}
         showBadges={false}
         size="compact"
-        sizes="(max-width: 1024px) 28vw, 88px"
+        sizes="(max-width: 1023px) 28vw, 96px"
       />
-      <div className="flex min-w-0 flex-col gap-case-xs lg:justify-center">
+      <div
+        className="flex min-w-0 flex-col gap-case-xs lg:justify-center"
+        data-home-hero-card-content
+      >
         <div className="hidden flex-wrap gap-case-xs lg:flex">
           <Badge variant="neutral">
             {getEditionLanguageLabel(record.edition.language, language)}
@@ -806,7 +809,7 @@ function HeroBookLink({
             <Badge variant="warning">{offerLabel}</Badge>
           ) : null}
         </div>
-        <p className="line-clamp-2 text-small font-semibold text-foreground lg:text-body">
+        <p className="line-clamp-2 break-words text-small font-semibold text-foreground lg:text-body">
           {getEditionTitle(record, language)}
         </p>
         <p className="hidden text-small text-text-muted lg:block">
@@ -926,8 +929,9 @@ function CompactBookLink({
 }) {
   return (
     <Link
-      className="grid min-w-0 grid-cols-[72px_minmax(0,1fr)] gap-case-md rounded-md border border-border bg-surface p-case-sm transition-colors hover:border-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+      className="grid min-w-0 grid-cols-[80px_minmax(0,1fr)] items-start gap-case-md rounded-md border border-border bg-surface p-case-sm transition-colors hover:border-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:grid-cols-[96px_minmax(0,1fr)]"
       data-home-book-card={record.edition.slug}
+      data-home-compact-cover-card={record.edition.slug}
       href={`/products/${record.edition.slug}`}
       {...{ [trackingAttribute]: record.edition.slug }}
     >
@@ -937,9 +941,9 @@ function CompactBookLink({
         record={record}
         showBadges={false}
         size="compact"
-        sizes="72px"
+        sizes="(min-width: 640px) 96px, 80px"
       />
-      <div className="flex min-w-0 flex-col gap-case-xs">
+      <div className="flex min-w-0 flex-col gap-case-xs" data-home-book-card-content>
         <div className="flex flex-wrap gap-case-xs">
           <Badge variant="neutral">
             {getEditionLanguageLabel(record.edition.language, language)}
@@ -951,7 +955,7 @@ function CompactBookLink({
             <Badge variant="warning">{offerLabel}</Badge>
           ) : null}
         </div>
-        <h3 className="line-clamp-2 font-semibold text-foreground">
+        <h3 className="line-clamp-2 break-words font-semibold text-foreground">
           {getEditionTitle(record, language)}
         </h3>
         <p className="text-small text-text-muted">

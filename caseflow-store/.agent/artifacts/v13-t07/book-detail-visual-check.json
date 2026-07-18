@@ -1,7 +1,7 @@
 {
   "taskId": "V13-T07",
-  "generatedAt": "2026-07-18T14:08:29.207Z",
-  "baseURL": "http://localhost:3000",
+  "generatedAt": "2026-07-18T16:08:13.248Z",
+  "baseURL": "http://127.0.0.1:3003",
   "ok": true,
   "pass": {
     "commerceVisible": true,
@@ -202,24 +202,24 @@
           "width": 80
         },
         {
-          "height": 108,
+          "height": 120,
           "ratio": 0.667,
-          "width": 72
+          "width": 80
         },
         {
-          "height": 108,
+          "height": 120,
           "ratio": 0.667,
-          "width": 72
+          "width": 80
         },
         {
-          "height": 108,
+          "height": 120,
           "ratio": 0.667,
-          "width": 72
+          "width": 80
         },
         {
-          "height": 108,
+          "height": 120,
           "ratio": 0.667,
-          "width": 72
+          "width": 80
         }
       ],
       "imageSourceCount": 7,

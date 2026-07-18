@@ -10,8 +10,8 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: v1.3.0 released; final post-release QA passed
-- Current gate: `QA-FINAL-T01` complete; no P0/P1 tester findings
+- Mode: v1.3.1 compact-card visual hotfix deployed and verified
+- Current gate: `HOTFIX-V13-T01` complete; no compact-card overlap finding open
 - Current task: No active implementation task
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-18
@@ -2034,6 +2034,61 @@ accepted; the next task is full 100-cover portfolio production.
     - final QA audit script/report
     - `npx tsx scripts/verify-release-cleanup.ts`
     - secret-like scan and stale-claim scan
+    - `npx tsc --noEmit --pretty false`
+    - `npm run lint`
+    - `npm run build`
+    - `git diff --check`
+
+## Post-Release Hotfixes
+
+- [x] `HOTFIX-V13-T01` Fix Compact Cover Card Layout Overlap. - 2026-07-18
+  - Result: user-reported related-book card overlap was fixed by matching fixed
+    grid columns to the responsive compact cover frame at base and `sm+`
+    breakpoints.
+  - Result: homepage hero compact cards and shelf compact cards were audited and
+    updated for the same fixed-column risk.
+  - Result: a dedicated Playwright overlap verifier now checks detail
+    recommendations and homepage compact cards across mobile, tablet, and
+    desktop viewports using bounding boxes plus screenshot evidence.
+  - Result: production deploy `dpl_CtyPPR1cExwXQWctsh7to98Vg3yb` was aliased to
+    `https://caseflow-store.vercel.app`; production overlap verification and
+    production release smoke passed.
+  - Residual: first broad production smoke attempt timed out waiting for seeded
+    cart count; a direct cart probe passed and the full production smoke retry
+    passed, so this is recorded as timing flake evidence, not an open runtime
+    defect.
+  - Evidence:
+    - `caseflow-store/scripts/verify-hotfix-compact-card-overlap.ts`
+    - `caseflow-store/.agent/artifacts/hotfix-v13-t01/compact-card-overlap-check.json`
+    - `caseflow-store/.agent/artifacts/hotfix-v13-t01/detail-tablet-vi.png`
+    - `caseflow-store/.agent/artifacts/hotfix-v13-t01/home-desktop-en.png`
+    - `caseflow-store/.agent/artifacts/hotfix-v13-t01/production-release-smoke.json`
+    - `caseflow-store/docs/v1.3.1-compact-card-layout-hotfix-release-notes.md`
+  - Scope:
+    - Fix user-reported overlap between compact book covers, badges, titles,
+      authors, and prices in related-book recommendation cards.
+    - Audit other compact-cover card layouts that share the same fixed-column
+      risk, especially homepage shelf cards and hero compact cards.
+    - Add a render-level overlap verifier so future QA checks measure internal
+      card collisions, not only viewport overflow.
+    - If runtime code changes, deploy and release as `v1.3.1`; do not retag or
+      rewrite the existing `v1.3.0` release.
+  - Acceptance criteria:
+    - Related-book recommendation cards reserve enough width for compact covers
+      at mobile, tablet, and desktop breakpoints.
+    - Homepage compact-cover cards reserve enough width for their responsive
+      cover frame at every audited breakpoint.
+    - Long Vietnamese and English titles remain readable without overlapping
+      the cover, badges, author line, price, or card boundary.
+    - Playwright render verifier passes on local production build with
+      screenshot evidence for detail recommendations and homepage compact
+      shelves.
+    - TypeScript, lint, production build, and `git diff --check` pass.
+    - Production smoke/render verification passes after deploy if a patch
+      release is created.
+  - Verification:
+    - targeted Playwright compact-card overlap verifier
+    - affected v1.3 book-detail visual hierarchy verifier
     - `npx tsc --noEmit --pretty false`
     - `npm run lint`
     - `npm run build`

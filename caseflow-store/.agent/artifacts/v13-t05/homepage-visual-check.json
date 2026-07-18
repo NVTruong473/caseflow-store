@@ -1,7 +1,7 @@
 {
   "taskId": "V13-T05",
-  "generatedAt": "2026-07-18T14:36:19.249Z",
-  "baseURL": "http://localhost:3000",
+  "generatedAt": "2026-07-18T16:08:46.077Z",
+  "baseURL": "http://127.0.0.1:3000",
   "ok": true,
   "pass": {
     "coverAspectRatio": true,
@@ -57,24 +57,24 @@
           "width": 309
         },
         {
-          "height": 108,
+          "height": 120,
           "ratio": 0.667,
-          "width": 72
+          "width": 80
         },
         {
-          "height": 108,
+          "height": 120,
           "ratio": 0.667,
-          "width": 72
+          "width": 80
         },
         {
-          "height": 108,
+          "height": 120,
           "ratio": 0.667,
-          "width": 72
+          "width": 80
         },
         {
-          "height": 108,
+          "height": 120,
           "ratio": 0.667,
-          "width": 72
+          "width": 80
         },
         {
           "height": 144,

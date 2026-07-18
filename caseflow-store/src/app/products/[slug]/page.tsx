@@ -683,7 +683,7 @@ function RecommendationGrid({
           >
             <Link
               href={`/products/${recommended.edition.slug}`}
-              className="grid min-w-0 grid-cols-[72px_minmax(0,1fr)] gap-case-md rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              className="grid min-w-0 grid-cols-[80px_minmax(0,1fr)] items-start gap-case-md rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:grid-cols-[96px_minmax(0,1fr)]"
               data-book-recommendation-link
             >
               <BookCoverFrame
@@ -692,9 +692,9 @@ function RecommendationGrid({
                 record={recommended}
                 showBadges={false}
                 size="compact"
-                sizes="72px"
+                sizes="(min-width: 640px) 96px, 80px"
               />
-              <div className="min-w-0">
+              <div className="min-w-0" data-book-recommendation-content>
                 <div className="flex flex-wrap gap-case-xs">
                   {reasons.map((reason) => (
                     <Badge key={reason} variant="neutral" size="sm">
@@ -702,7 +702,7 @@ function RecommendationGrid({
                     </Badge>
                   ))}
                 </div>
-                <h4 className="mt-case-sm line-clamp-2 font-semibold text-foreground">
+                <h4 className="mt-case-sm line-clamp-2 break-words font-semibold text-foreground">
                   {getEditionTitle(recommended, language)}
                 </h4>
                 <p className="mt-case-xs truncate text-small text-text-muted">

@@ -3,7 +3,7 @@
 ## Project Identity
 
 - Project name: CaseFlow Store `v1.0.0`; CaseFlow Books `v1.1.0`, `v1.2.0`,
-  and `v1.3.0` released
+  `v1.3.0`, and `v1.3.1` released
 - Repository folder: `/Users/vantruong/Documents/TSNN 2`
 - Product domain: books for released `v1.1.0` and `v1.2.0`; phone
   accessories for released `v1.0.0`
@@ -11,8 +11,9 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: v1.3.0 released; final post-release QA passed.
-- Current gate: `QA-FINAL-T01` complete; no P0/P1 tester findings.
+- Current mode: `v1.3.1` compact-card visual hotfix deployed and verified.
+- Current gate: `HOTFIX-V13-T01` complete; no active P0/P1/P2 visual overlap
+  finding remains for compact cover cards.
 - Current task: No active implementation task.
 
 ## Confirmed Facts
@@ -135,6 +136,17 @@
   `20/20`, accessibility/mobile/performance audit `ok: true`, cleanup
   `totalMatches: 0`, secret-like scan, stale-claim scan, TypeScript, lint,
   build, and `git diff --check`. No P0/P1 findings remain open.
+- After `v1.3.0` was released, the user reported a real visual defect on
+  2026-07-18: related-book recommendation cards could overlap cover art,
+  badges, and text at tablet/desktop widths because some fixed grid columns
+  were narrower than the responsive compact book-cover frame.
+- `HOTFIX-V13-T01` was completed on 2026-07-18 as a patch release candidate:
+  compact cover card grid columns now match the responsive compact cover frame,
+  a Playwright overlap verifier covers detail recommendations and homepage
+  compact cards, production deploy `dpl_CtyPPR1cExwXQWctsh7to98Vg3yb` is
+  aliased to `https://caseflow-store.vercel.app`, production overlap
+  verification passed, and production release smoke passed on retry after a
+  separately probed cart-count timing flake.
 
 ## v1.2 Canonical Catalog
 
@@ -306,10 +318,10 @@ These are defaults that remain tentative until a later task or ADR freezes them:
   integrations, no external stock imagery, no commercial cover copying, no
   fake ratings/sold counts/bestseller claims, and no stable API contract
   change under v1.3 polish.
-- Release status: `v1.3.0` is the latest production release. Vercel deployment
-  `dpl_6in3zn6CsXKtj3mR2xjGVh4X3q59` is aliased to
-  `https://caseflow-store.vercel.app`, production smoke passed, and the
-  annotated release tag is `v1.3.0`.
+- Release status: `v1.3.1` is the latest production patch release. Vercel
+  deployment `dpl_CtyPPR1cExwXQWctsh7to98Vg3yb` is aliased to
+  `https://caseflow-store.vercel.app`, compact-card overlap verification and
+  production smoke passed, and the next release tag is `v1.3.1`.
 
 ## v1.1 Active Product Domain
 
