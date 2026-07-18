@@ -10,8 +10,8 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: v1.3.1 released; portfolio closeout complete
-- Current gate: `CLOSEOUT-T01` complete; no active implementation task
+- Mode: v1.3.1 released; final repository hygiene audit complete
+- Current gate: `CLOSEOUT-T02` complete; no active implementation task
 - Current task: No active implementation task
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-19
@@ -2139,4 +2139,53 @@ accepted; the next task is full 100-cover portfolio production.
     - README/release claim scan
     - targeted secret-value scan
     - markdown link/path sanity scan
+    - `git diff --check`
+
+- [x] `CLOSEOUT-T02` Final Repository Hygiene And Release Verification. - 2026-07-19
+  - Result: `main` and `origin/main` were verified in sync before recording
+    audit results, and GitHub Release `v1.3.1` was verified as published,
+    non-draft, non-prerelease, and latest.
+  - Result: production URL returned `HTTP/2 200`.
+  - Result: Markdown link/path scan, stale latest-release claim scan,
+    targeted secret-value scan, `git diff --check`, high-severity dependency
+    audit, TypeScript, lint, production build, production smoke, compact-card
+    overlap verifier, and release cleanup all passed.
+  - Residual: `npm audit --audit-level=high` passed; the known moderate
+    Next/PostCSS advisory remains documented because the automated force fix
+    proposes a breaking downgrade path.
+  - Evidence:
+    - `caseflow-store/.agent/artifacts/closeout-t02/production-release-smoke.json`
+    - `caseflow-store/.agent/artifacts/closeout-t02/production-home-desktop-en.png`
+    - `caseflow-store/.agent/artifacts/closeout-t02/production-catalog-mobile-vi.png`
+    - `caseflow-store/.agent/artifacts/closeout-t02/production-detail-desktop-en.png`
+    - `caseflow-store/.agent/artifacts/closeout-t02/production-detail-mobile-vi.png`
+    - `caseflow-store/.agent/artifacts/closeout-t02/production-admin-boundary-mobile-en.png`
+    - `caseflow-store/.agent/artifacts/hotfix-v13-t01/compact-card-overlap-check.json`
+    - `caseflow-store/.agent/artifacts/d40-t01/release-cleanup-check.json`
+  - Scope:
+    - Verify Git remote state, latest GitHub Release, release tag, production
+      URL, documentation claims, Markdown links, secret-value hygiene,
+      dependency audit, TypeScript, lint, build, and production smoke.
+    - Record any remaining non-blockers honestly.
+    - Do not create new runtime features, schema changes, dependencies,
+      deployments, tags, or GitHub Releases unless a verified release-blocking
+      defect requires a separate explicitly scoped task.
+  - Acceptance criteria:
+    - `main` is synchronized with `origin/main`, and the `v1.3.1` GitHub
+      Release remains published, non-draft, and non-prerelease.
+    - Documentation links and release claims do not point to stale latest
+      release information.
+    - No secret-like values are committed.
+    - Static quality gates and production smoke pass or any residual is
+      documented with severity and next action.
+  - Verification:
+    - Git remote/tag/release checks
+    - Markdown link/path sanity scan
+    - stale release-claim scan
+    - targeted secret-value scan
+    - `npm audit --audit-level=high`
+    - `npx tsc --noEmit --pretty false`
+    - `npm run lint`
+    - `npm run build`
+    - production release smoke
     - `git diff --check`

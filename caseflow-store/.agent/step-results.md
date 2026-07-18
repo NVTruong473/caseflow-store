@@ -11503,3 +11503,87 @@ maintenance sessions.
 
 No active implementation task. The project is portfolio-ready at `v1.3.1`
 unless a new defect or a clearly scoped post-portfolio roadmap is approved.
+
+---
+
+## CLOSEOUT-T02 - Final Repository Hygiene And Release Verification
+
+- Date: 2026-07-19
+- Status: completed
+- Phase: CaseFlow Books final repository hygiene audit after `v1.3.1`
+
+### Objective
+
+Do one final safe audit after portfolio closeout: verify Git/GitHub release
+state, production availability, documentation claims, secret hygiene, static
+quality gates, production smoke, cleanup, and the compact-card visual hotfix
+without changing runtime behavior.
+
+### Actual Result
+
+- Verified `main` and `origin/main` were synchronized before recording this
+  audit task, then recorded the audit-only tracker updates.
+- Verified GitHub Release `v1.3.1` is published, non-draft, non-prerelease, and
+  latest.
+- Verified `https://caseflow-store.vercel.app` returned `HTTP/2 200`.
+- Verified README/handoff Markdown links resolve to existing local files where
+  applicable.
+- Verified stale latest-release claim scan and targeted secret-value scan have
+  no matches.
+- Verified static quality gates: TypeScript, ESLint, production build, and
+  `git diff --check`.
+- Verified production smoke against the live alias with all public, language,
+  assistant, cart/checkout, customer boundary, admin boundary, detail, robots,
+  sitemap, and catalog-quality checks passing.
+- Re-ran the compact-card overlap verifier on production; the previous
+  user-reported visual collision remains fixed.
+- Re-ran release cleanup; total stale QA/test matches remains zero.
+
+### Evidence
+
+- `caseflow-store/.agent/artifacts/closeout-t02/production-release-smoke.json`
+- `caseflow-store/.agent/artifacts/closeout-t02/production-home-desktop-en.png`
+- `caseflow-store/.agent/artifacts/closeout-t02/production-catalog-mobile-vi.png`
+- `caseflow-store/.agent/artifacts/closeout-t02/production-detail-desktop-en.png`
+- `caseflow-store/.agent/artifacts/closeout-t02/production-detail-mobile-vi.png`
+- `caseflow-store/.agent/artifacts/closeout-t02/production-admin-boundary-mobile-en.png`
+- `caseflow-store/.agent/artifacts/hotfix-v13-t01/compact-card-overlap-check.json`
+- `caseflow-store/.agent/artifacts/d40-t01/release-cleanup-check.json`
+
+### Verification
+
+- `git status --short --branch`: main was synchronized with origin before
+  audit-only tracker updates.
+- `gh release view v1.3.1 --json ...`: passed; release is published,
+  non-draft, and non-prerelease.
+- `gh api repos/NVTruong473/caseflow-store/releases/latest`: passed; latest
+  release is `v1.3.1`.
+- `curl -I https://caseflow-store.vercel.app`: returned `HTTP/2 200`.
+- Markdown link/path sanity scan: passed with `ok: true`.
+- Stale latest-release claim scan: passed with no stale matches after task
+  completion.
+- Targeted secret-value scan: passed with no matches.
+- `npm audit --audit-level=high`: passed; the known moderate Next/PostCSS
+  advisory remains documented as non-blocking.
+- `npx tsc --noEmit --pretty false`: passed.
+- `npm run lint`: passed.
+- `npm run build`: passed; Next.js generated 42 app routes plus proxy.
+- `PRODUCTION_RELEASE_TASK_ID=closeout-t02 PRODUCTION_RELEASE_BASE_URL=https://caseflow-store.vercel.app npx tsx scripts/verify-v12-production-release.ts`:
+  passed with `ok: true`.
+- `HOTFIX_CARD_LAYOUT_BASE_URL=https://caseflow-store.vercel.app npx tsx scripts/verify-hotfix-compact-card-overlap.ts`:
+  passed with `ok: true`.
+- `npx tsx scripts/verify-release-cleanup.ts`: passed with
+  `totalMatches: 0`.
+- `git diff --check`: passed.
+
+### Guardrails Preserved
+
+- No runtime feature, schema migration, production data mutation, dependency
+  addition, deployment, tag, or GitHub Release was created in this task.
+- The audit reinforced that the project should remain closed at `v1.3.1`
+  unless a new defect or explicitly scoped post-portfolio roadmap is approved.
+
+### Next Task
+
+No active implementation task. The project is closed out and portfolio-ready at
+`v1.3.1`.
