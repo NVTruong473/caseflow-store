@@ -1,0 +1,1008 @@
+{
+  "taskId": "V12-T10",
+  "generatedAt": "2026-07-17T00:00:00.000Z",
+  "assets": [
+    {
+      "editionId": "00000000-0000-4000-8000-000000003027",
+      "assetId": "00000000-0000-4000-8000-000000009001",
+      "path": "/images/books/v12-covers/a-christmas-carol-english-paperback.svg",
+      "sha256": "7583585c00fc00a918aac8b57fef0b7be3dc1f023bfcf92d7de74cc362ccecf7",
+      "bytes": 2313,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004027",
+      "assetId": "00000000-0000-4000-8000-000000009002",
+      "path": "/images/books/v12-covers/a-christmas-carol-vietnamese-paperback.svg",
+      "sha256": "7534fb9a21e3a0195fbc6cf7755e489af6dd2ec20bc61d179eb976c8d98f4dbc",
+      "bytes": 2326,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003005",
+      "assetId": "00000000-0000-4000-8000-000000009003",
+      "path": "/images/books/v12-covers/a-tale-of-two-cities-english-paperback.svg",
+      "sha256": "868cc42179b5eb88a5df15bc2e7fc5c92d5e332c953fbb9abd13c76aae1fde16",
+      "bytes": 2650,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004005",
+      "assetId": "00000000-0000-4000-8000-000000009004",
+      "path": "/images/books/v12-covers/a-tale-of-two-cities-vietnamese-paperback.svg",
+      "sha256": "453f64da7f643ce2c3b9674b9853fea1ad4041ba3448a3eae14e39861e3c38df",
+      "bytes": 2477,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003029",
+      "assetId": "00000000-0000-4000-8000-000000009005",
+      "path": "/images/books/v12-covers/adventures-of-huckleberry-finn-english-paperback.svg",
+      "sha256": "68296b93b1716bd2f56079ff0344f1682518279f5a4ff0ccd56bdc03aec73ff6",
+      "bytes": 2830,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004029",
+      "assetId": "00000000-0000-4000-8000-000000009006",
+      "path": "/images/books/v12-covers/adventures-of-huckleberry-finn-vietnamese-paperback.svg",
+      "sha256": "bf25e0fb8e0bd5ecfb9b0ca4de58219922380d0ce4349db56f163584c21dd256",
+      "bytes": 3057,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003047",
+      "assetId": "00000000-0000-4000-8000-000000009007",
+      "path": "/images/books/v12-covers/aesops-fables-english-paperback.svg",
+      "sha256": "3f75004d87ac01e3037fc3b027a8a539c39bb3434a3925c907bb230ae6121e75",
+      "bytes": 2271,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004047",
+      "assetId": "00000000-0000-4000-8000-000000009008",
+      "path": "/images/books/v12-covers/aesops-fables-vietnamese-paperback.svg",
+      "sha256": "fe2a3ecc8fd6d3ce92d526a4a76afb8b9758b17f9134af6e57bf078e0097a02f",
+      "bytes": 2288,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003019",
+      "assetId": "00000000-0000-4000-8000-000000009009",
+      "path": "/images/books/v12-covers/alice-in-wonderland-english-paperback.svg",
+      "sha256": "feb2203ceecdf173bf080a4cf47bf35bd4487e2b8e63a9b38e01aa6467085713",
+      "bytes": 2634,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004019",
+      "assetId": "00000000-0000-4000-8000-000000009010",
+      "path": "/images/books/v12-covers/alice-in-wonderland-vietnamese-paperback.svg",
+      "sha256": "416c17e4e070a29725eba31c790b865227e3dcbaf64a1223814440f6dc328866",
+      "bytes": 2885,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003046",
+      "assetId": "00000000-0000-4000-8000-000000009011",
+      "path": "/images/books/v12-covers/andersens-fairy-tales-english-paperback.svg",
+      "sha256": "61827170eed710ffdef5bdf6ebb4e39bb56a53d21b98c2aab858ab780415a57c",
+      "bytes": 2615,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004046",
+      "assetId": "00000000-0000-4000-8000-000000009012",
+      "path": "/images/books/v12-covers/andersens-fairy-tales-vietnamese-paperback.svg",
+      "sha256": "b08401f26035579a512a7ac61450f737b7478394a93ec0949ac299f6110fac3c",
+      "bytes": 2462,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003032",
+      "assetId": "00000000-0000-4000-8000-000000009013",
+      "path": "/images/books/v12-covers/anna-karenina-english-paperback.svg",
+      "sha256": "21565d30a6fca415e3da7d2a8de6f75e68a98dd147366827c0389b1cec6ed684",
+      "bytes": 2543,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004032",
+      "assetId": "00000000-0000-4000-8000-000000009014",
+      "path": "/images/books/v12-covers/anna-karenina-vietnamese-paperback.svg",
+      "sha256": "43e3dc7e5f059b230283d660f23262f9353759d0924d64aec083f35b3b34473f",
+      "bytes": 2548,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003022",
+      "assetId": "00000000-0000-4000-8000-000000009015",
+      "path": "/images/books/v12-covers/anne-of-green-gables-english-paperback.svg",
+      "sha256": "84e1f8a82d76cc368c06230ce27e3582d2543710565e1950fe3baa19b0b5103b",
+      "bytes": 2653,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004022",
+      "assetId": "00000000-0000-4000-8000-000000009016",
+      "path": "/images/books/v12-covers/anne-of-green-gables-vietnamese-paperback.svg",
+      "sha256": "380e56f61eeb175557848a78ed1fca8c56f9b62da998b2dbc4fb8c270eb6f8eb",
+      "bytes": 2734,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003015",
+      "assetId": "00000000-0000-4000-8000-000000009017",
+      "path": "/images/books/v12-covers/around-the-world-in-eighty-days-english-paperback.svg",
+      "sha256": "cc6d295d8ed78cd3b0e811ba6ea4f678b5a70cebf93ec2cde95a7bc6169b2535",
+      "bytes": 2515,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004015",
+      "assetId": "00000000-0000-4000-8000-000000009018",
+      "path": "/images/books/v12-covers/around-the-world-in-eighty-days-vietnamese-paperback.svg",
+      "sha256": "08ddf3b39b0df93ced536d5f476319edfc62f5dbd8ae1c2a051c0c25047ab485",
+      "bytes": 2552,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003031",
+      "assetId": "00000000-0000-4000-8000-000000009019",
+      "path": "/images/books/v12-covers/crime-and-punishment-english-paperback.svg",
+      "sha256": "bedcd53ca0335698ca71931fec12c09058919bb5cb00fb472f37ddd738fb83a3",
+      "bytes": 2747,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004031",
+      "assetId": "00000000-0000-4000-8000-000000009020",
+      "path": "/images/books/v12-covers/crime-and-punishment-vietnamese-paperback.svg",
+      "sha256": "68aeade5739722a85f1a25ff35ca8f1c7ece2fe6e6ae9ffc3aadb89cbfef7889",
+      "bytes": 2776,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003041",
+      "assetId": "00000000-0000-4000-8000-000000009021",
+      "path": "/images/books/v12-covers/don-quixote-english-paperback.svg",
+      "sha256": "65442e4928c79f98c1c8fd005fc7fef0395960d9ec9e7f4726e4139ec06c80b3",
+      "bytes": 2302,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004041",
+      "assetId": "00000000-0000-4000-8000-000000009022",
+      "path": "/images/books/v12-covers/don-quixote-vietnamese-paperback.svg",
+      "sha256": "cc7ffaed9f958004d34a9a3b2e5a34b5263f33ae13266080c0da96a10c690881",
+      "bytes": 2307,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003009",
+      "assetId": "00000000-0000-4000-8000-000000009023",
+      "path": "/images/books/v12-covers/dracula-english-paperback.svg",
+      "sha256": "491c62b572ad8b5e09e5932d44515b228ae9fd963e936998620a804bb2cce372",
+      "bytes": 2428,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004009",
+      "assetId": "00000000-0000-4000-8000-000000009024",
+      "path": "/images/books/v12-covers/dracula-vietnamese-paperback.svg",
+      "sha256": "a04755e51c39d6a09e6822e18282c1bb8615242146577d3ebe402474e805794d",
+      "bytes": 2481,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003010",
+      "assetId": "00000000-0000-4000-8000-000000009025",
+      "path": "/images/books/v12-covers/frankenstein-english-hardcover.svg",
+      "sha256": "75ae47af51b738140c1c15aa4d6224ee3544c4f1c3ebec5e6b1d67dde43aa481",
+      "bytes": 2606,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004010",
+      "assetId": "00000000-0000-4000-8000-000000009026",
+      "path": "/images/books/v12-covers/frankenstein-vietnamese-hardcover.svg",
+      "sha256": "765ba6f513e9ce5f962b7e34337272fb0e0b35bccca1944d66087afced43a76d",
+      "bytes": 2611,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003003",
+      "assetId": "00000000-0000-4000-8000-000000009027",
+      "path": "/images/books/v12-covers/great-expectations-english-paperback.svg",
+      "sha256": "2ab83ac40e3b76ef988b5f1d9b560daa57c66a93bb96274e6cd356b43e20c861",
+      "bytes": 2417,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004003",
+      "assetId": "00000000-0000-4000-8000-000000009028",
+      "path": "/images/books/v12-covers/great-expectations-vietnamese-paperback.svg",
+      "sha256": "ffd3d177d6eb3942a7c14922bfc140e1dc943f1bb75884b840c7f9ce7bdad2b3",
+      "bytes": 2624,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003045",
+      "assetId": "00000000-0000-4000-8000-000000009029",
+      "path": "/images/books/v12-covers/grimms-fairy-tales-english-paperback.svg",
+      "sha256": "3493be47eeec3141fb4313296f8d9873cc43606720b28a98387318511ccc3c81",
+      "bytes": 2730,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004045",
+      "assetId": "00000000-0000-4000-8000-000000009030",
+      "path": "/images/books/v12-covers/grimms-fairy-tales-vietnamese-paperback.svg",
+      "sha256": "aed7d0ea90284746b2b2d313cdf57566611a8c75a6b70b47abae5a3b26ec9503",
+      "bytes": 2577,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003001",
+      "assetId": "00000000-0000-4000-8000-000000009031",
+      "path": "/images/books/v12-covers/jane-eyre-english-paperback.svg",
+      "sha256": "0b5be9447a010d7eae3599673bad4fe8b1975e171ee7b216bc5f28431cfb785a",
+      "bytes": 2321,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004001",
+      "assetId": "00000000-0000-4000-8000-000000009032",
+      "path": "/images/books/v12-covers/jane-eyre-vietnamese-paperback.svg",
+      "sha256": "635f2d54a9ef4b191cc317e9f686902e9511a80308254b371ed3af02e5280fb0",
+      "bytes": 2326,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003016",
+      "assetId": "00000000-0000-4000-8000-000000009033",
+      "path": "/images/books/v12-covers/journey-to-the-center-of-the-earth-english-paperback.svg",
+      "sha256": "9e92825d972dc239c07833183ef43f7b3dce6a11923a661fc20089d0cb8bd638",
+      "bytes": 2673,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004016",
+      "assetId": "00000000-0000-4000-8000-000000009034",
+      "path": "/images/books/v12-covers/journey-to-the-center-of-the-earth-vietnamese-paperback.svg",
+      "sha256": "0a697221ff2dd92ce27cd2a28e4286546fe7bfedf14f700363d7412a26d47ddd",
+      "bytes": 2536,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003013",
+      "assetId": "00000000-0000-4000-8000-000000009035",
+      "path": "/images/books/v12-covers/les-miserables-english-paperback.svg",
+      "sha256": "37cd89c9c29f517278e1d82a3c19f1f43b365d955dfcc3b73f0ea1ebc472a536",
+      "bytes": 2290,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004013",
+      "assetId": "00000000-0000-4000-8000-000000009036",
+      "path": "/images/books/v12-covers/les-miserables-vietnamese-paperback.svg",
+      "sha256": "9e8e4059e0e198d1cb776991a073d7a65d1bddce43c37a6bdcc345875220a97e",
+      "bytes": 2513,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003007",
+      "assetId": "00000000-0000-4000-8000-000000009037",
+      "path": "/images/books/v12-covers/little-women-english-paperback.svg",
+      "sha256": "408f14f434c76eb12f50129239549f1360a40c8460921b77fe174e2f91337abc",
+      "bytes": 2408,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004007",
+      "assetId": "00000000-0000-4000-8000-000000009038",
+      "path": "/images/books/v12-covers/little-women-vietnamese-paperback.svg",
+      "sha256": "0cac4475664c823406e495a1e82b06e1923204e06685b25b08dc8f6b5a68ea81",
+      "bytes": 2671,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003038",
+      "assetId": "00000000-0000-4000-8000-000000009039",
+      "path": "/images/books/v12-covers/meditations-english-paperback.svg",
+      "sha256": "e226900dfa5bb084820554f548019fa48e1e69e309fac6e825ca38b5b0bd3879",
+      "bytes": 2289,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004038",
+      "assetId": "00000000-0000-4000-8000-000000009040",
+      "path": "/images/books/v12-covers/meditations-vietnamese-paperback.svg",
+      "sha256": "e08bc99026dd27b491670ce4c18390c31036d7813198bfb900ba691f9205bda0",
+      "bytes": 2298,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003006",
+      "assetId": "00000000-0000-4000-8000-000000009041",
+      "path": "/images/books/v12-covers/moby-dick-english-paperback.svg",
+      "sha256": "1be360ca6e09a3f73638e7ccec76398aaef10f81349f412c48ce125be8fd5881",
+      "bytes": 2539,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004006",
+      "assetId": "00000000-0000-4000-8000-000000009042",
+      "path": "/images/books/v12-covers/moby-dick-vietnamese-paperback.svg",
+      "sha256": "ff0996bf67c2bfca5246f3c1b8ecfbfe862012193b4996fe8c495bfd7abcef50",
+      "bytes": 2774,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003004",
+      "assetId": "00000000-0000-4000-8000-000000009043",
+      "path": "/images/books/v12-covers/oliver-twist-english-paperback.svg",
+      "sha256": "9b462572fc7e5dcf4ac66af495f7385b9796e72d4626d8a524cdb82a7634429c",
+      "bytes": 2293,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004004",
+      "assetId": "00000000-0000-4000-8000-000000009044",
+      "path": "/images/books/v12-covers/oliver-twist-vietnamese-paperback.svg",
+      "sha256": "124f0acb330720718fbfdf6b41624e5b05ec4d6650cfbb1092440d0b7bbdf937",
+      "bytes": 2298,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003000",
+      "assetId": "00000000-0000-4000-8000-000000009045",
+      "path": "/images/books/v12-covers/pride-and-prejudice-english-special-edition.svg",
+      "sha256": "552d1819728210a8985b06dd524d472a982db11b14ce2a5b804da54586058245",
+      "bytes": 2685,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004000",
+      "assetId": "00000000-0000-4000-8000-000000009046",
+      "path": "/images/books/v12-covers/pride-and-prejudice-vietnamese-special-edition.svg",
+      "sha256": "f88b15c073dc2d96b1e7090a96e027f637a9fd4b4240c1c1549f8b74878c423e",
+      "bytes": 2734,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003035",
+      "assetId": "00000000-0000-4000-8000-000000009047",
+      "path": "/images/books/v12-covers/siddhartha-english-paperback.svg",
+      "sha256": "f81359ea0d6042684119e401b1a5d9933fce0fbe1714c0595b5e74a72cb96147",
+      "bytes": 2446,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004035",
+      "assetId": "00000000-0000-4000-8000-000000009048",
+      "path": "/images/books/v12-covers/siddhartha-vietnamese-paperback.svg",
+      "sha256": "31fa13aaa2db352f91c5e15d99b94311b8f5e8e10f893c499bcbfe63604f3741",
+      "bytes": 2451,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003039",
+      "assetId": "00000000-0000-4000-8000-000000009049",
+      "path": "/images/books/v12-covers/tao-te-ching-english-paperback.svg",
+      "sha256": "db0d4fbc6cd305388eba8e5905247d9b375c3d28850fdfa3359976cbdc72d8a3",
+      "bytes": 2430,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004039",
+      "assetId": "00000000-0000-4000-8000-000000009050",
+      "path": "/images/books/v12-covers/tao-te-ching-vietnamese-paperback.svg",
+      "sha256": "987fe40e95f08f693a674c59b421780cdd4a87ae472cabe11371d8cbbf9003e7",
+      "bytes": 2459,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003008",
+      "assetId": "00000000-0000-4000-8000-000000009051",
+      "path": "/images/books/v12-covers/the-adventures-of-sherlock-holmes-english-paperback.svg",
+      "sha256": "097be63487ab29e5db8b98cade5243f3ddb4fed35ca1df4d3c9123546d4dedc9",
+      "bytes": 2866,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004008",
+      "assetId": "00000000-0000-4000-8000-000000009052",
+      "path": "/images/books/v12-covers/the-adventures-of-sherlock-holmes-vietnamese-paperback.svg",
+      "sha256": "74a1f697a1f1df17c035bc27600b16c45114c57c9177c1ebcaecee3167221d18",
+      "bytes": 3077,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003028",
+      "assetId": "00000000-0000-4000-8000-000000009053",
+      "path": "/images/books/v12-covers/the-adventures-of-tom-sawyer-english-paperback.svg",
+      "sha256": "c344016d45434f8fa999caa9c1dbe8410319e64d86370751765e9e501b3bb931",
+      "bytes": 2537,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004028",
+      "assetId": "00000000-0000-4000-8000-000000009054",
+      "path": "/images/books/v12-covers/the-adventures-of-tom-sawyer-vietnamese-paperback.svg",
+      "sha256": "12bcf31f1c775ad33d66913db9e61a4cf4d823ea8467ce8470fcbaa31f4339e5",
+      "bytes": 2602,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003037",
+      "assetId": "00000000-0000-4000-8000-000000009055",
+      "path": "/images/books/v12-covers/the-art-of-war-english-paperback.svg",
+      "sha256": "0ff1770dba3803abe8b60c3b7571e2a1b684851336f711e23fa8875fc3bd386a",
+      "bytes": 2444,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004037",
+      "assetId": "00000000-0000-4000-8000-000000009056",
+      "path": "/images/books/v12-covers/the-art-of-war-vietnamese-paperback.svg",
+      "sha256": "3ab23c5236e4cb59d2a2cb97a35baa40917c8a649dc2ba2437b8caaf2805993d",
+      "bytes": 2473,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003030",
+      "assetId": "00000000-0000-4000-8000-000000009057",
+      "path": "/images/books/v12-covers/the-brothers-karamazov-english-hardcover.svg",
+      "sha256": "8b177fc164364e44d9ab8def5e5ab740f81f21afd1b82a254371e9d2e0ab16ac",
+      "bytes": 2664,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004030",
+      "assetId": "00000000-0000-4000-8000-000000009058",
+      "path": "/images/books/v12-covers/the-brothers-karamazov-vietnamese-hardcover.svg",
+      "sha256": "afa0eece98c709533dc9df1df583f831204c4d6ef64691ab7ea184743ac8536b",
+      "bytes": 2665,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003024",
+      "assetId": "00000000-0000-4000-8000-000000009059",
+      "path": "/images/books/v12-covers/the-call-of-the-wild-english-paperback.svg",
+      "sha256": "5c169660298362cb87867b876f17eef0c9763c8c277efef8b354cebdaf4db9ef",
+      "bytes": 2793,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004024",
+      "assetId": "00000000-0000-4000-8000-000000009060",
+      "path": "/images/books/v12-covers/the-call-of-the-wild-vietnamese-paperback.svg",
+      "sha256": "d11bdfee10e171466871305c82092647db95805a2247fd7c89994e1e00e7fcd2",
+      "bytes": 2830,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003012",
+      "assetId": "00000000-0000-4000-8000-000000009061",
+      "path": "/images/books/v12-covers/the-count-of-monte-cristo-english-paperback.svg",
+      "sha256": "42813ec709fc09ae38de93becf7493f8568f77077c55f94ef8dd6b32949f25d3",
+      "bytes": 2715,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004012",
+      "assetId": "00000000-0000-4000-8000-000000009062",
+      "path": "/images/books/v12-covers/the-count-of-monte-cristo-vietnamese-paperback.svg",
+      "sha256": "5c8624cf9d39beaaaaf30d2a474488286277bbdaf9b14ab1e29ad486ea7535a0",
+      "bytes": 2716,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003042",
+      "assetId": "00000000-0000-4000-8000-000000009063",
+      "path": "/images/books/v12-covers/the-divine-comedy-english-paperback.svg",
+      "sha256": "1ca91a0b83950aa5be2dde2ca0dc8315a94482b08b0a601a84d9b1d4c5ab5fbd",
+      "bytes": 2480,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004042",
+      "assetId": "00000000-0000-4000-8000-000000009064",
+      "path": "/images/books/v12-covers/the-divine-comedy-vietnamese-paperback.svg",
+      "sha256": "49d72a287c0e42829914d4d23755f226f874abfd05e996d97a135b318fa69d3f",
+      "bytes": 2465,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003043",
+      "assetId": "00000000-0000-4000-8000-000000009065",
+      "path": "/images/books/v12-covers/the-iliad-english-paperback.svg",
+      "sha256": "e28e75a707e138cb840fe1231979168968802ca3eeff57f34b7e9514a002061d",
+      "bytes": 2509,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004043",
+      "assetId": "00000000-0000-4000-8000-000000009066",
+      "path": "/images/books/v12-covers/the-iliad-vietnamese-paperback.svg",
+      "sha256": "474acc6d084027a355d4d395ee9c974e3512c861058af4c6864d2e98676fbabd",
+      "bytes": 2498,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003025",
+      "assetId": "00000000-0000-4000-8000-000000009067",
+      "path": "/images/books/v12-covers/the-jungle-book-english-paperback.svg",
+      "sha256": "8de9a651fa37dc81b4e17eaca24d8224d78d7a140f67468b5dac4fb0125ce161",
+      "bytes": 2405,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004025",
+      "assetId": "00000000-0000-4000-8000-000000009068",
+      "path": "/images/books/v12-covers/the-jungle-book-vietnamese-paperback.svg",
+      "sha256": "def088614762bcbc5f39f81f7193c2f762c2d46064e141839ba2b2307610c790",
+      "bytes": 2418,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003034",
+      "assetId": "00000000-0000-4000-8000-000000009069",
+      "path": "/images/books/v12-covers/the-metamorphosis-english-special-edition.svg",
+      "sha256": "0bcf464137af68c8eea56cae8d1ddf100d74981bdac86e029977590a746b0960",
+      "bytes": 2629,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004034",
+      "assetId": "00000000-0000-4000-8000-000000009070",
+      "path": "/images/books/v12-covers/the-metamorphosis-vietnamese-special-edition.svg",
+      "sha256": "21848921df17bbb85955d2c15a501016145ae87da9e3fa9e4037708bf60313d8",
+      "bytes": 2606,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003044",
+      "assetId": "00000000-0000-4000-8000-000000009071",
+      "path": "/images/books/v12-covers/the-odyssey-english-paperback.svg",
+      "sha256": "5708685bcb89fd5c18401b2f31bf878015ac110a2024b49f65ff23ddeafad9a5",
+      "bytes": 2517,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004044",
+      "assetId": "00000000-0000-4000-8000-000000009072",
+      "path": "/images/books/v12-covers/the-odyssey-vietnamese-paperback.svg",
+      "sha256": "e05533198c48cd1a0f1700b0878ca6e892c68113b64d3425e0e23afa8558ee2a",
+      "bytes": 2506,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000007100",
+      "assetId": "00000000-0000-4000-8000-000000009073",
+      "path": "/images/books/v12-covers/the-old-man-and-the-sea-english-paperback.svg",
+      "sha256": "7a54a39b68c3475168410e5dd03c379d3e4a35cf676901c5f3c91a7f3404a4ae",
+      "bytes": 2499,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000007200",
+      "assetId": "00000000-0000-4000-8000-000000009074",
+      "path": "/images/books/v12-covers/the-old-man-and-the-sea-vietnamese-paperback.svg",
+      "sha256": "37804c732e63ac5972eb850e32216a05486f612bc1e79a641007b9ec7760a17c",
+      "bytes": 2354,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003011",
+      "assetId": "00000000-0000-4000-8000-000000009075",
+      "path": "/images/books/v12-covers/the-picture-of-dorian-gray-english-paperback.svg",
+      "sha256": "7c3b610059c091474c1699873350db01d23206d12ce75730816e8c91e9b254da",
+      "bytes": 2496,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004011",
+      "assetId": "00000000-0000-4000-8000-000000009076",
+      "path": "/images/books/v12-covers/the-picture-of-dorian-gray-vietnamese-paperback.svg",
+      "sha256": "416724cc6329d6bba35f9813f8e46eec647e62edbd19eb759cdd33eb4491a817",
+      "bytes": 2485,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003036",
+      "assetId": "00000000-0000-4000-8000-000000009077",
+      "path": "/images/books/v12-covers/the-prophet-english-paperback.svg",
+      "sha256": "390d156b6842ee40fac8d684b7f7c5a82a0966d136a2612e15c90874a07d6f1e",
+      "bytes": 2500,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004036",
+      "assetId": "00000000-0000-4000-8000-000000009078",
+      "path": "/images/books/v12-covers/the-prophet-vietnamese-paperback.svg",
+      "sha256": "1a40b805950375fb1dde3afe6edb726aaa594754980852e652daefa9a6c182d7",
+      "bytes": 2517,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003040",
+      "assetId": "00000000-0000-4000-8000-000000009079",
+      "path": "/images/books/v12-covers/the-republic-english-hardcover.svg",
+      "sha256": "5ccb496afd3b97ef8f5e065afb75949f75c7ceb8368faa66ac072082fa6e7e90",
+      "bytes": 2263,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004040",
+      "assetId": "00000000-0000-4000-8000-000000009080",
+      "path": "/images/books/v12-covers/the-republic-vietnamese-hardcover.svg",
+      "sha256": "600462ad20c895762f23e909c5adc0d7b526ddefe561cb1c29fd6c480498ed6d",
+      "bytes": 2264,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003021",
+      "assetId": "00000000-0000-4000-8000-000000009081",
+      "path": "/images/books/v12-covers/the-secret-garden-english-paperback.svg",
+      "sha256": "8a1297b258513400622e15bf8545c1a4f1a2919adeb7370dfc7302193b0d52d5",
+      "bytes": 2446,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004021",
+      "assetId": "00000000-0000-4000-8000-000000009082",
+      "path": "/images/books/v12-covers/the-secret-garden-vietnamese-paperback.svg",
+      "sha256": "0254b82f07dc81bf92cdbeb77398a5b8d4684e2de11da705a6b40b8b4cf47a2e",
+      "bytes": 2467,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003014",
+      "assetId": "00000000-0000-4000-8000-000000009083",
+      "path": "/images/books/v12-covers/the-three-musketeers-english-paperback.svg",
+      "sha256": "02e98e3d1bc73512ca81946e472e754cc5bd3fbc11e36daeb137c8a830847644",
+      "bytes": 2650,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004014",
+      "assetId": "00000000-0000-4000-8000-000000009084",
+      "path": "/images/books/v12-covers/the-three-musketeers-vietnamese-paperback.svg",
+      "sha256": "6b7c1aec89d8d1863ab34154df0946318e8d22cd18323efe849d980505f03c17",
+      "bytes": 2679,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003017",
+      "assetId": "00000000-0000-4000-8000-000000009085",
+      "path": "/images/books/v12-covers/the-time-machine-english-special-edition.svg",
+      "sha256": "21ac96919d631695b7f3e401170950e5e80772a847ed1ba95eea76b161a52fb5",
+      "bytes": 2561,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004017",
+      "assetId": "00000000-0000-4000-8000-000000009086",
+      "path": "/images/books/v12-covers/the-time-machine-vietnamese-special-edition.svg",
+      "sha256": "655f087f3a93adcf64b12bfd349c59c03c80dfe4f89ad8b32bc6d2067ae253ab",
+      "bytes": 2586,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003018",
+      "assetId": "00000000-0000-4000-8000-000000009087",
+      "path": "/images/books/v12-covers/the-war-of-the-worlds-english-paperback.svg",
+      "sha256": "f175bc9e6f867605eca7af32c05e94425b702981ca1129b732233d807916b01c",
+      "bytes": 2476,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004018",
+      "assetId": "00000000-0000-4000-8000-000000009088",
+      "path": "/images/books/v12-covers/the-war-of-the-worlds-vietnamese-paperback.svg",
+      "sha256": "02ca83fd2a81e060c1d5bd6048cae920668ad9db9439c00977f14394ed1ea70b",
+      "bytes": 2549,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003048",
+      "assetId": "00000000-0000-4000-8000-000000009089",
+      "path": "/images/books/v12-covers/the-wealth-of-nations-english-paperback.svg",
+      "sha256": "3ce3de78c3c5175c357a4ff6584397a1234acac435f6411a5753210eccd5438a",
+      "bytes": 2509,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004048",
+      "assetId": "00000000-0000-4000-8000-000000009090",
+      "path": "/images/books/v12-covers/the-wealth-of-nations-vietnamese-paperback.svg",
+      "sha256": "29f1c3f764fcb3ed3a05bf2d5f9a91d73cb870051ffcb24a0c3833d06eebc8ef",
+      "bytes": 2602,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003026",
+      "assetId": "00000000-0000-4000-8000-000000009091",
+      "path": "/images/books/v12-covers/the-wind-in-the-willows-english-paperback.svg",
+      "sha256": "b3f3535935744699edf167601ba0703cd88d3758bba46eba435420154f8e1ea7",
+      "bytes": 2707,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004026",
+      "assetId": "00000000-0000-4000-8000-000000009092",
+      "path": "/images/books/v12-covers/the-wind-in-the-willows-vietnamese-paperback.svg",
+      "sha256": "1fc7bad4562048385ab37f778bf23a356ba6c547d025add12c863f90a6f3e495",
+      "bytes": 2550,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003020",
+      "assetId": "00000000-0000-4000-8000-000000009093",
+      "path": "/images/books/v12-covers/the-wonderful-wizard-of-oz-english-hardcover.svg",
+      "sha256": "3e9eaf963c9b92850e08a8710fdb171ec5729592b931d4752ffa64478389a182",
+      "bytes": 2759,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004020",
+      "assetId": "00000000-0000-4000-8000-000000009094",
+      "path": "/images/books/v12-covers/the-wonderful-wizard-of-oz-vietnamese-hardcover.svg",
+      "sha256": "72237d37a08040436fdbb78c82cf6496d7908b32b3305d78cbfc364212dcea07",
+      "bytes": 2578,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003023",
+      "assetId": "00000000-0000-4000-8000-000000009095",
+      "path": "/images/books/v12-covers/treasure-island-english-paperback.svg",
+      "sha256": "fa1a744763c1183e16d7f3fdfa209c79c6540b32e491cfc56d9e4ef5b8110603",
+      "bytes": 2327,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004023",
+      "assetId": "00000000-0000-4000-8000-000000009096",
+      "path": "/images/books/v12-covers/treasure-island-vietnamese-paperback.svg",
+      "sha256": "dc0151775dd3d3a39a3da9cf1f6934378caa46a65b53888cbd465e0478b52acd",
+      "bytes": 2348,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003033",
+      "assetId": "00000000-0000-4000-8000-000000009097",
+      "path": "/images/books/v12-covers/war-and-peace-english-paperback.svg",
+      "sha256": "57a9e034633ade5a7633eb0818f810f6d0315aac2e6f489e049c99f5a1735cb5",
+      "bytes": 2285,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004033",
+      "assetId": "00000000-0000-4000-8000-000000009098",
+      "path": "/images/books/v12-covers/war-and-peace-vietnamese-paperback.svg",
+      "sha256": "1f09f762b020a7f3b3ce74df39f610641f335d1257ff0649c854ff0fc21c068a",
+      "bytes": 2508,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000003002",
+      "assetId": "00000000-0000-4000-8000-000000009099",
+      "path": "/images/books/v12-covers/wuthering-heights-english-paperback.svg",
+      "sha256": "2ed0094ad0d4c4bb6244089383d64b6d6f11e9f7f54dd7c877ebc7a548f0d02e",
+      "bytes": 2304,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    },
+    {
+      "editionId": "00000000-0000-4000-8000-000000004002",
+      "assetId": "00000000-0000-4000-8000-000000009100",
+      "path": "/images/books/v12-covers/wuthering-heights-vietnamese-paperback.svg",
+      "sha256": "dc72311fe8cda160c141a8ac600b15ffb5a40f402dc6c67e971d9c916964c182",
+      "bytes": 2301,
+      "width": 600,
+      "height": 900,
+      "source": "project-created-vector"
+    }
+  ],
+  "totalBytes": 253378,
+  "placeholderPrimaryAssets": 0
+}

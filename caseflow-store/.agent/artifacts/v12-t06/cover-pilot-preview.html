@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>V12-T06 Cover Pilot Preview</title>
+    <style>
+      * { box-sizing: border-box; }
+      body { margin: 0; background: #F8FAFC; color: #111827; font-family: Arial, Helvetica, sans-serif; }
+      main { width: min(1120px, calc(100vw - 32px)); margin: 0 auto; padding: 28px 0 48px; }
+      h1 { margin: 0 0 8px; font-size: 28px; line-height: 1.15; letter-spacing: 0; }
+      .note { margin: 0 0 24px; color: #475569; font-size: 14px; line-height: 1.5; }
+      .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; }
+      .card { min-width: 0; }
+      .card img { display: block; width: 100%; aspect-ratio: 2 / 3; height: auto; border: 1px solid #CBD5E1; border-radius: 8px; background: #FFFFFF; object-fit: cover; }
+      .card-title { margin: 10px 0 4px; font-size: 14px; font-weight: 700; line-height: 1.3; }
+      .card-meta { margin: 0; color: #64748B; font-size: 13px; line-height: 1.35; }
+      .details { display: grid; gap: 18px; margin-top: 36px; }
+      .detail { display: grid; grid-template-columns: minmax(140px, 260px) 1fr; gap: 20px; align-items: center; padding: 18px 0; border-top: 1px solid #CBD5E1; }
+      .detail img { width: 100%; max-width: 260px; aspect-ratio: 2 / 3; height: auto; border-radius: 8px; border: 1px solid #CBD5E1; }
+      .eyebrow { margin: 0 0 8px; color: #7C2D12; font-size: 13px; font-weight: 700; text-transform: uppercase; }
+      h2 { margin: 0 0 10px; font-size: 24px; line-height: 1.2; letter-spacing: 0; }
+      .detail p:last-child { margin: 0; color: #475569; line-height: 1.55; }
+      @media (max-width: 520px) {
+        main { width: min(100vw - 24px, 420px); padding-top: 18px; }
+        h1 { font-size: 22px; }
+        .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+        .detail { grid-template-columns: 112px minmax(0, 1fr); gap: 14px; }
+        .detail img { max-width: 112px; }
+        h2 { font-size: 18px; }
+      }
+    </style>
+  </head>
+  <body>
+    <main data-cover-pilot-preview>
+      <h1>V12-T06 cover pilot preview</h1>
+      <p class="note">Static render check for catalog card and detail image sizes.</p>
+      <section class="grid" aria-label="Catalog card preview">
+        
+        <article class="card">
+          <img src="../../../public/images/books/v12-pilot/pride-and-prejudice-english-special-edition.svg" alt="CaseFlow Books illustrative cover for Pride and Prejudice by Jane Austen." width="600" height="900" />
+          <p class="card-title">Pride and Prejudice</p>
+          <p class="card-meta">Jane Austen</p>
+        </article>
+
+        <article class="card">
+          <img src="../../../public/images/books/v12-pilot/pride-and-prejudice-vietnamese-special-edition.svg" alt="CaseFlow Books illustrative cover for Pride and Prejudice by Jane Austen." width="600" height="900" />
+          <p class="card-title">Kiêu hãnh và định kiến</p>
+          <p class="card-meta">Jane Austen</p>
+        </article>
+
+        <article class="card">
+          <img src="../../../public/images/books/v12-pilot/the-adventures-of-sherlock-holmes-english-paperback.svg" alt="CaseFlow Books illustrative cover for The Adventures of Sherlock Holmes by Arthur Conan Doyle." width="600" height="900" />
+          <p class="card-title">The Adventures of Sherlock Holmes</p>
+          <p class="card-meta">Arthur Conan Doyle</p>
+        </article>
+
+        <article class="card">
+          <img src="../../../public/images/books/v12-pilot/the-adventures-of-sherlock-holmes-vietnamese-paperback.svg" alt="CaseFlow Books illustrative cover for The Adventures of Sherlock Holmes by Arthur Conan Doyle." width="600" height="900" />
+          <p class="card-title">Những cuộc phiêu lưu của Sherlock Holmes</p>
+          <p class="card-meta">Arthur Conan Doyle</p>
+        </article>
+
+        <article class="card">
+          <img src="../../../public/images/books/v12-pilot/the-war-of-the-worlds-english-paperback.svg" alt="CaseFlow Books illustrative cover for The War of the Worlds by H. G. Wells." width="600" height="900" />
+          <p class="card-title">The War of the Worlds</p>
+          <p class="card-meta">H. G. Wells</p>
+        </article>
+
+        <article class="card">
+          <img src="../../../public/images/books/v12-pilot/the-war-of-the-worlds-vietnamese-paperback.svg" alt="CaseFlow Books illustrative cover for The War of the Worlds by H. G. Wells." width="600" height="900" />
+          <p class="card-title">Chiến tranh giữa các thế giới</p>
+          <p class="card-meta">H. G. Wells</p>
+        </article>
+
+        <article class="card">
+          <img src="../../../public/images/books/v12-pilot/alice-in-wonderland-english-paperback.svg" alt="CaseFlow Books illustrative cover for Alice&#39;s Adventures in Wonderland by Lewis Carroll." width="600" height="900" />
+          <p class="card-title">Alice&#39;s Adventures in Wonderland</p>
+          <p class="card-meta">Lewis Carroll</p>
+        </article>
+
+        <article class="card">
+          <img src="../../../public/images/books/v12-pilot/alice-in-wonderland-vietnamese-paperback.svg" alt="CaseFlow Books illustrative cover for Alice&#39;s Adventures in Wonderland by Lewis Carroll." width="600" height="900" />
+          <p class="card-title">Cuộc phiêu lưu của Alice ở xứ sở thần tiên</p>
+          <p class="card-meta">Lewis Carroll</p>
+        </article>
+
+        <article class="card">
+          <img src="../../../public/images/books/v12-pilot/the-old-man-and-the-sea-english-paperback.svg" alt="CaseFlow Books illustrative cover for The Old Man and the Sea by Ernest Hemingway." width="600" height="900" />
+          <p class="card-title">The Old Man and the Sea</p>
+          <p class="card-meta">Ernest Hemingway</p>
+        </article>
+
+        <article class="card">
+          <img src="../../../public/images/books/v12-pilot/the-old-man-and-the-sea-vietnamese-paperback.svg" alt="CaseFlow Books illustrative cover for The Old Man and the Sea by Ernest Hemingway." width="600" height="900" />
+          <p class="card-title">Ông già và biển cả</p>
+          <p class="card-meta">Ernest Hemingway</p>
+        </article>
+      </section>
+      <section class="details" aria-label="Detail preview">
+        
+        <section class="detail">
+          <img src="../../../public/images/books/v12-pilot/pride-and-prejudice-english-special-edition.svg" alt="CaseFlow Books illustrative cover for Pride and Prejudice by Jane Austen." width="600" height="900" />
+          <div>
+            <p class="eyebrow">English edition</p>
+            <h2>Pride and Prejudice</h2>
+            <p>CaseFlow Books illustrative cover for Pride and Prejudice by Jane Austen.</p>
+          </div>
+        </section>
+
+        <section class="detail">
+          <img src="../../../public/images/books/v12-pilot/pride-and-prejudice-vietnamese-special-edition.svg" alt="CaseFlow Books illustrative cover for Pride and Prejudice by Jane Austen." width="600" height="900" />
+          <div>
+            <p class="eyebrow">Vietnamese edition</p>
+            <h2>Kiêu hãnh và định kiến</h2>
+            <p>CaseFlow Books illustrative cover for Pride and Prejudice by Jane Austen.</p>
+          </div>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>

@@ -3,6 +3,7 @@ import { expect, type Page, test } from "@playwright/test";
 import {
   addSupabaseSessionCookies,
   CHECKOUT_SUCCESS_STORAGE_KEY,
+  clickElement,
   createTemporaryCustomer,
   deleteTemporaryCustomer,
   findAvailableBook,
@@ -37,13 +38,13 @@ test("checkout happy path creates a simulated book order and clears the cart", a
     await expect(page.locator("[data-checkout-final-total]")).toBeVisible();
     await expectNoPaymentCardInputs(page);
 
-    await page.locator("[data-checkout-payment-method='bank-transfer']").click();
+    await clickElement(page, "[data-checkout-payment-method='bank-transfer']");
     const orderResponsePromise = page.waitForResponse(
       (response) =>
         new URL(response.url()).pathname === "/api/orders" &&
         response.request().method() === "POST",
     );
-    await page.locator("[data-checkout-submit]").click();
+    await clickElement(page, "[data-checkout-submit]");
     const orderResponse = await orderResponsePromise;
 
     expect(orderResponse.status()).toBe(201);
@@ -79,6 +80,7 @@ test("checkout happy path creates a simulated book order and clears the cart", a
     await page.screenshot({
       fullPage: true,
       path: CHECKOUT_SUCCESS_SCREENSHOT,
+      timeout: 30_000,
     });
   } finally {
     await deleteTemporaryCustomer(customer);

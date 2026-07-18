@@ -96,6 +96,13 @@ export const COVER_ASSET_SOURCES = [
   "public-domain",
 ] as const;
 
+export const SOURCE_REVIEW_STATUSES = [
+  "draft",
+  "needs-review",
+  "approved",
+  "rejected",
+] as const;
+
 export const CUSTOMER_REQUIRED_PROFILE_FIELDS = [
   "fullName",
   "email",
@@ -116,6 +123,7 @@ export type PaymentStatus = (typeof PAYMENT_STATUSES)[number];
 export type ShippingMethod = (typeof SHIPPING_METHODS)[number];
 export type ShippingStatus = (typeof SHIPPING_STATUSES)[number];
 export type CoverAssetSource = (typeof COVER_ASSET_SOURCES)[number];
+export type SourceReviewStatus = (typeof SOURCE_REVIEW_STATUSES)[number];
 export type CustomerRequiredProfileField =
   (typeof CUSTOMER_REQUIRED_PROFILE_FIELDS)[number];
 
@@ -224,6 +232,13 @@ export type BookDimensions = {
   thicknessMm: number | null;
 };
 
+export type BookEditionDisplayFact = {
+  key: string;
+  label: LocalizedText;
+  value: LocalizedText;
+  provenanceRecordId: string;
+};
+
 export type BookEdition = {
   id: string;
   workId: string;
@@ -250,6 +265,13 @@ export type BookEdition = {
   summary: LocalizedText;
   tableOfContents: LocalizedText | null;
   sampleExcerptPolicy: string | null;
+  pairId: string | null;
+  pairedEditionId: string | null;
+  reasonToRead: LocalizedText | null;
+  displayFacts: BookEditionDisplayFact[];
+  omittedOptionalFactKeys: string[];
+  sourceEditionKey: string | null;
+  sourceReviewStatus: SourceReviewStatus | null;
   isFeatured: boolean;
   isActive: boolean;
   createdAt: ISODateTimeString;

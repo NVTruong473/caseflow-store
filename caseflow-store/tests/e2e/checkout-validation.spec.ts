@@ -60,7 +60,10 @@ test("checkout blocks empty and malformed customer details before order API", as
     await expect(page.locator("[data-checkout-form-shell]"))
       .toHaveAttribute("data-checkout-form-status", "idle");
 
-    await page.screenshot({ fullPage: true, path: VALIDATION_SCREENSHOT });
+    await page.screenshot({
+      path: VALIDATION_SCREENSHOT,
+      timeout: 30_000,
+    });
   } finally {
     await deleteTemporaryCustomer(customer);
   }

@@ -1,0 +1,50 @@
+{
+  "taskId": "V12-T08",
+  "generatedAt": "2026-07-18T08:42:32.155Z",
+  "manifestPath": "src/data/books/v1.2-editorial-metadata-manifest.json",
+  "counts": {
+    "editions": 100,
+    "displayFacts": 334,
+    "omittedOptionalFacts": 266,
+    "releaseReady": 100
+  },
+  "bilingualChecks": {
+    "lengthIssues": [],
+    "missing": [],
+    "missingVietnameseDiacritics": []
+  },
+  "coverCoverage": {
+    "missingCoverAssets": [],
+    "placeholderReferences": []
+  },
+  "duplicateCopy": {
+    "issues": []
+  },
+  "editionCoverage": {
+    "extraEditionIds": [],
+    "missingEditionIds": []
+  },
+  "consistency": {
+    "issues": []
+  },
+  "prohibitedCopy": [],
+  "quality": {
+    "releaseReady": 100,
+    "notReady": [],
+    "minQualityScore": 63
+  },
+  "pass": {
+    "exactEditionCount": true,
+    "exactEditionCoverage": true,
+    "coverCoverage": true,
+    "bilingualComplete": true,
+    "vietnameseDiacritics": true,
+    "copyLength": true,
+    "prohibitedCopyAbsent": true,
+    "duplicateCopyControlled": true,
+    "internalConsistency": true,
+    "qualityReleaseReady": true,
+    "gracefulOmissions": true
+  },
+  "ok": true
+}

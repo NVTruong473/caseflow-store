@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-16T09:44:29.758Z",
+  "generatedAt": "2026-07-18T05:08:14.602Z",
   "apiValidation": {
     "fakeClientFieldsIgnored": true,
     "returnedEditions": [
@@ -11,18 +11,18 @@
         "unitPrice": 143000
       },
       {
-        "editionId": "00000000-0000-4000-8000-000000004019",
+        "editionId": "00000000-0000-4000-8000-000000004030",
         "language": "vi",
-        "lineTotal": 125000,
+        "lineTotal": 216000,
         "quantity": 1,
-        "unitPrice": 125000
+        "unitPrice": 216000
       }
     ],
     "status": 200,
-    "subtotal": 411000,
+    "subtotal": 502000,
     "subtotalMatchesLines": true
   },
-  "baseURL": "http://127.0.0.1:3005",
+  "baseURL": "http://localhost:3000",
   "desktop": {
     "cartCount": 2,
     "drawerItemCount": 2,
@@ -105,36 +105,83 @@
         "slug": "a-christmas-carol-english-paperback",
         "displayTitle": "A Christmas Carol",
         "localizedDisplayTitle": {
-          "vi": "Bai ca Giang sinh",
+          "vi": "Bài ca Giáng sinh",
           "en": "A Christmas Carol"
         },
         "subtitle": null,
         "language": "en",
         "format": "paperback",
-        "isbn13": null,
-        "isbn10": null,
-        "publicationYear": 1843,
+        "isbn13": "9780141389479",
+        "isbn10": "0141389478",
+        "publicationYear": 2012,
         "pageCount": null,
-        "dimensions": {
-          "widthMm": 130,
-          "heightMm": 205,
-          "thicknessMm": null
-        },
-        "weightGrams": 360,
+        "dimensions": null,
+        "weightGrams": null,
         "priceVnd": 143000,
         "compareAtPriceVnd": null,
         "stockQuantity": 11,
-        "lowStockThreshold": 5,
+        "lowStockThreshold": 10,
         "inventoryStatus": "in-stock",
         "summary": {
-          "vi": "Mot cau chuyen dao duc ngan gon noi ky uc va tuong tuong thuc day mot ke keo kiet huong den rong luong va sua sai. An ban tieng Anh phu hop cho doc gia song ngu va nhu cau doc hoc thuat.",
-          "en": "A compact moral tale where memory and imagination push a miser toward generosity and repair. This English edition is positioned for bilingual readers and classroom-friendly browsing."
+          "vi": "Câu chuyện đạo đức cô đọng nơi ký ức và tưởng tượng thúc đẩy một người keo kiệt hướng tới rộng lượng và sửa sai.",
+          "en": "A compact moral tale where memory and imagination push a miser toward generosity and repair."
         },
         "tableOfContents": null,
-        "sampleExcerptPolicy": "No commercial excerpt is stored in seed data; use short internal preview copy only.",
+        "sampleExcerptPolicy": "No copyrighted excerpt is stored; use project-written preview guidance only.",
+        "pairId": "00000000-0000-4000-8000-000000006027",
+        "pairedEditionId": "00000000-0000-4000-8000-000000004027",
+        "reasonToRead": {
+          "vi": "Ấn bản tiếng Anh của Bài ca Giáng sinh, dành cho độc giả muốn đọc và đối chiếu tác phẩm ở cả hai ngôn ngữ trong danh mục.",
+          "en": "English edition of A Christmas Carol for readers comparing the work across both catalog languages."
+        },
+        "displayFacts": [
+          {
+            "key": "isbn",
+            "label": {
+              "vi": "ISBN",
+              "en": "ISBN"
+            },
+            "value": {
+              "vi": "9780141389479",
+              "en": "9780141389479"
+            },
+            "provenanceRecordId": "00000000-0000-4000-8000-000000011082"
+          },
+          {
+            "key": "publisher",
+            "label": {
+              "vi": "Nhà xuất bản",
+              "en": "Publisher"
+            },
+            "value": {
+              "vi": "Penguin English Library",
+              "en": "Penguin English Library"
+            },
+            "provenanceRecordId": "00000000-0000-4000-8000-000000011081"
+          },
+          {
+            "key": "publication-year",
+            "label": {
+              "vi": "Năm xuất bản",
+              "en": "Publication year"
+            },
+            "value": {
+              "vi": "2012",
+              "en": "2012"
+            },
+            "provenanceRecordId": "00000000-0000-4000-8000-000000011084"
+          }
+        ],
+        "omittedOptionalFactKeys": [
+          "translator",
+          "page-count",
+          "source-physical-format"
+        ],
+        "sourceEditionKey": "google-books:my2meaaaqbaj",
+        "sourceReviewStatus": "approved",
         "isFeatured": false,
         "createdAt": "2026-07-16T00:00:00+00:00",
-        "updatedAt": "2026-07-16T06:19:00.769299+00:00"
+        "updatedAt": "2026-07-17T21:02:08.622433+00:00"
       },
       "work": {
         "id": "00000000-0000-4000-8000-000000002027",
@@ -142,7 +189,7 @@
         "title": "A Christmas Carol",
         "originalTitle": null,
         "localizedTitle": {
-          "vi": "Bai ca Giang sinh",
+          "vi": "Bài ca Giáng sinh",
           "en": "A Christmas Carol"
         },
         "originalLanguage": "English",
@@ -154,7 +201,7 @@
         "ageRating": null,
         "publicationEra": "1843",
         "canonicalSummary": {
-          "vi": "Mot cau chuyen dao duc ngan gon noi ky uc va tuong tuong thuc day mot ke keo kiet huong den rong luong va sua sai.",
+          "vi": "Câu chuyện đạo đức cô đọng nơi ký ức và tưởng tượng thúc đẩy một người keo kiệt hướng tới rộng lượng và sửa sai.",
           "en": "A compact moral tale where memory and imagination push a miser toward generosity and repair."
         }
       },
@@ -198,139 +245,180 @@
       ],
       "translators": [],
       "publisher": {
-        "id": "00000000-0000-4000-8000-000000000001",
-        "slug": "caseflow-books-demo-editions",
-        "name": "CaseFlow Books Demo Editions",
-        "country": "Vietnam",
+        "id": "5e5621f7-bf82-44b2-81ee-9ec438f5c36c",
+        "slug": "penguin-english-library",
+        "name": "Penguin English Library",
+        "country": null,
         "website": null
       },
       "coverAsset": {
-        "id": "00000000-0000-4000-8000-000000000050",
-        "path": "/images/books/placeholders/book-cover-placeholder.svg",
+        "id": "00000000-0000-4000-8000-000000009001",
+        "path": "/images/books/v12-covers/a-christmas-carol-english-paperback.svg",
         "altText": {
-          "vi": "Bia sach tam thoi noi bo cua CaseFlow Books",
-          "en": "CaseFlow Books internal placeholder cover"
+          "vi": "Bìa minh họa CaseFlow Books cho Bài ca Giáng sinh của Charles Dickens.",
+          "en": "CaseFlow Books illustrative cover for A Christmas Carol by Charles Dickens."
         },
-        "source": "internal"
+        "source": "generated"
       }
     },
     "vi": {
-      "id": "00000000-0000-4000-8000-000000004019",
+      "id": "00000000-0000-4000-8000-000000004030",
       "type": "book-edition",
-      "slug": "alice-in-wonderland-vietnamese-paperback",
-      "title": "Alice o xu so than tien",
+      "slug": "the-brothers-karamazov-vietnamese-hardcover",
+      "title": "Anh em nhà Karamazov",
       "edition": {
-        "id": "00000000-0000-4000-8000-000000004019",
-        "slug": "alice-in-wonderland-vietnamese-paperback",
-        "displayTitle": "Alice o xu so than tien",
+        "id": "00000000-0000-4000-8000-000000004030",
+        "slug": "the-brothers-karamazov-vietnamese-hardcover",
+        "displayTitle": "Anh em nhà Karamazov",
         "localizedDisplayTitle": {
-          "vi": "Alice o xu so than tien",
-          "en": "Alice's Adventures in Wonderland"
+          "vi": "Anh em nhà Karamazov",
+          "en": "The Brothers Karamazov"
         },
         "subtitle": null,
         "language": "vi",
-        "format": "paperback",
-        "isbn13": null,
-        "isbn10": null,
-        "publicationYear": 1865,
-        "pageCount": null,
-        "dimensions": {
-          "widthMm": 130,
-          "heightMm": 205,
-          "thicknessMm": null
-        },
-        "weightGrams": 360,
-        "priceVnd": 125000,
-        "compareAtPriceVnd": null,
-        "stockQuantity": 9,
-        "lowStockThreshold": 5,
-        "inventoryStatus": "low-stock",
+        "format": "hardcover",
+        "isbn13": "9786045588567",
+        "isbn10": "6045588568",
+        "publicationYear": 2021,
+        "pageCount": 845,
+        "dimensions": null,
+        "weightGrams": null,
+        "priceVnd": 216000,
+        "compareAtPriceVnd": 241000,
+        "stockQuantity": 42,
+        "lowStockThreshold": 10,
+        "inventoryStatus": "in-stock",
         "summary": {
-          "vi": "Mot truyen ky ao vui tuoi noi su to mo cua tre nho gap nhung quy tac bien doi, vo tung va bien ngon ngu thanh tro choi. An ban tieng Viet phu hop cho doc gia trong nuoc va viec so sanh song song voi ban tieng Anh.",
-          "en": "A playful fantasy where a child's curiosity meets rules that bend, break, and turn language into a game. This Vietnamese edition is positioned for local discovery and step-by-step comparison with the English edition."
+          "vi": "Bi kịch gia đình mở rộng thành những câu hỏi về đức tin, tự do, tội lỗi và trách nhiệm trước người khác.",
+          "en": "A family tragedy expands into questions about faith, freedom, guilt, and responsibility before others."
         },
         "tableOfContents": null,
-        "sampleExcerptPolicy": "No commercial excerpt is stored in seed data; use short internal preview copy only.",
+        "sampleExcerptPolicy": "No copyrighted excerpt is stored; use project-written preview guidance only.",
+        "pairId": "00000000-0000-4000-8000-000000006030",
+        "pairedEditionId": "00000000-0000-4000-8000-000000003030",
+        "reasonToRead": {
+          "vi": "Ấn bản tiếng Việt của Anh em nhà Karamazov, dành cho độc giả muốn đọc và đối chiếu tác phẩm ở cả hai ngôn ngữ trong danh mục.",
+          "en": "Vietnamese edition of The Brothers Karamazov for readers comparing the work across both catalog languages."
+        },
+        "displayFacts": [
+          {
+            "key": "isbn",
+            "label": {
+              "vi": "ISBN",
+              "en": "ISBN"
+            },
+            "value": {
+              "vi": "9786045588567",
+              "en": "9786045588567"
+            },
+            "provenanceRecordId": "00000000-0000-4000-8000-000000011221"
+          },
+          {
+            "key": "publication-year",
+            "label": {
+              "vi": "Năm xuất bản",
+              "en": "Publication year"
+            },
+            "value": {
+              "vi": "2021",
+              "en": "2021"
+            },
+            "provenanceRecordId": "00000000-0000-4000-8000-000000011223"
+          },
+          {
+            "key": "page-count",
+            "label": {
+              "vi": "Số trang",
+              "en": "Page count"
+            },
+            "value": {
+              "vi": "845 trang",
+              "en": "845 pages"
+            },
+            "provenanceRecordId": "00000000-0000-4000-8000-000000011224"
+          }
+        ],
+        "omittedOptionalFactKeys": [
+          "publisher",
+          "translator",
+          "source-physical-format"
+        ],
+        "sourceEditionKey": "google-books:r577zgeacaaj",
+        "sourceReviewStatus": "approved",
         "isFeatured": false,
         "createdAt": "2026-07-16T00:00:00+00:00",
-        "updatedAt": "2026-07-16T06:19:00.769299+00:00"
+        "updatedAt": "2026-07-17T21:02:08.622433+00:00"
       },
       "work": {
-        "id": "00000000-0000-4000-8000-000000002019",
-        "slug": "alice-in-wonderland",
-        "title": "Alice's Adventures in Wonderland",
+        "id": "00000000-0000-4000-8000-000000002030",
+        "slug": "the-brothers-karamazov",
+        "title": "The Brothers Karamazov",
         "originalTitle": null,
         "localizedTitle": {
-          "vi": "Alice o xu so than tien",
-          "en": "Alice's Adventures in Wonderland"
+          "vi": "Anh em nhà Karamazov",
+          "en": "The Brothers Karamazov"
         },
-        "originalLanguage": "English",
+        "originalLanguage": "Russian",
         "themes": [
-          "nonsense",
-          "curiosity",
-          "logic"
+          "faith",
+          "family",
+          "guilt"
         ],
         "ageRating": null,
-        "publicationEra": "1865",
+        "publicationEra": "1880",
         "canonicalSummary": {
-          "vi": "Mot truyen ky ao vui tuoi noi su to mo cua tre nho gap nhung quy tac bien doi, vo tung va bien ngon ngu thanh tro choi.",
-          "en": "A playful fantasy where a child's curiosity meets rules that bend, break, and turn language into a game."
+          "vi": "Bi kịch gia đình mở rộng thành những câu hỏi về đức tin, tự do, tội lỗi và trách nhiệm trước người khác.",
+          "en": "A family tragedy expands into questions about faith, freedom, guilt, and responsibility before others."
         }
       },
       "authors": [
         {
-          "id": "00000000-0000-4000-8000-000000001014",
-          "slug": "lewis-carroll",
-          "name": "Lewis Carroll",
-          "country": "United Kingdom"
+          "id": "00000000-0000-4000-8000-000000001023",
+          "slug": "fyodor-dostoevsky",
+          "name": "Fyodor Dostoevsky",
+          "country": "Russia"
         }
       ],
       "categories": [
         {
-          "id": "00000000-0000-4000-8000-000000000107",
+          "id": "00000000-0000-4000-8000-000000000101",
           "type": "book-category",
-          "slug": "children-young-adult",
+          "slug": "classic-literature",
           "labels": {
-            "vi": "Thieu nhi va tuoi teen",
-            "en": "Children and young adult"
+            "vi": "Van hoc kinh dien",
+            "en": "Classic literature"
           },
           "description": {
-            "vi": "Tac pham phu hop cho doc gia nho tuoi, gia dinh va truong hoc.",
-            "en": "Books suited to younger readers, families, and classroom shelves."
+            "vi": "Nhung tac pham lau ben, phu hop cho tu sach ca nhan va hoc thuat.",
+            "en": "Enduring works suited for personal libraries and study shelves."
           },
-          "sortOrder": 7
+          "sortOrder": 1
         },
         {
-          "id": "00000000-0000-4000-8000-000000000103",
+          "id": "00000000-0000-4000-8000-000000000100",
           "type": "book-category",
-          "slug": "fantasy-sci-fi",
+          "slug": "fiction",
           "labels": {
-            "vi": "Gia tuong va khoa hoc vien tuong",
-            "en": "Fantasy and sci-fi"
+            "vi": "Van hoc",
+            "en": "Fiction"
           },
           "description": {
-            "vi": "Phieu luu ky ao, tuong lai gia dinh va the gioi tuong tuong.",
-            "en": "Inventive adventures, imagined worlds, and speculative classics."
+            "vi": "Tieu thuyet va tac pham hu cau de doc theo chu de, tac gia va ngon ngu.",
+            "en": "Novels and fiction works browsed by theme, author, and language."
           },
-          "sortOrder": 3
+          "sortOrder": 0
         }
       ],
       "translators": [],
-      "publisher": {
-        "id": "00000000-0000-4000-8000-000000000001",
-        "slug": "caseflow-books-demo-editions",
-        "name": "CaseFlow Books Demo Editions",
-        "country": "Vietnam",
-        "website": null
-      },
+      "publisher": null,
       "coverAsset": {
-        "id": "00000000-0000-4000-8000-000000000050",
-        "path": "/images/books/placeholders/book-cover-placeholder.svg",
+        "id": "00000000-0000-4000-8000-000000009058",
+        "path": "/images/books/v12-covers/the-brothers-karamazov-vietnamese-hardcover.svg",
         "altText": {
-          "vi": "Bia sach tam thoi noi bo cua CaseFlow Books",
-          "en": "CaseFlow Books internal placeholder cover"
+          "vi": "Bìa minh họa CaseFlow Books cho Anh em nhà Karamazov của Fyodor Dostoevsky.",
+          "en": "CaseFlow Books illustrative cover for The Brothers Karamazov by Fyodor Dostoevsky."
         },
-        "source": "internal"
+        "source": "generated"
       }
     }
   }

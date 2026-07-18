@@ -1,0 +1,10 @@
+{
+  "baseURL": "https://caseflow-store.vercel.app",
+  "command": "PLAYWRIGHT_BASE_URL=https://caseflow-store.vercel.app node ./node_modules/@playwright/test/cli.js test --reporter=list --workers=1",
+  "generatedAt": "2026-07-18T11:25:16.269Z",
+  "ok": true,
+  "passed": 20,
+  "failed": 0,
+  "duration": "4.0m",
+  "workerCount": 1
+}

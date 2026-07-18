@@ -1,0 +1,883 @@
+{
+  "taskId": "V12-T06",
+  "version": "1.2",
+  "generatedAt": "2026-07-17T00:00:00.000Z",
+  "pipelineStatus": "pilot",
+  "assetBasePath": "/images/books/v12-pilot",
+  "fallbackPath": "/images/books/placeholders/book-cover-placeholder.svg",
+  "contactSheetPath": ".agent/artifacts/v12-t06/cover-pilot-contact-sheet.svg",
+  "previewHtmlPath": ".agent/artifacts/v12-t06/cover-pilot-preview.html",
+  "dimensions": {
+    "width": 600,
+    "height": 900
+  },
+  "aspectRatio": "2:3",
+  "sizeBudgetBytes": 55000,
+  "minContrastRatio": 4.5,
+  "textRenderer": "deterministic-svg-text",
+  "commercialCoverPolicy": "Pilot assets use project-created SVG artwork only. No commercial cover layout, image, logo, publisher mark, marketplace image, or generated image reference is used.",
+  "pilotSelectionRationale": "The pilot covers five visual families and both languages across romance/classics, mystery, science fiction, young-reader fantasy, and literary fiction, including long English and Vietnamese titles plus light and dark artwork.",
+  "assets": [
+    {
+      "id": "00000000-0000-4000-8000-000000008001",
+      "editionId": "00000000-0000-4000-8000-000000003000",
+      "workId": "00000000-0000-4000-8000-000000002000",
+      "pairId": "00000000-0000-4000-8000-000000006000",
+      "editionSlug": "pride-and-prejudice-english-special-edition",
+      "language": "en",
+      "title": "Pride and Prejudice",
+      "authors": [
+        "Jane Austen"
+      ],
+      "categorySlugs": [
+        "classic-literature",
+        "romance"
+      ],
+      "artFamilyKey": "regency-letters",
+      "conceptKey": "regency-letters",
+      "path": "/images/books/v12-pilot/pride-and-prejudice-english-special-edition.svg",
+      "dimensions": {
+        "width": 600,
+        "height": 900
+      },
+      "aspectRatio": "2:3",
+      "generatedAt": "2026-07-17T00:00:00.000Z",
+      "fileSizeBytes": 2711,
+      "checksumSha256": "a18c61975519a1efbed2b9e48d5bc7129bd5ff24927c0a9d018cfa5cd125f377",
+      "sizeBudgetBytes": 55000,
+      "backgroundColor": "#FEF3C7",
+      "panelColor": "#FFFBEB",
+      "textColor": "#111827",
+      "accentColor": "#7C2D12",
+      "contrastRatios": {
+        "titleOnPanel": 17.11,
+        "authorOnPanel": 9.94,
+        "badgeOnAccent": 9.37
+      },
+      "textBlocks": {
+        "titleLines": [
+          "Pride and",
+          "Prejudice"
+        ],
+        "authorLine": "Jane Austen",
+        "languageLabel": "English edition"
+      },
+      "altText": {
+        "vi": "Bia minh hoa CaseFlow Books cho Kiêu hãnh và định kiến cua Jane Austen.",
+        "en": "CaseFlow Books illustrative cover for Pride and Prejudice by Jane Austen."
+      },
+      "source": {
+        "artworkKind": "project-created-vector",
+        "rightsBasis": "project-created",
+        "sourceLabel": "CaseFlow Books deterministic SVG cover pipeline",
+        "generationMethod": "Scripted vector artwork plus deterministic SVG text layout from the canonical v1.2 manifest.",
+        "commercialCoverReferenceUsed": false,
+        "referenceImageUrls": []
+      },
+      "provenance": {
+        "id": "00000000-0000-4000-8000-000000008501",
+        "entityType": "cover-asset",
+        "entityId": "00000000-0000-4000-8000-000000008001",
+        "fieldKey": "primary-cover",
+        "sourceLabel": "CaseFlow Books deterministic SVG cover pipeline",
+        "sourceUrl": null,
+        "checkedAt": "2026-07-17T00:00:00.000Z",
+        "contentKind": "media",
+        "rightsBasis": "project-created",
+        "rightsBasisNote": "Project-created SVG artwork generated from internal design rules and canonical edition metadata; no commercial cover image or layout reference was used.",
+        "license": null,
+        "attribution": {
+          "required": false,
+          "text": null,
+          "url": null,
+          "displayLocation": null
+        },
+        "reviewStatus": "approved",
+        "reviewerNote": "Pilot cover for pride-and-prejudice-english-special-edition; text rendered from canonical manifest data.",
+        "reviewedAt": "2026-07-17T01:00:00.000Z",
+        "editionMatchConfidence": "not-applicable",
+        "sourceEditionKey": null
+      },
+      "review": {
+        "status": "approved",
+        "checkedAt": "2026-07-17T01:00:00.000Z",
+        "reviewerNote": "Pilot asset reviewed as project-created vector artwork with no commercial cover reference."
+      }
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000008002",
+      "editionId": "00000000-0000-4000-8000-000000004000",
+      "workId": "00000000-0000-4000-8000-000000002000",
+      "pairId": "00000000-0000-4000-8000-000000006000",
+      "editionSlug": "pride-and-prejudice-vietnamese-special-edition",
+      "language": "vi",
+      "title": "Kiêu hãnh và định kiến",
+      "authors": [
+        "Jane Austen"
+      ],
+      "categorySlugs": [
+        "classic-literature",
+        "romance"
+      ],
+      "artFamilyKey": "regency-letters",
+      "conceptKey": "regency-letters",
+      "path": "/images/books/v12-pilot/pride-and-prejudice-vietnamese-special-edition.svg",
+      "dimensions": {
+        "width": 600,
+        "height": 900
+      },
+      "aspectRatio": "2:3",
+      "generatedAt": "2026-07-17T00:00:00.000Z",
+      "fileSizeBytes": 2760,
+      "checksumSha256": "fc03595d40570ecfc35488f6fd3f72abce0fc728bdce2722a6e08f22e4606c22",
+      "sizeBudgetBytes": 55000,
+      "backgroundColor": "#FEF3C7",
+      "panelColor": "#FFFBEB",
+      "textColor": "#111827",
+      "accentColor": "#7C2D12",
+      "contrastRatios": {
+        "titleOnPanel": 17.11,
+        "authorOnPanel": 9.94,
+        "badgeOnAccent": 9.37
+      },
+      "textBlocks": {
+        "titleLines": [
+          "Kiêu hãnh và định",
+          "kiến"
+        ],
+        "authorLine": "Jane Austen",
+        "languageLabel": "Vietnamese edition"
+      },
+      "altText": {
+        "vi": "Bia minh hoa CaseFlow Books cho Kiêu hãnh và định kiến cua Jane Austen.",
+        "en": "CaseFlow Books illustrative cover for Pride and Prejudice by Jane Austen."
+      },
+      "source": {
+        "artworkKind": "project-created-vector",
+        "rightsBasis": "project-created",
+        "sourceLabel": "CaseFlow Books deterministic SVG cover pipeline",
+        "generationMethod": "Scripted vector artwork plus deterministic SVG text layout from the canonical v1.2 manifest.",
+        "commercialCoverReferenceUsed": false,
+        "referenceImageUrls": []
+      },
+      "provenance": {
+        "id": "00000000-0000-4000-8000-000000008502",
+        "entityType": "cover-asset",
+        "entityId": "00000000-0000-4000-8000-000000008002",
+        "fieldKey": "primary-cover",
+        "sourceLabel": "CaseFlow Books deterministic SVG cover pipeline",
+        "sourceUrl": null,
+        "checkedAt": "2026-07-17T00:00:00.000Z",
+        "contentKind": "media",
+        "rightsBasis": "project-created",
+        "rightsBasisNote": "Project-created SVG artwork generated from internal design rules and canonical edition metadata; no commercial cover image or layout reference was used.",
+        "license": null,
+        "attribution": {
+          "required": false,
+          "text": null,
+          "url": null,
+          "displayLocation": null
+        },
+        "reviewStatus": "approved",
+        "reviewerNote": "Pilot cover for pride-and-prejudice-vietnamese-special-edition; text rendered from canonical manifest data.",
+        "reviewedAt": "2026-07-17T01:00:00.000Z",
+        "editionMatchConfidence": "not-applicable",
+        "sourceEditionKey": null
+      },
+      "review": {
+        "status": "approved",
+        "checkedAt": "2026-07-17T01:00:00.000Z",
+        "reviewerNote": "Pilot asset reviewed as project-created vector artwork with no commercial cover reference."
+      }
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000008003",
+      "editionId": "00000000-0000-4000-8000-000000003008",
+      "workId": "00000000-0000-4000-8000-000000002008",
+      "pairId": "00000000-0000-4000-8000-000000006008",
+      "editionSlug": "the-adventures-of-sherlock-holmes-english-paperback",
+      "language": "en",
+      "title": "The Adventures of Sherlock Holmes",
+      "authors": [
+        "Arthur Conan Doyle"
+      ],
+      "categorySlugs": [
+        "mystery-thriller",
+        "classic-literature"
+      ],
+      "artFamilyKey": "detective-grid",
+      "conceptKey": "detective-grid",
+      "path": "/images/books/v12-pilot/the-adventures-of-sherlock-holmes-english-paperback.svg",
+      "dimensions": {
+        "width": 600,
+        "height": 900
+      },
+      "aspectRatio": "2:3",
+      "generatedAt": "2026-07-17T00:00:00.000Z",
+      "fileSizeBytes": 2770,
+      "checksumSha256": "e63685540efadb14934d47eb56f0e30e80160e580984b4cde6438f537f1d25b0",
+      "sizeBudgetBytes": 55000,
+      "backgroundColor": "#0F172A",
+      "panelColor": "#F8FAFC",
+      "textColor": "#111827",
+      "accentColor": "#B45309",
+      "contrastRatios": {
+        "titleOnPanel": 16.96,
+        "authorOnPanel": 7.24,
+        "badgeOnAccent": 5.02
+      },
+      "textBlocks": {
+        "titleLines": [
+          "The Adventures of",
+          "Sherlock Holmes"
+        ],
+        "authorLine": "Arthur Conan Doyle",
+        "languageLabel": "English edition"
+      },
+      "altText": {
+        "vi": "Bia minh hoa CaseFlow Books cho Những cuộc phiêu lưu của Sherlock Holmes cua Arthur Conan Doyle.",
+        "en": "CaseFlow Books illustrative cover for The Adventures of Sherlock Holmes by Arthur Conan Doyle."
+      },
+      "source": {
+        "artworkKind": "project-created-vector",
+        "rightsBasis": "project-created",
+        "sourceLabel": "CaseFlow Books deterministic SVG cover pipeline",
+        "generationMethod": "Scripted vector artwork plus deterministic SVG text layout from the canonical v1.2 manifest.",
+        "commercialCoverReferenceUsed": false,
+        "referenceImageUrls": []
+      },
+      "provenance": {
+        "id": "00000000-0000-4000-8000-000000008503",
+        "entityType": "cover-asset",
+        "entityId": "00000000-0000-4000-8000-000000008003",
+        "fieldKey": "primary-cover",
+        "sourceLabel": "CaseFlow Books deterministic SVG cover pipeline",
+        "sourceUrl": null,
+        "checkedAt": "2026-07-17T00:00:00.000Z",
+        "contentKind": "media",
+        "rightsBasis": "project-created",
+        "rightsBasisNote": "Project-created SVG artwork generated from internal design rules and canonical edition metadata; no commercial cover image or layout reference was used.",
+        "license": null,
+        "attribution": {
+          "required": false,
+          "text": null,
+          "url": null,
+          "displayLocation": null
+        },
+        "reviewStatus": "approved",
+        "reviewerNote": "Pilot cover for the-adventures-of-sherlock-holmes-english-paperback; text rendered from canonical manifest data.",
+        "reviewedAt": "2026-07-17T01:00:00.000Z",
+        "editionMatchConfidence": "not-applicable",
+        "sourceEditionKey": null
+      },
+      "review": {
+        "status": "approved",
+        "checkedAt": "2026-07-17T01:00:00.000Z",
+        "reviewerNote": "Pilot asset reviewed as project-created vector artwork with no commercial cover reference."
+      }
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000008004",
+      "editionId": "00000000-0000-4000-8000-000000004008",
+      "workId": "00000000-0000-4000-8000-000000002008",
+      "pairId": "00000000-0000-4000-8000-000000006008",
+      "editionSlug": "the-adventures-of-sherlock-holmes-vietnamese-paperback",
+      "language": "vi",
+      "title": "Những cuộc phiêu lưu của Sherlock Holmes",
+      "authors": [
+        "Arthur Conan Doyle"
+      ],
+      "categorySlugs": [
+        "mystery-thriller",
+        "classic-literature"
+      ],
+      "artFamilyKey": "detective-grid",
+      "conceptKey": "detective-grid",
+      "path": "/images/books/v12-pilot/the-adventures-of-sherlock-holmes-vietnamese-paperback.svg",
+      "dimensions": {
+        "width": 600,
+        "height": 900
+      },
+      "aspectRatio": "2:3",
+      "generatedAt": "2026-07-17T00:00:00.000Z",
+      "fileSizeBytes": 2981,
+      "checksumSha256": "559b5dc25a04f0ed22cad694c9b419eef36915ef6f4c54250aa50c0075b37142",
+      "sizeBudgetBytes": 55000,
+      "backgroundColor": "#0F172A",
+      "panelColor": "#F8FAFC",
+      "textColor": "#111827",
+      "accentColor": "#B45309",
+      "contrastRatios": {
+        "titleOnPanel": 16.96,
+        "authorOnPanel": 7.24,
+        "badgeOnAccent": 5.02
+      },
+      "textBlocks": {
+        "titleLines": [
+          "Những cuộc phiêu",
+          "lưu của Sherlock",
+          "Holmes"
+        ],
+        "authorLine": "Arthur Conan Doyle",
+        "languageLabel": "Vietnamese edition"
+      },
+      "altText": {
+        "vi": "Bia minh hoa CaseFlow Books cho Những cuộc phiêu lưu của Sherlock Holmes cua Arthur Conan Doyle.",
+        "en": "CaseFlow Books illustrative cover for The Adventures of Sherlock Holmes by Arthur Conan Doyle."
+      },
+      "source": {
+        "artworkKind": "project-created-vector",
+        "rightsBasis": "project-created",
+        "sourceLabel": "CaseFlow Books deterministic SVG cover pipeline",
+        "generationMethod": "Scripted vector artwork plus deterministic SVG text layout from the canonical v1.2 manifest.",
+        "commercialCoverReferenceUsed": false,
+        "referenceImageUrls": []
+      },
+      "provenance": {
+        "id": "00000000-0000-4000-8000-000000008504",
+        "entityType": "cover-asset",
+        "entityId": "00000000-0000-4000-8000-000000008004",
+        "fieldKey": "primary-cover",
+        "sourceLabel": "CaseFlow Books deterministic SVG cover pipeline",
+        "sourceUrl": null,
+        "checkedAt": "2026-07-17T00:00:00.000Z",
+        "contentKind": "media",
+        "rightsBasis": "project-created",
+        "rightsBasisNote": "Project-created SVG artwork generated from internal design rules and canonical edition metadata; no commercial cover image or layout reference was used.",
+        "license": null,
+        "attribution": {
+          "required": false,
+          "text": null,
+          "url": null,
+          "displayLocation": null
+        },
+        "reviewStatus": "approved",
+        "reviewerNote": "Pilot cover for the-adventures-of-sherlock-holmes-vietnamese-paperback; text rendered from canonical manifest data.",
+        "reviewedAt": "2026-07-17T01:00:00.000Z",
+        "editionMatchConfidence": "not-applicable",
+        "sourceEditionKey": null
+      },
+      "review": {
+        "status": "approved",
+        "checkedAt": "2026-07-17T01:00:00.000Z",
+        "reviewerNote": "Pilot asset reviewed as project-created vector artwork with no commercial cover reference."
+      }
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000008005",
+      "editionId": "00000000-0000-4000-8000-000000003018",
+      "workId": "00000000-0000-4000-8000-000000002018",
+      "pairId": "00000000-0000-4000-8000-000000006018",
+      "editionSlug": "the-war-of-the-worlds-english-paperback",
+      "language": "en",
+      "title": "The War of the Worlds",
+      "authors": [
+        "H. G. Wells"
+      ],
+      "categorySlugs": [
+        "fantasy-sci-fi",
+        "mystery-thriller"
+      ],
+      "artFamilyKey": "invasion-sky",
+      "conceptKey": "invasion-sky",
+      "path": "/images/books/v12-pilot/the-war-of-the-worlds-english-paperback.svg",
+      "dimensions": {
+        "width": 600,
+        "height": 900
+      },
+      "aspectRatio": "2:3",
+      "generatedAt": "2026-07-17T00:00:00.000Z",
+      "fileSizeBytes": 2674,
+      "checksumSha256": "7351c86104da2fa661e7b360ea4f1f0823d68af67467b344aacaf7d3ac7fbb8f",
+      "sizeBudgetBytes": 55000,
+      "backgroundColor": "#111827",
+      "panelColor": "#F9FAFB",
+      "textColor": "#111827",
+      "accentColor": "#991B1B",
+      "contrastRatios": {
+        "titleOnPanel": 16.98,
+        "authorOnPanel": 9.86,
+        "badgeOnAccent": 8.31
+      },
+      "textBlocks": {
+        "titleLines": [
+          "The War of the",
+          "Worlds"
+        ],
+        "authorLine": "H. G. Wells",
+        "languageLabel": "English edition"
+      },
+      "altText": {
+        "vi": "Bia minh hoa CaseFlow Books cho Chiến tranh giữa các thế giới cua H. G. Wells.",
+        "en": "CaseFlow Books illustrative cover for The War of the Worlds by H. G. Wells."
+      },
+      "source": {
+        "artworkKind": "project-created-vector",
+        "rightsBasis": "project-created",
+        "sourceLabel": "CaseFlow Books deterministic SVG cover pipeline",
+        "generationMethod": "Scripted vector artwork plus deterministic SVG text layout from the canonical v1.2 manifest.",
+        "commercialCoverReferenceUsed": false,
+        "referenceImageUrls": []
+      },
+      "provenance": {
+        "id": "00000000-0000-4000-8000-000000008505",
+        "entityType": "cover-asset",
+        "entityId": "00000000-0000-4000-8000-000000008005",
+        "fieldKey": "primary-cover",
+        "sourceLabel": "CaseFlow Books deterministic SVG cover pipeline",
+        "sourceUrl": null,
+        "checkedAt": "2026-07-17T00:00:00.000Z",
+        "contentKind": "media",
+        "rightsBasis": "project-created",
+        "rightsBasisNote": "Project-created SVG artwork generated from internal design rules and canonical edition metadata; no commercial cover image or layout reference was used.",
+        "license": null,
+        "attribution": {
+          "required": false,
+          "text": null,
+          "url": null,
+          "displayLocation": null
+        },
+        "reviewStatus": "approved",
+        "reviewerNote": "Pilot cover for the-war-of-the-worlds-english-paperback; text rendered from canonical manifest data.",
+        "reviewedAt": "2026-07-17T01:00:00.000Z",
+        "editionMatchConfidence": "not-applicable",
+        "sourceEditionKey": null
+      },
+      "review": {
+        "status": "approved",
+        "checkedAt": "2026-07-17T01:00:00.000Z",
+        "reviewerNote": "Pilot asset reviewed as project-created vector artwork with no commercial cover reference."
+      }
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000008006",
+      "editionId": "00000000-0000-4000-8000-000000004018",
+      "workId": "00000000-0000-4000-8000-000000002018",
+      "pairId": "00000000-0000-4000-8000-000000006018",
+      "editionSlug": "the-war-of-the-worlds-vietnamese-paperback",
+      "language": "vi",
+      "title": "Chiến tranh giữa các thế giới",
+      "authors": [
+        "H. G. Wells"
+      ],
+      "categorySlugs": [
+        "fantasy-sci-fi",
+        "mystery-thriller"
+      ],
+      "artFamilyKey": "invasion-sky",
+      "conceptKey": "invasion-sky",
+      "path": "/images/books/v12-pilot/the-war-of-the-worlds-vietnamese-paperback.svg",
+      "dimensions": {
+        "width": 600,
+        "height": 900
+      },
+      "aspectRatio": "2:3",
+      "generatedAt": "2026-07-17T00:00:00.000Z",
+      "fileSizeBytes": 2747,
+      "checksumSha256": "71b188be17f3c9533bb6e050b96a777af18cb533a5bc336f376e7c9b9724b0e8",
+      "sizeBudgetBytes": 55000,
+      "backgroundColor": "#111827",
+      "panelColor": "#F9FAFB",
+      "textColor": "#111827",
+      "accentColor": "#991B1B",
+      "contrastRatios": {
+        "titleOnPanel": 16.98,
+        "authorOnPanel": 9.86,
+        "badgeOnAccent": 8.31
+      },
+      "textBlocks": {
+        "titleLines": [
+          "Chiến tranh giữa",
+          "các thế giới"
+        ],
+        "authorLine": "H. G. Wells",
+        "languageLabel": "Vietnamese edition"
+      },
+      "altText": {
+        "vi": "Bia minh hoa CaseFlow Books cho Chiến tranh giữa các thế giới cua H. G. Wells.",
+        "en": "CaseFlow Books illustrative cover for The War of the Worlds by H. G. Wells."
+      },
+      "source": {
+        "artworkKind": "project-created-vector",
+        "rightsBasis": "project-created",
+        "sourceLabel": "CaseFlow Books deterministic SVG cover pipeline",
+        "generationMethod": "Scripted vector artwork plus deterministic SVG text layout from the canonical v1.2 manifest.",
+        "commercialCoverReferenceUsed": false,
+        "referenceImageUrls": []
+      },
+      "provenance": {
+        "id": "00000000-0000-4000-8000-000000008506",
+        "entityType": "cover-asset",
+        "entityId": "00000000-0000-4000-8000-000000008006",
+        "fieldKey": "primary-cover",
+        "sourceLabel": "CaseFlow Books deterministic SVG cover pipeline",
+        "sourceUrl": null,
+        "checkedAt": "2026-07-17T00:00:00.000Z",
+        "contentKind": "media",
+        "rightsBasis": "project-created",
+        "rightsBasisNote": "Project-created SVG artwork generated from internal design rules and canonical edition metadata; no commercial cover image or layout reference was used.",
+        "license": null,
+        "attribution": {
+          "required": false,
+          "text": null,
+          "url": null,
+          "displayLocation": null
+        },
+        "reviewStatus": "approved",
+        "reviewerNote": "Pilot cover for the-war-of-the-worlds-vietnamese-paperback; text rendered from canonical manifest data.",
+        "reviewedAt": "2026-07-17T01:00:00.000Z",
+        "editionMatchConfidence": "not-applicable",
+        "sourceEditionKey": null
+      },
+      "review": {
+        "status": "approved",
+        "checkedAt": "2026-07-17T01:00:00.000Z",
+        "reviewerNote": "Pilot asset reviewed as project-created vector artwork with no commercial cover reference."
+      }
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000008007",
+      "editionId": "00000000-0000-4000-8000-000000003019",
+      "workId": "00000000-0000-4000-8000-000000002019",
+      "pairId": "00000000-0000-4000-8000-000000006019",
+      "editionSlug": "alice-in-wonderland-english-paperback",
+      "language": "en",
+      "title": "Alice's Adventures in Wonderland",
+      "authors": [
+        "Lewis Carroll"
+      ],
+      "categorySlugs": [
+        "children-young-adult",
+        "fantasy-sci-fi"
+      ],
+      "artFamilyKey": "wonderland-doors",
+      "conceptKey": "wonderland-doors",
+      "path": "/images/books/v12-pilot/alice-in-wonderland-english-paperback.svg",
+      "dimensions": {
+        "width": 600,
+        "height": 900
+      },
+      "aspectRatio": "2:3",
+      "generatedAt": "2026-07-17T00:00:00.000Z",
+      "fileSizeBytes": 2917,
+      "checksumSha256": "98a0d397e8e53661c10f46998067266e495f393e05626068f7bc3679ef7c474e",
+      "sizeBudgetBytes": 55000,
+      "backgroundColor": "#FDF2F8",
+      "panelColor": "#FFFFFF",
+      "textColor": "#111827",
+      "accentColor": "#6D28D9",
+      "contrastRatios": {
+        "titleOnPanel": 17.74,
+        "authorOnPanel": 7.56,
+        "badgeOnAccent": 7.1
+      },
+      "textBlocks": {
+        "titleLines": [
+          "Alice's Adventures",
+          "in Wonderland"
+        ],
+        "authorLine": "Lewis Carroll",
+        "languageLabel": "English edition"
+      },
+      "altText": {
+        "vi": "Bia minh hoa CaseFlow Books cho Cuộc phiêu lưu của Alice ở xứ sở thần tiên cua Lewis Carroll.",
+        "en": "CaseFlow Books illustrative cover for Alice's Adventures in Wonderland by Lewis Carroll."
+      },
+      "source": {
+        "artworkKind": "project-created-vector",
+        "rightsBasis": "project-created",
+        "sourceLabel": "CaseFlow Books deterministic SVG cover pipeline",
+        "generationMethod": "Scripted vector artwork plus deterministic SVG text layout from the canonical v1.2 manifest.",
+        "commercialCoverReferenceUsed": false,
+        "referenceImageUrls": []
+      },
+      "provenance": {
+        "id": "00000000-0000-4000-8000-000000008507",
+        "entityType": "cover-asset",
+        "entityId": "00000000-0000-4000-8000-000000008007",
+        "fieldKey": "primary-cover",
+        "sourceLabel": "CaseFlow Books deterministic SVG cover pipeline",
+        "sourceUrl": null,
+        "checkedAt": "2026-07-17T00:00:00.000Z",
+        "contentKind": "media",
+        "rightsBasis": "project-created",
+        "rightsBasisNote": "Project-created SVG artwork generated from internal design rules and canonical edition metadata; no commercial cover image or layout reference was used.",
+        "license": null,
+        "attribution": {
+          "required": false,
+          "text": null,
+          "url": null,
+          "displayLocation": null
+        },
+        "reviewStatus": "approved",
+        "reviewerNote": "Pilot cover for alice-in-wonderland-english-paperback; text rendered from canonical manifest data.",
+        "reviewedAt": "2026-07-17T01:00:00.000Z",
+        "editionMatchConfidence": "not-applicable",
+        "sourceEditionKey": null
+      },
+      "review": {
+        "status": "approved",
+        "checkedAt": "2026-07-17T01:00:00.000Z",
+        "reviewerNote": "Pilot asset reviewed as project-created vector artwork with no commercial cover reference."
+      }
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000008008",
+      "editionId": "00000000-0000-4000-8000-000000004019",
+      "workId": "00000000-0000-4000-8000-000000002019",
+      "pairId": "00000000-0000-4000-8000-000000006019",
+      "editionSlug": "alice-in-wonderland-vietnamese-paperback",
+      "language": "vi",
+      "title": "Cuộc phiêu lưu của Alice ở xứ sở thần tiên",
+      "authors": [
+        "Lewis Carroll"
+      ],
+      "categorySlugs": [
+        "children-young-adult",
+        "fantasy-sci-fi"
+      ],
+      "artFamilyKey": "wonderland-doors",
+      "conceptKey": "wonderland-doors",
+      "path": "/images/books/v12-pilot/alice-in-wonderland-vietnamese-paperback.svg",
+      "dimensions": {
+        "width": 600,
+        "height": 900
+      },
+      "aspectRatio": "2:3",
+      "generatedAt": "2026-07-17T00:00:00.000Z",
+      "fileSizeBytes": 3168,
+      "checksumSha256": "604b0a245136cc04d94da25490e5e6587ae51053ae08f0ef322febba86f6a825",
+      "sizeBudgetBytes": 55000,
+      "backgroundColor": "#FDF2F8",
+      "panelColor": "#FFFFFF",
+      "textColor": "#111827",
+      "accentColor": "#6D28D9",
+      "contrastRatios": {
+        "titleOnPanel": 17.74,
+        "authorOnPanel": 7.56,
+        "badgeOnAccent": 7.1
+      },
+      "textBlocks": {
+        "titleLines": [
+          "Cuộc phiêu lưu của",
+          "Alice ở xứ sở thần",
+          "tiên"
+        ],
+        "authorLine": "Lewis Carroll",
+        "languageLabel": "Vietnamese edition"
+      },
+      "altText": {
+        "vi": "Bia minh hoa CaseFlow Books cho Cuộc phiêu lưu của Alice ở xứ sở thần tiên cua Lewis Carroll.",
+        "en": "CaseFlow Books illustrative cover for Alice's Adventures in Wonderland by Lewis Carroll."
+      },
+      "source": {
+        "artworkKind": "project-created-vector",
+        "rightsBasis": "project-created",
+        "sourceLabel": "CaseFlow Books deterministic SVG cover pipeline",
+        "generationMethod": "Scripted vector artwork plus deterministic SVG text layout from the canonical v1.2 manifest.",
+        "commercialCoverReferenceUsed": false,
+        "referenceImageUrls": []
+      },
+      "provenance": {
+        "id": "00000000-0000-4000-8000-000000008508",
+        "entityType": "cover-asset",
+        "entityId": "00000000-0000-4000-8000-000000008008",
+        "fieldKey": "primary-cover",
+        "sourceLabel": "CaseFlow Books deterministic SVG cover pipeline",
+        "sourceUrl": null,
+        "checkedAt": "2026-07-17T00:00:00.000Z",
+        "contentKind": "media",
+        "rightsBasis": "project-created",
+        "rightsBasisNote": "Project-created SVG artwork generated from internal design rules and canonical edition metadata; no commercial cover image or layout reference was used.",
+        "license": null,
+        "attribution": {
+          "required": false,
+          "text": null,
+          "url": null,
+          "displayLocation": null
+        },
+        "reviewStatus": "approved",
+        "reviewerNote": "Pilot cover for alice-in-wonderland-vietnamese-paperback; text rendered from canonical manifest data.",
+        "reviewedAt": "2026-07-17T01:00:00.000Z",
+        "editionMatchConfidence": "not-applicable",
+        "sourceEditionKey": null
+      },
+      "review": {
+        "status": "approved",
+        "checkedAt": "2026-07-17T01:00:00.000Z",
+        "reviewerNote": "Pilot asset reviewed as project-created vector artwork with no commercial cover reference."
+      }
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000008009",
+      "editionId": "00000000-0000-4000-8000-000000007100",
+      "workId": "00000000-0000-4000-8000-000000007000",
+      "pairId": "00000000-0000-4000-8000-000000007050",
+      "editionSlug": "the-old-man-and-the-sea-english-paperback",
+      "language": "en",
+      "title": "The Old Man and the Sea",
+      "authors": [
+        "Ernest Hemingway"
+      ],
+      "categorySlugs": [
+        "classic-literature",
+        "fiction"
+      ],
+      "artFamilyKey": "sea-current",
+      "conceptKey": "sea-current",
+      "path": "/images/books/v12-pilot/the-old-man-and-the-sea-english-paperback.svg",
+      "dimensions": {
+        "width": 600,
+        "height": 900
+      },
+      "aspectRatio": "2:3",
+      "generatedAt": "2026-07-17T00:00:00.000Z",
+      "fileSizeBytes": 2807,
+      "checksumSha256": "6ab5f4cd24161f8a70b11a8bfa40376100d316011140917549f6a8636a802791",
+      "sizeBudgetBytes": 55000,
+      "backgroundColor": "#E0F2FE",
+      "panelColor": "#F8FAFC",
+      "textColor": "#111827",
+      "accentColor": "#0F766E",
+      "contrastRatios": {
+        "titleOnPanel": 16.96,
+        "authorOnPanel": 9.9,
+        "badgeOnAccent": 5.47
+      },
+      "textBlocks": {
+        "titleLines": [
+          "The Old Man and",
+          "the Sea"
+        ],
+        "authorLine": "Ernest Hemingway",
+        "languageLabel": "English edition"
+      },
+      "altText": {
+        "vi": "Bia minh hoa CaseFlow Books cho Ông già và biển cả cua Ernest Hemingway.",
+        "en": "CaseFlow Books illustrative cover for The Old Man and the Sea by Ernest Hemingway."
+      },
+      "source": {
+        "artworkKind": "project-created-vector",
+        "rightsBasis": "project-created",
+        "sourceLabel": "CaseFlow Books deterministic SVG cover pipeline",
+        "generationMethod": "Scripted vector artwork plus deterministic SVG text layout from the canonical v1.2 manifest.",
+        "commercialCoverReferenceUsed": false,
+        "referenceImageUrls": []
+      },
+      "provenance": {
+        "id": "00000000-0000-4000-8000-000000008509",
+        "entityType": "cover-asset",
+        "entityId": "00000000-0000-4000-8000-000000008009",
+        "fieldKey": "primary-cover",
+        "sourceLabel": "CaseFlow Books deterministic SVG cover pipeline",
+        "sourceUrl": null,
+        "checkedAt": "2026-07-17T00:00:00.000Z",
+        "contentKind": "media",
+        "rightsBasis": "project-created",
+        "rightsBasisNote": "Project-created SVG artwork generated from internal design rules and canonical edition metadata; no commercial cover image or layout reference was used.",
+        "license": null,
+        "attribution": {
+          "required": false,
+          "text": null,
+          "url": null,
+          "displayLocation": null
+        },
+        "reviewStatus": "approved",
+        "reviewerNote": "Pilot cover for the-old-man-and-the-sea-english-paperback; text rendered from canonical manifest data.",
+        "reviewedAt": "2026-07-17T01:00:00.000Z",
+        "editionMatchConfidence": "not-applicable",
+        "sourceEditionKey": null
+      },
+      "review": {
+        "status": "approved",
+        "checkedAt": "2026-07-17T01:00:00.000Z",
+        "reviewerNote": "Pilot asset reviewed as project-created vector artwork with no commercial cover reference."
+      }
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000008010",
+      "editionId": "00000000-0000-4000-8000-000000007200",
+      "workId": "00000000-0000-4000-8000-000000007000",
+      "pairId": "00000000-0000-4000-8000-000000007050",
+      "editionSlug": "the-old-man-and-the-sea-vietnamese-paperback",
+      "language": "vi",
+      "title": "Ông già và biển cả",
+      "authors": [
+        "Ernest Hemingway"
+      ],
+      "categorySlugs": [
+        "classic-literature",
+        "fiction"
+      ],
+      "artFamilyKey": "sea-current",
+      "conceptKey": "sea-current",
+      "path": "/images/books/v12-pilot/the-old-man-and-the-sea-vietnamese-paperback.svg",
+      "dimensions": {
+        "width": 600,
+        "height": 900
+      },
+      "aspectRatio": "2:3",
+      "generatedAt": "2026-07-17T00:00:00.000Z",
+      "fileSizeBytes": 2662,
+      "checksumSha256": "bccc70ced336d7172dac348dc2e3194014b17a612fa188f3ec703cf91656b4dc",
+      "sizeBudgetBytes": 55000,
+      "backgroundColor": "#E0F2FE",
+      "panelColor": "#F8FAFC",
+      "textColor": "#111827",
+      "accentColor": "#0F766E",
+      "contrastRatios": {
+        "titleOnPanel": 16.96,
+        "authorOnPanel": 9.9,
+        "badgeOnAccent": 5.47
+      },
+      "textBlocks": {
+        "titleLines": [
+          "Ông già và biển cả"
+        ],
+        "authorLine": "Ernest Hemingway",
+        "languageLabel": "Vietnamese edition"
+      },
+      "altText": {
+        "vi": "Bia minh hoa CaseFlow Books cho Ông già và biển cả cua Ernest Hemingway.",
+        "en": "CaseFlow Books illustrative cover for The Old Man and the Sea by Ernest Hemingway."
+      },
+      "source": {
+        "artworkKind": "project-created-vector",
+        "rightsBasis": "project-created",
+        "sourceLabel": "CaseFlow Books deterministic SVG cover pipeline",
+        "generationMethod": "Scripted vector artwork plus deterministic SVG text layout from the canonical v1.2 manifest.",
+        "commercialCoverReferenceUsed": false,
+        "referenceImageUrls": []
+      },
+      "provenance": {
+        "id": "00000000-0000-4000-8000-000000008510",
+        "entityType": "cover-asset",
+        "entityId": "00000000-0000-4000-8000-000000008010",
+        "fieldKey": "primary-cover",
+        "sourceLabel": "CaseFlow Books deterministic SVG cover pipeline",
+        "sourceUrl": null,
+        "checkedAt": "2026-07-17T00:00:00.000Z",
+        "contentKind": "media",
+        "rightsBasis": "project-created",
+        "rightsBasisNote": "Project-created SVG artwork generated from internal design rules and canonical edition metadata; no commercial cover image or layout reference was used.",
+        "license": null,
+        "attribution": {
+          "required": false,
+          "text": null,
+          "url": null,
+          "displayLocation": null
+        },
+        "reviewStatus": "approved",
+        "reviewerNote": "Pilot cover for the-old-man-and-the-sea-vietnamese-paperback; text rendered from canonical manifest data.",
+        "reviewedAt": "2026-07-17T01:00:00.000Z",
+        "editionMatchConfidence": "not-applicable",
+        "sourceEditionKey": null
+      },
+      "review": {
+        "status": "approved",
+        "checkedAt": "2026-07-17T01:00:00.000Z",
+        "reviewerNote": "Pilot asset reviewed as project-created vector artwork with no commercial cover reference."
+      }
+    }
+  ]
+}

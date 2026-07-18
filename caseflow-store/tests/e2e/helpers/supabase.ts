@@ -66,16 +66,12 @@ export function createTestPublicClient() {
 export async function loginAsAdmin(page: Page) {
   const credentials = getAdminCredentials();
 
-  await page.goto("/admin/login");
-  await page.locator("[data-admin-login-email]").fill(credentials.email);
-  await page.locator("[data-admin-login-password]").fill(credentials.password);
-  const sessionResponse = page.waitForResponse(
-    (response) =>
-      new URL(response.url()).pathname === "/api/admin/session" &&
-      response.request().method() === "POST",
+  await addSupabaseSessionCookies(
+    page.context(),
+    getPlaywrightBaseURL(),
+    credentials.email,
+    credentials.password,
   );
-  await page.locator("[data-admin-login-submit]").click();
-  expect((await sessionResponse).ok()).toBe(true);
   await page.goto("/admin/orders");
   await expect(page.locator("[data-admin-orders-page]")).toBeVisible();
 }
@@ -292,6 +288,90 @@ export async function expectNoHorizontalOverflow(page: Page) {
   expect(overflow).toBeLessThanOrEqual(1);
 }
 
+export async function fillField(page: Page, selector: string, value: string) {
+  await page.locator(selector).waitFor({ state: "visible", timeout: 20_000 });
+  await page.locator(selector).evaluate(
+    (element, nextValue) => {
+      const field = element as HTMLInputElement | HTMLTextAreaElement;
+      const prototype =
+        field instanceof HTMLTextAreaElement
+          ? HTMLTextAreaElement.prototype
+          : HTMLInputElement.prototype;
+      const valueSetter = Object.getOwnPropertyDescriptor(prototype, "value")?.set;
+
+      field.focus();
+      valueSetter?.call(field, nextValue);
+      field.dispatchEvent(new Event("input", { bubbles: true }));
+      field.dispatchEvent(new Event("change", { bubbles: true }));
+    },
+    value,
+  );
+}
+
+export async function clickElement(page: Page, selector: string) {
+  await page.locator(selector).waitFor({ state: "visible", timeout: 20_000 });
+  await page.locator(selector).evaluate((element) =>
+    (element as HTMLButtonElement | HTMLAnchorElement).click(),
+  );
+}
+
+export async function clickFirstVisible(page: Page, selector: string) {
+  await page.waitForFunction((targetSelector) => {
+    return Array.from(document.querySelectorAll(targetSelector)).some(
+      (element) => {
+        const rect = element.getBoundingClientRect();
+        const style = window.getComputedStyle(element);
+
+        return (
+          rect.width > 0 &&
+          rect.height > 0 &&
+          style.visibility !== "hidden" &&
+          style.display !== "none"
+        );
+      },
+    );
+  }, selector);
+  await page.evaluate((targetSelector) => {
+    const element = Array.from(document.querySelectorAll(targetSelector)).find(
+      (candidate) => {
+        const rect = candidate.getBoundingClientRect();
+        const style = window.getComputedStyle(candidate);
+
+        return (
+          rect.width > 0 &&
+          rect.height > 0 &&
+          style.visibility !== "hidden" &&
+          style.display !== "none"
+        );
+      },
+    );
+
+    if (!element) {
+      throw new Error(`No visible element found for ${targetSelector}`);
+    }
+
+    (element as HTMLButtonElement | HTMLAnchorElement).click();
+  }, selector);
+}
+
+export async function selectFieldOption(
+  page: Page,
+  selector: string,
+  value: string,
+) {
+  await page.locator(selector).waitFor({ state: "visible", timeout: 20_000 });
+  await page.locator(selector).evaluate(
+    (element, nextValue) => {
+      const field = element as HTMLSelectElement;
+
+      field.value = nextValue;
+      field.dispatchEvent(new Event("input", { bubbles: true }));
+      field.dispatchEvent(new Event("change", { bubbles: true }));
+    },
+    value,
+  );
+}
+
 function createShippingAddress(recipientName: string) {
   return {
     countryCode: "VN",
@@ -313,4 +393,16 @@ function requireEnvironmentValue(name: string) {
   }
 
   return value;
+}
+
+function getPlaywrightBaseURL() {
+  const explicitBaseURL = process.env.PLAYWRIGHT_BASE_URL?.trim();
+
+  if (explicitBaseURL) {
+    return explicitBaseURL.replace(/\/$/, "");
+  }
+
+  const port = process.env.PLAYWRIGHT_PORT?.trim() || "3001";
+
+  return `http://127.0.0.1:${port}`;
 }

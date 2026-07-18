@@ -1,0 +1,1180 @@
+{
+  "taskId": "V12-T11",
+  "generatedAt": "2026-07-17T21:03:00.667Z",
+  "ok": true,
+  "tableCount": 5,
+  "columns": [
+    {
+      "table_name": "book_catalog_compatibility",
+      "column_name": "id",
+      "data_type": "uuid",
+      "is_nullable": "NO",
+      "column_default": "gen_random_uuid()"
+    },
+    {
+      "table_name": "book_catalog_compatibility",
+      "column_name": "legacy_entity_type",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "book_catalog_compatibility",
+      "column_name": "legacy_id",
+      "data_type": "uuid",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "book_catalog_compatibility",
+      "column_name": "legacy_slug",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "book_catalog_compatibility",
+      "column_name": "behavior",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "book_catalog_compatibility",
+      "column_name": "target_slug",
+      "data_type": "text",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_name": "book_catalog_compatibility",
+      "column_name": "reason",
+      "data_type": "jsonb",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "book_catalog_compatibility",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO",
+      "column_default": "timezone('utc'::text, now())"
+    },
+    {
+      "table_name": "book_catalog_compatibility",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO",
+      "column_default": "timezone('utc'::text, now())"
+    },
+    {
+      "table_name": "book_catalog_provenance_records",
+      "column_name": "id",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "book_catalog_provenance_records",
+      "column_name": "entity_type",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "book_catalog_provenance_records",
+      "column_name": "entity_id",
+      "data_type": "uuid",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "book_catalog_provenance_records",
+      "column_name": "field_key",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "book_catalog_provenance_records",
+      "column_name": "source_label",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "book_catalog_provenance_records",
+      "column_name": "source_url",
+      "data_type": "text",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_name": "book_catalog_provenance_records",
+      "column_name": "checked_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "book_catalog_provenance_records",
+      "column_name": "content_kind",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "book_catalog_provenance_records",
+      "column_name": "rights_basis",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "book_catalog_provenance_records",
+      "column_name": "rights_basis_note",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "book_catalog_provenance_records",
+      "column_name": "license",
+      "data_type": "jsonb",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_name": "book_catalog_provenance_records",
+      "column_name": "attribution",
+      "data_type": "jsonb",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "book_catalog_provenance_records",
+      "column_name": "review_status",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "book_catalog_provenance_records",
+      "column_name": "reviewer_note",
+      "data_type": "text",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_name": "book_catalog_provenance_records",
+      "column_name": "reviewed_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_name": "book_catalog_provenance_records",
+      "column_name": "edition_match_confidence",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "book_catalog_provenance_records",
+      "column_name": "source_edition_key",
+      "data_type": "text",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_name": "book_catalog_provenance_records",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO",
+      "column_default": "timezone('utc'::text, now())"
+    },
+    {
+      "table_name": "book_catalog_provenance_records",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO",
+      "column_default": "timezone('utc'::text, now())"
+    },
+    {
+      "table_name": "book_content_quality_checks",
+      "column_name": "id",
+      "data_type": "uuid",
+      "is_nullable": "NO",
+      "column_default": "gen_random_uuid()"
+    },
+    {
+      "table_name": "book_content_quality_checks",
+      "column_name": "edition_id",
+      "data_type": "uuid",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "book_content_quality_checks",
+      "column_name": "requirement",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "book_content_quality_checks",
+      "column_name": "requirement_level",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "book_content_quality_checks",
+      "column_name": "status",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "book_content_quality_checks",
+      "column_name": "provenance_record_id",
+      "data_type": "text",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_name": "book_content_quality_checks",
+      "column_name": "note",
+      "data_type": "text",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_name": "book_content_quality_checks",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO",
+      "column_default": "timezone('utc'::text, now())"
+    },
+    {
+      "table_name": "book_content_quality_checks",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO",
+      "column_default": "timezone('utc'::text, now())"
+    },
+    {
+      "table_name": "book_editions",
+      "column_name": "pair_id",
+      "data_type": "uuid",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_name": "book_editions",
+      "column_name": "paired_edition_id",
+      "data_type": "uuid",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_name": "book_editions",
+      "column_name": "reason_to_read",
+      "data_type": "jsonb",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_name": "book_editions",
+      "column_name": "display_facts",
+      "data_type": "jsonb",
+      "is_nullable": "NO",
+      "column_default": "'[]'::jsonb"
+    },
+    {
+      "table_name": "book_editions",
+      "column_name": "omitted_optional_fact_keys",
+      "data_type": "ARRAY",
+      "is_nullable": "NO",
+      "column_default": "'{}'::text[]"
+    },
+    {
+      "table_name": "book_editions",
+      "column_name": "source_edition_key",
+      "data_type": "text",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_name": "book_editions",
+      "column_name": "source_review_status",
+      "data_type": "text",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_name": "book_merchandising_shelf_items",
+      "column_name": "id",
+      "data_type": "uuid",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "book_merchandising_shelf_items",
+      "column_name": "shelf_id",
+      "data_type": "uuid",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "book_merchandising_shelf_items",
+      "column_name": "edition_id",
+      "data_type": "uuid",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "book_merchandising_shelf_items",
+      "column_name": "position",
+      "data_type": "integer",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "book_merchandising_shelf_items",
+      "column_name": "is_active",
+      "data_type": "boolean",
+      "is_nullable": "NO",
+      "column_default": "true"
+    },
+    {
+      "table_name": "book_merchandising_shelf_items",
+      "column_name": "note",
+      "data_type": "text",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_name": "book_merchandising_shelf_items",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO",
+      "column_default": "timezone('utc'::text, now())"
+    },
+    {
+      "table_name": "book_merchandising_shelf_items",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO",
+      "column_default": "timezone('utc'::text, now())"
+    },
+    {
+      "table_name": "book_merchandising_shelves",
+      "column_name": "id",
+      "data_type": "uuid",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "book_merchandising_shelves",
+      "column_name": "slug",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "book_merchandising_shelves",
+      "column_name": "shelf_type",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "book_merchandising_shelves",
+      "column_name": "source_kind",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "book_merchandising_shelves",
+      "column_name": "labels",
+      "data_type": "jsonb",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "book_merchandising_shelves",
+      "column_name": "description",
+      "data_type": "jsonb",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "book_merchandising_shelves",
+      "column_name": "inclusion_rule",
+      "data_type": "jsonb",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "book_merchandising_shelves",
+      "column_name": "starts_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_name": "book_merchandising_shelves",
+      "column_name": "ends_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_name": "book_merchandising_shelves",
+      "column_name": "is_active",
+      "data_type": "boolean",
+      "is_nullable": "NO",
+      "column_default": "false"
+    },
+    {
+      "table_name": "book_merchandising_shelves",
+      "column_name": "sort_order",
+      "data_type": "integer",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "book_merchandising_shelves",
+      "column_name": "min_items",
+      "data_type": "integer",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "book_merchandising_shelves",
+      "column_name": "max_items",
+      "data_type": "integer",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "book_merchandising_shelves",
+      "column_name": "fallback",
+      "data_type": "jsonb",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "book_merchandising_shelves",
+      "column_name": "required_permission",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": "'merchandising:manage'::text"
+    },
+    {
+      "table_name": "book_merchandising_shelves",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO",
+      "column_default": "timezone('utc'::text, now())"
+    },
+    {
+      "table_name": "book_merchandising_shelves",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO",
+      "column_default": "timezone('utc'::text, now())"
+    }
+  ],
+  "constraints": [
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_compare_at_price_gte_price",
+      "contype": "c",
+      "definition": "CHECK (((compare_at_price_vnd IS NULL) OR (compare_at_price_vnd >= price_vnd)))"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_compare_at_price_vnd_range",
+      "contype": "c",
+      "definition": "CHECK (((compare_at_price_vnd IS NULL) OR ((compare_at_price_vnd >= 0) AND (compare_at_price_vnd <= 50000000))))"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_cover_asset_id_fkey",
+      "contype": "f",
+      "definition": "FOREIGN KEY (cover_asset_id) REFERENCES book_cover_assets(id) ON UPDATE CASCADE ON DELETE SET NULL"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_dimensions_shape",
+      "contype": "c",
+      "definition": "CHECK (\nCASE\n    WHEN (dimensions IS NULL) THEN true\n    WHEN (jsonb_typeof(dimensions) <> 'object'::text) THEN false\n    ELSE (\n    CASE\n        WHEN (jsonb_typeof((dimensions -> 'widthMm'::text)) = 'number'::text) THEN ((((dimensions ->> 'widthMm'::text))::numeric >= (1)::numeric) AND (((dimensions ->> 'widthMm'::text))::numeric <= (1000)::numeric))\n        ELSE false\n    END AND\n    CASE\n        WHEN (jsonb_typeof((dimensions -> 'heightMm'::text)) = 'number'::text) THEN ((((dimensions ->> 'heightMm'::text))::numeric >= (1)::numeric) AND (((dimensions ->> 'heightMm'::text))::numeric <= (1000)::numeric))\n        ELSE false\n    END AND\n    CASE\n        WHEN ((NOT (dimensions ? 'thicknessMm'::text)) OR ((dimensions -> 'thicknessMm'::text) = 'null'::jsonb)) THEN true\n        WHEN (jsonb_typeof((dimensions -> 'thicknessMm'::text)) = 'number'::text) THEN ((((dimensions ->> 'thicknessMm'::text))::numeric >= (1)::numeric) AND (((dimensions ->> 'thicknessMm'::text))::numeric <= (1000)::numeric))\n        ELSE false\n    END)\nEND)"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_display_facts_shape",
+      "contype": "c",
+      "definition": "CHECK ((jsonb_typeof(display_facts) = 'array'::text))"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_display_title_length",
+      "contype": "c",
+      "definition": "CHECK (((char_length(display_title) >= 1) AND (char_length(display_title) <= 180)))"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_format_check",
+      "contype": "c",
+      "definition": "CHECK ((format = ANY (ARRAY['paperback'::text, 'hardcover'::text, 'box-set'::text, 'special-edition'::text])))"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_inventory_status_check",
+      "contype": "c",
+      "definition": "CHECK ((inventory_status = ANY (ARRAY['in-stock'::text, 'low-stock'::text, 'out-of-stock'::text, 'preorder'::text, 'discontinued'::text])))"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_isbn10_format",
+      "contype": "c",
+      "definition": "CHECK (((isbn10 IS NULL) OR (isbn10 ~ '^\\d{9}[\\dX]$'::text)))"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_isbn13_format",
+      "contype": "c",
+      "definition": "CHECK (((isbn13 IS NULL) OR (isbn13 ~ '^(978|979)\\d{10}$'::text)))"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_language_check",
+      "contype": "c",
+      "definition": "CHECK ((language = ANY (ARRAY['vi'::text, 'en'::text])))"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_localized_display_title_shape",
+      "contype": "c",
+      "definition": "CHECK ((jsonb_typeof(localized_display_title) = 'object'::text))"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_low_stock_threshold_range",
+      "contype": "c",
+      "definition": "CHECK (((low_stock_threshold >= 0) AND (low_stock_threshold <= 1000000)))"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_page_count_range",
+      "contype": "c",
+      "definition": "CHECK (((page_count IS NULL) OR ((page_count >= 1) AND (page_count <= 20000))))"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_pair_not_self",
+      "contype": "c",
+      "definition": "CHECK (((paired_edition_id IS NULL) OR (paired_edition_id <> id)))"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_paired_edition_id_fkey",
+      "contype": "f",
+      "definition": "FOREIGN KEY (paired_edition_id) REFERENCES book_editions(id) ON UPDATE CASCADE ON DELETE SET NULL NOT VALID"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_pkey",
+      "contype": "p",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_price_vnd_range",
+      "contype": "c",
+      "definition": "CHECK (((price_vnd >= 0) AND (price_vnd <= 50000000)))"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_publication_year_range",
+      "contype": "c",
+      "definition": "CHECK (((publication_year IS NULL) OR ((publication_year >= 1400) AND (publication_year <= 3000))))"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_publisher_id_fkey",
+      "contype": "f",
+      "definition": "FOREIGN KEY (publisher_id) REFERENCES book_publishers(id) ON UPDATE CASCADE ON DELETE SET NULL"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_reason_to_read_shape",
+      "contype": "c",
+      "definition": "CHECK (((reason_to_read IS NULL) OR ((jsonb_typeof(reason_to_read) = 'object'::text) AND ((char_length(COALESCE((reason_to_read ->> 'vi'::text), ''::text)) >= 1) AND (char_length(COALESCE((reason_to_read ->> 'vi'::text), ''::text)) <= 1200)) AND ((char_length(COALESCE((reason_to_read ->> 'en'::text), ''::text)) >= 1) AND (char_length(COALESCE((reason_to_read ->> 'en'::text), ''::text)) <= 1200)))))"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_sample_excerpt_policy_length",
+      "contype": "c",
+      "definition": "CHECK (((sample_excerpt_policy IS NULL) OR ((char_length(sample_excerpt_policy) >= 1) AND (char_length(sample_excerpt_policy) <= 300))))"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_slug_format",
+      "contype": "c",
+      "definition": "CHECK ((slug ~ '^[a-z0-9]+(-[a-z0-9]+)*$'::text))"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_slug_unique",
+      "contype": "u",
+      "definition": "UNIQUE (slug)"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_source_edition_key_length",
+      "contype": "c",
+      "definition": "CHECK (((source_edition_key IS NULL) OR ((char_length(source_edition_key) >= 3) AND (char_length(source_edition_key) <= 180))))"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_source_review_status_check",
+      "contype": "c",
+      "definition": "CHECK (((source_review_status IS NULL) OR (source_review_status = ANY (ARRAY['draft'::text, 'needs-review'::text, 'approved'::text, 'rejected'::text]))))"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_stock_quantity_range",
+      "contype": "c",
+      "definition": "CHECK (((stock_quantity >= 0) AND (stock_quantity <= 1000000)))"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_subtitle_length",
+      "contype": "c",
+      "definition": "CHECK (((subtitle IS NULL) OR ((char_length(subtitle) >= 1) AND (char_length(subtitle) <= 220))))"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_summary_shape",
+      "contype": "c",
+      "definition": "CHECK (((jsonb_typeof(summary) = 'object'::text) AND ((char_length(COALESCE((summary ->> 'vi'::text), ''::text)) >= 1) AND (char_length(COALESCE((summary ->> 'vi'::text), ''::text)) <= 1200)) AND ((char_length(COALESCE((summary ->> 'en'::text), ''::text)) >= 1) AND (char_length(COALESCE((summary ->> 'en'::text), ''::text)) <= 1200))))"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_table_of_contents_shape",
+      "contype": "c",
+      "definition": "CHECK (((table_of_contents IS NULL) OR ((jsonb_typeof(table_of_contents) = 'object'::text) AND ((char_length(COALESCE((table_of_contents ->> 'vi'::text), ''::text)) >= 1) AND (char_length(COALESCE((table_of_contents ->> 'vi'::text), ''::text)) <= 5000)) AND ((char_length(COALESCE((table_of_contents ->> 'en'::text), ''::text)) >= 1) AND (char_length(COALESCE((table_of_contents ->> 'en'::text), ''::text)) <= 5000)))))"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_weight_grams_range",
+      "contype": "c",
+      "definition": "CHECK (((weight_grams IS NULL) OR ((weight_grams >= 1) AND (weight_grams <= 50000))))"
+    },
+    {
+      "table_name": "book_editions",
+      "conname": "book_editions_work_id_fkey",
+      "contype": "f",
+      "definition": "FOREIGN KEY (work_id) REFERENCES book_works(id) ON UPDATE CASCADE ON DELETE RESTRICT"
+    }
+  ],
+  "indexes": [
+    {
+      "table_name": "book_catalog_compatibility",
+      "indexname": "book_catalog_compatibility_legacy_entity_type_legacy_id_key",
+      "indexdef": "CREATE UNIQUE INDEX book_catalog_compatibility_legacy_entity_type_legacy_id_key ON public.book_catalog_compatibility USING btree (legacy_entity_type, legacy_id)"
+    },
+    {
+      "table_name": "book_catalog_compatibility",
+      "indexname": "book_catalog_compatibility_legacy_entity_type_legacy_slug_key",
+      "indexdef": "CREATE UNIQUE INDEX book_catalog_compatibility_legacy_entity_type_legacy_slug_key ON public.book_catalog_compatibility USING btree (legacy_entity_type, legacy_slug)"
+    },
+    {
+      "table_name": "book_catalog_compatibility",
+      "indexname": "book_catalog_compatibility_pkey",
+      "indexdef": "CREATE UNIQUE INDEX book_catalog_compatibility_pkey ON public.book_catalog_compatibility USING btree (id)"
+    },
+    {
+      "table_name": "book_catalog_provenance_records",
+      "indexname": "book_catalog_provenance_entity_idx",
+      "indexdef": "CREATE INDEX book_catalog_provenance_entity_idx ON public.book_catalog_provenance_records USING btree (entity_type, entity_id)"
+    },
+    {
+      "table_name": "book_catalog_provenance_records",
+      "indexname": "book_catalog_provenance_records_pkey",
+      "indexdef": "CREATE UNIQUE INDEX book_catalog_provenance_records_pkey ON public.book_catalog_provenance_records USING btree (id)"
+    },
+    {
+      "table_name": "book_catalog_provenance_records",
+      "indexname": "book_catalog_provenance_review_status_idx",
+      "indexdef": "CREATE INDEX book_catalog_provenance_review_status_idx ON public.book_catalog_provenance_records USING btree (review_status)"
+    },
+    {
+      "table_name": "book_content_quality_checks",
+      "indexname": "book_content_quality_checks_edition_id_requirement_key",
+      "indexdef": "CREATE UNIQUE INDEX book_content_quality_checks_edition_id_requirement_key ON public.book_content_quality_checks USING btree (edition_id, requirement)"
+    },
+    {
+      "table_name": "book_content_quality_checks",
+      "indexname": "book_content_quality_checks_edition_idx",
+      "indexdef": "CREATE INDEX book_content_quality_checks_edition_idx ON public.book_content_quality_checks USING btree (edition_id, requirement_level, status)"
+    },
+    {
+      "table_name": "book_content_quality_checks",
+      "indexname": "book_content_quality_checks_pkey",
+      "indexdef": "CREATE UNIQUE INDEX book_content_quality_checks_pkey ON public.book_content_quality_checks USING btree (id)"
+    },
+    {
+      "table_name": "book_editions",
+      "indexname": "book_editions_featured_active_idx",
+      "indexdef": "CREATE INDEX book_editions_featured_active_idx ON public.book_editions USING btree (is_featured, is_active)"
+    },
+    {
+      "table_name": "book_editions",
+      "indexname": "book_editions_inventory_status_idx",
+      "indexdef": "CREATE INDEX book_editions_inventory_status_idx ON public.book_editions USING btree (inventory_status, stock_quantity)"
+    },
+    {
+      "table_name": "book_editions",
+      "indexname": "book_editions_isbn10_unique_idx",
+      "indexdef": "CREATE UNIQUE INDEX book_editions_isbn10_unique_idx ON public.book_editions USING btree (isbn10) WHERE (isbn10 IS NOT NULL)"
+    },
+    {
+      "table_name": "book_editions",
+      "indexname": "book_editions_isbn13_unique_idx",
+      "indexdef": "CREATE UNIQUE INDEX book_editions_isbn13_unique_idx ON public.book_editions USING btree (isbn13) WHERE (isbn13 IS NOT NULL)"
+    },
+    {
+      "table_name": "book_editions",
+      "indexname": "book_editions_language_format_idx",
+      "indexdef": "CREATE INDEX book_editions_language_format_idx ON public.book_editions USING btree (language, format)"
+    },
+    {
+      "table_name": "book_editions",
+      "indexname": "book_editions_pair_id_idx",
+      "indexdef": "CREATE INDEX book_editions_pair_id_idx ON public.book_editions USING btree (pair_id) WHERE (pair_id IS NOT NULL)"
+    },
+    {
+      "table_name": "book_editions",
+      "indexname": "book_editions_paired_edition_id_idx",
+      "indexdef": "CREATE INDEX book_editions_paired_edition_id_idx ON public.book_editions USING btree (paired_edition_id) WHERE (paired_edition_id IS NOT NULL)"
+    },
+    {
+      "table_name": "book_editions",
+      "indexname": "book_editions_pkey",
+      "indexdef": "CREATE UNIQUE INDEX book_editions_pkey ON public.book_editions USING btree (id)"
+    },
+    {
+      "table_name": "book_editions",
+      "indexname": "book_editions_slug_unique",
+      "indexdef": "CREATE UNIQUE INDEX book_editions_slug_unique ON public.book_editions USING btree (slug)"
+    },
+    {
+      "table_name": "book_editions",
+      "indexname": "book_editions_source_review_status_idx",
+      "indexdef": "CREATE INDEX book_editions_source_review_status_idx ON public.book_editions USING btree (source_review_status) WHERE (source_review_status IS NOT NULL)"
+    },
+    {
+      "table_name": "book_editions",
+      "indexname": "book_editions_work_active_idx",
+      "indexdef": "CREATE INDEX book_editions_work_active_idx ON public.book_editions USING btree (work_id, is_active)"
+    },
+    {
+      "table_name": "book_merchandising_shelf_items",
+      "indexname": "book_merchandising_shelf_items_edition_idx",
+      "indexdef": "CREATE INDEX book_merchandising_shelf_items_edition_idx ON public.book_merchandising_shelf_items USING btree (edition_id)"
+    },
+    {
+      "table_name": "book_merchandising_shelf_items",
+      "indexname": "book_merchandising_shelf_items_pkey",
+      "indexdef": "CREATE UNIQUE INDEX book_merchandising_shelf_items_pkey ON public.book_merchandising_shelf_items USING btree (id)"
+    },
+    {
+      "table_name": "book_merchandising_shelf_items",
+      "indexname": "book_merchandising_shelf_items_shelf_id_edition_id_key",
+      "indexdef": "CREATE UNIQUE INDEX book_merchandising_shelf_items_shelf_id_edition_id_key ON public.book_merchandising_shelf_items USING btree (shelf_id, edition_id)"
+    },
+    {
+      "table_name": "book_merchandising_shelf_items",
+      "indexname": "book_merchandising_shelf_items_shelf_id_position_key",
+      "indexdef": "CREATE UNIQUE INDEX book_merchandising_shelf_items_shelf_id_position_key ON public.book_merchandising_shelf_items USING btree (shelf_id, \"position\")"
+    },
+    {
+      "table_name": "book_merchandising_shelf_items",
+      "indexname": "book_merchandising_shelf_items_shelf_order_idx",
+      "indexdef": "CREATE INDEX book_merchandising_shelf_items_shelf_order_idx ON public.book_merchandising_shelf_items USING btree (shelf_id, is_active, \"position\")"
+    },
+    {
+      "table_name": "book_merchandising_shelves",
+      "indexname": "book_merchandising_shelves_active_order_idx",
+      "indexdef": "CREATE INDEX book_merchandising_shelves_active_order_idx ON public.book_merchandising_shelves USING btree (is_active, sort_order)"
+    },
+    {
+      "table_name": "book_merchandising_shelves",
+      "indexname": "book_merchandising_shelves_pkey",
+      "indexdef": "CREATE UNIQUE INDEX book_merchandising_shelves_pkey ON public.book_merchandising_shelves USING btree (id)"
+    },
+    {
+      "table_name": "book_merchandising_shelves",
+      "indexname": "book_merchandising_shelves_slug_key",
+      "indexdef": "CREATE UNIQUE INDEX book_merchandising_shelves_slug_key ON public.book_merchandising_shelves USING btree (slug)"
+    }
+  ],
+  "rls": [
+    {
+      "table_name": "book_catalog_compatibility",
+      "relrowsecurity": true,
+      "relforcerowsecurity": false
+    },
+    {
+      "table_name": "book_catalog_provenance_records",
+      "relrowsecurity": true,
+      "relforcerowsecurity": false
+    },
+    {
+      "table_name": "book_content_quality_checks",
+      "relrowsecurity": true,
+      "relforcerowsecurity": false
+    },
+    {
+      "table_name": "book_merchandising_shelf_items",
+      "relrowsecurity": true,
+      "relforcerowsecurity": false
+    },
+    {
+      "table_name": "book_merchandising_shelves",
+      "relrowsecurity": true,
+      "relforcerowsecurity": false
+    }
+  ],
+  "policies": [
+    {
+      "schemaname": "public",
+      "table_name": "book_catalog_compatibility",
+      "policyname": "Public can read catalog compatibility",
+      "roles": "{anon,authenticated}",
+      "cmd": "SELECT",
+      "qual": "true",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "table_name": "book_merchandising_shelf_items",
+      "policyname": "Public can read active merchandising shelf items",
+      "roles": "{anon,authenticated}",
+      "cmd": "SELECT",
+      "qual": "((is_active = true) AND (EXISTS ( SELECT 1\n   FROM book_merchandising_shelves\n  WHERE ((book_merchandising_shelves.id = book_merchandising_shelf_items.shelf_id) AND (book_merchandising_shelves.is_active = true) AND ((book_merchandising_shelves.starts_at IS NULL) OR (book_merchandising_shelves.starts_at <= timezone('utc'::text, now()))) AND ((book_merchandising_shelves.ends_at IS NULL) OR (book_merchandising_shelves.ends_at > timezone('utc'::text, now())))))))",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "table_name": "book_merchandising_shelves",
+      "policyname": "Public can read active merchandising shelves",
+      "roles": "{anon,authenticated}",
+      "cmd": "SELECT",
+      "qual": "((is_active = true) AND ((starts_at IS NULL) OR (starts_at <= timezone('utc'::text, now()))) AND ((ends_at IS NULL) OR (ends_at > timezone('utc'::text, now()))))",
+      "with_check": null
+    }
+  ],
+  "grants": [
+    {
+      "table_name": "book_catalog_compatibility",
+      "grantee": "anon",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "book_catalog_compatibility",
+      "grantee": "anon",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "book_catalog_compatibility",
+      "grantee": "anon",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "book_catalog_compatibility",
+      "grantee": "anon",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "book_catalog_compatibility",
+      "grantee": "authenticated",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "book_catalog_compatibility",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "book_catalog_compatibility",
+      "grantee": "authenticated",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "book_catalog_compatibility",
+      "grantee": "authenticated",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "book_catalog_compatibility",
+      "grantee": "service_role",
+      "privilege_type": "DELETE"
+    },
+    {
+      "table_name": "book_catalog_compatibility",
+      "grantee": "service_role",
+      "privilege_type": "INSERT"
+    },
+    {
+      "table_name": "book_catalog_compatibility",
+      "grantee": "service_role",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "book_catalog_compatibility",
+      "grantee": "service_role",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "book_catalog_compatibility",
+      "grantee": "service_role",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "book_catalog_compatibility",
+      "grantee": "service_role",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "book_catalog_compatibility",
+      "grantee": "service_role",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "table_name": "book_catalog_provenance_records",
+      "grantee": "service_role",
+      "privilege_type": "DELETE"
+    },
+    {
+      "table_name": "book_catalog_provenance_records",
+      "grantee": "service_role",
+      "privilege_type": "INSERT"
+    },
+    {
+      "table_name": "book_catalog_provenance_records",
+      "grantee": "service_role",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "book_catalog_provenance_records",
+      "grantee": "service_role",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "book_catalog_provenance_records",
+      "grantee": "service_role",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "book_catalog_provenance_records",
+      "grantee": "service_role",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "book_catalog_provenance_records",
+      "grantee": "service_role",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "table_name": "book_content_quality_checks",
+      "grantee": "service_role",
+      "privilege_type": "DELETE"
+    },
+    {
+      "table_name": "book_content_quality_checks",
+      "grantee": "service_role",
+      "privilege_type": "INSERT"
+    },
+    {
+      "table_name": "book_content_quality_checks",
+      "grantee": "service_role",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "book_content_quality_checks",
+      "grantee": "service_role",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "book_content_quality_checks",
+      "grantee": "service_role",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "book_content_quality_checks",
+      "grantee": "service_role",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "book_content_quality_checks",
+      "grantee": "service_role",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "table_name": "book_merchandising_shelf_items",
+      "grantee": "anon",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "book_merchandising_shelf_items",
+      "grantee": "anon",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "book_merchandising_shelf_items",
+      "grantee": "anon",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "book_merchandising_shelf_items",
+      "grantee": "anon",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "book_merchandising_shelf_items",
+      "grantee": "authenticated",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "book_merchandising_shelf_items",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "book_merchandising_shelf_items",
+      "grantee": "authenticated",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "book_merchandising_shelf_items",
+      "grantee": "authenticated",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "book_merchandising_shelf_items",
+      "grantee": "service_role",
+      "privilege_type": "DELETE"
+    },
+    {
+      "table_name": "book_merchandising_shelf_items",
+      "grantee": "service_role",
+      "privilege_type": "INSERT"
+    },
+    {
+      "table_name": "book_merchandising_shelf_items",
+      "grantee": "service_role",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "book_merchandising_shelf_items",
+      "grantee": "service_role",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "book_merchandising_shelf_items",
+      "grantee": "service_role",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "book_merchandising_shelf_items",
+      "grantee": "service_role",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "book_merchandising_shelf_items",
+      "grantee": "service_role",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "table_name": "book_merchandising_shelves",
+      "grantee": "anon",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "book_merchandising_shelves",
+      "grantee": "anon",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "book_merchandising_shelves",
+      "grantee": "anon",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "book_merchandising_shelves",
+      "grantee": "anon",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "book_merchandising_shelves",
+      "grantee": "authenticated",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "book_merchandising_shelves",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "book_merchandising_shelves",
+      "grantee": "authenticated",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "book_merchandising_shelves",
+      "grantee": "authenticated",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "book_merchandising_shelves",
+      "grantee": "service_role",
+      "privilege_type": "DELETE"
+    },
+    {
+      "table_name": "book_merchandising_shelves",
+      "grantee": "service_role",
+      "privilege_type": "INSERT"
+    },
+    {
+      "table_name": "book_merchandising_shelves",
+      "grantee": "service_role",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "book_merchandising_shelves",
+      "grantee": "service_role",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "book_merchandising_shelves",
+      "grantee": "service_role",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "book_merchandising_shelves",
+      "grantee": "service_role",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "book_merchandising_shelves",
+      "grantee": "service_role",
+      "privilege_type": "UPDATE"
+    }
+  ]
+}

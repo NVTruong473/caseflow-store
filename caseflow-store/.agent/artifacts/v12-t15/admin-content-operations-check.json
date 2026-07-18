@@ -1,0 +1,111 @@
+{
+  "adminChecks": {
+    "tamperedApproval": {
+      "code": "VALIDATION_ERROR",
+      "status": 400
+    }
+  },
+  "anonymousAccess": {
+    "catalog": {
+      "code": "UNAUTHORIZED",
+      "firstItem": null,
+      "raw": "{\"data\":null,\"error\":{\"code\":\"UNAUTHORIZED\",\"message\":\"Operations authentication required\"},\"meta\":null}",
+      "status": 401,
+      "total": 0
+    },
+    "merchandising": {
+      "code": "UNAUTHORIZED",
+      "firstShelfWithItems": null,
+      "raw": "{\"data\":null,\"error\":{\"code\":\"UNAUTHORIZED\",\"message\":\"Operations authentication required\"},\"meta\":null}",
+      "status": 401,
+      "total": 0
+    },
+    "patch": {
+      "code": "UNAUTHORIZED",
+      "status": 401
+    }
+  },
+  "baseURL": "http://127.0.0.1:3001",
+  "customerAccess": {
+    "catalog": {
+      "code": "FORBIDDEN",
+      "firstItem": null,
+      "raw": "{\"data\":null,\"error\":{\"code\":\"FORBIDDEN\",\"message\":\"Admin or staff role required\"},\"meta\":null}",
+      "status": 403,
+      "total": 0
+    },
+    "merchandising": {
+      "code": "FORBIDDEN",
+      "firstShelfWithItems": null,
+      "raw": "{\"data\":null,\"error\":{\"code\":\"FORBIDDEN\",\"message\":\"Admin or staff role required\"},\"meta\":null}",
+      "status": 403,
+      "total": 0
+    }
+  },
+  "generatedAt": "2026-07-18T08:54:13.840Z",
+  "mobileFlow": {
+    "catalogApi": {
+      "status": 200,
+      "total": 102
+    },
+    "catalogLeaksInternalNotes": false,
+    "hasOverflow": false,
+    "invalidMerchandisingPatch": {
+      "code": "VALIDATION_ERROR",
+      "status": 400
+    },
+    "merchandisingApi": {
+      "status": 200,
+      "total": 9
+    },
+    "merchandisingLeaksInternalNotes": false,
+    "pageReady": true,
+    "qualityFilterCount": 50,
+    "shelfFilterCount": 12,
+    "staffSourceTamper": {
+      "code": "FORBIDDEN",
+      "status": 403
+    }
+  },
+  "ok": true,
+  "pass": {
+    "adminSourceGuard": true,
+    "anonymousDenied": true,
+    "customerDenied": true,
+    "filtersWork": true,
+    "noInternalNotesLeak": true,
+    "repositoryState": true,
+    "responsiveUi": true,
+    "staffAccess": true
+  },
+  "staffFlow": {
+    "catalogApi": {
+      "status": 200,
+      "total": 102
+    },
+    "catalogLeaksInternalNotes": false,
+    "hasOverflow": false,
+    "invalidMerchandisingPatch": {
+      "code": "VALIDATION_ERROR",
+      "status": 400
+    },
+    "merchandisingApi": {
+      "status": 200,
+      "total": 9
+    },
+    "merchandisingLeaksInternalNotes": false,
+    "pageReady": true,
+    "qualityFilterCount": 50,
+    "shelfFilterCount": 12,
+    "staffSourceTamper": {
+      "code": "FORBIDDEN",
+      "status": 403
+    }
+  },
+  "staticChecks": {
+    "catalogCount": 102,
+    "qualityReadyCount": 50,
+    "shelvesWithItems": 2,
+    "totalShelves": 9
+  }
+}

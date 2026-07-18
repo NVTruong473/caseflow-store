@@ -1,0 +1,144 @@
+{
+  "taskId": "V12-T11",
+  "generatedAt": "2026-07-17T20:58:37.347Z",
+  "privateBackupPath": ".agent/artifacts/v12-t10/private-backups/pre-v12-production-export-2026-07-17T20-58-37-347Z.json",
+  "privateBackupSha256": "cb03d965717b0754af417b8e403d41d2077f3ff83b06e5b618f5cdfeb7798428",
+  "privateBackupBytes": 311367,
+  "privateBackupGitIgnored": true,
+  "containsPiiRows": true,
+  "rowDataStoredInPublicManifest": false,
+  "tables": [
+    {
+      "table": "categories",
+      "rows": 5,
+      "containsPii": false,
+      "ok": true,
+      "error": null
+    },
+    {
+      "table": "products",
+      "rows": 16,
+      "containsPii": false,
+      "ok": true,
+      "error": null
+    },
+    {
+      "table": "profiles",
+      "rows": 1,
+      "containsPii": true,
+      "ok": true,
+      "error": null
+    },
+    {
+      "table": "orders",
+      "rows": 0,
+      "containsPii": true,
+      "ok": true,
+      "error": null
+    },
+    {
+      "table": "order_items",
+      "rows": 0,
+      "containsPii": true,
+      "ok": true,
+      "error": null
+    },
+    {
+      "table": "customer_addresses",
+      "rows": 0,
+      "containsPii": true,
+      "ok": true,
+      "error": null
+    },
+    {
+      "table": "book_categories",
+      "rows": 11,
+      "containsPii": false,
+      "ok": true,
+      "error": null
+    },
+    {
+      "table": "book_authors",
+      "rows": 41,
+      "containsPii": false,
+      "ok": true,
+      "error": null
+    },
+    {
+      "table": "book_translators",
+      "rows": 0,
+      "containsPii": false,
+      "ok": true,
+      "error": null
+    },
+    {
+      "table": "book_publishers",
+      "rows": 1,
+      "containsPii": false,
+      "ok": true,
+      "error": null
+    },
+    {
+      "table": "book_cover_assets",
+      "rows": 1,
+      "containsPii": false,
+      "ok": true,
+      "error": null
+    },
+    {
+      "table": "book_works",
+      "rows": 50,
+      "containsPii": false,
+      "ok": true,
+      "error": null
+    },
+    {
+      "table": "book_work_authors",
+      "rows": 51,
+      "containsPii": false,
+      "ok": true,
+      "error": null
+    },
+    {
+      "table": "book_work_categories",
+      "rows": 100,
+      "containsPii": false,
+      "ok": true,
+      "error": null
+    },
+    {
+      "table": "book_editions",
+      "rows": 100,
+      "containsPii": false,
+      "ok": true,
+      "error": null
+    },
+    {
+      "table": "book_edition_translators",
+      "rows": 0,
+      "containsPii": false,
+      "ok": true,
+      "error": null
+    },
+    {
+      "table": "book_promotions",
+      "rows": 0,
+      "containsPii": false,
+      "ok": true,
+      "error": null
+    },
+    {
+      "table": "book_inventory_adjustments",
+      "rows": 0,
+      "containsPii": false,
+      "ok": true,
+      "error": null
+    }
+  ],
+  "pass": {
+    "allTablesReadable": true,
+    "privateBackupCreated": true,
+    "privateBackupHasRows": true,
+    "privateBackupIgnored": true
+  }
+}

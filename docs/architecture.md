@@ -2,10 +2,11 @@
 
 ## Status
 
-This document describes the deployed CaseFlow Books `v1.1` architecture after
-the Day 21-40 upgrade. The system is intentionally a Next.js modular monolith:
-it demonstrates a realistic specialist e-commerce workflow without claiming
-marketplace scale, real payment processing, or enterprise operations.
+This document describes the deployed CaseFlow Books `v1.2` architecture after
+the Day 21-40 upgrade and the realistic catalog/content merchandising release.
+The system is intentionally a Next.js modular monolith: it demonstrates a
+realistic specialist e-commerce workflow without claiming marketplace scale,
+real payment processing, or enterprise operations.
 
 ## System context
 
@@ -180,6 +181,19 @@ project history:
 - Monetary values are stored as integer VND amounts. USD display is an
   estimate, not a source-of-truth value.
 
+`V12-T11` applied the accepted v1.2 additive catalog migration to Supabase
+production. `book_editions` now also carries edition-pair, reason-to-read,
+display-fact, omitted-fact, source-edition-key, and source-review-status fields.
+The database also includes catalog provenance records, content-quality checks,
+catalog compatibility records, merchandising shelves, and merchandising shelf
+items. The data-freeze import contains 50 active works, 100 active editions,
+100 v1.2 cover assets, 602 provenance records, 2,000 content-quality checks, 9
+merchandising shelves, and 20 manual shelf items. `V12-T12` through `V12-T15`
+wire this data through homepage merchandising, catalog discovery, product
+detail/edition comparison, and admin content-quality/merchandising operations.
+`V12-T16` integrates the same accepted catalog across search, the rule-based
+assistant, SEO, cart/order snapshots, exports, and current documentation.
+
 The cart is absent from the database. It stores only `editionId` and `quantity`
 in localStorage and is revalidated before checkout.
 
@@ -210,26 +224,43 @@ Additional controls:
 ## Content and asset model
 
 CaseFlow Books uses factual classic/public-domain-style book metadata where
-practical, self-written summaries, and internal placeholder cover assets. The
-project does not hotlink commercial book covers or copy publisher blurbs,
-reviews, or protected excerpts. The current policy is documented in
-[`domain.md`](domain.md) and
-[`v1.1-safe-cover-asset-strategy.md`](v1.1-safe-cover-asset-strategy.md).
+practical, self-written summaries, and 100 local project-created SVG cover
+illustrations for the active `v1.2` catalog. The generic placeholder remains
+only as a fallback/admin quality state. The project does not hotlink commercial
+book covers or copy publisher blurbs, reviews, or protected excerpts. The
+current policy is documented in [`domain.md`](domain.md),
+[`v1.2-cover-portfolio.md`](v1.2-cover-portfolio.md), and
+[`v1.2-provenance-content-quality-contracts.md`](v1.2-provenance-content-quality-contracts.md).
+
+## v1.2 provenance contract boundary
+
+`V12-T04` defined catalog-specific provenance, edition-consistency,
+content-quality, and public-safe serialization contracts. `V12-T11` applied the
+additive storage needed for those contracts after the catalog, cover,
+editorial, merchandising, and rollback plans were frozen. The legacy
+`SourceNote` remains stable for existing estimate and source-note uses.
+
+Public serialization uses an allowlist and never exposes internal reviewer
+notes, rights-analysis notes, or source-edition matching keys. See
+[`v1.2-provenance-content-quality-contracts.md`](v1.2-provenance-content-quality-contracts.md).
 
 ## Deployment and verification
 
 - Production alias: `https://caseflow-store.vercel.app`.
-- Vercel deployment ID: `dpl_BkiJt9gDCh5d2cHwAhpFDbLotoAy`.
+- Vercel deployment ID: `dpl_7Y2Qsf4VJRBuzaMGXZMi81Rq5pKQ`.
 - Supabase hosts PostgreSQL and Auth.
 - Production runtime variables include the public Supabase URL, public anon key,
-  server-only service-role key, and canonical site URL.
-- The local release gate passed TypeScript, ESLint, production build, cleanup,
-  and 20 Playwright tests.
-- The production smoke gate passed public page/API checks, protected admin
-  boundary checks, robots/sitemap checks, assistant smoke, secret scan, and a
-  5-test Playwright subset.
+  and server-only service-role key. Canonical metadata defaults to the
+  production alias when `NEXT_PUBLIC_SITE_URL` is absent.
+- The `v1.2` local release gate passed TypeScript, ESLint, production build,
+  aggregate catalog/content/asset/runtime checks, cleanup, and 20 Playwright
+  tests.
+- The `v1.2` production smoke gate passed public page/API checks, 100-edition
+  catalog quality, 100 v1.2 cover responses, protected customer/admin boundary
+  checks, language mode, cart/checkout boundary, assistant, robots/sitemap, and
+  20 production Playwright tests.
 - Dependency audit status is recorded in
-  [`v1.1-release-audit.md`](v1.1-release-audit.md).
+  [`v1.2-release-audit.md`](v1.2-release-audit.md).
 
 ## Decision record
 

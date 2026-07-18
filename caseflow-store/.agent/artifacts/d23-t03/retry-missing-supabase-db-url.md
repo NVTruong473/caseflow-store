@@ -26,7 +26,7 @@ not present.
 Add this exact key to `caseflow-store/.env.local`, save the file, then retry:
 
 ```text
-SUPABASE_DB_URL=postgresql://postgres:<password>@db.fcsuldrerhbynwotcvyn.supabase.co:5432/postgres
+SUPABASE_DB_URL=<redacted Supabase Postgres connection string from Dashboard>
 ```
 
 If the password contains special URL characters such as `#`, `@`, `%`, `/`,

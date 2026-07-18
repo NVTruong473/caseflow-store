@@ -1,0 +1,3029 @@
+{
+  "taskId": "V12-T05",
+  "providers": [
+    {
+      "label": "Open Library",
+      "documentationUrl": "https://openlibrary.org/dev/docs/api/search"
+    },
+    {
+      "label": "Google Books GData feed",
+      "documentationUrl": "https://developers.google.com/books/docs/v1/using"
+    }
+  ],
+  "checkedAt": "2026-07-17T00:00:00.000Z",
+  "candidateCount": 90,
+  "expectedCandidateCount": 100,
+  "missing": [
+    {
+      "workSlug": "frankenstein",
+      "language": "vi"
+    },
+    {
+      "workSlug": "around-the-world-in-eighty-days",
+      "language": "vi"
+    },
+    {
+      "workSlug": "journey-to-the-center-of-the-earth",
+      "language": "vi"
+    },
+    {
+      "workSlug": "the-war-of-the-worlds",
+      "language": "vi"
+    },
+    {
+      "workSlug": "the-brothers-karamazov",
+      "language": "vi"
+    },
+    {
+      "workSlug": "anna-karenina",
+      "language": "vi"
+    },
+    {
+      "workSlug": "the-metamorphosis",
+      "language": "vi"
+    },
+    {
+      "workSlug": "meditations",
+      "language": "vi"
+    },
+    {
+      "workSlug": "the-odyssey",
+      "language": "vi"
+    },
+    {
+      "workSlug": "the-elements-of-style",
+      "language": "vi"
+    }
+  ],
+  "works": [
+    {
+      "workId": "00000000-0000-4000-8000-000000002000",
+      "workSlug": "pride-and-prejudice",
+      "authors": [
+        "Jane Austen"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003000",
+          "caseflowSlug": "pride-and-prejudice-english-special-edition",
+          "queryTitle": "Pride and Prejudice",
+          "source": {
+            "provider": "open-library",
+            "key": "/books/OL57535754M",
+            "url": "https://openlibrary.org/books/OL57535754M",
+            "title": "Pride and Prejudice",
+            "subtitle": null,
+            "language": "en",
+            "publishers": [
+              "Penguin Books, Limited"
+            ],
+            "publishDate": "2025",
+            "pageCount": 512,
+            "physicalFormat": null,
+            "isbn10": [],
+            "isbn13": [
+              "9780241734889"
+            ],
+            "byStatement": null,
+            "weight": "0.369",
+            "physicalDimensions": null,
+            "score": 40
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004000",
+          "caseflowSlug": "pride-and-prejudice-vietnamese-special-edition",
+          "queryTitle": "Kieu hanh va dinh kien",
+          "source": {
+            "provider": "open-library",
+            "key": "/books/OL27127116M",
+            "url": "https://openlibrary.org/books/OL27127116M",
+            "title": "Kiêu hãnh và định kiến",
+            "subtitle": "Pride and prejudice",
+            "language": "vi",
+            "publishers": [
+              "NXB Hội nhà văn",
+              "Cty CP văn hóa và truyền thông Liên Việt"
+            ],
+            "publishDate": "2010",
+            "pageCount": 455,
+            "physicalFormat": "Paperback",
+            "isbn10": [],
+            "isbn13": [],
+            "byStatement": "Jane Austen ; [người dịch, Diệp Minh Tâm]",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 33
+          }
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002001",
+      "workSlug": "jane-eyre",
+      "authors": [
+        "Charlotte Bronte"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003001",
+          "caseflowSlug": "jane-eyre-english-paperback",
+          "queryTitle": "Jane Eyre",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "AGxyadJ1RMMC",
+            "url": "https://books.google.com/books?id=AGxyadJ1RMMC",
+            "title": "Jane Eyre",
+            "subtitle": null,
+            "language": "en",
+            "publishers": [
+              "Modern Library"
+            ],
+            "publishDate": "2000-10-31",
+            "pageCount": 699,
+            "physicalFormat": null,
+            "isbn10": [
+              "0679641181"
+            ],
+            "isbn13": [
+              "9780679641186"
+            ],
+            "byStatement": "Charlotte Bronte",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 41
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004001",
+          "caseflowSlug": "jane-eyre-vietnamese-paperback",
+          "queryTitle": "Jane Eyre",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "jwXFxQEACAAJ",
+            "url": "https://books.google.com/books?id=jwXFxQEACAAJ",
+            "title": "Jane Eyre",
+            "subtitle": null,
+            "language": "vi",
+            "publishers": [],
+            "publishDate": "2018",
+            "pageCount": 574,
+            "physicalFormat": null,
+            "isbn10": [
+              "6046954363"
+            ],
+            "isbn13": [
+              "9786046954361"
+            ],
+            "byStatement": "Charlotte Brontë",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 31
+          }
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002002",
+      "workSlug": "wuthering-heights",
+      "authors": [
+        "Emily Bronte"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003002",
+          "caseflowSlug": "wuthering-heights-english-paperback",
+          "queryTitle": "Wuthering Heights",
+          "source": {
+            "provider": "open-library",
+            "key": "/books/OL22390207M",
+            "url": "https://openlibrary.org/books/OL22390207M",
+            "title": "Wuthering Heights",
+            "subtitle": "and Poems",
+            "language": "en",
+            "publishers": [
+              "Everyman",
+              "Tuttle Publishing"
+            ],
+            "publishDate": "1995",
+            "pageCount": 392,
+            "physicalFormat": "Paperback",
+            "isbn10": [
+              "0460873113"
+            ],
+            "isbn13": [
+              "9780460873116"
+            ],
+            "byStatement": "by Emily Brontë ; introduced by Margaret Drabble ; edited by Hugh Osborne.",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 45
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004002",
+          "caseflowSlug": "wuthering-heights-vietnamese-paperback",
+          "queryTitle": "Doi gio hu",
+          "source": {
+            "provider": "open-library",
+            "key": "/books/OL52965722M",
+            "url": "https://openlibrary.org/books/OL52965722M",
+            "title": "Đồi gió hú",
+            "subtitle": null,
+            "language": "vi",
+            "publishers": [
+              "vh"
+            ],
+            "publishDate": "2013",
+            "pageCount": null,
+            "physicalFormat": null,
+            "isbn10": [],
+            "isbn13": [
+              "8935235200432"
+            ],
+            "byStatement": null,
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 26
+          }
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002003",
+      "workSlug": "great-expectations",
+      "authors": [
+        "Charles Dickens"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003003",
+          "caseflowSlug": "great-expectations-english-paperback",
+          "queryTitle": "Great Expectations",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "ZN9azBTye-UC",
+            "url": "https://books.google.com/books?id=ZN9azBTye-UC",
+            "title": "Great Expectations",
+            "subtitle": null,
+            "language": "en",
+            "publishers": [
+              "Penguin"
+            ],
+            "publishDate": "2010-12-28",
+            "pageCount": 514,
+            "physicalFormat": null,
+            "isbn10": [
+              "1101650214"
+            ],
+            "isbn13": [
+              "9781101650219"
+            ],
+            "byStatement": "Charles Dickens",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 41
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004003",
+          "caseflowSlug": "great-expectations-vietnamese-paperback",
+          "queryTitle": "Ky vong lon lao",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "Ap-EswEACAAJ",
+            "url": "https://books.google.com/books?id=Ap-EswEACAAJ",
+            "title": "Những kỳ vọng lớn lao",
+            "subtitle": null,
+            "language": "vi",
+            "publishers": [],
+            "publishDate": "2017",
+            "pageCount": 507,
+            "physicalFormat": null,
+            "isbn10": [
+              "6049544476"
+            ],
+            "isbn13": [
+              "9786049544477"
+            ],
+            "byStatement": "Charles Dickens",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 27
+          }
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002004",
+      "workSlug": "oliver-twist",
+      "authors": [
+        "Charles Dickens"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003004",
+          "caseflowSlug": "oliver-twist-english-paperback",
+          "queryTitle": "Oliver Twist",
+          "source": {
+            "provider": "open-library",
+            "key": "/books/OL13426326M",
+            "url": "https://openlibrary.org/books/OL13426326M",
+            "title": "Oliver Twist",
+            "subtitle": "Charles Dickens Classics",
+            "language": "en",
+            "publishers": [
+              "Scandinavia"
+            ],
+            "publishDate": "June 25, 1997",
+            "pageCount": 64,
+            "physicalFormat": "Hardcover",
+            "isbn10": [
+              "8772474815"
+            ],
+            "isbn13": [
+              "9788772474816"
+            ],
+            "byStatement": null,
+            "weight": "12 ounces",
+            "physicalDimensions": "9.5 x 6.6 x 0.4 inches",
+            "score": 33
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004004",
+          "caseflowSlug": "oliver-twist-vietnamese-paperback",
+          "queryTitle": "Oliver Twist",
+          "source": {
+            "provider": "open-library",
+            "key": "/books/OL46835083M",
+            "url": "https://openlibrary.org/books/OL46835083M",
+            "title": "Oliver Twist",
+            "subtitle": null,
+            "language": "vi",
+            "publishers": [
+              "Donga"
+            ],
+            "publishDate": "2012",
+            "pageCount": 651,
+            "physicalFormat": "Paperback",
+            "isbn10": [],
+            "isbn13": [],
+            "byStatement": null,
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 33
+          }
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002005",
+      "workSlug": "a-tale-of-two-cities",
+      "authors": [
+        "Charles Dickens"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003005",
+          "caseflowSlug": "a-tale-of-two-cities-english-paperback",
+          "queryTitle": "A Tale of Two Cities",
+          "source": {
+            "provider": "open-library",
+            "key": "/books/OL10137428M",
+            "url": "https://openlibrary.org/books/OL10137428M",
+            "title": "A Tale of Two Cities",
+            "subtitle": null,
+            "language": "en",
+            "publishers": [
+              "Oxford University Press"
+            ],
+            "publishDate": "1992",
+            "pageCount": 96,
+            "physicalFormat": "Paperback",
+            "isbn10": [
+              "0195854527"
+            ],
+            "isbn13": [
+              "9780195854527"
+            ],
+            "byStatement": null,
+            "weight": "4 ounces",
+            "physicalDimensions": "8 x 5.2 x 0.2 inches",
+            "score": 41
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004005",
+          "caseflowSlug": "a-tale-of-two-cities-vietnamese-paperback",
+          "queryTitle": "Hai kinh thành",
+          "source": {
+            "provider": "open-library",
+            "key": "/books/OL23019556M",
+            "url": "https://openlibrary.org/books/OL23019556M",
+            "title": "Truyen hai kinh thanh",
+            "subtitle": null,
+            "language": "vi",
+            "publishers": [
+              "Dai Nam"
+            ],
+            "publishDate": "1990",
+            "pageCount": 309,
+            "physicalFormat": null,
+            "isbn10": [],
+            "isbn13": [],
+            "byStatement": "Ch. Dickens.",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 24
+          }
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002006",
+      "workSlug": "moby-dick",
+      "authors": [
+        "Herman Melville"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003006",
+          "caseflowSlug": "moby-dick-english-paperback",
+          "queryTitle": "Moby-Dick",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "3z4DYDOs0N0C",
+            "url": "https://books.google.com/books?id=3z4DYDOs0N0C",
+            "title": "Moby- Dick",
+            "subtitle": null,
+            "language": "en",
+            "publishers": [
+              "Penguin"
+            ],
+            "publishDate": "2013-07-02",
+            "pageCount": 625,
+            "physicalFormat": null,
+            "isbn10": [
+              "1101637714"
+            ],
+            "isbn13": [
+              "9781101637715"
+            ],
+            "byStatement": "Herman Melville",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 41
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004006",
+          "caseflowSlug": "moby-dick-vietnamese-paperback",
+          "queryTitle": "Ca voi trang",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "I-1ZzwEACAAJ",
+            "url": "https://books.google.com/books?id=I-1ZzwEACAAJ",
+            "title": "Ca voi trăng",
+            "subtitle": null,
+            "language": "vi",
+            "publishers": [],
+            "publishDate": "2000",
+            "pageCount": 0,
+            "physicalFormat": null,
+            "isbn10": [],
+            "isbn13": [],
+            "byStatement": "Herman Melville",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 15
+          }
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002007",
+      "workSlug": "little-women",
+      "authors": [
+        "Louisa May Alcott"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003007",
+          "caseflowSlug": "little-women-english-paperback",
+          "queryTitle": "Little Women",
+          "source": {
+            "provider": "open-library",
+            "key": "/books/OL23178606M",
+            "url": "https://openlibrary.org/books/OL23178606M",
+            "title": "Little women",
+            "subtitle": "and, Good wives",
+            "language": "en",
+            "publishers": [
+              "Vintage Books"
+            ],
+            "publishDate": "2008",
+            "pageCount": 527,
+            "physicalFormat": null,
+            "isbn10": [],
+            "isbn13": [
+              "9780099511496"
+            ],
+            "byStatement": "Louisa M. Alcott.",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 40
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004007",
+          "caseflowSlug": "little-women-vietnamese-paperback",
+          "queryTitle": "Nhung nguoi phu nu be nho",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "cy3HzwEACAAJ",
+            "url": "https://books.google.com/books?id=cy3HzwEACAAJ",
+            "title": "Những người phụ nữ bé nhỏ",
+            "subtitle": null,
+            "language": "vi",
+            "publishers": [],
+            "publishDate": "2021",
+            "pageCount": 0,
+            "physicalFormat": null,
+            "isbn10": [
+              "6043234556"
+            ],
+            "isbn13": [
+              "9786043234558"
+            ],
+            "byStatement": "Louisa May Alcott",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 19
+          }
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002008",
+      "workSlug": "the-adventures-of-sherlock-holmes",
+      "authors": [
+        "Arthur Conan Doyle"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003008",
+          "caseflowSlug": "the-adventures-of-sherlock-holmes-english-paperback",
+          "queryTitle": "The Adventures of Sherlock Holmes",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "Rk6w1NoZyQsC",
+            "url": "https://books.google.com/books?id=Rk6w1NoZyQsC",
+            "title": "The Adventures of Sherlock Holmes",
+            "subtitle": null,
+            "language": "en",
+            "publishers": [
+              "Oxford University Press, USA"
+            ],
+            "publishDate": "1993",
+            "pageCount": 452,
+            "physicalFormat": null,
+            "isbn10": [
+              "0192823787"
+            ],
+            "isbn13": [
+              "9780192823786"
+            ],
+            "byStatement": "Arthur Conan Doyle",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 41
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004008",
+          "caseflowSlug": "the-adventures-of-sherlock-holmes-vietnamese-paperback",
+          "queryTitle": "Nhung cuoc phieu luu cua Sherlock Holmes",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "HfRj0AEACAAJ",
+            "url": "https://books.google.com/books?id=HfRj0AEACAAJ",
+            "title": "Nhũng cuộc phiêu lưu của Sherlock Holmes",
+            "subtitle": null,
+            "language": "vi",
+            "publishers": [],
+            "publishDate": "2022",
+            "pageCount": 0,
+            "physicalFormat": null,
+            "isbn10": [
+              "6043494841"
+            ],
+            "isbn13": [
+              "9786043494846"
+            ],
+            "byStatement": "Arthur Conan Doyle",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 19
+          }
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002009",
+      "workSlug": "dracula",
+      "authors": [
+        "Bram Stoker"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003009",
+          "caseflowSlug": "dracula-english-paperback",
+          "queryTitle": "Dracula",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "8PtXEQAAQBAJ",
+            "url": "https://books.google.com/books?id=8PtXEQAAQBAJ",
+            "title": "Dracula",
+            "subtitle": null,
+            "language": "en",
+            "publishers": [
+              "Aegitas"
+            ],
+            "publishDate": "2025-04-18",
+            "pageCount": 633,
+            "physicalFormat": null,
+            "isbn10": [
+              "0369412648"
+            ],
+            "isbn13": [
+              "9780369412645"
+            ],
+            "byStatement": "Bram Stoker",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 33
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004009",
+          "caseflowSlug": "dracula-vietnamese-paperback",
+          "queryTitle": "Bá tước Dracula",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "jLv9zQEACAAJ",
+            "url": "https://books.google.com/books?id=jLv9zQEACAAJ",
+            "title": "Bá tước Dracula",
+            "subtitle": null,
+            "language": "vi",
+            "publishers": [],
+            "publishDate": "2020",
+            "pageCount": 601,
+            "physicalFormat": null,
+            "isbn10": [
+              "6048890370"
+            ],
+            "isbn13": [
+              "9786048890377"
+            ],
+            "byStatement": "Bram Stoker",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 31
+          }
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002010",
+      "workSlug": "frankenstein",
+      "authors": [
+        "Mary Shelley"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003010",
+          "caseflowSlug": "frankenstein-english-hardcover",
+          "queryTitle": "Frankenstein",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "9xHCAgAAQBAJ",
+            "url": "https://books.google.com/books?id=9xHCAgAAQBAJ",
+            "title": "Frankenstein",
+            "subtitle": null,
+            "language": "en",
+            "publishers": [
+              "Courier Corporation"
+            ],
+            "publishDate": "2013-12-03",
+            "pageCount": 180,
+            "physicalFormat": null,
+            "isbn10": [
+              "0486784754"
+            ],
+            "isbn13": [
+              "9780486784755"
+            ],
+            "byStatement": "Mary Shelley",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 33
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004010",
+          "caseflowSlug": "frankenstein-vietnamese-hardcover",
+          "queryTitle": "Frankenstein",
+          "source": null
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002011",
+      "workSlug": "the-picture-of-dorian-gray",
+      "authors": [
+        "Oscar Wilde"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003011",
+          "caseflowSlug": "the-picture-of-dorian-gray-english-paperback",
+          "queryTitle": "The Picture of Dorian Gray",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "CudBasI0BA0C",
+            "url": "https://books.google.com/books?id=CudBasI0BA0C",
+            "title": "The Picture of Dorian Gray",
+            "subtitle": null,
+            "language": "en",
+            "publishers": [
+              "Modern Library"
+            ],
+            "publishDate": "1998-06-01",
+            "pageCount": 354,
+            "physicalFormat": null,
+            "isbn10": [
+              "0375751513"
+            ],
+            "isbn13": [
+              "9780375751516"
+            ],
+            "byStatement": "Oscar Wilde",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 41
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004011",
+          "caseflowSlug": "the-picture-of-dorian-gray-vietnamese-paperback",
+          "queryTitle": "Chan dung Dorian Gray",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "meLaMgEACAAJ",
+            "url": "https://books.google.com/books?id=meLaMgEACAAJ",
+            "title": "Chân dung Dorian Gray",
+            "subtitle": null,
+            "language": "vi",
+            "publishers": [],
+            "publishDate": "2008",
+            "pageCount": 271,
+            "physicalFormat": null,
+            "isbn10": [],
+            "isbn13": [],
+            "byStatement": "Oscar Wilde; Nguyễn Thơ Sinh",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 27
+          }
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002012",
+      "workSlug": "the-count-of-monte-cristo",
+      "authors": [
+        "Alexandre Dumas"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003012",
+          "caseflowSlug": "the-count-of-monte-cristo-english-paperback",
+          "queryTitle": "The Count of Monte Cristo",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "eXRRNzjlXrkC",
+            "url": "https://books.google.com/books?id=eXRRNzjlXrkC",
+            "title": "The Count of Monte Cristo",
+            "subtitle": null,
+            "language": "en",
+            "publishers": [
+              "Wordsworth Editions"
+            ],
+            "publishDate": "1997",
+            "pageCount": 932,
+            "physicalFormat": null,
+            "isbn10": [
+              "1853267333"
+            ],
+            "isbn13": [
+              "9781853267338"
+            ],
+            "byStatement": "Alexandre Dumas",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 41
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004012",
+          "caseflowSlug": "the-count-of-monte-cristo-vietnamese-paperback",
+          "queryTitle": "Bá tước Monte Cristo",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "j1a00AEACAAJ",
+            "url": "https://books.google.com/books?id=j1a00AEACAAJ",
+            "title": "Bá tước Monte-Cristo",
+            "subtitle": null,
+            "language": "vi",
+            "publishers": [],
+            "publishDate": "2022",
+            "pageCount": 0,
+            "physicalFormat": null,
+            "isbn10": [
+              "6043684586"
+            ],
+            "isbn13": [
+              "9786043684582"
+            ],
+            "byStatement": "Alexandre Dumas",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 19
+          }
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002013",
+      "workSlug": "les-miserables",
+      "authors": [
+        "Victor Hugo"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003013",
+          "caseflowSlug": "les-miserables-english-paperback",
+          "queryTitle": "Les Miserables",
+          "source": {
+            "provider": "open-library",
+            "key": "/books/OL27141906M",
+            "url": "https://openlibrary.org/books/OL27141906M",
+            "title": "Les misérables",
+            "subtitle": null,
+            "language": "en",
+            "publishers": [
+              "Penguin Books"
+            ],
+            "publishDate": "2012",
+            "pageCount": 1231,
+            "physicalFormat": null,
+            "isbn10": [
+              "0143123599"
+            ],
+            "isbn13": [
+              "9780143123590"
+            ],
+            "byStatement": "Victor Hugo ; translated and with an introduction by Norman Denny",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 41
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004013",
+          "caseflowSlug": "les-miserables-vietnamese-paperback",
+          "queryTitle": "Nhung nguoi khon kho",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "16DyzQEACAAJ",
+            "url": "https://books.google.com/books?id=16DyzQEACAAJ",
+            "title": "Những người khốn khổ",
+            "subtitle": null,
+            "language": "vi",
+            "publishers": [],
+            "publishDate": "2011",
+            "pageCount": 639,
+            "physicalFormat": null,
+            "isbn10": [],
+            "isbn13": [],
+            "byStatement": "Victor Hugo",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 27
+          }
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002014",
+      "workSlug": "the-three-musketeers",
+      "authors": [
+        "Alexandre Dumas"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003014",
+          "caseflowSlug": "the-three-musketeers-english-paperback",
+          "queryTitle": "The Three Musketeers",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "RGa6cu_NbdEC",
+            "url": "https://books.google.com/books?id=RGa6cu_NbdEC",
+            "title": "The Three Musketeers",
+            "subtitle": null,
+            "language": "en",
+            "publishers": [
+              "Modern Library"
+            ],
+            "publishDate": "1999",
+            "pageCount": 598,
+            "physicalFormat": null,
+            "isbn10": [
+              "0679603328"
+            ],
+            "isbn13": [
+              "9780679603320"
+            ],
+            "byStatement": null,
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 41
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004014",
+          "caseflowSlug": "the-three-musketeers-vietnamese-paperback",
+          "queryTitle": "Ba chang linh ngu lam",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "FrI1yQEACAAJ",
+            "url": "https://books.google.com/books?id=FrI1yQEACAAJ",
+            "title": "Ba chàng lính ngự lâm",
+            "subtitle": null,
+            "language": "vi",
+            "publishers": [],
+            "publishDate": "2016",
+            "pageCount": null,
+            "physicalFormat": null,
+            "isbn10": [
+              "6046969816"
+            ],
+            "isbn13": [
+              "9786046969815"
+            ],
+            "byStatement": null,
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 25
+          }
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002015",
+      "workSlug": "around-the-world-in-eighty-days",
+      "authors": [
+        "Jules Verne"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003015",
+          "caseflowSlug": "around-the-world-in-eighty-days-english-paperback",
+          "queryTitle": "Around the World in Eighty Days",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "zyRlAAAAMAAJ",
+            "url": "https://books.google.com/books?id=zyRlAAAAMAAJ",
+            "title": "Around the World in Eighty Days",
+            "subtitle": null,
+            "language": "en",
+            "publishers": [
+              "Modern Library"
+            ],
+            "publishDate": "2004",
+            "pageCount": 232,
+            "physicalFormat": null,
+            "isbn10": [],
+            "isbn13": [],
+            "byStatement": "Jules Verne",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 37
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004015",
+          "caseflowSlug": "around-the-world-in-eighty-days-vietnamese-paperback",
+          "queryTitle": "Vòng quanh thế giới trong 80 ngày",
+          "source": null
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002016",
+      "workSlug": "journey-to-the-center-of-the-earth",
+      "authors": [
+        "Jules Verne"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003016",
+          "caseflowSlug": "journey-to-the-center-of-the-earth-english-paperback",
+          "queryTitle": "Journey to the Center of the Earth",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "7SHJQAFmsUkC",
+            "url": "https://books.google.com/books?id=7SHJQAFmsUkC",
+            "title": "Journey to the Centre of the Earth",
+            "subtitle": null,
+            "language": "en",
+            "publishers": [
+              "Wordsworth Editions"
+            ],
+            "publishDate": "1996",
+            "pageCount": 212,
+            "physicalFormat": null,
+            "isbn10": [
+              "1853262870"
+            ],
+            "isbn13": [
+              "9781853262876"
+            ],
+            "byStatement": "Jules Verne",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 38
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004016",
+          "caseflowSlug": "journey-to-the-center-of-the-earth-vietnamese-paperback",
+          "queryTitle": "Hành trình vào tâm trái đất",
+          "source": null
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002017",
+      "workSlug": "the-time-machine",
+      "authors": [
+        "H. G. Wells"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003017",
+          "caseflowSlug": "the-time-machine-english-special-edition",
+          "queryTitle": "The Time Machine",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "IMHXDQAAQBAJ",
+            "url": "https://books.google.com/books?id=IMHXDQAAQBAJ",
+            "title": "The Time Machine",
+            "subtitle": null,
+            "language": "en",
+            "publishers": [
+              "Oxford University Press"
+            ],
+            "publishDate": "2016-12-22",
+            "pageCount": 161,
+            "physicalFormat": null,
+            "isbn10": [
+              "0191017108"
+            ],
+            "isbn13": [
+              "9780191017100"
+            ],
+            "byStatement": "H. G. Wells",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 41
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004017",
+          "caseflowSlug": "the-time-machine-vietnamese-special-edition",
+          "queryTitle": "Co may thoi gian",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "2Xr3DwAAQBAJ",
+            "url": "https://books.google.com/books?id=2Xr3DwAAQBAJ",
+            "title": "Cỗ máy thời gian",
+            "subtitle": null,
+            "language": "vi",
+            "publishers": [
+              "Sách Tao Đàn"
+            ],
+            "publishDate": "2017",
+            "pageCount": 172,
+            "physicalFormat": null,
+            "isbn10": [
+              "6045522540"
+            ],
+            "isbn13": [
+              "9786045522547"
+            ],
+            "byStatement": "H.G. Wells",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 33
+          }
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002018",
+      "workSlug": "the-war-of-the-worlds",
+      "authors": [
+        "H. G. Wells"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003018",
+          "caseflowSlug": "the-war-of-the-worlds-english-paperback",
+          "queryTitle": "The War of the Worlds",
+          "source": {
+            "provider": "open-library",
+            "key": "/books/OL59047873M",
+            "url": "https://openlibrary.org/books/OL59047873M",
+            "title": "The War of the Worlds",
+            "subtitle": "Great Illustrated Classics",
+            "language": "en",
+            "publishers": [
+              "Waldman Publishing Corp"
+            ],
+            "publishDate": "2008-01-01",
+            "pageCount": 240,
+            "physicalFormat": "Paperback",
+            "isbn10": [
+              "1603400729"
+            ],
+            "isbn13": [
+              "9781603400725"
+            ],
+            "byStatement": null,
+            "weight": null,
+            "physicalDimensions": "19.7 x 13.3 x 1.4 centimeters",
+            "score": 37
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004018",
+          "caseflowSlug": "the-war-of-the-worlds-vietnamese-paperback",
+          "queryTitle": "Chiến tranh giữa các thế giới",
+          "source": null
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002019",
+      "workSlug": "alice-in-wonderland",
+      "authors": [
+        "Lewis Carroll"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003019",
+          "caseflowSlug": "alice-in-wonderland-english-paperback",
+          "queryTitle": "Alice's Adventures in Wonderland",
+          "source": {
+            "provider": "open-library",
+            "key": "/books/OL1534677M",
+            "url": "https://openlibrary.org/books/OL1534677M",
+            "title": "Alice in Wonderland",
+            "subtitle": "Authoritative texts of Alice's adventures in Wonderland; Through the looking glass; The hunting of the snark",
+            "language": "en",
+            "publishers": [
+              "W.W. Norton & Co."
+            ],
+            "publishDate": "1992",
+            "pageCount": 408,
+            "physicalFormat": "Paperback",
+            "isbn10": [
+              "0393958043"
+            ],
+            "isbn13": [
+              "9780393958041"
+            ],
+            "byStatement": "Lewis Carroll ; authoritative texts of Alice's adventures in Wonderland, Through the looking-glass, The hunting of the snark, backgrounds, essays in criticism ; edited by Donald J. Gray.",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 37
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004019",
+          "caseflowSlug": "alice-in-wonderland-vietnamese-paperback",
+          "queryTitle": "Alice o xu so than tien",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "MTT5jwEACAAJ",
+            "url": "https://books.google.com/books?id=MTT5jwEACAAJ",
+            "title": "Alice ở xứ sở thà̂n tiên",
+            "subtitle": null,
+            "language": "vi",
+            "publishers": [],
+            "publishDate": "2015",
+            "pageCount": 228,
+            "physicalFormat": null,
+            "isbn10": [
+              "6047826067"
+            ],
+            "isbn13": [
+              "9786047826063"
+            ],
+            "byStatement": "Lewis Carroll",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 31
+          }
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002020",
+      "workSlug": "the-wonderful-wizard-of-oz",
+      "authors": [
+        "L. Frank Baum"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003020",
+          "caseflowSlug": "the-wonderful-wizard-of-oz-english-hardcover",
+          "queryTitle": "The Wonderful Wizard of Oz",
+          "source": {
+            "provider": "open-library",
+            "key": "/books/OL32237018M",
+            "url": "https://openlibrary.org/books/OL32237018M",
+            "title": "The Wonderful Wizard of Oz and Glinda of Oz",
+            "subtitle": null,
+            "language": "en",
+            "publishers": [
+              "Wordsworth Classics",
+              "Wordsworth Editions"
+            ],
+            "publishDate": "Jul 06, 2012",
+            "pageCount": 301,
+            "physicalFormat": "paperback",
+            "isbn10": [
+              "1840226943"
+            ],
+            "isbn13": [
+              "9781840226942"
+            ],
+            "byStatement": null,
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 39
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004020",
+          "caseflowSlug": "the-wonderful-wizard-of-oz-vietnamese-hardcover",
+          "queryTitle": "Phu thuy xu Oz",
+          "source": {
+            "provider": "open-library",
+            "key": "/books/OL27116865M",
+            "url": "https://openlibrary.org/books/OL27116865M",
+            "title": "Phù thủy xứ Oz",
+            "subtitle": null,
+            "language": "vi",
+            "publishers": [
+              "NXB Văn học",
+              "Nhã Nam"
+            ],
+            "publishDate": "2004",
+            "pageCount": 193,
+            "physicalFormat": null,
+            "isbn10": [],
+            "isbn13": [],
+            "byStatement": "Frank Baum ; Nguyễn Phương Liên dịch",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 29
+          }
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002021",
+      "workSlug": "the-secret-garden",
+      "authors": [
+        "Frances Hodgson Burnett"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003021",
+          "caseflowSlug": "the-secret-garden-english-paperback",
+          "queryTitle": "The Secret Garden",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "6EwuwxlhomMC",
+            "url": "https://books.google.com/books?id=6EwuwxlhomMC",
+            "title": "The Secret Garden",
+            "subtitle": null,
+            "language": "en",
+            "publishers": [
+              "Collector's Library"
+            ],
+            "publishDate": "2004",
+            "pageCount": 300,
+            "physicalFormat": null,
+            "isbn10": [
+              "1904633315"
+            ],
+            "isbn13": [
+              "9781904633310"
+            ],
+            "byStatement": "Frances Hodgson Burnett",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 33
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004021",
+          "caseflowSlug": "the-secret-garden-vietnamese-paperback",
+          "queryTitle": "Khu vuon bi mat",
+          "source": {
+            "provider": "open-library",
+            "key": "/books/OL27192467M",
+            "url": "https://openlibrary.org/books/OL27192467M",
+            "title": "Khu vườn bí mật",
+            "subtitle": null,
+            "language": "vi",
+            "publishers": [],
+            "publishDate": "2014",
+            "pageCount": 321,
+            "physicalFormat": null,
+            "isbn10": [
+              "6046917484"
+            ],
+            "isbn13": [
+              "9786046917489"
+            ],
+            "byStatement": "Frances Hodgson Burnett ; Nguyễn Tuấn Khanh dịch",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 31
+          }
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002022",
+      "workSlug": "anne-of-green-gables",
+      "authors": [
+        "L. M. Montgomery"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003022",
+          "caseflowSlug": "anne-of-green-gables-english-paperback",
+          "queryTitle": "Anne of Green Gables",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "HMsQM854N9EC",
+            "url": "https://books.google.com/books?id=HMsQM854N9EC",
+            "title": "Anne of Green Gables",
+            "subtitle": null,
+            "language": "en",
+            "publishers": [
+              "Penguin UK"
+            ],
+            "publishDate": "2009-03-05",
+            "pageCount": 375,
+            "physicalFormat": null,
+            "isbn10": [
+              "0141921323"
+            ],
+            "isbn13": [
+              "9780141921327"
+            ],
+            "byStatement": "L. M. Montgomery",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 41
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004022",
+          "caseflowSlug": "anne-of-green-gables-vietnamese-paperback",
+          "queryTitle": "Anne toc do duoi mai nha xanh",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "_s3m0AEACAAJ",
+            "url": "https://books.google.com/books?id=_s3m0AEACAAJ",
+            "title": "Anne tóc đỏ dưới chái nhà xanh",
+            "subtitle": null,
+            "language": "vi",
+            "publishers": [],
+            "publishDate": "2021",
+            "pageCount": 0,
+            "physicalFormat": null,
+            "isbn10": [
+              "6043330830"
+            ],
+            "isbn13": [
+              "9786043330830"
+            ],
+            "byStatement": "L. M. Montgomery",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 16
+          }
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002023",
+      "workSlug": "treasure-island",
+      "authors": [
+        "Robert Louis Stevenson"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003023",
+          "caseflowSlug": "treasure-island-english-paperback",
+          "queryTitle": "Treasure Island",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "GhfI0MGNwEAC",
+            "url": "https://books.google.com/books?id=GhfI0MGNwEAC",
+            "title": "Treasure Island",
+            "subtitle": null,
+            "language": "en",
+            "publishers": [
+              "ABDO"
+            ],
+            "publishDate": "2002",
+            "pageCount": 244,
+            "physicalFormat": null,
+            "isbn10": [
+              "1577658051"
+            ],
+            "isbn13": [
+              "9781577658054"
+            ],
+            "byStatement": "Robert Louis Stevenson",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 33
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004023",
+          "caseflowSlug": "treasure-island-vietnamese-paperback",
+          "queryTitle": "Dao giau vang",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "gTcqnwEACAAJ",
+            "url": "https://books.google.com/books?id=gTcqnwEACAAJ",
+            "title": "Đảo giá̂u vàng",
+            "subtitle": null,
+            "language": "vi",
+            "publishers": [],
+            "publishDate": "1998",
+            "pageCount": 206,
+            "physicalFormat": null,
+            "isbn10": [],
+            "isbn13": [],
+            "byStatement": "Robert Louis Stevenson; Lan Châu Hoàng",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 27
+          }
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002024",
+      "workSlug": "the-call-of-the-wild",
+      "authors": [
+        "Jack London"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003024",
+          "caseflowSlug": "the-call-of-the-wild-english-paperback",
+          "queryTitle": "The Call of the Wild",
+          "source": {
+            "provider": "open-library",
+            "key": "/books/OL25373977M",
+            "url": "https://openlibrary.org/books/OL25373977M",
+            "title": "The call of the wild",
+            "subtitle": "and White Fang",
+            "language": "en",
+            "publishers": [
+              "Vintage Classic"
+            ],
+            "publishDate": "2011",
+            "pageCount": 340,
+            "physicalFormat": null,
+            "isbn10": [],
+            "isbn13": [
+              "9780099528630"
+            ],
+            "byStatement": "Jack London",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 40
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004024",
+          "caseflowSlug": "the-call-of-the-wild-vietnamese-paperback",
+          "queryTitle": "Tieng goi noi hoang da",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "k1pDuAAACAAJ",
+            "url": "https://books.google.com/books?id=k1pDuAAACAAJ",
+            "title": "Tiếng gọi nơi hoang dã",
+            "subtitle": null,
+            "language": "vi",
+            "publishers": [],
+            "publishDate": "2006",
+            "pageCount": 267,
+            "physicalFormat": null,
+            "isbn10": [],
+            "isbn13": [],
+            "byStatement": "Jack London; Chương Mạnh; Công Ái Nguyễn; Tuấn Phương Vũ",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 27
+          }
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002025",
+      "workSlug": "the-jungle-book",
+      "authors": [
+        "Rudyard Kipling"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003025",
+          "caseflowSlug": "the-jungle-book-english-paperback",
+          "queryTitle": "The Jungle Book",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "-mpcfXj8duEC",
+            "url": "https://books.google.com/books?id=-mpcfXj8duEC",
+            "title": "The Jungle Book",
+            "subtitle": null,
+            "language": "en",
+            "publishers": [
+              "Penguin UK"
+            ],
+            "publishDate": "2009-03-05",
+            "pageCount": 203,
+            "physicalFormat": null,
+            "isbn10": [
+              "0141919043"
+            ],
+            "isbn13": [
+              "9780141919041"
+            ],
+            "byStatement": "Rudyard Kipling",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 41
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004025",
+          "caseflowSlug": "the-jungle-book-vietnamese-paperback",
+          "queryTitle": "Sach rung xanh",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "OKQ2HAAACAAJ",
+            "url": "https://books.google.com/books?id=OKQ2HAAACAAJ",
+            "title": "Cuó̂n sách rừng xanh",
+            "subtitle": null,
+            "language": "vi",
+            "publishers": [],
+            "publishDate": "2004",
+            "pageCount": 151,
+            "physicalFormat": null,
+            "isbn10": [],
+            "isbn13": [],
+            "byStatement": null,
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 22
+          }
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002026",
+      "workSlug": "the-wind-in-the-willows",
+      "authors": [
+        "Kenneth Grahame"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003026",
+          "caseflowSlug": "the-wind-in-the-willows-english-paperback",
+          "queryTitle": "The Wind in the Willows",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "F384yp1dad0C",
+            "url": "https://books.google.com/books?id=F384yp1dad0C",
+            "title": "The Wind in the Willows",
+            "subtitle": null,
+            "language": "en",
+            "publishers": [
+              "Oxford University Press, USA"
+            ],
+            "publishDate": "1999",
+            "pageCount": 196,
+            "physicalFormat": null,
+            "isbn10": [
+              "0192835157"
+            ],
+            "isbn13": [
+              "9780192835154"
+            ],
+            "byStatement": "Kenneth Grahame",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 41
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004026",
+          "caseflowSlug": "the-wind-in-the-willows-vietnamese-paperback",
+          "queryTitle": "Gio qua rang lieu",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "27Na0QEACAAJ",
+            "url": "https://books.google.com/books?id=27Na0QEACAAJ",
+            "title": "Gió qua rặng liễu",
+            "subtitle": null,
+            "language": "vi",
+            "publishers": [],
+            "publishDate": "2022",
+            "pageCount": 0,
+            "physicalFormat": null,
+            "isbn10": [
+              "604355349X"
+            ],
+            "isbn13": [
+              "9786043553499"
+            ],
+            "byStatement": null,
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 19
+          }
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002027",
+      "workSlug": "a-christmas-carol",
+      "authors": [
+        "Charles Dickens"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003027",
+          "caseflowSlug": "a-christmas-carol-english-paperback",
+          "queryTitle": "A Christmas Carol",
+          "source": {
+            "provider": "open-library",
+            "key": "/books/OL26339681M",
+            "url": "https://openlibrary.org/books/OL26339681M",
+            "title": "A Christmas carol =",
+            "subtitle": "Xiao qi cai shen",
+            "language": "en",
+            "publishers": [
+              "Commercial Press (H.K.) Ltd."
+            ],
+            "publishDate": "2003",
+            "pageCount": 123,
+            "physicalFormat": null,
+            "isbn10": [
+              "9620716612"
+            ],
+            "isbn13": [
+              "9789620716614"
+            ],
+            "byStatement": "[Charles Dickens]",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 33
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004027",
+          "caseflowSlug": "a-christmas-carol-vietnamese-paperback",
+          "queryTitle": "Bai ca Giang sinh",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "gmCZoAEACAAJ",
+            "url": "https://books.google.com/books?id=gmCZoAEACAAJ",
+            "title": "Bài Ca Mừng Giáng Sinh",
+            "subtitle": null,
+            "language": "vi",
+            "publishers": [],
+            "publishDate": "2013",
+            "pageCount": 157,
+            "physicalFormat": null,
+            "isbn10": [],
+            "isbn13": [],
+            "byStatement": "Charles Dickens",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 23
+          }
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002028",
+      "workSlug": "the-adventures-of-tom-sawyer",
+      "authors": [
+        "Mark Twain"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003028",
+          "caseflowSlug": "the-adventures-of-tom-sawyer-english-paperback",
+          "queryTitle": "The Adventures of Tom Sawyer",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "8AXw9GY3DJgC",
+            "url": "https://books.google.com/books?id=8AXw9GY3DJgC",
+            "title": "The Adventures of Tom Sawyer",
+            "subtitle": null,
+            "language": "en",
+            "publishers": [
+              "OUP Oxford"
+            ],
+            "publishDate": "2007-03-08",
+            "pageCount": 247,
+            "physicalFormat": null,
+            "isbn10": [
+              "0192806823"
+            ],
+            "isbn13": [
+              "9780192806826"
+            ],
+            "byStatement": "Mark Twain",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 33
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004028",
+          "caseflowSlug": "the-adventures-of-tom-sawyer-vietnamese-paperback",
+          "queryTitle": "Nhung cuoc phieu luu cua Tom Sawyer",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "Pp_fngEACAAJ",
+            "url": "https://books.google.com/books?id=Pp_fngEACAAJ",
+            "title": "Những cuộc phiêu lưu của Tom Sawyer",
+            "subtitle": null,
+            "language": "vi",
+            "publishers": [],
+            "publishDate": "2012",
+            "pageCount": 259,
+            "physicalFormat": null,
+            "isbn10": [],
+            "isbn13": [],
+            "byStatement": "Mark Twain; Xuân Oanh",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 27
+          }
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002029",
+      "workSlug": "adventures-of-huckleberry-finn",
+      "authors": [
+        "Mark Twain"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003029",
+          "caseflowSlug": "adventures-of-huckleberry-finn-english-paperback",
+          "queryTitle": "Adventures of Huckleberry Finn",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "JLXCAgAAQBAJ",
+            "url": "https://books.google.com/books?id=JLXCAgAAQBAJ",
+            "title": "Adventures of Huckleberry Finn",
+            "subtitle": null,
+            "language": "en",
+            "publishers": [
+              "Courier Corporation"
+            ],
+            "publishDate": "2012-04-10",
+            "pageCount": 227,
+            "physicalFormat": null,
+            "isbn10": [
+              "0486132455"
+            ],
+            "isbn13": [
+              "9780486132457"
+            ],
+            "byStatement": "Mark Twain",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 33
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004029",
+          "caseflowSlug": "adventures-of-huckleberry-finn-vietnamese-paperback",
+          "queryTitle": "Nhung cuoc phieu luu cua Huckleberry Finn",
+          "source": {
+            "provider": "open-library",
+            "key": "/books/OL25038777M",
+            "url": "https://openlibrary.org/books/OL25038777M",
+            "title": "Những cuộc phiêu lưu của Huckleberry Finn",
+            "subtitle": null,
+            "language": "vi",
+            "publishers": [
+              "Nhà xuá̂t bản Văn học"
+            ],
+            "publishDate": "2009",
+            "pageCount": 403,
+            "physicalFormat": null,
+            "isbn10": [],
+            "isbn13": [],
+            "byStatement": "Mark Twain ; Lương Thị Thận, dịch",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 29
+          }
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002030",
+      "workSlug": "the-brothers-karamazov",
+      "authors": [
+        "Fyodor Dostoevsky"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003030",
+          "caseflowSlug": "the-brothers-karamazov-english-hardcover",
+          "queryTitle": "The Brothers Karamazov",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "VhfYK9jgYAYC",
+            "url": "https://books.google.com/books?id=VhfYK9jgYAYC",
+            "title": "The Brothers Karamazov",
+            "subtitle": null,
+            "language": "en",
+            "publishers": [
+              "Everyman's Library"
+            ],
+            "publishDate": "1992-04-28",
+            "pageCount": 856,
+            "physicalFormat": null,
+            "isbn10": [
+              "0679410031"
+            ],
+            "isbn13": [
+              "9780679410034"
+            ],
+            "byStatement": "Fyodor Dostoevsky",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 41
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004030",
+          "caseflowSlug": "the-brothers-karamazov-vietnamese-hardcover",
+          "queryTitle": "Anh em nhà Karamazov",
+          "source": null
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002031",
+      "workSlug": "crime-and-punishment",
+      "authors": [
+        "Fyodor Dostoevsky"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003031",
+          "caseflowSlug": "crime-and-punishment-english-paperback",
+          "queryTitle": "Crime and Punishment",
+          "source": {
+            "provider": "open-library",
+            "key": "/books/OL28512463M",
+            "url": "https://openlibrary.org/books/OL28512463M",
+            "title": "Crime and Punishment",
+            "subtitle": null,
+            "language": "en",
+            "publishers": [
+              "Penguin Books, Limited"
+            ],
+            "publishDate": "2014",
+            "pageCount": 720,
+            "physicalFormat": null,
+            "isbn10": [],
+            "isbn13": [
+              "9780141192802"
+            ],
+            "byStatement": null,
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 40
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004031",
+          "caseflowSlug": "crime-and-punishment-vietnamese-paperback",
+          "queryTitle": "Toi ac va hinh phat",
+          "source": {
+            "provider": "open-library",
+            "key": "/books/OL53217249M",
+            "url": "https://openlibrary.org/books/OL53217249M",
+            "title": "Toi ac va hinh phat",
+            "subtitle": null,
+            "language": "vi",
+            "publishers": [
+              "Văn Học, Trung tâm văn hoá ngôn ngữ Đông Tây"
+            ],
+            "publishDate": "2000",
+            "pageCount": 700,
+            "physicalFormat": null,
+            "isbn10": [],
+            "isbn13": [],
+            "byStatement": "Fiodor Doxtoevxki ; Cao Xuan Hao va Cao Xuan Pho dịch ; Pham Vinh Cu giới thiệu",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 29
+          }
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002032",
+      "workSlug": "anna-karenina",
+      "authors": [
+        "Leo Tolstoy"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003032",
+          "caseflowSlug": "anna-karenina-english-paperback",
+          "queryTitle": "Anna Karenina",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "9TcsXord6RYC",
+            "url": "https://books.google.com/books?id=9TcsXord6RYC",
+            "title": "Anna Karenina",
+            "subtitle": null,
+            "language": "en",
+            "publishers": [
+              "Penguin Mass Market"
+            ],
+            "publishDate": "2000",
+            "pageCount": 870,
+            "physicalFormat": null,
+            "isbn10": [
+              "0142000272"
+            ],
+            "isbn13": [
+              "9780142000274"
+            ],
+            "byStatement": "graf Leo Tolstoy",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 41
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004032",
+          "caseflowSlug": "anna-karenina-vietnamese-paperback",
+          "queryTitle": "Anna Karenina",
+          "source": null
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002033",
+      "workSlug": "war-and-peace",
+      "authors": [
+        "Leo Tolstoy"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003033",
+          "caseflowSlug": "war-and-peace-english-paperback",
+          "queryTitle": "War and Peace",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "3cWhQgAACAAJ",
+            "url": "https://books.google.com/books?id=3cWhQgAACAAJ",
+            "title": "War and Peace",
+            "subtitle": null,
+            "language": "en",
+            "publishers": [
+              "W W Norton & Company Incorporated"
+            ],
+            "publishDate": "1996",
+            "pageCount": 1185,
+            "physicalFormat": null,
+            "isbn10": [
+              "039396647X"
+            ],
+            "isbn13": [
+              "9780393966473"
+            ],
+            "byStatement": "graf Leo Tolstoy; Louise Maude; Aylmer Maude",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 41
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004033",
+          "caseflowSlug": "war-and-peace-vietnamese-paperback",
+          "queryTitle": "Chien tranh va hoa binh",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "4L_dswEACAAJ",
+            "url": "https://books.google.com/books?id=4L_dswEACAAJ",
+            "title": "Chiến tranh và hòa bình",
+            "subtitle": null,
+            "language": "vi",
+            "publishers": [],
+            "publishDate": "2017",
+            "pageCount": 1834,
+            "physicalFormat": null,
+            "isbn10": [
+              "6049541019"
+            ],
+            "isbn13": [
+              "9786049541018"
+            ],
+            "byStatement": "graf Leo Tolstoy",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 31
+          }
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002034",
+      "workSlug": "the-metamorphosis",
+      "authors": [
+        "Franz Kafka"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003034",
+          "caseflowSlug": "the-metamorphosis-english-special-edition",
+          "queryTitle": "The Metamorphosis",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "ZRYfAgAAQBAJ",
+            "url": "https://books.google.com/books?id=ZRYfAgAAQBAJ",
+            "title": "The Metamorphosis",
+            "subtitle": null,
+            "language": "en",
+            "publishers": [
+              "W. W. Norton & Company"
+            ],
+            "publishDate": "2014-01-20",
+            "pageCount": 57,
+            "physicalFormat": null,
+            "isbn10": [
+              "0393347656"
+            ],
+            "isbn13": [
+              "9780393347654"
+            ],
+            "byStatement": "Franz Kafka",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 37
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004034",
+          "caseflowSlug": "the-metamorphosis-vietnamese-special-edition",
+          "queryTitle": "Hóa thân",
+          "source": null
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002035",
+      "workSlug": "siddhartha",
+      "authors": [
+        "Hermann Hesse"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003035",
+          "caseflowSlug": "siddhartha-english-paperback",
+          "queryTitle": "Siddhartha",
+          "source": {
+            "provider": "open-library",
+            "key": "/books/OL39358874M",
+            "url": "https://openlibrary.org/books/OL39358874M",
+            "title": "Siddhartha",
+            "subtitle": "An Indian Poem",
+            "language": "en",
+            "publishers": [
+              "Barnes & Noble, Incorporated"
+            ],
+            "publishDate": "2018",
+            "pageCount": null,
+            "physicalFormat": null,
+            "isbn10": [],
+            "isbn13": [
+              "9781435166844"
+            ],
+            "byStatement": null,
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 34
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004035",
+          "caseflowSlug": "siddhartha-vietnamese-paperback",
+          "queryTitle": "Siddhartha",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "O633tAEACAAJ",
+            "url": "https://books.google.com/books?id=O633tAEACAAJ",
+            "title": "Siddhartha",
+            "subtitle": null,
+            "language": "vi",
+            "publishers": [
+              "Nha Nam"
+            ],
+            "publishDate": "2009",
+            "pageCount": 218,
+            "physicalFormat": null,
+            "isbn10": [
+              "604986800X"
+            ],
+            "isbn13": [
+              "9786049868009"
+            ],
+            "byStatement": "Hermann Hesse",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 33
+          }
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002036",
+      "workSlug": "the-prophet",
+      "authors": [
+        "Kahlil Gibran"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003036",
+          "caseflowSlug": "the-prophet-english-paperback",
+          "queryTitle": "The Prophet",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "PIFlPwAACAAJ",
+            "url": "https://books.google.com/books?id=PIFlPwAACAAJ",
+            "title": "The Prophet",
+            "subtitle": null,
+            "language": "en",
+            "publishers": [],
+            "publishDate": "2003-12-01",
+            "pageCount": 156,
+            "physicalFormat": null,
+            "isbn10": [
+              "8120725921"
+            ],
+            "isbn13": [
+              "9788120725928"
+            ],
+            "byStatement": "Kahlil Gibran",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 31
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004036",
+          "caseflowSlug": "the-prophet-vietnamese-paperback",
+          "queryTitle": "Nha tien tri",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "1ERGMwEACAAJ",
+            "url": "https://books.google.com/books?id=1ERGMwEACAAJ",
+            "title": "Nhà tiên tri",
+            "subtitle": null,
+            "language": "vi",
+            "publishers": [],
+            "publishDate": "2010",
+            "pageCount": 374,
+            "physicalFormat": null,
+            "isbn10": [],
+            "isbn13": [],
+            "byStatement": "Kahlil Gibran",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 27
+          }
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002037",
+      "workSlug": "the-art-of-war",
+      "authors": [
+        "Sun Tzu"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003037",
+          "caseflowSlug": "the-art-of-war-english-paperback",
+          "queryTitle": "The Art of War",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "7WgsEAAAQBAJ",
+            "url": "https://books.google.com/books?id=7WgsEAAAQBAJ",
+            "title": "The Art of War",
+            "subtitle": null,
+            "language": "en",
+            "publishers": [
+              "Vintage"
+            ],
+            "publishDate": "2021-12-21",
+            "pageCount": 305,
+            "physicalFormat": null,
+            "isbn10": [
+              "0593467337"
+            ],
+            "isbn13": [
+              "9780593467336"
+            ],
+            "byStatement": "Sun Tzu",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 41
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004037",
+          "caseflowSlug": "the-art-of-war-vietnamese-paperback",
+          "queryTitle": "Binh phap Ton Tu",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "eH43AMa4p2wC",
+            "url": "https://books.google.com/books?id=eH43AMa4p2wC",
+            "title": "Tôn Tử binh pháp",
+            "subtitle": null,
+            "language": "vi",
+            "publishers": [],
+            "publishDate": "1992",
+            "pageCount": 252,
+            "physicalFormat": null,
+            "isbn10": [],
+            "isbn13": [],
+            "byStatement": null,
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 27
+          }
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002038",
+      "workSlug": "meditations",
+      "authors": [
+        "Marcus Aurelius"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003038",
+          "caseflowSlug": "meditations-english-paperback",
+          "queryTitle": "Meditations",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "24a_o-VJvGsC",
+            "url": "https://books.google.com/books?id=24a_o-VJvGsC",
+            "title": "Meditations",
+            "subtitle": null,
+            "language": "en",
+            "publishers": [
+              "Modern Library"
+            ],
+            "publishDate": "2002-05-14",
+            "pageCount": 258,
+            "physicalFormat": null,
+            "isbn10": [
+              "158836173X"
+            ],
+            "isbn13": [
+              "9781588361738"
+            ],
+            "byStatement": "Marcus Aurelius",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 41
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004038",
+          "caseflowSlug": "meditations-vietnamese-paperback",
+          "queryTitle": "Suy tuong",
+          "source": null
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002039",
+      "workSlug": "tao-te-ching",
+      "authors": [
+        "Laozi"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003039",
+          "caseflowSlug": "tao-te-ching-english-paperback",
+          "queryTitle": "Tao Te Ching",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "5PgroQrhUFQC",
+            "url": "https://books.google.com/books?id=5PgroQrhUFQC",
+            "title": "Tao Te Ching",
+            "subtitle": null,
+            "language": "en",
+            "publishers": [
+              "Wordsworth Editions"
+            ],
+            "publishDate": "1996-05-07",
+            "pageCount": 116,
+            "physicalFormat": null,
+            "isbn10": [
+              "1853264717"
+            ],
+            "isbn13": [
+              "9781853264719"
+            ],
+            "byStatement": "Laozi",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 37
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004039",
+          "caseflowSlug": "tao-te-ching-vietnamese-paperback",
+          "queryTitle": "Dao duc kinh",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "DrYpnwEACAAJ",
+            "url": "https://books.google.com/books?id=DrYpnwEACAAJ",
+            "title": "Đạo đức kinh",
+            "subtitle": null,
+            "language": "vi",
+            "publishers": [],
+            "publishDate": "2013",
+            "pageCount": 397,
+            "physicalFormat": null,
+            "isbn10": [
+              "6041017574"
+            ],
+            "isbn13": [
+              "9786041017573"
+            ],
+            "byStatement": "Laozi; Duy Cần Nguyễ̂n",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 31
+          }
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002040",
+      "workSlug": "the-republic",
+      "authors": [
+        "Plato"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003040",
+          "caseflowSlug": "the-republic-english-hardcover",
+          "queryTitle": "The Republic",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "idi4b5BE5ScC",
+            "url": "https://books.google.com/books?id=idi4b5BE5ScC",
+            "title": "The Republic",
+            "subtitle": null,
+            "language": "en",
+            "publishers": [
+              "Pomona Press"
+            ],
+            "publishDate": "2006-01-01",
+            "pageCount": 368,
+            "physicalFormat": null,
+            "isbn10": [
+              "1406792136"
+            ],
+            "isbn13": [
+              "9781406792133"
+            ],
+            "byStatement": "Plato",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 33
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004040",
+          "caseflowSlug": "the-republic-vietnamese-hardcover",
+          "queryTitle": "Cong hoa",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "4ekuEQAAQBAJ",
+            "url": "https://books.google.com/books?id=4ekuEQAAQBAJ",
+            "title": "Cộng Hòa",
+            "subtitle": null,
+            "language": "vi",
+            "publishers": [
+              "Vietnam Omega Books. JSC"
+            ],
+            "publishDate": "2024-11-30",
+            "pageCount": 728,
+            "physicalFormat": null,
+            "isbn10": [
+              "6047742343"
+            ],
+            "isbn13": [
+              "9786047742349"
+            ],
+            "byStatement": "Plato",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 33
+          }
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002041",
+      "workSlug": "don-quixote",
+      "authors": [
+        "Miguel de Cervantes"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003041",
+          "caseflowSlug": "don-quixote-english-paperback",
+          "queryTitle": "Don Quixote",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "BfxUzQEACAAJ",
+            "url": "https://books.google.com/books?id=BfxUzQEACAAJ",
+            "title": "Don Quixote",
+            "subtitle": null,
+            "language": "en",
+            "publishers": [
+              "Iboo Academic Press"
+            ],
+            "publishDate": "2020-02-14",
+            "pageCount": 652,
+            "physicalFormat": null,
+            "isbn10": [
+              "1641814535"
+            ],
+            "isbn13": [
+              "9781641814539"
+            ],
+            "byStatement": "Cervantes",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 33
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004041",
+          "caseflowSlug": "don-quixote-vietnamese-paperback",
+          "queryTitle": "Don Quixote",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "M8LJwQEACAAJ",
+            "url": "https://books.google.com/books?id=M8LJwQEACAAJ",
+            "title": "Don Quixote",
+            "subtitle": null,
+            "language": "vi",
+            "publishers": [],
+            "publishDate": "2014",
+            "pageCount": 558,
+            "physicalFormat": null,
+            "isbn10": [],
+            "isbn13": [],
+            "byStatement": "Miguel de Cervantes Saavedra",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 27
+          }
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002042",
+      "workSlug": "the-divine-comedy",
+      "authors": [
+        "Dante Alighieri"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003042",
+          "caseflowSlug": "the-divine-comedy-english-paperback",
+          "queryTitle": "The Divine Comedy",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "uTNlAAAAMAAJ",
+            "url": "https://books.google.com/books?id=uTNlAAAAMAAJ",
+            "title": "The Divine Comedy",
+            "subtitle": null,
+            "language": "en",
+            "publishers": [
+              "Penguin Classics"
+            ],
+            "publishDate": "2006-08-29",
+            "pageCount": 584,
+            "physicalFormat": null,
+            "isbn10": [],
+            "isbn13": [],
+            "byStatement": "Dante Alighieri",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 37
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004042",
+          "caseflowSlug": "the-divine-comedy-vietnamese-paperback",
+          "queryTitle": "Thần khúc",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "0r-LXwAACAAJ",
+            "url": "https://books.google.com/books?id=0r-LXwAACAAJ",
+            "title": "Thần khúc địa ngục",
+            "subtitle": null,
+            "language": "vi",
+            "publishers": [],
+            "publishDate": "2005",
+            "pageCount": 382,
+            "physicalFormat": null,
+            "isbn10": [],
+            "isbn13": [],
+            "byStatement": "Dante Alighieri; Nguyễn Văn Hoàn; Giorgio Petrocchi",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 17
+          }
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002043",
+      "workSlug": "the-iliad",
+      "authors": [
+        "Homer"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003043",
+          "caseflowSlug": "the-iliad-english-paperback",
+          "queryTitle": "The Iliad",
+          "source": {
+            "provider": "open-library",
+            "key": "/books/OL49950451M",
+            "url": "https://openlibrary.org/books/OL49950451M",
+            "title": "The Iliad",
+            "subtitle": null,
+            "language": "en",
+            "publishers": [
+              "W. W. Norton & Company, Inc."
+            ],
+            "publishDate": "2023",
+            "pageCount": 848,
+            "physicalFormat": null,
+            "isbn10": [],
+            "isbn13": [
+              "9781324076148"
+            ],
+            "byStatement": null,
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 40
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004043",
+          "caseflowSlug": "the-iliad-vietnamese-paperback",
+          "queryTitle": "Iliad",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "l-kuEQAAQBAJ",
+            "url": "https://books.google.com/books?id=l-kuEQAAQBAJ",
+            "title": "Iliad",
+            "subtitle": null,
+            "language": "vi",
+            "publishers": [
+              "Vietnam Omega Books. JSC"
+            ],
+            "publishDate": "2024-11-30",
+            "pageCount": 627,
+            "physicalFormat": null,
+            "isbn10": [
+              "6047707130"
+            ],
+            "isbn13": [
+              "9786047707133"
+            ],
+            "byStatement": "Homer",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 33
+          }
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002044",
+      "workSlug": "the-odyssey",
+      "authors": [
+        "Homer"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003044",
+          "caseflowSlug": "the-odyssey-english-paperback",
+          "queryTitle": "The Odyssey",
+          "source": {
+            "provider": "open-library",
+            "key": "/books/OL26401674M",
+            "url": "https://openlibrary.org/books/OL26401674M",
+            "title": "The Odyssey",
+            "subtitle": null,
+            "language": "en",
+            "publishers": [
+              "Norton"
+            ],
+            "publishDate": "2017",
+            "pageCount": 592,
+            "physicalFormat": null,
+            "isbn10": [],
+            "isbn13": [
+              "9780393089059"
+            ],
+            "byStatement": null,
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 40
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004044",
+          "caseflowSlug": "the-odyssey-vietnamese-paperback",
+          "queryTitle": "Odyssey",
+          "source": null
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002045",
+      "workSlug": "grimms-fairy-tales",
+      "authors": [
+        "Jacob Grimm",
+        "Wilhelm Grimm"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003045",
+          "caseflowSlug": "grimms-fairy-tales-english-paperback",
+          "queryTitle": "Grimms' Fairy Tales",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "vV51tAEACAAJ",
+            "url": "https://books.google.com/books?id=vV51tAEACAAJ",
+            "title": "Grimms' Fairy Tales",
+            "subtitle": null,
+            "language": "en",
+            "publishers": [],
+            "publishDate": "2017-08-08",
+            "pageCount": 236,
+            "physicalFormat": null,
+            "isbn10": [
+              "1974310671"
+            ],
+            "isbn13": [
+              "9781974310678"
+            ],
+            "byStatement": "Jacob Grimm Wilhelm Grimm",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 31
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004045",
+          "caseflowSlug": "grimms-fairy-tales-vietnamese-paperback",
+          "queryTitle": "Truyen co Grimm",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "-83FwgEACAAJ",
+            "url": "https://books.google.com/books?id=-83FwgEACAAJ",
+            "title": "Truyện cổ Grimm",
+            "subtitle": null,
+            "language": "vi",
+            "publishers": [],
+            "publishDate": "2016",
+            "pageCount": 303,
+            "physicalFormat": null,
+            "isbn10": [
+              "6049700028"
+            ],
+            "isbn13": [
+              "9786049700026"
+            ],
+            "byStatement": null,
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 31
+          }
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002046",
+      "workSlug": "andersens-fairy-tales",
+      "authors": [
+        "Hans Christian Andersen"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003046",
+          "caseflowSlug": "andersens-fairy-tales-english-paperback",
+          "queryTitle": "Andersen's Fairy Tales",
+          "source": {
+            "provider": "open-library",
+            "key": "/books/OL11316248M",
+            "url": "https://openlibrary.org/books/OL11316248M",
+            "title": "Andersen's Fairy Tales",
+            "subtitle": null,
+            "language": "en",
+            "publishers": [
+              "Wildside Press"
+            ],
+            "publishDate": "August 1, 2004",
+            "pageCount": 172,
+            "physicalFormat": "Hardcover",
+            "isbn10": [
+              "0809595079"
+            ],
+            "isbn13": [
+              "9780809595075"
+            ],
+            "byStatement": null,
+            "weight": "14.4 ounces",
+            "physicalDimensions": "9 x 6 x 0.6 inches",
+            "score": 37
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004046",
+          "caseflowSlug": "andersens-fairy-tales-vietnamese-paperback",
+          "queryTitle": "Truyen co Andersen",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "efqfzgEACAAJ",
+            "url": "https://books.google.com/books?id=efqfzgEACAAJ",
+            "title": "Truyện cổ Andersen",
+            "subtitle": null,
+            "language": "vi",
+            "publishers": [],
+            "publishDate": "2020",
+            "pageCount": 542,
+            "physicalFormat": null,
+            "isbn10": [
+              "6045550447"
+            ],
+            "isbn13": [
+              "9786045550441"
+            ],
+            "byStatement": "Hans Christian Andersen",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 31
+          }
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002047",
+      "workSlug": "aesops-fables",
+      "authors": [
+        "Aesop"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003047",
+          "caseflowSlug": "aesops-fables-english-paperback",
+          "queryTitle": "Aesop's Fables",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "jsfMkK8JL9QC",
+            "url": "https://books.google.com/books?id=jsfMkK8JL9QC",
+            "title": "Aesop's Fables",
+            "subtitle": null,
+            "language": "en",
+            "publishers": [
+              "Wordsworth Editions"
+            ],
+            "publishDate": "1994",
+            "pageCount": 210,
+            "physicalFormat": null,
+            "isbn10": [
+              "1853261289"
+            ],
+            "isbn13": [
+              "9781853261282"
+            ],
+            "byStatement": "Aesop",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 41
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004047",
+          "caseflowSlug": "aesops-fables-vietnamese-paperback",
+          "queryTitle": "Ngu ngon Aesop",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "aDEbzgEACAAJ",
+            "url": "https://books.google.com/books?id=aDEbzgEACAAJ",
+            "title": "Ngụ ngôn Aesop",
+            "subtitle": null,
+            "language": "vi",
+            "publishers": [],
+            "publishDate": "2020",
+            "pageCount": 127,
+            "physicalFormat": null,
+            "isbn10": [
+              "604993729X"
+            ],
+            "isbn13": [
+              "9786049937293"
+            ],
+            "byStatement": null,
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 31
+          }
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002048",
+      "workSlug": "the-wealth-of-nations",
+      "authors": [
+        "Adam Smith"
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003048",
+          "caseflowSlug": "the-wealth-of-nations-english-paperback",
+          "queryTitle": "The Wealth of Nations",
+          "source": {
+            "provider": "open-library",
+            "key": "/books/OL7354760M",
+            "url": "https://openlibrary.org/books/OL7354760M",
+            "title": "The Wealth of Nations",
+            "subtitle": "Books 1-3 (Penguin Classics)",
+            "language": "en",
+            "publishers": [
+              "Penguin Classics"
+            ],
+            "publishDate": "March 25, 1982",
+            "pageCount": 544,
+            "physicalFormat": null,
+            "isbn10": [
+              "0140432086"
+            ],
+            "isbn13": [
+              "9780140432084"
+            ],
+            "byStatement": null,
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 41
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004048",
+          "caseflowSlug": "the-wealth-of-nations-vietnamese-paperback",
+          "queryTitle": "Su giau co cua cac quoc gia",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "oiqHEQAAQBAJ",
+            "url": "https://books.google.com/books?id=oiqHEQAAQBAJ",
+            "title": "Sự thịnh vượng của các quốc gia",
+            "subtitle": null,
+            "language": "vi",
+            "publishers": [
+              "Vietnam Omega Books. JSC"
+            ],
+            "publishDate": null,
+            "pageCount": 1080,
+            "physicalFormat": null,
+            "isbn10": [
+              "6326043034"
+            ],
+            "isbn13": [
+              "9786326043037"
+            ],
+            "byStatement": "Adam Smith",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 26
+          }
+        }
+      }
+    },
+    {
+      "workId": "00000000-0000-4000-8000-000000002049",
+      "workSlug": "the-elements-of-style",
+      "authors": [
+        "William Strunk Jr."
+      ],
+      "editions": {
+        "en": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000003049",
+          "caseflowSlug": "the-elements-of-style-english-paperback",
+          "queryTitle": "The Elements of Style",
+          "source": {
+            "provider": "google-books-gdata",
+            "key": "34hCCe9wmq4C",
+            "url": "https://books.google.com/books?id=34hCCe9wmq4C",
+            "title": "The Elements of Style",
+            "subtitle": null,
+            "language": "en",
+            "publishers": [
+              "Courier Corporation"
+            ],
+            "publishDate": "2012-04-04",
+            "pageCount": 66,
+            "physicalFormat": null,
+            "isbn10": [
+              "0486113701"
+            ],
+            "isbn13": [
+              "9780486113708"
+            ],
+            "byStatement": "William Strunk",
+            "weight": null,
+            "physicalDimensions": null,
+            "score": 29
+          }
+        },
+        "vi": {
+          "caseflowEditionId": "00000000-0000-4000-8000-000000004049",
+          "caseflowSlug": "the-elements-of-style-vietnamese-paperback",
+          "queryTitle": "Cac yeu to cua van phong",
+          "source": null
+        }
+      }
+    }
+  ]
+}

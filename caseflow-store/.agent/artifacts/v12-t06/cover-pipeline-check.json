@@ -1,0 +1,387 @@
+{
+  "taskId": "V12-T06",
+  "generatedAt": "2026-07-17T15:56:07.992Z",
+  "manifestPath": "src/data/books/v1.2-cover-pilot-manifest.json",
+  "contactSheetPath": ".agent/artifacts/v12-t06/cover-pilot-contact-sheet.svg",
+  "previewHtmlPath": ".agent/artifacts/v12-t06/cover-pilot-preview.html",
+  "counts": {
+    "assets": 10,
+    "languages": {
+      "en": 5,
+      "vi": 5
+    },
+    "concepts": 5
+  },
+  "budgets": {
+    "sizeBudgetBytes": 55000,
+    "maxFileSizeBytes": 3168,
+    "minContrastRatio": 4.5,
+    "minObservedContrastRatio": 5.02
+  },
+  "assetChecks": [
+    {
+      "assetId": "00000000-0000-4000-8000-000000008001",
+      "path": "/images/books/v12-pilot/pride-and-prejudice-english-special-edition.svg",
+      "exists": true,
+      "fileSizeBytes": 2711,
+      "checksumMatches": true,
+      "sizeWithinBudget": true,
+      "dimensionsValid": true,
+      "noExternalImageReferences": true,
+      "titleAndAuthorRendered": true
+    },
+    {
+      "assetId": "00000000-0000-4000-8000-000000008002",
+      "path": "/images/books/v12-pilot/pride-and-prejudice-vietnamese-special-edition.svg",
+      "exists": true,
+      "fileSizeBytes": 2760,
+      "checksumMatches": true,
+      "sizeWithinBudget": true,
+      "dimensionsValid": true,
+      "noExternalImageReferences": true,
+      "titleAndAuthorRendered": true
+    },
+    {
+      "assetId": "00000000-0000-4000-8000-000000008003",
+      "path": "/images/books/v12-pilot/the-adventures-of-sherlock-holmes-english-paperback.svg",
+      "exists": true,
+      "fileSizeBytes": 2770,
+      "checksumMatches": true,
+      "sizeWithinBudget": true,
+      "dimensionsValid": true,
+      "noExternalImageReferences": true,
+      "titleAndAuthorRendered": true
+    },
+    {
+      "assetId": "00000000-0000-4000-8000-000000008004",
+      "path": "/images/books/v12-pilot/the-adventures-of-sherlock-holmes-vietnamese-paperback.svg",
+      "exists": true,
+      "fileSizeBytes": 2981,
+      "checksumMatches": true,
+      "sizeWithinBudget": true,
+      "dimensionsValid": true,
+      "noExternalImageReferences": true,
+      "titleAndAuthorRendered": true
+    },
+    {
+      "assetId": "00000000-0000-4000-8000-000000008005",
+      "path": "/images/books/v12-pilot/the-war-of-the-worlds-english-paperback.svg",
+      "exists": true,
+      "fileSizeBytes": 2674,
+      "checksumMatches": true,
+      "sizeWithinBudget": true,
+      "dimensionsValid": true,
+      "noExternalImageReferences": true,
+      "titleAndAuthorRendered": true
+    },
+    {
+      "assetId": "00000000-0000-4000-8000-000000008006",
+      "path": "/images/books/v12-pilot/the-war-of-the-worlds-vietnamese-paperback.svg",
+      "exists": true,
+      "fileSizeBytes": 2747,
+      "checksumMatches": true,
+      "sizeWithinBudget": true,
+      "dimensionsValid": true,
+      "noExternalImageReferences": true,
+      "titleAndAuthorRendered": true
+    },
+    {
+      "assetId": "00000000-0000-4000-8000-000000008007",
+      "path": "/images/books/v12-pilot/alice-in-wonderland-english-paperback.svg",
+      "exists": true,
+      "fileSizeBytes": 2917,
+      "checksumMatches": true,
+      "sizeWithinBudget": true,
+      "dimensionsValid": true,
+      "noExternalImageReferences": true,
+      "titleAndAuthorRendered": true
+    },
+    {
+      "assetId": "00000000-0000-4000-8000-000000008008",
+      "path": "/images/books/v12-pilot/alice-in-wonderland-vietnamese-paperback.svg",
+      "exists": true,
+      "fileSizeBytes": 3168,
+      "checksumMatches": true,
+      "sizeWithinBudget": true,
+      "dimensionsValid": true,
+      "noExternalImageReferences": true,
+      "titleAndAuthorRendered": true
+    },
+    {
+      "assetId": "00000000-0000-4000-8000-000000008009",
+      "path": "/images/books/v12-pilot/the-old-man-and-the-sea-english-paperback.svg",
+      "exists": true,
+      "fileSizeBytes": 2807,
+      "checksumMatches": true,
+      "sizeWithinBudget": true,
+      "dimensionsValid": true,
+      "noExternalImageReferences": true,
+      "titleAndAuthorRendered": true
+    },
+    {
+      "assetId": "00000000-0000-4000-8000-000000008010",
+      "path": "/images/books/v12-pilot/the-old-man-and-the-sea-vietnamese-paperback.svg",
+      "exists": true,
+      "fileSizeBytes": 2662,
+      "checksumMatches": true,
+      "sizeWithinBudget": true,
+      "dimensionsValid": true,
+      "noExternalImageReferences": true,
+      "titleAndAuthorRendered": true
+    }
+  ],
+  "pilotChecks": {
+    "languagesCovered": true,
+    "longTitlesCovered": true,
+    "categoriesCovered": true,
+    "lightAndDarkArtworkCovered": true,
+    "pairedFamiliesValid": true,
+    "categories": [
+      "children-young-adult",
+      "classic-literature",
+      "fantasy-sci-fi",
+      "fiction",
+      "mystery-thriller",
+      "romance"
+    ],
+    "luminanceRange": {
+      "min": 0.009,
+      "max": 0.912
+    }
+  },
+  "previewChecks": {
+    "ok": true,
+    "screenshots": [
+      ".agent/artifacts/v12-t06/cover-pilot-preview-desktop.png",
+      ".agent/artifacts/v12-t06/cover-pilot-preview-mobile.png"
+    ],
+    "desktop": {
+      "cardImagesStable": true,
+      "detailImagesStable": true,
+      "hasOverflow": false,
+      "imageChecks": [
+        {
+          "alt": "CaseFlow Books illustrative cover for Pride and Prejudice by Jane Austen.",
+          "complete": true,
+          "height": 260,
+          "naturalHeight": 900,
+          "naturalWidth": 600,
+          "width": 173
+        },
+        {
+          "alt": "CaseFlow Books illustrative cover for Pride and Prejudice by Jane Austen.",
+          "complete": true,
+          "height": 260,
+          "naturalHeight": 900,
+          "naturalWidth": 600,
+          "width": 173
+        },
+        {
+          "alt": "CaseFlow Books illustrative cover for The Adventures of Sherlock Holmes by Arthur Conan Doyle.",
+          "complete": true,
+          "height": 260,
+          "naturalHeight": 900,
+          "naturalWidth": 600,
+          "width": 173
+        },
+        {
+          "alt": "CaseFlow Books illustrative cover for The Adventures of Sherlock Holmes by Arthur Conan Doyle.",
+          "complete": true,
+          "height": 260,
+          "naturalHeight": 900,
+          "naturalWidth": 600,
+          "width": 173
+        },
+        {
+          "alt": "CaseFlow Books illustrative cover for The War of the Worlds by H. G. Wells.",
+          "complete": true,
+          "height": 260,
+          "naturalHeight": 900,
+          "naturalWidth": 600,
+          "width": 173
+        },
+        {
+          "alt": "CaseFlow Books illustrative cover for The War of the Worlds by H. G. Wells.",
+          "complete": true,
+          "height": 260,
+          "naturalHeight": 900,
+          "naturalWidth": 600,
+          "width": 173
+        },
+        {
+          "alt": "CaseFlow Books illustrative cover for Alice's Adventures in Wonderland by Lewis Carroll.",
+          "complete": true,
+          "height": 260,
+          "naturalHeight": 900,
+          "naturalWidth": 600,
+          "width": 173
+        },
+        {
+          "alt": "CaseFlow Books illustrative cover for Alice's Adventures in Wonderland by Lewis Carroll.",
+          "complete": true,
+          "height": 260,
+          "naturalHeight": 900,
+          "naturalWidth": 600,
+          "width": 173
+        },
+        {
+          "alt": "CaseFlow Books illustrative cover for The Old Man and the Sea by Ernest Hemingway.",
+          "complete": true,
+          "height": 260,
+          "naturalHeight": 900,
+          "naturalWidth": 600,
+          "width": 173
+        },
+        {
+          "alt": "CaseFlow Books illustrative cover for The Old Man and the Sea by Ernest Hemingway.",
+          "complete": true,
+          "height": 260,
+          "naturalHeight": 900,
+          "naturalWidth": 600,
+          "width": 173
+        },
+        {
+          "alt": "CaseFlow Books illustrative cover for Pride and Prejudice by Jane Austen.",
+          "complete": true,
+          "height": 390,
+          "naturalHeight": 900,
+          "naturalWidth": 600,
+          "width": 260
+        },
+        {
+          "alt": "CaseFlow Books illustrative cover for Pride and Prejudice by Jane Austen.",
+          "complete": true,
+          "height": 390,
+          "naturalHeight": 900,
+          "naturalWidth": 600,
+          "width": 260
+        }
+      ],
+      "imagesLoaded": true,
+      "scrollWidth": 1440,
+      "viewportWidth": 1440
+    },
+    "mobile": {
+      "cardImagesStable": true,
+      "detailImagesStable": true,
+      "hasOverflow": false,
+      "imageChecks": [
+        {
+          "alt": "CaseFlow Books illustrative cover for Pride and Prejudice by Jane Austen.",
+          "complete": true,
+          "height": 253,
+          "naturalHeight": 900,
+          "naturalWidth": 600,
+          "width": 169
+        },
+        {
+          "alt": "CaseFlow Books illustrative cover for Pride and Prejudice by Jane Austen.",
+          "complete": true,
+          "height": 253,
+          "naturalHeight": 900,
+          "naturalWidth": 600,
+          "width": 169
+        },
+        {
+          "alt": "CaseFlow Books illustrative cover for The Adventures of Sherlock Holmes by Arthur Conan Doyle.",
+          "complete": true,
+          "height": 253,
+          "naturalHeight": 900,
+          "naturalWidth": 600,
+          "width": 169
+        },
+        {
+          "alt": "CaseFlow Books illustrative cover for The Adventures of Sherlock Holmes by Arthur Conan Doyle.",
+          "complete": true,
+          "height": 253,
+          "naturalHeight": 900,
+          "naturalWidth": 600,
+          "width": 169
+        },
+        {
+          "alt": "CaseFlow Books illustrative cover for The War of the Worlds by H. G. Wells.",
+          "complete": true,
+          "height": 253,
+          "naturalHeight": 900,
+          "naturalWidth": 600,
+          "width": 169
+        },
+        {
+          "alt": "CaseFlow Books illustrative cover for The War of the Worlds by H. G. Wells.",
+          "complete": true,
+          "height": 253,
+          "naturalHeight": 900,
+          "naturalWidth": 600,
+          "width": 169
+        },
+        {
+          "alt": "CaseFlow Books illustrative cover for Alice's Adventures in Wonderland by Lewis Carroll.",
+          "complete": true,
+          "height": 253,
+          "naturalHeight": 900,
+          "naturalWidth": 600,
+          "width": 169
+        },
+        {
+          "alt": "CaseFlow Books illustrative cover for Alice's Adventures in Wonderland by Lewis Carroll.",
+          "complete": true,
+          "height": 253,
+          "naturalHeight": 900,
+          "naturalWidth": 600,
+          "width": 169
+        },
+        {
+          "alt": "CaseFlow Books illustrative cover for The Old Man and the Sea by Ernest Hemingway.",
+          "complete": true,
+          "height": 253,
+          "naturalHeight": 900,
+          "naturalWidth": 600,
+          "width": 169
+        },
+        {
+          "alt": "CaseFlow Books illustrative cover for The Old Man and the Sea by Ernest Hemingway.",
+          "complete": true,
+          "height": 253,
+          "naturalHeight": 900,
+          "naturalWidth": 600,
+          "width": 169
+        },
+        {
+          "alt": "CaseFlow Books illustrative cover for Pride and Prejudice by Jane Austen.",
+          "complete": true,
+          "height": 168,
+          "naturalHeight": 900,
+          "naturalWidth": 600,
+          "width": 112
+        },
+        {
+          "alt": "CaseFlow Books illustrative cover for Pride and Prejudice by Jane Austen.",
+          "complete": true,
+          "height": 168,
+          "naturalHeight": 900,
+          "naturalWidth": 600,
+          "width": 112
+        }
+      ],
+      "imagesLoaded": true,
+      "scrollWidth": 375,
+      "viewportWidth": 375
+    }
+  },
+  "pass": {
+    "schemaValid": true,
+    "assetFilesExist": true,
+    "checksumsMatch": true,
+    "fileSizesWithinBudget": true,
+    "svgDimensionsValid": true,
+    "noExternalImageReferences": true,
+    "titleAndAuthorRendered": true,
+    "languagesCovered": true,
+    "longTitlesCovered": true,
+    "categoriesCovered": true,
+    "lightAndDarkArtworkCovered": true,
+    "pairedFamiliesValid": true,
+    "previewRenders": true
+  },
+  "ok": true
+}

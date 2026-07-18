@@ -1,0 +1,179 @@
+{
+  "taskId": "V12-T12",
+  "generatedAt": "2026-07-18T08:43:14.631Z",
+  "counts": {
+    "catalogRecords": 100,
+    "resolvedShelves": 8
+  },
+  "ok": true,
+  "pass": {
+    "catalogHasExpectedScale": true,
+    "activeShelvesPubliclyReadable": true,
+    "requiredShelvesResolve": true,
+    "editorPicksRespectManualOrder": true,
+    "weekendRespectManualOrder": true,
+    "vietnameseShelfIsVietnamese": true,
+    "englishShelfIsEnglish": true,
+    "promotionShelfUsesRealCompareAt": true,
+    "pairedShelfHasEnglishVietnameseWorks": true,
+    "selectedHomepageDoesNotDumpCatalog": true,
+    "selectedCoversAreDistinctAndNotPlaceholder": true,
+    "noOrderDerivedClaimsRendered": true
+  },
+  "requiredShelves": [
+    {
+      "slug": "editor-picks",
+      "ok": true,
+      "sourceShelfSlug": "editor-picks",
+      "usedFallback": false,
+      "warnings": [],
+      "records": [
+        "pride-and-prejudice-english-special-edition",
+        "jane-eyre-english-paperback",
+        "wuthering-heights-english-paperback",
+        "great-expectations-english-paperback",
+        "oliver-twist-english-paperback",
+        "a-tale-of-two-cities-english-paperback",
+        "moby-dick-english-paperback",
+        "little-women-english-paperback",
+        "the-adventures-of-sherlock-holmes-english-paperback",
+        "dracula-english-paperback",
+        "frankenstein-english-hardcover",
+        "the-picture-of-dorian-gray-english-paperback"
+      ],
+      "missingEditionIds": []
+    },
+    {
+      "slug": "weekend-starter-set",
+      "ok": true,
+      "sourceShelfSlug": "weekend-starter-set",
+      "usedFallback": false,
+      "warnings": [],
+      "records": [
+        "alice-in-wonderland-english-paperback",
+        "alice-in-wonderland-vietnamese-paperback",
+        "the-secret-garden-english-paperback",
+        "the-secret-garden-vietnamese-paperback",
+        "little-women-english-paperback",
+        "little-women-vietnamese-paperback",
+        "the-wonderful-wizard-of-oz-english-hardcover",
+        "the-wonderful-wizard-of-oz-vietnamese-hardcover"
+      ],
+      "missingEditionIds": []
+    },
+    {
+      "slug": "vietnamese-editions",
+      "ok": true,
+      "sourceShelfSlug": "vietnamese-editions",
+      "usedFallback": false,
+      "warnings": [],
+      "records": [
+        "the-brothers-karamazov-vietnamese-hardcover",
+        "anna-karenina-vietnamese-paperback",
+        "anne-of-green-gables-vietnamese-paperback",
+        "the-three-musketeers-vietnamese-paperback",
+        "dracula-vietnamese-paperback",
+        "the-count-of-monte-cristo-vietnamese-paperback",
+        "a-christmas-carol-vietnamese-paperback",
+        "the-art-of-war-vietnamese-paperback",
+        "the-picture-of-dorian-gray-vietnamese-paperback",
+        "the-war-of-the-worlds-vietnamese-paperback",
+        "war-and-peace-vietnamese-paperback",
+        "the-time-machine-vietnamese-special-edition"
+      ],
+      "missingEditionIds": []
+    },
+    {
+      "slug": "english-editions",
+      "ok": true,
+      "sourceShelfSlug": "english-editions",
+      "usedFallback": false,
+      "warnings": [],
+      "records": [
+        "a-tale-of-two-cities-english-paperback",
+        "dracula-english-paperback",
+        "frankenstein-english-hardcover",
+        "great-expectations-english-paperback",
+        "jane-eyre-english-paperback",
+        "little-women-english-paperback",
+        "moby-dick-english-paperback",
+        "oliver-twist-english-paperback",
+        "pride-and-prejudice-english-special-edition",
+        "the-adventures-of-sherlock-holmes-english-paperback",
+        "the-old-man-and-the-sea-english-paperback",
+        "the-picture-of-dorian-gray-english-paperback"
+      ],
+      "missingEditionIds": []
+    },
+    {
+      "slug": "promotion-ready",
+      "ok": true,
+      "sourceShelfSlug": "promotion-ready",
+      "usedFallback": false,
+      "warnings": [],
+      "records": [
+        "pride-and-prejudice-vietnamese-special-edition",
+        "the-wealth-of-nations-vietnamese-paperback",
+        "the-call-of-the-wild-vietnamese-paperback",
+        "pride-and-prejudice-english-special-edition",
+        "the-call-of-the-wild-english-paperback",
+        "the-wealth-of-nations-english-paperback",
+        "the-war-of-the-worlds-vietnamese-paperback",
+        "the-divine-comedy-vietnamese-paperback",
+        "the-divine-comedy-english-paperback",
+        "the-war-of-the-worlds-english-paperback",
+        "the-count-of-monte-cristo-vietnamese-paperback",
+        "the-prophet-vietnamese-paperback"
+      ],
+      "missingEditionIds": []
+    },
+    {
+      "slug": "paired-edition-comparison",
+      "ok": true,
+      "sourceShelfSlug": "paired-edition-comparison",
+      "usedFallback": false,
+      "warnings": [],
+      "records": [
+        "a-christmas-carol-english-paperback",
+        "a-christmas-carol-vietnamese-paperback",
+        "a-tale-of-two-cities-english-paperback",
+        "a-tale-of-two-cities-vietnamese-paperback",
+        "adventures-of-huckleberry-finn-english-paperback",
+        "adventures-of-huckleberry-finn-vietnamese-paperback",
+        "aesops-fables-english-paperback",
+        "aesops-fables-vietnamese-paperback",
+        "alice-in-wonderland-english-paperback",
+        "alice-in-wonderland-vietnamese-paperback",
+        "andersens-fairy-tales-english-paperback",
+        "andersens-fairy-tales-vietnamese-paperback"
+      ],
+      "missingEditionIds": []
+    }
+  ],
+  "selectedEditionCount": 23,
+  "selectedSlugs": [
+    "pride-and-prejudice-english-special-edition",
+    "jane-eyre-english-paperback",
+    "wuthering-heights-english-paperback",
+    "great-expectations-english-paperback",
+    "alice-in-wonderland-english-paperback",
+    "alice-in-wonderland-vietnamese-paperback",
+    "the-secret-garden-english-paperback",
+    "the-secret-garden-vietnamese-paperback",
+    "the-brothers-karamazov-vietnamese-hardcover",
+    "anna-karenina-vietnamese-paperback",
+    "anne-of-green-gables-vietnamese-paperback",
+    "the-three-musketeers-vietnamese-paperback",
+    "a-tale-of-two-cities-english-paperback",
+    "dracula-english-paperback",
+    "frankenstein-english-hardcover",
+    "pride-and-prejudice-vietnamese-special-edition",
+    "the-wealth-of-nations-vietnamese-paperback",
+    "the-call-of-the-wild-vietnamese-paperback",
+    "a-christmas-carol-english-paperback",
+    "a-christmas-carol-vietnamese-paperback",
+    "a-tale-of-two-cities-vietnamese-paperback",
+    "adventures-of-huckleberry-finn-english-paperback",
+    "adventures-of-huckleberry-finn-vietnamese-paperback"
+  ]
+}

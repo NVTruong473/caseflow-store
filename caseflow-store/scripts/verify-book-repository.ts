@@ -251,6 +251,13 @@ function editionToRow(
     sample_excerpt_policy: edition.sampleExcerptPolicy,
     is_featured: edition.isFeatured,
     is_active: edition.isActive,
+    pair_id: null,
+    paired_edition_id: null,
+    reason_to_read: null,
+    display_facts: [],
+    omitted_optional_fact_keys: [],
+    source_edition_key: null,
+    source_review_status: null,
     created_at: edition.createdAt,
     updated_at: edition.updatedAt,
   };

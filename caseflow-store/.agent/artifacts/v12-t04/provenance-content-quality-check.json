@@ -1,0 +1,226 @@
+{
+  "taskId": "V12-T04",
+  "generatedAt": "2026-07-18T08:41:27.032Z",
+  "migrationDecision": "additive-migration-required-but-not-created-in-v12-t04",
+  "schemaChecks": {
+    "acceptsInternalMedia": true,
+    "acceptsGeneratedMedia": true,
+    "acceptsLicensedMedia": true,
+    "acceptsPublicDomainMedia": true,
+    "acceptsEditionFact": true,
+    "rejectsIncompleteLicensedMedia": true,
+    "rejectsIncompletePublicDomainMedia": true,
+    "rejectsContradictoryGeneratedMedia": true,
+    "rejectsIncompleteAttribution": true,
+    "rejectsIncompleteReview": true,
+    "rejectsUnmatchedEditionFact": true,
+    "rejectsSourceLessBibliographicFact": true
+  },
+  "editionConsistencyChecks": {
+    "acceptsConsistentEditionFacts": true,
+    "rejectsMixedEditionFacts": true,
+    "consistentSourceEditionKey": "open-library:olid:ol1m"
+  },
+  "contentQualityChecks": {
+    "assessment": {
+      "editionId": "00000000-0000-4000-8000-000000000001",
+      "qualityScore": 68,
+      "releaseReady": true,
+      "blocking": {
+        "verified": 12,
+        "total": 12,
+        "failures": []
+      },
+      "optional": {
+        "verified": 1,
+        "applicable": 7,
+        "total": 8
+      },
+      "checks": [
+        {
+          "requirement": "title",
+          "status": "verified",
+          "provenanceRecordId": "provenance-blocking-1",
+          "note": null,
+          "level": "blocking"
+        },
+        {
+          "requirement": "authors",
+          "status": "verified",
+          "provenanceRecordId": "provenance-blocking-2",
+          "note": null,
+          "level": "blocking"
+        },
+        {
+          "requirement": "language",
+          "status": "verified",
+          "provenanceRecordId": "provenance-blocking-3",
+          "note": null,
+          "level": "blocking"
+        },
+        {
+          "requirement": "format",
+          "status": "verified",
+          "provenanceRecordId": "provenance-blocking-4",
+          "note": null,
+          "level": "blocking"
+        },
+        {
+          "requirement": "price",
+          "status": "verified",
+          "provenanceRecordId": "provenance-blocking-5",
+          "note": null,
+          "level": "blocking"
+        },
+        {
+          "requirement": "stock",
+          "status": "verified",
+          "provenanceRecordId": "provenance-blocking-6",
+          "note": null,
+          "level": "blocking"
+        },
+        {
+          "requirement": "category",
+          "status": "verified",
+          "provenanceRecordId": "provenance-blocking-7",
+          "note": null,
+          "level": "blocking"
+        },
+        {
+          "requirement": "bilingual-summary",
+          "status": "verified",
+          "provenanceRecordId": "provenance-blocking-8",
+          "note": null,
+          "level": "blocking"
+        },
+        {
+          "requirement": "primary-cover",
+          "status": "verified",
+          "provenanceRecordId": "provenance-blocking-9",
+          "note": null,
+          "level": "blocking"
+        },
+        {
+          "requirement": "source-review",
+          "status": "verified",
+          "provenanceRecordId": "provenance-blocking-10",
+          "note": null,
+          "level": "blocking"
+        },
+        {
+          "requirement": "edition-facts-consistent",
+          "status": "verified",
+          "provenanceRecordId": "provenance-blocking-11",
+          "note": null,
+          "level": "blocking"
+        },
+        {
+          "requirement": "rights-complete",
+          "status": "verified",
+          "provenanceRecordId": "provenance-blocking-12",
+          "note": null,
+          "level": "blocking"
+        },
+        {
+          "requirement": "isbn",
+          "status": "unverified",
+          "provenanceRecordId": null,
+          "note": "A candidate ISBN exists but is not edition-matched.",
+          "level": "optional"
+        },
+        {
+          "requirement": "publisher",
+          "status": "missing",
+          "provenanceRecordId": null,
+          "note": "No verified evidence supplied",
+          "level": "optional"
+        },
+        {
+          "requirement": "translator",
+          "status": "not-applicable",
+          "provenanceRecordId": null,
+          "note": "The assessed edition is in the work's original language.",
+          "level": "optional"
+        },
+        {
+          "requirement": "page-count",
+          "status": "verified",
+          "provenanceRecordId": "provenance-page-count",
+          "note": null,
+          "level": "optional"
+        },
+        {
+          "requirement": "publication-date",
+          "status": "missing",
+          "provenanceRecordId": null,
+          "note": "No verified evidence supplied",
+          "level": "optional"
+        },
+        {
+          "requirement": "dimensions",
+          "status": "missing",
+          "provenanceRecordId": null,
+          "note": "No verified evidence supplied",
+          "level": "optional"
+        },
+        {
+          "requirement": "weight",
+          "status": "missing",
+          "provenanceRecordId": null,
+          "note": "No verified evidence supplied",
+          "level": "optional"
+        },
+        {
+          "requirement": "table-of-contents",
+          "status": "missing",
+          "provenanceRecordId": null,
+          "note": "No verified evidence supplied",
+          "level": "optional"
+        }
+      ]
+    },
+    "qualityRequiresProvenance": true,
+    "blockingRequirementsCannotBeSkipped": true,
+    "unverifiedFactsReceiveNoCredit": true,
+    "completeBlockingChecklistIsReleaseReady": true
+  },
+  "serializationChecks": {
+    "publicSerializerOmitsInternalFields": true,
+    "nonApprovedProvenanceIsNotPublic": true,
+    "catalogSerializerDoesNotLeakInternalNotes": true,
+    "publicKeys": [
+      "attribution",
+      "checkedAt",
+      "contentKind",
+      "license",
+      "reviewStatus",
+      "rightsBasis",
+      "sourceLabel",
+      "sourceUrl"
+    ]
+  },
+  "pass": {
+    "acceptsInternalMedia": true,
+    "acceptsGeneratedMedia": true,
+    "acceptsLicensedMedia": true,
+    "acceptsPublicDomainMedia": true,
+    "acceptsEditionFact": true,
+    "rejectsIncompleteLicensedMedia": true,
+    "rejectsIncompletePublicDomainMedia": true,
+    "rejectsContradictoryGeneratedMedia": true,
+    "rejectsIncompleteAttribution": true,
+    "rejectsIncompleteReview": true,
+    "rejectsUnmatchedEditionFact": true,
+    "rejectsSourceLessBibliographicFact": true,
+    "acceptsConsistentEditionFacts": true,
+    "rejectsMixedEditionFacts": true,
+    "qualityRequiresProvenance": true,
+    "blockingRequirementsCannotBeSkipped": true,
+    "unverifiedFactsReceiveNoCredit": true,
+    "completeBlockingChecklistIsReleaseReady": true,
+    "publicSerializerOmitsInternalFields": true,
+    "nonApprovedProvenanceIsNotPublic": true,
+    "catalogSerializerDoesNotLeakInternalNotes": true
+  },
+  "ok": true
+}

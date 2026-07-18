@@ -1,0 +1,26 @@
+{
+  "taskId": "V12-T10",
+  "generatedAt": "2026-07-17T00:00:00.000Z",
+  "manifests": [
+    {
+      "path": "src/data/books/v1.2-canonical-manifest.json",
+      "sha256": "68ad0b592419aa71663e3acf9e42fc95f9139939328ea3dc26de63692e3a345b",
+      "bytes": 948341
+    },
+    {
+      "path": "src/data/books/v1.2-cover-portfolio-manifest.json",
+      "sha256": "54eb8569ff9c3f44e35d8f8bfb7fae05cce13e153681b855800a39624c358c09",
+      "bytes": 339512
+    },
+    {
+      "path": "src/data/books/v1.2-editorial-metadata-manifest.json",
+      "sha256": "42cbd395b12daab12e112117f6ca4c0dd1a34ef1374a38ef72fcf729148d9342",
+      "bytes": 703317
+    },
+    {
+      "path": "src/data/books/v1.2-merchandising-rules-manifest.json",
+      "sha256": "ac63f84602e8d8bb81d614c2a8cf505df8431d0f06ea9b1ce0db581b2ef30220",
+      "bytes": 14233
+    }
+  ]
+}

@@ -97,6 +97,15 @@ export type SupabaseInventoryAdjustmentResult =
       message: string;
     };
 
+export type SupabaseAdminSourceReviewApprovalCheck =
+  | { allowed: true }
+  | {
+      allowed: false;
+      status: 400 | 404;
+      code: "VALIDATION_ERROR" | "BOOK_EDITION_NOT_FOUND";
+      message: string;
+    };
+
 type BookCatalogRows = {
   categoryRows: TableRow<"book_categories">[];
   authorRows: TableRow<"book_authors">[];
@@ -211,6 +220,113 @@ export async function updateSupabaseAdminBookEdition(
   }
 
   return getSupabaseAdminBookEditionById(editionId);
+}
+
+export async function validateSupabaseAdminBookEditionSourceApproval(
+  editionId: string,
+  input: AdminBookEditionUpdateInput,
+): Promise<SupabaseAdminSourceReviewApprovalCheck> {
+  const supabase = createSupabaseAdminClient();
+  const existing = await getSupabaseAdminBookEditionById(editionId);
+
+  if (!existing) {
+    return {
+      allowed: false,
+      code: "BOOK_EDITION_NOT_FOUND",
+      message: "Book edition not found",
+      status: 404,
+    };
+  }
+
+  const sourceEditionKey =
+    input.sourceEditionKey !== undefined
+      ? input.sourceEditionKey
+      : existing.edition.sourceEditionKey;
+  const displayFacts = input.displayFacts ?? existing.edition.displayFacts;
+
+  if (!sourceEditionKey || displayFacts.length === 0) {
+    return {
+      allowed: false,
+      code: "VALIDATION_ERROR",
+      message:
+        "Source review approval requires a source edition key and approved display facts.",
+      status: 400,
+    };
+  }
+
+  const provenanceIds = [
+    ...new Set(displayFacts.map((fact) => fact.provenanceRecordId)),
+  ];
+  const { data: provenanceRows, error: provenanceError } = await supabase
+    .from("book_catalog_provenance_records")
+    .select("id,entity_type,entity_id,review_status,source_edition_key")
+    .in("id", provenanceIds);
+
+  if (provenanceError) {
+    throw new Error("Failed to verify source provenance", {
+      cause: provenanceError,
+    });
+  }
+
+  const provenanceById = new Map(
+    (provenanceRows ?? []).map((row) => [row.id, row]),
+  );
+  const displayFactsApproved = provenanceIds.every((id) => {
+    const provenance = provenanceById.get(id);
+
+    return (
+      provenance?.entity_type === "edition" &&
+      provenance.entity_id === editionId &&
+      provenance.review_status === "approved" &&
+      provenance.source_edition_key === sourceEditionKey
+    );
+  });
+
+  if (!displayFactsApproved) {
+    return {
+      allowed: false,
+      code: "VALIDATION_ERROR",
+      message:
+        "Source review approval requires every display fact to have approved edition provenance.",
+      status: 400,
+    };
+  }
+
+  const requiredQuality = [
+    "source-review",
+    "edition-facts-consistent",
+    "rights-complete",
+  ];
+  const { data: qualityRows, error: qualityError } = await supabase
+    .from("book_content_quality_checks")
+    .select("requirement,status")
+    .eq("edition_id", editionId)
+    .in("requirement", requiredQuality);
+
+  if (qualityError) {
+    throw new Error("Failed to verify source quality checks", {
+      cause: qualityError,
+    });
+  }
+
+  const qualityByRequirement = new Map(
+    (qualityRows ?? []).map((row) => [row.requirement, row.status]),
+  );
+  const qualityApproved = requiredQuality.every(
+    (requirement) => qualityByRequirement.get(requirement) === "verified",
+  );
+
+  if (!qualityApproved) {
+    return {
+      allowed: false,
+      code: "VALIDATION_ERROR",
+      message:
+        "Source review approval requires verified source-review, edition-facts-consistent, and rights-complete checks.",
+      status: 400,
+    };
+  }
+
+  return { allowed: true };
 }
 
 export async function listSupabaseAdminInventoryAdjustments(options: {
@@ -501,6 +617,7 @@ function toBookEditionInsertRow(
     summary: input.summary as Json,
     table_of_contents: null,
     sample_excerpt_policy: input.sampleExcerptPolicy,
+    reason_to_read: input.reasonToRead as Json,
     is_featured: input.isFeatured,
     is_active: input.isActive,
   };
@@ -546,6 +663,21 @@ function toBookEditionUpdateRow(
   if (input.summary !== undefined) update.summary = input.summary as Json;
   if (input.sampleExcerptPolicy !== undefined) {
     update.sample_excerpt_policy = input.sampleExcerptPolicy;
+  }
+  if (input.reasonToRead !== undefined) {
+    update.reason_to_read = input.reasonToRead as Json;
+  }
+  if (input.displayFacts !== undefined) {
+    update.display_facts = input.displayFacts as Json;
+  }
+  if (input.omittedOptionalFactKeys !== undefined) {
+    update.omitted_optional_fact_keys = input.omittedOptionalFactKeys;
+  }
+  if (input.sourceEditionKey !== undefined) {
+    update.source_edition_key = input.sourceEditionKey;
+  }
+  if (input.sourceReviewStatus !== undefined) {
+    update.source_review_status = input.sourceReviewStatus;
   }
   if (input.isFeatured !== undefined) update.is_featured = input.isFeatured;
   if (input.isActive !== undefined) update.is_active = input.isActive;
@@ -809,7 +941,7 @@ function recordMatchesQuery(
     return false;
   }
 
-  if (query.q && !searchIndexForBookRecord(record).includes(normalizeSearch(query.q))) {
+  if (query.q && !recordMatchesSearchQuery(record, query.q)) {
     return false;
   }
 
@@ -880,27 +1012,82 @@ function paginateBookRecords(
 }
 
 function searchIndexForBookRecord(record: SupabaseBookCatalogRecord): string {
-  return [
-    record.edition.displayTitle,
-    record.edition.slug,
-    record.edition.subtitle,
-    record.edition.localizedDisplayTitle.vi,
-    record.edition.localizedDisplayTitle.en,
-    record.edition.summary.vi,
-    record.edition.summary.en,
-    record.work.title,
-    record.work.originalTitle,
-    record.work.localizedTitle.vi,
-    record.work.localizedTitle.en,
-    record.work.canonicalSummary.vi,
-    record.work.canonicalSummary.en,
-    record.authors.map((author) => author.name).join(" "),
-    record.categories.map((category) => category.labels.vi).join(" "),
-    record.categories.map((category) => category.labels.en).join(" "),
-  ]
-    .filter((value): value is string => Boolean(value))
-    .join(" ")
-    .toLocaleLowerCase();
+  const displayFactText = record.edition.displayFacts.flatMap((fact) => [
+    fact.key,
+    fact.label.en,
+    fact.label.vi,
+    fact.value.en,
+    fact.value.vi,
+  ]);
+
+  return normalizeSearch(
+    [
+      record.edition.displayTitle,
+      record.edition.slug,
+      record.edition.subtitle,
+      record.edition.localizedDisplayTitle.vi,
+      record.edition.localizedDisplayTitle.en,
+      getLanguageSearchText(record.edition.language),
+      getFormatSearchText(record.edition.format),
+      record.edition.isbn13,
+      record.edition.isbn10,
+      record.edition.summary.vi,
+      record.edition.summary.en,
+      record.edition.reasonToRead?.vi,
+      record.edition.reasonToRead?.en,
+      record.work.title,
+      record.work.originalTitle,
+      record.work.localizedTitle.vi,
+      record.work.localizedTitle.en,
+      record.work.canonicalSummary.vi,
+      record.work.canonicalSummary.en,
+      record.work.themes.join(" "),
+      record.work.publicationEra,
+      record.authors.map((author) => author.name).join(" "),
+      record.translators.map((translator) => translator.name).join(" "),
+      record.publisher?.name,
+      record.categories.map((category) => category.labels.vi).join(" "),
+      record.categories.map((category) => category.labels.en).join(" "),
+      ...displayFactText,
+    ]
+      .filter((value): value is string => Boolean(value))
+      .join(" "),
+  );
+}
+
+function recordMatchesSearchQuery(
+  record: SupabaseBookCatalogRecord,
+  query: string,
+) {
+  const searchIndex = searchIndexForBookRecord(record);
+  const normalizedQuery = normalizeSearch(query);
+
+  if (searchIndex.includes(normalizedQuery)) {
+    return true;
+  }
+
+  const tokens = normalizedQuery
+    .split(/[^a-z0-9]+/)
+    .filter((token) => token.length >= 2);
+
+  return tokens.length > 0 && tokens.every((token) => searchIndex.includes(token));
+}
+
+function getLanguageSearchText(language: BookEdition["language"]) {
+  return language === "en"
+    ? "English tieng Anh ban goc original"
+    : "Vietnamese tieng Viet ban dich translation";
+}
+
+function getFormatSearchText(format: BookEdition["format"]) {
+  const labels: Record<BookEdition["format"], string> = {
+    "box-set": "box set boxset combo tron bo",
+    hardcover: "hardcover hardback bia cung",
+    paperback: "paperback softcover bia mem",
+    "special-edition": "special edition collector dac biet",
+  };
+
+  return labels[format];
 }
 
 function compareBookTitles(
@@ -911,7 +1098,12 @@ function compareBookTitles(
 }
 
 function normalizeSearch(query: string): string {
-  return query.trim().toLocaleLowerCase();
+  return query
+    .trim()
+    .replace(/[đĐ]/g, (character) => (character === "Đ" ? "D" : "d"))
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLocaleLowerCase();
 }
 
 function toMap<T extends { id: string }>(items: T[]): Map<string, T> {

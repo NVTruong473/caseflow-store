@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-16T08:55:54.003Z",
+  "generatedAt": "2026-07-18T04:26:06.109Z",
   "authorSort": {
     "authors": [
       "Adam Smith",
@@ -30,9 +30,9 @@
     "authorsAscending": true,
     "hasHorizontalOverflow": false
   },
-  "baseURL": "http://127.0.0.1:3005",
+  "baseURL": "http://localhost:3000",
   "combined": {
-    "activeChipText": "\"Dickens\"\nClassic literature\nEnglish\nPaperback\nAll authors\nAvailable\nFeatured shelf\nPrice low-high\nPage 1",
+    "activeChipText": "\"Dickens\"\nClassic literature\nEnglish\nPaperback\nAll authors\nAvailable\nEditor picks only\nPrice low-high\nPage 1",
     "apiMeta": {
       "resource": "book-editions",
       "count": 3,

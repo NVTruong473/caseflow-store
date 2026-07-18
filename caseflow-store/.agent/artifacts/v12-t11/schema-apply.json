@@ -1,0 +1,14 @@
+{
+  "taskId": "V12-T11",
+  "startedAt": "2026-07-17T21:00:36.884Z",
+  "completedAt": "2026-07-17T21:00:37.749Z",
+  "sqlPath": "supabase/migrations/0008_v12_catalog_merchandising.sql",
+  "ok": true,
+  "tablesPresent": [
+    "book_catalog_compatibility",
+    "book_catalog_provenance_records",
+    "book_content_quality_checks",
+    "book_merchandising_shelf_items",
+    "book_merchandising_shelves"
+  ]
+}

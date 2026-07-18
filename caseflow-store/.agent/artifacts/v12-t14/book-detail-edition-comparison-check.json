@@ -1,0 +1,105 @@
+{
+  "baseURL": "http://127.0.0.1:3001/",
+  "desktop": {
+    "cartStorageContainsCurrentEdition": true,
+    "editionOptions": 2,
+    "firstScreen": {
+      "addToCart": true,
+      "cover": true,
+      "editionComparison": true,
+      "price": true,
+      "title": true
+    },
+    "hasCommerceConfidence": true,
+    "hasCurrentEditionMarker": true,
+    "hasHorizontalOverflow": false,
+    "hasReasonToRead": true,
+    "hasPublicSourceReviewStatus": false,
+    "hasUnsupportedCopy": false,
+    "pairedEditionLinks": [
+      {
+        "href": "/products/the-brothers-karamazov-english-hardcover",
+        "status": 200
+      }
+    ],
+    "pairedEditionLinksValid": true,
+    "screenshotSaved": true,
+    "structuredData": {
+      "offerUrl": "http://localhost:3000/products/the-brothers-karamazov-vietnamese-hardcover",
+      "offerUrlMatchesCanonical": true,
+      "priceCurrency": "VND",
+      "type": "Book"
+    },
+    "visibleFactTerms": 3,
+    "viewport": {
+      "height": 1100,
+      "width": 1440
+    }
+  },
+  "generatedAt": "2026-07-18T08:51:41.928Z",
+  "missingFacts": {
+    "hasHorizontalOverflow": false,
+    "hasPlaceholderCopy": false,
+    "hasPublicSourceReviewStatus": false,
+    "hasUnsupportedCopy": false,
+    "hasVerifiedFactsSection": true,
+    "screenshotSaved": true,
+    "slug": "anna-karenina-vietnamese-paperback",
+    "visibleFactTerms": 0
+  },
+  "mobile": {
+    "cartStorageContainsCurrentEdition": true,
+    "editionOptions": 2,
+    "firstScreen": {
+      "addToCart": true,
+      "cover": true,
+      "editionComparison": false,
+      "price": true,
+      "title": true
+    },
+    "hasCommerceConfidence": true,
+    "hasCurrentEditionMarker": true,
+    "hasHorizontalOverflow": false,
+    "hasReasonToRead": true,
+    "hasPublicSourceReviewStatus": false,
+    "hasUnsupportedCopy": false,
+    "pairedEditionLinks": [
+      {
+        "href": "/products/the-brothers-karamazov-vietnamese-hardcover",
+        "status": 200
+      }
+    ],
+    "pairedEditionLinksValid": true,
+    "screenshotSaved": true,
+    "structuredData": {
+      "offerUrl": "http://localhost:3000/products/the-brothers-karamazov-english-hardcover",
+      "offerUrlMatchesCanonical": true,
+      "priceCurrency": "VND",
+      "type": "Book"
+    },
+    "visibleFactTerms": 4,
+    "viewport": {
+      "height": 1100,
+      "width": 375
+    }
+  },
+  "ok": true,
+  "pass": {
+    "addToCartTargetsCurrentEdition": true,
+    "bilingualScreenshotsSaved": true,
+    "editionComparison": true,
+    "firstScreenHierarchy": true,
+    "missingFactsOmitted": true,
+    "noOverflow": true,
+    "noUnsupportedClaims": true,
+    "noPublicSourceReviewStatus": true,
+    "reasonAndConfidence": true,
+    "seoStructuredData": true,
+    "sourcedFacts": true
+  },
+  "targets": {
+    "desktop": "the-brothers-karamazov-vietnamese-hardcover",
+    "missingFacts": "anna-karenina-vietnamese-paperback",
+    "mobile": "the-brothers-karamazov-english-hardcover"
+  }
+}

@@ -1,12 +1,14 @@
 import fs from "node:fs";
 import path from "node:path";
 
-import { chromium, type Browser, type Page } from "@playwright/test";
 import { loadEnvConfig } from "@next/env";
+import { chromium, type Browser, type BrowserContext, type Page } from "@playwright/test";
+import { createServerClient } from "@supabase/ssr";
 
 import { LANGUAGE_COOKIE, type Language } from "../src/lib/i18n/language";
 import { createSupabaseAdminClient } from "../src/lib/supabase/admin";
 import type { ShippingAddress, UserRole } from "../src/types/domain";
+import type { Database } from "../src/types/supabase";
 
 loadEnvConfig(process.cwd());
 
@@ -20,6 +22,11 @@ type ApiResponse<TData> = {
   data: TData | null;
   error: { code: string; message: string } | null;
   meta: Record<string, unknown> | null;
+};
+
+type CapturedCookie = {
+  name: string;
+  value: string;
 };
 
 type BookCatalogItem = {
@@ -293,8 +300,8 @@ async function inspectCheckoutPage(
   });
 
   try {
+    await loginCustomer(context, baseURL, customer.email);
     const desktopPage = await context.newPage();
-    await loginCustomer(desktopPage, customer.email);
     await seedCart(desktopPage, target.edition.id);
     await desktopPage.goto("/checkout", { waitUntil: "domcontentloaded" });
     await waitForCheckoutShell(desktopPage, "checkout-desktop-diagnostic.png");
@@ -366,8 +373,8 @@ async function inspectAdminPages(
   });
 
   try {
+    await loginOperationsUser(desktop, baseURL, staff.email);
     const desktopPage = await desktop.newPage();
-    await loginOperationsUser(desktopPage, staff.email);
     await desktopPage.goto("/admin", { waitUntil: "domcontentloaded" });
     await desktopPage.locator("[data-admin-dashboard-page]").waitFor({
       timeout: 20_000,
@@ -393,8 +400,8 @@ async function inspectAdminPages(
       "admin export orders",
     );
 
+    await loginOperationsUser(mobile, baseURL, staff.email);
     const mobilePage = await mobile.newPage();
-    await loginOperationsUser(mobilePage, staff.email);
     await mobilePage.goto("/admin/orders", { waitUntil: "domcontentloaded" });
     await mobilePage.locator("[data-admin-orders-page]").waitFor({
       timeout: 20_000,
@@ -531,6 +538,10 @@ function isUsableFocusTarget(result: FocusResult) {
 }
 
 async function seedCart(page: Page, editionId: string) {
+  if (page.url() === "about:blank") {
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+  }
+
   await page.evaluate(
     ({ key, productId }) => {
       window.localStorage.setItem(
@@ -545,36 +556,75 @@ async function seedCart(page: Page, editionId: string) {
   );
 }
 
-async function loginCustomer(page: Page, email: string) {
+async function loginCustomer(
+  context: BrowserContext,
+  baseURL: string,
+  email: string,
+) {
+  await addSupabaseSessionCookies(context, baseURL, email, TEST_PASSWORD);
+  const page = await context.newPage();
   await page.goto("/account", { waitUntil: "domcontentloaded" });
-  await page.locator("[data-customer-auth-email]").fill(email);
-  await page.locator("[data-customer-auth-password]").fill(TEST_PASSWORD);
-  await page.locator("[data-customer-auth-submit]").click();
   await page
     .locator("[data-customer-account-panel][data-customer-auth-state='signed-in']")
     .waitFor({ timeout: 20_000 });
+  await page.close();
 }
 
-async function loginOperationsUser(page: Page, email: string) {
-  await page.goto("/admin/login", { waitUntil: "domcontentloaded" });
-  await page.locator("[data-admin-login-email]").fill(email);
-  await page.locator("[data-admin-login-password]").fill(TEST_PASSWORD);
-  const sessionResponse = page.waitForResponse(
-    (response) =>
-      response.url().includes("/api/admin/session") &&
-      response.request().method() === "POST",
-  );
-  await page.locator("[data-admin-login-submit]").click();
-  const response = await sessionResponse;
-
-  if (!response.ok()) {
-    throw new Error(`Operations login failed with ${response.status()}`);
-  }
-
+async function loginOperationsUser(
+  context: BrowserContext,
+  baseURL: string,
+  email: string,
+) {
+  await addSupabaseSessionCookies(context, baseURL, email, TEST_PASSWORD);
+  const page = await context.newPage();
   await page.goto("/admin", { waitUntil: "domcontentloaded" });
   await page.locator("[data-admin-shell-page='dashboard']").waitFor({
     timeout: 20_000,
   });
+  await page.close();
+}
+
+async function addSupabaseSessionCookies(
+  context: BrowserContext,
+  baseURL: string,
+  email: string,
+  password: string,
+) {
+  let cookies: CapturedCookie[] = [];
+  const supabase = createServerClient<Database>(
+    requiredEnv("NEXT_PUBLIC_SUPABASE_URL"),
+    requiredEnv("NEXT_PUBLIC_SUPABASE_ANON_KEY"),
+    {
+      cookies: {
+        getAll() {
+          return cookies;
+        },
+        setAll(nextCookies) {
+          const cookieMap = new Map(
+            cookies.map((cookie) => [cookie.name, cookie.value]),
+          );
+
+          nextCookies.forEach(({ name, value }) => {
+            if (value) {
+              cookieMap.set(name, value);
+            } else {
+              cookieMap.delete(name);
+            }
+          });
+          cookies = [...cookieMap].map(([name, value]) => ({ name, value }));
+        },
+      },
+    },
+  );
+  const { error } = await supabase.auth.signInWithPassword({ email, password });
+
+  if (error) {
+    throw new Error(`Could not create browser session for ${email}: ${error.message}`);
+  }
+
+  await context.addCookies(
+    cookies.map(({ name, value }) => ({ name, url: baseURL, value })),
+  );
 }
 
 async function findTargetEdition(baseURL: string) {
@@ -722,6 +772,16 @@ function parseBaseURL(value: string) {
   }
 
   return url.toString().replace(/\/$/, "");
+}
+
+function requiredEnv(name: string) {
+  const value = process.env[name]?.trim();
+
+  if (!value) {
+    throw new Error(`Missing required environment variable: ${name}`);
+  }
+
+  return value;
 }
 
 void main().catch((error) => {

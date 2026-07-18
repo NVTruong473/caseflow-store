@@ -21,12 +21,16 @@ export function absoluteUrl(pathname = "/") {
 
 export function createPageMetadata({
   description,
+  imageAlt,
+  imagePath,
   language,
   path,
   robots,
   title,
 }: {
   description: string;
+  imageAlt?: string | null;
+  imagePath?: string | null;
   language: Language;
   path: string;
   robots?: Metadata["robots"];
@@ -34,6 +38,12 @@ export function createPageMetadata({
 }): Metadata {
   const url = absoluteUrl(path);
   const normalizedDescription = truncateDescription(description);
+  const image = imagePath
+    ? {
+        alt: imageAlt ?? title,
+        url: absoluteUrl(imagePath),
+      }
+    : null;
 
   return {
     alternates: {
@@ -47,12 +57,14 @@ export function createPageMetadata({
       title,
       type: "website",
       url,
+      ...(image ? { images: [image] } : {}),
     },
     robots,
     title,
     twitter: {
-      card: "summary",
+      card: image ? "summary_large_image" : "summary",
       description: normalizedDescription,
+      ...(image ? { images: [image.url] } : {}),
       title,
     },
   };

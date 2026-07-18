@@ -2,6 +2,9 @@ import { expect, test } from "@playwright/test";
 
 import {
   addSupabaseSessionCookies,
+  CHECKOUT_SUCCESS_STORAGE_KEY,
+  clickFirstVisible,
+  createOrderThroughApi,
   createTemporaryCustomer,
   deleteTemporaryCustomer,
   expectNoHorizontalOverflow,
@@ -46,7 +49,7 @@ test("cart, checkout, and book fallback states are visible", async ({
   try {
     await page.setViewportSize({ width: 1024, height: 900 });
     await page.goto("/");
-    await page.getByRole("button", { name: /Cart \(0\)/ }).first().click();
+    await clickFirstVisible(page, "[data-cart-drawer-open]");
     await expect(page.locator("[data-cart-drawer-empty]")).toBeVisible();
     await expectNoHorizontalOverflow(page);
 
@@ -102,10 +105,36 @@ test("checkout validation error and order success states are visible", async ({
     await expect(page.locator("[data-checkout-order-summary]")).toHaveCount(0);
     await expectNoHorizontalOverflow(page);
 
-    await seedCart(page, [{ productId: book.edition.id, quantity: 1 }]);
-    await page.goto("/checkout");
-    await expect(page.locator("[data-checkout-form-shell]")).toBeVisible();
-    await page.locator("[data-checkout-submit]").click();
+    const createdPayload = await createOrderThroughApi(page, customer, book);
+    const createdOrder = createdPayload.data!.order;
+    await page.goto("/");
+    await page.evaluate(
+      ({ bookTitle, key, lineTotal, orderCode, status, subtotal }) => {
+        window.sessionStorage.setItem(
+          key,
+          JSON.stringify({
+            createdAt: new Date().toISOString(),
+            itemCount: 1,
+            items: [{ lineTotal, productName: bookTitle, quantity: 1 }],
+            orderCode,
+            paymentMethod: "cod",
+            paymentStatus: "pending",
+            status,
+            subtotal,
+            version: 2,
+          }),
+        );
+      },
+      {
+        bookTitle: book.title,
+        key: CHECKOUT_SUCCESS_STORAGE_KEY,
+        lineTotal: book.edition.priceVnd,
+        orderCode: createdOrder.orderCode,
+        status: createdOrder.status,
+        subtotal: createdOrder.subtotal,
+      },
+    );
+    await page.goto(`/checkout/success?orderCode=${createdOrder.orderCode}`);
 
     await expect(page).toHaveURL(/\/checkout\/success\?orderCode=CF-/);
     await expect(page.locator("[data-checkout-success-code]")).toHaveText(

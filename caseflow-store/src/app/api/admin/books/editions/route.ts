@@ -1,4 +1,5 @@
 import {
+  createAdminBookCatalogOperationsContext,
   toAdminBookEditionApiItem,
   toAdminBookWorkOptions,
 } from "@/lib/api/admin-book-catalog";
@@ -8,6 +9,12 @@ import {
   createSupabaseAdminBookEdition,
   listSupabaseAdminBookCatalog,
 } from "@/lib/repositories/supabase-books";
+import { listSupabaseAdminContentQualitySummaries } from "@/lib/repositories/supabase-content-operations";
+import {
+  listSupabaseMerchandisingShelves,
+  resolveSupabaseMerchandisingShelves,
+} from "@/lib/repositories/supabase-merchandising";
+import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import {
   adminBookEditionCreateSchema,
   bookListQuerySchema,
@@ -62,22 +69,44 @@ export async function GET(request: Request) {
       limit: undefined,
       offset: undefined,
     });
+    const [contentQualityByEditionId, merchandisingShelves] =
+      await Promise.all([
+        listSupabaseAdminContentQualitySummaries(
+          records.map((record) => record.edition.id),
+        ),
+        listSupabaseMerchandisingShelves({
+          client: createSupabaseAdminClient(),
+        }),
+      ]);
+    const resolvedShelves = resolveSupabaseMerchandisingShelves(
+      records,
+      merchandisingShelves,
+    );
+    const operationsContext = createAdminBookCatalogOperationsContext({
+      contentQualityByEditionId,
+      resolvedShelves,
+    });
     const pageRecords = records.slice(
       query.data.offset,
       query.data.offset + query.data.limit,
     );
 
-    return apiSuccess(pageRecords.map(toAdminBookEditionApiItem), {
-      meta: {
-        count: pageRecords.length,
-        hasMore: query.data.offset + pageRecords.length < records.length,
-        limit: query.data.limit,
-        offset: query.data.offset,
-        resource: "admin-book-editions",
-        total: records.length,
-        workOptions: toAdminBookWorkOptions(records),
+    return apiSuccess(
+      pageRecords.map((record) =>
+        toAdminBookEditionApiItem(record, operationsContext),
+      ),
+      {
+        meta: {
+          count: pageRecords.length,
+          hasMore: query.data.offset + pageRecords.length < records.length,
+          limit: query.data.limit,
+          offset: query.data.offset,
+          resource: "admin-book-editions",
+          total: records.length,
+          workOptions: toAdminBookWorkOptions(records),
+        },
       },
-    });
+    );
   } catch {
     return apiError(
       {

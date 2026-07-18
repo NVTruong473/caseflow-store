@@ -6,7 +6,12 @@ import { loadEnvConfig } from "@next/env";
 
 import { LANGUAGE_COOKIE, type Language } from "../src/lib/i18n/language";
 import { createSupabaseAdminClient } from "../src/lib/supabase/admin";
-import type { ShippingAddress, UserRole } from "../src/types/domain";
+import type {
+  BookFormat,
+  EditionLanguage,
+  ShippingAddress,
+  UserRole,
+} from "../src/types/domain";
 import type { Json } from "../src/types/supabase";
 
 loadEnvConfig(process.cwd());
@@ -20,6 +25,15 @@ type TestUser = {
   email: string;
   fullName: string;
   role: Extract<UserRole, "customer" | "staff">;
+};
+
+type BookEditionTarget = {
+  displayTitle: string;
+  format: BookFormat;
+  id: string;
+  language: EditionLanguage;
+  priceVnd: number;
+  workId: string;
 };
 
 async function main() {
@@ -53,10 +67,14 @@ async function main() {
     const customerId = await createProfiledUser(users.customer);
     createdUserIds.add(customerId);
     createdUserIds.add(await createProfiledUser(users.staff));
+    const target = await findBookEditionTarget();
+    const expectedSubtotal = target.priceVnd * 2;
+
     await createQaOrder({
       customer: users.customer,
       customerId,
       orderCode,
+      target,
     });
 
     const anonymousAccess = await inspectAnonymousAccess(browser, baseURL);
@@ -87,9 +105,15 @@ async function main() {
       csvRows:
         staffExport.header.includes("order_code") &&
         staffExport.header.includes("item_count") &&
+        staffExport.header.includes("item_languages") &&
+        staffExport.header.includes("item_formats") &&
+        staffExport.header.includes("item_summary") &&
         staffExport.body.includes(orderCode) &&
+        staffExport.body.includes(target.displayTitle) &&
+        staffExport.body.includes(target.language) &&
+        staffExport.body.includes(target.format) &&
         staffExport.body.includes(",2,") &&
-        staffExport.body.includes(",440000,"),
+        staffExport.body.includes(`,${expectedSubtotal},`),
       sensitiveFieldsExcluded:
         !staffExport.body.includes(users.customer.email) &&
         !staffExport.body.includes("+84 912 345 678") &&
@@ -118,6 +142,7 @@ async function main() {
       orderCode,
       pass,
       staffExport,
+      target,
     };
 
     fs.writeFileSync(
@@ -130,6 +155,7 @@ async function main() {
           ok,
           orderCode,
           pass,
+          target: target.displayTitle,
         },
         null,
         2,
@@ -301,13 +327,16 @@ async function createQaOrder({
   customer,
   customerId,
   orderCode,
+  target,
 }: {
   customer: TestUser;
   customerId: string;
   orderCode: string;
+  target: BookEditionTarget;
 }) {
   const admin = createSupabaseAdminClient();
   const shippingAddress = createShippingAddress(customer.fullName);
+  const subtotal = target.priceVnd * 2;
   const { data, error } = await admin
     .from("orders")
     .insert({
@@ -333,7 +362,7 @@ async function createQaOrder({
       shipping_method: "standard",
       shipping_status: "delivered",
       status: "completed",
-      subtotal: 440_000,
+      subtotal,
       tax_estimates: [],
       tax_total_vnd: 0,
     })
@@ -345,16 +374,50 @@ async function createQaOrder({
   }
 
   const { error: itemError } = await admin.from("order_items").insert({
-    line_total: 440_000,
+    book_edition_id: target.id,
+    book_work_id: target.workId,
+    edition_format: target.format,
+    edition_language: target.language,
+    edition_title: target.displayTitle,
+    line_total: subtotal,
+    line_total_vnd: subtotal,
     order_id: data.id,
-    product_name: "D38 CSV QA Book",
+    product_name: target.displayTitle,
     quantity: 2,
-    unit_price: 220_000,
+    unit_price: target.priceVnd,
+    unit_price_vnd: target.priceVnd,
   });
 
   if (itemError) {
     throw new Error(`Could not create CSV QA order item: ${itemError.message}`);
   }
+}
+
+async function findBookEditionTarget(): Promise<BookEditionTarget> {
+  const admin = createSupabaseAdminClient();
+  const { data, error } = await admin
+    .from("book_editions")
+    .select("id,work_id,display_title,language,format,price_vnd")
+    .eq("is_active", true)
+    .gt("stock_quantity", 0)
+    .order("display_title", { ascending: true })
+    .limit(1)
+    .single();
+
+  if (error || !data) {
+    throw new Error(
+      `Could not find CSV QA book edition: ${error?.message ?? "unknown"}`,
+    );
+  }
+
+  return {
+    displayTitle: data.display_title,
+    format: data.format,
+    id: data.id,
+    language: data.language,
+    priceVnd: data.price_vnd,
+    workId: data.work_id,
+  };
 }
 
 async function cleanupOrder(orderCode: string) {

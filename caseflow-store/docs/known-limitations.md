@@ -1,7 +1,7 @@
 # Known Limitations
 
 This document records the intentional boundaries and accepted risks of
-CaseFlow Books `v1.1`. These items are not hidden production capabilities; they
+CaseFlow Books `v1.2`. These items are not hidden production capabilities; they
 define where the portfolio release stops.
 
 ## Commerce scope
@@ -23,7 +23,7 @@ states, and sensitive-data handling.
 ### Phone and email are not truly verified
 
 Customer checkout requires profile/contact fields, and those fields are
-validated for shape and completeness. CaseFlow Books `v1.1` does not send real
+validated for shape and completeness. CaseFlow Books `v1.2` does not send real
 SMS OTPs or provider-backed email verification.
 
 **Current control:** checkout readiness prevents missing or malformed profile
@@ -123,13 +123,16 @@ protected excerpts. Rights assumptions are documented in `docs/domain.md`.
 **Next step:** use a licensed metadata provider or explicitly permitted source
 before presenting the catalog as commercial production data.
 
-### Cover assets are safe placeholders
+### Cover assets are illustrative, not licensed publisher covers
 
-The active cover strategy uses an internal placeholder SVG and stable local
-references. It does not hotlink or copy commercial book covers.
+The active v1.2 catalog uses 100 project-created SVG cover illustrations with
+stable local references. It does not hotlink or copy commercial book covers,
+marketplace images, publisher marks, or protected layouts.
 
-**Current control:** missing or placeholder cover states are designed and
-documented in `docs/v1.1-safe-cover-asset-strategy.md`.
+**Current control:** cover provenance and safe-asset rules are documented in
+`docs/v1.2-cover-portfolio.md` and `docs/v1.1-safe-cover-asset-strategy.md`.
+Missing or placeholder cover states remain available only as fallback/admin
+quality states.
 
 **Next step:** add a media pipeline only after defining licensing, uploads,
 image processing, CDN caching, alt text, and takedown handling.
@@ -151,7 +154,7 @@ availability.
 
 ## Accepted dependency advisory
 
-At the `v1.1` release audit, `npm audit --audit-level=moderate` reported:
+At the `v1.2` release audit, `npm audit --audit-level=moderate` reported:
 
 - 0 critical
 - 0 high

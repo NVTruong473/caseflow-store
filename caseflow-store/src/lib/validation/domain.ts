@@ -14,6 +14,7 @@ import {
   PAYMENT_STATUSES,
   SHIPPING_METHODS,
   SHIPPING_STATUSES,
+  SOURCE_REVIEW_STATUSES,
   USER_ROLES,
 } from "@/types/domain";
 import type {
@@ -22,6 +23,7 @@ import type {
   BookCategory,
   BookCoverAsset,
   BookEdition,
+  BookEditionDisplayFact,
   BookOrder,
   BookOrderItem,
   BookOrderTotals,
@@ -59,6 +61,7 @@ export const paymentStatusSchema = z.enum(PAYMENT_STATUSES);
 export const shippingMethodSchema = z.enum(SHIPPING_METHODS);
 export const shippingStatusSchema = z.enum(SHIPPING_STATUSES);
 export const coverAssetSourceSchema = z.enum(COVER_ASSET_SOURCES);
+export const sourceReviewStatusSchema = z.enum(SOURCE_REVIEW_STATUSES);
 export const customerRequiredProfileFieldSchema = z.enum(
   CUSTOMER_REQUIRED_PROFILE_FIELDS,
 );
@@ -226,6 +229,18 @@ export const bookDimensionsSchema = z.object({
   thicknessMm: z.number().int().positive().max(1_000).nullable(),
 });
 
+export const bookEditionDisplayFactSchema = z.object({
+  key: z
+    .string()
+    .trim()
+    .min(1)
+    .max(80)
+    .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
+  label: localizedTextSchema,
+  value: localizedTextSchema,
+  provenanceRecordId: idSchema,
+}) satisfies z.ZodType<BookEditionDisplayFact>;
+
 export const bookEditionSchema = z
   .object({
     id: idSchema,
@@ -253,6 +268,27 @@ export const bookEditionSchema = z
     summary: bookSummarySchema,
     tableOfContents: localizedTextSchema.nullable(),
     sampleExcerptPolicy: z.string().trim().min(1).max(300).nullable(),
+    pairId: idSchema.nullable().optional().default(null),
+    pairedEditionId: idSchema.nullable().optional().default(null),
+    reasonToRead: localizedTextSchema.nullable().optional().default(null),
+    displayFacts: z.array(bookEditionDisplayFactSchema).max(12).optional().default([]),
+    omittedOptionalFactKeys: z
+      .array(
+        z
+          .string()
+          .trim()
+          .min(1)
+          .max(80)
+          .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
+      )
+      .max(24)
+      .optional()
+      .default([]),
+    sourceEditionKey: z.string().trim().min(3).max(180).nullable().optional().default(null),
+    sourceReviewStatus: sourceReviewStatusSchema
+      .nullable()
+      .optional()
+      .default(null),
     isFeatured: z.boolean(),
     isActive: z.boolean(),
     createdAt: isoDateTimeStringSchema,

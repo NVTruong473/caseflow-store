@@ -6,6 +6,7 @@ import type { ReactNode } from "react";
 import { Badge, Button, Card, Container } from "@/components/ui";
 import { CurrencyAmount } from "@/components/currency/currency-amount";
 import { BookCatalogEmptyState } from "@/features/books/catalog-states";
+import { formatVnd } from "@/lib/format/currency";
 import { getCurrencyDisplayRules } from "@/lib/format/currency-display.server";
 import {
   getEditionLanguageLabel,
@@ -20,6 +21,11 @@ import {
   type BookCatalogAvailability,
   type SupabaseBookCatalogRecord,
 } from "@/lib/repositories/supabase-books";
+import {
+  listSupabaseMerchandisingShelves,
+  resolveSupabaseMerchandisingShelves,
+  type SupabaseResolvedMerchandisingShelf,
+} from "@/lib/repositories/supabase-merchandising";
 import {
   BOOK_FORMATS,
   EDITION_LANGUAGES,
@@ -57,6 +63,14 @@ type CatalogFilterState = {
 };
 
 type AuthorOption = Pick<BookAuthor, "id" | "name" | "slug">;
+type CatalogMerchandisingEntry = {
+  hasEditorialShelf: boolean;
+  hasPairedShelf: boolean;
+  hasPromotionShelf: boolean;
+  hasStockShelf: boolean;
+  shelfSlugs: string[];
+};
+type CatalogMerchandisingIndex = Map<string, CatalogMerchandisingEntry>;
 
 type CatalogPageProps = {
   searchParams?: Promise<Record<string, string | string[] | undefined>>;
@@ -88,7 +102,7 @@ const catalogCopy = {
     allResults: "All results",
     anyAuthor: "All authors",
     anyAvailability: "Any availability",
-    anyPromotion: "Any promotion",
+    anyCuration: "Any curation",
     applyFilters: "Apply filters",
     authorLabel: "Author",
     authors: "Authors",
@@ -97,9 +111,12 @@ const catalogCopy = {
     breadcrumbHome: "Home",
     breadcrumbLabel: "Catalog navigation",
     category: "Category",
+    compareAt: "Was",
+    curationLabel: "Curation",
     details: "View details",
+    editorialBadge: "Editor pick",
     eyebrow: "Full bookstore catalog",
-    featuredOnly: "Featured shelf",
+    featuredOnly: "Editor picks only",
     filtersDescription:
       "Use URL-backed filters to narrow the catalog without losing your current view.",
     filtersTitle: "Find books",
@@ -112,16 +129,23 @@ const catalogCopy = {
     page: (page: number) => `Page ${page}`,
     pageOf: (page: number, totalPages: number) =>
       `Page ${page} of ${totalPages}`,
+    pairedBadge: "Bilingual pair",
     previous: "Previous",
-    promotionLabel: "Promotion",
+    promotionBadge: "Offer",
     resultCount: (start: number, end: number, total: number) =>
       `Showing ${start}-${end} of ${total} editions`,
+    resultSignalAvailability: (label: string) => `Availability: ${label}`,
+    resultSignalCuration: "Editorial labels are shelf-based",
+    resultSignalOffers: (count: number) =>
+      count > 0 ? `${count} visible offer labels` : "No visible offers",
+    resultSignalSort: (label: string) => `Sort: ${label}`,
     saleState: "Sale state",
     searchLabel: "Search",
     searchPlaceholder: "Title, author, theme...",
     sortLabel: "Sort",
     sortTitle: "Title A-Z",
     stock: "Stock",
+    standardListing: "Standard listing",
     title: "All book editions",
     totalEditions: "Total editions",
     viewDescription:
@@ -137,7 +161,7 @@ const catalogCopy = {
     allResults: "Tất cả kết quả",
     anyAuthor: "Tất cả tác giả",
     anyAvailability: "Mọi tình trạng",
-    anyPromotion: "Mọi ưu đãi",
+    anyCuration: "Mọi kệ biên tập",
     applyFilters: "Áp dụng bộ lọc",
     authorLabel: "Tác giả",
     authors: "Tác giả",
@@ -146,9 +170,12 @@ const catalogCopy = {
     breadcrumbHome: "Trang chủ",
     breadcrumbLabel: "Điều hướng catalog",
     category: "Danh mục",
+    compareAt: "Giá trước",
+    curationLabel: "Biên tập",
     details: "Xem chi tiết",
+    editorialBadge: "Biên tập chọn",
     eyebrow: "Catalog nhà sách đầy đủ",
-    featuredOnly: "Kệ nổi bật",
+    featuredOnly: "Chỉ kệ biên tập chọn",
     filtersDescription:
       "Bộ lọc dùng URL nên bạn có thể quay lại hoặc chia sẻ đúng trạng thái đang xem.",
     filtersTitle: "Tìm sách",
@@ -161,16 +188,23 @@ const catalogCopy = {
     page: (page: number) => `Trang ${page}`,
     pageOf: (page: number, totalPages: number) =>
       `Trang ${page} / ${totalPages}`,
+    pairedBadge: "Cặp song ngữ",
     previous: "Trước",
-    promotionLabel: "Ưu đãi",
+    promotionBadge: "Ưu đãi",
     resultCount: (start: number, end: number, total: number) =>
       `Đang hiển thị ${start}-${end} trong ${total} ấn bản`,
+    resultSignalAvailability: (label: string) => `Tình trạng: ${label}`,
+    resultSignalCuration: "Nhãn biên tập dựa trên kệ sách",
+    resultSignalOffers: (count: number) =>
+      count > 0 ? `${count} nhãn ưu đãi đang hiển thị` : "Không có ưu đãi đang hiển thị",
+    resultSignalSort: (label: string) => `Sắp xếp: ${label}`,
     saleState: "Trạng thái bán",
     searchLabel: "Tìm kiếm",
     searchPlaceholder: "Tên sách, tác giả, chủ đề...",
     sortLabel: "Sắp xếp",
     sortTitle: "Tên A-Z",
     stock: "Tồn kho",
+    standardListing: "Niêm yết thường",
     title: "Tất cả ấn bản sách",
     totalEditions: "Tổng ấn bản",
     viewDescription:
@@ -185,10 +219,14 @@ export default async function CatalogPage({ searchParams }: CatalogPageProps) {
   const copy = catalogCopy[language];
   const currencyRules = getCurrencyDisplayRules();
   const params = await searchParams;
-  const [categories, allRecords] = await Promise.all([
+  const [categories, allRecords, merchandisingShelves] = await Promise.all([
     listSupabaseBookCategories(),
     listSupabaseBookCatalog({ sort: "title-asc" }),
+    listSupabaseMerchandisingShelves(),
   ]);
+  const merchandisingIndex = buildCatalogMerchandisingIndex(
+    resolveSupabaseMerchandisingShelves(allRecords, merchandisingShelves),
+  );
   const authorOptions = getAuthorOptions(allRecords);
   const filters = parseCatalogFilters(params, categories, authorOptions);
   const filteredRecords = await listSupabaseBookCatalog({
@@ -219,6 +257,12 @@ export default async function CatalogPage({ searchParams }: CatalogPageProps) {
     copy,
     filters: normalizedFilters,
     language,
+  });
+  const resultSignals = getCatalogResultSignals({
+    copy,
+    filters: normalizedFilters,
+    language,
+    visibleRecords,
   });
 
   return (
@@ -288,11 +332,12 @@ export default async function CatalogPage({ searchParams }: CatalogPageProps) {
             allLanguages: copy.allLanguages,
             anyAuthor: copy.anyAuthor,
             anyAvailability: copy.anyAvailability,
-            anyPromotion: copy.anyPromotion,
+            anyCuration: copy.anyCuration,
             applyFilters: copy.applyFilters,
             authorLabel: copy.authorLabel,
             availabilityLabel: copy.availabilityLabel,
             category: copy.category,
+            curationLabel: copy.curationLabel,
             featuredOnly: copy.featuredOnly,
             filtersDescription: copy.filtersDescription,
             filtersTitle: copy.filtersTitle,
@@ -300,7 +345,6 @@ export default async function CatalogPage({ searchParams }: CatalogPageProps) {
             languageLabel: copy.languageLabel,
             maxPriceLabel: copy.maxPriceLabel,
             minPriceLabel: copy.minPriceLabel,
-            promotionLabel: copy.promotionLabel,
             searchLabel: copy.searchLabel,
             searchPlaceholder: copy.searchPlaceholder,
             sortLabel: copy.sortLabel,
@@ -333,6 +377,17 @@ export default async function CatalogPage({ searchParams }: CatalogPageProps) {
                 </Badge>
               ))}
             </div>
+
+            <div
+              className="flex flex-wrap gap-case-xs lg:col-span-2"
+              data-catalog-result-signals
+            >
+              {resultSignals.map((signal) => (
+                <Badge key={signal.label} variant={signal.variant}>
+                  {signal.label}
+                </Badge>
+              ))}
+            </div>
           </div>
 
           {visibleRecords.length > 0 ? (
@@ -346,12 +401,21 @@ export default async function CatalogPage({ searchParams }: CatalogPageProps) {
                   copy={{
                     authors: copy.authors,
                     category: copy.category,
+                    compareAt: copy.compareAt,
                     details: copy.details,
+                    editorialBadge: copy.editorialBadge,
                     format: copy.format,
+                    pairedBadge: copy.pairedBadge,
+                    promotionBadge: copy.promotionBadge,
                     saleState: copy.saleState,
+                    standardListing: copy.standardListing,
                     stock: copy.stock,
                   }}
                   language={language}
+                  merchandising={
+                    merchandisingIndex.get(record.edition.id) ??
+                    createEmptyMerchandisingEntry()
+                  }
                   priority={index < 4}
                   record={record}
                   rules={currencyRules}
@@ -394,11 +458,12 @@ function CatalogFilterForm({
     allLanguages: string;
     anyAuthor: string;
     anyAvailability: string;
-    anyPromotion: string;
+    anyCuration: string;
     applyFilters: string;
     authorLabel: string;
     availabilityLabel: string;
     category: string;
+    curationLabel: string;
     featuredOnly: string;
     filtersDescription: string;
     filtersTitle: string;
@@ -406,7 +471,6 @@ function CatalogFilterForm({
     languageLabel: string;
     maxPriceLabel: string;
     minPriceLabel: string;
-    promotionLabel: string;
     searchLabel: string;
     searchPlaceholder: string;
     sortLabel: string;
@@ -543,13 +607,13 @@ function CatalogFilterForm({
           </select>
         </Field>
 
-        <Field label={copy.promotionLabel}>
+        <Field label={copy.curationLabel}>
           <select
             className={fieldControlClassName}
             defaultValue={filters.featured ? "true" : ""}
             name="featured"
           >
-            <option value="">{copy.anyPromotion}</option>
+            <option value="">{copy.anyCuration}</option>
             <option value="true">{copy.featuredOnly}</option>
           </select>
         </Field>
@@ -606,6 +670,7 @@ const fieldControlClassName =
 function CatalogBookCard({
   copy,
   language,
+  merchandising,
   priority,
   record,
   rules,
@@ -613,40 +678,66 @@ function CatalogBookCard({
   copy: {
     authors: string;
     category: string;
+    compareAt: string;
     details: string;
+    editorialBadge: string;
     format: string;
+    pairedBadge: string;
+    promotionBadge: string;
     saleState: string;
+    standardListing: string;
     stock: string;
   };
   language: Language;
+  merchandising: CatalogMerchandisingEntry;
   priority: boolean;
   record: SupabaseBookCatalogRecord;
   rules: ReturnType<typeof getCurrencyDisplayRules>;
 }) {
+  const title = getEditionTitle(record, language);
+  const authorLine = record.authors.map((author) => author.name).join(", ");
+  const categoryLine = getCategoryLine(record, language);
+  const hasOffer = hasRealOffer(record);
+  const saleStateLabel = getSaleStateLabel({
+    hasEditorialShelf: merchandising.hasEditorialShelf,
+    hasOffer,
+    language,
+    standardListing: copy.standardListing,
+  });
+
   return (
     <Card
-      className="h-full"
+      className="h-full overflow-hidden"
       data-catalog-author={getPrimaryAuthorName(record)}
       data-catalog-card={record.edition.slug}
+      data-catalog-card-title={title}
+      data-catalog-cover-source={record.coverAsset?.source ?? "missing"}
+      data-catalog-editorial={merchandising.hasEditorialShelf ? "true" : "false"}
+      data-catalog-inventory-status={record.edition.inventoryStatus}
+      data-catalog-paired={merchandising.hasPairedShelf ? "true" : "false"}
       data-catalog-price-vnd={record.edition.priceVnd}
+      data-catalog-promotion={hasOffer ? "compare-at" : "none"}
+      data-catalog-shelf-slugs={merchandising.shelfSlugs.join(",")}
       padding="none"
       variant="interactive"
     >
       <Link
-        className="flex h-full flex-col rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+        aria-label={`${title} - ${authorLine}`}
+        className="grid h-full grid-cols-[96px_minmax(0,1fr)] gap-case-sm rounded-lg p-case-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:flex sm:flex-col sm:p-0"
         href={`/products/${record.edition.slug}`}
       >
-        <div className="aspect-[3/4] p-case-md">
+        <div className="aspect-[3/4] overflow-hidden rounded-md border border-border bg-surface-muted sm:m-case-md sm:mb-0">
           <Image
             alt={getCoverAlt(record, language)}
-            className="h-full w-full rounded-md border border-border bg-surface-muted object-cover"
+            className="h-full w-full object-cover"
             height={320}
             priority={priority}
+            sizes="(max-width: 639px) 96px, (max-width: 1023px) 42vw, (max-width: 1279px) 30vw, 240px"
             src={getCoverPath(record)}
             width={240}
           />
         </div>
-        <div className="flex flex-1 flex-col gap-case-sm px-case-md pb-case-md">
+        <div className="flex min-w-0 flex-1 flex-col gap-case-sm sm:px-case-md sm:pb-case-md">
           <div className="flex flex-wrap gap-case-xs">
             <Badge variant="neutral">
               {getEditionLanguageLabel(record.edition.language, language)}
@@ -654,31 +745,36 @@ function CatalogBookCard({
             <Badge variant="neutral">
               {getFormatLabel(record.edition.format, language)}
             </Badge>
+            {merchandising.hasEditorialShelf ? (
+              <Badge variant="primary">{copy.editorialBadge}</Badge>
+            ) : null}
+            {hasOffer ? (
+              <Badge variant="warning">{copy.promotionBadge}</Badge>
+            ) : null}
+            {merchandising.hasPairedShelf ? (
+              <Badge variant="neutral">{copy.pairedBadge}</Badge>
+            ) : null}
             <Badge variant={getStockBadgeVariant(record.edition.inventoryStatus)}>
               {getInventoryStatusLabel(record.edition.inventoryStatus, language)}
             </Badge>
           </div>
 
-          <div className="flex flex-1 flex-col gap-case-xs">
-            <h2 className="line-clamp-2 text-body font-semibold text-foreground">
-              {getEditionTitle(record, language)}
+          <div className="flex flex-1 flex-col gap-case-xs text-small leading-6">
+            <h2 className="break-words text-body font-semibold leading-6 text-foreground">
+              {title}
             </h2>
-            <dl className="grid gap-case-xs text-small leading-6 text-text-muted">
+            <dl className="grid gap-case-xs text-text-muted">
               <div>
                 <dt className="sr-only">{copy.authors}</dt>
-                <dd>{record.authors.map((author) => author.name).join(", ")}</dd>
+                <dd className="break-words">{authorLine}</dd>
               </div>
               <div>
                 <dt className="sr-only">{copy.category}</dt>
-                <dd>{getCategoryLine(record, language)}</dd>
-              </div>
-              <div>
-                <dt className="sr-only">{copy.format}</dt>
-                <dd>{getFormatLabel(record.edition.format, language)}</dd>
+                <dd className="break-words">{categoryLine}</dd>
               </div>
               <div>
                 <dt className="sr-only">{copy.saleState}</dt>
-                <dd>{getSaleStateLabel(record.edition.isFeatured, language)}</dd>
+                <dd>{saleStateLabel}</dd>
               </div>
               <div>
                 <dt className="sr-only">{copy.stock}</dt>
@@ -691,17 +787,27 @@ function CatalogBookCard({
             </dl>
           </div>
 
-          <CurrencyAmount
-            amountVnd={record.edition.priceVnd}
-            className="mt-auto text-heading-3 font-semibold text-foreground"
-            estimateClassName="text-small font-medium text-text-muted"
-            language={language}
-            rules={rules}
-            size="sm"
-          />
-          <span className="text-small font-medium text-primary">
-            {copy.details}
-          </span>
+          <div className="mt-auto flex min-w-0 flex-col gap-case-xs">
+            {hasOffer ? (
+              <p className="text-small text-text-muted" data-catalog-compare-at>
+                {copy.compareAt}:{" "}
+                <span className="line-through">
+                  {formatVnd(record.edition.compareAtPriceVnd ?? 0)}
+                </span>
+              </p>
+            ) : null}
+            <CurrencyAmount
+              amountVnd={record.edition.priceVnd}
+              className="text-heading-3 font-semibold text-foreground"
+              estimateClassName="text-small font-medium text-text-muted"
+              language={language}
+              rules={rules}
+              size="sm"
+            />
+            <span className="text-small font-medium text-primary">
+              {copy.details}
+            </span>
+          </div>
         </div>
       </Link>
     </Card>
@@ -805,6 +911,46 @@ function clampPage(page: number, totalPages: number) {
   return Math.min(Math.max(page, 1), totalPages);
 }
 
+function buildCatalogMerchandisingIndex(
+  shelves: SupabaseResolvedMerchandisingShelf[],
+): CatalogMerchandisingIndex {
+  const index = new Map<string, CatalogMerchandisingEntry>();
+
+  for (const shelf of shelves) {
+    for (const record of shelf.records) {
+      const entry = index.get(record.edition.id) ?? createEmptyMerchandisingEntry();
+
+      entry.shelfSlugs.push(shelf.shelf.slug);
+      if (shelf.shelf.sourceKind === "editorial") {
+        entry.hasEditorialShelf = true;
+      }
+      if (shelf.shelf.type === "paired-editions") {
+        entry.hasPairedShelf = true;
+      }
+      if (shelf.shelf.type === "promotion-focus") {
+        entry.hasPromotionShelf = true;
+      }
+      if (shelf.shelf.type === "inventory-focus") {
+        entry.hasStockShelf = true;
+      }
+
+      index.set(record.edition.id, entry);
+    }
+  }
+
+  return index;
+}
+
+function createEmptyMerchandisingEntry(): CatalogMerchandisingEntry {
+  return {
+    hasEditorialShelf: false,
+    hasPairedShelf: false,
+    hasPromotionShelf: false,
+    hasStockShelf: false,
+    shelfSlugs: [],
+  };
+}
+
 function getCatalogPageHref(page: number, filters: CatalogFilterState) {
   const params = new URLSearchParams();
 
@@ -821,7 +967,7 @@ function getCatalogPageHref(page: number, filters: CatalogFilterState) {
     params.set("featured", "true");
   }
 
-  if (filters.sort !== "relevance") {
+  if (filters.sort !== getDefaultCatalogSort(filters.q)) {
     params.set("sort", filters.sort);
   }
 
@@ -849,6 +995,7 @@ function parseCatalogFilters(
   categories: BookCategory[],
   authorOptions: AuthorOption[],
 ): CatalogFilterState {
+  const q = readSearchParam(params?.q);
   const minPriceVnd = readPriceParam(params?.minPriceVnd);
   const maxPriceVnd = readPriceParam(params?.maxPriceVnd);
   const safePriceRange =
@@ -866,8 +1013,8 @@ function parseCatalogFilters(
     format: readFormatParam(params?.format),
     language: readLanguageParam(params?.language),
     page: readPageParam(params?.page),
-    q: readSearchParam(params?.q),
-    sort: readSortParam(params?.sort),
+    q,
+    sort: readSortParam(params?.sort, q),
     ...safePriceRange,
   };
 }
@@ -951,12 +1098,19 @@ function readAvailabilityParam(value: string | string[] | undefined) {
     : undefined;
 }
 
-function readSortParam(value: string | string[] | undefined): CatalogSort {
+function readSortParam(
+  value: string | string[] | undefined,
+  query?: string,
+): CatalogSort {
   const normalized = readSingleParam(value);
 
   return CATALOG_SORTS.includes(normalized as CatalogSort)
     ? (normalized as CatalogSort)
-    : "relevance";
+    : getDefaultCatalogSort(query);
+}
+
+function getDefaultCatalogSort(query?: string): CatalogSort {
+  return query ? "relevance" : "title-asc";
 }
 
 function getRepositorySort(sort: CatalogSort) {
@@ -1089,7 +1243,7 @@ function getActiveViewChips({
     filters.availability
       ? getAvailabilityLabel(filters.availability, language)
       : copy.anyAvailability,
-    filters.featured ? copy.featuredOnly : copy.anyPromotion,
+    filters.featured ? copy.featuredOnly : copy.anyCuration,
     getSortLabel(filters.sort, language),
     copy.page(filters.page),
   ];
@@ -1106,6 +1260,43 @@ function getActiveViewChips({
   }
 
   return chips;
+}
+
+function getCatalogResultSignals({
+  copy,
+  filters,
+  language,
+  visibleRecords,
+}: {
+  copy: typeof catalogCopy[Language];
+  filters: CatalogFilterState;
+  language: Language;
+  visibleRecords: SupabaseBookCatalogRecord[];
+}) {
+  const offerCount = visibleRecords.filter(hasRealOffer).length;
+  const availabilityLabel = filters.availability
+    ? getAvailabilityLabel(filters.availability, language)
+    : copy.anyAvailability;
+  const sortLabel = getSortLabel(filters.sort, language);
+
+  return [
+    {
+      label: copy.resultSignalSort(sortLabel),
+      variant: "neutral" as const,
+    },
+    {
+      label: copy.resultSignalAvailability(availabilityLabel),
+      variant: filters.availability ? ("success" as const) : ("neutral" as const),
+    },
+    {
+      label: copy.resultSignalOffers(offerCount),
+      variant: offerCount > 0 ? ("warning" as const) : ("neutral" as const),
+    },
+    {
+      label: copy.resultSignalCuration,
+      variant: filters.featured ? ("primary" as const) : ("neutral" as const),
+    },
+  ];
 }
 
 function getCategoryChip(
@@ -1252,12 +1443,33 @@ function getPrimaryAuthorName(record: SupabaseBookCatalogRecord) {
   return record.authors[0]?.name ?? "";
 }
 
-function getSaleStateLabel(isFeatured: boolean, language: Language) {
+function hasRealOffer(record: SupabaseBookCatalogRecord) {
+  return (
+    record.edition.compareAtPriceVnd !== null &&
+    record.edition.compareAtPriceVnd > record.edition.priceVnd
+  );
+}
+
+function getSaleStateLabel({
+  hasEditorialShelf,
+  hasOffer,
+  language,
+  standardListing,
+}: {
+  hasEditorialShelf: boolean;
+  hasOffer: boolean;
+  language: Language;
+  standardListing: string;
+}) {
   if (language === "vi") {
-    return isFeatured ? "Kệ nổi bật" : "Giá niêm yết";
+    if (hasOffer) return "Ưu đãi theo giá CaseFlow";
+    if (hasEditorialShelf) return "Kệ biên tập";
+    return standardListing;
   }
 
-  return isFeatured ? "Featured shelf" : "Standard price";
+  if (hasOffer) return "CaseFlow offer";
+  if (hasEditorialShelf) return "Editorial shelf";
+  return standardListing;
 }
 
 function getStockBadgeVariant(status: InventoryStatus) {

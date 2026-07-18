@@ -41,7 +41,7 @@ async function main() {
         combined.activeChipText.includes("Classic literature") &&
         combined.activeChipText.includes("English") &&
         combined.activeChipText.includes("Paperback") &&
-        combined.activeChipText.includes("Featured shelf"),
+        combined.activeChipText.includes("Editor picks only"),
       invalidParamsDoNotCrash:
         invalid.headingVisible &&
         invalid.renderedCards === 24 &&

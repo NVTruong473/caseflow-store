@@ -1,0 +1,110 @@
+{
+  "taskId": "V12-T10",
+  "generatedAt": "2026-07-17T16:42:03.333Z",
+  "status": "captured",
+  "containsPiiRows": false,
+  "counts": [
+    {
+      "table": "categories",
+      "count": 5,
+      "ok": true,
+      "error": null
+    },
+    {
+      "table": "products",
+      "count": 16,
+      "ok": true,
+      "error": null
+    },
+    {
+      "table": "profiles",
+      "count": 1,
+      "ok": true,
+      "error": null
+    },
+    {
+      "table": "orders",
+      "count": 0,
+      "ok": true,
+      "error": null
+    },
+    {
+      "table": "order_items",
+      "count": 0,
+      "ok": true,
+      "error": null
+    },
+    {
+      "table": "book_categories",
+      "count": 11,
+      "ok": true,
+      "error": null
+    },
+    {
+      "table": "book_authors",
+      "count": 41,
+      "ok": true,
+      "error": null
+    },
+    {
+      "table": "book_translators",
+      "count": 0,
+      "ok": true,
+      "error": null
+    },
+    {
+      "table": "book_publishers",
+      "count": 1,
+      "ok": true,
+      "error": null
+    },
+    {
+      "table": "book_cover_assets",
+      "count": 1,
+      "ok": true,
+      "error": null
+    },
+    {
+      "table": "book_works",
+      "count": 50,
+      "ok": true,
+      "error": null
+    },
+    {
+      "table": "book_work_authors",
+      "count": 51,
+      "ok": true,
+      "error": null
+    },
+    {
+      "table": "book_work_categories",
+      "count": 100,
+      "ok": true,
+      "error": null
+    },
+    {
+      "table": "book_editions",
+      "count": 100,
+      "ok": true,
+      "error": null
+    },
+    {
+      "table": "book_edition_translators",
+      "count": 0,
+      "ok": true,
+      "error": null
+    },
+    {
+      "table": "book_promotions",
+      "count": 0,
+      "ok": true,
+      "error": null
+    },
+    {
+      "table": "book_inventory_adjustments",
+      "count": 0,
+      "ok": true,
+      "error": null
+    }
+  ]
+}

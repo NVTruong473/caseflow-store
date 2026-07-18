@@ -1,0 +1,47 @@
+{
+  "taskId": "V12-T11",
+  "generatedAt": "2026-07-17T21:04:33.425Z",
+  "ok": true,
+  "pass": {
+    "catalogOk": true,
+    "catalogUsesV12Cover": true,
+    "detailOk": true,
+    "detailUsesV12Cover": true,
+    "retiredHidden": true,
+    "adminProtected": true
+  },
+  "results": [
+    {
+      "label": "catalog",
+      "status": 200,
+      "ok": true,
+      "count": 5,
+      "coverPath": "/images/books/v12-covers/the-old-man-and-the-sea-vietnamese-paperback.svg",
+      "errorCode": null
+    },
+    {
+      "label": "detail",
+      "status": 200,
+      "ok": true,
+      "count": null,
+      "coverPath": "/images/books/v12-covers/pride-and-prejudice-english-special-edition.svg",
+      "errorCode": null
+    },
+    {
+      "label": "retired",
+      "status": 404,
+      "ok": false,
+      "count": null,
+      "coverPath": null,
+      "errorCode": "BOOK_EDITION_NOT_FOUND"
+    },
+    {
+      "label": "admin",
+      "status": 401,
+      "ok": false,
+      "count": null,
+      "coverPath": null,
+      "errorCode": "UNAUTHORIZED"
+    }
+  ]
+}

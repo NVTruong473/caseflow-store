@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="900" viewBox="0 0 600 900" role="img" aria-labelledby="title-00000000-0000-4000-8000-000000008009 desc-00000000-0000-4000-8000-000000008009" data-cover-asset-id="00000000-0000-4000-8000-000000008009" data-edition-id="00000000-0000-4000-8000-000000007100">
+  <title id="title-00000000-0000-4000-8000-000000008009">The Old Man and the Sea - CaseFlow Books illustrative cover</title>
+  <desc id="desc-00000000-0000-4000-8000-000000008009">Project-created illustrative cover for The Old Man and the Sea by Ernest Hemingway.</desc>
+  <metadata><![CDATA[{"assetId":"00000000-0000-4000-8000-000000008009","editionId":"00000000-0000-4000-8000-000000007100","title":"The Old Man and the Sea","authors":["Ernest Hemingway"],"language":"en","source":"project-created-vector"}]]></metadata>
+  <rect width="600" height="900" fill="#E0F2FE"/>
+  <rect x="34" y="34" width="532" height="832" rx="18" fill="#0F766E" opacity="0.16"/>
+  
+      <path d="M52 214 C124 174 180 174 252 214 C324 254 380 254 548 198" fill="none" stroke="#0284C7" stroke-width="18" stroke-linecap="round" opacity="0.54"/>
+      <path d="M52 292 C124 252 180 252 252 292 C324 332 380 332 548 276" fill="none" stroke="#0F766E" stroke-width="18" stroke-linecap="round" opacity="0.48"/>
+      <circle cx="438" cy="128" r="48" fill="#F59E0B" opacity="0.76"/>
+      <path d="M184 178 C236 142 294 140 348 176" fill="none" stroke="#0F172A" stroke-width="9" stroke-linecap="round" opacity="0.38"/>
+      <path d="M260 174 L340 174 L300 210 Z" fill="#0F766E" opacity="0.72"/>
+    
+  <rect x="72" y="390" width="456" height="386" rx="18" fill="#F8FAFC"/>
+  <rect x="92" y="414" width="190" height="34" rx="17" fill="#0F766E"/>
+  <text x="187" y="437" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" fill="#FFFFFF">ENGLISH EDITION</text>
+  <text x="508" y="438" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#0F766E">PAPERBACK</text>
+      <text x="300" y="490.5" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="42" font-weight="700" fill="#111827">The Old Man and</text>
+      <text x="300" y="541.5" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="42" font-weight="700" fill="#111827">the Sea</text>
+  <text x="300" y="624.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#334155">Ernest Hemingway</text>
+  <path d="M118 742 H482" stroke="#0F766E" stroke-width="4" stroke-linecap="round"/>
+  <text x="300" y="816" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" letter-spacing="0" fill="#0F766E">CASEFLOW BOOKS</text>
+</svg>

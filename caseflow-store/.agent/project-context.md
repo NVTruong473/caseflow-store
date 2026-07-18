@@ -2,15 +2,20 @@
 
 ## Project Identity
 
-- Project name: CaseFlow Store `v1.0.0`; CaseFlow Books `v1.1` release candidate
+- Project name: CaseFlow Store `v1.0.0`; CaseFlow Books `v1.1.0` released;
+  CaseFlow Books `v1.2.0` released
 - Repository folder: `/Users/vantruong/Documents/TSNN 2`
-- Product domain: books for active `v1.1`; phone accessories for released `v1.0.0`
+- Product domain: books for released `v1.1.0` and `v1.2.0`; phone
+  accessories for released `v1.0.0`
 - Project type: full-stack e-commerce portfolio app evolving into a bookstore and small-business operations demo
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: implementation enabled
-- Current gate: `D40-T04 - Tag v1.1.0 Only If Release Gates Pass` complete; CaseFlow Books `v1.1.0` release is ready to tag on the final release commit
+- Current mode: v1.2 release complete; next roadmap requires a new accepted
+  task/ADR before more feature work.
+- Current gate: `V12-T18` complete; production v1.2 deploy, smoke,
+  documentation, release commit, and `v1.2.0` tag complete.
+- Current task: no active task after `V12-T18`.
 
 ## Confirmed Facts
 
@@ -31,6 +36,220 @@
 - The 30-entry journal phase is complete as of 2026-07-16.
 - `ADR-0006: Pivot v1.1 To CaseFlow Books` was accepted on 2026-07-16.
 - `docs/v1.1-caseflow-books-roadmap.md` was accepted on 2026-07-16.
+- The annotated `v1.1.0` tag exists on release commit `90a9907` as of
+  2026-07-17.
+- The user approved the `v1.2` Realistic Bookstore Content & Merchandising
+  planning phase on 2026-07-17.
+- `ADR-0007: Realistic Bookstore Content And Merchandising Upgrade For v1.2`
+  was accepted on 2026-07-17.
+- `docs/v1.2-realistic-bookstore-content-merchandising-roadmap.md` was accepted
+  on 2026-07-17.
+- `V12-T03` catalog realism baseline was accepted on 2026-07-17 with no
+  production data or runtime behavior changes.
+- `V12-T04` provenance and content-quality contracts were accepted on
+  2026-07-17 with no database migration or runtime API change.
+- `V12-T05` canonical catalog manifest was accepted on 2026-07-17 with 50
+  works, 100 source-reviewed editions, 50 English/Vietnamese pairs, and no
+  database or runtime catalog replacement.
+- `V12-T06` cover asset pipeline was accepted on 2026-07-17 with deterministic
+  project-created SVG pilot assets, rights/provenance records, contact sheet,
+  and static card/detail preview checks.
+- `V12-T07` cover portfolio was accepted on 2026-07-17 with 100
+  edition-specific project-created SVG assets, 50 English/Vietnamese pairs, 50
+  visual families, and no placeholder references in the portfolio manifest.
+- `V12-T08` editorial metadata was accepted on 2026-07-17 with 100
+  display-safe public edition records, bilingual summaries/reasons/alt text,
+  334 display facts, and 100 release-ready content-quality assessments.
+- `V12-T09` merchandising rules and minimal storage contracts were accepted on
+  2026-07-17 with 9 approved shelves, 8 active shelves, 1 inactive
+  order-derived shelf, deterministic fallbacks, and explicit
+  `merchandising:manage` admin/staff mutation permission.
+- `V12-T10` reversible migration planning was accepted on 2026-07-17 with
+  additive SQL, deterministic dry-run planning, live count-only pre-migration
+  evidence, private backup ignore rules, zero planned deletes, and publisher/
+  ISBN source hygiene corrections before import.
+- `V12-T11` Supabase production import was accepted on 2026-07-18 with a
+  private pre-migration backup, additive schema apply, idempotent catalog
+  upsert, 50 active works, 100 active editions, zero active primary placeholder
+  covers, complete provenance/content-quality/merchandising rows, RLS/API
+  smoke, unchanged order/profile/promotion/inventory counts, and SQL
+  inspection evidence.
+- `V12-T12` homepage merchandising was accepted on 2026-07-18 with public
+  Supabase shelf resolution, one clear homepage browse action,
+  editor/weekend/language/promotion/paired shelves, first-viewport coverage at
+  375px/tablet/1440px, route-preserving language switch, detail/cart-entry
+  smoke, and bilingual screenshot evidence.
+- `V12-T13` catalog discovery was accepted on 2026-07-18 with shelf-backed
+  catalog labels, compact mobile cards, cover-led desktop cards, real
+  compare-at offer badges, editor-pick curation copy, paired-edition labels,
+  URL-backed filter preservation, low-stock and out-of-stock empty-state
+  coverage, and bilingual screenshot evidence.
+- `V12-T14` book detail and edition comparison was accepted on 2026-07-18 with
+  first-screen cover/title/price/stock/add-to-cart hierarchy, source-reviewed
+  display facts, omitted unknown facts, English/Vietnamese edition switching,
+  reason-to-read copy, more-by-author and related-book groups,
+  cart/SEO/not-found preservation, and bilingual screenshot evidence.
+- `V12-T15` admin content-quality and merchandising operations was accepted on
+  2026-07-18 with server-enriched admin quality/cover/source/shelf states,
+  staff/admin filters, merchandising shelf state/order operations,
+  admin-only source field mutations, source approval guardrails,
+  protected API role checks, no reviewer-note leakage, and desktop/mobile
+  screenshot evidence.
+- `V12-T16` catalog runtime integration was accepted on 2026-07-18 with public
+  source-field removal, v1.2 search/assistant/SEO/social/JSON-LD/cart/order/
+  export/docs integration, legacy-link and legacy-order snapshot compatibility,
+  temporary Supabase cleanup, and production-style screenshot/runtime evidence.
+- `V12-T17` full local quality gate was accepted on 2026-07-18 with TypeScript,
+  lint, production build, full Playwright `20/20`, static V12 report
+  aggregation, mobile performance baseline, SEO/accessibility/cleanup
+  evidence, high/critical dependency audit pass, secret scan pass across 595
+  text files, and a documented non-blocking moderate Next/PostCSS audit risk.
+- `V12-T18` production release was accepted on 2026-07-18 with Vercel
+  deployment `dpl_7Y2Qsf4VJRBuzaMGXZMi81Rq5pKQ` aliased to
+  `https://caseflow-store.vercel.app`, production smoke `ok: true`, 100 active
+  editions, 100 cover responses, 50 English and 50 Vietnamese editions, zero
+  active primary placeholder covers, full production Playwright `20/20`,
+  cleanup `totalMatches: 0`, release documentation, release commit, and
+  annotated `v1.2.0` tag.
+
+## v1.2 Canonical Catalog
+
+- Source of truth: `caseflow-store/src/data/books/v1.2-canonical-manifest.json`.
+- Runtime status: imported into Supabase production in `V12-T11`; storefront
+  homepage merchandising is upgraded in `V12-T12`; catalog cards and discovery
+  results are upgraded in `V12-T13`; book detail and edition comparison are
+  upgraded in `V12-T14`; admin content-quality and merchandising operations are
+  upgraded in `V12-T15`; search, assistant, SEO, cart/order snapshots, exports,
+  legacy-link recovery, and documentation integration were completed in
+  `V12-T16`; full local release-candidate quality gates passed in `V12-T17`;
+  production deployment, smoke, documentation, and release tagging completed in
+  `V12-T18`.
+- Catalog shape: 50 works, 100 editions, 50 English and 50 Vietnamese editions.
+- Compatibility: 98 existing edition IDs/slugs preserved. `The Elements of
+  Style` and its two editions are retired without redirect; `The Old Man and
+  the Sea` / `Ông già và biển cả` use new IDs.
+- Content: bilingual titles, summaries, and merchandising rationales are
+  project-written; retailer descriptions and excerpts were not copied.
+- Provenance: all 100 editions have one reviewed source-edition key; unavailable
+  publisher, translator, ISBN, date, page, format, dimension, or weight facts
+  remain null.
+- Store boundary: price, stock, threshold, promotion, availability, and
+  planned SKU format are CaseFlow merchandising data rather than source claims.
+- Cover pipeline rules are accepted from `V12-T06`, and the complete
+  100-cover portfolio is accepted from `V12-T07`; the portfolio was imported
+  in `V12-T11` and rendered across runtime surfaces by `V12-T16`. The generic
+  placeholder is now a fallback/admin quality state, not the active primary
+  catalog image set.
+
+## v1.2 Cover Asset Pipeline And Portfolio
+
+- Source of truth: `caseflow-store/src/data/books/v1.2-cover-pilot-manifest.json`.
+- Source of truth for full portfolio:
+  `caseflow-store/src/data/books/v1.2-cover-portfolio-manifest.json`.
+- Runtime status: portfolio assets were imported into Supabase in `V12-T11`
+  and rendered across home, catalog, detail, cart, SEO/social metadata, and
+  integration checks by `V12-T16`; the generic placeholder remains only as a
+  fallback/admin quality signal.
+- Asset paths:
+  - `caseflow-store/public/images/books/v12-pilot/`
+  - `caseflow-store/public/images/books/v12-covers/`
+- Pipeline scripts:
+  - `caseflow-store/scripts/build-v12-cover-pilot.ts`
+  - `caseflow-store/scripts/verify-v12-cover-pipeline.ts`
+  - `caseflow-store/scripts/build-v12-cover-portfolio.ts`
+  - `caseflow-store/scripts/verify-v12-cover-portfolio.ts`
+- Pilot shape: 10 SVG covers, 5 English/Vietnamese pairs, 5 art families,
+  600x900 dimensions, 2:3 aspect ratio, and maximum pilot file size under 4 KB.
+- Portfolio shape: 100 SVG covers, 50 English and 50 Vietnamese, 50 art
+  families, 50 concept keys, zero duplicate hashes, zero placeholder primary
+  references in the portfolio manifest, and maximum SVG size under 4 KB.
+- Rights boundary: project-created vector art only; no commercial cover,
+  publisher mark, external image, marketplace image, or generated reference
+  image was used.
+- Evidence: `docs/v1.2-cover-asset-pipeline.md` and
+  `docs/v1.2-cover-portfolio.md`, plus
+  `caseflow-store/.agent/artifacts/v12-t06/` and
+  `caseflow-store/.agent/artifacts/v12-t07/`.
+
+## v1.2 Editorial Metadata
+
+- Source of truth:
+  `caseflow-store/src/data/books/v1.2-editorial-metadata-manifest.json`.
+- Runtime status: imported into Supabase production in `V12-T11`; rendered by
+  homepage/catalog/detail surfaces in `V12-T12` through `V12-T14`; admin
+  operations surface content quality in `V12-T15`; search/assistant/SEO/docs
+  integration was completed in `V12-T16`.
+- Builder and verifier:
+  - `caseflow-store/scripts/build-v12-editorial-metadata.ts`
+  - `caseflow-store/scripts/verify-v12-editorial-metadata.ts`
+- Shape: 100 edition records, 334 display-safe optional facts, 100
+  content-quality release-ready assessments, and 0 prohibited public-copy
+  findings.
+- Boundary: unavailable optional facts are omitted, not rendered as `TBC`,
+  `null`, `undefined`, placeholder, seed, or debug text.
+- Evidence: `docs/v1.2-editorial-metadata.md` and
+  `caseflow-store/.agent/artifacts/v12-t08/`.
+
+## v1.2 Merchandising Rules And Storage Contract
+
+- Source of truth:
+  `caseflow-store/src/data/books/v1.2-merchandising-rules-manifest.json`.
+- Runtime status: imported into Supabase production in `V12-T11` and wired into
+  homepage rendering in `V12-T12`, catalog discovery in `V12-T13`, related
+  detail recommendations in `V12-T14`, and admin shelf operations in
+  `V12-T15`.
+- Builder and verifier:
+  - `caseflow-store/scripts/build-v12-merchandising-rules.ts`
+  - `caseflow-store/scripts/verify-v12-merchandising-rules.ts`
+- Shape: 9 shelves total, 8 active shelves, 1 inactive order-derived shelf, 7
+  shelf types, localized labels/descriptions, date windows, active state,
+  fallback behavior, and deterministic manual/catalog/promotion/inventory/pair
+  resolution.
+- Boundary: editorial shelves are source-kind `editorial`; sales/order-derived
+  shelves are source-kind `order-derived` and remain inactive unless backed by
+  a first-party order query, time window, and minimum-data rule.
+- Permission: merchandising mutations require `merchandising:manage` and are
+  allowed only for admin or staff actors with that permission.
+- Storage decision: T09 freezes the minimal additive table contract for
+  `book_merchandising_shelves` and `book_merchandising_shelf_items`; the
+  reversible SQL migration is deferred to `V12-T10`.
+- Evidence: `docs/v1.2-merchandising-rules-storage.md` and
+  `caseflow-store/.agent/artifacts/v12-t09/`.
+
+## v1.2 Migration And Rollback Plan
+
+- Source of truth:
+  `docs/v1.2-catalog-migration-rollback-plan.md`.
+- Migration draft:
+  `caseflow-store/supabase/migrations/0008_v12_catalog_merchandising.sql`.
+- Planner and verifier:
+  - `caseflow-store/scripts/plan-v12-catalog-migration.ts`
+  - `caseflow-store/scripts/verify-v12-catalog-migration-plan.ts`
+- Runtime status: applied to Supabase production in `V12-T11` after explicit
+  user approval and a private pre-migration export.
+- Dry-run shape: 1 inserted work, 2 inserted editions, 49 preserved works, 98
+  preserved editions, 1 retired work, 2 retired editions, 100 cover assets, 602
+  persisted provenance records, 2,000 content-quality checks, 9 merchandising
+  shelves, 20 manual shelf items, and zero planned deletes.
+- Live evidence: count-only Supabase pre-migration capture succeeded without
+  row export or PII row storage.
+- Backup boundary: full/private production exports for `V12-T11` must stay
+  under `caseflow-store/.agent/artifacts/v12-t10/private-backups/`, which is
+  ignored by Git.
+- Data hygiene correction: non-Bookland `893...` product codes are no longer
+  stored/displayed as ISBN-13, and malformed publisher display values such as
+  `vh` were replaced or normalized before import.
+- Data-freeze result: 50 active works, 100 active editions, 50 English and 50
+  Vietnamese editions, 100 v1.2 cover assets, 602 provenance records, 2,000
+  content-quality checks, 3 compatibility records, 9 merchandising shelves, 20
+  manual shelf items, and zero active primary placeholder cover references.
+- Rollback evidence remains in
+  `caseflow-store/.agent/artifacts/v12-t10/private-backups/` and
+  `caseflow-store/.agent/artifacts/v12-t11/`.
+- Release gate: `V12-T18` deployed and smoke-tested v1.2 production, refreshed
+  release documentation, and tags `v1.2.0`.
+- Evidence: `caseflow-store/.agent/artifacts/v12-t10/` and
+  `caseflow-store/.agent/artifacts/v12-t11/`.
 
 ## Working Assumptions
 
@@ -240,7 +459,7 @@ Guardrails:
 ## v1.1 Release Status
 
 - D40-T04 is complete as of 2026-07-17.
-- Release tag target: `v1.1.0`.
+- Annotated release tag: `v1.1.0` on commit `90a9907`.
 - Production alias: `https://caseflow-store.vercel.app`.
 - Production deployment ID: `dpl_BkiJt9gDCh5d2cHwAhpFDbLotoAy`.
 - D40 release gates passed:
@@ -249,7 +468,61 @@ Guardrails:
   - D40-T03 portfolio documentation verification.
 - Known non-blockers are documented in `docs/known-limitations.md` and
   `docs/v1.1-release-audit.md`.
-- Continue with post-release audit after the final release commit is tagged.
+- The release is the stable baseline for the separate v1.2 planning line.
+
+## v1.2 Provenance Gate Status
+
+- Governing decision:
+  `docs/adr/0007-realistic-bookstore-content-merchandising-upgrade.md`.
+- Governing roadmap:
+  `docs/v1.2-realistic-bookstore-content-merchandising-roadmap.md`.
+- `V12-T01` through `V12-T17` are complete as of 2026-07-18.
+- Baseline report: `docs/v1.2-catalog-realism-baseline.md`.
+- Contract report: `docs/v1.2-provenance-content-quality-contracts.md`.
+- Evidence directories: `caseflow-store/.agent/artifacts/v12-t03/`,
+  `caseflow-store/.agent/artifacts/v12-t04/`,
+  `caseflow-store/.agent/artifacts/v12-t05/`,
+  `caseflow-store/.agent/artifacts/v12-t06/`,
+  `caseflow-store/.agent/artifacts/v12-t07/`,
+  `caseflow-store/.agent/artifacts/v12-t08/`,
+  `caseflow-store/.agent/artifacts/v12-t09/`,
+  `caseflow-store/.agent/artifacts/v12-t10/`,
+  `caseflow-store/.agent/artifacts/v12-t11/`,
+  `caseflow-store/.agent/artifacts/v12-t12/`,
+  `caseflow-store/.agent/artifacts/v12-t13/`,
+  `caseflow-store/.agent/artifacts/v12-t14/`,
+  `caseflow-store/.agent/artifacts/v12-t15/`,
+  `caseflow-store/.agent/artifacts/v12-t16/`, and
+  `caseflow-store/.agent/artifacts/v12-t17/`.
+- v1.2 is a post-release versioned iteration, not Day 41+ and not additional
+  journal history.
+- Seed/Supabase parity is exact: 50 works, 100 active editions, 11 active
+  categories, 50 English editions, and 50 Vietnamese editions; QA rows are 0.
+- Runtime integration status: the accepted v1.2 catalog, editorial metadata,
+  covers, provenance, content-quality checks, compatibility records, and
+  merchandising shelves are imported into Supabase and wired through the public
+  storefront, admin catalog operations, search, assistant, SEO, cart/order
+  snapshots, exports, legacy retired-link recovery, and current docs.
+- Local release-candidate status: `V12-T17` passed TypeScript, ESLint,
+  production build, full Playwright `20/20`, aggregate content/asset/runtime
+  reports, mobile performance baseline, cleanup, secret scan, and diff hygiene
+  on 2026-07-18.
+- Primary visual blocker from the baseline audit was resolved in the admin
+  catalog operations pass; public home, catalog, detail, and admin catalog
+  checks have zero horizontal overflow at audited breakpoints.
+- Contract decision: keep legacy `SourceNote` stable and use the separate
+  `CatalogProvenanceRecord`, `EditionProvenanceSet`, content-quality checklist,
+  and approved-only public serializer for v1.2 catalog content.
+- Validation requires complete licensed/public-domain rights data, explicitly
+  identifies internal/generated media, rejects mixed source editions, and
+  gives no quality credit to missing or unverified facts.
+- Schema decision: the additive reversible SQL/upsert plan is accepted; no
+  destructive change is justified and T11 must preserve customer, order,
+  promotion, inventory-adjustment, profile, phone catalog, and auth data.
+- Accepted direction: provenance-first catalog records, edition-specific safe
+  cover assets, truthful data-backed merchandising, focused homepage/catalog/
+  detail improvements, and admin content-quality visibility.
+- Current task: `V12-T18 - Deploy, Smoke Test, Document, And Tag v1.2.0`.
 
 ## v1.1 Promotion Management Status
 

@@ -2,9 +2,12 @@ import { expect, test } from "@playwright/test";
 
 import {
   addSupabaseSessionCookies,
+  clickElement,
+  clickFirstVisible,
   createTemporaryCustomer,
   deleteTemporaryCustomer,
   findAvailableBook,
+  fillField,
 } from "./helpers/supabase";
 
 const SUCCESS_SCREENSHOT =
@@ -44,23 +47,23 @@ test("customer completes homepage to checkout success flow through the UI", asyn
     await expect(page.locator(`[data-book-detail="${book.slug}"]`))
       .toBeVisible();
     await expect(page.locator("[data-book-detail-price]")).toBeVisible();
-    await page.locator("[data-book-quantity-input]").fill("1");
-    await page.locator("[data-book-add-to-cart-button]").click();
+    await fillField(page, "[data-book-quantity-input]", "1");
+    await clickElement(page, "[data-book-add-to-cart-button]");
     await expect(page.locator("[data-book-add-to-cart-feedback='success']"))
       .toContainText("Added");
 
     await expect(page.locator("[data-cart-count]").first())
       .toHaveAttribute("data-cart-count", "1");
-    await page.locator("[data-cart-drawer-open]:visible").first().click();
+    await clickFirstVisible(page, "[data-cart-drawer-open]");
     const cartLine = page.locator(`[data-cart-drawer-item="${book.edition.id}"]`);
     await expect(cartLine).toContainText(book.title);
-    await page.locator("[data-cart-drawer-checkout]").click();
+    await clickElement(page, "[data-cart-drawer-checkout]");
 
     await expect(page).toHaveURL("/checkout");
     await expect(page.locator("[data-checkout-form-shell]")).toBeVisible();
     await expect(page.locator("[data-checkout-line-item]").first())
       .toContainText(book.title);
-    await page.locator("[data-checkout-submit]").click();
+    await clickElement(page, "[data-checkout-submit]");
 
     await expect(page).toHaveURL(/\/checkout\/success\?orderCode=CF-/);
     await expect(page.locator("[data-checkout-success-code]")).toHaveText(/^CF-/);
@@ -72,7 +75,11 @@ test("customer completes homepage to checkout success flow through the UI", asyn
     await expect(page.locator("[data-cart-count]").first())
       .toHaveAttribute("data-cart-count", "0");
 
-    await page.screenshot({ fullPage: true, path: SUCCESS_SCREENSHOT });
+    await page.screenshot({
+      fullPage: true,
+      path: SUCCESS_SCREENSHOT,
+      timeout: 30_000,
+    });
   } finally {
     await deleteTemporaryCustomer(customer);
   }

@@ -1,0 +1,52 @@
+{
+  "taskId": "V12-T11",
+  "generatedAt": "2026-07-17T20:56:45.575Z",
+  "mode": "dry-run",
+  "sourceManifests": [
+    "src/data/books/v1.2-canonical-manifest.json",
+    "src/data/books/v1.2-cover-portfolio-manifest.json",
+    "src/data/books/v1.2-editorial-metadata-manifest.json",
+    "src/data/books/v1.2-merchandising-rules-manifest.json"
+  ],
+  "rowsByTable": {
+    "book_categories": 11,
+    "book_authors": 42,
+    "book_translators": 14,
+    "book_publishers": 44,
+    "book_cover_assets": 100,
+    "book_works": 50,
+    "book_work_authors": 51,
+    "book_work_categories": 100,
+    "book_editions": 100,
+    "book_edition_translators": 14,
+    "book_catalog_provenance_records": 602,
+    "book_content_quality_checks": 2000,
+    "book_catalog_compatibility": 3,
+    "book_merchandising_shelves": 9,
+    "book_merchandising_shelf_items": 20
+  },
+  "expected": {
+    "activeWorks": 50,
+    "activeEditions": 100,
+    "provenanceRecords": 602,
+    "qualityChecks": 2000,
+    "compatibilityEntries": 3,
+    "merchandisingShelves": 9,
+    "merchandisingManualItems": 20,
+    "editionTranslatorRows": 14
+  },
+  "plannedDeactivations": {
+    "book_works": [
+      "00000000-0000-4000-8000-000000002049"
+    ],
+    "book_editions": [
+      "00000000-0000-4000-8000-000000003049",
+      "00000000-0000-4000-8000-000000004049"
+    ]
+  },
+  "destructiveWrites": {
+    "deletes": 0,
+    "truncates": 0,
+    "dropStatements": 0
+  }
+}

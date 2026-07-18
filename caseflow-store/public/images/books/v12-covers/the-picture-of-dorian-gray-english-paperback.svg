@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="900" viewBox="0 0 600 900" role="img" aria-labelledby="title-00000000-0000-4000-8000-000000009075 desc-00000000-0000-4000-8000-000000009075" data-cover-asset-id="00000000-0000-4000-8000-000000009075" data-edition-id="00000000-0000-4000-8000-000000003011">
+  <title id="title-00000000-0000-4000-8000-000000009075">The Picture of Dorian Gray - CaseFlow Books illustrative cover</title>
+  <desc id="desc-00000000-0000-4000-8000-000000009075">Project-created illustrative cover for The Picture of Dorian Gray by Oscar Wilde.</desc>
+  <metadata><![CDATA[{"assetId":"00000000-0000-4000-8000-000000009075","editionId":"00000000-0000-4000-8000-000000003011","title":"The Picture of Dorian Gray","authors":["Oscar Wilde"],"language":"en","source":"project-created-vector"}]]></metadata>
+  <rect width="600" height="900" fill="#0F172A"/>
+  <rect x="34" y="34" width="532" height="832" rx="18" fill="#991B1B" opacity="0.15"/>
+  
+        <circle cx="432" cy="127" r="52" fill="#94A3B8" opacity="0.78"/>
+        <g stroke="#94A3B8" stroke-width="4" opacity="0.42">
+          <path d="M300 58 V330"/>
+          <path d="M120 186 H520"/>
+          <path d="M174 78 L452 306"/>
+          <path d="M442 82 L166 308"/>
+        </g>
+      
+  <rect x="72" y="390" width="456" height="386" rx="18" fill="#F8FAFC"/>
+  <rect x="92" y="414" width="190" height="34" rx="17" fill="#991B1B"/>
+  <text x="187" y="437" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" fill="#FFFFFF">ENGLISH EDITION</text>
+  <text x="508" y="438" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#991B1B">PAPERBACK</text>
+      <text x="300" y="494.5" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="42" font-weight="700" fill="#111827">The Picture of</text>
+      <text x="300" y="545.5" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="42" font-weight="700" fill="#111827">Dorian Gray</text>
+  <text x="300" y="624.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" fill="#475569">Oscar Wilde</text>
+  <path d="M118 742 H482" stroke="#991B1B" stroke-width="4" stroke-linecap="round"/>
+  <text x="300" y="816" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" letter-spacing="0" fill="#991B1B">CASEFLOW BOOKS</text>
+</svg>

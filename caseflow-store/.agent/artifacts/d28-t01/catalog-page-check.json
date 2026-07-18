@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-07-16T09:04:30.320Z",
-  "baseURL": "http://127.0.0.1:3005",
+  "generatedAt": "2026-07-18T04:25:56.626Z",
+  "baseURL": "http://localhost:3000",
   "desktop": {
     "activeFilterCount": 9,
     "firstCard": {
@@ -54,7 +54,7 @@
   "pagination": {
     "pageTwoCurrent": "2",
     "pageTwoRenderedCards": 24,
-    "pageTwoUrl": "http://127.0.0.1:3005/catalog?page=2"
+    "pageTwoUrl": "http://localhost:3000/catalog?page=2"
   },
   "pass": {
     "activeViewVisible": true,

@@ -1,0 +1,123 @@
+{
+  "taskId": "V12-T05",
+  "manifestPath": "src/data/books/v1.2-canonical-manifest.json",
+  "generatedAt": "2026-07-17T00:00:00.000Z",
+  "runtimeStatus": "curated-not-yet-imported",
+  "counts": {
+    "works": 50,
+    "editions": 100,
+    "pairedWorks": 50,
+    "compatibilityEntries": 3,
+    "preservedLegacyEditions": 98,
+    "retiredLegacyEntities": 3
+  },
+  "distributions": {
+    "languages": {
+      "en": 50,
+      "vi": 50
+    },
+    "formats": {
+      "hardcover": 8,
+      "paperback": 86,
+      "special-edition": 6
+    },
+    "inventoryStatuses": {
+      "in-stock": 92,
+      "low-stock": 8
+    },
+    "availability": {
+      "available": 100
+    },
+    "categories": {
+      "business-economics": 6,
+      "children-young-adult": 26,
+      "classic-literature": 78,
+      "fantasy-sci-fi": 20,
+      "fiction": 42,
+      "mystery-thriller": 8,
+      "romance": 8,
+      "self-development": 12
+    },
+    "providers": {
+      "Fahasa": 1,
+      "Google Books": 77,
+      "Minh Khai Books": 2,
+      "NetaBooks": 1,
+      "Nhã Nam": 1,
+      "Open Library": 16,
+      "Sách Tiếng Việt": 1,
+      "Thư viện VOV": 1
+    },
+    "priceBandsVnd": {
+      "150k-249k": 41,
+      "under-150k": 59
+    },
+    "stockBands": {
+      "healthy": 92,
+      "low": 8
+    },
+    "promotionEligible": 18,
+    "featured": 13
+  },
+  "coverage": {
+    "sourceReviewed": 100,
+    "isbn13": 72,
+    "isbn10": 65,
+    "publisher": 65,
+    "translator": 13,
+    "publicationYear": 94,
+    "pageCount": 84,
+    "dimensions": 0,
+    "weight": 0,
+    "sourcePhysicalFormat": 6,
+    "nullableOptionalFacts": true
+  },
+  "identifierChecks": {
+    "duplicateIds": [],
+    "duplicateSlugs": [],
+    "duplicateIsbns": [],
+    "invalidIsbns": []
+  },
+  "integrity": {
+    "pairIssues": [],
+    "workIssues": []
+  },
+  "contentChecks": {
+    "missingBilingual": [],
+    "missingVietnameseDiacritics": [],
+    "prohibitedCopy": []
+  },
+  "provenanceChecks": {
+    "unsupportedFacts": [],
+    "mixedSourceFacts": [],
+    "storeClaimIssues": [],
+    "inventoryStateIssues": []
+  },
+  "compatibilityChecks": {
+    "preservedEditionCount": 98,
+    "retiredEditionCount": 2,
+    "issues": []
+  },
+  "pass": {
+    "schemaValid": true,
+    "exactWorkCount": true,
+    "exactEditionCount": true,
+    "bilingualEditionBalance": true,
+    "uniqueIdentifiers": true,
+    "uniqueSlugs": true,
+    "isbnShapesAndChecksumsValid": true,
+    "isbnValuesUnique": true,
+    "pairRelationshipsValid": true,
+    "workRelationshipsValid": true,
+    "everyEditionSourceReviewed": true,
+    "everyEditionHasBilingualContent": true,
+    "vietnameseDiacriticsPresent": true,
+    "prohibitedCopyAbsent": true,
+    "sourcedFactsSupported": true,
+    "sourceEditionsNotMixed": true,
+    "storeClaimsExplicit": true,
+    "inventoryStateConsistent": true,
+    "legacyCompatibilityComplete": true
+  },
+  "ok": true
+}

@@ -46,6 +46,11 @@ export type BookCatalogApiItem = {
     | "summary"
     | "tableOfContents"
     | "sampleExcerptPolicy"
+    | "pairId"
+    | "pairedEditionId"
+    | "reasonToRead"
+    | "displayFacts"
+    | "omittedOptionalFactKeys"
     | "isFeatured"
     | "createdAt"
     | "updatedAt"
@@ -117,6 +122,11 @@ export function toBookCatalogApiItem(
       summary: record.edition.summary,
       tableOfContents: record.edition.tableOfContents,
       sampleExcerptPolicy: record.edition.sampleExcerptPolicy,
+      pairId: record.edition.pairId,
+      pairedEditionId: record.edition.pairedEditionId,
+      reasonToRead: record.edition.reasonToRead,
+      displayFacts: record.edition.displayFacts,
+      omittedOptionalFactKeys: record.edition.omittedOptionalFactKeys,
       isFeatured: record.edition.isFeatured,
       createdAt: record.edition.createdAt,
       updatedAt: record.edition.updatedAt,

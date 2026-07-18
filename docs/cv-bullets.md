@@ -9,19 +9,19 @@ that simulated payment flows process real money.
 
 - Built and deployed CaseFlow Books, a full-stack bilingual bookstore with
   Next.js 16, TypeScript, Supabase PostgreSQL/Auth, and Vercel, covering a
-  100-edition catalog, book-specific filters, local cart, account-gated
-  checkout, customer order history, guarded tracking, and admin/staff
-  operations.
+  100-edition catalog, project-created cover portfolio, book-specific filters,
+  local cart, account-gated checkout, customer order history, guarded
+  tracking, and admin/staff operations.
 - Implemented server-authoritative commerce logic with Zod validation,
   Supabase row mappers, RLS-backed access control, role-based admin/staff
   permissions, server-reloaded book records, promotion evaluation, VAT/shipping
   and payment-fee estimates, and VND totals that never trust browser-supplied
   prices or order state.
 - Created and ran release gates across TypeScript, ESLint, production build,
-  20 local Playwright tests, production smoke checks, production assistant
-  verification, a 5-test production Playwright subset, cleanup checks, secret
-  scan, accessibility/mobile screenshots, and documented dependency audit
-  findings.
+  full local Playwright `20/20`, production smoke checks, full production
+  Playwright `20/20`, assistant verification, cleanup checks, secret scan,
+  content/provenance/cover quality checks, accessibility/mobile screenshots,
+  and documented dependency audit findings.
 
 ## Alternative bullets by focus
 
@@ -32,7 +32,8 @@ that simulated payment flows process real money.
   operations in one Vercel deployment.
 - Modeled a bookstore domain around works, editions, authors, translators,
   publishers, categories, cover assets, promotions, inventory adjustments,
-  profiles, orders, and order snapshots.
+  profiles, orders, order snapshots, source provenance, content-quality
+  checks, and merchandising shelves.
 - Built Vietnamese and English UI modes with VND as the authoritative currency
   and approximate USD display for English-mode users.
 
@@ -50,24 +51,28 @@ that simulated payment flows process real money.
 
 ### Frontend, UX, and quality
 
-- Built responsive bookstore discovery, catalog filters, book detail, cart,
-  account-gated checkout, customer orders, tracking, and admin operations with
-  375px and 1440px visual verification.
+- Built responsive bookstore discovery, catalog filters, book detail,
+  English/Vietnamese edition comparison, cart, account-gated checkout,
+  customer orders, tracking, and admin operations with 375px and 1440px visual
+  verification.
 - Added a rule-based bookstore assistant that can guide catalog search and
   buying steps without using an external AI API or bypassing checkout/account
   validation.
 - Verified loading, empty, error, success, missing-book, out-of-stock,
-  unauthorized, forbidden, keyboard-focus, mobile, and admin operation paths
-  before accepting the `v1.1` release candidate.
+  unauthorized, forbidden, keyboard-focus, mobile, admin operation, catalog
+  content-quality, and production smoke paths before accepting the `v1.2`
+  release candidate.
 
 ### Operations and reporting
 
 - Added admin/staff workflows for order filtering/detail updates, catalog
-  management, stock adjustments, promotion management, customer overview,
-  dashboard metrics, and CSV export.
+  management, content-quality review, merchandising shelf operations, stock
+  adjustments, promotion management, customer overview, dashboard metrics, and
+  CSV export.
 - Documented known non-blockers honestly: simulated payments, no real SMS/OTP,
-  no carrier shipping integration, no commercial cover hotlinking, and moderate
-  transitive dependency advisories pending upstream fixes.
+  no carrier shipping integration, no commercial cover hotlinking, no
+  commercial metadata feed, and moderate transitive dependency advisories
+  pending upstream fixes.
 
 ## Interview summary
 
@@ -80,20 +85,22 @@ evidence over a large feature list with weak implementation depth.
 
 The payment flows are simulated. The project persists orders and operational
 state, but it does not collect card data, process real MoMo/ZaloPay/VNPay/bank
-payments, send SMS OTPs, integrate shipping carriers, or claim real commercial
-revenue.
+payments, send SMS OTPs, integrate shipping carriers, use licensed commercial
+cover images, or claim real commercial revenue.
 
 ## Evidence ledger
 
 | Claim | Evidence |
 |---|---|
-| Public production deployment | `https://caseflow-store.vercel.app`; `caseflow-store/.agent/artifacts/d40-t02/deployment.json` |
-| 100 book editions and 50 works | `caseflow-store/.agent/artifacts/d24-t01/book-seed-dataset-check.json`; `caseflow-store/.agent/artifacts/d24-t03/book-seed-check.json` |
-| Safe content and cover policy | `docs/domain.md`; `docs/v1.1-safe-cover-asset-strategy.md` |
+| Public production deployment | `https://caseflow-store.vercel.app`; `caseflow-store/.agent/artifacts/v12-t18/deployment.json` |
+| 100 active book editions and 50 works in production | `caseflow-store/.agent/artifacts/v12-t11/post-migration-supabase-check.json`; `caseflow-store/.agent/artifacts/v12-t18/production-release-smoke.json` |
+| 100 project-created cover assets | `docs/v1.2-cover-portfolio.md`; `caseflow-store/.agent/artifacts/v12-t07/cover-portfolio-check.json`; `caseflow-store/.agent/artifacts/v12-t18/production-release-smoke.json` |
+| Provenance and content-quality policy | `docs/domain.md`; `docs/v1.2-provenance-content-quality-contracts.md`; `docs/v1.2-release-audit.md` |
 | Server-owned totals and book order creation | `src/app/api/orders/route.ts`; `src/lib/checkout/`; `src/lib/repositories/supabase-orders.ts`; `supabase/migrations/0006_caseflow_books_schema_draft.sql` |
-| Customer/admin/staff access boundaries | `tests/e2e/admin-access.spec.ts`; `caseflow-store/.agent/artifacts/d35-t01/role-access-check.json` |
-| Admin operations | `src/features/admin/`; `caseflow-store/.agent/artifacts/d37-t03/order-operations-check.json`; `caseflow-store/.agent/artifacts/d38-t01/admin-dashboard-check.json` |
-| Local release gate | `.agent/step-results.md` SR-150; `caseflow-store/playwright-report/index.html` |
-| Production release smoke | `.agent/step-results.md` SR-151; `caseflow-store/.agent/artifacts/d40-t02/production-smoke-check.json` |
+| Customer/admin/staff access boundaries | `tests/e2e/admin-access.spec.ts`; `caseflow-store/.agent/artifacts/d35-t01/role-access-check.json`; `caseflow-store/.agent/artifacts/v12-t18/production-release-smoke.json` |
+| Admin operations | `src/features/admin/`; `caseflow-store/.agent/artifacts/d37-t03/order-operations-check.json`; `caseflow-store/.agent/artifacts/d38-t01/admin-dashboard-check.json`; `caseflow-store/.agent/artifacts/v12-t15/admin-content-operations-check.json` |
+| Local release gate | `.agent/step-results.md` SR-170; `caseflow-store/.agent/artifacts/v12-t17/local-quality-gate-check.json` |
+| Production release smoke | `.agent/step-results.md` SR-171; `caseflow-store/.agent/artifacts/v12-t18/production-release-smoke.json` |
+| Production Playwright pass | `caseflow-store/.agent/artifacts/v12-t18/production-playwright-summary.json` |
 | Accessibility/mobile/performance pass | `caseflow-store/.agent/artifacts/d39-t03/accessibility-mobile-performance-check.json`; `caseflow-store/docs/screenshots/` |
-| Known release boundaries | `docs/known-limitations.md`; `docs/v1.1-release-audit.md` |
+| Known release boundaries | `docs/known-limitations.md`; `docs/v1.2-release-audit.md` |

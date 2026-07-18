@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1140" height="860" viewBox="0 0 1140 860" role="img" aria-labelledby="sheet-title sheet-desc">
+  <title id="sheet-title">CaseFlow Books v1.2 cover pilot contact sheet</title>
+  <desc id="sheet-desc">Representative pilot covers for both language editions and multiple visual concepts.</desc>
+  <rect width="1140" height="860" fill="#F8FAFC"/>
+  <text x="20" y="34" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#111827">V12-T06 cover pilot contact sheet</text>
+  <text x="20" y="58" font-family="Arial, sans-serif" font-size="13" fill="#475569">Project-created SVG assets; no commercial cover references.</text>
+  
+        <g transform="translate(20 72)">
+          <rect width="196" height="356" rx="8" fill="#FFFFFF" stroke="#CBD5E1"/>
+          <image href="../../../public/images/books/v12-pilot/pride-and-prejudice-english-special-edition.svg" x="12" y="12" width="172" height="258" preserveAspectRatio="xMidYMid meet"/>
+          <text x="98" y="302" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#111827">English edition</text>
+          <text x="98" y="326" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#475569">regency-letters</text>
+        </g>
+
+        <g transform="translate(240 72)">
+          <rect width="196" height="356" rx="8" fill="#FFFFFF" stroke="#CBD5E1"/>
+          <image href="../../../public/images/books/v12-pilot/pride-and-prejudice-vietnamese-special-edition.svg" x="12" y="12" width="172" height="258" preserveAspectRatio="xMidYMid meet"/>
+          <text x="98" y="302" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#111827">Vietnamese edition</text>
+          <text x="98" y="326" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#475569">regency-letters</text>
+        </g>
+
+        <g transform="translate(460 72)">
+          <rect width="196" height="356" rx="8" fill="#FFFFFF" stroke="#CBD5E1"/>
+          <image href="../../../public/images/books/v12-pilot/the-adventures-of-sherlock-holmes-english-paperback.svg" x="12" y="12" width="172" height="258" preserveAspectRatio="xMidYMid meet"/>
+          <text x="98" y="302" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#111827">English edition</text>
+          <text x="98" y="326" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#475569">detective-grid</text>
+        </g>
+
+        <g transform="translate(680 72)">
+          <rect width="196" height="356" rx="8" fill="#FFFFFF" stroke="#CBD5E1"/>
+          <image href="../../../public/images/books/v12-pilot/the-adventures-of-sherlock-holmes-vietnamese-paperback.svg" x="12" y="12" width="172" height="258" preserveAspectRatio="xMidYMid meet"/>
+          <text x="98" y="302" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#111827">Vietnamese edition</text>
+          <text x="98" y="326" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#475569">detective-grid</text>
+        </g>
+
+        <g transform="translate(900 72)">
+          <rect width="196" height="356" rx="8" fill="#FFFFFF" stroke="#CBD5E1"/>
+          <image href="../../../public/images/books/v12-pilot/the-war-of-the-worlds-english-paperback.svg" x="12" y="12" width="172" height="258" preserveAspectRatio="xMidYMid meet"/>
+          <text x="98" y="302" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#111827">English edition</text>
+          <text x="98" y="326" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#475569">invasion-sky</text>
+        </g>
+
+        <g transform="translate(20 454)">
+          <rect width="196" height="356" rx="8" fill="#FFFFFF" stroke="#CBD5E1"/>
+          <image href="../../../public/images/books/v12-pilot/the-war-of-the-worlds-vietnamese-paperback.svg" x="12" y="12" width="172" height="258" preserveAspectRatio="xMidYMid meet"/>
+          <text x="98" y="302" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#111827">Vietnamese edition</text>
+          <text x="98" y="326" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#475569">invasion-sky</text>
+        </g>
+
+        <g transform="translate(240 454)">
+          <rect width="196" height="356" rx="8" fill="#FFFFFF" stroke="#CBD5E1"/>
+          <image href="../../../public/images/books/v12-pilot/alice-in-wonderland-english-paperback.svg" x="12" y="12" width="172" height="258" preserveAspectRatio="xMidYMid meet"/>
+          <text x="98" y="302" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#111827">English edition</text>
+          <text x="98" y="326" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#475569">wonderland-doors</text>
+        </g>
+
+        <g transform="translate(460 454)">
+          <rect width="196" height="356" rx="8" fill="#FFFFFF" stroke="#CBD5E1"/>
+          <image href="../../../public/images/books/v12-pilot/alice-in-wonderland-vietnamese-paperback.svg" x="12" y="12" width="172" height="258" preserveAspectRatio="xMidYMid meet"/>
+          <text x="98" y="302" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#111827">Vietnamese edition</text>
+          <text x="98" y="326" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#475569">wonderland-doors</text>
+        </g>
+
+        <g transform="translate(680 454)">
+          <rect width="196" height="356" rx="8" fill="#FFFFFF" stroke="#CBD5E1"/>
+          <image href="../../../public/images/books/v12-pilot/the-old-man-and-the-sea-english-paperback.svg" x="12" y="12" width="172" height="258" preserveAspectRatio="xMidYMid meet"/>
+          <text x="98" y="302" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#111827">English edition</text>
+          <text x="98" y="326" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#475569">sea-current</text>
+        </g>
+
+        <g transform="translate(900 454)">
+          <rect width="196" height="356" rx="8" fill="#FFFFFF" stroke="#CBD5E1"/>
+          <image href="../../../public/images/books/v12-pilot/the-old-man-and-the-sea-vietnamese-paperback.svg" x="12" y="12" width="172" height="258" preserveAspectRatio="xMidYMid meet"/>
+          <text x="98" y="302" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#111827">Vietnamese edition</text>
+          <text x="98" y="326" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#475569">sea-current</text>
+        </g>
+</svg>

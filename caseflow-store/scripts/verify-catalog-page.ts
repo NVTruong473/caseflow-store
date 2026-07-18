@@ -221,7 +221,7 @@ async function readFirstCard(page: Page) {
     hasImage: await firstCard.locator("img").isVisible(),
     hasLanguage: /English|Vietnamese|Tiếng Anh|Tiếng Việt/.test(text),
     hasPrice: /₫/.test(text),
-    hasSaleState: /Featured shelf|Standard price|Kệ nổi bật|Giá niêm yết/.test(
+    hasSaleState: /Editorial shelf|Standard listing|CaseFlow offer|Kệ biên tập|Niêm yết thường|Ưu đãi theo giá CaseFlow/.test(
       text,
     ),
     hasStock: /In stock|Low stock|Còn hàng|Sắp hết/.test(text),

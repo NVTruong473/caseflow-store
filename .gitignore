@@ -11,3 +11,4 @@ password manager/
 # Production database exports may contain PII and must stay local.
 caseflow-store/.agent/artifacts/d23-t03-backup/*.sql
 caseflow-store/.agent/artifacts/d23-t03-backup/*.dump
+caseflow-store/.agent/artifacts/v12-t10/private-backups/

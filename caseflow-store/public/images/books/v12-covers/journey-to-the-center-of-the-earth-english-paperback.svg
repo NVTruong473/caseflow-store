@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="900" viewBox="0 0 600 900" role="img" aria-labelledby="title-00000000-0000-4000-8000-000000009033 desc-00000000-0000-4000-8000-000000009033" data-cover-asset-id="00000000-0000-4000-8000-000000009033" data-edition-id="00000000-0000-4000-8000-000000003016">
+  <title id="title-00000000-0000-4000-8000-000000009033">Journey to the Center of the Earth - CaseFlow Books illustrative cover</title>
+  <desc id="desc-00000000-0000-4000-8000-000000009033">Project-created illustrative cover for Journey to the Center of the Earth by Jules Verne.</desc>
+  <metadata><![CDATA[{"assetId":"00000000-0000-4000-8000-000000009033","editionId":"00000000-0000-4000-8000-000000003016","title":"Journey to the Center of the Earth","authors":["Jules Verne"],"language":"en","source":"project-created-vector"}]]></metadata>
+  <rect width="600" height="900" fill="#E0F2FE"/>
+  <rect x="34" y="34" width="532" height="832" rx="18" fill="#0F766E" opacity="0.15"/>
+  
+        <path d="M64 326 L178 142 L282 326 Z" fill="#0284C7" opacity="0.44"/>
+        <path d="M218 326 L348 96 L536 326 Z" fill="#0F766E" opacity="0.33"/>
+        <path d="M220 326 C260 268 302 242 338 196" fill="none" stroke="#F8FAFC" stroke-width="13" stroke-linecap="round" opacity="0.55"/>
+      
+  <rect x="72" y="390" width="456" height="386" rx="18" fill="#F8FAFC"/>
+  <rect x="92" y="414" width="190" height="34" rx="17" fill="#0F766E"/>
+  <text x="187" y="437" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" fill="#FFFFFF">ENGLISH EDITION</text>
+  <text x="508" y="438" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#0F766E">PAPERBACK</text>
+      <text x="300" y="473" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="38" font-weight="700" fill="#111827">Journey to the</text>
+      <text x="300" y="520" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="38" font-weight="700" fill="#111827">Center of the</text>
+      <text x="300" y="567" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="38" font-weight="700" fill="#111827">Earth</text>
+  <text x="300" y="642" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" fill="#334155">Jules Verne</text>
+  <path d="M118 742 H482" stroke="#0F766E" stroke-width="4" stroke-linecap="round"/>
+  <text x="300" y="816" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" letter-spacing="0" fill="#0F766E">CASEFLOW BOOKS</text>
+</svg>

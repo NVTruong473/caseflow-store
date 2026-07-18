@@ -1,0 +1,98 @@
+{
+  "taskId": "V12-T11",
+  "generatedAt": "2026-07-18T08:42:37.084Z",
+  "ok": true,
+  "pass": {
+    "activeWorksMatchCanonical": true,
+    "activeEditionsMatchCanonical": true,
+    "activeLanguageCounts": true,
+    "retiredElementsInactive": true,
+    "primaryCoversNoPlaceholder": true,
+    "coverRowsMatchManifest": true,
+    "provenanceCount": true,
+    "qualityCount": true,
+    "compatibilityCount": true,
+    "merchandisingShelves": true,
+    "merchandisingItems": true,
+    "activeRelationshipsMatchManifest": true,
+    "noOrphans": true,
+    "editionPairsReciprocal": true,
+    "sourceReviewApproved": true,
+    "isbnAndPublisherHygiene": true,
+    "unchangedTablesPreserved": true,
+    "anonCanReadActiveCatalog": true,
+    "anonCannotReadInactiveElements": true,
+    "anonMerchandisingRls": true,
+    "internalTablesBlockedForAnon": true
+  },
+  "counts": {
+    "active": {
+      "works": 50,
+      "editions": 100,
+      "englishEditions": 50,
+      "vietnameseEditions": 50
+    },
+    "tables": {
+      "book_cover_assets": 101,
+      "book_catalog_provenance_records": 602,
+      "book_content_quality_checks": 2000,
+      "book_catalog_compatibility": 3,
+      "book_merchandising_shelves": 9,
+      "book_merchandising_shelf_items": 20
+    },
+    "unchangedCounts": {
+      "categories": 5,
+      "products": 16,
+      "profiles": 1,
+      "orders": 0,
+      "order_items": 0,
+      "customer_addresses": 0,
+      "book_promotions": 0,
+      "book_inventory_adjustments": 0
+    }
+  },
+  "expected": {
+    "workIds": {},
+    "editionIds": {},
+    "provenanceRecords": 602,
+    "qualityChecks": 2000,
+    "workAuthorRows": 51,
+    "workCategoryRows": 100,
+    "editionTranslatorRows": 14,
+    "merchandisingManualItems": 20,
+    "seedCatalogCounts": {
+      "categories": 11,
+      "originalWorks": 50,
+      "originalEditions": 100
+    }
+  },
+  "orphanChecks": {
+    "activeEditionsMissingActiveWork": 0,
+    "activeEditionsMissingCover": 0,
+    "activeWorksWithoutAuthor": 0,
+    "activeWorksWithoutCategory": 0,
+    "merchandisingItemsMissingShelf": 0,
+    "merchandisingItemsMissingActiveEdition": 0
+  },
+  "pairFailures": [],
+  "coverFileFailures": [],
+  "unchangedTableMatches": {
+    "categories": true,
+    "products": true,
+    "profiles": true,
+    "orders": true,
+    "order_items": true,
+    "customer_addresses": true,
+    "book_promotions": true,
+    "book_inventory_adjustments": true
+  },
+  "anonChecks": {
+    "activeEditionCount": 100,
+    "activeShelfCount": 8,
+    "retiredElementsVisible": 0,
+    "provenanceBlocked": true,
+    "qualityBlocked": true,
+    "provenanceError": "permission denied for table book_catalog_provenance_records",
+    "qualityError": "permission denied for table book_content_quality_checks"
+  }
+}

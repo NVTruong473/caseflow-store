@@ -1,0 +1,127 @@
+{
+  "taskId": "V12-T12",
+  "generatedAt": "2026-07-18T08:52:19.386Z",
+  "baseURL": "http://127.0.0.1:3001",
+  "interactionChecks": {
+    "pass": {
+      "browseActionWorks": true,
+      "cartEntryWorks": true,
+      "detailEntryWorks": true,
+      "keyboardEntryWorks": true,
+      "languageSwitchPreservesRoute": true
+    }
+  },
+  "ok": true,
+  "pass": {
+    "viewportBasics": true,
+    "noOverflow": true,
+    "firstViewportMerchandising": true,
+    "heroUsesRealCovers": true,
+    "languageSwitchPreservesRoute": true,
+    "browseActionWorks": true,
+    "detailEntryWorks": true,
+    "cartEntryWorks": true,
+    "keyboardEntryWorks": true
+  },
+  "viewportChecks": [
+    {
+      "counts": {
+        "catalogCta": 1,
+        "englishCards": 4,
+        "featuredCards": 4,
+        "heroCards": 3,
+        "promotionCards": 4,
+        "translatedGroups": 3,
+        "trustCards": 4,
+        "vietnameseCards": 4,
+        "weekendCards": 4
+      },
+      "firstViewport": {
+        "categoriesTop": 777.484375,
+        "heroBottom": 729.484375,
+        "innerHeight": 812
+      },
+      "hasHorizontalOverflow": false,
+      "h1Text": "CaseFlow Books",
+      "language": "vi",
+      "name": "mobile-vi",
+      "pass": {
+        "basic": true,
+        "firstViewportMerchandising": true,
+        "heroUsesRealCovers": true,
+        "noOverflow": true
+      },
+      "screenshotPath": ".agent/artifacts/v12-t12/home-mobile-vi.png",
+      "viewport": {
+        "height": 812,
+        "width": 375
+      }
+    },
+    {
+      "counts": {
+        "catalogCta": 1,
+        "englishCards": 4,
+        "featuredCards": 4,
+        "heroCards": 3,
+        "promotionCards": 4,
+        "translatedGroups": 3,
+        "trustCards": 4,
+        "vietnameseCards": 4,
+        "weekendCards": 4
+      },
+      "firstViewport": {
+        "categoriesTop": 698.59375,
+        "heroBottom": 650.59375,
+        "innerHeight": 900
+      },
+      "hasHorizontalOverflow": false,
+      "h1Text": "CaseFlow Books",
+      "language": "en",
+      "name": "tablet-en",
+      "pass": {
+        "basic": true,
+        "firstViewportMerchandising": true,
+        "heroUsesRealCovers": true,
+        "noOverflow": true
+      },
+      "screenshotPath": ".agent/artifacts/v12-t12/home-tablet-en.png",
+      "viewport": {
+        "height": 900,
+        "width": 768
+      }
+    },
+    {
+      "counts": {
+        "catalogCta": 1,
+        "englishCards": 4,
+        "featuredCards": 4,
+        "heroCards": 3,
+        "promotionCards": 4,
+        "translatedGroups": 3,
+        "trustCards": 4,
+        "vietnameseCards": 4,
+        "weekendCards": 4
+      },
+      "firstViewport": {
+        "categoriesTop": 690.453125,
+        "heroBottom": 642.453125,
+        "innerHeight": 1000
+      },
+      "hasHorizontalOverflow": false,
+      "h1Text": "CaseFlow Books",
+      "language": "en",
+      "name": "desktop-en",
+      "pass": {
+        "basic": true,
+        "firstViewportMerchandising": true,
+        "heroUsesRealCovers": true,
+        "noOverflow": true
+      },
+      "screenshotPath": ".agent/artifacts/v12-t12/home-desktop-en.png",
+      "viewport": {
+        "height": 1000,
+        "width": 1440
+      }
+    }
+  ]
+}

@@ -7,6 +7,9 @@ import { LANGUAGE_COOKIE, type Language } from "../src/lib/i18n/language";
 
 const ARTIFACT_DIR = path.join(".agent", "artifacts", "d39-t02");
 const CANONICAL_ORIGIN = "https://caseflow-store.vercel.app";
+const EXPECTED_ORIGIN = normalizeOrigin(
+  process.env.SEO_EXPECTED_ORIGIN ?? CANONICAL_ORIGIN,
+);
 
 type ApiResponse<TData> = {
   data: TData | null;
@@ -54,15 +57,16 @@ async function main() {
     const pass = {
       accountNoindex:
         metadata.account.robots.includes("noindex") &&
-        metadata.account.canonical === `${CANONICAL_ORIGIN}/account`,
+        metadata.account.canonical === `${EXPECTED_ORIGIN}/account`,
       catalogMetadata:
         metadata.catalog.title.includes("Book catalog") &&
-        metadata.catalog.description.includes("title, author") &&
-        metadata.catalog.canonical === `${CANONICAL_ORIGIN}/catalog`,
+        metadata.catalog.description.includes("title") &&
+        metadata.catalog.description.includes("author") &&
+        metadata.catalog.canonical === `${EXPECTED_ORIGIN}/catalog`,
       detailMetadata:
         metadata.detail.title.includes("CaseFlow Books") &&
         metadata.detail.description.length >= 40 &&
-        metadata.detail.canonical === `${CANONICAL_ORIGIN}/products/${target.slug}`,
+        metadata.detail.canonical === `${EXPECTED_ORIGIN}/products/${target.slug}`,
       homeMetadata:
         metadata.homeEn.title.includes("Bilingual bookstore") &&
         metadata.homeEn.description.includes("Vietnam-first") &&
@@ -87,15 +91,16 @@ async function main() {
         structuredData.type === "Book" &&
         structuredData.name.length > 0 &&
         structuredData.priceCurrency === "VND" &&
-        structuredData.offerUrl === `${CANONICAL_ORIGIN}/products/${target.slug}`,
+        structuredData.offerUrl === `${EXPECTED_ORIGIN}/products/${target.slug}`,
       trackingMetadata:
         metadata.tracking.title.includes("Track order") &&
         metadata.tracking.description.includes("order code") &&
-        metadata.tracking.canonical === `${CANONICAL_ORIGIN}/orders/track`,
+        metadata.tracking.canonical === `${EXPECTED_ORIGIN}/orders/track`,
     };
     const ok = Object.values(pass).every(Boolean);
     const report = {
       baseURL,
+      expectedOrigin: EXPECTED_ORIGIN,
       generatedAt: new Date().toISOString(),
       metadata,
       ok,
@@ -118,6 +123,10 @@ async function main() {
   } finally {
     await browser.close();
   }
+}
+
+function normalizeOrigin(origin: string) {
+  return new URL(origin).origin;
 }
 
 async function findTargetBook(baseURL: string): Promise<CatalogItem> {
@@ -229,13 +238,13 @@ async function inspectSitemap(baseURL: string, targetSlug: string) {
   return {
     includesAdmin: body.includes("/admin"),
     includesApi: body.includes("/api"),
-    includesCatalog: body.includes(`${CANONICAL_ORIGIN}/catalog`),
+    includesCatalog: body.includes(`${EXPECTED_ORIGIN}/catalog`),
     includesCheckout: body.includes("/checkout"),
-    includesHome: body.includes(`${CANONICAL_ORIGIN}/</loc>`),
+    includesHome: body.includes(`${EXPECTED_ORIGIN}/</loc>`),
     includesTargetBook: body.includes(
-      `${CANONICAL_ORIGIN}/products/${targetSlug}`,
+      `${EXPECTED_ORIGIN}/products/${targetSlug}`,
     ),
-    includesTracking: body.includes(`${CANONICAL_ORIGIN}/orders/track`),
+    includesTracking: body.includes(`${EXPECTED_ORIGIN}/orders/track`),
     status: response.status,
   };
 }

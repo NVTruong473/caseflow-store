@@ -1,0 +1,510 @@
+{
+  "baseURL": "http://127.0.0.1:3001",
+  "dependencyAudit": {
+    "highCritical": {
+      "ok": true,
+      "fixRecommendation": "npm-audit-fix-force-would-install-next-9.3.3-breaking-downgrade",
+      "vulnerabilities": {
+        "critical": 0,
+        "high": 0,
+        "low": 0,
+        "moderate": 2,
+        "total": 2
+      }
+    },
+    "moderate": {
+      "ok": false,
+      "fixRecommendation": "npm-audit-fix-force-would-install-next-9.3.3-breaking-downgrade",
+      "vulnerabilities": {
+        "critical": 0,
+        "high": 0,
+        "low": 0,
+        "moderate": 2,
+        "total": 2
+      }
+    }
+  },
+  "generatedAt": "2026-07-18T10:18:21.735Z",
+  "lighthouse": {
+    "ok": false,
+    "status": "unavailable",
+    "reason": "npm exec lighthouse@13.4.0 did not complete package installation/version check within the local gate window; Playwright performance baseline was used instead."
+  },
+  "ok": true,
+  "pass": {
+    "dependencyNoHighOrCritical": true,
+    "moderateDependencyRiskDocumented": true,
+    "performanceBaseline": true,
+    "secretScan": true,
+    "staticReports": true
+  },
+  "performance": {
+    "ok": true,
+    "routes": [
+      {
+        "medians": {
+          "domContentLoadedMs": 431.19999998807907,
+          "loadMs": 466.89999997615814,
+          "selectorReadyMs": 639,
+          "totalBlockingTimeMs": 0
+        },
+        "name": "home",
+        "pass": {
+          "domContentLoaded": true,
+          "load": true,
+          "noOverflow": true,
+          "selectorReady": true,
+          "totalBlockingTime": true
+        },
+        "pathname": "/",
+        "runs": [
+          {
+            "domContentLoadedMs": 654.6999999880791,
+            "hasHorizontalOverflow": false,
+            "loadMs": 674.8000000119209,
+            "totalBlockingTimeMs": 0,
+            "selectorReadyMs": 929
+          },
+          {
+            "domContentLoadedMs": 431.19999998807907,
+            "hasHorizontalOverflow": false,
+            "loadMs": 466.89999997615814,
+            "totalBlockingTimeMs": 0,
+            "selectorReadyMs": 639
+          },
+          {
+            "domContentLoadedMs": 412.5,
+            "hasHorizontalOverflow": false,
+            "loadMs": 420.9000000357628,
+            "totalBlockingTimeMs": 0,
+            "selectorReadyMs": 585
+          }
+        ]
+      },
+      {
+        "medians": {
+          "domContentLoadedMs": 352.30000001192093,
+          "loadMs": 361.80000001192093,
+          "selectorReadyMs": 681,
+          "totalBlockingTimeMs": 0
+        },
+        "name": "catalog",
+        "pass": {
+          "domContentLoaded": true,
+          "load": true,
+          "noOverflow": true,
+          "selectorReady": true,
+          "totalBlockingTime": true
+        },
+        "pathname": "/catalog",
+        "runs": [
+          {
+            "domContentLoadedMs": 352.30000001192093,
+            "hasHorizontalOverflow": false,
+            "loadMs": 361.80000001192093,
+            "totalBlockingTimeMs": 0,
+            "selectorReadyMs": 681
+          },
+          {
+            "domContentLoadedMs": 333.30000001192093,
+            "hasHorizontalOverflow": false,
+            "loadMs": 355.30000001192093,
+            "totalBlockingTimeMs": 0,
+            "selectorReadyMs": 593
+          },
+          {
+            "domContentLoadedMs": 411.69999998807907,
+            "hasHorizontalOverflow": false,
+            "loadMs": 565.8999999761581,
+            "totalBlockingTimeMs": 0,
+            "selectorReadyMs": 1020
+          }
+        ]
+      },
+      {
+        "medians": {
+          "domContentLoadedMs": 496.5,
+          "loadMs": 539.3999999761581,
+          "selectorReadyMs": 685,
+          "totalBlockingTimeMs": 0
+        },
+        "name": "detail",
+        "pass": {
+          "domContentLoaded": true,
+          "load": true,
+          "noOverflow": true,
+          "selectorReady": true,
+          "totalBlockingTime": true
+        },
+        "pathname": "/products/the-old-man-and-the-sea-vietnamese-paperback",
+        "runs": [
+          {
+            "domContentLoadedMs": 496.5,
+            "hasHorizontalOverflow": false,
+            "loadMs": 539.3999999761581,
+            "totalBlockingTimeMs": 0,
+            "selectorReadyMs": 685
+          },
+          {
+            "domContentLoadedMs": 379.5,
+            "hasHorizontalOverflow": false,
+            "loadMs": 388.7999999523163,
+            "totalBlockingTimeMs": 0,
+            "selectorReadyMs": 538
+          },
+          {
+            "domContentLoadedMs": 573.1000000238419,
+            "hasHorizontalOverflow": false,
+            "loadMs": 584,
+            "totalBlockingTimeMs": 0,
+            "selectorReadyMs": 705
+          }
+        ]
+      }
+    ],
+    "summary": {
+      "home": {
+        "domContentLoadedMs": 431.19999998807907,
+        "loadMs": 466.89999997615814,
+        "selectorReadyMs": 639,
+        "totalBlockingTimeMs": 0
+      },
+      "catalog": {
+        "domContentLoadedMs": 352.30000001192093,
+        "loadMs": 361.80000001192093,
+        "selectorReadyMs": 681,
+        "totalBlockingTimeMs": 0
+      },
+      "detail": {
+        "domContentLoadedMs": 496.5,
+        "loadMs": 539.3999999761581,
+        "selectorReadyMs": 685,
+        "totalBlockingTimeMs": 0
+      }
+    },
+    "thresholds": {
+      "domContentLoadedMs": 4000,
+      "loadMs": 8000,
+      "selectorReadyMs": 8000,
+      "totalBlockingTimeMs": 600
+    }
+  },
+  "secretScan": {
+    "checkedFiles": 595,
+    "findings": []
+  },
+  "staticReports": [
+    {
+      "exists": true,
+      "name": "canonicalManifest",
+      "ok": true,
+      "path": ".agent/artifacts/v12-t05/canonical-manifest-check.json",
+      "pass": {
+        "schemaValid": true,
+        "exactWorkCount": true,
+        "exactEditionCount": true,
+        "bilingualEditionBalance": true,
+        "uniqueIdentifiers": true,
+        "uniqueSlugs": true,
+        "isbnShapesAndChecksumsValid": true,
+        "isbnValuesUnique": true,
+        "pairRelationshipsValid": true,
+        "workRelationshipsValid": true,
+        "everyEditionSourceReviewed": true,
+        "everyEditionHasBilingualContent": true,
+        "vietnameseDiacriticsPresent": true,
+        "prohibitedCopyAbsent": true,
+        "sourcedFactsSupported": true,
+        "sourceEditionsNotMixed": true,
+        "storeClaimsExplicit": true,
+        "inventoryStateConsistent": true,
+        "legacyCompatibilityComplete": true
+      }
+    },
+    {
+      "exists": true,
+      "name": "contentProvenance",
+      "ok": true,
+      "path": ".agent/artifacts/v12-t04/provenance-content-quality-check.json",
+      "pass": {
+        "acceptsInternalMedia": true,
+        "acceptsGeneratedMedia": true,
+        "acceptsLicensedMedia": true,
+        "acceptsPublicDomainMedia": true,
+        "acceptsEditionFact": true,
+        "rejectsIncompleteLicensedMedia": true,
+        "rejectsIncompletePublicDomainMedia": true,
+        "rejectsContradictoryGeneratedMedia": true,
+        "rejectsIncompleteAttribution": true,
+        "rejectsIncompleteReview": true,
+        "rejectsUnmatchedEditionFact": true,
+        "rejectsSourceLessBibliographicFact": true,
+        "acceptsConsistentEditionFacts": true,
+        "rejectsMixedEditionFacts": true,
+        "qualityRequiresProvenance": true,
+        "blockingRequirementsCannotBeSkipped": true,
+        "unverifiedFactsReceiveNoCredit": true,
+        "completeBlockingChecklistIsReleaseReady": true,
+        "publicSerializerOmitsInternalFields": true,
+        "nonApprovedProvenanceIsNotPublic": true,
+        "catalogSerializerDoesNotLeakInternalNotes": true
+      }
+    },
+    {
+      "exists": true,
+      "name": "coverPortfolio",
+      "ok": true,
+      "path": ".agent/artifacts/v12-t07/cover-portfolio-check.json",
+      "pass": {
+        "schemaValid": true,
+        "exactAssetCount": true,
+        "exactEditionCoverage": true,
+        "balancedLanguages": true,
+        "noPlaceholderReferences": true,
+        "assetFilesExist": true,
+        "checksumsMatch": true,
+        "fileSizesWithinBudget": true,
+        "dimensionsValid": true,
+        "noExternalImageReferences": true,
+        "noProtectedMarks": true,
+        "titleAndAuthorRendered": true,
+        "noDuplicateHashes": true,
+        "pairedFamiliesValid": true,
+        "uniqueWorkFamilies": true,
+        "completeSourceRecords": true,
+        "contactSheetsExist": true,
+        "previewRenders": true
+      }
+    },
+    {
+      "exists": true,
+      "name": "editorialMetadata",
+      "ok": true,
+      "path": ".agent/artifacts/v12-t08/editorial-metadata-check.json",
+      "pass": {
+        "exactEditionCount": true,
+        "exactEditionCoverage": true,
+        "coverCoverage": true,
+        "bilingualComplete": true,
+        "vietnameseDiacritics": true,
+        "copyLength": true,
+        "prohibitedCopyAbsent": true,
+        "duplicateCopyControlled": true,
+        "internalConsistency": true,
+        "qualityReleaseReady": true,
+        "gracefulOmissions": true
+      }
+    },
+    {
+      "exists": true,
+      "name": "merchandisingRules",
+      "ok": true,
+      "path": ".agent/artifacts/v12-t09/merchandising-rules-check.json",
+      "pass": {
+        "schemaValid": true,
+        "exactShelfCount": true,
+        "sourceEditorialCoverage": true,
+        "referencesValid": true,
+        "duplicatePositionsRejected": true,
+        "missingEditionRejected": true,
+        "invalidWindowRejected": true,
+        "unlocalizedLabelsRejected": true,
+        "unauthorizedMutationsRejected": true,
+        "orderDerivedClaimsGuarded": true,
+        "deterministicResolution": true,
+        "activeShelvesResolve": true,
+        "fallbackStable": true,
+        "storageContractPresent": true
+      }
+    },
+    {
+      "exists": true,
+      "name": "migrationPlan",
+      "ok": true,
+      "path": ".agent/artifacts/v12-t10/v12-catalog-migration-check.json",
+      "pass": {
+        "planExists": true,
+        "migrationSqlMatchesPlan": true,
+        "noDestructiveSql": true,
+        "requiredSqlFragmentsPresent": true,
+        "backupDirectoryIgnored": true,
+        "sourceManifestSnapshotsPresent": true,
+        "assetManifestPresent": true,
+        "expectedIdPlan": true,
+        "noDeletesPlanned": true,
+        "productionAreasPreserved": true,
+        "merchandisingRowsPlanned": true,
+        "provenanceRowsPlanned": true,
+        "preMigrationCountSqlSafe": true,
+        "liveCountEvidencePresent": true
+      }
+    },
+    {
+      "exists": true,
+      "name": "supabaseImport",
+      "ok": true,
+      "path": ".agent/artifacts/v12-t11/post-migration-supabase-check.json",
+      "pass": {
+        "activeWorksMatchCanonical": true,
+        "activeEditionsMatchCanonical": true,
+        "activeLanguageCounts": true,
+        "retiredElementsInactive": true,
+        "primaryCoversNoPlaceholder": true,
+        "coverRowsMatchManifest": true,
+        "provenanceCount": true,
+        "qualityCount": true,
+        "compatibilityCount": true,
+        "merchandisingShelves": true,
+        "merchandisingItems": true,
+        "activeRelationshipsMatchManifest": true,
+        "noOrphans": true,
+        "editionPairsReciprocal": true,
+        "sourceReviewApproved": true,
+        "isbnAndPublisherHygiene": true,
+        "unchangedTablesPreserved": true,
+        "anonCanReadActiveCatalog": true,
+        "anonCannotReadInactiveElements": true,
+        "anonMerchandisingRls": true,
+        "internalTablesBlockedForAnon": true
+      }
+    },
+    {
+      "exists": true,
+      "name": "homepageMerchandising",
+      "ok": true,
+      "path": ".agent/artifacts/v12-t12/homepage-merchandising-check.json",
+      "pass": {
+        "catalogHasExpectedScale": true,
+        "activeShelvesPubliclyReadable": true,
+        "requiredShelvesResolve": true,
+        "editorPicksRespectManualOrder": true,
+        "weekendRespectManualOrder": true,
+        "vietnameseShelfIsVietnamese": true,
+        "englishShelfIsEnglish": true,
+        "promotionShelfUsesRealCompareAt": true,
+        "pairedShelfHasEnglishVietnameseWorks": true,
+        "selectedHomepageDoesNotDumpCatalog": true,
+        "selectedCoversAreDistinctAndNotPlaceholder": true,
+        "noOrderDerivedClaimsRendered": true
+      }
+    },
+    {
+      "exists": true,
+      "name": "homepageUi",
+      "ok": true,
+      "path": ".agent/artifacts/v12-t12/homepage-ui-check.json",
+      "pass": {
+        "viewportBasics": true,
+        "noOverflow": true,
+        "firstViewportMerchandising": true,
+        "heroUsesRealCovers": true,
+        "languageSwitchPreservesRoute": true,
+        "browseActionWorks": true,
+        "detailEntryWorks": true,
+        "cartEntryWorks": true,
+        "keyboardEntryWorks": true
+      }
+    },
+    {
+      "exists": true,
+      "name": "catalogDiscovery",
+      "ok": true,
+      "path": ".agent/artifacts/v12-t13/catalog-discovery-check.json",
+      "pass": {
+        "defaultDiscovery": true,
+        "mobileCardsCompact": true,
+        "filtersAndUrlState": true,
+        "longTitleSafe": true,
+        "availabilityStates": true
+      }
+    },
+    {
+      "exists": true,
+      "name": "bookDetail",
+      "ok": true,
+      "path": ".agent/artifacts/v12-t14/book-detail-edition-comparison-check.json",
+      "pass": {
+        "addToCartTargetsCurrentEdition": true,
+        "bilingualScreenshotsSaved": true,
+        "editionComparison": true,
+        "firstScreenHierarchy": true,
+        "missingFactsOmitted": true,
+        "noOverflow": true,
+        "noUnsupportedClaims": true,
+        "noPublicSourceReviewStatus": true,
+        "reasonAndConfidence": true,
+        "seoStructuredData": true,
+        "sourcedFacts": true
+      }
+    },
+    {
+      "exists": true,
+      "name": "adminContentOperations",
+      "ok": true,
+      "path": ".agent/artifacts/v12-t15/admin-content-operations-check.json",
+      "pass": {
+        "adminSourceGuard": true,
+        "anonymousDenied": true,
+        "customerDenied": true,
+        "filtersWork": true,
+        "noInternalNotesLeak": true,
+        "repositoryState": true,
+        "responsiveUi": true,
+        "staffAccess": true
+      }
+    },
+    {
+      "exists": true,
+      "name": "runtimeIntegration",
+      "ok": true,
+      "path": ".agent/artifacts/v12-t16/catalog-runtime-integration-check.json",
+      "pass": {
+        "assistant": true,
+        "cart": true,
+        "checkoutGate": true,
+        "docs": true,
+        "legacyLinks": true,
+        "orderAndExport": true,
+        "publicCatalog": true,
+        "seo": true
+      }
+    },
+    {
+      "exists": true,
+      "name": "accessibilityMobilePerformance",
+      "ok": true,
+      "path": ".agent/artifacts/d39-t03/accessibility-mobile-performance-check.json",
+      "pass": {
+        "adminControls": true,
+        "catalogPerformance": true,
+        "checkoutControls": true,
+        "focusStates": true,
+        "noOverflow": true,
+        "screenshots": true
+      }
+    },
+    {
+      "exists": true,
+      "name": "seoMetadata",
+      "ok": true,
+      "path": ".agent/artifacts/d39-t02/seo-metadata-check.json",
+      "pass": {
+        "accountNoindex": true,
+        "catalogMetadata": true,
+        "detailMetadata": true,
+        "homeMetadata": true,
+        "robots": true,
+        "sitemap": true,
+        "structuredData": true,
+        "trackingMetadata": true
+      }
+    },
+    {
+      "exists": true,
+      "name": "releaseCleanup",
+      "ok": true,
+      "path": ".agent/artifacts/d40-t01/release-cleanup-check.json",
+      "pass": null
+    }
+  ]
+}

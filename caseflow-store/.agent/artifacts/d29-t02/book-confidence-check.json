@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-07-16T09:27:29.378Z",
-  "baseURL": "http://127.0.0.1:3005",
+  "generatedAt": "2026-07-18T05:13:30.482Z",
+  "baseURL": "http://localhost:3000",
   "desktop": {
     "hasConfidenceCopy": true,
     "hasHorizontalOverflow": false,
@@ -88,36 +88,83 @@
       "slug": "a-christmas-carol-english-paperback",
       "displayTitle": "A Christmas Carol",
       "localizedDisplayTitle": {
-        "vi": "Bai ca Giang sinh",
+        "vi": "Bài ca Giáng sinh",
         "en": "A Christmas Carol"
       },
       "subtitle": null,
       "language": "en",
       "format": "paperback",
-      "isbn13": null,
-      "isbn10": null,
-      "publicationYear": 1843,
+      "isbn13": "9780141389479",
+      "isbn10": "0141389478",
+      "publicationYear": 2012,
       "pageCount": null,
-      "dimensions": {
-        "widthMm": 130,
-        "heightMm": 205,
-        "thicknessMm": null
-      },
-      "weightGrams": 360,
+      "dimensions": null,
+      "weightGrams": null,
       "priceVnd": 143000,
       "compareAtPriceVnd": null,
       "stockQuantity": 11,
-      "lowStockThreshold": 5,
+      "lowStockThreshold": 10,
       "inventoryStatus": "in-stock",
       "summary": {
-        "vi": "Mot cau chuyen dao duc ngan gon noi ky uc va tuong tuong thuc day mot ke keo kiet huong den rong luong va sua sai. An ban tieng Anh phu hop cho doc gia song ngu va nhu cau doc hoc thuat.",
-        "en": "A compact moral tale where memory and imagination push a miser toward generosity and repair. This English edition is positioned for bilingual readers and classroom-friendly browsing."
+        "vi": "Câu chuyện đạo đức cô đọng nơi ký ức và tưởng tượng thúc đẩy một người keo kiệt hướng tới rộng lượng và sửa sai.",
+        "en": "A compact moral tale where memory and imagination push a miser toward generosity and repair."
       },
       "tableOfContents": null,
-      "sampleExcerptPolicy": "No commercial excerpt is stored in seed data; use short internal preview copy only.",
+      "sampleExcerptPolicy": "No copyrighted excerpt is stored; use project-written preview guidance only.",
+      "pairId": "00000000-0000-4000-8000-000000006027",
+      "pairedEditionId": "00000000-0000-4000-8000-000000004027",
+      "reasonToRead": {
+        "vi": "Ấn bản tiếng Anh của Bài ca Giáng sinh, dành cho độc giả muốn đọc và đối chiếu tác phẩm ở cả hai ngôn ngữ trong danh mục.",
+        "en": "English edition of A Christmas Carol for readers comparing the work across both catalog languages."
+      },
+      "displayFacts": [
+        {
+          "key": "isbn",
+          "label": {
+            "vi": "ISBN",
+            "en": "ISBN"
+          },
+          "value": {
+            "vi": "9780141389479",
+            "en": "9780141389479"
+          },
+          "provenanceRecordId": "00000000-0000-4000-8000-000000011082"
+        },
+        {
+          "key": "publisher",
+          "label": {
+            "vi": "Nhà xuất bản",
+            "en": "Publisher"
+          },
+          "value": {
+            "vi": "Penguin English Library",
+            "en": "Penguin English Library"
+          },
+          "provenanceRecordId": "00000000-0000-4000-8000-000000011081"
+        },
+        {
+          "key": "publication-year",
+          "label": {
+            "vi": "Năm xuất bản",
+            "en": "Publication year"
+          },
+          "value": {
+            "vi": "2012",
+            "en": "2012"
+          },
+          "provenanceRecordId": "00000000-0000-4000-8000-000000011084"
+        }
+      ],
+      "omittedOptionalFactKeys": [
+        "translator",
+        "page-count",
+        "source-physical-format"
+      ],
+      "sourceEditionKey": "google-books:my2meaaaqbaj",
+      "sourceReviewStatus": "approved",
       "isFeatured": false,
       "createdAt": "2026-07-16T00:00:00+00:00",
-      "updatedAt": "2026-07-16T06:19:00.769299+00:00"
+      "updatedAt": "2026-07-17T21:02:08.622433+00:00"
     },
     "work": {
       "id": "00000000-0000-4000-8000-000000002027",
@@ -125,7 +172,7 @@
       "title": "A Christmas Carol",
       "originalTitle": null,
       "localizedTitle": {
-        "vi": "Bai ca Giang sinh",
+        "vi": "Bài ca Giáng sinh",
         "en": "A Christmas Carol"
       },
       "originalLanguage": "English",
@@ -137,7 +184,7 @@
       "ageRating": null,
       "publicationEra": "1843",
       "canonicalSummary": {
-        "vi": "Mot cau chuyen dao duc ngan gon noi ky uc va tuong tuong thuc day mot ke keo kiet huong den rong luong va sua sai.",
+        "vi": "Câu chuyện đạo đức cô đọng nơi ký ức và tưởng tượng thúc đẩy một người keo kiệt hướng tới rộng lượng và sửa sai.",
         "en": "A compact moral tale where memory and imagination push a miser toward generosity and repair."
       }
     },
@@ -181,20 +228,20 @@
     ],
     "translators": [],
     "publisher": {
-      "id": "00000000-0000-4000-8000-000000000001",
-      "slug": "caseflow-books-demo-editions",
-      "name": "CaseFlow Books Demo Editions",
-      "country": "Vietnam",
+      "id": "5e5621f7-bf82-44b2-81ee-9ec438f5c36c",
+      "slug": "penguin-english-library",
+      "name": "Penguin English Library",
+      "country": null,
       "website": null
     },
     "coverAsset": {
-      "id": "00000000-0000-4000-8000-000000000050",
-      "path": "/images/books/placeholders/book-cover-placeholder.svg",
+      "id": "00000000-0000-4000-8000-000000009001",
+      "path": "/images/books/v12-covers/a-christmas-carol-english-paperback.svg",
       "altText": {
-        "vi": "Bia sach tam thoi noi bo cua CaseFlow Books",
-        "en": "CaseFlow Books internal placeholder cover"
+        "vi": "Bìa minh họa CaseFlow Books cho Bài ca Giáng sinh của Charles Dickens.",
+        "en": "CaseFlow Books illustrative cover for A Christmas Carol by Charles Dickens."
       },
-      "source": "internal"
+      "source": "generated"
     }
   }
 }

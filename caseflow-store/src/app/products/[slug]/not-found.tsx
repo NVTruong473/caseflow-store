@@ -44,7 +44,7 @@ export default async function ProductNotFound() {
           </p>
           <div className="flex flex-col gap-case-sm pt-case-sm sm:flex-row">
             <Link
-              href="/#featured"
+              href="/catalog"
               className="inline-flex min-h-11 items-center justify-center rounded-md border border-primary bg-primary px-4 py-2 text-body font-medium text-surface transition-colors hover:border-primary-hover hover:bg-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
             >
               {copy.browseBooks}

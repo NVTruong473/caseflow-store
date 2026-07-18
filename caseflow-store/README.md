@@ -62,15 +62,16 @@ Playwright requires local admin/customer credentials such as
 and `CASEFLOW_CUSTOMER_PASSWORD`. Those credentials are not part of the deployed
 runtime.
 
-## v1.1 release evidence
+## v1.2 release evidence
 
-- Release tag: `v1.1.0`
+- Release tag: `v1.2.0`
 - Production alias: `https://caseflow-store.vercel.app`
-- Vercel deployment ID: `dpl_BkiJt9gDCh5d2cHwAhpFDbLotoAy`
+- Vercel deployment ID: `dpl_7Y2Qsf4VJRBuzaMGXZMi81Rq5pKQ`
 - Local release gate: TypeScript, ESLint, production build, and 20 Playwright
   tests passed.
-- Production smoke: public pages/APIs, admin boundary, robots, sitemap,
-  assistant, and a 5-test Playwright subset passed.
+- Production smoke: public pages/APIs, 100-edition catalog quality, 100 v1.2
+  covers, language mode, cart/checkout boundary, customer/admin boundary,
+  assistant, robots, sitemap, and 20 production Playwright tests passed.
 - Known boundaries: simulated payments, no real SMS/OTP, no real shipping
   carrier integration, and no commercial book-cover hotlinking.
 

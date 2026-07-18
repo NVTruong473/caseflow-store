@@ -1,0 +1,215 @@
+{
+  "generatedAt": "2026-07-17T12:55:08.574Z",
+  "mode": "read-only",
+  "noWritesPerformed": true,
+  "optionalPolish": [
+    "Add richer work-level editorial fields only after provenance contracts are frozen.",
+    "Improve category breadth only after the canonical 100-edition manifest is accepted.",
+    "Consider external preview links only when regional availability and link rights are explicit."
+  ],
+  "releaseBlockers": [
+    {
+      "id": "V12-B01",
+      "severity": "critical",
+      "finding": "100/100 seed editions and 100/100 Supabase editions use the same placeholder as their primary cover."
+    },
+    {
+      "id": "V12-B02",
+      "severity": "high",
+      "finding": "100/100 editions point to a demo publisher, while ISBN-13, ISBN-10, and page count are missing on every edition."
+    },
+    {
+      "id": "V12-B03",
+      "severity": "high",
+      "finding": "98/100 Vietnamese summaries have no Vietnamese diacritics, so field presence overstates localization quality."
+    },
+    {
+      "id": "V12-B04",
+      "severity": "high",
+      "finding": "The current schema cannot attach reviewed provenance to works, editions, or publishers and cannot represent v1.2 merchandising collections."
+    },
+    {
+      "id": "V12-B05",
+      "severity": "medium",
+      "finding": "Normal storefront source still contains generic UI paths (TBC: 6, not-specified: 2, placeholder: 15)."
+    },
+    {
+      "id": "V12-B06",
+      "severity": "medium",
+      "finding": "All 50 works have an English and Vietnamese SKU, but no translator records exist; the relationship is structurally complete and bibliographically incomplete."
+    }
+  ],
+  "schemaDecision": {
+    "recommendation": "additive-schema-required",
+    "existingStrengths": [
+      "book_cover_assets already stores path, source type, localized alt text, and a basic source_note JSON value.",
+      "book_works and book_editions already separate work identity from the sellable SKU.",
+      "book_editions already supports stable cover references and is_featured."
+    ],
+    "blockingGaps": [
+      "book_works, book_editions, and book_publishers cannot store reviewed provenance in the current domain or table contracts.",
+      "SourceNote cannot express content kind, rights basis, attribution requirements/location, review status, reviewer note, or edition-match confidence.",
+      "is_featured is only a boolean and cannot represent localized shelf labels, deterministic order, date windows, editorial versus sales-derived provenance, or operator-managed collections."
+    ],
+    "migrationBoundary": "V12-T04 should define additive provenance contracts. V12-T09 should add the smallest merchandising storage only after content fields are frozen. No destructive change is justified."
+  },
+  "seed": {
+    "counts": {
+      "categories": 11,
+      "activeCategories": 11,
+      "authors": 41,
+      "translators": 0,
+      "publishers": 1,
+      "coverAssets": 1,
+      "works": 50,
+      "activeWorks": 50,
+      "editions": 100,
+      "activeEditions": 100,
+      "englishEditions": 50,
+      "vietnameseEditions": 50,
+      "featuredEditions": 12
+    },
+    "coverUsage": {
+      "coverReferenceCounts": {
+        "00000000-0000-4000-8000-000000000050": 100
+      },
+      "distinctPrimaryCoverIds": 1,
+      "distinctPrimaryCoverPaths": 1,
+      "editionsUsingPlaceholder": 100,
+      "editionsWithBrokenCoverReference": 0,
+      "coverFiles": [
+        {
+          "id": "00000000-0000-4000-8000-000000000050",
+          "path": "/images/books/placeholders/book-cover-placeholder.svg",
+          "source": "internal",
+          "sourceNoteComplete": true,
+          "exists": true,
+          "fileBytes": 1390,
+          "sha256": "fed40373fcc813f63830912a43e80e566de829a67f5db8fb3d135e8cd6f48c04"
+        }
+      ]
+    },
+    "editionCompleteness": {
+      "demoPublisherEditions": 100,
+      "missingFields": {
+        "isbn13": 100,
+        "isbn10": 100,
+        "pageCount": 100,
+        "subtitle": 100,
+        "tableOfContents": 100,
+        "translatorCredits": 100,
+        "publicationYear": 16,
+        "coverImageId": 0,
+        "publisherId": 0,
+        "thicknessMm": 100
+      },
+      "summaryCoverage": {
+        "englishPresent": 100,
+        "vietnamesePresent": 100,
+        "vietnameseWithoutDiacritics": 98,
+        "repeatedEnglishPositioningSentence": 50,
+        "repeatedVietnamesePositioningSentence": 50
+      }
+    },
+    "relationships": {
+      "workPairCounts": {
+        "2": 50
+      },
+      "validBilingualPairs": 50,
+      "worksWithoutExactlyTwoEditions": 0
+    },
+    "sourceCoverage": {
+      "authorsWithCompleteSourceNote": 41,
+      "coversWithCompleteSourceNote": 1,
+      "publishersWithSourceNote": 0,
+      "worksWithSourceNote": 0,
+      "editionsWithSourceNote": 0,
+      "publisherSourceRepresentableInCurrentContract": false,
+      "workSourceRepresentableInCurrentContract": false,
+      "editionSourceRepresentableInCurrentContract": false
+    }
+  },
+  "sourceScan": {
+    "files": [
+      {
+        "file": "src/app/page.tsx",
+        "matches": {
+          "tbc": 0,
+          "not-specified": 0,
+          "demo": 0,
+          "placeholder": 4
+        }
+      },
+      {
+        "file": "src/app/catalog/page.tsx",
+        "matches": {
+          "tbc": 0,
+          "not-specified": 0,
+          "demo": 0,
+          "placeholder": 9
+        }
+      },
+      {
+        "file": "src/app/products/[slug]/page.tsx",
+        "matches": {
+          "tbc": 6,
+          "not-specified": 2,
+          "demo": 0,
+          "placeholder": 2
+        }
+      },
+      {
+        "file": "src/features/admin/admin-catalog-page.tsx",
+        "matches": {
+          "tbc": 0,
+          "not-specified": 0,
+          "demo": 0,
+          "placeholder": 0
+        }
+      }
+    ]
+  },
+  "supabase": {
+    "status": "ok",
+    "readOnly": true,
+    "counts": {
+      "categories": 11,
+      "activeCategories": 11,
+      "authors": 41,
+      "publishers": 1,
+      "coverAssets": 1,
+      "works": 50,
+      "activeWorks": 50,
+      "editions": 100,
+      "activeEditions": 100,
+      "englishEditions": 50,
+      "vietnameseEditions": 50
+    },
+    "coverUsage": {
+      "distinctActiveCoverIds": 1,
+      "editionsUsingSeedPlaceholder": 100,
+      "brokenCoverReferences": 0
+    },
+    "qaRows": {
+      "authors": 0,
+      "editions": 0,
+      "publishers": 0,
+      "works": 0,
+      "total": 0
+    },
+    "seedParity": {
+      "unexpectedEditionIds": [],
+      "missingEditionIds": [],
+      "unexpectedWorkIds": [],
+      "missingWorkIds": []
+    },
+    "sourceCoverage": {
+      "authorsWithCompleteSourceNote": 41,
+      "coversWithCompleteSourceNote": 1,
+      "publishersWithSourceNote": 0,
+      "worksWithSourceNote": 0,
+      "editionsWithSourceNote": 0
+    }
+  },
+  "task": "V12-T03 - Audit v1.1 Catalog Realism Baseline"
+}

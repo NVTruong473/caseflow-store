@@ -133,8 +133,8 @@ export function BookEditionPurchaseControls({
 
   return (
     <Card
-      padding="lg"
-      className="flex flex-col gap-case-md"
+      padding="md"
+      className="flex flex-col gap-case-sm"
       data-book-purchase-controls={editionId}
     >
       <CardHeader>
@@ -144,8 +144,8 @@ export function BookEditionPurchaseControls({
         </CardDescription>
       </CardHeader>
 
-      <CardContent className="mt-0 flex flex-col gap-case-md">
-        <div className="rounded-md border border-border bg-background px-3 py-3">
+      <CardContent className="mt-0 flex flex-col gap-case-sm">
+        <div className="rounded-md border border-border bg-background px-3 py-2">
           <p className="text-small font-medium text-foreground">
             {copy.availableStock(availableStock)}
           </p>
@@ -159,7 +159,7 @@ export function BookEditionPurchaseControls({
           ) : null}
         </div>
 
-        <div className="flex items-end gap-case-sm">
+        <div className="flex items-end gap-case-xs sm:gap-case-sm">
           <Button
             type="button"
             variant="secondary"

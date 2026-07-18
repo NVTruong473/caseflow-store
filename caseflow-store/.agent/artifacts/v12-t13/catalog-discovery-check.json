@@ -1,0 +1,60 @@
+{
+  "taskId": "V12-T13",
+  "generatedAt": "2026-07-18T08:51:50.939Z",
+  "baseURL": "http://127.0.0.1:3001",
+  "availability": {
+    "lowStockCardsAllLowStock": true,
+    "lowStockCount": 8,
+    "lowStockOverflow": false,
+    "outOfStockEmptyVisible": true,
+    "outOfStockOverflow": false,
+    "outOfStockTotal": 0
+  },
+  "desktop": {
+    "activeChipText": "All results\nAll categories\nAll languages\nAll formats\nAll authors\nAny availability\nAny curation\nTitle A-Z\nPage 1",
+    "editorialCards": 3,
+    "hasHorizontalOverflow": false,
+    "imagesLoaded": true,
+    "noUnsupportedText": true,
+    "offerCards": 3,
+    "pairedCards": 8,
+    "renderedCards": 24,
+    "resultSignalsText": "Sort: Title A-Z\nAvailability: Any availability\n3 visible offer labels\nEditorial labels are shelf-based",
+    "screenshotPath": ".agent/artifacts/v12-t13/catalog-desktop-en.png",
+    "standardCards": 21,
+    "totalEditions": 100
+  },
+  "filters": {
+    "activeChipsUpdated": true,
+    "hasHorizontalOverflow": false,
+    "pricesAscending": true,
+    "renderedCards": 3,
+    "resultSignalsText": "Sort: Price low-high\nAvailability: Available\nNo visible offers\nEditorial labels are shelf-based",
+    "resultSignalsUpdated": true,
+    "resultTotal": 3,
+    "screenshotPath": ".agent/artifacts/v12-t13/catalog-filtered-desktop-en.png",
+    "urlStatePreserved": true
+  },
+  "longTitle": {
+    "hasHorizontalOverflow": false,
+    "maxCardOverflowPx": 0,
+    "noUnsupportedText": true,
+    "renderedCards": 4,
+    "screenshotPath": ".agent/artifacts/v12-t13/catalog-long-title-mobile-en.png"
+  },
+  "mobile": {
+    "firstCardHeight": 300.890625,
+    "firstCardImageWidth": 94,
+    "hasHorizontalOverflow": false,
+    "renderedCards": 24,
+    "screenshotPath": ".agent/artifacts/v12-t13/catalog-mobile-vi-page-2.png"
+  },
+  "ok": true,
+  "pass": {
+    "defaultDiscovery": true,
+    "mobileCardsCompact": true,
+    "filtersAndUrlState": true,
+    "longTitleSafe": true,
+    "availabilityStates": true
+  }
+}

@@ -1,0 +1,483 @@
+{
+  "taskId": "V12-T09",
+  "version": "1.2",
+  "generatedAt": "2026-07-17T00:00:00.000Z",
+  "sourceEditorialManifest": "src/data/books/v1.2-editorial-metadata-manifest.json",
+  "storageContract": "docs/v1.2-merchandising-rules-storage.md",
+  "shelves": [
+    {
+      "id": "00000000-0000-4000-8000-000000010001",
+      "slug": "editor-picks",
+      "type": "editorial-curation",
+      "sourceKind": "editorial",
+      "labels": {
+        "vi": "Biên tập chọn",
+        "en": "Editor picks"
+      },
+      "description": {
+        "vi": "Kệ thủ công cho các ấn bản có tín hiệu nội dung tốt và dễ bắt đầu.",
+        "en": "A manual shelf for editions with strong content quality and approachable entry points."
+      },
+      "inclusionRule": {
+        "kind": "manual-edition-list",
+        "editionIds": [
+          "00000000-0000-4000-8000-000000003000",
+          "00000000-0000-4000-8000-000000003001",
+          "00000000-0000-4000-8000-000000003002",
+          "00000000-0000-4000-8000-000000003003",
+          "00000000-0000-4000-8000-000000003004",
+          "00000000-0000-4000-8000-000000003005",
+          "00000000-0000-4000-8000-000000003006",
+          "00000000-0000-4000-8000-000000003007",
+          "00000000-0000-4000-8000-000000003008",
+          "00000000-0000-4000-8000-000000003009",
+          "00000000-0000-4000-8000-000000003010",
+          "00000000-0000-4000-8000-000000003011"
+        ],
+        "sort": "manual-position"
+      },
+      "manualSlots": [
+        {
+          "editionId": "00000000-0000-4000-8000-000000003000",
+          "position": 1,
+          "isActive": true,
+          "note": null
+        },
+        {
+          "editionId": "00000000-0000-4000-8000-000000003001",
+          "position": 2,
+          "isActive": true,
+          "note": null
+        },
+        {
+          "editionId": "00000000-0000-4000-8000-000000003002",
+          "position": 3,
+          "isActive": true,
+          "note": null
+        },
+        {
+          "editionId": "00000000-0000-4000-8000-000000003003",
+          "position": 4,
+          "isActive": true,
+          "note": null
+        },
+        {
+          "editionId": "00000000-0000-4000-8000-000000003004",
+          "position": 5,
+          "isActive": true,
+          "note": null
+        },
+        {
+          "editionId": "00000000-0000-4000-8000-000000003005",
+          "position": 6,
+          "isActive": true,
+          "note": null
+        },
+        {
+          "editionId": "00000000-0000-4000-8000-000000003006",
+          "position": 7,
+          "isActive": true,
+          "note": null
+        },
+        {
+          "editionId": "00000000-0000-4000-8000-000000003007",
+          "position": 8,
+          "isActive": true,
+          "note": null
+        },
+        {
+          "editionId": "00000000-0000-4000-8000-000000003008",
+          "position": 9,
+          "isActive": true,
+          "note": null
+        },
+        {
+          "editionId": "00000000-0000-4000-8000-000000003009",
+          "position": 10,
+          "isActive": true,
+          "note": null
+        },
+        {
+          "editionId": "00000000-0000-4000-8000-000000003010",
+          "position": 11,
+          "isActive": true,
+          "note": null
+        },
+        {
+          "editionId": "00000000-0000-4000-8000-000000003011",
+          "position": 12,
+          "isActive": true,
+          "note": null
+        }
+      ],
+      "startsAt": null,
+      "endsAt": null,
+      "isActive": true,
+      "sortOrder": 10,
+      "minItems": 4,
+      "maxItems": 12,
+      "fallback": {
+        "kind": "hide-shelf",
+        "fallbackShelfSlug": null,
+        "minimumItems": 0
+      },
+      "requiredPermission": "merchandising:manage"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000010002",
+      "slug": "weekend-starter-set",
+      "type": "editorial-curation",
+      "sourceKind": "editorial",
+      "labels": {
+        "vi": "Đọc cuối tuần",
+        "en": "Weekend starter set"
+      },
+      "description": {
+        "vi": "Kệ thủ công cho sách dễ đọc, có bản song ngữ để chọn nhanh.",
+        "en": "A manual shelf of approachable bilingual picks for quick weekend browsing."
+      },
+      "inclusionRule": {
+        "kind": "manual-edition-list",
+        "editionIds": [
+          "00000000-0000-4000-8000-000000003019",
+          "00000000-0000-4000-8000-000000004019",
+          "00000000-0000-4000-8000-000000003021",
+          "00000000-0000-4000-8000-000000004021",
+          "00000000-0000-4000-8000-000000003007",
+          "00000000-0000-4000-8000-000000004007",
+          "00000000-0000-4000-8000-000000003020",
+          "00000000-0000-4000-8000-000000004020"
+        ],
+        "sort": "manual-position"
+      },
+      "manualSlots": [
+        {
+          "editionId": "00000000-0000-4000-8000-000000003019",
+          "position": 1,
+          "isActive": true,
+          "note": null
+        },
+        {
+          "editionId": "00000000-0000-4000-8000-000000004019",
+          "position": 2,
+          "isActive": true,
+          "note": null
+        },
+        {
+          "editionId": "00000000-0000-4000-8000-000000003021",
+          "position": 3,
+          "isActive": true,
+          "note": null
+        },
+        {
+          "editionId": "00000000-0000-4000-8000-000000004021",
+          "position": 4,
+          "isActive": true,
+          "note": null
+        },
+        {
+          "editionId": "00000000-0000-4000-8000-000000003007",
+          "position": 5,
+          "isActive": true,
+          "note": null
+        },
+        {
+          "editionId": "00000000-0000-4000-8000-000000004007",
+          "position": 6,
+          "isActive": true,
+          "note": null
+        },
+        {
+          "editionId": "00000000-0000-4000-8000-000000003020",
+          "position": 7,
+          "isActive": true,
+          "note": null
+        },
+        {
+          "editionId": "00000000-0000-4000-8000-000000004020",
+          "position": 8,
+          "isActive": true,
+          "note": null
+        }
+      ],
+      "startsAt": null,
+      "endsAt": null,
+      "isActive": true,
+      "sortOrder": 20,
+      "minItems": 4,
+      "maxItems": 8,
+      "fallback": {
+        "kind": "use-shelf",
+        "fallbackShelfSlug": "editor-picks",
+        "minimumItems": 4
+      },
+      "requiredPermission": "merchandising:manage"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000010003",
+      "slug": "vietnamese-editions",
+      "type": "language-focus",
+      "sourceKind": "catalog-rule",
+      "labels": {
+        "vi": "Sách tiếng Việt",
+        "en": "Vietnamese editions"
+      },
+      "description": {
+        "vi": "Ưu tiên các ấn bản tiếng Việt và bản dịch tiếng Việt.",
+        "en": "A rule-based shelf for Vietnamese-language editions and translations."
+      },
+      "inclusionRule": {
+        "kind": "catalog-filter",
+        "filters": {
+          "categorySlugs": [],
+          "languages": [
+            "vi"
+          ],
+          "featuredOnly": null,
+          "promotionEligible": null,
+          "inventoryStatuses": []
+        },
+        "sort": "featured-then-title"
+      },
+      "manualSlots": [],
+      "startsAt": null,
+      "endsAt": null,
+      "isActive": true,
+      "sortOrder": 30,
+      "minItems": 6,
+      "maxItems": 12,
+      "fallback": {
+        "kind": "use-shelf",
+        "fallbackShelfSlug": "editor-picks",
+        "minimumItems": 6
+      },
+      "requiredPermission": "merchandising:manage"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000010004",
+      "slug": "english-editions",
+      "type": "language-focus",
+      "sourceKind": "catalog-rule",
+      "labels": {
+        "vi": "Sách tiếng Anh",
+        "en": "English editions"
+      },
+      "description": {
+        "vi": "Kệ lọc các ấn bản tiếng Anh cho người đọc song ngữ.",
+        "en": "A rule-based shelf for English-language editions."
+      },
+      "inclusionRule": {
+        "kind": "catalog-filter",
+        "filters": {
+          "categorySlugs": [],
+          "languages": [
+            "en"
+          ],
+          "featuredOnly": null,
+          "promotionEligible": null,
+          "inventoryStatuses": []
+        },
+        "sort": "featured-then-title"
+      },
+      "manualSlots": [],
+      "startsAt": null,
+      "endsAt": null,
+      "isActive": true,
+      "sortOrder": 40,
+      "minItems": 6,
+      "maxItems": 12,
+      "fallback": {
+        "kind": "use-shelf",
+        "fallbackShelfSlug": "editor-picks",
+        "minimumItems": 6
+      },
+      "requiredPermission": "merchandising:manage"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000010005",
+      "slug": "promotion-ready",
+      "type": "promotion-focus",
+      "sourceKind": "promotion-rule",
+      "labels": {
+        "vi": "Đang có ưu đãi",
+        "en": "Promotion-ready"
+      },
+      "description": {
+        "vi": "Kệ chỉ dựa trên cờ ưu đãi của CaseFlow, không giả định giá thị trường.",
+        "en": "A shelf based on CaseFlow promotion eligibility, not market-price claims."
+      },
+      "inclusionRule": {
+        "kind": "catalog-filter",
+        "filters": {
+          "categorySlugs": [],
+          "languages": [],
+          "featuredOnly": null,
+          "promotionEligible": true,
+          "inventoryStatuses": []
+        },
+        "sort": "price-asc"
+      },
+      "manualSlots": [],
+      "startsAt": null,
+      "endsAt": null,
+      "isActive": true,
+      "sortOrder": 50,
+      "minItems": 4,
+      "maxItems": 12,
+      "fallback": {
+        "kind": "use-shelf",
+        "fallbackShelfSlug": "editor-picks",
+        "minimumItems": 4
+      },
+      "requiredPermission": "merchandising:manage"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000010006",
+      "slug": "low-stock-watch",
+      "type": "inventory-focus",
+      "sourceKind": "inventory-rule",
+      "labels": {
+        "vi": "Sắp hết hàng",
+        "en": "Low-stock watch"
+      },
+      "description": {
+        "vi": "Kệ cảnh báo tồn kho thấp dựa trên trạng thái tồn kho nội bộ.",
+        "en": "A shelf for internal low-stock inventory signals."
+      },
+      "inclusionRule": {
+        "kind": "catalog-filter",
+        "filters": {
+          "categorySlugs": [],
+          "languages": [],
+          "featuredOnly": null,
+          "promotionEligible": null,
+          "inventoryStatuses": [
+            "low-stock"
+          ]
+        },
+        "sort": "stock-asc"
+      },
+      "manualSlots": [],
+      "startsAt": null,
+      "endsAt": null,
+      "isActive": true,
+      "sortOrder": 60,
+      "minItems": 2,
+      "maxItems": 8,
+      "fallback": {
+        "kind": "use-shelf",
+        "fallbackShelfSlug": "editor-picks",
+        "minimumItems": 2
+      },
+      "requiredPermission": "merchandising:manage"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000010007",
+      "slug": "classic-literature",
+      "type": "category-focus",
+      "sourceKind": "catalog-rule",
+      "labels": {
+        "vi": "Văn học kinh điển",
+        "en": "Classic literature"
+      },
+      "description": {
+        "vi": "Kệ theo danh mục, dùng category đã có thay vì tạo taxonomy mới.",
+        "en": "A category shelf reusing the existing classic-literature taxonomy."
+      },
+      "inclusionRule": {
+        "kind": "catalog-filter",
+        "filters": {
+          "categorySlugs": [
+            "classic-literature"
+          ],
+          "languages": [],
+          "featuredOnly": null,
+          "promotionEligible": null,
+          "inventoryStatuses": []
+        },
+        "sort": "featured-then-title"
+      },
+      "manualSlots": [],
+      "startsAt": null,
+      "endsAt": null,
+      "isActive": true,
+      "sortOrder": 70,
+      "minItems": 6,
+      "maxItems": 12,
+      "fallback": {
+        "kind": "use-shelf",
+        "fallbackShelfSlug": "editor-picks",
+        "minimumItems": 6
+      },
+      "requiredPermission": "merchandising:manage"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000010008",
+      "slug": "paired-edition-comparison",
+      "type": "paired-editions",
+      "sourceKind": "catalog-rule",
+      "labels": {
+        "vi": "Đọc song ngữ",
+        "en": "Bilingual edition pairs"
+      },
+      "description": {
+        "vi": "Kệ dùng quan hệ cặp ấn bản để giúp người đọc chọn tiếng Anh, tiếng Việt hoặc cả hai.",
+        "en": "A shelf built from edition-pair relationships for bilingual comparison."
+      },
+      "inclusionRule": {
+        "kind": "paired-editions",
+        "sort": "title-asc"
+      },
+      "manualSlots": [],
+      "startsAt": null,
+      "endsAt": null,
+      "isActive": true,
+      "sortOrder": 80,
+      "minItems": 6,
+      "maxItems": 12,
+      "fallback": {
+        "kind": "use-shelf",
+        "fallbackShelfSlug": "editor-picks",
+        "minimumItems": 6
+      },
+      "requiredPermission": "merchandising:manage"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000010009",
+      "slug": "sales-trending-30d",
+      "type": "order-derived",
+      "sourceKind": "order-derived",
+      "labels": {
+        "vi": "Xu hướng 30 ngày",
+        "en": "30-day trending"
+      },
+      "description": {
+        "vi": "Kệ doanh số bị tắt cho đến khi có truy vấn đơn hàng thật và đủ dữ liệu tối thiểu.",
+        "en": "A disabled sales-derived shelf until first-party order data meets the minimum rule."
+      },
+      "inclusionRule": {
+        "kind": "order-derived",
+        "orderRule": {
+          "queryId": "first-party-orders-units-sold-v1",
+          "metric": "units-sold",
+          "windowDays": 30,
+          "minimumOrders": 20
+        },
+        "sort": "manual-position"
+      },
+      "manualSlots": [],
+      "startsAt": null,
+      "endsAt": null,
+      "isActive": false,
+      "sortOrder": 90,
+      "minItems": 4,
+      "maxItems": 12,
+      "fallback": {
+        "kind": "use-shelf",
+        "fallbackShelfSlug": "editor-picks",
+        "minimumItems": 4
+      },
+      "requiredPermission": "merchandising:manage"
+    }
+  ]
+}

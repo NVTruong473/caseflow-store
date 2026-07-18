@@ -2,9 +2,9 @@
 
 CaseFlow Books is a deployed full-stack bookstore and small-business operations
 demo. The project started as the 20-day CaseFlow Store `v1.0.0` MVP and was
-upgraded through the Day 21-40 roadmap into a Vietnam-first, bilingual
-e-commerce application for book discovery, account-gated checkout, order
-tracking, and admin/staff operations.
+upgraded through the Day 21-40 roadmap and the `v1.2` content release into a
+Vietnam-first, bilingual e-commerce application for book discovery,
+account-gated checkout, order tracking, and admin/staff operations.
 
 [Open the production deployment](https://caseflow-store.vercel.app)
 
@@ -21,8 +21,8 @@ tracking, and admin/staff operations.
     <th>Storefront mobile</th>
   </tr>
   <tr>
-    <td width="70%"><img src="caseflow-store/docs/screenshots/storefront-desktop.png" alt="CaseFlow Books v1.1 homepage at 1440 pixels" /></td>
-    <td width="30%"><img src="caseflow-store/docs/screenshots/storefront-mobile.png" alt="CaseFlow Books v1.1 homepage at 375 pixels" /></td>
+    <td width="70%"><img src="caseflow-store/docs/screenshots/storefront-desktop.png" alt="CaseFlow Books v1.2 homepage at 1440 pixels" /></td>
+    <td width="30%"><img src="caseflow-store/docs/screenshots/storefront-mobile.png" alt="CaseFlow Books v1.2 homepage at 390 pixels" /></td>
   </tr>
   <tr>
     <th>Catalog desktop</th>
@@ -53,6 +53,8 @@ tracking, and admin/staff operations.
 ## Product scope
 
 - Browse a seeded catalog of 100 sellable book editions across 50 works.
+- Use 100 edition-specific, project-created SVG cover illustrations with
+  provenance and content-quality checks.
 - Filter and sort by category, author, language, format, price, stock state,
   publication era, and search text.
 - Compare English originals and Vietnamese editions where the dataset includes
@@ -74,6 +76,8 @@ tracking, and admin/staff operations.
 - Admin/staff navigation for dashboard, orders, catalog, inventory, promotions,
   customers, and settings.
 - Book catalog management with server-validated product/category data.
+- Content-quality and merchandising operations for approved v1.2 shelves,
+  source-review state, cover status, and bilingual reason-to-read copy.
 - Inventory adjustment workflow with stock snapshots and operational notes.
 - Promotion management for fixed-VND and percentage discounts.
 - Customer management with minimized operational customer data.
@@ -106,32 +110,33 @@ tracking, and admin/staff operations.
   practical.
 - self-written summaries and merchandising copy are created inside the project
   instead of copied from publisher blurbs or reviews.
-- The current cover strategy uses an internal placeholder SVG and safe local
-  asset mappings. It does not hotlink commercial book covers.
+- The active `v1.2` catalog uses 100 local project-created SVG covers. The
+  generic placeholder remains only as a fallback/admin quality state.
 - Source and rights assumptions are documented in
-  [`caseflow-store/docs/v1.1-safe-cover-asset-strategy.md`](caseflow-store/docs/v1.1-safe-cover-asset-strategy.md)
+  [`caseflow-store/docs/v1.2-cover-portfolio.md`](caseflow-store/docs/v1.2-cover-portfolio.md),
+  [`caseflow-store/docs/v1.2-provenance-content-quality-contracts.md`](caseflow-store/docs/v1.2-provenance-content-quality-contracts.md),
   and [`caseflow-store/docs/domain.md`](caseflow-store/docs/domain.md).
 
-## Verified v1.1 release
+## Verified v1.2 release
 
 | Gate | Result |
 |---|---|
-| Release tag | `v1.1.0` |
+| Release tag | `v1.2.0` |
 | Production URL | `https://caseflow-store.vercel.app` |
-| Vercel deployment | `READY`, deployment `dpl_BkiJt9gDCh5d2cHwAhpFDbLotoAy` |
-| TypeScript | `npx tsc --noEmit` passed |
+| Vercel deployment | `READY`, deployment `dpl_7Y2Qsf4VJRBuzaMGXZMi81Rq5pKQ` |
+| TypeScript | `npx tsc --noEmit --pretty false` passed |
 | ESLint | `npm run lint` passed |
-| Production build | 41 app routes generated |
+| Production build | 42 App Router routes plus proxy generated |
 | Local Playwright | 20 passed |
-| Production Playwright subset | 5 passed |
-| Production smoke | Home, catalog, detail, account, tracking, API, admin boundary, robots, and sitemap passed |
-| Assistant smoke | Passed against production |
+| Production Playwright | 20 passed |
+| Production smoke | Home, catalog, English/Vietnamese detail, 100-cover catalog, language mode, cart/checkout boundary, customer/admin boundaries, assistant, robots, and sitemap passed |
+| Catalog quality | 100 active editions, 50 English, 50 Vietnamese, zero primary placeholder covers |
 | Secret scan | Clean |
-| Cleanup check | Zero stale legacy/test matches |
+| Cleanup check | Zero stale test/QA matches |
 
 Release evidence is recorded in
 [`caseflow-store/docs/release-candidate.md`](caseflow-store/docs/release-candidate.md),
-[`caseflow-store/docs/v1.1-release-audit.md`](caseflow-store/docs/v1.1-release-audit.md),
+[`caseflow-store/docs/v1.2-release-audit.md`](caseflow-store/docs/v1.2-release-audit.md),
 and `.agent/step-results.md`.
 
 ## Stack
@@ -151,7 +156,7 @@ and `.agent/step-results.md`.
 │   ├── src/app/              # Pages and Route Handlers
 │   ├── src/features/         # Storefront, customer, assistant, and admin UI
 │   ├── src/lib/              # Domain, validation, repositories, auth, SEO
-│   ├── supabase/             # Base schema plus v1.1 migrations
+│   ├── supabase/             # Base schema plus v1.1/v1.2 migrations
 │   ├── tests/e2e/            # Playwright release suite
 │   └── docs/                 # Architecture, ADRs, release evidence
 ├── docs/                     # Mirrored project-level documentation

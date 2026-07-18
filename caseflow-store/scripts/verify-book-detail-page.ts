@@ -205,7 +205,19 @@ async function inspectDetailPage(
     path: path.join(ARTIFACT_DIR, options.screenshotName),
   });
 
-  await page.locator("[data-book-add-to-cart-button]").click();
+  const addToCartButton = page.locator("[data-book-add-to-cart-button]");
+  await addToCartButton.waitFor({ state: "visible" });
+  await page.waitForFunction(() => {
+    const button = document.querySelector<HTMLButtonElement>(
+      "[data-book-add-to-cart-button]",
+    );
+
+    return Boolean(button && !button.disabled);
+  });
+  await addToCartButton.click();
+  await page
+    .locator("[data-book-add-to-cart-feedback='success']")
+    .waitFor({ timeout: 5_000 });
   const cartStorageContainsTargetEdition = await page.evaluate(
     ({ editionId }) => {
       const rawCart = window.localStorage.getItem("caseflow-store.cart.v1");

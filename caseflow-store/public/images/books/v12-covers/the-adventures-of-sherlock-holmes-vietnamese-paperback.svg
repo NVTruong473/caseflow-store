@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="900" viewBox="0 0 600 900" role="img" aria-labelledby="title-00000000-0000-4000-8000-000000009052 desc-00000000-0000-4000-8000-000000009052" data-cover-asset-id="00000000-0000-4000-8000-000000009052" data-edition-id="00000000-0000-4000-8000-000000004008">
+  <title id="title-00000000-0000-4000-8000-000000009052">Những cuộc phiêu lưu của Sherlock Holmes - CaseFlow Books illustrative cover</title>
+  <desc id="desc-00000000-0000-4000-8000-000000009052">Project-created illustrative cover for Những cuộc phiêu lưu của Sherlock Holmes by Arthur Conan Doyle.</desc>
+  <metadata><![CDATA[{"assetId":"00000000-0000-4000-8000-000000009052","editionId":"00000000-0000-4000-8000-000000004008","title":"Những cuộc phiêu lưu của Sherlock Holmes","authors":["Arthur Conan Doyle"],"language":"vi","source":"project-created-vector"}]]></metadata>
+  <rect width="600" height="900" fill="#111827"/>
+  <rect x="34" y="34" width="532" height="832" rx="18" fill="#B45309" opacity="0.15"/>
+  
+        <path d="M90 322 C118 198 202 118 318 84" fill="none" stroke="#B45309" stroke-width="15" stroke-linecap="round" opacity="0.42"/>
+        <path d="M504 326 C482 206 414 126 314 82" fill="none" stroke="#CBD5E1" stroke-width="15" stroke-linecap="round" opacity="0.42"/>
+        <ellipse cx="210" cy="160" rx="62" ry="24" fill="#CBD5E1" opacity="0.58" transform="rotate(-28 210 160)"/>
+        <ellipse cx="390" cy="184" rx="62" ry="24" fill="#B45309" opacity="0.48" transform="rotate(28 390 184)"/>
+        <ellipse cx="288" cy="256" rx="74" ry="28" fill="#CBD5E1" opacity="0.42" transform="rotate(5 288 256)"/>
+      
+  <rect x="72" y="390" width="456" height="386" rx="18" fill="#F8FAFC"/>
+  <rect x="92" y="414" width="190" height="34" rx="17" fill="#B45309"/>
+  <text x="187" y="437" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" fill="#FFFFFF">BẢN TIẾNG VIỆT</text>
+  <text x="508" y="438" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#B45309">PAPERBACK</text>
+      <text x="300" y="473" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="38" font-weight="700" fill="#111827">Những cuộc phiêu</text>
+      <text x="300" y="520" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="38" font-weight="700" fill="#111827">lưu của Sherlock</text>
+      <text x="300" y="567" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="38" font-weight="700" fill="#111827">Holmes</text>
+  <text x="300" y="642" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" fill="#475569">Arthur Conan Doyle</text>
+  <path d="M118 742 H482" stroke="#B45309" stroke-width="4" stroke-linecap="round"/>
+  <text x="300" y="816" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" letter-spacing="0" fill="#B45309">CASEFLOW BOOKS</text>
+</svg>

@@ -7,7 +7,7 @@ import {
   CurrencyAmount,
   CurrencyEstimateDisclosure,
 } from "@/components/currency/currency-amount";
-import { Badge, Card, CardHeader, Container } from "@/components/ui";
+import { Badge, Card, Container } from "@/components/ui";
 import { BookEditionPurchaseControls } from "@/features/books/book-edition-purchase-controls";
 import { formatVnd } from "@/lib/format/currency";
 import { getCurrencyDisplayRules } from "@/lib/format/currency-display.server";
@@ -28,7 +28,11 @@ import {
   createPageMetadata,
   truncateDescription,
 } from "@/lib/seo/metadata";
-import type { BookFormat, InventoryStatus } from "@/types/domain";
+import { cn } from "@/lib/utils/cn";
+import type {
+  BookFormat,
+  InventoryStatus,
+} from "@/types/domain";
 
 type ProductDetailPageProps = {
   params: Promise<{
@@ -42,14 +46,17 @@ const productDetailCopy = {
     breadcrumbHome: "Home",
     breadcrumbLabel: "Book navigation",
     edition: "edition",
+    editionComparison: "Edition comparison",
+    editionComparisonDescription:
+      "Switch between the English and Vietnamese sellable editions of this work.",
     editionDetails: "Edition details",
     format: "Format",
     isbn: "ISBN",
     language: "Language",
+    moreByAuthor: "More by this author",
     moreLikeThis: "More like this",
     moreLikeThisDescription:
       "Recommendations use shared author, category, or language data from the current catalog.",
-    notSpecified: "Not specified",
     originalLanguage: "Original language",
     originalTitle: "Original title",
     pages: "Pages",
@@ -59,9 +66,11 @@ const productDetailCopy = {
     price: "Price",
     publicationEra: "Publication era",
     publisher: "Publisher",
+    reasonToRead: "Why this edition",
     reasonAuthor: "Same author",
     reasonCategory: "Same category",
     reasonLanguage: "Same language",
+    relatedBooks: "Related books",
     relatedEditions: "Related editions",
     returnDescription:
       "If a book arrives damaged or different from the order, contact support so the store can review replacement or return handling.",
@@ -70,8 +79,13 @@ const productDetailCopy = {
       "Standard delivery is prepared for Vietnam addresses. Shipping, VAT, and fee estimates are recalculated at checkout.",
     shippingTitle: "Shipping and totals",
     stock: "Stock",
-    tbc: "TBC",
+    themes: "Themes",
     translator: "Translator",
+    verifiedFacts: "Verified edition facts",
+    verifiedFactsDescription:
+      "Only reviewed facts are shown; missing optional fields are intentionally omitted.",
+    viewEdition: "View edition",
+    currentEdition: "Current edition",
     workContext: "Work context",
     stockLeft: (count: number) => `${count} left`,
   },
@@ -80,14 +94,17 @@ const productDetailCopy = {
     breadcrumbHome: "Trang chủ",
     breadcrumbLabel: "Điều hướng sách",
     edition: "ấn bản",
+    editionComparison: "So sánh ấn bản",
+    editionComparisonDescription:
+      "Chuyển giữa ấn bản tiếng Anh và tiếng Việt đang bán của cùng tác phẩm.",
     editionDetails: "Chi tiết ấn bản",
     format: "Định dạng",
     isbn: "ISBN",
     language: "Ngôn ngữ",
+    moreByAuthor: "Thêm sách cùng tác giả",
     moreLikeThis: "Gợi ý liên quan",
     moreLikeThisDescription:
       "Gợi ý dựa trên tác giả, danh mục hoặc ngôn ngữ trùng với catalog hiện tại.",
-    notSpecified: "Chưa xác định",
     originalLanguage: "Ngôn ngữ gốc",
     originalTitle: "Tên gốc",
     pages: "Số trang",
@@ -97,9 +114,11 @@ const productDetailCopy = {
     price: "Giá",
     publicationEra: "Thời kỳ xuất bản",
     publisher: "Nhà xuất bản",
+    reasonToRead: "Vì sao nên chọn ấn bản này",
     reasonAuthor: "Cùng tác giả",
     reasonCategory: "Cùng danh mục",
     reasonLanguage: "Cùng ngôn ngữ",
+    relatedBooks: "Sách liên quan",
     relatedEditions: "Ấn bản liên quan",
     returnDescription:
       "Nếu sách bị hư hỏng hoặc khác đơn đặt hàng, hãy liên hệ hỗ trợ để cửa hàng xem xét đổi trả hoặc thay thế.",
@@ -108,8 +127,13 @@ const productDetailCopy = {
       "Giao hàng tiêu chuẩn áp dụng cho địa chỉ tại Việt Nam. Phí ship, VAT và phí thanh toán được tính lại ở bước thanh toán.",
     shippingTitle: "Vận chuyển và tổng tiền",
     stock: "Tồn kho",
-    tbc: "Đang cập nhật",
+    themes: "Chủ đề",
     translator: "Dịch giả",
+    verifiedFacts: "Thông tin ấn bản đã kiểm chứng",
+    verifiedFactsDescription:
+      "Chỉ hiển thị thông tin đã review; các trường chưa chắc chắn được bỏ qua.",
+    viewEdition: "Xem ấn bản",
+    currentEdition: "Ấn bản hiện tại",
     workContext: "Thông tin tác phẩm",
     stockLeft: (count: number) => `Còn ${count}`,
   },
@@ -135,9 +159,13 @@ export async function generateMetadata({
   const description = truncateDescription(
     pickLocalizedText(record.edition.summary, language),
   );
+  const coverPath = getCoverPath(record);
+  const coverAlt = getCoverAlt(record, language);
 
   return createPageMetadata({
     description,
+    imageAlt: coverAlt,
+    imagePath: coverPath,
     language,
     path: `/products/${record.edition.slug}`,
     title,
@@ -165,17 +193,22 @@ export default async function ProductDetailPage({
     listSupabaseBookCatalog({ sort: "title-asc" }),
   ]);
   const recommendedRecords = getRecommendedRecords(record, catalogRecords);
+  const moreByAuthorRecords = recommendedRecords
+    .filter((candidate) => candidate.reasons.includes("author"))
+    .slice(0, 4);
+  const relatedRecommendationRecords = recommendedRecords
+    .filter((candidate) => !candidate.reasons.includes("author"))
+    .slice(0, 4);
+  const editionOptions = getEditionOptions(record, relatedEditions);
   const coverPath = getCoverPath(record);
   const coverAlt = getCoverAlt(record, language);
   const editionTitle = getEditionTitle(record, language);
-  const authorLine =
-    record.authors.map((author) => author.name).join(", ") ||
-    copy.notSpecified;
-  const translatorLine =
-    record.translators.map((translator) => translator.name).join(", ") ||
-    copy.notSpecified;
-  const publisherName = record.publisher?.name ?? copy.notSpecified;
-  const isbn = record.edition.isbn13 ?? record.edition.isbn10 ?? copy.notSpecified;
+  const authorLine = getAuthorLine(record);
+  const displayFacts = record.edition.displayFacts;
+  const workFacts = getWorkFacts(record, language, copy);
+  const reasonToRead = record.edition.reasonToRead
+    ? pickLocalizedText(record.edition.reasonToRead, language)
+    : null;
   const stockLabel =
     record.edition.inventoryStatus === "low-stock"
       ? copy.stockLeft(record.edition.stockQuantity)
@@ -225,20 +258,24 @@ export default async function ProductDetailPage({
         </nav>
 
         <section
-          className="grid gap-case-xl lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)] lg:items-start"
+          className="grid gap-case-md lg:grid-cols-[minmax(0,360px)_minmax(0,1fr)] lg:items-start lg:gap-case-xl"
           data-book-detail={record.edition.slug}
         >
-          <div
-            className="aspect-[3/4] rounded-lg border border-border bg-surface p-case-md"
-            data-book-detail-image
-          >
-            <Image
-              src={coverPath}
-              alt={coverAlt}
-              width={420}
-              height={560}
-              className="h-full w-full rounded-md border border-border bg-surface-muted object-cover"
-            />
+          <div className="flex min-w-0 flex-col gap-case-md lg:sticky lg:top-case-xl">
+            <div
+              className="mx-auto aspect-[2/3] w-full max-w-[220px] rounded-lg border border-border bg-surface p-case-md sm:max-w-[280px] lg:max-w-none"
+              data-book-detail-image
+            >
+              <Image
+                src={coverPath}
+                alt={coverAlt}
+                width={420}
+                height={630}
+                priority
+                sizes="(min-width: 1024px) 400px, 100vw"
+                className="h-full w-full rounded-md border border-border bg-surface-muted object-cover"
+              />
+            </div>
           </div>
 
           <div className="flex min-w-0 flex-col gap-case-lg">
@@ -255,118 +292,177 @@ export default async function ProductDetailPage({
                 <Badge variant="neutral">
                   {getFormatLabel(record.edition.format, language)}
                 </Badge>
-                <Badge variant={getStockBadgeVariant(record.edition.inventoryStatus)}>
-                  {getInventoryStatusLabel(record.edition.inventoryStatus, language)}
-                </Badge>
-              </div>
-              <h1 className="text-heading-1 font-semibold text-foreground">
-                {editionTitle}
-              </h1>
-              <p className="text-body leading-7 text-text-muted">
-                {authorLine}
-              </p>
-              <p
-                className="max-w-3xl text-body leading-7 text-text-muted"
-                data-book-detail-summary
-              >
-                {pickLocalizedText(record.edition.summary, language)}
-              </p>
-            </div>
-
-            <div className="grid items-start gap-case-md sm:grid-cols-3">
-              <div className="rounded-lg border border-border bg-surface p-case-lg">
-                <p className="text-small font-medium uppercase text-text-muted">
-                  {copy.price}
-                </p>
-                <p
-                  className="mt-case-sm text-heading-2 font-semibold text-foreground"
-                  data-book-detail-price
+                <Badge
+                  variant={getStockBadgeVariant(record.edition.inventoryStatus)}
                 >
-                  <CurrencyAmount
-                    amountVnd={record.edition.priceVnd}
-                    language={language}
-                    rules={currencyRules}
-                  />
-                </p>
-                <CurrencyEstimateDisclosure
-                  className="mt-case-sm"
-                  language={language}
-                  rules={currencyRules}
-                />
-              </div>
-
-              <div className="rounded-lg border border-border bg-surface p-case-lg">
-                <p className="text-small font-medium uppercase text-text-muted">
-                  {copy.stock}
-                </p>
-                <p className="mt-case-sm text-heading-3 font-semibold text-foreground">
-                  {stockLabel}
-                </p>
-              </div>
-
-              <div className="rounded-lg border border-border bg-surface p-case-lg">
-                <p className="text-small font-medium uppercase text-text-muted">
-                  {copy.pages}
-                </p>
-                <p className="mt-case-sm text-heading-3 font-semibold text-foreground">
-                  {record.edition.pageCount ?? copy.tbc}
-                </p>
-              </div>
-            </div>
-
-            <BookEditionPurchaseControls
-              editionId={record.edition.id}
-              editionTitle={editionTitle}
-              inventoryStatus={record.edition.inventoryStatus}
-              language={language}
-              stockQuantity={record.edition.stockQuantity}
-            />
-
-            <div className="rounded-lg border border-border bg-surface p-case-lg">
-              <h2 className="text-heading-3 font-semibold text-foreground">
-                {copy.editionDetails}
-              </h2>
-              <dl
-                className="mt-case-md grid gap-case-sm text-small text-text-muted sm:grid-cols-2"
-                data-book-edition-details
-              >
-                <DetailTerm label={copy.publisher} value={publisherName} />
-                <DetailTerm label={copy.translator} value={translatorLine} />
-                <DetailTerm label={copy.isbn} value={isbn} />
-                <DetailTerm
-                  label={copy.language}
-                  value={getEditionLanguageLabel(
-                    record.edition.language,
+                  {getInventoryStatusLabel(
+                    record.edition.inventoryStatus,
                     language,
                   )}
-                />
-                <DetailTerm
-                  label={copy.format}
-                  value={getFormatLabel(record.edition.format, language)}
-                />
-                <DetailTerm
-                  label={copy.pages}
-                  value={record.edition.pageCount ?? copy.tbc}
-                />
-                <div>
-                  <dt className="font-medium text-foreground">
-                    {copy.originalTitle}
-                  </dt>
-                  <dd>{record.work.originalTitle ?? record.work.title}</dd>
+                </Badge>
+              </div>
+              <h1 className="break-words text-heading-2 font-semibold leading-tight text-foreground">
+                {editionTitle}
+              </h1>
+              {authorLine ? (
+                <p className="text-body leading-7 text-text-muted">
+                  {authorLine}
+                </p>
+              ) : null}
+            </div>
+
+            <div className="grid gap-case-md xl:grid-cols-[minmax(0,1fr)_320px] xl:items-start">
+              <aside className="order-first flex min-w-0 flex-col gap-case-md xl:order-last xl:sticky xl:top-case-xl">
+                <div className="rounded-lg border border-border bg-surface p-case-lg">
+                  <div className="grid grid-cols-3 gap-case-sm xl:grid-cols-1 xl:gap-case-md">
+                    <div className="min-w-0">
+                      <p className="text-small font-medium uppercase text-text-muted">
+                        {copy.price}
+                      </p>
+                      {record.edition.compareAtPriceVnd &&
+                      record.edition.compareAtPriceVnd >
+                        record.edition.priceVnd ? (
+                        <p className="mt-case-xs text-small text-text-muted line-through">
+                          {formatVnd(record.edition.compareAtPriceVnd)}
+                        </p>
+                      ) : null}
+                      <p
+                        className="mt-case-xs text-heading-2 font-semibold text-foreground"
+                        data-book-detail-price
+                      >
+                        <CurrencyAmount
+                          amountVnd={record.edition.priceVnd}
+                          language={language}
+                          rules={currencyRules}
+                        />
+                      </p>
+                      <CurrencyEstimateDisclosure
+                        className="mt-case-sm"
+                        language={language}
+                        rules={currencyRules}
+                      />
+                    </div>
+
+                    <div className="min-w-0">
+                      <p className="text-small font-medium uppercase text-text-muted">
+                        {copy.stock}
+                      </p>
+                      <p className="mt-case-xs text-heading-3 font-semibold text-foreground">
+                        {stockLabel}
+                      </p>
+                    </div>
+
+                    <div className="min-w-0">
+                      <p className="text-small font-medium uppercase text-text-muted">
+                        {copy.format}
+                      </p>
+                      <p className="mt-case-xs text-heading-3 font-semibold text-foreground">
+                        {getFormatLabel(record.edition.format, language)}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <dt className="font-medium text-foreground">
-                    {copy.originalLanguage}
-                  </dt>
-                  <dd>{record.work.originalLanguage}</dd>
-                </div>
-                <div>
-                  <dt className="font-medium text-foreground">
-                    {copy.publicationEra}
-                  </dt>
-                  <dd>{record.work.publicationEra ?? copy.notSpecified}</dd>
-                </div>
-              </dl>
+
+                <BookEditionPurchaseControls
+                  editionId={record.edition.id}
+                  editionTitle={editionTitle}
+                  inventoryStatus={record.edition.inventoryStatus}
+                  language={language}
+                  stockQuantity={record.edition.stockQuantity}
+                />
+              </aside>
+
+              <div className="flex min-w-0 flex-col gap-case-md">
+                <p
+                  className="max-w-3xl text-body leading-7 text-text-muted"
+                  data-book-detail-summary
+                >
+                  {pickLocalizedText(record.edition.summary, language)}
+                </p>
+
+                <section
+                  className="rounded-lg border border-border bg-surface p-case-lg"
+                  data-book-edition-comparison
+                >
+                  <div className="flex flex-col gap-case-xs">
+                    <h2 className="text-heading-3 font-semibold text-foreground">
+                      {copy.editionComparison}
+                    </h2>
+                    <p className="text-small leading-6 text-text-muted">
+                      {copy.editionComparisonDescription}
+                    </p>
+                  </div>
+                  <div className="mt-case-md grid gap-case-sm 2xl:grid-cols-2">
+                    {editionOptions.map((option) => (
+                      <EditionOption
+                        key={option.edition.id}
+                        copy={copy}
+                        currentEditionId={record.edition.id}
+                        language={language}
+                        option={option}
+                        rules={currencyRules}
+                      />
+                    ))}
+                  </div>
+                </section>
+
+                {reasonToRead ? (
+                  <section
+                    className="rounded-lg border border-border bg-surface p-case-lg"
+                    data-book-detail-reason
+                  >
+                    <h2 className="text-heading-3 font-semibold text-foreground">
+                      {copy.reasonToRead}
+                    </h2>
+                    <p className="mt-case-sm text-body leading-7 text-text-muted">
+                      {reasonToRead}
+                    </p>
+                  </section>
+                ) : null}
+
+                <section
+                  className="rounded-lg border border-border bg-surface p-case-lg"
+                  data-book-edition-details
+                  data-book-verified-facts
+                >
+                  <div className="flex flex-col gap-case-xs">
+                    <h2 className="text-heading-3 font-semibold text-foreground">
+                      {copy.verifiedFacts}
+                    </h2>
+                    <p className="text-small leading-6 text-text-muted">
+                      {copy.verifiedFactsDescription}
+                    </p>
+                  </div>
+                  {displayFacts.length > 0 ? (
+                    <dl className="mt-case-md grid gap-case-sm text-small text-text-muted sm:grid-cols-2">
+                      {displayFacts.map((fact) => (
+                        <DetailTerm
+                          key={`${fact.key}-${fact.provenanceRecordId}`}
+                          label={pickLocalizedText(fact.label, language)}
+                          value={pickLocalizedText(fact.value, language)}
+                        />
+                      ))}
+                    </dl>
+                  ) : null}
+                </section>
+
+                {workFacts.length > 0 ? (
+                  <section className="rounded-lg border border-border bg-surface p-case-lg">
+                    <h2 className="text-heading-3 font-semibold text-foreground">
+                      {copy.workContext}
+                    </h2>
+                    <dl className="mt-case-md grid gap-case-sm text-small text-text-muted sm:grid-cols-2">
+                      {workFacts.map((fact) => (
+                        <DetailTerm
+                          key={fact.label}
+                          label={fact.label}
+                          value={fact.value}
+                        />
+                      ))}
+                    </dl>
+                  </section>
+                ) : null}
+              </div>
             </div>
 
             <section
@@ -400,38 +496,6 @@ export default async function ProductDetailPage({
               </div>
             </section>
 
-            {relatedEditions.length > 0 ? (
-              <section className="flex flex-col gap-case-md">
-                <h2 className="text-heading-3 font-semibold text-foreground">
-                  {copy.relatedEditions}
-                </h2>
-                <div className="grid gap-case-md sm:grid-cols-2">
-                  {relatedEditions.map((related) => (
-                    <Card key={related.edition.id} variant="interactive">
-                      <CardHeader>
-                        <Link
-                          href={`/products/${related.edition.slug}`}
-                          className="rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-                        >
-                          <span className="block font-semibold text-foreground">
-                            {getEditionTitle(related, language)}
-                          </span>
-                          <span className="mt-case-xs block text-small text-text-muted">
-                            {getEditionLanguageLabel(
-                              related.edition.language,
-                              language,
-                            )}{" "}
-                            {copy.edition} -{" "}
-                            {formatVnd(related.edition.priceVnd)}
-                          </span>
-                        </Link>
-                      </CardHeader>
-                    </Card>
-                  ))}
-                </div>
-              </section>
-            ) : null}
-
             {recommendedRecords.length > 0 ? (
               <section
                 className="flex flex-col gap-case-md"
@@ -445,61 +509,217 @@ export default async function ProductDetailPage({
                     {copy.moreLikeThisDescription}
                   </p>
                 </div>
-                <div className="grid gap-case-md sm:grid-cols-2">
-                  {recommendedRecords.map(({ record: recommended, reasons }) => (
-                    <Card
-                      key={recommended.edition.id}
-                      variant="interactive"
-                      data-book-recommendation-card={recommended.edition.slug}
-                    >
-                      <Link
-                        href={`/products/${recommended.edition.slug}`}
-                        className="grid min-w-0 grid-cols-[72px_minmax(0,1fr)] gap-case-md rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-                        data-book-recommendation-link
-                      >
-                        <div className="aspect-[3/4] overflow-hidden rounded-md border border-border bg-surface-muted p-1">
-                          <Image
-                            src={getCoverPath(recommended)}
-                            alt={getCoverAlt(recommended, language)}
-                            width={72}
-                            height={96}
-                            className="h-full w-full rounded-sm object-cover"
-                          />
-                        </div>
-                        <div className="min-w-0">
-                          <div className="flex flex-wrap gap-case-xs">
-                            {reasons.map((reason) => (
-                              <Badge key={reason} variant="neutral" size="sm">
-                                {getRecommendationReasonLabel(reason, copy)}
-                              </Badge>
-                            ))}
-                          </div>
-                          <h3 className="mt-case-sm line-clamp-2 font-semibold text-foreground">
-                            {getEditionTitle(recommended, language)}
-                          </h3>
-                          <p className="mt-case-xs truncate text-small text-text-muted">
-                            {recommended.authors
-                              .map((author) => author.name)
-                              .join(", ")}
-                          </p>
-                          <p className="mt-case-xs text-small font-medium text-foreground">
-                            <CurrencyAmount
-                              amountVnd={recommended.edition.priceVnd}
-                              language={language}
-                              rules={currencyRules}
-                            />
-                          </p>
-                        </div>
-                      </Link>
-                    </Card>
-                  ))}
-                </div>
+
+                {moreByAuthorRecords.length > 0 ? (
+                  <RecommendationGrid
+                    copy={copy}
+                    language={language}
+                    records={moreByAuthorRecords}
+                    rules={currencyRules}
+                    title={copy.moreByAuthor}
+                    wrapperDataAttribute="author"
+                  />
+                ) : null}
+
+                {relatedRecommendationRecords.length > 0 ? (
+                  <RecommendationGrid
+                    copy={copy}
+                    language={language}
+                    records={relatedRecommendationRecords}
+                    rules={currencyRules}
+                    title={copy.relatedBooks}
+                    wrapperDataAttribute="related"
+                  />
+                ) : null}
               </section>
             ) : null}
           </div>
         </section>
       </Container>
     </main>
+  );
+}
+
+type ProductDetailCopy = (typeof productDetailCopy)[Language];
+type CurrencyRules = ReturnType<typeof getCurrencyDisplayRules>;
+
+function EditionOption({
+  copy,
+  currentEditionId,
+  language,
+  option,
+  rules,
+}: {
+  copy: ProductDetailCopy;
+  currentEditionId: string;
+  language: Language;
+  option: SupabaseBookCatalogRecord;
+  rules: CurrencyRules;
+}) {
+  const isCurrent = option.edition.id === currentEditionId;
+  const title = getEditionTitle(option, language);
+  const compareAtPriceVnd = option.edition.compareAtPriceVnd;
+  const hasOffer =
+    compareAtPriceVnd !== null && compareAtPriceVnd > option.edition.priceVnd;
+  const content = (
+    <>
+      <div className="flex min-w-0 items-start gap-case-sm">
+        <div className="aspect-[2/3] w-14 shrink-0 overflow-hidden rounded-md border border-border bg-surface-muted p-1">
+          <Image
+            src={getCoverPath(option)}
+            alt={getCoverAlt(option, language)}
+            width={56}
+            height={84}
+            className="h-full w-full rounded-sm object-cover"
+          />
+        </div>
+        <div className="min-w-0 flex-1">
+          <div className="flex flex-wrap gap-case-xs">
+            <Badge variant="neutral" size="sm">
+              {getEditionLanguageLabel(option.edition.language, language)}
+            </Badge>
+            <Badge variant="neutral" size="sm">
+              {getFormatLabel(option.edition.format, language)}
+            </Badge>
+            {isCurrent ? (
+              <Badge variant="primary" size="sm">
+                {copy.currentEdition}
+              </Badge>
+            ) : null}
+          </div>
+          <h3 className="mt-case-sm line-clamp-2 font-semibold text-foreground">
+            {title}
+          </h3>
+          <p className="mt-case-xs text-small text-text-muted">
+            {getInventoryStatusLabel(option.edition.inventoryStatus, language)}
+          </p>
+        </div>
+      </div>
+      <div className="mt-case-sm flex flex-wrap items-baseline gap-case-xs">
+        {hasOffer ? (
+          <span className="text-small text-text-muted line-through">
+            {formatVnd(compareAtPriceVnd)}
+          </span>
+        ) : null}
+        <span className="text-small font-semibold text-foreground">
+          <CurrencyAmount
+            amountVnd={option.edition.priceVnd}
+            language={language}
+            rules={rules}
+          />
+        </span>
+      </div>
+      {!isCurrent ? (
+        <span className="mt-case-sm block text-small font-medium text-primary">
+          {copy.viewEdition}
+        </span>
+      ) : null}
+    </>
+  );
+  const className = cn(
+    "block min-w-0 rounded-md border p-case-md",
+    isCurrent
+      ? "border-primary bg-primary/5"
+      : "border-border bg-background transition-colors hover:border-primary",
+  );
+
+  if (isCurrent) {
+    return (
+      <div
+        className={className}
+        data-book-edition-option={option.edition.slug}
+        data-book-edition-option-current="true"
+      >
+        {content}
+      </div>
+    );
+  }
+
+  return (
+    <Link
+      href={`/products/${option.edition.slug}`}
+      className={cn(
+        className,
+        "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary",
+      )}
+      data-book-edition-option={option.edition.slug}
+      data-book-edition-option-current="false"
+      data-book-edition-option-link
+    >
+      {content}
+    </Link>
+  );
+}
+
+function RecommendationGrid({
+  copy,
+  language,
+  records,
+  rules,
+  title,
+  wrapperDataAttribute,
+}: {
+  copy: ProductDetailCopy;
+  language: Language;
+  records: RecommendedRecord[];
+  rules: CurrencyRules;
+  title: string;
+  wrapperDataAttribute: "author" | "related";
+}) {
+  return (
+    <div
+      className="flex flex-col gap-case-sm"
+      data-book-recommendation-group={wrapperDataAttribute}
+    >
+      <h3 className="text-body font-semibold text-foreground">{title}</h3>
+      <div className="grid gap-case-md sm:grid-cols-2">
+        {records.map(({ record: recommended, reasons }) => (
+          <Card
+            key={recommended.edition.id}
+            variant="interactive"
+            data-book-recommendation-card={recommended.edition.slug}
+          >
+            <Link
+              href={`/products/${recommended.edition.slug}`}
+              className="grid min-w-0 grid-cols-[72px_minmax(0,1fr)] gap-case-md rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              data-book-recommendation-link
+            >
+              <div className="aspect-[3/4] overflow-hidden rounded-md border border-border bg-surface-muted p-1">
+                <Image
+                  src={getCoverPath(recommended)}
+                  alt={getCoverAlt(recommended, language)}
+                  width={72}
+                  height={96}
+                  className="h-full w-full rounded-sm object-cover"
+                />
+              </div>
+              <div className="min-w-0">
+                <div className="flex flex-wrap gap-case-xs">
+                  {reasons.map((reason) => (
+                    <Badge key={reason} variant="neutral" size="sm">
+                      {getRecommendationReasonLabel(reason, copy)}
+                    </Badge>
+                  ))}
+                </div>
+                <h4 className="mt-case-sm line-clamp-2 font-semibold text-foreground">
+                  {getEditionTitle(recommended, language)}
+                </h4>
+                <p className="mt-case-xs truncate text-small text-text-muted">
+                  {recommended.authors.map((author) => author.name).join(", ")}
+                </p>
+                <p className="mt-case-xs text-small font-medium text-foreground">
+                  <CurrencyAmount
+                    amountVnd={recommended.edition.priceVnd}
+                    language={language}
+                    rules={rules}
+                  />
+                </p>
+              </div>
+            </Link>
+          </Card>
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -538,6 +758,77 @@ function getCoverPath(record: SupabaseBookCatalogRecord) {
   return (
     record.coverAsset?.path ?? "/images/books/placeholders/book-cover-placeholder.svg"
   );
+}
+
+function getAuthorLine(record: SupabaseBookCatalogRecord) {
+  const authors = record.authors.map((author) => author.name).filter(Boolean);
+
+  return authors.length > 0 ? authors.join(", ") : null;
+}
+
+function getEditionOptions(
+  current: SupabaseBookCatalogRecord,
+  relatedEditions: SupabaseBookCatalogRecord[],
+) {
+  const recordsByEditionId = new Map<string, SupabaseBookCatalogRecord>();
+
+  [current, ...relatedEditions].forEach((record) => {
+    recordsByEditionId.set(record.edition.id, record);
+  });
+
+  return [...recordsByEditionId.values()].sort((first, second) => {
+    const languageOrder =
+      getEditionLanguageSortValue(first) - getEditionLanguageSortValue(second);
+
+    if (languageOrder !== 0) {
+      return languageOrder;
+    }
+
+    return first.edition.displayTitle.localeCompare(second.edition.displayTitle);
+  });
+}
+
+function getEditionLanguageSortValue(record: SupabaseBookCatalogRecord) {
+  return record.edition.language === "en" ? 0 : 1;
+}
+
+function getWorkFacts(
+  record: SupabaseBookCatalogRecord,
+  language: Language,
+  copy: ProductDetailCopy,
+) {
+  const facts: Array<{ label: string; value: string }> = [];
+  const localizedWorkTitle = pickLocalizedText(
+    record.work.localizedTitle,
+    language,
+    record.work.title,
+  );
+
+  if (
+    record.work.originalTitle &&
+    record.work.originalTitle !== localizedWorkTitle
+  ) {
+    facts.push({
+      label: copy.originalTitle,
+      value: record.work.originalTitle,
+    });
+  }
+
+  if (record.work.originalLanguage) {
+    facts.push({
+      label: copy.originalLanguage,
+      value: record.work.originalLanguage,
+    });
+  }
+
+  if (record.work.publicationEra) {
+    facts.push({
+      label: copy.publicationEra,
+      value: record.work.publicationEra,
+    });
+  }
+
+  return facts;
 }
 
 function getFormatLabel(format: BookFormat, language: Language) {
@@ -607,6 +898,7 @@ function createBookStructuredData({
     })),
     bookFormat: getStructuredBookFormat(record.edition.format),
     description: truncateDescription(description, 300),
+    image: absoluteUrl(getCoverPath(record)),
     inLanguage: record.edition.language,
     name: editionTitle,
     offers: {
@@ -666,10 +958,16 @@ function getStockBadgeVariant(status: InventoryStatus) {
 
 type RecommendationReason = "author" | "category" | "language";
 
+type RecommendedRecord = {
+  record: SupabaseBookCatalogRecord;
+  reasons: RecommendationReason[];
+  score: number;
+};
+
 function getRecommendedRecords(
   current: SupabaseBookCatalogRecord,
   catalogRecords: SupabaseBookCatalogRecord[],
-) {
+): RecommendedRecord[] {
   const currentAuthorIds = new Set(current.authors.map((author) => author.id));
   const currentCategoryIds = new Set(
     current.categories.map((category) => category.id),

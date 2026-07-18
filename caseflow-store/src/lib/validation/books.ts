@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 import {
+  bookEditionDisplayFactSchema,
   bookEditionSchema,
   bookPromotionSchema,
   bookCategorySlugSchema,
@@ -12,6 +13,7 @@ import {
   moneyAmountSchema,
   nonEmptyStringSchema,
   slugSchema,
+  sourceReviewStatusSchema,
   stockQuantitySchema,
 } from "@/lib/validation/domain";
 
@@ -126,6 +128,7 @@ const adminBookEditionBaseSchema = z.object({
   inventoryStatus: inventoryStatusSchema,
   summary: localizedTextSchema,
   sampleExcerptPolicy: nullableTextInputSchema.optional().default(null),
+  reasonToRead: localizedTextSchema.nullable().optional().default(null),
   isFeatured: z.boolean().default(false),
   isActive: z.boolean().default(true),
 });
@@ -158,6 +161,11 @@ export const adminBookEditionCreateSchema = adminBookEditionBaseSchema
 export const adminBookEditionUpdateSchema = adminBookEditionBaseSchema
   .partial()
   .extend({
+    displayFacts: z.array(bookEditionDisplayFactSchema).max(12).optional(),
+    omittedOptionalFactKeys:
+      bookEditionSchema.shape.omittedOptionalFactKeys.optional(),
+    sourceEditionKey: bookEditionSchema.shape.sourceEditionKey.optional(),
+    sourceReviewStatus: sourceReviewStatusSchema.nullable().optional(),
     isActive: optionalBooleanInputSchema,
     isFeatured: optionalBooleanInputSchema,
   })

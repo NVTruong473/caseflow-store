@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>V12-T07 Cover Portfolio Preview</title>
+    <style>
+      * { box-sizing: border-box; }
+      body { margin: 0; background: #F8FAFC; color: #111827; font-family: Arial, Helvetica, sans-serif; }
+      main { width: min(1120px, calc(100vw - 32px)); margin: 0 auto; padding: 28px 0 48px; }
+      h1 { margin: 0 0 8px; font-size: 28px; line-height: 1.15; letter-spacing: 0; }
+      .note { margin: 0 0 24px; color: #475569; font-size: 14px; line-height: 1.5; }
+      .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; }
+      .card { min-width: 0; }
+      .card img { display: block; width: 100%; aspect-ratio: 2 / 3; height: auto; border: 1px solid #CBD5E1; border-radius: 8px; background: #FFFFFF; object-fit: cover; }
+      .card-title { margin: 10px 0 4px; font-size: 14px; font-weight: 700; line-height: 1.3; }
+      .card-meta { margin: 0; color: #64748B; font-size: 13px; line-height: 1.35; }
+      .details { display: grid; gap: 18px; margin-top: 36px; }
+      .detail { display: grid; grid-template-columns: minmax(140px, 260px) 1fr; gap: 20px; align-items: center; padding: 18px 0; border-top: 1px solid #CBD5E1; }
+      .detail img { width: 100%; max-width: 260px; aspect-ratio: 2 / 3; height: auto; border-radius: 8px; border: 1px solid #CBD5E1; }
+      .eyebrow { margin: 0 0 8px; color: #7C2D12; font-size: 13px; font-weight: 700; text-transform: uppercase; }
+      h2 { margin: 0 0 10px; font-size: 24px; line-height: 1.2; letter-spacing: 0; }
+      .detail p:last-child { margin: 0; color: #475569; line-height: 1.55; }
+      @media (max-width: 520px) {
+        main { width: min(100vw - 24px, 420px); padding-top: 18px; }
+        h1 { font-size: 22px; }
+        .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+        .detail { grid-template-columns: 112px minmax(0, 1fr); gap: 14px; }
+        .detail img { max-width: 112px; }
+        h2 { font-size: 18px; }
+      }
+    </style>
+  </head>
+  <body>
+    <main data-cover-portfolio-preview>
+      <h1>V12-T07 cover portfolio preview</h1>
+      <p class="note">Representative static render check for catalog card and detail image sizes.</p>
+      <section class="grid portfolio-grid" aria-label="Catalog card preview">
+        
+        <article class="card">
+          <img src="../../../public/images/books/v12-covers/a-christmas-carol-english-paperback.svg" alt="CaseFlow Books illustrative cover for A Christmas Carol by Charles Dickens." width="600" height="900" />
+          <p class="card-title">A Christmas Carol</p>
+          <p class="card-meta">Charles Dickens</p>
+        </article>
+
+        <article class="card">
+          <img src="../../../public/images/books/v12-covers/a-christmas-carol-vietnamese-paperback.svg" alt="CaseFlow Books illustrative cover for A Christmas Carol by Charles Dickens." width="600" height="900" />
+          <p class="card-title">Bài ca Giáng sinh</p>
+          <p class="card-meta">Charles Dickens</p>
+        </article>
+
+        <article class="card">
+          <img src="../../../public/images/books/v12-covers/andersens-fairy-tales-english-paperback.svg" alt="CaseFlow Books illustrative cover for Andersen&#39;s Fairy Tales by Hans Christian Andersen." width="600" height="900" />
+          <p class="card-title">Andersen&#39;s Fairy Tales</p>
+          <p class="card-meta">Hans Christian Andersen</p>
+        </article>
+
+        <article class="card">
+          <img src="../../../public/images/books/v12-covers/andersens-fairy-tales-vietnamese-paperback.svg" alt="CaseFlow Books illustrative cover for Andersen&#39;s Fairy Tales by Hans Christian Andersen." width="600" height="900" />
+          <p class="card-title">Truyện cổ Andersen</p>
+          <p class="card-meta">Hans Christian Andersen</p>
+        </article>
+
+        <article class="card">
+          <img src="../../../public/images/books/v12-covers/dracula-english-paperback.svg" alt="CaseFlow Books illustrative cover for Dracula by Bram Stoker." width="600" height="900" />
+          <p class="card-title">Dracula</p>
+          <p class="card-meta">Bram Stoker</p>
+        </article>
+
+        <article class="card">
+          <img src="../../../public/images/books/v12-covers/dracula-vietnamese-paperback.svg" alt="CaseFlow Books illustrative cover for Dracula by Bram Stoker." width="600" height="900" />
+          <p class="card-title">Bá tước Dracula</p>
+          <p class="card-meta">Bram Stoker</p>
+        </article>
+
+        <article class="card">
+          <img src="../../../public/images/books/v12-covers/pride-and-prejudice-english-special-edition.svg" alt="CaseFlow Books illustrative cover for Pride and Prejudice by Jane Austen." width="600" height="900" />
+          <p class="card-title">Pride and Prejudice</p>
+          <p class="card-meta">Jane Austen</p>
+        </article>
+
+        <article class="card">
+          <img src="../../../public/images/books/v12-covers/pride-and-prejudice-vietnamese-special-edition.svg" alt="CaseFlow Books illustrative cover for Pride and Prejudice by Jane Austen." width="600" height="900" />
+          <p class="card-title">Kiêu hãnh và định kiến</p>
+          <p class="card-meta">Jane Austen</p>
+        </article>
+
+        <article class="card">
+          <img src="../../../public/images/books/v12-covers/the-jungle-book-english-paperback.svg" alt="CaseFlow Books illustrative cover for The Jungle Book by Rudyard Kipling." width="600" height="900" />
+          <p class="card-title">The Jungle Book</p>
+          <p class="card-meta">Rudyard Kipling</p>
+        </article>
+
+        <article class="card">
+          <img src="../../../public/images/books/v12-covers/the-jungle-book-vietnamese-paperback.svg" alt="CaseFlow Books illustrative cover for The Jungle Book by Rudyard Kipling." width="600" height="900" />
+          <p class="card-title">Sách rừng xanh</p>
+          <p class="card-meta">Rudyard Kipling</p>
+        </article>
+
+        <article class="card">
+          <img src="../../../public/images/books/v12-covers/wuthering-heights-english-paperback.svg" alt="CaseFlow Books illustrative cover for Wuthering Heights by Emily Bronte." width="600" height="900" />
+          <p class="card-title">Wuthering Heights</p>
+          <p class="card-meta">Emily Bronte</p>
+        </article>
+
+        <article class="card">
+          <img src="../../../public/images/books/v12-covers/wuthering-heights-vietnamese-paperback.svg" alt="CaseFlow Books illustrative cover for Wuthering Heights by Emily Bronte." width="600" height="900" />
+          <p class="card-title">Đồi gió hú</p>
+          <p class="card-meta">Emily Bronte</p>
+        </article>
+      </section>
+      <section class="details" aria-label="Detail preview">
+        
+        <section class="detail">
+          <img src="../../../public/images/books/v12-covers/a-christmas-carol-english-paperback.svg" alt="CaseFlow Books illustrative cover for A Christmas Carol by Charles Dickens." width="600" height="900" />
+          <div>
+            <p class="eyebrow">English edition</p>
+            <h2>A Christmas Carol</h2>
+            <p>CaseFlow Books illustrative cover for A Christmas Carol by Charles Dickens.</p>
+          </div>
+        </section>
+
+        <section class="detail">
+          <img src="../../../public/images/books/v12-covers/a-christmas-carol-vietnamese-paperback.svg" alt="CaseFlow Books illustrative cover for A Christmas Carol by Charles Dickens." width="600" height="900" />
+          <div>
+            <p class="eyebrow">Vietnamese edition</p>
+            <h2>Bài ca Giáng sinh</h2>
+            <p>CaseFlow Books illustrative cover for A Christmas Carol by Charles Dickens.</p>
+          </div>
+        </section>
+
+        <section class="detail">
+          <img src="../../../public/images/books/v12-covers/andersens-fairy-tales-english-paperback.svg" alt="CaseFlow Books illustrative cover for Andersen&#39;s Fairy Tales by Hans Christian Andersen." width="600" height="900" />
+          <div>
+            <p class="eyebrow">English edition</p>
+            <h2>Andersen&#39;s Fairy Tales</h2>
+            <p>CaseFlow Books illustrative cover for Andersen&#39;s Fairy Tales by Hans Christian Andersen.</p>
+          </div>
+        </section>
+
+        <section class="detail">
+          <img src="../../../public/images/books/v12-covers/andersens-fairy-tales-vietnamese-paperback.svg" alt="CaseFlow Books illustrative cover for Andersen&#39;s Fairy Tales by Hans Christian Andersen." width="600" height="900" />
+          <div>
+            <p class="eyebrow">Vietnamese edition</p>
+            <h2>Truyện cổ Andersen</h2>
+            <p>CaseFlow Books illustrative cover for Andersen&#39;s Fairy Tales by Hans Christian Andersen.</p>
+          </div>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>

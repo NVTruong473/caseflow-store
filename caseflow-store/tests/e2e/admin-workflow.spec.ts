@@ -2,12 +2,15 @@ import { expect, test } from "@playwright/test";
 
 import {
   addSupabaseSessionCookies,
+  clickElement,
+  clickFirstVisible,
   createOrderThroughApi,
   createTemporaryCustomer,
   createTestServiceClient,
   deleteTemporaryCustomer,
   findAvailableBook,
   loginAsAdmin,
+  selectFieldOption,
 } from "./helpers/supabase";
 
 const STATUS_SCREENSHOT =
@@ -39,24 +42,20 @@ test("admin logs in and updates a live book order status", async ({
       `[data-admin-order-row="${createdOrder.id}"]`,
     );
     await expect(orderRow).toBeVisible();
-    await orderRow
-      .locator(`[data-admin-order-view="${createdOrder.id}"]`)
-      .click();
+    await clickFirstVisible(page, `[data-admin-order-view="${createdOrder.id}"]`);
     await expect(page.locator("[data-admin-order-detail-code]"))
       .toHaveText(createdOrder.orderCode);
     await expect(page.locator("[data-admin-order-status-select]"))
       .toHaveValue("pending");
 
-    await page
-      .locator("[data-admin-order-status-select]")
-      .selectOption("confirmed");
+    await selectFieldOption(page, "[data-admin-order-status-select]", "confirmed");
     const updateResponsePromise = page.waitForResponse(
       (response) =>
         new URL(response.url()).pathname ===
           `/api/admin/orders/${createdOrder.id}` &&
         response.request().method() === "PATCH",
     );
-    await page.locator("[data-admin-order-status-submit]").click();
+    await clickElement(page, "[data-admin-order-status-submit]");
     const updateResponse = await updateResponsePromise;
 
     expect(updateResponse.status()).toBe(200);
@@ -77,11 +76,12 @@ test("admin logs in and updates a live book order status", async ({
       status: "confirmed",
     });
 
-    await page.locator("[data-admin-order-detail]").screenshot({
+    await page.screenshot({
       path: STATUS_SCREENSHOT,
+      timeout: 30_000,
     });
 
-    await page.locator("[data-admin-sign-out]").click();
+    await clickElement(page, "[data-admin-sign-out]");
     await expect(page).toHaveURL(/\/admin\/login$/);
     expect((await page.request.get("/api/admin/orders")).status()).toBe(401);
   } finally {

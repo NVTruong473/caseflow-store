@@ -4,17 +4,17 @@
 
 | Field | Value |
 |---|---|
-| Current mode | Implementation enabled |
-| Current gate | `D40-T04` complete; CaseFlow Books v1.1.0 release accepted for tag |
+| Current mode | v1.2 release complete; next work needs a new accepted task/ADR |
+| Current gate | `V12-T18` complete; production v1.2 deploy, smoke, docs, release commit, and tag complete |
 | Implementation started | Yes |
-| Next implementation task | Post-release audit |
+| Next implementation task | TBD after `v1.2.0` |
 | App initialized | Yes, in `caseflow-store` |
-| Local server verified | Yes, release gates passed before `v1.0.0` tag |
-| Lint verified | Yes, D40-T03 lint passed |
-| Build verified | Yes, D40-T02 Vercel production build generated 41 routes |
+| Local server verified | Yes, V12-T17 full Playwright and aggregate gate passed on a fresh production build at `http://127.0.0.1:3001` |
+| Lint verified | Yes, V12-T18 final lint passed |
+| Build verified | Yes, V12-T18 production build generated 42 App Router routes plus proxy |
 | Database connected | Yes; live catalog, orders, Auth, role checks, and admin status updates use Supabase |
-| Deployed | Production deployed at `https://caseflow-store.vercel.app` |
-| Last updated | 2026-07-17 |
+| Deployed | Yes, v1.2 production deployment `dpl_7Y2Qsf4VJRBuzaMGXZMi81Rq5pKQ` is aliased to `https://caseflow-store.vercel.app` |
+| Last updated | 2026-07-18 |
 
 ## Result Index
 
@@ -114,6 +114,9 @@
 | SR-151 | 2026-07-17 | D40-T02 | completed | Deployed v1.1 to Vercel production and passed production smoke, assistant, Playwright subset, cleanup, and secret scan checks |
 | SR-152 | 2026-07-17 | D40-T03 | completed | Updated v1.1 portfolio docs and screenshots, passed mirror/link/screenshot/stale-claim verification, typecheck, lint, and diff checks |
 | SR-153 | 2026-07-17 | D40-T04 | completed | Accepted the release tree for annotated tag v1.1.0 after local, production, docs, audit, cleanup, and secret gates passed |
+| SR-169 | 2026-07-18 | V12-T16 | completed | Integrated accepted v1.2 catalog content across search, assistant, SEO/social metadata, cart/order snapshots, CSV export, legacy recovery, and docs with production-style runtime evidence |
+| SR-170 | 2026-07-18 | V12-T17 | completed | Passed the full v1.2 local quality gate with type/lint/build, Playwright 20/20, aggregate content/asset/runtime reports, cleanup, secret scan, and documented dependency/performance residuals |
+| SR-171 | 2026-07-18 | V12-T18 | completed | Deployed v1.2.0 to Vercel production, passed production smoke and full production Playwright 20/20, refreshed release docs/evidence, cleaned verification data, and created the release commit/tag |
 
 ---
 
@@ -9130,3 +9133,1531 @@ verified.
 ### Next Task
 
 Post-release audit
+
+---
+
+## SR-154 - V12-T01: Create v1.2 Content And Merchandising ADR
+
+- Date: 2026-07-17
+- Status: completed
+- Phase: CaseFlow Books v1.2 content and merchandising planning
+
+### Objective
+
+Define the accepted scope, content truth model, asset rights policy,
+merchandising boundaries, and release-quality expectations before any v1.2
+runtime implementation.
+
+### Actual Result
+
+- Added accepted `ADR-0007: Realistic Bookstore Content And Merchandising
+  Upgrade For v1.2` in root/app mirrors.
+- Kept the released v1.1 architecture, commerce boundaries, role model, stable
+  API errors, and server-owned calculations unchanged.
+- Defined a provenance-first policy for factual metadata, project-written
+  summaries, ISBN/edition matching, image rights, attribution, and review
+  status.
+- Required edition-specific safe cover assets for the 100-edition release and
+  retained the generic placeholder only as an error fallback.
+- Required truthful, data-backed shelves and rejected fake ratings, copied
+  reviews, fabricated sold counts, unsupported bestseller labels, and invented
+  publisher or market claims.
+- Bounded v1.2 away from e-book fulfillment, DRM, AI recommendations, wishlist,
+  customer reviews, marketplace behavior, and a general-purpose CMS.
+
+### Verification
+
+- Root/app ADR-0007 files match byte-for-byte.
+- Root/app ADR index files match and link ADR-0007.
+- Searches confirm the ADR contains the planning gate, API/copyright
+  distinction, merchandising truth rules, and `V12-T02` handoff.
+- `git diff --check`: passed.
+
+### Next Task
+
+`V12-T02 - Create v1.2 Content And Merchandising Roadmap`
+
+---
+
+## SR-155 - V12-T02: Create v1.2 Content And Merchandising Roadmap
+
+- Date: 2026-07-17
+- Status: completed
+- Phase: CaseFlow Books v1.2 content and merchandising planning
+
+### Objective
+
+Translate ADR-0007 into an ordered, testable, reversible implementation and
+release plan without presenting v1.2 as fabricated Day 41+ history.
+
+### Actual Result
+
+- Added accepted
+  `docs/v1.2-realistic-bookstore-content-merchandising-roadmap.md` in root/app
+  mirrors.
+- Defined `V12-T01` through `V12-T18` for planning, baseline audit,
+  provenance contracts, canonical 100-edition content, cover pipeline and
+  portfolio, bilingual copy, merchandising storage, reversible migration,
+  Supabase application, homepage/catalog/detail/admin work, integration, local
+  release acceptance, production deployment, documentation, and tagging.
+- Added planning, provenance, content, data, experience, release-candidate, and
+  production release gates.
+- Added explicit rollback rules for Git, database data, IDs/slugs, assets,
+  migrations, operations data, and Vercel deployment.
+- Preserved the v1.1 architecture, security, checkout, payment, and role
+  boundaries and blocked runtime work pending user confirmation of V12-T03.
+
+### Verification
+
+- Root/app roadmap files match byte-for-byte.
+- Root/app `.agent` tracker, context, and result mirrors match.
+- ADR-0007 and local roadmap links resolve.
+- Exactly 18 unique task headings exist from `V12-T01` through `V12-T18`.
+- All 18 tasks have acceptance criteria and verification sections.
+- Trailing-whitespace check: passed.
+- `git diff --check`: passed.
+
+### Next Task
+
+`V12-T03 - Audit v1.1 Catalog Realism Baseline`, pending explicit user
+confirmation.
+
+---
+
+## SR-156 - V12-T03: Audit v1.1 Catalog Realism Baseline
+
+- Date: 2026-07-17
+- Status: completed
+- Phase: CaseFlow Books v1.2 provenance and baseline
+
+### Objective
+
+Establish a deterministic, read-only catalog, visual, accessibility,
+performance, and schema baseline before realistic content or merchandising
+implementation changes the v1.1 evidence.
+
+### Actual Result
+
+- Added `caseflow-store/scripts/audit-v12-catalog-baseline.ts` and generated
+  JSON/Markdown evidence under
+  `caseflow-store/.agent/artifacts/v12-t03/`.
+- Confirmed exact seed/Supabase parity at 50 works, 100 active editions, 11
+  active categories, 50 English editions, and 50 Vietnamese editions.
+- Confirmed one primary cover asset is shared by all 100 editions, all 100 use
+  a demo publisher and lack ISBN/page-count/translator credit, and 98
+  Vietnamese summaries lack diacritics.
+- Reviewed homepage, catalog, product detail, and authenticated admin catalog at
+  375px and 1440px using 8 full-page and 8 first-viewport screenshots.
+- Found zero public-page horizontal overflow and a 195px mobile overflow on
+  authenticated `/admin/catalog`.
+- Recorded the 41-route production build, transfer/resource observations,
+  deterministic image bytes, DOM accessibility heuristics, observed zero CLS,
+  and the LCP measurement limitation.
+- Accepted `additive-schema-required`: define provenance contracts in
+  `V12-T04`, defer minimum merchandising storage to `V12-T09`, and make no
+  destructive migration.
+- Added `docs/v1.2-catalog-realism-baseline.md` in root/app mirrors and updated
+  the roadmap and agent context to hand off to `V12-T04`.
+
+### Release Blockers
+
+- `V12-B01`: all active editions share the generic placeholder.
+- `V12-B02`: demo publisher plus missing ISBN/page-count facts.
+- `V12-B03`: 98/100 Vietnamese summaries lack diacritics.
+- `V12-B04`: provenance and merchandising cannot be represented completely.
+- `V12-B05`: generic TBC/not-specified/placeholder storefront paths remain.
+- `V12-B06`: bilingual pairs exist without translator records.
+- `V12-B07`: admin catalog mobile layout overflows by 195px.
+
+### Guardrails Preserved
+
+- Supabase access used only table `select` operations; no inserts, updates,
+  deletes, RPC calls, migrations, or production runtime changes were made.
+- Supabase contains zero audit/test/QA catalog rows after verification.
+- v1.1 IDs, slugs, data, assets, release tag, API contracts, security
+  boundaries, and Vercel production behavior remain unchanged.
+- Browser login was used only to read and capture the existing admin catalog;
+  no admin form mutation was submitted.
+
+### Changed Files
+
+- Added the read-only baseline audit script.
+- Added task artifacts and representative screenshots under `v12-t03`.
+- Added the root/app catalog realism baseline report.
+- Updated the root/app v1.2 roadmap and `.agent` mirrors.
+
+### Verification
+
+- `npx tsx scripts/audit-v12-catalog-baseline.ts`: passed; Supabase status
+  `ok`, seed parity exact, QA rows `0`, writes `0`.
+- Local production build: passed with 41 routes in 46.04 seconds.
+- In-app Browser audit: 8 page/breakpoint baselines; final console warning/error
+  count `0`; screenshots visually reviewed.
+- `npx tsc --noEmit`: passed.
+- `npm run lint`: passed.
+- Root/app mirrors and JSON artifacts: verified.
+- `git diff --check`: passed.
+
+### Residual Risks
+
+- LCP was not captured because the observer was not installed before page
+  navigation; measure it in the v1.2 local release gate.
+- The unnamed-control counts are a DOM heuristic and require axe-core and
+  assistive-technology confirmation before being treated as defects.
+- Real bibliographic values and image rights are not solved by this audit; they
+  remain gated by provenance contracts and the canonical manifest.
+
+### Next Task
+
+`V12-T04 - Define Provenance And Content Quality Contracts`, pending explicit
+user confirmation.
+
+---
+
+## SR-157 - V12-T04: Define Provenance And Content Quality Contracts
+
+- Date: 2026-07-17
+- Status: completed
+- Phase: CaseFlow Books v1.2 provenance gate
+
+### Objective
+
+Define strict catalog provenance, edition-matching, content-quality, and public
+serialization contracts before curating or persisting the v1.2 catalog.
+
+### Actual Result
+
+- Added `CatalogProvenanceRecord` without changing the legacy v1.1
+  `SourceNote` used by estimates and existing seed records.
+- Defined entity, source URL, checked date, content kind, rights basis, rights
+  note, license, attribution, review state, reviewer note, review timestamp,
+  source-edition key, and edition-match confidence fields.
+- Added Zod rules for internal, generated, licensed, public-domain,
+  project-written, and bibliographic records.
+- Added `EditionProvenanceSet`, which rejects duplicate fields, mismatched
+  targets, and facts from different source editions.
+- Added blocking and optional content-quality requirements. Only `verified`
+  evidence backed by a provenance record ID receives quality credit, and every
+  blocking requirement must pass for `releaseReady`.
+- Added an approved-only public provenance serializer that allowlists safe
+  fields and omits reviewer notes, rights-analysis notes, source-edition keys,
+  entity IDs, field keys, and internal review timestamps.
+- Documented that an additive database migration is required but correctly
+  deferred exact SQL to `V12-T10` after the content and merchandising shapes
+  are frozen.
+
+### Changed Files
+
+- Added `src/types/content-provenance.ts`.
+- Added `src/lib/validation/content-provenance.ts`.
+- Added `src/lib/content/content-quality.ts`.
+- Added `src/lib/api/content-provenance.ts`.
+- Added `scripts/verify-v12-content-provenance.ts`.
+- Added `docs/v1.2-provenance-content-quality-contracts.md` in root/app
+  mirrors and updated architecture, roadmap, and agent mirrors.
+- Added
+  `caseflow-store/.agent/artifacts/v12-t04/provenance-content-quality-check.json`.
+
+### Guardrails Preserved
+
+- No Supabase resource, migration, table, row, RLS policy, or generated
+  Supabase type was changed.
+- No public catalog envelope, API error code, checkout calculation, auth rule,
+  role permission, storefront behavior, or production deployment was changed.
+- Public serializers use explicit allowlists; internal review notes are not
+  spread into public payloads.
+- Existing v1.1 seed data and the `v1.1.0` release tag remain untouched.
+
+### Verification
+
+- `npx tsx scripts/verify-v12-content-provenance.ts`: 21/21 focused
+  assertions passed.
+- Valid internal, generated, licensed, public-domain, and edition-fact records
+  were accepted.
+- Incomplete/contradictory rights and review records plus mixed source editions
+  were rejected.
+- Unverified facts received zero credit; all blocking requirements were needed
+  for release readiness.
+- New and existing public serializers omitted the internal sentinel note.
+- `npx tsc --noEmit`: passed.
+- `npm run lint`: passed.
+- `npm run build`: passed.
+- Root/app documentation and agent mirrors: byte-identical.
+- `git diff --check`: passed.
+
+### Residual Risks
+
+- Provenance IDs are contract-level references until the additive migration
+  adds database foreign keys and RLS.
+- Rights records prove the documented review state, not legal clearance; source
+  availability and terms must be rechecked during catalog curation.
+- The exact persistence model remains intentionally open until `V12-T05`
+  through `V12-T09` freeze the content and merchandising requirements.
+
+### Next Task
+
+`V12-T05 - Curate The Canonical 100-Edition Catalog Manifest`, pending
+explicit user confirmation.
+
+---
+
+## SR-158 - V12-T05: Curate The Canonical 100-Edition Catalog Manifest
+
+- Date: 2026-07-17
+- Status: completed
+- Phase: CaseFlow Books v1.2 canonical catalog
+
+### Objective
+
+Freeze exactly 100 source-reviewed real-book editions with deliberate bilingual
+pairing, project-written copy, explicit store-owned merchandising data, and
+safe compatibility for existing IDs and slugs.
+
+### Actual Result
+
+- Added a canonical catalog contract and Zod schema separating bibliographic
+  facts from CaseFlow store offers.
+- Added a source-research script and froze 50 real works as 100 reciprocal
+  English/Vietnamese edition pairs.
+- Added project-written Vietnamese titles and summaries with complete
+  diacritics plus bilingual merchandising rationales for every edition.
+- Preserved 98 existing edition IDs/slugs. Retired `The Elements of Style` and
+  its two editions without redirect, then added new IDs for `The Old Man and
+  the Sea` / `Ông già và biển cả`.
+- Added field-level same-edition provenance for every retained source fact.
+  Missing optional publisher, translator, ISBN, date, page, binding, dimension,
+  and weight values remain null.
+- Explicitly marked price, compare-at price, stock, threshold, promotion,
+  availability, featured state, and planned SKU format as CaseFlow Books
+  merchandising decisions rather than market claims.
+- Corrected the inherited inventory threshold mismatch by aligning the
+  canonical low-stock threshold at 10 units and verifying status consistency.
+
+### Evidence
+
+- `caseflow-store/src/data/books/v1.2-canonical-manifest.json`
+- `caseflow-store/docs/v1.2-canonical-catalog-manifest.md`
+- `caseflow-store/.agent/artifacts/v12-t05/open-library-edition-candidates.json`
+- `caseflow-store/.agent/artifacts/v12-t05/canonical-manifest-check.json`
+- `caseflow-store/.agent/artifacts/v12-t05/canonical-manifest-check.md`
+
+### Verification
+
+- Manifest build repeated with identical SHA-256
+  `358a6ab29d4a3fee4ebd635dbf31511098a8fd7f4173a3f61afec9fa8c068f76`.
+- Deterministic report passed for 50 works, 100 editions, 50 EN/50 VI, 50
+  reciprocal pairs, 100 source reviews, and 98 preserved edition IDs/slugs.
+- ISBN coverage: 74 ISBN-13 and 65 ISBN-10 values; checksum, shape, and duplicate
+  checks passed with no invented identifiers.
+- Field coverage: 65 publishers, 12 translator records, 94 publication years,
+  83 page counts, 5 source physical formats, and null unsupported dimensions/
+  weights.
+- Zero duplicate IDs/slugs/ISBNs, broken pairs, unsupported facts, mixed source
+  editions, bilingual gaps, missing Vietnamese diacritics, prohibited copy,
+  store-ownership ambiguity, inventory mismatch, or compatibility issues.
+- `npx tsx scripts/verify-v12-content-provenance.ts`: all 21 contract regression
+  assertions passed.
+- `npx tsc --noEmit`: passed.
+- `npm run lint`: passed after removing the only unused-import warning.
+- Root/app documentation and `.agent` mirrors: verified.
+- `git diff --check`: passed.
+
+### Guardrails Preserved
+
+- No Supabase schema, row, RLS policy, generated database type, or runtime seed
+  was changed.
+- No storefront, checkout, admin, API, auth, role, deployment, or release-tag
+  behavior was changed.
+- No retailer description, protected excerpt, market price, market stock claim,
+  or cover image was copied into the manifest.
+- Cover selection and rights remain gated by `V12-T06` and `V12-T07`.
+
+### Residual Risks
+
+- `store.format` is a planned CaseFlow SKU configuration. Only the separate
+  source physical-format field is a publisher/source-backed binding claim, and
+  its current coverage is low.
+- Source review does not prove supplier availability or legal clearance for
+  cover art. Those require later procurement and cover-rights work.
+- The manifest is not the runtime source of truth until reversible migration
+  and Supabase verification in `V12-T10` and `V12-T11`.
+
+### Next Task
+
+`V12-T06 - Build The Edition-Specific Cover Asset Pipeline`, pending explicit
+user confirmation.
+
+---
+
+## SR-159 - V12-T06: Build The Edition-Specific Cover Asset Pipeline
+
+- Date: 2026-07-17
+- Status: completed
+- Phase: CaseFlow Books v1.2 cover assets
+
+### Objective
+
+Create a safe, deterministic, edition-specific cover pipeline that can produce
+reviewable assets without copying commercial covers, while proving the output
+with a representative pilot before full 100-cover production.
+
+### Actual Result
+
+- Added cover pipeline TypeScript contracts and Zod schemas for dimensions,
+  aspect ratio, checksum, file size, contrast, deterministic typography,
+  bilingual alt text, source notes, approved media provenance, and explicit
+  rejection of commercial cover references.
+- Added `scripts/build-v12-cover-pilot.ts` to read the canonical v1.2 manifest
+  and generate project-created SVG covers with localized edition titles,
+  author text, visual concept keys, and rights/provenance metadata.
+- Added `scripts/verify-v12-cover-pipeline.ts` to validate schema, asset files,
+  checksums, dimensions, file-size budget, absence of external image
+  references, rendered title/author text, language/category coverage, paired
+  art families, and static desktop/mobile preview behavior.
+- Produced a 10-cover pilot across five works and five English/Vietnamese
+  pairs: `Pride and Prejudice`, `The Adventures of Sherlock Holmes`, `The War
+  of the Worlds`, `Alice's Adventures in Wonderland`, and `The Old Man and the
+  Sea`.
+- Added a contact sheet, static card/detail preview HTML, and reviewed
+  desktop/mobile preview screenshots.
+- Documented the pipeline, rights boundary, size budget, verification commands,
+  and residual T07 risks in root/app mirrors.
+
+### Evidence
+
+- `caseflow-store/src/types/cover-assets.ts`
+- `caseflow-store/src/lib/validation/cover-assets.ts`
+- `caseflow-store/scripts/build-v12-cover-pilot.ts`
+- `caseflow-store/scripts/verify-v12-cover-pipeline.ts`
+- `caseflow-store/src/data/books/v1.2-cover-pilot-manifest.json`
+- `caseflow-store/public/images/books/v12-pilot/`
+- `docs/v1.2-cover-asset-pipeline.md`
+- `caseflow-store/docs/v1.2-cover-asset-pipeline.md`
+- `caseflow-store/.agent/artifacts/v12-t06/cover-pipeline-check.json`
+- `caseflow-store/.agent/artifacts/v12-t06/cover-pipeline-check.md`
+- `caseflow-store/.agent/artifacts/v12-t06/cover-pilot-contact-sheet.svg`
+- `caseflow-store/.agent/artifacts/v12-t06/cover-pilot-preview.html`
+- `caseflow-store/.agent/artifacts/v12-t06/cover-pilot-preview-desktop.png`
+- `caseflow-store/.agent/artifacts/v12-t06/cover-pilot-preview-mobile.png`
+
+### Verification
+
+- `npx tsx scripts/build-v12-cover-pilot.ts`: generated 10 assets, 5 concepts,
+  manifest, contact sheet, and preview HTML.
+- `npx tsx scripts/verify-v12-cover-pipeline.ts`: passed with 10 assets, 5
+  concepts, max SVG size 3,168 bytes, desktop/mobile preview screenshots, and
+  no external image references.
+- Manual visual review found the first text-wrap pass too tight for card-size
+  covers; the pipeline was adjusted and regenerated before acceptance.
+- Final visual review of desktop and mobile preview screenshots passed with no
+  obvious clipped titles, blank images, or layout overflow.
+- `npx tsc --noEmit`: passed.
+- `npm run lint`: passed.
+- `npm run build`: passed and generated 41 routes.
+
+### Guardrails Preserved
+
+- No Supabase schema, row, RLS policy, generated database type, or runtime seed
+  was changed.
+- No storefront, checkout, admin, API, auth, role, deployment, or release-tag
+  behavior was changed.
+- No commercial cover, publisher mark, retailer image, marketplace image,
+  copied layout, or external image reference was used.
+- The generic placeholder remains the runtime catalog image until the full
+  portfolio, migration, and Supabase import tasks are accepted.
+
+### Residual Risks
+
+- The pilot covers 10 representative editions, not all 100 active editions.
+- Project-created illustrative covers are not publisher covers and must remain
+  described as CaseFlow-generated/internal assets unless later licensed or
+  public-domain source evidence is added.
+- Full duplicate/concept review, placeholder-zero checks, and runtime asset
+  integration remain gated by `V12-T07` and later import/storefront tasks.
+
+### Next Task
+
+`V12-T07 - Produce And Review The 100-Cover Portfolio`.
+
+---
+
+## SR-160 - V12-T07: Produce And Review The 100-Cover Portfolio
+
+- Date: 2026-07-17
+- Status: completed
+- Phase: CaseFlow Books v1.2 cover assets
+
+### Objective
+
+Expand the accepted `V12-T06` cover pipeline from a representative pilot into a
+complete, reviewable 100-cover portfolio for the canonical v1.2 edition
+manifest, while preserving the project-created media rights boundary.
+
+### Actual Result
+
+- Extended the cover manifest schema to support both pilot and full portfolio
+  outputs while preserving the T06 pilot contract.
+- Added `scripts/build-v12-cover-portfolio.ts` to generate 100 local SVG cover
+  assets from the canonical v1.2 manifest.
+- Added `scripts/verify-v12-cover-portfolio.ts` to verify exact edition
+  coverage, language balance, pair families, placeholder references, checksums,
+  file sizes, dimensions, external image references, protected mark patterns,
+  duplicate hashes, title/author rendering, source records, contact sheets, and
+  responsive preview behavior.
+- Produced 100 approved project-created SVG covers under
+  `public/images/books/v12-covers/`.
+- Produced all-cover, English-only, and Vietnamese-only contact sheets plus
+  representative desktop/mobile card/detail preview screenshots.
+- Documented the portfolio result, rights boundary, verification commands, and
+  remaining runtime integration risk in root/app mirrors.
+
+### Evidence
+
+- `caseflow-store/scripts/build-v12-cover-portfolio.ts`
+- `caseflow-store/scripts/verify-v12-cover-portfolio.ts`
+- `caseflow-store/src/data/books/v1.2-cover-portfolio-manifest.json`
+- `caseflow-store/public/images/books/v12-covers/`
+- `docs/v1.2-cover-portfolio.md`
+- `caseflow-store/docs/v1.2-cover-portfolio.md`
+- `caseflow-store/.agent/artifacts/v12-t07/cover-portfolio-check.json`
+- `caseflow-store/.agent/artifacts/v12-t07/cover-portfolio-check.md`
+- `caseflow-store/.agent/artifacts/v12-t07/cover-portfolio-contact-sheet-all.svg`
+- `caseflow-store/.agent/artifacts/v12-t07/cover-portfolio-contact-sheet-en.svg`
+- `caseflow-store/.agent/artifacts/v12-t07/cover-portfolio-contact-sheet-vi.svg`
+- `caseflow-store/.agent/artifacts/v12-t07/cover-portfolio-contact-sheet-all.png`
+- `caseflow-store/.agent/artifacts/v12-t07/cover-portfolio-preview-desktop.png`
+- `caseflow-store/.agent/artifacts/v12-t07/cover-portfolio-preview-mobile.png`
+
+### Verification
+
+- `npx tsx scripts/build-v12-cover-portfolio.ts`: generated 100 assets, 50 work
+  families, 50 concept keys, and max SVG size 3,077 bytes.
+- `npx tsx scripts/verify-v12-cover-portfolio.ts`: passed with 100 assets,
+  50 EN/50 VI, 50 pairs, 50 art families, 0 duplicate hashes, 0 placeholder
+  references, approved source records, and desktop/mobile preview screenshots.
+- `npx tsx scripts/verify-v12-cover-pipeline.ts`: T06 pilot regression passed.
+- Contact sheet visual review passed for all 100 covers. The portfolio is
+  intentionally systematic, but no obvious blank, clipped, wrong-language, or
+  duplicate-hash asset was accepted.
+- Representative desktop/mobile preview screenshots passed visual review with
+  no blank images or horizontal overflow.
+- `npx tsc --noEmit`: passed.
+- `npm run lint`: passed.
+- `npm run build`: passed and generated 41 routes.
+
+### Guardrails Preserved
+
+- No Supabase schema, row, RLS policy, generated database type, or runtime seed
+  was changed.
+- No storefront, checkout, admin, API, auth, role, deployment, or release-tag
+  behavior was changed.
+- No commercial cover, publisher mark, retailer image, marketplace image,
+  copied layout, external image reference, or generated-image reference was
+  used.
+- The portfolio remains an import input; the v1.1 runtime placeholder is not
+  replaced until the later migration/import and storefront tasks pass.
+
+### Residual Risks
+
+- These are CaseFlow illustrative covers, not licensed publisher covers.
+- The visual system is intentionally templated for consistency and rights
+  safety; it is credible for a portfolio bookstore but not equivalent to a
+  manually art-directed publishing catalog.
+- Runtime placeholder-zero proof is still blocked until `V12-T10`/`V12-T11`
+  import the catalog and later storefront tasks render the accepted assets.
+
+### Next Task
+
+`V12-T08 - Complete Bilingual Metadata And Editorial Copy`.
+
+---
+
+## SR-161 - V12-T08: Complete Bilingual Metadata And Editorial Copy
+
+- Date: 2026-07-17
+- Status: completed
+- Phase: CaseFlow Books v1.2 editorial metadata
+
+### Objective
+
+Create display-safe bilingual metadata for all 100 canonical editions by joining
+the accepted catalog manifest and 100-cover portfolio without copying
+commercial descriptions or rendering unknown optional facts as fake values.
+
+### Actual Result
+
+- Added editorial metadata TypeScript contracts and Zod validation.
+- Added `scripts/build-v12-editorial-metadata.ts` to generate a public
+  metadata manifest from the canonical catalog and cover portfolio.
+- Added `scripts/verify-v12-editorial-metadata.ts` to check exact coverage,
+  bilingual completeness, Vietnamese copy diacritics where meaningful,
+  prohibited public-copy phrases, duplicate copy outside paired editions,
+  internal pair consistency, content-quality release readiness, and graceful
+  optional-fact omissions.
+- Generated `src/data/books/v1.2-editorial-metadata-manifest.json` with 100
+  edition records, bilingual summaries, reason-to-read notes, cover alt text,
+  334 display-safe optional facts, omitted optional fact keys, and quality
+  evidence.
+- Documented the editorial metadata boundary and verification commands in
+  root/app mirrors.
+
+### Evidence
+
+- `caseflow-store/src/types/editorial-metadata.ts`
+- `caseflow-store/src/lib/validation/editorial-metadata.ts`
+- `caseflow-store/scripts/build-v12-editorial-metadata.ts`
+- `caseflow-store/scripts/verify-v12-editorial-metadata.ts`
+- `caseflow-store/src/data/books/v1.2-editorial-metadata-manifest.json`
+- `docs/v1.2-editorial-metadata.md`
+- `caseflow-store/docs/v1.2-editorial-metadata.md`
+- `caseflow-store/.agent/artifacts/v12-t08/editorial-metadata-check.json`
+- `caseflow-store/.agent/artifacts/v12-t08/editorial-metadata-check.md`
+
+### Verification
+
+- `npx tsx scripts/build-v12-editorial-metadata.ts`: generated 100 metadata
+  records and reported blocking content-quality release readiness.
+- `npx tsx scripts/verify-v12-editorial-metadata.ts`: passed with 100
+  editions, 334 display facts, 100 release-ready content assessments, and 0
+  prohibited public-copy findings.
+- The verifier initially over-required Vietnamese diacritics in titles such as
+  `Jane Eyre` and `Oliver Twist`; the rule was corrected to require diacritics
+  in Vietnamese summaries, reason copy, and alt text while allowing proper
+  noun titles to remain unchanged.
+- `npx tsc --noEmit`: passed.
+- `npm run lint`: passed.
+- `npm run build`: passed and generated 41 routes.
+
+### Guardrails Preserved
+
+- No Supabase schema, row, RLS policy, generated database type, or runtime seed
+  was changed.
+- No storefront, checkout, admin, API, auth, role, deployment, or release-tag
+  behavior was changed.
+- No publisher blurb, retailer copy, customer review, protected excerpt,
+  fabricated rating, sold count, bestseller claim, `TBC`, `demo`,
+  `placeholder`, `seed`, or `debug` public copy was introduced.
+- Unknown optional facts are omitted in the editorial manifest rather than
+  shown as fake values.
+
+### Residual Risks
+
+- Editorial metadata is import-ready but not yet the runtime catalog source.
+- Merchandising shelf rules and storage remain undefined until `V12-T09`.
+- Supabase import, storefront rendering, assistant/search integration, and
+  production proof remain gated by later roadmap tasks.
+
+### Next Task
+
+`V12-T09 - Define Merchandising Rules And Minimal Storage`.
+
+---
+
+## SR-162 - V12-T09: Define Merchandising Rules And Minimal Storage
+
+- Date: 2026-07-17
+- Status: completed
+- Phase: CaseFlow Books v1.2 merchandising data and migration
+
+### Objective
+
+Freeze truthful merchandising shelf rules and the minimum storage contract
+needed for v1.2 before drafting the reversible catalog migration.
+
+### Actual Result
+
+- Added merchandising TypeScript contracts for shelf types, source kinds,
+  inclusion rules, manual slots, fallback behavior, order-derived rules,
+  mutation actors, and resolved shelf output.
+- Added Zod validation for localized labels, date windows, manual ordering,
+  duplicate positions, missing fallback targets, order-derived guardrails, and
+  required `merchandising:manage` permission.
+- Added a pure shelf resolver that deterministically resolves manual,
+  catalog-filter, promotion, inventory, paired-edition, and inactive
+  order-derived shelves with stable fallbacks.
+- Added deterministic build and verification scripts for the v1.2 merchandising
+  manifest.
+- Generated `src/data/books/v1.2-merchandising-rules-manifest.json` with 9
+  shelves, 8 active shelves, and 1 inactive order-derived shelf.
+- Documented the minimal additive storage contract for
+  `book_merchandising_shelves` and `book_merchandising_shelf_items` without
+  applying a database migration in this task.
+
+### Evidence
+
+- `caseflow-store/src/types/merchandising.ts`
+- `caseflow-store/src/lib/validation/merchandising.ts`
+- `caseflow-store/src/lib/merchandising/shelves.ts`
+- `caseflow-store/scripts/build-v12-merchandising-rules.ts`
+- `caseflow-store/scripts/verify-v12-merchandising-rules.ts`
+- `caseflow-store/src/data/books/v1.2-merchandising-rules-manifest.json`
+- `docs/v1.2-merchandising-rules-storage.md`
+- `caseflow-store/docs/v1.2-merchandising-rules-storage.md`
+- `caseflow-store/.agent/artifacts/v12-t09/merchandising-rules-check.json`
+- `caseflow-store/.agent/artifacts/v12-t09/merchandising-rules-check.md`
+
+### Verification
+
+- `npx tsx scripts/verify-v12-merchandising-rules.ts`: passed with 9 shelves,
+  8 active shelves, 1 order-derived shelf, valid references, negative contract
+  cases, permission checks, deterministic resolution, and storage-contract
+  evidence.
+- `npx tsc --noEmit`: passed.
+- `npm run lint`: initially reported 2 unused-import warnings; removed the
+  stale imports and reran successfully with no output.
+- `npm run build`: passed and generated 41 routes.
+- Root/app mirrors for docs and `.agent` files match.
+- `git diff --check`: passed.
+
+### Guardrails Preserved
+
+- No Supabase schema, row, RLS policy, generated database type, production
+  data, runtime API, checkout, auth, role, or deployment behavior was changed.
+- Sales-derived labels remain disabled unless backed by a first-party order
+  query, time window, and minimum-order rule.
+- Editorial shelves are distinguishable from order-derived shelves by
+  `sourceKind`.
+- Admin/staff merchandising changes require a server-checkable
+  `merchandising:manage` permission; UI navigation is not treated as an
+  authorization boundary.
+
+### Residual Risks
+
+- The storage contract is documented and verified but not yet implemented as
+  SQL; `V12-T10` must draft the reversible migration and rollback plan.
+- The runtime storefront still uses v1.1 data until `V12-T10`/`V12-T11` import
+  and verify the approved catalog, cover, editorial, and merchandising data.
+- Order-derived merchandising remains intentionally inactive until real
+  first-party order evidence exists.
+
+### Next Task
+
+`V12-T10 - Build A Reversible v1.2 Catalog Migration`.
+
+---
+
+## SR-163 - V12-T10: Build A Reversible v1.2 Catalog Migration
+
+- Date: 2026-07-17
+- Status: completed
+- Phase: CaseFlow Books v1.2 merchandising data and migration
+
+### Objective
+
+Prepare a reversible, audited v1.2 catalog migration plan before any Supabase
+production data write.
+
+### Actual Result
+
+- Added additive migration SQL for v1.2 edition metadata, catalog provenance,
+  content-quality checks, catalog compatibility, merchandising shelves, and
+  merchandising shelf items.
+- Added deterministic migration planner and verifier scripts.
+- Generated a v1.2 manifest checksum snapshot, 100-cover asset manifest,
+  dry-run migration plan, count-only live Supabase pre-migration report,
+  SQL count template, and migration verification report.
+- Added rollback documentation and private backup ignore rules.
+- Dry-run result preserves 49 existing works and 98 existing editions, inserts
+  1 work and 2 editions for `The Old Man and the Sea`, deactivates 1 work and
+  2 editions for `The Elements of Style`, and plans zero deletes.
+- Corrected migration-source hygiene before import: `893...` retailer/product
+  codes are no longer stored/displayed as ISBN-13, and malformed publisher
+  display values such as `vh` were replaced or normalized.
+
+### Evidence
+
+- `caseflow-store/supabase/migrations/0008_v12_catalog_merchandising.sql`
+- `caseflow-store/scripts/plan-v12-catalog-migration.ts`
+- `caseflow-store/scripts/verify-v12-catalog-migration-plan.ts`
+- `docs/v1.2-catalog-migration-rollback-plan.md`
+- `caseflow-store/docs/v1.2-catalog-migration-rollback-plan.md`
+- `caseflow-store/.agent/artifacts/v12-t10/v12-catalog-migration-plan.json`
+- `caseflow-store/.agent/artifacts/v12-t10/v12-catalog-migration-check.json`
+- `caseflow-store/.agent/artifacts/v12-t10/v12-migration-input-snapshot.json`
+- `caseflow-store/.agent/artifacts/v12-t10/v12-asset-manifest.json`
+- `caseflow-store/.agent/artifacts/v12-t10/pre-migration-counts.sql`
+- `caseflow-store/.agent/artifacts/v12-t10/pre-migration-counts-live.json`
+
+### Verification
+
+- `npx tsx scripts/build-v12-canonical-manifest.ts`: regenerated the canonical
+  manifest after source hygiene corrections.
+- `npx tsx scripts/verify-v12-canonical-manifest.ts`: passed with 50 works,
+  100 editions, 50 English editions, 50 Vietnamese editions, 72 valid ISBN-13
+  values, 100 source-reviewed editions, and 0 unsupported facts.
+- `npx tsx scripts/build-v12-editorial-metadata.ts`: regenerated 100
+  editorial metadata records.
+- `npx tsx scripts/verify-v12-editorial-metadata.ts`: passed with 100 editions,
+  334 display facts, 100 release-ready content assessments, and 0 prohibited
+  public-copy findings.
+- Supplemental data hygiene check: 0 invalid ISBN display values, 0 invalid
+  canonical ISBN-13 values, and 0 `vh`/malformed publisher display values.
+- `npx tsx scripts/build-v12-merchandising-rules.ts`: regenerated 9 shelves,
+  8 active shelves, and 1 order-derived shelf.
+- `npx tsx scripts/verify-v12-merchandising-rules.ts`: passed.
+- `npx tsx scripts/plan-v12-catalog-migration.ts --capture-live-counts`:
+  passed and captured count-only Supabase state without row export.
+- `npx tsx scripts/verify-v12-catalog-migration-plan.ts`: passed with
+  destructive SQL checks, expected ID plan, RLS/grant checks, backup ignore
+  verification, and live count evidence.
+- `npx tsc --noEmit`: passed.
+- `npm run lint`: initially found two unused imports in the planner; imports
+  were removed and lint then passed with no output.
+- `npm run build`: passed and generated 41 routes.
+- Root/app mirrors match.
+- `git diff --check`: passed.
+
+### Guardrails Preserved
+
+- No Supabase SQL or data write was applied in this task.
+- No production deploy, release tag, runtime API, checkout, auth, order,
+  profile, promotion, inventory, or phone catalog behavior was changed.
+- Private backup/export location is ignored by Git.
+- The migration SQL contains no `drop table`, `truncate`, row delete, dropped
+  column, or order/profile table alteration.
+- `V12-T11` remains the first production data-write task and requires explicit
+  user confirmation before applying SQL/upserts.
+
+### Residual Risks
+
+- The T10 plan does not replace a provider-level Supabase backup; `V12-T11`
+  still needs confirmed backup/export evidence before applying production SQL.
+- The accepted SQL and dry-run plan are not yet applied to Supabase.
+- Data upsert execution and post-migration RLS/API smoke remain gated by
+  `V12-T11`.
+- Publisher labels are source-derived and normalized only for obvious display
+  defects; future merchandising polish may still consolidate publisher
+  variants for operator usability.
+
+### Next Task
+
+`V12-T11 - Apply And Verify The v1.2 Catalog In Supabase`, pending explicit
+production data-write confirmation.
+
+---
+
+## SR-164 - V12-T11: Apply And Verify The v1.2 Catalog In Supabase
+
+- Date: 2026-07-18
+- Status: completed
+- Phase: CaseFlow Books v1.2 production data freeze
+
+### Objective
+
+Apply the approved v1.2 additive schema and deterministic catalog data to
+Supabase production after explicit user approval, while preserving rollback
+evidence and verifying public/RLS/API behavior.
+
+### Actual Result
+
+- Created a private production export before schema/data writes and a public
+  manifest containing only counts, path, byte size, SHA-256, and pass/fail
+  status.
+- Applied `0008_v12_catalog_merchandising.sql` to Supabase production through a
+  direct temporary `pg` SQL client after the Supabase CLI direct-query path
+  failed and `supabase db dump` required unavailable Docker.
+- Added scripts for pre-migration backup, deterministic v1.2 data apply, and
+  post-migration Supabase verification.
+- Applied the deterministic catalog upsert twice successfully to prove
+  idempotent row counts.
+- Updated the Supabase TypeScript snapshot for v1.2 edition columns and the
+  new provenance, content-quality, compatibility, and merchandising tables.
+- Supabase production now has 50 active works, 100 active editions, 50 English
+  editions, 50 Vietnamese editions, and 0 active primary placeholder cover
+  references.
+- Supabase production now has 100 v1.2 cover assets, 602 provenance records,
+  2,000 content-quality checks, 3 compatibility records, 9 merchandising
+  shelves, and 20 manual shelf items.
+- `The Elements of Style` work and its two editions are inactive; order,
+  profile, phone catalog, promotion, and inventory-adjustment counts are
+  preserved.
+
+### Evidence
+
+- `caseflow-store/scripts/backup-v12-pre-migration.ts`
+- `caseflow-store/scripts/apply-v12-catalog-data.ts`
+- `caseflow-store/scripts/verify-v12-supabase-import.ts`
+- `caseflow-store/src/types/supabase.ts`
+- `caseflow-store/.agent/artifacts/v12-t11/pre-migration-backup-manifest.json`
+- `caseflow-store/.agent/artifacts/v12-t11/schema-apply.json`
+- `caseflow-store/.agent/artifacts/v12-t11/catalog-upsert-apply.json`
+- `caseflow-store/.agent/artifacts/v12-t11/post-migration-supabase-check.json`
+- `caseflow-store/.agent/artifacts/v12-t11/post-migration-db-inspection.json`
+- `caseflow-store/.agent/artifacts/v12-t11/local-api-smoke.json`
+
+### Verification
+
+- `npx tsx scripts/verify-v12-catalog-migration-plan.ts`: passed.
+- `npx tsx scripts/backup-v12-pre-migration.ts`: passed with ignored private
+  backup and public manifest only.
+- Direct `pg` SQL connection smoke: passed without exposing the connection
+  string.
+- Direct `pg` schema apply: passed and confirmed the 5 v1.2 tables exist.
+- `npx tsx scripts/apply-v12-catalog-data.ts --apply`: passed.
+- Idempotent rerun of `npx tsx scripts/apply-v12-catalog-data.ts --apply`:
+  passed with unchanged active catalog counts.
+- `npx tsx scripts/verify-v12-supabase-import.ts`: passed with active catalog,
+  retired Elements, cover, provenance, quality, merchandising, relationship,
+  pair, hygiene, unchanged-table, anonymous RLS, and internal-table boundary
+  checks.
+- SQL DB inspection captured column, constraint, index, RLS, policy, and grant
+  reports.
+- `npx tsx scripts/verify-book-repository.ts`: passed and returned v1.2 cover
+  paths through the repository.
+- Local API smoke passed: public catalog/detail returned 200 with v1.2 covers,
+  retired Elements detail returned 404, and unauthenticated admin dashboard
+  returned 401.
+- `npx tsc --noEmit`: passed after updating the DB type snapshot and verifier
+  fixture rows.
+
+### Guardrails Preserved
+
+- No customer order, profile, phone product, promotion, inventory adjustment,
+  auth, payment, checkout, deployment, or release-tag behavior was changed.
+- No production connection string, service key, or private backup row content
+  was printed in logs or committed.
+- Rollback backup remains in the ignored private backup directory.
+- The migration remains additive; no table drop, truncate, row delete, order
+  table alteration, profile table alteration, or release retag was performed.
+
+### Residual Risks
+
+- The UI is still the v1.1 layout using newly imported data; homepage,
+  catalog-card, detail, and admin merchandising polish starts at `V12-T12`.
+- The private export is not a provider-managed Supabase PITR backup; it is a
+  project-level row export sufficient for the accepted V12-T10 rollback plan.
+- Publisher labels remain source-derived and may need operator-friendly
+  grouping in later merchandising/admin tasks without changing sourced facts.
+
+### Next Task
+
+`V12-T12 - Upgrade Homepage Merchandising`.
+
+## SR-165 - V12-T12: Upgrade Homepage Merchandising
+
+- Date: 2026-07-18
+- Status: completed
+- Phase: CaseFlow Books v1.2 storefront merchandising implementation
+
+### Objective
+
+Upgrade the CaseFlow Books homepage so it uses the approved v1.2 production
+merchandising shelves, presents real book covers and bilingual edition choices
+clearly, and verifies the customer entry flows without adding unsupported
+marketplace claims.
+
+### Actual Result
+
+- Added a Supabase merchandising repository that reads public active shelves
+  and shelf items, validates them with the existing v1.2 Zod contracts, and
+  resolves homepage records from the production catalog.
+- Updated the homepage to use `editor-picks`, `weekend-starter-set`,
+  `vietnamese-editions`, `english-editions`, `promotion-ready`, and
+  `paired-edition-comparison` shelves instead of hard-coded storefront picks.
+- Reduced the hero to one clear browse action and made the first viewport show
+  CaseFlow Books, three above-the-fold book covers, catalog stats, and a hint of
+  the category band at 375px, tablet, and 1440px.
+- Added homepage rails for editor picks, weekend reading, bilingual pairs,
+  Vietnamese editions, English editions, promotion-ready editions, and trust
+  signals without fake ratings, sold counts, urgency, or delivery promises.
+- Fixed paired-edition resolution so the `paired-editions` rule returns
+  complete English/Vietnamese work pairs before applying shelf limits.
+- Marked hero cover images as eager to address the Next.js dev LCP warning for
+  above-the-fold book covers.
+- Added focused data and UI verification scripts for v1.2 homepage
+  merchandising, including screenshot capture after warming lazy-loaded cover
+  images.
+
+### Evidence
+
+- `caseflow-store/src/app/page.tsx`
+- `caseflow-store/src/lib/repositories/supabase-merchandising.ts`
+- `caseflow-store/src/lib/merchandising/shelves.ts`
+- `caseflow-store/scripts/verify-v12-homepage-merchandising.ts`
+- `caseflow-store/scripts/verify-v12-homepage-ui.ts`
+- `caseflow-store/.agent/artifacts/v12-t12/homepage-merchandising-check.json`
+- `caseflow-store/.agent/artifacts/v12-t12/homepage-ui-check.json`
+- `caseflow-store/.agent/artifacts/v12-t12/home-mobile-vi.png`
+- `caseflow-store/.agent/artifacts/v12-t12/home-tablet-en.png`
+- `caseflow-store/.agent/artifacts/v12-t12/home-desktop-en.png`
+
+### Verification
+
+- `npm exec tsx scripts/verify-v12-homepage-merchandising.ts`: passed with
+  100 catalog records, publicly readable active shelves, manual shelf order,
+  language shelf, promotion shelf, paired shelf, non-placeholder selected cover,
+  and no order-derived claim checks.
+- `npm exec tsx scripts/verify-v12-merchandising-rules.ts`: passed after the
+  paired-edition resolver fix.
+- `HOMEPAGE_VERIFY_BASE_URL=http://localhost:3000 npm exec tsx scripts/verify-v12-homepage-ui.ts`:
+  passed at 375px, tablet, and 1440px, including no overflow, first-viewport
+  merchandising, hero covers, language switch route preservation, browse,
+  detail entry, add-to-cart, and keyboard focus checks.
+- `npx tsc --noEmit`: passed.
+- `npm run lint`: passed.
+- `npm run build`: passed.
+- `git diff --check`: passed.
+
+### Guardrails Preserved
+
+- No production database writes were made in this task.
+- No checkout, payment, account, order, profile, promotion, inventory,
+  deployment, or release-tag behavior was changed.
+- No fake ratings, fake sold counts, fake urgency, marketplace claims, copied
+  publisher blurbs, or external commercial cover images were introduced.
+- Homepage rendering now depends on the approved merchandising shelf contract
+  rather than unreviewed UI-local sort assumptions.
+
+### Residual Risks
+
+- Catalog cards, product detail, assistant/SEO integration, and admin
+  merchandising operations still need v1.2 UI integration in `V12-T13` through
+  `V12-T16`.
+- The v1.2 cover assets are project-created and rights-safe, but still stylized
+  rather than real publisher covers; this is intentional until a licensed cover
+  ingestion policy exists.
+
+### Next Task
+
+`V12-T13 - Upgrade Catalog Cards And Discovery Results`.
+
+## SR-166 - V12-T13: Upgrade Catalog Cards And Discovery Results
+
+- Date: 2026-07-18
+- Status: completed
+- Phase: CaseFlow Books v1.2 storefront discovery implementation
+
+### Objective
+
+Upgrade the catalog cards and discovery results so the 100-edition catalog is
+easier to scan, keeps v1.1 URL-backed filter behavior, and distinguishes
+editorial merchandising, real offers, sort state, paired editions, and
+availability without unsupported marketplace claims.
+
+### Actual Result
+
+- Updated `/catalog` to read the same public Supabase merchandising shelves used
+  by the homepage and build per-edition merchandising labels for catalog cards.
+- Reworked catalog cards so mobile uses compact horizontal cards while tablet
+  and desktop keep cover-led cards with stable image dimensions.
+- Cards now expose cover, title, author, category, language, format, current
+  VND price, optional compare-at offer price, stock state, editorial shelf,
+  bilingual-pair, and detail entry without fake ratings, sold counts, or
+  urgency.
+- Renamed the old `featured=true` UI from promotion language to curation /
+  editor-pick language while preserving the existing URL parameter and backend
+  filter behavior.
+- Added result signal badges for sort, availability, visible offer labels, and
+  shelf-backed editorial labels.
+- Made default catalog sorting explicit: `/catalog` defaults to title A-Z,
+  while search without an explicit sort defaults to relevance.
+- Updated existing catalog page/filter verifiers for the new copy and added a
+  focused v1.2 catalog discovery verifier with warmed screenshots.
+
+### Evidence
+
+- `caseflow-store/src/app/catalog/page.tsx`
+- `caseflow-store/scripts/verify-catalog-page.ts`
+- `caseflow-store/scripts/verify-catalog-filters.ts`
+- `caseflow-store/scripts/verify-v12-catalog-discovery.ts`
+- `caseflow-store/.agent/artifacts/v12-t13/catalog-discovery-check.json`
+- `caseflow-store/.agent/artifacts/v12-t13/catalog-desktop-en.png`
+- `caseflow-store/.agent/artifacts/v12-t13/catalog-mobile-vi-page-2.png`
+- `caseflow-store/.agent/artifacts/v12-t13/catalog-filtered-desktop-en.png`
+- `caseflow-store/.agent/artifacts/v12-t13/catalog-long-title-mobile-en.png`
+
+### Verification
+
+- `CATALOG_VERIFY_BASE_URL=http://localhost:3000 npm exec tsx scripts/verify-catalog-page.ts`:
+  passed with 100 total editions, 24 rendered cards, 5 pages, result count,
+  card metadata, pagination, and no-overflow checks.
+- `CATALOG_FILTER_VERIFY_BASE_URL=http://localhost:3000 npm exec tsx scripts/verify-catalog-filters.ts`:
+  passed with URL state, API/UI count agreement, clear filters, invalid params,
+  price sort, author sort, and no-overflow checks.
+- `CATALOG_STATES_VERIFY_BASE_URL=http://localhost:3000 npm exec tsx scripts/verify-catalog-states.ts`:
+  passed for English desktop and Vietnamese mobile loading, empty, and error
+  states.
+- `CATALOG_V12_VERIFY_BASE_URL=http://localhost:3000 npm exec tsx scripts/verify-v12-catalog-discovery.ts`:
+  passed default discovery, mobile compactness, filter URL state, long-title,
+  low-stock, out-of-stock empty state, no unsupported text, offer/no-offer,
+  paired, editorial, and warmed image checks.
+- `npx tsc --noEmit`: passed.
+- `npm run lint`: passed.
+- `npm run build`: passed.
+- `git diff --check`: passed before documentation updates.
+
+### Guardrails Preserved
+
+- No production database writes were made.
+- No checkout, payment, account, order, profile, promotion mutation,
+  inventory mutation, deployment, or release-tag behavior was changed.
+- No ratings, reviews, sold counts, bestseller claims, delivery promises,
+  external commercial covers, or copied publisher copy were introduced.
+- Existing catalog URL parameters, pagination, invalid-param handling, and
+  public products API agreement remain verified.
+
+### Residual Risks
+
+- Production data currently has 8 low-stock editions and 0 out-of-stock active
+  editions; V12-T13 verifies low-stock cards and the out-of-stock empty state
+  rather than fabricating unavailable products.
+- Product detail and edition comparison still need the v1.2 presentation work
+  in `V12-T14`.
+
+### Next Task
+
+`V12-T14 - Upgrade Book Detail And Edition Comparison`.
+
+## SR-167 - V12-T14: Upgrade Book Detail And Edition Comparison
+
+- Date: 2026-07-18
+- Status: completed
+- Phase: CaseFlow Books v1.2 storefront detail implementation
+
+### Objective
+
+Upgrade the book detail page so the v1.2 100-edition catalog has credible
+edition identity, English/Vietnamese switching, verified bibliographic facts,
+buying confidence, and preserved cart/SEO behavior without adding unsupported
+reviews, samples, marketplace claims, or production data writes.
+
+### Actual Result
+
+- Extended the public book domain/API mapping to expose v1.2 `pairId`,
+  `pairedEditionId`, `reasonToRead`, `displayFacts`,
+  `omittedOptionalFactKeys`, `sourceEditionKey`, and `sourceReviewStatus`.
+- Reworked `/products/[slug]` around cover, title, author, VND price, stock,
+  compact add-to-cart controls, and edition comparison near the first-screen
+  purchase decision.
+- Replaced placeholder edition facts with source-reviewed `displayFacts`; pages
+  with no display-safe optional facts now omit those facts instead of showing
+  `TBC`, `Not specified`, `null`, or `undefined`.
+- Added bilingual reason-to-read, work context, more-by-author and related-book
+  sections while keeping recommendation labels deterministic and non-AI.
+- Preserved JSON-LD/canonical behavior, local-cart boundaries, server-owned
+  checkout validation, not-found handling, and shipping/payment/return
+  confidence copy.
+- Added a focused V12 detail verifier with desktop/mobile screenshots for a
+  paired offer-backed edition and a missing-facts edition.
+
+### Evidence
+
+- `caseflow-store/src/app/products/[slug]/page.tsx`
+- `caseflow-store/src/features/books/book-edition-purchase-controls.tsx`
+- `caseflow-store/src/types/domain.ts`
+- `caseflow-store/src/lib/validation/domain.ts`
+- `caseflow-store/src/lib/supabase/book-mappers.ts`
+- `caseflow-store/src/lib/api/book-catalog.ts`
+- `caseflow-store/scripts/verify-book-detail-page.ts`
+- `caseflow-store/scripts/verify-seo-metadata.ts`
+- `caseflow-store/scripts/verify-v12-book-detail-edition-comparison.ts`
+- `caseflow-store/.agent/artifacts/v12-t14/book-detail-edition-comparison-check.json`
+- `caseflow-store/.agent/artifacts/v12-t14/detail-desktop-en.png`
+- `caseflow-store/.agent/artifacts/v12-t14/detail-mobile-vi.png`
+- `caseflow-store/.agent/artifacts/v12-t14/detail-missing-facts-mobile-vi.png`
+
+### Verification
+
+- `V12_BOOK_DETAIL_VERIFY_BASE_URL=http://localhost:3000 npm exec tsx scripts/verify-v12-book-detail-edition-comparison.ts`:
+  passed first-screen hierarchy, edition comparison, sourced facts, missing-fact
+  omission, cart targeting, no-overflow, structured data, unsupported-copy, and
+  bilingual screenshot checks.
+- `BOOK_DETAIL_VERIFY_BASE_URL=http://localhost:3000 npm exec tsx scripts/verify-book-detail-page.ts`:
+  passed detail/API/not-found/cart-entry checks.
+- `BOOK_CONFIDENCE_VERIFY_BASE_URL=http://localhost:3000 npm exec tsx scripts/verify-book-detail-confidence.ts`:
+  passed confidence, old-accessory-copy, no-overflow, and recommendation checks.
+- `BOOK_CART_VERIFY_BASE_URL=http://localhost:3000 npm exec tsx scripts/verify-book-cart.ts`:
+  passed local-cart and server cart validation checks.
+- `SEO_EXPECTED_ORIGIN=http://localhost:3000 SEO_METADATA_BASE_URL=http://localhost:3000 npm exec tsx scripts/verify-seo-metadata.ts`:
+  passed local canonical/robots/sitemap/JSON-LD metadata checks; production
+  verifier default remains `https://caseflow-store.vercel.app`.
+- `npx tsc --noEmit`: passed.
+- `npm run lint`: passed.
+- `npm run build`: passed.
+- `git diff --check`: passed before documentation updates.
+
+### Guardrails Preserved
+
+- No production database writes, schema migration, checkout/payment/profile/
+  order/admin mutation, deployment, or release-tag change was made.
+- No external commercial covers, copied publisher descriptions, copyrighted
+  samples, fake ratings, fake reviews, sold counts, bestseller claims, urgency,
+  or delivery-speed promises were introduced.
+- VND remains the authoritative price and cart/checkout validation still reloads
+  server-side edition data.
+
+### Residual Risks
+
+- Active production data still has no out-of-stock active editions; V12-T14
+  verifies missing display facts and available/low-stock purchase behavior
+  without fabricating unavailable catalog records.
+- The local dev screenshot includes the Next.js dev assistant bubble; production
+  build passed and will not use the dev overlay.
+
+### Next Task
+
+`V12-T15 - Add Admin Content Quality And Merchandising Operations`.
+
+## SR-168 - V12-T15: Add Admin Content Quality And Merchandising Operations
+
+- Date: 2026-07-18
+- Status: completed
+- Phase: CaseFlow Books v1.2 admin content operations implementation
+
+### Objective
+
+Add a practical admin/staff operations layer for v1.2 content quality and
+merchandising so CaseFlow Books can be reviewed and operated like a focused
+bookstore catalog, without exposing internal provenance notes or trusting
+browser-supplied role/source state.
+
+### Actual Result
+
+- Added `merchandising:manage` to runtime admin/staff permissions so the
+  accepted v1.2 merchandising mutation permission is enforced by server auth.
+- Enriched admin catalog API/page records with server-derived content quality,
+  cover status, shelf membership, source review status, and v1.2 edition
+  fields.
+- Added admin catalog filters for completeness, source review, cover status,
+  language, active state, and shelf membership.
+- Added editable bilingual `reasonToRead` fields as allowed project-written
+  content fixes through existing validated book edition APIs.
+- Added an admin-only source guard: source/provenance fields are rejected for
+  staff, and admin attempts to set `sourceReviewStatus: "approved"` require a
+  source edition key, approved display-fact provenance, and verified
+  `source-review`, `edition-facts-consistent`, and `rights-complete` checks.
+- Added protected `/api/admin/merchandising/shelves` for approved shelf
+  active-state and sort-order operations, with Zod validation and
+  admin/staff permission checks.
+- Added a dense responsive merchandising operations panel with explicit
+  success, error, loading, warning, and empty states.
+- Fixed mobile overflow from native select intrinsic width by constraining
+  select/textarea controls with `w-full` and `min-w-0`.
+
+### Evidence
+
+- `caseflow-store/src/features/admin/admin-catalog-page.tsx`
+- `caseflow-store/src/app/admin/catalog/page.tsx`
+- `caseflow-store/src/app/api/admin/books/editions/route.ts`
+- `caseflow-store/src/app/api/admin/books/editions/[id]/route.ts`
+- `caseflow-store/src/app/api/admin/merchandising/shelves/route.ts`
+- `caseflow-store/src/lib/api/admin-book-catalog.ts`
+- `caseflow-store/src/lib/api/admin-merchandising.ts`
+- `caseflow-store/src/lib/auth/admin.ts`
+- `caseflow-store/src/lib/repositories/supabase-books.ts`
+- `caseflow-store/src/lib/repositories/supabase-content-operations.ts`
+- `caseflow-store/src/lib/repositories/supabase-merchandising.ts`
+- `caseflow-store/src/lib/validation/books.ts`
+- `caseflow-store/src/lib/validation/merchandising.ts`
+- `caseflow-store/scripts/verify-v12-admin-content-operations.ts`
+- `caseflow-store/.agent/artifacts/v12-t15/admin-content-operations-check.json`
+- `caseflow-store/.agent/artifacts/v12-t15/admin-content-operations-desktop-en.png`
+- `caseflow-store/.agent/artifacts/v12-t15/admin-content-operations-mobile-vi.png`
+
+### Verification
+
+- `npx tsx scripts/verify-v12-admin-content-operations.ts`: passed anonymous,
+  customer, staff, and admin API/page role checks; admin source approval guard;
+  staff source tamper rejection; invalid merchandising mutation rejection;
+  catalog filters; no internal reviewer-note leakage; repository state checks;
+  desktop and mobile no-overflow screenshots.
+- `npx tsc --noEmit`: passed.
+- `npm run lint`: passed.
+- `npm run build`: passed.
+- Temporary verifier auth/profile users were cleaned up; a follow-up prefix scan
+  reported `remainingTemporaryProfiles: 0`.
+
+### Guardrails Preserved
+
+- No schema migration, release tag, deployment, checkout/payment/profile/order/
+  promotion/inventory flow, public products API, or customer storefront buying
+  behavior was changed.
+- Public/customer access to the new merchandising admin API is denied.
+- Internal provenance reviewer notes and content-quality notes are not exposed
+  by the new admin API serializers.
+- No fake ratings, reviews, sold counts, bestseller claims, delivery promises,
+  external commercial covers, or copied publisher descriptions were introduced.
+- Production catalog/merchandising data was not intentionally changed; verifier
+  mutation checks used denied/invalid/tampered requests and temporary users.
+
+### Residual Risks
+
+- The merchandising operation scope is deliberately limited to approved shelf
+  active state and sort order; full rule/manual-slot editing remains a separate
+  higher-risk admin feature and should not be added without a new acceptance
+  gate.
+- Admin source approval is now guarded for edition-level source fields, but
+  broader provenance record editing is still not exposed as a UI workflow.
+
+### Next Task
+
+`V12-T16 - Integrate Catalog Content Across Search, Assistant, SEO, And Docs`.
+
+## SR-169 - V12-T16: Integrate Catalog Content Across Search, Assistant, SEO, And Docs
+
+- Date: 2026-07-18
+- Status: completed
+- Phase: CaseFlow Books v1.2 integration and release preparation
+
+### Objective
+
+Integrate the accepted v1.2 catalog content across remaining public and
+operational surfaces so search, assistant, SEO, cart, checkout, historical
+orders, admin exports, retired links, and documentation no longer depend on
+stale placeholder/demo assumptions.
+
+### Actual Result
+
+- Removed internal `sourceEditionKey` and `sourceReviewStatus` from public
+  catalog/detail API serialization while preserving protected admin
+  source-review operations.
+- Removed public source-review status UI from product detail; verified display
+  facts remain customer-facing.
+- Expanded catalog search with v1.2 reason-to-read copy, display facts, ISBN,
+  publisher, translator, language, format, and accent-insensitive token
+  matching for natural queries.
+- Added valid local v1.2 cover images to product social metadata and JSON-LD
+  without exposing internal source-review fields.
+- Updated cart validation, customer order snapshots, and admin CSV export paths
+  to consume server-owned v1.2 book snapshot fields; CSV exports now include
+  item language, format, and item summary while excluding customer PII and
+  internal notes.
+- Verified retired v1.1 public slugs recover safely to catalog and historical
+  legacy order snapshots still map through fallback fields.
+- Updated architecture, cover portfolio, known limitations, roadmap, and agent
+  context docs to describe the implemented post-`V12-T16` runtime honestly.
+
+### Evidence
+
+- `caseflow-store/src/lib/api/book-catalog.ts`
+- `caseflow-store/src/lib/repositories/supabase-books.ts`
+- `caseflow-store/src/lib/repositories/supabase-order-exports.ts`
+- `caseflow-store/src/lib/seo/metadata.ts`
+- `caseflow-store/src/app/products/[slug]/page.tsx`
+- `caseflow-store/src/app/products/[slug]/not-found.tsx`
+- `caseflow-store/scripts/verify-admin-orders-csv-export.ts`
+- `caseflow-store/scripts/verify-v12-book-detail-edition-comparison.ts`
+- `caseflow-store/scripts/verify-v12-catalog-runtime-integration.ts`
+- `caseflow-store/.agent/artifacts/v12-t16/catalog-runtime-integration-check.json`
+- `caseflow-store/.agent/artifacts/v12-t16/assistant-result-desktop-en.png`
+- `caseflow-store/.agent/artifacts/v12-t16/checkout-gate-mobile-en.png`
+- `caseflow-store/.agent/artifacts/v12-t16/seo-detail-desktop-en.png`
+
+### Verification
+
+- `V12_CATALOG_INTEGRATION_BASE_URL=http://127.0.0.1:3001 npx tsx scripts/verify-v12-catalog-runtime-integration.ts`:
+  passed public catalog, assistant, SEO, cart, checkout gate, order/export,
+  legacy-link, and docs checks on a fresh production build.
+- `npm run lint`: passed.
+- `npx tsc --noEmit --pretty false`: passed.
+- `npm run build`: passed.
+- `git diff --check`: passed before the final tracker update.
+- Temporary Supabase auth/profile/order rows created by the verifier were
+  cleaned up; the production-style server on port `3001` was stopped after
+  verification.
+
+### Guardrails Preserved
+
+- No schema migration, release tag, deployment, payment-provider integration,
+  real payment credential collection, external commercial covers, copied
+  publisher blurbs, ratings, reviews, sold counts, bestseller claims, or
+  delivery-speed promises were introduced.
+- Public storefront and public API serializers do not expose internal source
+  keys or source-review status.
+- VND remains authoritative, and cart/order validation still reloads trusted
+  server-side edition data instead of trusting browser totals.
+
+### Residual Risks
+
+- `V12-T16` is a focused integration gate, not the full release gate; visual,
+  accessibility, performance, dependency, secret, cleanup, and schema-drift
+  checks remain consolidated under `V12-T17`.
+- CSV export enrichment is intentionally conservative; full analytics-grade
+  merchandising reports remain out of scope until a later accepted task.
+
+### Next Task
+
+`V12-T17 - Run The Full v1.2 Local Quality Gate`.
+
+## SR-170 - V12-T17: Run The Full v1.2 Local Quality Gate
+
+- Date: 2026-07-18
+- Status: completed
+- Phase: CaseFlow Books v1.2 release-candidate local quality gate
+
+### Objective
+
+Run the complete local release-candidate gate before any Vercel deploy or
+`v1.2.0` tag, covering build quality, Playwright regression, v1.2 catalog
+content/asset/runtime reports, mobile performance baseline, dependency and
+secret checks, cleanup, schema/rollback evidence, and documentation state.
+
+### Actual Result
+
+- Rebuilt the production app successfully with Next.js `16.2.10`; the build
+  generated 42 App Router routes plus proxy.
+- Served the release candidate via `next start` on
+  `http://127.0.0.1:3001` and ran the full Playwright suite against that
+  production-style server.
+- Stabilized E2E reliability without changing user-facing product behavior:
+  Supabase auth helpers now seed session cookies directly, click/fill helpers
+  avoid Playwright action-layer timeouts, and fragile full-page screenshots
+  were narrowed to viewport artifact captures where assertions already prove
+  the underlying flow.
+- Added `scripts/verify-v12-local-quality-gate.ts`, an aggregate verifier for
+  static V12 reports, mobile performance medians, dependency audit status,
+  secret scanning, and release-candidate artifact output.
+- Redacted an old credential-shaped Supabase DB URL example in the D23 retry
+  artifact so the release secret scan has zero findings.
+- Confirmed aggregate quality gate `ok: true`: static reports pass,
+  high/critical dependency audit is clean, the known moderate Next/PostCSS risk
+  is documented, mobile performance baseline passes, and secret scan checked
+  595 text files with 0 findings.
+
+### Evidence
+
+- `caseflow-store/scripts/verify-v12-local-quality-gate.ts`
+- `caseflow-store/.agent/artifacts/v12-t17/local-quality-gate-check.json`
+- `caseflow-store/.agent/artifacts/d40-t01/release-cleanup-check.json`
+- `caseflow-store/tests/e2e/helpers/supabase.ts`
+- `caseflow-store/tests/e2e/admin-access.spec.ts`
+- `caseflow-store/tests/e2e/admin-workflow.spec.ts`
+- `caseflow-store/tests/e2e/checkout-validation.spec.ts`
+- `caseflow-store/tests/e2e/checkout.spec.ts`
+- `caseflow-store/tests/e2e/release-edge-cases.spec.ts`
+- `caseflow-store/tests/e2e/storefront-flow.spec.ts`
+- `caseflow-store/tests/e2e/ui-states.spec.ts`
+
+### Verification
+
+- `npx tsc --noEmit --pretty false`: passed.
+- `npm run lint`: passed.
+- `npm run build`: passed with 42 App Router routes plus proxy.
+- `PLAYWRIGHT_BASE_URL=http://127.0.0.1:3001 node ./node_modules/@playwright/test/cli.js test --reporter=list --workers=1`:
+  passed `20/20`.
+- `PLAYWRIGHT_BASE_URL=http://127.0.0.1:3001 node scripts/verify-v12-local-quality-gate.ts`:
+  passed `ok: true`; home/catalog/detail mobile median load times were below
+  the accepted thresholds and total blocking time medians were `0`.
+- `npx tsx scripts/verify-release-cleanup.ts`: passed with
+  `totalMatches: 0`.
+- `git diff --check`: passed.
+
+### Guardrails Preserved
+
+- No deployment, release tag, production schema migration, payment-provider
+  integration, real payment credential collection, new storefront feature,
+  marketplace behavior, fake ratings/reviews/sold counts, copied publisher
+  blurbs, or external commercial cover images were introduced.
+- Temporary auth/profile/order rows created by verification were cleaned up.
+- VND remains authoritative; server-side cart/order validation remains the
+  trusted source for totals.
+
+### Residual Risks
+
+- Lighthouse CLI could not be used because `npm exec lighthouse@13.4.0`
+  did not complete package installation/version checks in this local
+  environment. The accepted fallback is the stricter Playwright mobile baseline
+  recorded in `v12-t17/local-quality-gate-check.json`.
+- `npm audit` still reports 2 moderate Next/PostCSS vulnerabilities. This is
+  documented as non-blocking for V12-T17 because high/critical counts are zero,
+  the installed Next version is already `16.2.10`, and the automatic audit fix
+  would force a breaking downgrade to `next@9.3.3`.
+- V12-T17 is local only; production deployment, production smoke, final release
+  docs, cleanup-after-deploy, and annotated tag creation are still V12-T18.
+
+### Next Task
+
+`V12-T18 - Deploy, Smoke Test, Document, And Tag v1.2.0`.
+
+## SR-171 - V12-T18: Deploy, Smoke Test, Document, And Tag v1.2.0
+
+- Date: 2026-07-18
+- Status: completed
+- Phase: CaseFlow Books v1.2 production release
+
+### Objective
+
+Deploy the accepted v1.2 release candidate to Vercel production, verify the
+production alias with public/user/admin smoke checks, refresh release evidence,
+confirm cleanup and release gates, then create the `v1.2.0` release commit and
+annotated tag.
+
+### Actual Result
+
+- Deployed production build to Vercel; deployment
+  `dpl_7Y2Qsf4VJRBuzaMGXZMi81Rq5pKQ` reached `READY` and was aliased to
+  `https://caseflow-store.vercel.app`.
+- Added `scripts/verify-v12-production-release.ts` to check public production
+  pages/APIs, canonical alias, robots, sitemap, language mode, cart/checkout
+  account boundary, customer boundary, admin boundary, assistant behavior,
+  catalog quality, and representative detail pages.
+- Production smoke passed with `ok: true`; catalog quality reported 100 active
+  editions, 100 cover responses, 50 English editions, 50 Vietnamese editions,
+  100 content metadata records, zero active primary placeholder covers, zero
+  broken cover responses, and zero public source-review leakage.
+- Ran the full Playwright suite against `https://caseflow-store.vercel.app`;
+  production Playwright passed `20/20`.
+- Refreshed release screenshots, README evidence, architecture notes, known
+  limitations, release-candidate notes, CV bullets, ADR index, and v1.2 release
+  audit docs.
+- Verified release cleanup after production checks with `totalMatches: 0`.
+- Created the release commit and annotated `v1.2.0` tag.
+
+### Evidence
+
+- `caseflow-store/scripts/verify-v12-production-release.ts`
+- `caseflow-store/.agent/artifacts/v12-t18/deployment.json`
+- `caseflow-store/.agent/artifacts/v12-t18/vercel-inspect.json`
+- `caseflow-store/.agent/artifacts/v12-t18/production-release-smoke.json`
+- `caseflow-store/.agent/artifacts/v12-t18/production-playwright-summary.json`
+- `caseflow-store/.agent/artifacts/v12-t18/npm-audit.json`
+- `caseflow-store/.agent/artifacts/v12-t18/secret-scan.json`
+- `caseflow-store/.agent/artifacts/d40-t01/release-cleanup-check.json`
+- `caseflow-store/docs/v1.2-release-audit.md`
+- `docs/v1.2-release-audit.md`
+- `caseflow-store/docs/screenshots/`
+
+### Verification
+
+- `npx tsc --noEmit --pretty false`: passed.
+- `npm run lint`: passed.
+- `npm run build`: passed with 42 App Router routes plus proxy.
+- `npx vercel --prod --yes`: passed; deployment reached `READY`.
+- `V12_PRODUCTION_BASE_URL=https://caseflow-store.vercel.app node scripts/verify-v12-production-release.ts`:
+  passed `ok: true`.
+- `PLAYWRIGHT_BASE_URL=https://caseflow-store.vercel.app node ./node_modules/@playwright/test/cli.js test --reporter=list --workers=1`:
+  passed `20/20`.
+- `npx tsx scripts/verify-release-cleanup.ts`: passed with
+  `totalMatches: 0`.
+- `npm audit --audit-level=high`: passed with no high or critical findings.
+- Release secret scan: passed with zero committed secret findings.
+- Stale v1.1 release-doc checks and `git diff --check`: passed.
+- `git tag --points-at HEAD`: includes `v1.2.0`.
+
+### Guardrails Preserved
+
+- No unapproved schema migration, real payment-provider integration, real
+  payment credential collection, marketplace behavior, fake ratings/reviews/
+  sold counts, copied publisher blurbs, external commercial cover images, or
+  licensed metadata/feed claim was introduced during release.
+- Server-side cart/order validation remains authoritative for totals.
+- Admin/staff/customer access boundaries are still enforced by server checks,
+  not just UI hiding.
+- Production secrets and private backup rows remain uncommitted.
+
+### Residual Risks
+
+- Payment flows remain simulated and do not process real COD/bank/wallet/card
+  payments.
+- Phone/email checkout readiness is profile-data based, not real SMS/OTP or
+  email-provider verification.
+- Shipping, VAT, FX, and international payment fees are estimates, not live
+  carrier/bank/tax integrations.
+- The known moderate Next/PostCSS dependency advisory remains documented as a
+  non-blocker because high/critical counts are zero and the automated force
+  fix would require a breaking downgrade.
+
+### Next Task
+
+No active task after `v1.2.0`; future changes should start from a new accepted
+task ID or ADR.

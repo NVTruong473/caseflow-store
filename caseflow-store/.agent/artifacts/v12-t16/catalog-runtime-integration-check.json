@@ -1,0 +1,284 @@
+{
+  "assistant": {
+    "hasForbiddenPublicFields": false,
+    "hasUnsupportedClaims": false,
+    "linkStatuses": [
+      {
+        "href": "/products/a-christmas-carol-english-paperback",
+        "status": 200
+      },
+      {
+        "href": "/products/a-christmas-carol-vietnamese-paperback",
+        "status": 200
+      }
+    ],
+    "resultLinksValid": true,
+    "resultVisible": true
+  },
+  "baseURL": "http://127.0.0.1:3001",
+  "cart": {
+    "coverUsesV12Asset": true,
+    "fakeClientFieldsIgnored": true,
+    "hasForbiddenPublicFields": false,
+    "serverSnapshotUsesTarget": true,
+    "status": 200
+  },
+  "catalog": {
+    "detailApiLinkValid": true,
+    "hasForbiddenPublicFields": false,
+    "hasV12Cover": true,
+    "publisherSearchFindsTarget": true,
+    "reasonProbe": "tieng giang sinh",
+    "reasonSearchFindsTarget": true,
+    "target": {
+      "id": "00000000-0000-4000-8000-000000003027",
+      "type": "book-edition",
+      "slug": "a-christmas-carol-english-paperback",
+      "title": "A Christmas Carol",
+      "edition": {
+        "id": "00000000-0000-4000-8000-000000003027",
+        "slug": "a-christmas-carol-english-paperback",
+        "displayTitle": "A Christmas Carol",
+        "localizedDisplayTitle": {
+          "vi": "Bài ca Giáng sinh",
+          "en": "A Christmas Carol"
+        },
+        "subtitle": null,
+        "language": "en",
+        "format": "paperback",
+        "isbn13": "9780141389479",
+        "isbn10": "0141389478",
+        "publicationYear": 2012,
+        "pageCount": null,
+        "dimensions": null,
+        "weightGrams": null,
+        "priceVnd": 143000,
+        "compareAtPriceVnd": null,
+        "stockQuantity": 11,
+        "lowStockThreshold": 10,
+        "inventoryStatus": "in-stock",
+        "summary": {
+          "vi": "Câu chuyện đạo đức cô đọng nơi ký ức và tưởng tượng thúc đẩy một người keo kiệt hướng tới rộng lượng và sửa sai.",
+          "en": "A compact moral tale where memory and imagination push a miser toward generosity and repair."
+        },
+        "tableOfContents": null,
+        "sampleExcerptPolicy": "No copyrighted excerpt is stored; use project-written preview guidance only.",
+        "pairId": "00000000-0000-4000-8000-000000006027",
+        "pairedEditionId": "00000000-0000-4000-8000-000000004027",
+        "reasonToRead": {
+          "vi": "Ấn bản tiếng Anh của Bài ca Giáng sinh, dành cho độc giả muốn đọc và đối chiếu tác phẩm ở cả hai ngôn ngữ trong danh mục.",
+          "en": "English edition of A Christmas Carol for readers comparing the work across both catalog languages."
+        },
+        "displayFacts": [
+          {
+            "key": "isbn",
+            "label": {
+              "vi": "ISBN",
+              "en": "ISBN"
+            },
+            "value": {
+              "vi": "9780141389479",
+              "en": "9780141389479"
+            },
+            "provenanceRecordId": "00000000-0000-4000-8000-000000011082"
+          },
+          {
+            "key": "publisher",
+            "label": {
+              "vi": "Nhà xuất bản",
+              "en": "Publisher"
+            },
+            "value": {
+              "vi": "Penguin English Library",
+              "en": "Penguin English Library"
+            },
+            "provenanceRecordId": "00000000-0000-4000-8000-000000011081"
+          },
+          {
+            "key": "publication-year",
+            "label": {
+              "vi": "Năm xuất bản",
+              "en": "Publication year"
+            },
+            "value": {
+              "vi": "2012",
+              "en": "2012"
+            },
+            "provenanceRecordId": "00000000-0000-4000-8000-000000011084"
+          }
+        ],
+        "omittedOptionalFactKeys": [
+          "translator",
+          "page-count",
+          "source-physical-format"
+        ],
+        "isFeatured": false,
+        "createdAt": "2026-07-16T00:00:00+00:00",
+        "updatedAt": "2026-07-17T21:02:08.622433+00:00"
+      },
+      "work": {
+        "id": "00000000-0000-4000-8000-000000002027",
+        "slug": "a-christmas-carol",
+        "title": "A Christmas Carol",
+        "originalTitle": null,
+        "localizedTitle": {
+          "vi": "Bài ca Giáng sinh",
+          "en": "A Christmas Carol"
+        },
+        "originalLanguage": "English",
+        "themes": [
+          "redemption",
+          "generosity",
+          "memory"
+        ],
+        "ageRating": null,
+        "publicationEra": "1843",
+        "canonicalSummary": {
+          "vi": "Câu chuyện đạo đức cô đọng nơi ký ức và tưởng tượng thúc đẩy một người keo kiệt hướng tới rộng lượng và sửa sai.",
+          "en": "A compact moral tale where memory and imagination push a miser toward generosity and repair."
+        }
+      },
+      "authors": [
+        {
+          "id": "00000000-0000-4000-8000-000000001003",
+          "slug": "charles-dickens",
+          "name": "Charles Dickens",
+          "country": "United Kingdom"
+        }
+      ],
+      "categories": [
+        {
+          "id": "00000000-0000-4000-8000-000000000101",
+          "type": "book-category",
+          "slug": "classic-literature",
+          "labels": {
+            "vi": "Van hoc kinh dien",
+            "en": "Classic literature"
+          },
+          "description": {
+            "vi": "Nhung tac pham lau ben, phu hop cho tu sach ca nhan va hoc thuat.",
+            "en": "Enduring works suited for personal libraries and study shelves."
+          },
+          "sortOrder": 1
+        },
+        {
+          "id": "00000000-0000-4000-8000-000000000100",
+          "type": "book-category",
+          "slug": "fiction",
+          "labels": {
+            "vi": "Van hoc",
+            "en": "Fiction"
+          },
+          "description": {
+            "vi": "Tieu thuyet va tac pham hu cau de doc theo chu de, tac gia va ngon ngu.",
+            "en": "Novels and fiction works browsed by theme, author, and language."
+          },
+          "sortOrder": 0
+        }
+      ],
+      "translators": [],
+      "publisher": {
+        "id": "5e5621f7-bf82-44b2-81ee-9ec438f5c36c",
+        "slug": "penguin-english-library",
+        "name": "Penguin English Library",
+        "country": null,
+        "website": null
+      },
+      "coverAsset": {
+        "id": "00000000-0000-4000-8000-000000009001",
+        "path": "/images/books/v12-covers/a-christmas-carol-english-paperback.svg",
+        "altText": {
+          "vi": "Bìa minh họa CaseFlow Books cho Bài ca Giáng sinh của Charles Dickens.",
+          "en": "CaseFlow Books illustrative cover for A Christmas Carol by Charles Dickens."
+        },
+        "source": "generated"
+      }
+    },
+    "total": 100
+  },
+  "checkoutGate": {
+    "cartStorageShape": [
+      "items",
+      "version"
+    ],
+    "cartStorageShapeOk": true,
+    "redirectedToAccount": true
+  },
+  "docs": {
+    "brokenMarkdownLinks": [],
+    "checkedFiles": [
+      "docs/architecture.md",
+      "docs/known-limitations.md",
+      "docs/v1.2-cover-portfolio.md",
+      "docs/v1.2-provenance-content-quality-contracts.md",
+      ".agent/project-context.md",
+      "../docs/architecture.md",
+      "../docs/known-limitations.md",
+      "../docs/v1.2-cover-portfolio.md",
+      "../docs/v1.2-provenance-content-quality-contracts.md",
+      "../.agent/project-context.md"
+    ],
+    "noBrokenMarkdownLinks": true,
+    "noStaleClaims": true,
+    "staleClaims": []
+  },
+  "generatedAt": "2026-07-18T08:53:55.397Z",
+  "legacyLinks": {
+    "compatibilityRows": 3,
+    "retiredSlugs": [
+      {
+        "hasCatalogRecoveryLink": true,
+        "legacySlug": "the-elements-of-style",
+        "status": 404
+      },
+      {
+        "hasCatalogRecoveryLink": true,
+        "legacySlug": "the-elements-of-style-english-paperback",
+        "status": 404
+      },
+      {
+        "hasCatalogRecoveryLink": true,
+        "legacySlug": "the-elements-of-style-vietnamese-paperback",
+        "status": 404
+      }
+    ]
+  },
+  "ok": true,
+  "orderAndExport": {
+    "cleanup": {
+      "ordersRemoved": 1,
+      "userDeleted": true
+    },
+    "csvHasBookSnapshot": true,
+    "csvHasLegacySnapshot": true,
+    "csvSensitiveFieldsExcluded": true,
+    "orderCode": "CF-V12T16-MRQ4R03P",
+    "orderHistoryHasBookSnapshot": true,
+    "orderHistoryHasLegacySnapshot": true
+  },
+  "pass": {
+    "assistant": true,
+    "cart": true,
+    "checkoutGate": true,
+    "docs": true,
+    "legacyLinks": true,
+    "orderAndExport": true,
+    "publicCatalog": true,
+    "seo": true
+  },
+  "seo": {
+    "hasForbiddenPublicFields": false,
+    "metadata": {
+      "canonical": "http://localhost:3000/products/a-christmas-carol-english-paperback",
+      "ogImage": "http://localhost:3000/images/books/v12-covers/a-christmas-carol-english-paperback.svg",
+      "twitterImage": "http://localhost:3000/images/books/v12-covers/a-christmas-carol-english-paperback.svg"
+    },
+    "ogImageUsesCover": true,
+    "productStatus": 200,
+    "sitemapIncludesTarget": true,
+    "sitemapProductCount": 100,
+    "structuredDataOfferUrlMatchesCanonical": true,
+    "structuredDataUsesCover": true,
+    "twitterImageUsesCover": true
+  }
+}

@@ -27,29 +27,24 @@ import {
   listSupabaseBookCategories,
   type SupabaseBookCatalogRecord,
 } from "@/lib/repositories/supabase-books";
+import {
+  getResolvedMerchandisingShelf,
+  listSupabaseMerchandisingShelves,
+  resolveSupabaseMerchandisingShelves,
+  type SupabaseResolvedMerchandisingShelf,
+} from "@/lib/repositories/supabase-merchandising";
 import type { BookCategory, BookFormat, InventoryStatus } from "@/types/domain";
 
 const HOME_LIMITS = {
   categoryCards: 8,
-  featuredCards: 4,
+  editorCards: 4,
+  englishCards: 4,
   heroCards: 3,
-  newArrivalCards: 4,
+  promotionCards: 4,
   translatedGroups: 3,
+  weekendCards: 4,
   vietnameseCards: 4,
 } as const;
-
-const TRANSLATED_WORK_ORDER = [
-  "a-tale-of-two-cities",
-  "pride-and-prejudice",
-  "the-art-of-war",
-] as const;
-
-const VIETNAMESE_RECOMMENDATION_ORDER = [
-  "pride-and-prejudice-vietnamese-special-edition",
-  "a-tale-of-two-cities-vietnamese-paperback",
-  "the-count-of-monte-cristo-vietnamese-paperback",
-  "the-art-of-war-vietnamese-paperback",
-] as const;
 
 const homeCopy = {
   en: {
@@ -64,17 +59,20 @@ const homeCopy = {
       "Readers can compare English originals and Vietnamese translations without losing work-level context, author, format, price, and stock state.",
     editionChoiceTitle: "English and Vietnamese editions",
     editions: "Editions",
-    exploreReadingPaths: "Compare editions",
     featuredDescription:
-      "A curated shelf of high-signal editions for readers who want a quick, dependable starting point.",
-    featuredTitle: "Featured books",
+      "A curated shelf selected from approved merchandising rules, not fake sales velocity or review data.",
+    featuredTitle: "Editor picks",
     heroDescription:
-      "Browse English originals and Vietnamese translations, compare format and stock, then open the exact edition you want to buy.",
-    heroTitle: "CaseFlow Books is now a practical bilingual bookstore.",
+      "A Vietnam-first bookstore for English originals and Vietnamese translations, with visible covers, stock, VND pricing, and account-gated checkout.",
+    heroTitle: "CaseFlow Books",
     inTheCatalog: "in catalog",
-    newArrivalsDescription:
-      "Freshly listed editions are kept compact so the homepage stays useful instead of becoming a 100-card catalog dump.",
-    newArrivalsTitle: "New arrivals",
+    englishEditionsTitle: "English editions",
+    languageShelvesDescription:
+      "Choose a reading language first, then open the exact edition with the right format, price, and stock state.",
+    languageShelvesTitle: "Read in English or Vietnamese",
+    noShelfItems: "This shelf is being refreshed.",
+    offerLabel: "Offer",
+    promotionTitle: "Promotion-ready",
     sectionLabel: "Bookstore homepage",
     shippingSignalsDescription:
       "Buying confidence comes from visible stock, VND source pricing, safe catalog content, and Vietnam-first delivery expectations.",
@@ -87,6 +85,7 @@ const homeCopy = {
       "Vietnamese editions are surfaced as a first-class shelf, not a secondary afterthought.",
     vietnameseTitle: "Vietnamese recommendations",
     viewFeatured: "Featured shelf",
+    weekendTitle: "Weekend starter set",
     trustSignals: [
       {
         stat: "VND",
@@ -110,7 +109,7 @@ const homeCopy = {
         stat: "Safe",
         title: "Content policy respected",
         description:
-          "The homepage uses internal summaries and safe placeholder cover assets.",
+          "The homepage uses internal summaries and project-created cover assets.",
       },
     ],
   },
@@ -126,17 +125,20 @@ const homeCopy = {
       "Người đọc có thể so sánh bản gốc tiếng Anh và bản dịch tiếng Việt mà vẫn thấy rõ tác phẩm, tác giả, định dạng, giá và tồn kho.",
     editionChoiceTitle: "Bản tiếng Anh và bản tiếng Việt",
     editions: "Ấn bản",
-    exploreReadingPaths: "So sánh ấn bản",
     featuredDescription:
-      "Kệ sách chọn lọc cho người đọc muốn bắt đầu nhanh với các ấn bản đáng chú ý.",
-    featuredTitle: "Sách nổi bật",
+      "Kệ sách được chọn từ rule merchandising đã duyệt, không dựa trên số bán hay đánh giá giả.",
+    featuredTitle: "Biên tập chọn",
     heroDescription:
-      "Duyệt bản gốc tiếng Anh và bản dịch tiếng Việt, so sánh định dạng và tồn kho, rồi mở đúng ấn bản bạn muốn mua.",
-    heroTitle: "CaseFlow Books là nhà sách song ngữ thực tế hơn.",
+      "Nhà sách ưu tiên thị trường Việt Nam cho bản gốc tiếng Anh và bản dịch tiếng Việt, có bìa, tồn kho, giá VND và checkout theo tài khoản rõ ràng.",
+    heroTitle: "CaseFlow Books",
     inTheCatalog: "trong catalog",
-    newArrivalsDescription:
-      "Ấn bản mới được trình bày gọn để trang chủ hữu ích, không biến thành một danh sách 100 card khó quét.",
-    newArrivalsTitle: "Ấn bản mới",
+    englishEditionsTitle: "Sách tiếng Anh",
+    languageShelvesDescription:
+      "Chọn ngôn ngữ đọc trước, rồi mở đúng ấn bản với định dạng, giá và tình trạng kho phù hợp.",
+    languageShelvesTitle: "Đọc bằng tiếng Anh hoặc tiếng Việt",
+    noShelfItems: "Kệ này đang được cập nhật.",
+    offerLabel: "Ưu đãi",
+    promotionTitle: "Đang có ưu đãi",
     sectionLabel: "Trang chủ nhà sách",
     shippingSignalsDescription:
       "Độ tin cậy đến từ tồn kho rõ, giá gốc VND, nội dung catalog an toàn và kỳ vọng giao hàng ưu tiên Việt Nam.",
@@ -149,6 +151,7 @@ const homeCopy = {
       "Ấn bản tiếng Việt được đặt thành một kệ sách riêng, không phải phần phụ.",
     vietnameseTitle: "Gợi ý bản tiếng Việt",
     viewFeatured: "Kệ nổi bật",
+    weekendTitle: "Đọc cuối tuần",
     trustSignals: [
       {
         stat: "VND",
@@ -172,7 +175,7 @@ const homeCopy = {
         stat: "An toàn",
         title: "Tôn trọng chính sách nội dung",
         description:
-          "Trang chủ dùng tóm tắt tự viết và bìa placeholder an toàn.",
+          "Trang chủ dùng tóm tắt tự viết và bìa do dự án tạo ra.",
       },
     ],
   },
@@ -272,32 +275,83 @@ export default async function Home() {
   const language = await getRequestLanguage();
   const copy = homeCopy[language];
   const currencyRules = getCurrencyDisplayRules();
-  const [categories, records] = await Promise.all([
+  const [categories, records, merchandisingShelves] = await Promise.all([
     listSupabaseBookCategories(),
     listSupabaseBookCatalog({ sort: "newest" }),
+    listSupabaseMerchandisingShelves(),
   ]);
-  const featuredRecords = records
-    .filter((record) => record.edition.isFeatured)
-    .slice(0, HOME_LIMITS.featuredCards);
-  const heroRecords = featuredRecords.slice(0, HOME_LIMITS.heroCards);
-  const newArrivalRecords = records
-    .filter((record) => !record.edition.isFeatured)
-    .slice(0, HOME_LIMITS.newArrivalCards);
-  const translatedEditionGroups = getTranslatedEditionGroups(records).slice(
+  const resolvedShelves = resolveSupabaseMerchandisingShelves(
+    records,
+    merchandisingShelves,
+  );
+  const editorShelf = getResolvedMerchandisingShelf(
+    resolvedShelves,
+    "editor-picks",
+  );
+  const weekendShelf = getResolvedMerchandisingShelf(
+    resolvedShelves,
+    "weekend-starter-set",
+  );
+  const vietnameseShelf = getResolvedMerchandisingShelf(
+    resolvedShelves,
+    "vietnamese-editions",
+  );
+  const englishShelf = getResolvedMerchandisingShelf(
+    resolvedShelves,
+    "english-editions",
+  );
+  const promotionShelf = getResolvedMerchandisingShelf(
+    resolvedShelves,
+    "promotion-ready",
+  );
+  const pairedEditionShelf = getResolvedMerchandisingShelf(
+    resolvedShelves,
+    "paired-edition-comparison",
+  );
+  const editorRecords = getShelfRecords(
+    editorShelf,
+    HOME_LIMITS.editorCards,
+    records.filter((record) => record.edition.isFeatured),
+  );
+  const heroRecords = getShelfRecords(
+    editorShelf,
+    HOME_LIMITS.heroCards,
+    editorRecords,
+  );
+  const weekendRecords = getShelfRecords(
+    weekendShelf,
+    HOME_LIMITS.weekendCards,
+    records.filter((record) => !record.edition.isFeatured),
+  );
+  const vietnameseRecords = getShelfRecords(
+    vietnameseShelf,
+    HOME_LIMITS.vietnameseCards,
+    records.filter((record) => record.edition.language === "vi"),
+  );
+  const englishRecords = getShelfRecords(
+    englishShelf,
+    HOME_LIMITS.englishCards,
+    records.filter((record) => record.edition.language === "en"),
+  );
+  const promotionRecords = getShelfRecords(
+    promotionShelf,
+    HOME_LIMITS.promotionCards,
+    records.filter((record) => record.edition.compareAtPriceVnd !== null),
+  );
+  const translatedEditionGroups = getTranslatedEditionGroups(
+    pairedEditionShelf?.records.length ? pairedEditionShelf.records : records,
+  ).slice(
     0,
     HOME_LIMITS.translatedGroups,
-  );
-  const vietnameseRecommendationRecords = selectRecordsByEditionSlugs(
-    records.filter((record) => record.edition.language === "vi"),
-    VIETNAMESE_RECOMMENDATION_ORDER,
-    HOME_LIMITS.vietnameseCards,
   );
   const categoryCards = categories.slice(0, HOME_LIMITS.categoryCards);
   const renderedEditionCount = countUniqueRenderedEditions(
     heroRecords,
-    featuredRecords,
-    newArrivalRecords,
-    vietnameseRecommendationRecords,
+    editorRecords,
+    weekendRecords,
+    vietnameseRecords,
+    englishRecords,
+    promotionRecords,
     translatedEditionGroups.flatMap((group) => [
       group.english,
       group.vietnamese,
@@ -325,7 +379,7 @@ export default async function Home() {
         className="border-b border-border bg-surface"
         data-home-section="hero"
       >
-        <Container className="grid gap-case-xl py-case-2xl lg:grid-cols-[minmax(0,1fr)_440px] lg:items-center">
+        <Container className="grid gap-case-xl py-case-lg md:grid-cols-[minmax(0,1fr)_340px] md:items-center lg:grid-cols-[minmax(0,1fr)_440px] lg:py-case-xl">
           <div className="flex min-w-0 flex-col gap-case-lg">
             <div className="flex flex-col gap-case-sm">
               <Badge variant="primary">{copy.sectionLabel}</Badge>
@@ -340,17 +394,10 @@ export default async function Home() {
             <div className="flex flex-col gap-case-sm sm:flex-row">
               <Link
                 href="/catalog"
-                className="inline-flex min-h-11 items-center justify-center rounded-md border border-primary bg-primary px-4 py-2 text-body font-medium text-surface transition-colors hover:border-primary-hover hover:bg-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                className="inline-flex min-h-11 w-full items-center justify-center rounded-md border border-primary bg-primary px-4 py-2 text-body font-medium text-surface transition-colors hover:border-primary-hover hover:bg-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:w-auto"
                 data-home-cta="catalog"
               >
                 {copy.browseBooks}
-              </Link>
-              <Link
-                href="#translated-editions"
-                className="inline-flex min-h-11 items-center justify-center rounded-md border border-border bg-surface px-4 py-2 text-body font-medium text-foreground transition-colors hover:border-primary hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-                data-home-cta="translated-editions"
-              >
-                {copy.exploreReadingPaths}
               </Link>
             </div>
 
@@ -374,11 +421,15 @@ export default async function Home() {
             />
           </div>
 
-          <div className="grid gap-case-sm" data-home-hero-books>
+          <div
+            className="grid grid-cols-3 gap-case-sm md:grid-cols-1"
+            data-home-hero-books
+          >
             {heroRecords.map((record, index) => (
               <HeroBookLink
                 key={record.edition.id}
                 language={language}
+                offerLabel={copy.offerLabel}
                 priority={index === 0}
                 record={record}
                 rules={currencyRules}
@@ -426,20 +477,26 @@ export default async function Home() {
           id="featured"
           className="flex flex-col gap-case-lg"
           data-home-section="featured"
+          data-home-shelf={editorShelf?.shelf.slug ?? "editor-picks"}
         >
           <span id="offers" className="scroll-mt-24" aria-hidden="true" />
           <SectionHeader
-            description={copy.featuredDescription}
+            description={getShelfDescription(
+              editorShelf,
+              language,
+              copy.featuredDescription,
+            )}
             eyebrow={copy.viewFeatured}
-            title={copy.featuredTitle}
+            title={getShelfTitle(editorShelf, language, copy.featuredTitle)}
           />
 
           <div className="grid gap-case-md sm:grid-cols-2 lg:grid-cols-4">
-            {featuredRecords.map((record, index) => (
+            {editorRecords.map((record, index) => (
               <BookCard
                 key={record.edition.id}
                 detailsLabel={copy.details}
                 language={language}
+                offerLabel={copy.offerLabel}
                 priority={index === 0}
                 record={record}
                 rules={currencyRules}
@@ -451,26 +508,35 @@ export default async function Home() {
         </section>
 
         <section
-          id="new-arrivals"
+          id="weekend-starter"
           className="grid gap-case-lg lg:grid-cols-[minmax(0,1fr)_minmax(320px,420px)]"
-          data-home-section="new-arrivals"
+          data-home-section="weekend-starter"
+          data-home-shelf={weekendShelf?.shelf.slug ?? "weekend-starter-set"}
         >
           <div className="flex flex-col gap-case-lg">
             <SectionHeader
-              description={copy.newArrivalsDescription}
-              title={copy.newArrivalsTitle}
+              description={getShelfDescription(
+                weekendShelf,
+                language,
+                copy.featuredDescription,
+              )}
+              title={getShelfTitle(weekendShelf, language, copy.weekendTitle)}
             />
 
             <div className="grid gap-case-md sm:grid-cols-2">
-              {newArrivalRecords.map((record) => (
+              {weekendRecords.map((record) => (
                 <CompactBookLink
                   key={record.edition.id}
                   language={language}
+                  offerLabel={copy.offerLabel}
                   record={record}
                   rules={currencyRules}
-                  trackingAttribute="data-home-new-arrival-card"
+                  trackingAttribute="data-home-weekend-card"
                 />
               ))}
+              {weekendRecords.length === 0 ? (
+                <EmptyShelfNotice message={copy.noShelfItems} />
+              ) : null}
             </div>
           </div>
 
@@ -501,10 +567,21 @@ export default async function Home() {
           id="translated-editions"
           className="flex flex-col gap-case-lg"
           data-home-section="translated-editions"
+          data-home-shelf={
+            pairedEditionShelf?.shelf.slug ?? "paired-edition-comparison"
+          }
         >
           <SectionHeader
-            description={copy.translatedDescription}
-            title={copy.translatedTitle}
+            description={getShelfDescription(
+              pairedEditionShelf,
+              language,
+              copy.translatedDescription,
+            )}
+            title={getShelfTitle(
+              pairedEditionShelf,
+              language,
+              copy.translatedTitle,
+            )}
           />
 
           <div className="grid gap-case-md lg:grid-cols-3">
@@ -520,27 +597,46 @@ export default async function Home() {
         </section>
 
         <section
-          id="vietnamese-recommendations"
+          id="language-offers"
           className="flex flex-col gap-case-lg"
-          data-home-section="vietnamese-recommendations"
+          data-home-section="language-offers"
         >
           <SectionHeader
-            description={copy.vietnameseDescription}
-            title={copy.vietnameseTitle}
+            description={copy.languageShelvesDescription}
+            title={copy.languageShelvesTitle}
           />
 
-          <div className="grid gap-case-md sm:grid-cols-2 lg:grid-cols-4">
-            {vietnameseRecommendationRecords.map((record) => (
-              <BookCard
-                key={record.edition.id}
-                detailsLabel={copy.details}
-                language={language}
-                record={record}
-                rules={currencyRules}
-                stockLabel={copy.stockLabel}
-                trackingAttribute="data-home-vietnamese-card"
-              />
-            ))}
+          <div className="grid gap-case-md lg:grid-cols-3">
+            <ShelfRail
+              emptyMessage={copy.noShelfItems}
+              language={language}
+              offerLabel={copy.offerLabel}
+              records={vietnameseRecords}
+              rules={currencyRules}
+              shelf={vietnameseShelf}
+              titleFallback={copy.vietnameseTitle}
+              trackingAttribute="data-home-vietnamese-card"
+            />
+            <ShelfRail
+              emptyMessage={copy.noShelfItems}
+              language={language}
+              offerLabel={copy.offerLabel}
+              records={englishRecords}
+              rules={currencyRules}
+              shelf={englishShelf}
+              titleFallback={copy.englishEditionsTitle}
+              trackingAttribute="data-home-english-card"
+            />
+            <ShelfRail
+              emptyMessage={copy.noShelfItems}
+              language={language}
+              offerLabel={copy.offerLabel}
+              records={promotionRecords}
+              rules={currencyRules}
+              shelf={promotionShelf}
+              titleFallback={copy.promotionTitle}
+              trackingAttribute="data-home-promotion-card"
+            />
           </div>
         </section>
 
@@ -595,14 +691,73 @@ function SectionHeader({
   );
 }
 
+function ShelfRail({
+  emptyMessage,
+  language,
+  offerLabel,
+  records,
+  rules,
+  shelf,
+  titleFallback,
+  trackingAttribute,
+}: {
+  emptyMessage: string;
+  language: Language;
+  offerLabel: string;
+  records: SupabaseBookCatalogRecord[];
+  rules: ReturnType<typeof getCurrencyDisplayRules>;
+  shelf: SupabaseResolvedMerchandisingShelf | null;
+  titleFallback: string;
+  trackingAttribute: string;
+}) {
+  return (
+    <div
+      className="flex min-w-0 flex-col gap-case-md rounded-lg border border-border bg-surface p-case-md"
+      data-home-shelf={shelf?.shelf.slug ?? titleFallback}
+    >
+      <div className="flex flex-col gap-case-xs">
+        <h3 className="text-heading-3 font-semibold text-foreground">
+          {getShelfTitle(shelf, language, titleFallback)}
+        </h3>
+        <p className="text-small leading-6 text-text-muted">
+          {getShelfDescription(shelf, language, titleFallback)}
+        </p>
+      </div>
+      <div className="grid gap-case-sm">
+        {records.map((record) => (
+          <CompactBookLink
+            key={record.edition.id}
+            language={language}
+            offerLabel={offerLabel}
+            record={record}
+            rules={rules}
+            trackingAttribute={trackingAttribute}
+          />
+        ))}
+        {records.length === 0 ? <EmptyShelfNotice message={emptyMessage} /> : null}
+      </div>
+    </div>
+  );
+}
+
+function EmptyShelfNotice({ message }: { message: string }) {
+  return (
+    <p className="rounded-md border border-dashed border-border bg-background p-case-md text-small leading-6 text-text-muted">
+      {message}
+    </p>
+  );
+}
+
 function HeroBookLink({
   language,
+  offerLabel,
   priority,
   record,
   rules,
   stockLabel,
 }: {
   language: Language;
+  offerLabel: string;
   priority: boolean;
   record: SupabaseBookCatalogRecord;
   rules: ReturnType<typeof getCurrencyDisplayRules>;
@@ -610,39 +765,43 @@ function HeroBookLink({
 }) {
   return (
     <Link
-      className="grid min-w-0 grid-cols-[88px_minmax(0,1fr)] gap-case-md rounded-md border border-border bg-background p-case-sm transition-colors hover:border-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+      className="flex min-w-0 flex-col gap-case-sm rounded-md border border-border bg-background p-case-xs transition-colors hover:border-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary md:grid md:grid-cols-[88px_minmax(0,1fr)] md:gap-case-md md:p-case-sm"
       data-home-hero-card={record.edition.slug}
       href={`/products/${record.edition.slug}`}
     >
       <Image
         alt={getCoverAlt(record, language)}
-        className="aspect-[3/4] h-full w-full rounded-md border border-border bg-surface object-cover"
+        className="aspect-[3/4] w-full rounded-md border border-border bg-surface object-cover md:h-full"
         height={240}
+        loading="eager"
         priority={priority}
         src={getCoverPath(record)}
         width={180}
       />
-      <div className="flex min-w-0 flex-col justify-center gap-case-xs">
-        <div className="flex flex-wrap gap-case-xs">
+      <div className="flex min-w-0 flex-col gap-case-xs md:justify-center">
+        <div className="hidden flex-wrap gap-case-xs md:flex">
           <Badge variant="neutral">
             {getEditionLanguageLabel(record.edition.language, language)}
           </Badge>
           <Badge variant={getStockBadgeVariant(record.edition.inventoryStatus)}>
             {getInventoryStatusLabel(record.edition.inventoryStatus, language)}
           </Badge>
+          {record.edition.compareAtPriceVnd ? (
+            <Badge variant="warning">{offerLabel}</Badge>
+          ) : null}
         </div>
-        <p className="line-clamp-2 font-semibold text-foreground">
+        <p className="line-clamp-2 text-small font-semibold text-foreground md:text-body">
           {getEditionTitle(record, language)}
         </p>
-        <p className="text-small text-text-muted">
+        <p className="hidden text-small text-text-muted md:block">
           {record.authors.map((author) => author.name).join(", ")}
         </p>
-        <p className="text-small text-text-muted">
+        <p className="hidden text-small text-text-muted md:block">
           {stockLabel}: {record.edition.stockQuantity}
         </p>
         <CurrencyAmount
           amountVnd={record.edition.priceVnd}
-          className="text-small font-medium text-primary"
+          className="hidden text-small font-medium text-primary md:inline-flex"
           estimateClassName="text-text-muted"
           language={language}
           rules={rules}
@@ -656,6 +815,7 @@ function HeroBookLink({
 function BookCard({
   detailsLabel,
   language,
+  offerLabel,
   priority = false,
   record,
   rules,
@@ -664,6 +824,7 @@ function BookCard({
 }: {
   detailsLabel: string;
   language: Language;
+  offerLabel: string;
   priority?: boolean;
   record: SupabaseBookCatalogRecord;
   rules: ReturnType<typeof getCurrencyDisplayRules>;
@@ -701,6 +862,9 @@ function BookCard({
             <Badge variant="neutral">
               {getFormatLabel(record.edition.format, language)}
             </Badge>
+            {record.edition.compareAtPriceVnd ? (
+              <Badge variant="warning">{offerLabel}</Badge>
+            ) : null}
           </div>
           <h3 className="line-clamp-2 text-body font-semibold text-foreground">
             {getEditionTitle(record, language)}
@@ -731,11 +895,13 @@ function BookCard({
 
 function CompactBookLink({
   language,
+  offerLabel,
   record,
   rules,
   trackingAttribute,
 }: {
   language: Language;
+  offerLabel: string;
   record: SupabaseBookCatalogRecord;
   rules: ReturnType<typeof getCurrencyDisplayRules>;
   trackingAttribute: string;
@@ -762,6 +928,9 @@ function CompactBookLink({
           <Badge variant={getStockBadgeVariant(record.edition.inventoryStatus)}>
             {getInventoryStatusLabel(record.edition.inventoryStatus, language)}
           </Badge>
+          {record.edition.compareAtPriceVnd ? (
+            <Badge variant="warning">{offerLabel}</Badge>
+          ) : null}
         </div>
         <h3 className="line-clamp-2 font-semibold text-foreground">
           {getEditionTitle(record, language)}
@@ -898,6 +1067,34 @@ function TrustSignal({
   );
 }
 
+function getShelfRecords(
+  shelf: SupabaseResolvedMerchandisingShelf | null,
+  limit: number,
+  fallbackRecords: SupabaseBookCatalogRecord[],
+) {
+  const records = shelf?.records.length ? shelf.records : fallbackRecords;
+
+  return records.slice(0, limit);
+}
+
+function getShelfTitle(
+  shelf: SupabaseResolvedMerchandisingShelf | null,
+  language: Language,
+  fallback: string,
+) {
+  return shelf ? pickLocalizedText(shelf.shelf.labels, language, fallback) : fallback;
+}
+
+function getShelfDescription(
+  shelf: SupabaseResolvedMerchandisingShelf | null,
+  language: Language,
+  fallback: string,
+) {
+  return shelf
+    ? pickLocalizedText(shelf.shelf.description, language, fallback)
+    : fallback;
+}
+
 function getTranslatedEditionGroups(
   records: SupabaseBookCatalogRecord[],
 ): TranslatedEditionGroup[] {
@@ -928,47 +1125,8 @@ function getTranslatedEditionGroups(
     })
     .filter((group): group is TranslatedEditionGroup => Boolean(group))
     .sort((first, second) => {
-      return (
-        getTranslatedWorkPriority(first.workSlug) -
-          getTranslatedWorkPriority(second.workSlug) ||
-        first.english.work.title.localeCompare(second.english.work.title)
-      );
+      return first.english.work.title.localeCompare(second.english.work.title);
     });
-}
-
-function getTranslatedWorkPriority(workSlug: string) {
-  const priority = TRANSLATED_WORK_ORDER.indexOf(
-    workSlug as (typeof TRANSLATED_WORK_ORDER)[number],
-  );
-
-  return priority === -1 ? Number.MAX_SAFE_INTEGER : priority;
-}
-
-function selectRecordsByEditionSlugs(
-  records: SupabaseBookCatalogRecord[],
-  slugs: readonly string[],
-  limit: number,
-) {
-  const recordsBySlug = new Map(
-    records.map((record) => [record.edition.slug, record]),
-  );
-  const selected = slugs
-    .map((slug) => recordsBySlug.get(slug))
-    .filter((record): record is SupabaseBookCatalogRecord => Boolean(record));
-  const selectedIds = new Set(selected.map((record) => record.edition.id));
-
-  for (const record of records) {
-    if (selected.length >= limit) {
-      break;
-    }
-
-    if (!selectedIds.has(record.edition.id)) {
-      selected.push(record);
-      selectedIds.add(record.edition.id);
-    }
-  }
-
-  return selected.slice(0, limit);
 }
 
 function countUniqueRenderedEditions(

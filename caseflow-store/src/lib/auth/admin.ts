@@ -5,6 +5,7 @@ export type AdminWorkspaceRole = Extract<UserRole, "admin" | "staff">;
 export type AdminPermission =
   | "catalog:manage"
   | "inventory:adjust"
+  | "merchandising:manage"
   | "orders:read"
   | "orders:update-status"
   | "promotions:manage"
@@ -31,6 +32,7 @@ const permissionsByRole: Record<AdminWorkspaceRole, AdminPermission[]> = {
   admin: [
     "catalog:manage",
     "inventory:adjust",
+    "merchandising:manage",
     "orders:read",
     "orders:update-status",
     "promotions:manage",
@@ -39,6 +41,7 @@ const permissionsByRole: Record<AdminWorkspaceRole, AdminPermission[]> = {
   staff: [
     "catalog:manage",
     "inventory:adjust",
+    "merchandising:manage",
     "orders:read",
     "orders:update-status",
   ],

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="900" viewBox="0 0 600 900" role="img" aria-labelledby="title-00000000-0000-4000-8000-000000008008 desc-00000000-0000-4000-8000-000000008008" data-cover-asset-id="00000000-0000-4000-8000-000000008008" data-edition-id="00000000-0000-4000-8000-000000004019">
+  <title id="title-00000000-0000-4000-8000-000000008008">Cuộc phiêu lưu của Alice ở xứ sở thần tiên - CaseFlow Books illustrative cover</title>
+  <desc id="desc-00000000-0000-4000-8000-000000008008">Project-created illustrative cover for Cuộc phiêu lưu của Alice ở xứ sở thần tiên by Lewis Carroll.</desc>
+  <metadata><![CDATA[{"assetId":"00000000-0000-4000-8000-000000008008","editionId":"00000000-0000-4000-8000-000000004019","title":"Cuộc phiêu lưu của Alice ở xứ sở thần tiên","authors":["Lewis Carroll"],"language":"vi","source":"project-created-vector"}]]></metadata>
+  <rect width="600" height="900" fill="#FDF2F8"/>
+  <rect x="34" y="34" width="532" height="832" rx="18" fill="#6D28D9" opacity="0.16"/>
+  
+      <rect x="82" y="112" width="96" height="170" rx="44" fill="#DB2777" opacity="0.78"/>
+      <rect x="246" y="88" width="108" height="214" rx="52" fill="#6D28D9" opacity="0.88"/>
+      <rect x="426" y="128" width="86" height="154" rx="40" fill="#0F766E" opacity="0.72"/>
+      <circle cx="326" cy="194" r="9" fill="#FDE68A"/>
+      <rect x="98" y="330" width="68" height="92" rx="9" fill="#FFFFFF" transform="rotate(-8 132 376)"/>
+      <rect x="434" y="326" width="68" height="92" rx="9" fill="#FFFFFF" transform="rotate(9 468 372)"/>
+      <path d="M122 372 C132 350 154 350 164 372 C150 360 136 360 122 372Z" fill="#DB2777"/>
+      <circle cx="468" cy="372" r="16" fill="#6D28D9"/>
+    
+  <rect x="72" y="390" width="456" height="386" rx="18" fill="#FFFFFF"/>
+  <rect x="92" y="414" width="190" height="34" rx="17" fill="#6D28D9"/>
+  <text x="187" y="437" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" fill="#FFFFFF">BẢN TIẾNG VIỆT</text>
+  <text x="508" y="438" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#6D28D9">PAPERBACK</text>
+      <text x="300" y="469" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="38" font-weight="700" fill="#111827">Cuộc phiêu lưu của</text>
+      <text x="300" y="516" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="38" font-weight="700" fill="#111827">Alice ở xứ sở thần</text>
+      <text x="300" y="563" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="38" font-weight="700" fill="#111827">tiên</text>
+  <text x="300" y="642" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#4B5563">Lewis Carroll</text>
+  <path d="M118 742 H482" stroke="#6D28D9" stroke-width="4" stroke-linecap="round"/>
+  <text x="300" y="816" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" letter-spacing="0" fill="#6D28D9">CASEFLOW BOOKS</text>
+</svg>

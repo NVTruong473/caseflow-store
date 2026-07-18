@@ -1,0 +1,2013 @@
+{
+  "taskId": "V12-T03",
+  "generatedAt": "2026-07-17T12:46:41.394Z",
+  "baseUrl": "http://127.0.0.1:3007",
+  "runtime": "Next.js production server",
+  "build": {
+    "result": "passed",
+    "routesGenerated": 41,
+    "realSeconds": 46.04,
+    "userSeconds": 67.14,
+    "systemSeconds": 6.13
+  },
+  "pages": [
+    {
+      "label": "home-desktop-en",
+      "screenshotPath": "/Users/vantruong/Documents/TSNN 2/caseflow-store/.agent/artifacts/v12-t03/home-desktop-en.png",
+      "accessibility": {
+        "controlsWithoutName": 0,
+        "duplicateIds": [],
+        "headings": [
+          {
+            "level": 2,
+            "text": "Discovery"
+          },
+          {
+            "level": 1,
+            "text": "CaseFlow Books is now a practical bilingual bookstore."
+          },
+          {
+            "level": 2,
+            "text": "Shop by reading category"
+          },
+          {
+            "level": 3,
+            "text": "Fiction"
+          },
+          {
+            "level": 3,
+            "text": "Classic literature"
+          },
+          {
+            "level": 3,
+            "text": "Mystery and thriller"
+          },
+          {
+            "level": 3,
+            "text": "Fantasy and sci-fi"
+          },
+          {
+            "level": 3,
+            "text": "Romance"
+          },
+          {
+            "level": 3,
+            "text": "Business and economics"
+          },
+          {
+            "level": 3,
+            "text": "Self-development"
+          },
+          {
+            "level": 3,
+            "text": "Children and young adult"
+          },
+          {
+            "level": 2,
+            "text": "Featured books"
+          },
+          {
+            "level": 3,
+            "text": "A Tale of Two Cities"
+          },
+          {
+            "level": 3,
+            "text": "Dracula"
+          },
+          {
+            "level": 3,
+            "text": "Frankenstein"
+          },
+          {
+            "level": 3,
+            "text": "Great Expectations"
+          },
+          {
+            "level": 2,
+            "text": "New arrivals"
+          },
+          {
+            "level": 3,
+            "text": "A Christmas Carol"
+          },
+          {
+            "level": 3,
+            "text": "Adventures of Huckleberry Finn"
+          },
+          {
+            "level": 3,
+            "text": "Aesop's Fables"
+          },
+          {
+            "level": 3,
+            "text": "Alice's Adventures in Wonderland"
+          },
+          {
+            "level": 2,
+            "text": "Translated edition pairs"
+          },
+          {
+            "level": 3,
+            "text": "A Tale of Two Cities"
+          },
+          {
+            "level": 3,
+            "text": "Pride and Prejudice"
+          },
+          {
+            "level": 3,
+            "text": "The Art of War"
+          },
+          {
+            "level": 2,
+            "text": "Vietnamese recommendations"
+          },
+          {
+            "level": 3,
+            "text": "Pride and Prejudice"
+          },
+          {
+            "level": 3,
+            "text": "A Tale of Two Cities"
+          },
+          {
+            "level": 3,
+            "text": "The Count of Monte Cristo"
+          },
+          {
+            "level": 3,
+            "text": "The Art of War"
+          },
+          {
+            "level": 2,
+            "text": "Trust and shipping signals"
+          },
+          {
+            "level": 3,
+            "text": "Source price stays clear"
+          },
+          {
+            "level": 3,
+            "text": "Vietnam checkout fit"
+          },
+          {
+            "level": 3,
+            "text": "Availability before checkout"
+          },
+          {
+            "level": 3,
+            "text": "Content policy respected"
+          },
+          {
+            "level": 2,
+            "text": "Shop"
+          },
+          {
+            "level": 2,
+            "text": "Help"
+          }
+        ],
+        "imagesMissingAlt": 0,
+        "landmarks": {
+          "main": 1,
+          "nav": 4,
+          "footer": 1
+        }
+      },
+      "images": {
+        "broken": 0,
+        "count": 18,
+        "loaded": 9,
+        "placeholderCount": 18,
+        "uniqueSources": 1
+      },
+      "layout": {
+        "clientWidth": 1425,
+        "fixedElements": [
+          {
+            "tag": "DIV",
+            "left": 16,
+            "top": 1040,
+            "right": 164,
+            "bottom": 1084,
+            "width": 148,
+            "height": 44
+          }
+        ],
+        "horizontalOverflowPx": 0,
+        "scrollHeight": 4453,
+        "scrollWidth": 1425,
+        "viewportHeight": 1100,
+        "viewportWidth": 1440
+      },
+      "locale": "en",
+      "performance": {
+        "cls": 0,
+        "layoutShiftEntryCount": 0,
+        "lcpMs": null,
+        "navigation": {
+          "domContentLoadedMs": 1706,
+          "durationMs": 1853,
+          "loadEventMs": 1853,
+          "responseEndMs": 1617,
+          "transferSize": 29606
+        },
+        "resources": {
+          "count": 29,
+          "decodedBodyBytes": 809769,
+          "transferBytes": 356088
+        },
+        "imageResources": {
+          "count": 0,
+          "decodedBodyBytes": 0,
+          "transferBytes": 0
+        },
+        "supportedEntryTypes": [
+          "element",
+          "event",
+          "first-input",
+          "largest-contentful-paint",
+          "layout-shift",
+          "long-animation-frame",
+          "longtask",
+          "mark",
+          "measure",
+          "navigation",
+          "paint",
+          "resource",
+          "visibility-state"
+        ]
+      },
+      "textSignals": {
+        "demo": 0,
+        "notSpecified": 0,
+        "placeholder": 1,
+        "tbc": 0
+      },
+      "title": "CaseFlow Books - Bilingual bookstore",
+      "url": "http://127.0.0.1:3007/"
+    },
+    {
+      "label": "catalog-desktop-en",
+      "screenshotPath": "/Users/vantruong/Documents/TSNN 2/caseflow-store/.agent/artifacts/v12-t03/catalog-desktop-en.png",
+      "accessibility": {
+        "controlsWithoutName": 3,
+        "duplicateIds": [],
+        "headings": [
+          {
+            "level": 2,
+            "text": "Discovery"
+          },
+          {
+            "level": 1,
+            "text": "All book editions"
+          },
+          {
+            "level": 2,
+            "text": "Find books"
+          },
+          {
+            "level": 2,
+            "text": "Catalog"
+          },
+          {
+            "level": 2,
+            "text": "A Christmas Carol"
+          },
+          {
+            "level": 2,
+            "text": "A Tale of Two Cities"
+          },
+          {
+            "level": 2,
+            "text": "Adventures of Huckleberry Finn"
+          },
+          {
+            "level": 2,
+            "text": "Aesop's Fables"
+          },
+          {
+            "level": 2,
+            "text": "Alice's Adventures in Wonderland"
+          },
+          {
+            "level": 2,
+            "text": "Alice's Adventures in Wonderland"
+          },
+          {
+            "level": 2,
+            "text": "Andersen's Fairy Tales"
+          },
+          {
+            "level": 2,
+            "text": "The Brothers Karamazov"
+          },
+          {
+            "level": 2,
+            "text": "Anna Karenina"
+          },
+          {
+            "level": 2,
+            "text": "Anna Karenina"
+          },
+          {
+            "level": 2,
+            "text": "Anne of Green Gables"
+          },
+          {
+            "level": 2,
+            "text": "Anne of Green Gables"
+          },
+          {
+            "level": 2,
+            "text": "Around the World in Eighty Days"
+          },
+          {
+            "level": 2,
+            "text": "The Three Musketeers"
+          },
+          {
+            "level": 2,
+            "text": "The Count of Monte Cristo"
+          },
+          {
+            "level": 2,
+            "text": "A Christmas Carol"
+          },
+          {
+            "level": 2,
+            "text": "The Art of War"
+          },
+          {
+            "level": 2,
+            "text": "Moby-Dick"
+          },
+          {
+            "level": 2,
+            "text": "The Elements of Style"
+          },
+          {
+            "level": 2,
+            "text": "The Picture of Dorian Gray"
+          },
+          {
+            "level": 2,
+            "text": "The War of the Worlds"
+          },
+          {
+            "level": 2,
+            "text": "War and Peace"
+          },
+          {
+            "level": 2,
+            "text": "The Time Machine"
+          },
+          {
+            "level": 2,
+            "text": "The Republic"
+          },
+          {
+            "level": 2,
+            "text": "Shop"
+          },
+          {
+            "level": 2,
+            "text": "Help"
+          }
+        ],
+        "imagesMissingAlt": 0,
+        "landmarks": {
+          "main": 1,
+          "nav": 6,
+          "footer": 1
+        }
+      },
+      "images": {
+        "broken": 0,
+        "count": 24,
+        "loaded": 24,
+        "placeholderCount": 24,
+        "uniqueSources": 1
+      },
+      "layout": {
+        "clientWidth": 1425,
+        "fixedElements": [
+          {
+            "tag": "DIV",
+            "left": 16,
+            "top": 1040,
+            "right": 164,
+            "bottom": 1084,
+            "width": 148,
+            "height": 44
+          }
+        ],
+        "horizontalOverflowPx": 0,
+        "scrollHeight": 5931,
+        "scrollWidth": 1425,
+        "viewportHeight": 1100,
+        "viewportWidth": 1440
+      },
+      "locale": "en",
+      "performance": {
+        "cls": 0,
+        "layoutShiftEntryCount": 0,
+        "lcpMs": null,
+        "navigation": {
+          "domContentLoadedMs": 1810,
+          "durationMs": 1869,
+          "loadEventMs": 1869,
+          "responseEndMs": 1637,
+          "transferSize": 44737
+        },
+        "resources": {
+          "count": 26,
+          "decodedBodyBytes": 764013,
+          "transferBytes": 10434
+        },
+        "imageResources": {
+          "count": 0,
+          "decodedBodyBytes": 0,
+          "transferBytes": 0
+        },
+        "supportedEntryTypes": [
+          "element",
+          "event",
+          "first-input",
+          "largest-contentful-paint",
+          "layout-shift",
+          "long-animation-frame",
+          "longtask",
+          "mark",
+          "measure",
+          "navigation",
+          "paint",
+          "resource",
+          "visibility-state"
+        ]
+      },
+      "textSignals": {
+        "demo": 0,
+        "notSpecified": 0,
+        "placeholder": 0,
+        "tbc": 0
+      },
+      "title": "Book catalog - CaseFlow Books",
+      "url": "http://127.0.0.1:3007/catalog"
+    },
+    {
+      "label": "product-desktop-en",
+      "screenshotPath": "/Users/vantruong/Documents/TSNN 2/caseflow-store/.agent/artifacts/v12-t03/product-desktop-en.png",
+      "accessibility": {
+        "controlsWithoutName": 0,
+        "duplicateIds": [],
+        "headings": [
+          {
+            "level": 2,
+            "text": "Discovery"
+          },
+          {
+            "level": 1,
+            "text": "A Christmas Carol"
+          },
+          {
+            "level": 3,
+            "text": "Buy this edition"
+          },
+          {
+            "level": 2,
+            "text": "Edition details"
+          },
+          {
+            "level": 2,
+            "text": "Shipping and totals"
+          },
+          {
+            "level": 2,
+            "text": "Payment options"
+          },
+          {
+            "level": 2,
+            "text": "Return support"
+          },
+          {
+            "level": 2,
+            "text": "Related editions"
+          },
+          {
+            "level": 2,
+            "text": "More like this"
+          },
+          {
+            "level": 3,
+            "text": "A Tale of Two Cities"
+          },
+          {
+            "level": 3,
+            "text": "Great Expectations"
+          },
+          {
+            "level": 3,
+            "text": "Oliver Twist"
+          },
+          {
+            "level": 3,
+            "text": "A Tale of Two Cities"
+          },
+          {
+            "level": 2,
+            "text": "Shop"
+          },
+          {
+            "level": 2,
+            "text": "Help"
+          }
+        ],
+        "imagesMissingAlt": 0,
+        "landmarks": {
+          "main": 1,
+          "nav": 5,
+          "footer": 1
+        }
+      },
+      "images": {
+        "broken": 0,
+        "count": 5,
+        "loaded": 3,
+        "placeholderCount": 5,
+        "uniqueSources": 1
+      },
+      "layout": {
+        "clientWidth": 1425,
+        "fixedElements": [
+          {
+            "tag": "DIV",
+            "left": 16,
+            "top": 1040,
+            "right": 164,
+            "bottom": 1084,
+            "width": 148,
+            "height": 44
+          }
+        ],
+        "horizontalOverflowPx": 0,
+        "scrollHeight": 2961,
+        "scrollWidth": 1425,
+        "viewportHeight": 1100,
+        "viewportWidth": 1440
+      },
+      "locale": "en",
+      "performance": {
+        "cls": 0,
+        "layoutShiftEntryCount": 0,
+        "lcpMs": null,
+        "navigation": {
+          "domContentLoadedMs": 531,
+          "durationMs": 590,
+          "loadEventMs": 590,
+          "responseEndMs": 436,
+          "transferSize": 18119
+        },
+        "resources": {
+          "count": 14,
+          "decodedBodyBytes": 752248,
+          "transferBytes": 2787
+        },
+        "imageResources": {
+          "count": 1,
+          "decodedBodyBytes": 1390,
+          "transferBytes": 300
+        },
+        "supportedEntryTypes": [
+          "element",
+          "event",
+          "first-input",
+          "largest-contentful-paint",
+          "layout-shift",
+          "long-animation-frame",
+          "longtask",
+          "mark",
+          "measure",
+          "navigation",
+          "paint",
+          "resource",
+          "visibility-state"
+        ]
+      },
+      "textSignals": {
+        "demo": 1,
+        "notSpecified": 2,
+        "placeholder": 0,
+        "tbc": 2
+      },
+      "title": "A Christmas Carol - CaseFlow Books",
+      "url": "http://127.0.0.1:3007/products/a-christmas-carol-english-paperback"
+    },
+    {
+      "label": "home-mobile-vi",
+      "screenshotPath": "/Users/vantruong/Documents/TSNN 2/caseflow-store/.agent/artifacts/v12-t03/home-mobile-vi.png",
+      "accessibility": {
+        "controlsWithoutName": 0,
+        "duplicateIds": [],
+        "headings": [
+          {
+            "level": 2,
+            "text": "Khám phá"
+          },
+          {
+            "level": 1,
+            "text": "CaseFlow Books là nhà sách song ngữ thực tế hơn."
+          },
+          {
+            "level": 2,
+            "text": "Mua theo danh mục đọc"
+          },
+          {
+            "level": 3,
+            "text": "Văn học"
+          },
+          {
+            "level": 3,
+            "text": "Văn học kinh điển"
+          },
+          {
+            "level": 3,
+            "text": "Trinh thám và hồi hộp"
+          },
+          {
+            "level": 3,
+            "text": "Giả tưởng và khoa học viễn tưởng"
+          },
+          {
+            "level": 3,
+            "text": "Lãng mạn"
+          },
+          {
+            "level": 3,
+            "text": "Kinh doanh và kinh tế"
+          },
+          {
+            "level": 3,
+            "text": "Phát triển bản thân"
+          },
+          {
+            "level": 3,
+            "text": "Thiếu nhi và tuổi teen"
+          },
+          {
+            "level": 2,
+            "text": "Sách nổi bật"
+          },
+          {
+            "level": 3,
+            "text": "Hai kinh thanh"
+          },
+          {
+            "level": 3,
+            "text": "Dracula"
+          },
+          {
+            "level": 3,
+            "text": "Frankenstein"
+          },
+          {
+            "level": 3,
+            "text": "Ky vong lon lao"
+          },
+          {
+            "level": 2,
+            "text": "Ấn bản mới"
+          },
+          {
+            "level": 3,
+            "text": "Bai ca Giang sinh"
+          },
+          {
+            "level": 3,
+            "text": "Nhung cuoc phieu luu cua Huckleberry Finn"
+          },
+          {
+            "level": 3,
+            "text": "Ngu ngon Aesop"
+          },
+          {
+            "level": 3,
+            "text": "Alice o xu so than tien"
+          },
+          {
+            "level": 2,
+            "text": "Cặp ấn bản dịch"
+          },
+          {
+            "level": 3,
+            "text": "Hai Kinh Thành"
+          },
+          {
+            "level": 3,
+            "text": "Kiêu Hãnh Và Định Kiến"
+          },
+          {
+            "level": 3,
+            "text": "Binh Pháp Tôn Tử"
+          },
+          {
+            "level": 2,
+            "text": "Gợi ý bản tiếng Việt"
+          },
+          {
+            "level": 3,
+            "text": "Kiêu Hãnh Và Định Kiến"
+          },
+          {
+            "level": 3,
+            "text": "Hai Kinh Thành"
+          },
+          {
+            "level": 3,
+            "text": "Bá Tước Monte Cristo"
+          },
+          {
+            "level": 3,
+            "text": "Binh Pháp Tôn Tử"
+          },
+          {
+            "level": 2,
+            "text": "Tín hiệu tin cậy và giao hàng"
+          },
+          {
+            "level": 3,
+            "text": "Giá gốc rõ ràng"
+          },
+          {
+            "level": 3,
+            "text": "Phù hợp checkout Việt Nam"
+          },
+          {
+            "level": 3,
+            "text": "Thấy tồn kho trước checkout"
+          },
+          {
+            "level": 3,
+            "text": "Tôn trọng chính sách nội dung"
+          },
+          {
+            "level": 2,
+            "text": "Mua sách"
+          },
+          {
+            "level": 2,
+            "text": "Hỗ trợ"
+          }
+        ],
+        "imagesMissingAlt": 0,
+        "landmarks": {
+          "main": 1,
+          "nav": 4,
+          "footer": 1
+        }
+      },
+      "images": {
+        "broken": 0,
+        "count": 18,
+        "loaded": 4,
+        "placeholderCount": 18,
+        "uniqueSources": 1
+      },
+      "layout": {
+        "clientWidth": 360,
+        "fixedElements": [
+          {
+            "tag": "DIV",
+            "left": 16,
+            "top": 840,
+            "right": 60,
+            "bottom": 884,
+            "width": 44,
+            "height": 44
+          }
+        ],
+        "horizontalOverflowPx": 0,
+        "scrollHeight": 12271,
+        "scrollWidth": 360,
+        "viewportHeight": 900,
+        "viewportWidth": 375
+      },
+      "locale": "vi",
+      "performance": {
+        "cls": 0,
+        "layoutShiftEntryCount": 0,
+        "lcpMs": null,
+        "navigation": {
+          "domContentLoadedMs": 1527,
+          "durationMs": 1539,
+          "loadEventMs": 1539,
+          "responseEndMs": 1465,
+          "transferSize": 29606
+        },
+        "resources": {
+          "count": 38,
+          "decodedBodyBytes": 895091,
+          "transferBytes": 59897
+        },
+        "imageResources": {
+          "count": 0,
+          "decodedBodyBytes": 0,
+          "transferBytes": 0
+        },
+        "supportedEntryTypes": [
+          "element",
+          "event",
+          "first-input",
+          "largest-contentful-paint",
+          "layout-shift",
+          "long-animation-frame",
+          "longtask",
+          "mark",
+          "measure",
+          "navigation",
+          "paint",
+          "resource",
+          "visibility-state"
+        ]
+      },
+      "textSignals": {
+        "demo": 0,
+        "notSpecified": 0,
+        "placeholder": 1,
+        "tbc": 0
+      },
+      "title": "CaseFlow Books - Nhà sách song ngữ",
+      "url": "http://127.0.0.1:3007/"
+    },
+    {
+      "label": "catalog-mobile-vi",
+      "screenshotPath": "/Users/vantruong/Documents/TSNN 2/caseflow-store/.agent/artifacts/v12-t03/catalog-mobile-vi.png",
+      "accessibility": {
+        "controlsWithoutName": 3,
+        "duplicateIds": [],
+        "headings": [
+          {
+            "level": 2,
+            "text": "Khám phá"
+          },
+          {
+            "level": 1,
+            "text": "Tất cả ấn bản sách"
+          },
+          {
+            "level": 2,
+            "text": "Tìm sách"
+          },
+          {
+            "level": 2,
+            "text": "Catalog"
+          },
+          {
+            "level": 2,
+            "text": "Bai ca Giang sinh"
+          },
+          {
+            "level": 2,
+            "text": "Hai kinh thanh"
+          },
+          {
+            "level": 2,
+            "text": "Nhung cuoc phieu luu cua Huckleberry Finn"
+          },
+          {
+            "level": 2,
+            "text": "Ngu ngon Aesop"
+          },
+          {
+            "level": 2,
+            "text": "Alice o xu so than tien"
+          },
+          {
+            "level": 2,
+            "text": "Alice o xu so than tien"
+          },
+          {
+            "level": 2,
+            "text": "Truyen co Andersen"
+          },
+          {
+            "level": 2,
+            "text": "Anh em nha Karamazov"
+          },
+          {
+            "level": 2,
+            "text": "Anna Karenina"
+          },
+          {
+            "level": 2,
+            "text": "Anna Karenina"
+          },
+          {
+            "level": 2,
+            "text": "Anne toc do duoi mai nha xanh"
+          },
+          {
+            "level": 2,
+            "text": "Anne toc do duoi mai nha xanh"
+          },
+          {
+            "level": 2,
+            "text": "Vong quanh the gioi trong 80 ngay"
+          },
+          {
+            "level": 2,
+            "text": "Ba chang linh ngu lam"
+          },
+          {
+            "level": 2,
+            "text": "Ba tuoc Monte Cristo"
+          },
+          {
+            "level": 2,
+            "text": "Bai ca Giang sinh"
+          },
+          {
+            "level": 2,
+            "text": "Binh phap Ton Tu"
+          },
+          {
+            "level": 2,
+            "text": "Ca voi trang"
+          },
+          {
+            "level": 2,
+            "text": "Cac yeu to cua van phong"
+          },
+          {
+            "level": 2,
+            "text": "Chan dung Dorian Gray"
+          },
+          {
+            "level": 2,
+            "text": "Chien tranh giua cac the gioi"
+          },
+          {
+            "level": 2,
+            "text": "Chien tranh va hoa binh"
+          },
+          {
+            "level": 2,
+            "text": "Co may thoi gian"
+          },
+          {
+            "level": 2,
+            "text": "Cong hoa"
+          },
+          {
+            "level": 2,
+            "text": "Mua sách"
+          },
+          {
+            "level": 2,
+            "text": "Hỗ trợ"
+          }
+        ],
+        "imagesMissingAlt": 0,
+        "landmarks": {
+          "main": 1,
+          "nav": 6,
+          "footer": 1
+        }
+      },
+      "images": {
+        "broken": 0,
+        "count": 24,
+        "loaded": 24,
+        "placeholderCount": 24,
+        "uniqueSources": 1
+      },
+      "layout": {
+        "clientWidth": 360,
+        "fixedElements": [
+          {
+            "tag": "DIV",
+            "left": 16,
+            "top": 840,
+            "right": 60,
+            "bottom": 884,
+            "width": 44,
+            "height": 44
+          }
+        ],
+        "horizontalOverflowPx": 0,
+        "scrollHeight": 21630,
+        "scrollWidth": 360,
+        "viewportHeight": 900,
+        "viewportWidth": 375
+      },
+      "locale": "vi",
+      "performance": {
+        "cls": 0,
+        "layoutShiftEntryCount": 0,
+        "lcpMs": null,
+        "navigation": {
+          "domContentLoadedMs": 767,
+          "durationMs": 786,
+          "loadEventMs": 786,
+          "responseEndMs": 740,
+          "transferSize": 47607
+        },
+        "resources": {
+          "count": 16,
+          "decodedBodyBytes": 762311,
+          "transferBytes": 2057
+        },
+        "imageResources": {
+          "count": 0,
+          "decodedBodyBytes": 0,
+          "transferBytes": 0
+        },
+        "supportedEntryTypes": [
+          "element",
+          "event",
+          "first-input",
+          "largest-contentful-paint",
+          "layout-shift",
+          "long-animation-frame",
+          "longtask",
+          "mark",
+          "measure",
+          "navigation",
+          "paint",
+          "resource",
+          "visibility-state"
+        ]
+      },
+      "textSignals": {
+        "demo": 0,
+        "notSpecified": 0,
+        "placeholder": 0,
+        "tbc": 0
+      },
+      "title": "Catalog sách - CaseFlow Books",
+      "url": "http://127.0.0.1:3007/catalog"
+    },
+    {
+      "label": "product-mobile-vi",
+      "screenshotPath": "/Users/vantruong/Documents/TSNN 2/caseflow-store/.agent/artifacts/v12-t03/product-mobile-vi.png",
+      "accessibility": {
+        "controlsWithoutName": 0,
+        "duplicateIds": [],
+        "headings": [
+          {
+            "level": 2,
+            "text": "Khám phá"
+          },
+          {
+            "level": 1,
+            "text": "Bai ca Giang sinh"
+          },
+          {
+            "level": 3,
+            "text": "Mua ấn bản này"
+          },
+          {
+            "level": 2,
+            "text": "Chi tiết ấn bản"
+          },
+          {
+            "level": 2,
+            "text": "Vận chuyển và tổng tiền"
+          },
+          {
+            "level": 2,
+            "text": "Phương thức thanh toán"
+          },
+          {
+            "level": 2,
+            "text": "Hỗ trợ đổi trả"
+          },
+          {
+            "level": 2,
+            "text": "Ấn bản liên quan"
+          },
+          {
+            "level": 2,
+            "text": "Gợi ý liên quan"
+          },
+          {
+            "level": 3,
+            "text": "Hai kinh thanh"
+          },
+          {
+            "level": 3,
+            "text": "Ky vong lon lao"
+          },
+          {
+            "level": 3,
+            "text": "Oliver Twist"
+          },
+          {
+            "level": 3,
+            "text": "Hai kinh thanh"
+          },
+          {
+            "level": 2,
+            "text": "Mua sách"
+          },
+          {
+            "level": 2,
+            "text": "Hỗ trợ"
+          }
+        ],
+        "imagesMissingAlt": 0,
+        "landmarks": {
+          "main": 1,
+          "nav": 5,
+          "footer": 1
+        }
+      },
+      "images": {
+        "broken": 0,
+        "count": 5,
+        "loaded": 5,
+        "placeholderCount": 5,
+        "uniqueSources": 1
+      },
+      "layout": {
+        "clientWidth": 360,
+        "fixedElements": [
+          {
+            "tag": "DIV",
+            "left": 16,
+            "top": 840,
+            "right": 60,
+            "bottom": 884,
+            "width": 44,
+            "height": 44
+          }
+        ],
+        "horizontalOverflowPx": 0,
+        "scrollHeight": 4499,
+        "scrollWidth": 360,
+        "viewportHeight": 900,
+        "viewportWidth": 375
+      },
+      "locale": "vi",
+      "performance": {
+        "cls": 0,
+        "layoutShiftEntryCount": 0,
+        "lcpMs": null,
+        "navigation": {
+          "domContentLoadedMs": 379,
+          "durationMs": 416,
+          "loadEventMs": 416,
+          "responseEndMs": 314,
+          "transferSize": 18627
+        },
+        "resources": {
+          "count": 19,
+          "decodedBodyBytes": 780995,
+          "transferBytes": 5338
+        },
+        "imageResources": {
+          "count": 0,
+          "decodedBodyBytes": 0,
+          "transferBytes": 0
+        },
+        "supportedEntryTypes": [
+          "element",
+          "event",
+          "first-input",
+          "largest-contentful-paint",
+          "layout-shift",
+          "long-animation-frame",
+          "longtask",
+          "mark",
+          "measure",
+          "navigation",
+          "paint",
+          "resource",
+          "visibility-state"
+        ]
+      },
+      "textSignals": {
+        "demo": 1,
+        "notSpecified": 2,
+        "placeholder": 0,
+        "tbc": 2
+      },
+      "title": "Bai ca Giang sinh - CaseFlow Books",
+      "url": "http://127.0.0.1:3007/products/a-christmas-carol-vietnamese-paperback"
+    },
+    {
+      "label": "admin-catalog-desktop-vi",
+      "screenshotPath": "/Users/vantruong/Documents/TSNN 2/caseflow-store/.agent/artifacts/v12-t03/admin-catalog-desktop-vi.png",
+      "accessibility": {
+        "controlsWithoutName": 2,
+        "duplicateIds": [],
+        "headings": [
+          {
+            "level": 2,
+            "text": "Khám phá"
+          },
+          {
+            "level": 1,
+            "text": "Quản lý catalog sách"
+          },
+          {
+            "level": 2,
+            "text": "A Christmas Carol"
+          },
+          {
+            "level": 2,
+            "text": "A Tale of Two Cities"
+          },
+          {
+            "level": 2,
+            "text": "Adventures of Huckleberry Finn"
+          },
+          {
+            "level": 2,
+            "text": "Aesop's Fables"
+          },
+          {
+            "level": 2,
+            "text": "Alice o xu so than tien"
+          },
+          {
+            "level": 2,
+            "text": "Alice's Adventures in Wonderland"
+          },
+          {
+            "level": 2,
+            "text": "Andersen's Fairy Tales"
+          },
+          {
+            "level": 2,
+            "text": "Anh em nha Karamazov"
+          },
+          {
+            "level": 2,
+            "text": "Anna Karenina"
+          },
+          {
+            "level": 2,
+            "text": "Anna Karenina"
+          },
+          {
+            "level": 2,
+            "text": "Anne of Green Gables"
+          },
+          {
+            "level": 2,
+            "text": "Anne toc do duoi mai nha xanh"
+          },
+          {
+            "level": 2,
+            "text": "Around the World in Eighty Days"
+          },
+          {
+            "level": 2,
+            "text": "Ba chang linh ngu lam"
+          },
+          {
+            "level": 2,
+            "text": "Ba tuoc Monte Cristo"
+          },
+          {
+            "level": 2,
+            "text": "Bai ca Giang sinh"
+          },
+          {
+            "level": 2,
+            "text": "Binh phap Ton Tu"
+          },
+          {
+            "level": 2,
+            "text": "Ca voi trang"
+          },
+          {
+            "level": 2,
+            "text": "Cac yeu to cua van phong"
+          },
+          {
+            "level": 2,
+            "text": "Chan dung Dorian Gray"
+          },
+          {
+            "level": 2,
+            "text": "Chien tranh giua cac the gioi"
+          },
+          {
+            "level": 2,
+            "text": "Chien tranh va hoa binh"
+          },
+          {
+            "level": 2,
+            "text": "Co may thoi gian"
+          },
+          {
+            "level": 2,
+            "text": "Cong hoa"
+          },
+          {
+            "level": 2,
+            "text": "Crime and Punishment"
+          },
+          {
+            "level": 2,
+            "text": "Cuoc du hanh vao long dat"
+          },
+          {
+            "level": 2,
+            "text": "Dao duc kinh"
+          },
+          {
+            "level": 2,
+            "text": "Dao giau vang"
+          },
+          {
+            "level": 2,
+            "text": "Doi gio hu"
+          },
+          {
+            "level": 2,
+            "text": "Don Quixote"
+          },
+          {
+            "level": 2,
+            "text": "Don Quixote"
+          },
+          {
+            "level": 2,
+            "text": "Dracula"
+          },
+          {
+            "level": 2,
+            "text": "Dracula"
+          },
+          {
+            "level": 2,
+            "text": "Frankenstein"
+          },
+          {
+            "level": 2,
+            "text": "Frankenstein"
+          },
+          {
+            "level": 2,
+            "text": "Gio qua rang lieu"
+          },
+          {
+            "level": 2,
+            "text": "Great Expectations"
+          },
+          {
+            "level": 2,
+            "text": "Grimms' Fairy Tales"
+          },
+          {
+            "level": 2,
+            "text": "Hai kinh thanh"
+          },
+          {
+            "level": 2,
+            "text": "Hoa than"
+          },
+          {
+            "level": 2,
+            "text": "Iliad"
+          },
+          {
+            "level": 2,
+            "text": "Jane Eyre"
+          },
+          {
+            "level": 2,
+            "text": "Jane Eyre"
+          },
+          {
+            "level": 2,
+            "text": "Journey to the Center of the Earth"
+          },
+          {
+            "level": 2,
+            "text": "Khu vuon bi mat"
+          },
+          {
+            "level": 2,
+            "text": "Kieu hanh va dinh kien"
+          },
+          {
+            "level": 2,
+            "text": "Ky vong lon lao"
+          },
+          {
+            "level": 2,
+            "text": "Les Miserables"
+          },
+          {
+            "level": 2,
+            "text": "Little Women"
+          },
+          {
+            "level": 2,
+            "text": "Meditations"
+          },
+          {
+            "level": 2,
+            "text": "Moby-Dick"
+          },
+          {
+            "level": 2,
+            "text": "Ngu ngon Aesop"
+          },
+          {
+            "level": 2,
+            "text": "Nha tien tri"
+          },
+          {
+            "level": 2,
+            "text": "Nhung cuoc phieu luu cua Huckleberry Finn"
+          },
+          {
+            "level": 2,
+            "text": "Nhung cuoc phieu luu cua Sherlock Holmes"
+          },
+          {
+            "level": 2,
+            "text": "Nhung cuoc phieu luu cua Tom Sawyer"
+          },
+          {
+            "level": 2,
+            "text": "Nhung nguoi khon kho"
+          },
+          {
+            "level": 2,
+            "text": "Nhung nguoi phu nu be nho"
+          },
+          {
+            "level": 2,
+            "text": "Odyssey"
+          },
+          {
+            "level": 2,
+            "text": "Oliver Twist"
+          },
+          {
+            "level": 2,
+            "text": "Oliver Twist"
+          },
+          {
+            "level": 2,
+            "text": "Phu thuy xu Oz"
+          },
+          {
+            "level": 2,
+            "text": "Pride and Prejudice"
+          },
+          {
+            "level": 2,
+            "text": "Sach rung xanh"
+          },
+          {
+            "level": 2,
+            "text": "Siddhartha"
+          },
+          {
+            "level": 2,
+            "text": "Siddhartha"
+          },
+          {
+            "level": 2,
+            "text": "Su giau co cua cac quoc gia"
+          },
+          {
+            "level": 2,
+            "text": "Suy tuong"
+          },
+          {
+            "level": 2,
+            "text": "Tao Te Ching"
+          },
+          {
+            "level": 2,
+            "text": "Than khuc"
+          },
+          {
+            "level": 2,
+            "text": "The Adventures of Sherlock Holmes"
+          },
+          {
+            "level": 2,
+            "text": "The Adventures of Tom Sawyer"
+          },
+          {
+            "level": 2,
+            "text": "The Art of War"
+          },
+          {
+            "level": 2,
+            "text": "The Brothers Karamazov"
+          },
+          {
+            "level": 2,
+            "text": "The Call of the Wild"
+          },
+          {
+            "level": 2,
+            "text": "The Count of Monte Cristo"
+          },
+          {
+            "level": 2,
+            "text": "The Divine Comedy"
+          },
+          {
+            "level": 2,
+            "text": "The Elements of Style"
+          }
+        ],
+        "imagesMissingAlt": 0,
+        "landmarks": {
+          "main": 1,
+          "nav": 5,
+          "footer": 1
+        }
+      },
+      "images": {
+        "broken": 0,
+        "count": 0,
+        "loaded": 0,
+        "placeholderCount": 0,
+        "uniqueSources": 0
+      },
+      "layout": {
+        "clientWidth": 1425,
+        "fixedElements": [],
+        "horizontalOverflowPx": 0,
+        "scrollHeight": 11263,
+        "scrollWidth": 1425,
+        "viewportHeight": 1100,
+        "viewportWidth": 1440
+      },
+      "locale": "vi",
+      "performance": {
+        "cls": 0,
+        "layoutShiftEntryCount": 0,
+        "lcpMs": null,
+        "navigation": {
+          "domContentLoadedMs": 1154,
+          "durationMs": 1214,
+          "loadEventMs": 1214,
+          "responseEndMs": 1056,
+          "transferSize": 39140
+        },
+        "resources": {
+          "count": 14,
+          "decodedBodyBytes": 841289,
+          "transferBytes": 0
+        },
+        "imageResources": {
+          "count": 0,
+          "decodedBodyBytes": 0,
+          "transferBytes": 0
+        },
+        "supportedEntryTypes": [
+          "element",
+          "event",
+          "first-input",
+          "largest-contentful-paint",
+          "layout-shift",
+          "long-animation-frame",
+          "longtask",
+          "mark",
+          "measure",
+          "navigation",
+          "paint",
+          "resource",
+          "visibility-state"
+        ]
+      },
+      "textSignals": {
+        "demo": 0,
+        "notSpecified": 0,
+        "placeholder": 0,
+        "tbc": 0
+      },
+      "title": "Catalog operations | CaseFlow Books",
+      "url": "http://127.0.0.1:3007/admin/catalog"
+    },
+    {
+      "label": "admin-catalog-mobile-vi",
+      "screenshotPath": "/Users/vantruong/Documents/TSNN 2/caseflow-store/.agent/artifacts/v12-t03/admin-catalog-mobile-vi.png",
+      "accessibility": {
+        "controlsWithoutName": 2,
+        "duplicateIds": [],
+        "headings": [
+          {
+            "level": 2,
+            "text": "Khám phá"
+          },
+          {
+            "level": 1,
+            "text": "Quản lý catalog sách"
+          },
+          {
+            "level": 2,
+            "text": "A Christmas Carol"
+          },
+          {
+            "level": 2,
+            "text": "A Tale of Two Cities"
+          },
+          {
+            "level": 2,
+            "text": "Adventures of Huckleberry Finn"
+          },
+          {
+            "level": 2,
+            "text": "Aesop's Fables"
+          },
+          {
+            "level": 2,
+            "text": "Alice o xu so than tien"
+          },
+          {
+            "level": 2,
+            "text": "Alice's Adventures in Wonderland"
+          },
+          {
+            "level": 2,
+            "text": "Andersen's Fairy Tales"
+          },
+          {
+            "level": 2,
+            "text": "Anh em nha Karamazov"
+          },
+          {
+            "level": 2,
+            "text": "Anna Karenina"
+          },
+          {
+            "level": 2,
+            "text": "Anna Karenina"
+          },
+          {
+            "level": 2,
+            "text": "Anne of Green Gables"
+          },
+          {
+            "level": 2,
+            "text": "Anne toc do duoi mai nha xanh"
+          },
+          {
+            "level": 2,
+            "text": "Around the World in Eighty Days"
+          },
+          {
+            "level": 2,
+            "text": "Ba chang linh ngu lam"
+          },
+          {
+            "level": 2,
+            "text": "Ba tuoc Monte Cristo"
+          },
+          {
+            "level": 2,
+            "text": "Bai ca Giang sinh"
+          },
+          {
+            "level": 2,
+            "text": "Binh phap Ton Tu"
+          },
+          {
+            "level": 2,
+            "text": "Ca voi trang"
+          },
+          {
+            "level": 2,
+            "text": "Cac yeu to cua van phong"
+          },
+          {
+            "level": 2,
+            "text": "Chan dung Dorian Gray"
+          },
+          {
+            "level": 2,
+            "text": "Chien tranh giua cac the gioi"
+          },
+          {
+            "level": 2,
+            "text": "Chien tranh va hoa binh"
+          },
+          {
+            "level": 2,
+            "text": "Co may thoi gian"
+          },
+          {
+            "level": 2,
+            "text": "Cong hoa"
+          },
+          {
+            "level": 2,
+            "text": "Crime and Punishment"
+          },
+          {
+            "level": 2,
+            "text": "Cuoc du hanh vao long dat"
+          },
+          {
+            "level": 2,
+            "text": "Dao duc kinh"
+          },
+          {
+            "level": 2,
+            "text": "Dao giau vang"
+          },
+          {
+            "level": 2,
+            "text": "Doi gio hu"
+          },
+          {
+            "level": 2,
+            "text": "Don Quixote"
+          },
+          {
+            "level": 2,
+            "text": "Don Quixote"
+          },
+          {
+            "level": 2,
+            "text": "Dracula"
+          },
+          {
+            "level": 2,
+            "text": "Dracula"
+          },
+          {
+            "level": 2,
+            "text": "Frankenstein"
+          },
+          {
+            "level": 2,
+            "text": "Frankenstein"
+          },
+          {
+            "level": 2,
+            "text": "Gio qua rang lieu"
+          },
+          {
+            "level": 2,
+            "text": "Great Expectations"
+          },
+          {
+            "level": 2,
+            "text": "Grimms' Fairy Tales"
+          },
+          {
+            "level": 2,
+            "text": "Hai kinh thanh"
+          },
+          {
+            "level": 2,
+            "text": "Hoa than"
+          },
+          {
+            "level": 2,
+            "text": "Iliad"
+          },
+          {
+            "level": 2,
+            "text": "Jane Eyre"
+          },
+          {
+            "level": 2,
+            "text": "Jane Eyre"
+          },
+          {
+            "level": 2,
+            "text": "Journey to the Center of the Earth"
+          },
+          {
+            "level": 2,
+            "text": "Khu vuon bi mat"
+          },
+          {
+            "level": 2,
+            "text": "Kieu hanh va dinh kien"
+          },
+          {
+            "level": 2,
+            "text": "Ky vong lon lao"
+          },
+          {
+            "level": 2,
+            "text": "Les Miserables"
+          },
+          {
+            "level": 2,
+            "text": "Little Women"
+          },
+          {
+            "level": 2,
+            "text": "Meditations"
+          },
+          {
+            "level": 2,
+            "text": "Moby-Dick"
+          },
+          {
+            "level": 2,
+            "text": "Ngu ngon Aesop"
+          },
+          {
+            "level": 2,
+            "text": "Nha tien tri"
+          },
+          {
+            "level": 2,
+            "text": "Nhung cuoc phieu luu cua Huckleberry Finn"
+          },
+          {
+            "level": 2,
+            "text": "Nhung cuoc phieu luu cua Sherlock Holmes"
+          },
+          {
+            "level": 2,
+            "text": "Nhung cuoc phieu luu cua Tom Sawyer"
+          },
+          {
+            "level": 2,
+            "text": "Nhung nguoi khon kho"
+          },
+          {
+            "level": 2,
+            "text": "Nhung nguoi phu nu be nho"
+          },
+          {
+            "level": 2,
+            "text": "Odyssey"
+          },
+          {
+            "level": 2,
+            "text": "Oliver Twist"
+          },
+          {
+            "level": 2,
+            "text": "Oliver Twist"
+          },
+          {
+            "level": 2,
+            "text": "Phu thuy xu Oz"
+          },
+          {
+            "level": 2,
+            "text": "Pride and Prejudice"
+          },
+          {
+            "level": 2,
+            "text": "Sach rung xanh"
+          },
+          {
+            "level": 2,
+            "text": "Siddhartha"
+          },
+          {
+            "level": 2,
+            "text": "Siddhartha"
+          },
+          {
+            "level": 2,
+            "text": "Su giau co cua cac quoc gia"
+          },
+          {
+            "level": 2,
+            "text": "Suy tuong"
+          },
+          {
+            "level": 2,
+            "text": "Tao Te Ching"
+          },
+          {
+            "level": 2,
+            "text": "Than khuc"
+          },
+          {
+            "level": 2,
+            "text": "The Adventures of Sherlock Holmes"
+          },
+          {
+            "level": 2,
+            "text": "The Adventures of Tom Sawyer"
+          },
+          {
+            "level": 2,
+            "text": "The Art of War"
+          },
+          {
+            "level": 2,
+            "text": "The Brothers Karamazov"
+          },
+          {
+            "level": 2,
+            "text": "The Call of the Wild"
+          },
+          {
+            "level": 2,
+            "text": "The Count of Monte Cristo"
+          },
+          {
+            "level": 2,
+            "text": "The Divine Comedy"
+          },
+          {
+            "level": 2,
+            "text": "The Elements of Style"
+          }
+        ],
+        "imagesMissingAlt": 0,
+        "landmarks": {
+          "main": 1,
+          "nav": 5,
+          "footer": 1
+        }
+      },
+      "images": {
+        "broken": 0,
+        "count": 0,
+        "loaded": 0,
+        "placeholderCount": 0,
+        "uniqueSources": 0
+      },
+      "layout": {
+        "clientWidth": 360,
+        "fixedElements": [],
+        "horizontalOverflowPx": 195,
+        "scrollHeight": 16520,
+        "scrollWidth": 555,
+        "viewportHeight": 900,
+        "viewportWidth": 375
+      },
+      "locale": "vi",
+      "performance": {
+        "cls": 0,
+        "layoutShiftEntryCount": 0,
+        "lcpMs": null,
+        "navigation": {
+          "domContentLoadedMs": 1154,
+          "durationMs": 1214,
+          "loadEventMs": 1214,
+          "responseEndMs": 1056,
+          "transferSize": 39140
+        },
+        "resources": {
+          "count": 36,
+          "decodedBodyBytes": 882070,
+          "transferBytes": 19984
+        },
+        "imageResources": {
+          "count": 0,
+          "decodedBodyBytes": 0,
+          "transferBytes": 0
+        },
+        "supportedEntryTypes": [
+          "element",
+          "event",
+          "first-input",
+          "largest-contentful-paint",
+          "layout-shift",
+          "long-animation-frame",
+          "longtask",
+          "mark",
+          "measure",
+          "navigation",
+          "paint",
+          "resource",
+          "visibility-state"
+        ]
+      },
+      "textSignals": {
+        "demo": 0,
+        "notSpecified": 0,
+        "placeholder": 0,
+        "tbc": 0
+      },
+      "title": "Catalog operations | CaseFlow Books",
+      "url": "http://127.0.0.1:3007/admin/catalog"
+    }
+  ],
+  "currentPageConsoleWarningsAndErrors": [],
+  "measurementNotes": [
+    "Viewport client width is 15px narrower than configured when a vertical scrollbar is present.",
+    "CLS is the sum of layout-shift entries exposed after each navigation; no entries were exposed in this lightweight run.",
+    "LCP was not captured because the audit observer was not installed before navigation.",
+    "Image transfer entries are cache-sensitive; use the catalog asset inventory and decoded file size as the deterministic image baseline.",
+    "Accessibility counts are deterministic DOM heuristics, not a substitute for axe-core or assistive-technology testing."
+  ],
+  "firstViewportScreenshots": [
+    "/Users/vantruong/Documents/TSNN 2/caseflow-store/.agent/artifacts/v12-t03/home-mobile-vi-viewport.png",
+    "/Users/vantruong/Documents/TSNN 2/caseflow-store/.agent/artifacts/v12-t03/catalog-mobile-vi-viewport.png",
+    "/Users/vantruong/Documents/TSNN 2/caseflow-store/.agent/artifacts/v12-t03/product-mobile-vi-viewport.png",
+    "/Users/vantruong/Documents/TSNN 2/caseflow-store/.agent/artifacts/v12-t03/admin-catalog-mobile-vi-viewport.png",
+    "/Users/vantruong/Documents/TSNN 2/caseflow-store/.agent/artifacts/v12-t03/home-desktop-vi-viewport.png",
+    "/Users/vantruong/Documents/TSNN 2/caseflow-store/.agent/artifacts/v12-t03/catalog-desktop-vi-viewport.png",
+    "/Users/vantruong/Documents/TSNN 2/caseflow-store/.agent/artifacts/v12-t03/product-desktop-vi-viewport.png",
+    "/Users/vantruong/Documents/TSNN 2/caseflow-store/.agent/artifacts/v12-t03/admin-catalog-desktop-vi-viewport.png"
+  ]
+}

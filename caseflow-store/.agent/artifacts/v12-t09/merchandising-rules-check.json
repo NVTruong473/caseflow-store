@@ -1,0 +1,127 @@
+{
+  "taskId": "V12-T09",
+  "generatedAt": "2026-07-18T08:42:33.330Z",
+  "manifestPath": "src/data/books/v1.2-merchandising-rules-manifest.json",
+  "counts": {
+    "shelves": 9,
+    "activeShelves": 8,
+    "orderDerivedShelves": 1
+  },
+  "negativeSchemaChecks": {
+    "duplicatePositionsRejected": true,
+    "invalidWindowRejected": true,
+    "missingEditionRejected": true,
+    "unlocalizedLabelsRejected": true
+  },
+  "orderDerivedChecks": {
+    "issues": []
+  },
+  "pass": {
+    "schemaValid": true,
+    "exactShelfCount": true,
+    "sourceEditorialCoverage": true,
+    "referencesValid": true,
+    "duplicatePositionsRejected": true,
+    "missingEditionRejected": true,
+    "invalidWindowRejected": true,
+    "unlocalizedLabelsRejected": true,
+    "unauthorizedMutationsRejected": true,
+    "orderDerivedClaimsGuarded": true,
+    "deterministicResolution": true,
+    "activeShelvesResolve": true,
+    "fallbackStable": true,
+    "storageContractPresent": true
+  },
+  "permissionChecks": {
+    "adminAllowed": true,
+    "anonymousDenied": true,
+    "customerDenied": true,
+    "staffWithPermissionAllowed": true,
+    "staffWithoutPermissionDenied": true
+  },
+  "referenceChecks": {
+    "issues": []
+  },
+  "resolutionChecks": {
+    "deterministic": true,
+    "fallbackStable": true,
+    "resolved": [
+      {
+        "shelfSlug": "editor-picks",
+        "sourceShelfSlug": "editor-picks",
+        "usedFallback": false,
+        "count": 12,
+        "warnings": []
+      },
+      {
+        "shelfSlug": "weekend-starter-set",
+        "sourceShelfSlug": "weekend-starter-set",
+        "usedFallback": false,
+        "count": 8,
+        "warnings": []
+      },
+      {
+        "shelfSlug": "vietnamese-editions",
+        "sourceShelfSlug": "vietnamese-editions",
+        "usedFallback": false,
+        "count": 12,
+        "warnings": []
+      },
+      {
+        "shelfSlug": "english-editions",
+        "sourceShelfSlug": "english-editions",
+        "usedFallback": false,
+        "count": 12,
+        "warnings": []
+      },
+      {
+        "shelfSlug": "promotion-ready",
+        "sourceShelfSlug": "promotion-ready",
+        "usedFallback": false,
+        "count": 12,
+        "warnings": []
+      },
+      {
+        "shelfSlug": "low-stock-watch",
+        "sourceShelfSlug": "low-stock-watch",
+        "usedFallback": false,
+        "count": 8,
+        "warnings": []
+      },
+      {
+        "shelfSlug": "classic-literature",
+        "sourceShelfSlug": "classic-literature",
+        "usedFallback": false,
+        "count": 12,
+        "warnings": []
+      },
+      {
+        "shelfSlug": "paired-edition-comparison",
+        "sourceShelfSlug": "paired-edition-comparison",
+        "usedFallback": false,
+        "count": 12,
+        "warnings": []
+      },
+      {
+        "shelfSlug": "sales-trending-30d",
+        "sourceShelfSlug": "sales-trending-30d",
+        "usedFallback": false,
+        "count": 0,
+        "warnings": [
+          "shelf-inactive"
+        ]
+      }
+    ],
+    "unresolvedActiveShelves": []
+  },
+  "storageContract": {
+    "path": "docs/v1.2-merchandising-rules-storage.md",
+    "exists": true,
+    "hasShelvesTable": true,
+    "hasItemsTable": true,
+    "hasUniquePosition": true,
+    "hasPermissionBoundary": true,
+    "ok": true
+  },
+  "ok": true
+}

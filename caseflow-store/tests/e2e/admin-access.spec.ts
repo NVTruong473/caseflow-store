@@ -2,6 +2,7 @@ import { expect, test } from "@playwright/test";
 
 import {
   addSupabaseSessionCookies,
+  clickElement,
   createOrderThroughApi,
   createTemporaryCustomer,
   createTestPublicClient,
@@ -9,6 +10,7 @@ import {
   findAvailableBook,
   getAdminCredentials,
   loginAsAdmin,
+  selectFieldOption,
 } from "./helpers/supabase";
 
 test.describe.serial("Supabase admin access matrix", () => {
@@ -69,8 +71,8 @@ test.describe.serial("Supabase admin access matrix", () => {
     await expect(page).toHaveURL(/\/admin\/login\?reason=forbidden/);
     await expect(page.locator("[data-admin-login-page]")).toBeVisible();
     await page.screenshot({
-      fullPage: true,
       path: ".agent/artifacts/d40-t01-customer-forbidden.png",
+      timeout: 30_000,
     });
 
     const directClient = createTestPublicClient();
@@ -125,8 +127,8 @@ test.describe.serial("Supabase admin access matrix", () => {
       ),
     ).toBe(true);
 
-    await page.locator("[data-admin-order-status-select]").selectOption("confirmed");
-    await page.locator("[data-admin-order-status-submit]").click();
+    await selectFieldOption(page, "[data-admin-order-status-select]", "confirmed");
+    await clickElement(page, "[data-admin-order-status-submit]");
     await expect(page.locator("[data-admin-order-status-success]")).toContainText(
       "Confirmed",
     );
@@ -158,7 +160,7 @@ test.describe.serial("Supabase admin access matrix", () => {
       path: ".agent/artifacts/d40-t01-admin-access-matrix.png",
     });
 
-    await page.locator("[data-admin-sign-out]").click();
+    await clickElement(page, "[data-admin-sign-out]");
     await expect(page).toHaveURL(/\/admin\/login$/);
     expect((await page.request.get("/api/admin/orders")).status()).toBe(401);
   });

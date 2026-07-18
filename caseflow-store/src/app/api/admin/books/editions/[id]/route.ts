@@ -1,10 +1,11 @@
 import { toAdminBookEditionApiItem } from "@/lib/api/admin-book-catalog";
 import { apiError, apiSuccess } from "@/lib/api/response";
 import { requireAdminPermission } from "@/lib/auth/admin";
-import { updateSupabaseAdminBookEdition } from "@/lib/repositories/supabase-books";
 import {
-  adminBookEditionUpdateSchema,
-} from "@/lib/validation/books";
+  updateSupabaseAdminBookEdition,
+  validateSupabaseAdminBookEditionSourceApproval,
+} from "@/lib/repositories/supabase-books";
+import { adminBookEditionUpdateSchema } from "@/lib/validation/books";
 import { idSchema } from "@/lib/validation/domain";
 
 type AdminBookEditionRouteContext = {
@@ -66,6 +67,44 @@ export async function PATCH(
       },
       400,
     );
+  }
+
+  const sourceFields = [
+    "displayFacts",
+    "omittedOptionalFactKeys",
+    "sourceEditionKey",
+    "sourceReviewStatus",
+  ] as const;
+  const changesSourceReview = sourceFields.some(
+    (field) => parsedBody.data[field] !== undefined,
+  );
+
+  if (changesSourceReview && adminAuth.user.role !== "admin") {
+    return apiError(
+      {
+        code: "FORBIDDEN",
+        message: "Only admins can change source review fields",
+      },
+      403,
+    );
+  }
+
+  if (parsedBody.data.sourceReviewStatus === "approved") {
+    const approvalCheck =
+      await validateSupabaseAdminBookEditionSourceApproval(
+        parsedEditionId.data,
+        parsedBody.data,
+      );
+
+    if (!approvalCheck.allowed) {
+      return apiError(
+        {
+          code: approvalCheck.code,
+          message: approvalCheck.message,
+        },
+        approvalCheck.status,
+      );
+    }
   }
 
   try {

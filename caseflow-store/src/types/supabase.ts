@@ -20,6 +20,13 @@ export type Json =
   | Json[];
 
 type ProfileRole = UserRole;
+type SourceReviewStatus = "draft" | "needs-review" | "approved" | "rejected";
+type ContentQualityRequirementLevel = "blocking" | "optional";
+type ContentQualityStatus =
+  | "verified"
+  | "missing"
+  | "unverified"
+  | "not-applicable";
 
 export type Database = {
   public: {
@@ -474,6 +481,13 @@ export type Database = {
           sample_excerpt_policy: string | null;
           is_featured: boolean;
           is_active: boolean;
+          pair_id: string | null;
+          paired_edition_id: string | null;
+          reason_to_read: Json | null;
+          display_facts: Json;
+          omitted_optional_fact_keys: string[];
+          source_edition_key: string | null;
+          source_review_status: SourceReviewStatus | null;
           created_at: string;
           updated_at: string;
         };
@@ -504,6 +518,13 @@ export type Database = {
           sample_excerpt_policy?: string | null;
           is_featured?: boolean;
           is_active?: boolean;
+          pair_id?: string | null;
+          paired_edition_id?: string | null;
+          reason_to_read?: Json | null;
+          display_facts?: Json;
+          omitted_optional_fact_keys?: string[];
+          source_edition_key?: string | null;
+          source_review_status?: SourceReviewStatus | null;
           created_at?: string;
           updated_at?: string;
         };
@@ -534,6 +555,13 @@ export type Database = {
           sample_excerpt_policy?: string | null;
           is_featured?: boolean;
           is_active?: boolean;
+          pair_id?: string | null;
+          paired_edition_id?: string | null;
+          reason_to_read?: Json | null;
+          display_facts?: Json;
+          omitted_optional_fact_keys?: string[];
+          source_edition_key?: string | null;
+          source_review_status?: SourceReviewStatus | null;
           created_at?: string;
           updated_at?: string;
         };
@@ -550,6 +578,13 @@ export type Database = {
             columns: ["publisher_id"];
             isOneToOne: false;
             referencedRelation: "book_publishers";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "book_editions_paired_edition_id_fkey";
+            columns: ["paired_edition_id"];
+            isOneToOne: false;
+            referencedRelation: "book_editions";
             referencedColumns: ["id"];
           },
           {
@@ -593,6 +628,260 @@ export type Database = {
             columns: ["translator_id"];
             isOneToOne: false;
             referencedRelation: "book_translators";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      book_catalog_provenance_records: {
+        Row: {
+          id: string;
+          entity_type: string;
+          entity_id: string;
+          field_key: string;
+          source_label: string;
+          source_url: string | null;
+          checked_at: string;
+          content_kind: string;
+          rights_basis: string;
+          rights_basis_note: string;
+          license: Json | null;
+          attribution: Json;
+          review_status: SourceReviewStatus;
+          reviewer_note: string | null;
+          reviewed_at: string | null;
+          edition_match_confidence: string;
+          source_edition_key: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id: string;
+          entity_type: string;
+          entity_id: string;
+          field_key: string;
+          source_label: string;
+          source_url?: string | null;
+          checked_at: string;
+          content_kind: string;
+          rights_basis: string;
+          rights_basis_note: string;
+          license?: Json | null;
+          attribution: Json;
+          review_status: SourceReviewStatus;
+          reviewer_note?: string | null;
+          reviewed_at?: string | null;
+          edition_match_confidence: string;
+          source_edition_key?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          entity_type?: string;
+          entity_id?: string;
+          field_key?: string;
+          source_label?: string;
+          source_url?: string | null;
+          checked_at?: string;
+          content_kind?: string;
+          rights_basis?: string;
+          rights_basis_note?: string;
+          license?: Json | null;
+          attribution?: Json;
+          review_status?: SourceReviewStatus;
+          reviewer_note?: string | null;
+          reviewed_at?: string | null;
+          edition_match_confidence?: string;
+          source_edition_key?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      book_content_quality_checks: {
+        Row: {
+          id: string;
+          edition_id: string;
+          requirement: string;
+          requirement_level: ContentQualityRequirementLevel;
+          status: ContentQualityStatus;
+          provenance_record_id: string | null;
+          note: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          edition_id: string;
+          requirement: string;
+          requirement_level: ContentQualityRequirementLevel;
+          status: ContentQualityStatus;
+          provenance_record_id?: string | null;
+          note?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          edition_id?: string;
+          requirement?: string;
+          requirement_level?: ContentQualityRequirementLevel;
+          status?: ContentQualityStatus;
+          provenance_record_id?: string | null;
+          note?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "book_content_quality_checks_edition_id_fkey";
+            columns: ["edition_id"];
+            isOneToOne: false;
+            referencedRelation: "book_editions";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      book_catalog_compatibility: {
+        Row: {
+          id: string;
+          legacy_entity_type: "work" | "edition";
+          legacy_id: string;
+          legacy_slug: string;
+          behavior: "preserved" | "redirect" | "retired-to-catalog";
+          target_slug: string | null;
+          reason: Json;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          legacy_entity_type: "work" | "edition";
+          legacy_id: string;
+          legacy_slug: string;
+          behavior: "preserved" | "redirect" | "retired-to-catalog";
+          target_slug?: string | null;
+          reason: Json;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          legacy_entity_type?: "work" | "edition";
+          legacy_id?: string;
+          legacy_slug?: string;
+          behavior?: "preserved" | "redirect" | "retired-to-catalog";
+          target_slug?: string | null;
+          reason?: Json;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      book_merchandising_shelves: {
+        Row: {
+          id: string;
+          slug: string;
+          shelf_type: string;
+          source_kind: string;
+          labels: Json;
+          description: Json;
+          inclusion_rule: Json;
+          starts_at: string | null;
+          ends_at: string | null;
+          is_active: boolean;
+          sort_order: number;
+          min_items: number;
+          max_items: number;
+          fallback: Json;
+          required_permission: string;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id: string;
+          slug: string;
+          shelf_type: string;
+          source_kind: string;
+          labels: Json;
+          description: Json;
+          inclusion_rule: Json;
+          starts_at?: string | null;
+          ends_at?: string | null;
+          is_active?: boolean;
+          sort_order: number;
+          min_items: number;
+          max_items: number;
+          fallback: Json;
+          required_permission?: string;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          slug?: string;
+          shelf_type?: string;
+          source_kind?: string;
+          labels?: Json;
+          description?: Json;
+          inclusion_rule?: Json;
+          starts_at?: string | null;
+          ends_at?: string | null;
+          is_active?: boolean;
+          sort_order?: number;
+          min_items?: number;
+          max_items?: number;
+          fallback?: Json;
+          required_permission?: string;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      book_merchandising_shelf_items: {
+        Row: {
+          id: string;
+          shelf_id: string;
+          edition_id: string;
+          position: number;
+          is_active: boolean;
+          note: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id: string;
+          shelf_id: string;
+          edition_id: string;
+          position: number;
+          is_active?: boolean;
+          note?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          shelf_id?: string;
+          edition_id?: string;
+          position?: number;
+          is_active?: boolean;
+          note?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "book_merchandising_shelf_items_edition_id_fkey";
+            columns: ["edition_id"];
+            isOneToOne: false;
+            referencedRelation: "book_editions";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "book_merchandising_shelf_items_shelf_id_fkey";
+            columns: ["shelf_id"];
+            isOneToOne: false;
+            referencedRelation: "book_merchandising_shelves";
             referencedColumns: ["id"];
           },
         ];

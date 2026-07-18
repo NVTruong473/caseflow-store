@@ -1,0 +1,23 @@
+{
+  "taskId": "V12-T10",
+  "checkedAt": "2026-07-18T08:42:27.848Z",
+  "pass": {
+    "planExists": true,
+    "migrationSqlMatchesPlan": true,
+    "noDestructiveSql": true,
+    "requiredSqlFragmentsPresent": true,
+    "backupDirectoryIgnored": true,
+    "sourceManifestSnapshotsPresent": true,
+    "assetManifestPresent": true,
+    "expectedIdPlan": true,
+    "noDeletesPlanned": true,
+    "productionAreasPreserved": true,
+    "merchandisingRowsPlanned": true,
+    "provenanceRowsPlanned": true,
+    "preMigrationCountSqlSafe": true,
+    "liveCountEvidencePresent": true
+  },
+  "destructiveMatches": [],
+  "requiredSqlFragmentsMissing": [],
+  "liveCountStatus": "captured"
+}

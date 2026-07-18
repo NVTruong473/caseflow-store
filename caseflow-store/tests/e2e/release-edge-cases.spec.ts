@@ -2,10 +2,13 @@ import { expect, test } from "@playwright/test";
 
 import {
   addSupabaseSessionCookies,
+  clickElement,
+  clickFirstVisible,
   clearClientOrderState,
   createTemporaryCustomer,
   deleteTemporaryCustomer,
   findAvailableBook,
+  fillField,
   seedCart,
 } from "./helpers/supabase";
 
@@ -25,11 +28,11 @@ test("empty cart cannot enter the order flow", async ({ page }) => {
   await clearClientOrderState(page);
   await expect(page.locator("[data-cart-count]").first())
     .toHaveAttribute("data-cart-count", "0");
-  await page.locator("[data-cart-drawer-open]:visible").first().click();
+  await clickFirstVisible(page, "[data-cart-drawer-open]");
   await expect(page.locator("[data-cart-drawer-empty]")).toBeVisible();
   await expect(page.locator("[data-cart-drawer-checkout]")).toHaveCount(0);
 
-  await page.locator("[data-cart-drawer-close]").click();
+  await clickElement(page, "[data-cart-drawer-close]");
   await page.goto("/checkout");
   await expect(page).toHaveURL(/\/account\?next=(%2Fcheckout|\/checkout)/);
   await expect(page.locator("[data-customer-auth-page]")).toBeVisible();
@@ -67,7 +70,7 @@ test("missing book returns stable API and storefront fallbacks", async ({
     .toContainText("book edition is not available");
   await expect(page.locator("[data-book-purchase-controls]")).toHaveCount(0);
   await expect(page.getByRole("link", { name: /Browse books/i }))
-    .toHaveAttribute("href", "/#featured");
+    .toHaveAttribute("href", "/catalog");
 
   await page.screenshot({
     fullPage: true,
@@ -119,16 +122,16 @@ test("quantity boundaries hold across UI, API, and checkout", async ({
     await page.goto(`/products/${book.slug}`);
     const quantityInput = page.locator("[data-book-quantity-input]");
 
-    await quantityInput.fill("0");
+    await fillField(page, "[data-book-quantity-input]", "0");
     await expect(quantityInput).toHaveValue("1");
-    await quantityInput.fill("99");
+    await fillField(page, "[data-book-quantity-input]", "99");
     await expect(quantityInput).toHaveValue(book.edition.stockQuantity.toString());
     await expect(page.locator("[data-book-quantity-increment]")).toBeDisabled();
 
-    await page.locator("[data-book-add-to-cart-button]").click();
+    await clickElement(page, "[data-book-add-to-cart-button]");
     await expect(page.locator("[data-book-add-to-cart-feedback='success']"))
       .toContainText("Added");
-    await page.locator("[data-cart-drawer-open]:visible").first().click();
+    await clickFirstVisible(page, "[data-cart-drawer-open]");
     await expect(
       page.locator(`[data-cart-drawer-quantity="${book.edition.id}"]`),
     ).toHaveText(book.edition.stockQuantity.toString());
