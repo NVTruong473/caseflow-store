@@ -1,8 +1,8 @@
 # Known Limitations
 
 This document records the intentional boundaries and accepted risks of
-CaseFlow Books `v1.2`. These items are not hidden production capabilities; they
-define where the portfolio release stops.
+CaseFlow Books through the latest `v1.3.1` release. These items are not hidden
+production capabilities; they define where the portfolio release stops.
 
 ## Commerce scope
 
@@ -23,8 +23,8 @@ states, and sensitive-data handling.
 ### Phone and email are not truly verified
 
 Customer checkout requires profile/contact fields, and those fields are
-validated for shape and completeness. CaseFlow Books `v1.2` does not send real
-SMS OTPs or provider-backed email verification.
+validated for shape and completeness. CaseFlow Books does not send real SMS
+OTPs or provider-backed email verification.
 
 **Current control:** checkout readiness prevents missing or malformed profile
 data, but documentation avoids claiming verified phone numbers or verified email
@@ -154,7 +154,11 @@ availability.
 
 ## Accepted dependency advisory
 
-At the `v1.2` release audit, `npm audit --audit-level=moderate` reported:
+At the latest closeout gate, `npm audit --audit-level=high` passed. The known
+moderate advisory remains inherited through Next.js/PostCSS and is documented
+because the available automated forced fix proposes a breaking downgrade path.
+At the original `v1.2` release audit, `npm audit --audit-level=moderate`
+reported:
 
 - 0 critical
 - 0 high

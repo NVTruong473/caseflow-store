@@ -10,11 +10,11 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: v1.3.1 compact-card visual hotfix deployed and verified
-- Current gate: `HOTFIX-V13-T01` complete; no compact-card overlap finding open
+- Mode: v1.3.1 released; portfolio closeout complete
+- Current gate: `CLOSEOUT-T01` complete; no active implementation task
 - Current task: No active implementation task
 - Implementation day: Day 40 complete
-- Last updated: 2026-07-18
+- Last updated: 2026-07-19
 
 ## Pre-Implementation Checklist
 
@@ -2092,4 +2092,51 @@ accepted; the next task is full 100-cover portfolio production.
     - `npx tsc --noEmit --pretty false`
     - `npm run lint`
     - `npm run build`
+    - `git diff --check`
+
+## Portfolio Closeout
+
+- [x] `CLOSEOUT-T01` Final Project Closeout And Portfolio Handoff. - 2026-07-19
+  - Result: public README now points to `v1.3.1`, the latest GitHub Release,
+    production deployment, current verification evidence, and portfolio
+    handoff docs.
+  - Result: app README now reports latest `v1.3.1` evidence instead of stopping
+    at `v1.2`.
+  - Result: created `docs/portfolio-handoff.md` with public/private demo
+    scripts, feature matrix, architecture summary, verification ledger,
+    interview narrative, honest boundaries, and credible next steps.
+  - Result: updated `docs/cv-bullets.md` and `docs/known-limitations.md` so
+    supporting portfolio docs reflect the latest release without inflating
+    payment, OTP/email, licensed cover, marketplace, revenue, or scale claims.
+  - Evidence:
+    - `README.md`
+    - `caseflow-store/README.md`
+    - `caseflow-store/docs/portfolio-handoff.md`
+    - `caseflow-store/docs/cv-bullets.md`
+    - `caseflow-store/docs/known-limitations.md`
+  - Scope:
+    - Correct stale closeout state now that `v1.3.1` has been pushed, released,
+      and verified.
+    - Update public README and app README so the visible portfolio entry points
+      describe the latest release rather than old release evidence.
+    - Create a concise portfolio handoff packet with demo script, architecture
+      summary, feature matrix, verification evidence, honest limitations, and
+      interview positioning.
+    - Do not add runtime features, schema changes, deployment changes, new
+      dependencies, or inflated commercial claims.
+  - Acceptance criteria:
+    - A recruiter/interviewer can understand the project value, stack, scope,
+      live URL, latest release, verification status, and honest boundaries from
+      the README/handoff docs.
+    - CV/interview claims are tied to release evidence and avoid unsupported
+      revenue, scale, payment-processing, licensed-cover, real OTP/email, or
+      marketplace claims.
+    - `.agent` trackers record that `v1.3.1` GitHub Release is complete and no
+      active implementation task remains.
+    - Documentation-only verification passes with link/claim scans and
+      `git diff --check`.
+  - Verification:
+    - README/release claim scan
+    - targeted secret-value scan
+    - markdown link/path sanity scan
     - `git diff --check`

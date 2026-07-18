@@ -62,17 +62,24 @@ Playwright requires local admin/customer credentials such as
 and `CASEFLOW_CUSTOMER_PASSWORD`. Those credentials are not part of the deployed
 runtime.
 
-## v1.2 release evidence
+## Latest release evidence
 
-- Release tag: `v1.2.0`
+- Release tag: `v1.3.1`
+- GitHub Release:
+  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.3.1`
 - Production alias: `https://caseflow-store.vercel.app`
-- Vercel deployment ID: `dpl_7Y2Qsf4VJRBuzaMGXZMi81Rq5pKQ`
-- Local release gate: TypeScript, ESLint, production build, and 20 Playwright
-  tests passed.
-- Production smoke: public pages/APIs, 100-edition catalog quality, 100 v1.2
-  covers, language mode, cart/checkout boundary, customer/admin boundary,
-  assistant, robots, sitemap, and 20 production Playwright tests passed.
+- Vercel deployment ID: `dpl_CtyPPR1cExwXQWctsh7to98Vg3yb`
+- Local gates: TypeScript, ESLint, production build, affected v1.3 visual
+  verifiers, and compact-card overlap verifier passed.
+- Production smoke: public pages/APIs, 100-edition catalog quality, 100 cover
+  responses, language mode, cart/checkout boundary, customer/admin boundary,
+  assistant, robots, and sitemap passed.
+- Final v1.3 QA before the hotfix also passed full local Playwright `20/20`,
+  production smoke, accessibility/mobile/performance checks, cleanup,
+  secret-value scan, TypeScript, lint, and build.
 - Known boundaries: simulated payments, no real SMS/OTP, no real shipping
   carrier integration, and no commercial book-cover hotlinking.
 
 Architecture and decision records are under [`docs/`](docs/).
+The portfolio handoff packet is
+[`docs/portfolio-handoff.md`](docs/portfolio-handoff.md).

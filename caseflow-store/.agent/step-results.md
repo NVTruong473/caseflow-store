@@ -11436,6 +11436,70 @@ next patch release.
 
 ### Next Task
 
-Create and push the `v1.3.1` patch tag, create the GitHub Release, verify the
-remote release, and then consider the project complete unless a new defect is
-reported.
+`v1.3.1` was tagged, pushed, released on GitHub, and verified after this
+hotfix. The next work item became `CLOSEOUT-T01`, a documentation-only
+portfolio handoff task.
+
+---
+
+## CLOSEOUT-T01 - Final Project Closeout And Portfolio Handoff
+
+- Date: 2026-07-19
+- Status: completed
+- Phase: CaseFlow Books portfolio handoff after `v1.3.1`
+
+### Objective
+
+Close out the project as a portfolio-ready release by correcting stale release
+claims, making the latest `v1.3.1` state visible from the public README, and
+creating a concise handoff packet for recruiters, interviewers, and future
+maintenance sessions.
+
+### Actual Result
+
+- Updated the public repository README so the visible portfolio entry point
+  references the latest `v1.3.1` GitHub Release, production deployment,
+  production smoke, final QA, hotfix verifier, and handoff documents.
+- Updated the app README so local technical readers no longer see release
+  evidence stopping at `v1.2`.
+- Created `docs/portfolio-handoff.md` with a public demo script, private demo
+  flow, feature matrix, architecture summary, evidence ledger, interview
+  narrative, honest boundaries, and strong next steps if the project continues.
+- Updated `docs/cv-bullets.md` and `docs/known-limitations.md` so supporting
+  portfolio material reflects `v1.3.1` without claiming real payments, real
+  OTP/email verification, commercial cover licenses, marketplace scale,
+  revenue, or unmeasured production SLOs.
+- Returned `.agent` trackers to "no active implementation task" after the
+  documentation-only closeout.
+
+### Evidence
+
+- `README.md`
+- `caseflow-store/README.md`
+- `caseflow-store/docs/portfolio-handoff.md`
+- `caseflow-store/docs/cv-bullets.md`
+- `caseflow-store/docs/known-limitations.md`
+- `caseflow-store/.agent/project-context.md`
+- `caseflow-store/.agent/todo-roadmap.md`
+
+### Verification
+
+- Markdown link/path sanity scan across README and handoff docs: passed with
+  `ok: true`.
+- Stale latest-release claim scan: passed after removing the old hotfix next
+  task wording.
+- Targeted secret-value scan: passed with no matches.
+- `git diff --check`: passed.
+
+### Guardrails Preserved
+
+- No runtime feature, schema change, deployment, external provider integration,
+  new dependency, release tag, or GitHub Release was added in this task.
+- Portfolio claims remain evidence-backed and explicitly document simulated
+  payment, verification, shipping, data-source, media-license, and operations
+  boundaries.
+
+### Next Task
+
+No active implementation task. The project is portfolio-ready at `v1.3.1`
+unless a new defect or a clearly scoped post-portfolio roadmap is approved.

@@ -11,9 +11,8 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: `v1.3.1` compact-card visual hotfix deployed and verified.
-- Current gate: `HOTFIX-V13-T01` complete; no active P0/P1/P2 visual overlap
-  finding remains for compact cover cards.
+- Current mode: `v1.3.1` released; portfolio closeout complete.
+- Current gate: `CLOSEOUT-T01` complete; no active implementation task.
 - Current task: No active implementation task.
 
 ## Confirmed Facts
@@ -147,6 +146,11 @@
   aliased to `https://caseflow-store.vercel.app`, production overlap
   verification passed, and production release smoke passed on retry after a
   separately probed cart-count timing flake.
+- `CLOSEOUT-T01` was completed on 2026-07-19 as documentation-only portfolio
+  handoff: public README, app README, CV bullets, known limitations, and
+  `docs/portfolio-handoff.md` now describe the latest `v1.3.1` release, demo
+  script, feature matrix, architecture, verification evidence, and honest
+  portfolio boundaries without changing runtime behavior.
 
 ## v1.2 Canonical Catalog
 
