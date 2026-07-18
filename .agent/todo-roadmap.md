@@ -10,9 +10,8 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: v1.3.0 released
-- Current gate: `V13-T10` complete; production deploy, smoke test,
-  documentation, and tag complete
+- Mode: v1.3.0 released; final post-release QA passed
+- Current gate: `QA-FINAL-T01` complete; no P0/P1 tester findings
 - Current task: No active implementation task
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-18
@@ -1991,3 +1990,51 @@ accepted; the next task is full 100-cover portfolio production.
     - stale release/deploy claim scan and secret-like scan
     - `git diff --check`
     - annotated tag inspection
+
+## Post-Release QA
+
+- [x] `QA-FINAL-T01` Final Post-Release Tester Audit For v1.3.0. - 2026-07-18
+  - Result: final production tester audit passed with no findings.
+  - Result: production release smoke passed with 100 active editions, 100
+    cover responses, 50 English editions, 50 Vietnamese editions, and all
+    public, language, assistant, cart/checkout, customer boundary, admin
+    boundary, detail, robots, sitemap, and catalog-quality checks passing.
+  - Result: full Playwright E2E passed `20/20` on a production-style local
+    server.
+  - Result: accessibility/mobile/performance audit passed with focus states,
+    admin/checkout controls, catalog performance, screenshots, and no overflow.
+  - Result: cleanup passed with `totalMatches: 0`; secret-like scan,
+    stale-claim scan, TypeScript, lint, build, and `git diff --check` passed.
+  - Residual: `npm audit --audit-level=high` passed; a moderate transitive
+    Next/PostCSS advisory remains documented because `npm audit fix --force`
+    proposes a breaking downgrade path.
+  - Evidence:
+    - `docs/v1.3-final-post-release-qa-audit.md`
+    - `caseflow-store/docs/v1.3-final-post-release-qa-audit.md`
+    - `caseflow-store/scripts/verify-final-post-release-qa.ts`
+    - `caseflow-store/.agent/artifacts/qa-final-t01/final-post-release-qa.json`
+    - `caseflow-store/.agent/artifacts/qa-final-t01/production-release-smoke.json`
+    - `caseflow-store/.agent/artifacts/d39-t03/accessibility-mobile-performance-check.json`
+    - `caseflow-store/.agent/artifacts/d40-t01/release-cleanup-check.json`
+  - Acceptance criteria:
+    - Test strategy/checklist is documented with functional, UX, access,
+      content, SEO, performance, accessibility, and cleanup coverage.
+    - Production non-mutating smoke verifies the live `v1.3.0` site.
+    - Production-style local E2E verifies storefront, checkout, account,
+      admin/staff, API error, keyboard/focus, and edge-case journeys.
+    - Additional tester audit verifies UI text, no overflow, actionable empty/
+      error states, bilingual controls, and no obvious public leakage.
+    - No P0/P1 defects remain open; any residual P2/P3 findings are documented
+      with severity, evidence, and recommended next action.
+    - Cleanup, secret-like scan, stale-claim scan, TypeScript, lint, build,
+      and `git diff --check` pass after the audit.
+  - Verification:
+    - production release smoke against `https://caseflow-store.vercel.app`
+    - full Playwright E2E on a production-style local server
+    - final QA audit script/report
+    - `npx tsx scripts/verify-release-cleanup.ts`
+    - secret-like scan and stale-claim scan
+    - `npx tsc --noEmit --pretty false`
+    - `npm run lint`
+    - `npm run build`
+    - `git diff --check`

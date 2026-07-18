@@ -79,7 +79,7 @@
       }
     ]
   },
-  "baseURL": "http://127.0.0.1:3001",
+  "baseURL": "https://caseflow-store.vercel.app",
   "checkoutFlow": {
     "checkoutReady": true,
     "focusChecks": [
@@ -159,7 +159,7 @@
       }
     ]
   },
-  "generatedAt": "2026-07-18T09:01:33.225Z",
+  "generatedAt": "2026-07-18T15:31:44.561Z",
   "ok": true,
   "pass": {
     "adminControls": true,
@@ -173,7 +173,7 @@
     "catalog": {
       "cardCount": 24,
       "hasPagination": true,
-      "navigationMs": 831,
+      "navigationMs": 1537,
       "renderedCount": 24,
       "resultTotal": 100,
       "totalCount": 100

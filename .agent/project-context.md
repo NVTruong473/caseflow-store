@@ -11,9 +11,8 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: v1.3.0 released.
-- Current gate: `V13-T10` complete; production deploy, smoke test,
-  documentation, and tag complete.
+- Current mode: v1.3.0 released; final post-release QA passed.
+- Current gate: `QA-FINAL-T01` complete; no P0/P1 tester findings.
 - Current task: No active implementation task.
 
 ## Confirmed Facts
@@ -128,6 +127,14 @@
   aliased to `https://caseflow-store.vercel.app`, production smoke `ok: true`,
   100 active editions, 100 cover responses, 50 English and 50 Vietnamese
   editions, release documentation, release commit, and annotated `v1.3.0` tag.
+- The user approved `QA-FINAL-T01 - Final Post-Release Tester Audit For
+  v1.3.0` on 2026-07-18 to verify the released web app from a tester
+  perspective before deciding further work.
+- `QA-FINAL-T01` passed on 2026-07-18 with final production tester audit
+  `ok: true`, production release smoke `ok: true`, full local Playwright
+  `20/20`, accessibility/mobile/performance audit `ok: true`, cleanup
+  `totalMatches: 0`, secret-like scan, stale-claim scan, TypeScript, lint,
+  build, and `git diff --check`. No P0/P1 findings remain open.
 
 ## v1.2 Canonical Catalog
 

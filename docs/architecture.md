@@ -2,11 +2,12 @@
 
 ## Status
 
-This document describes the deployed CaseFlow Books `v1.2` architecture after
-the Day 21-40 upgrade and the realistic catalog/content merchandising release.
-The system is intentionally a Next.js modular monolith: it demonstrates a
-realistic specialist e-commerce workflow without claiming marketplace scale,
-real payment processing, or enterprise operations.
+This document describes the deployed CaseFlow Books architecture after the Day
+21-40 upgrade, the realistic catalog/content merchandising release, and the
+`v1.3.0` visual merchandising polish. The system is intentionally a Next.js
+modular monolith: it demonstrates a realistic specialist e-commerce workflow
+without claiming marketplace scale, real payment processing, or enterprise
+operations.
 
 ## System context
 
@@ -247,7 +248,8 @@ notes, rights-analysis notes, or source-edition matching keys. See
 ## Deployment and verification
 
 - Production alias: `https://caseflow-store.vercel.app`.
-- Vercel deployment ID: `dpl_7Y2Qsf4VJRBuzaMGXZMi81Rq5pKQ`.
+- Current production deployment ID: `dpl_6in3zn6CsXKtj3mR2xjGVh4X3q59`
+  (`v1.3.0`).
 - Supabase hosts PostgreSQL and Auth.
 - Production runtime variables include the public Supabase URL, public anon key,
   and server-only service-role key. Canonical metadata defaults to the
@@ -259,6 +261,11 @@ notes, rights-analysis notes, or source-edition matching keys. See
   catalog quality, 100 v1.2 cover responses, protected customer/admin boundary
   checks, language mode, cart/checkout boundary, assistant, robots/sitemap, and
   20 production Playwright tests.
+- The `v1.3.0` production release kept the same architecture and added visual
+  merchandising polish. `QA-FINAL-T01` passed production smoke, full local
+  production-style Playwright `20/20`, final tester audit, accessibility/
+  mobile/performance checks, cleanup, secret-like scan, stale-claim scan,
+  TypeScript, lint, and production build.
 - Dependency audit status is recorded in
   [`v1.2-release-audit.md`](v1.2-release-audit.md).
 

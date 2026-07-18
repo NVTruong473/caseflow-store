@@ -4,14 +4,14 @@
 
 | Field | Value |
 |---|---|
-| Current mode | v1.3.0 released |
-| Current gate | `V13-T10` complete; production deploy, smoke test, documentation, and tag complete |
+| Current mode | v1.3.0 released; final post-release QA passed |
+| Current gate | `QA-FINAL-T01` complete; no P0/P1 tester findings |
 | Implementation started | Yes |
 | Next implementation task | No active implementation task |
 | App initialized | Yes, in `caseflow-store` |
-| Local server verified | Yes, V12-T17 full Playwright and aggregate gate passed on a fresh production build at `http://127.0.0.1:3001` |
-| Lint verified | Yes, V12-T18 final lint passed |
-| Build verified | Yes, V12-T18 production build generated 42 App Router routes plus proxy |
+| Local server verified | Yes, QA-FINAL-T01 full Playwright `20/20` passed on a production-style local server at `http://127.0.0.1:3002` |
+| Lint verified | Yes, QA-FINAL-T01 lint passed |
+| Build verified | Yes, QA-FINAL-T01 production build generated 42 App Router routes plus proxy |
 | Database connected | Yes; live catalog, orders, Auth, role checks, and admin status updates use Supabase |
 | Deployed | Yes, v1.3 production deployment `dpl_6in3zn6CsXKtj3mR2xjGVh4X3q59` is aliased to `https://caseflow-store.vercel.app` |
 | Last updated | 2026-07-18 |
@@ -127,6 +127,7 @@
 | SR-179 | 2026-07-18 | V13-T08 | completed | Polished admin operations surfaces with admin trust tokens, fixed staff catalog PATCH source-review default detection, and passed visual/admin/static gates |
 | SR-180 | 2026-07-18 | V13-T09 | completed | Passed the full v1.3 local visual/documentation QA gate, added release notes, verified cleanup/stale/secret scans, and left deploy/tag pending explicit instruction |
 | SR-181 | 2026-07-18 | V13-T10 | completed | Deployed v1.3.0 to Vercel production, passed production smoke, refreshed release docs/evidence, and created the release commit/tag |
+| SR-182 | 2026-07-18 | QA-FINAL-T01 | completed | Passed final post-release tester audit for v1.3.0 with production smoke, full Playwright 20/20, accessibility/mobile/performance, cleanup, static gates, and no P0/P1 findings |
 
 ---
 
@@ -11271,3 +11272,86 @@ annotated `v1.3.0` tag only after production smoke passes.
 ### Next Task
 
 No active implementation task.
+
+## SR-182 - QA-FINAL-T01: Final Post-Release Tester Audit For v1.3.0
+
+- Date: 2026-07-18
+- Status: completed
+- Phase: CaseFlow Books v1.3 final post-release QA
+
+### Objective
+
+Verify the released `v1.3.0` web app from a tester perspective: live
+production smoke, full production-style E2E, UI/UX behavior, access
+boundaries, content safety, cleanup, and release hygiene before deciding any
+next work.
+
+### Actual Result
+
+- Added a dedicated final QA verifier for non-mutating production tester
+  checks across homepage, catalog discovery, product detail, cart, checkout
+  boundary, account/admin boundaries, order tracking, assistant, state
+  previews, public payload safety, and no-overflow screenshots.
+- Fixed false-positive QA oracles during verifier development: `null` optional
+  JSON values are not private-field leakage, catalog search now uses a real
+  target term, and catalog state preview checks each state URL separately.
+- Production final QA audit passed with no findings.
+- Production release smoke passed with 100 active editions, 100 cover
+  responses, 50 English editions, 50 Vietnamese editions, and all critical
+  public/protected boundary checks passing.
+- Full Playwright E2E passed `20/20` on a production-style local server.
+- Accessibility/mobile/performance audit passed.
+- Screenshot evidence was manually inspected for homepage, catalog mobile,
+  book detail, checkout/account boundary, and admin boundary.
+- Cleanup passed with `totalMatches: 0`.
+- The architecture doc was updated to reference the current `v1.3.0`
+  deployment while preserving that v1.3 did not change runtime architecture.
+
+### Evidence
+
+- `docs/v1.3-final-post-release-qa-audit.md`
+- `caseflow-store/docs/v1.3-final-post-release-qa-audit.md`
+- `caseflow-store/scripts/verify-final-post-release-qa.ts`
+- `caseflow-store/.agent/artifacts/qa-final-t01/final-post-release-qa.json`
+- `caseflow-store/.agent/artifacts/qa-final-t01/final-post-release-qa.md`
+- `caseflow-store/.agent/artifacts/qa-final-t01/production-release-smoke.json`
+- `caseflow-store/.agent/artifacts/qa-final-t01/qa-home-desktop-en.png`
+- `caseflow-store/.agent/artifacts/qa-final-t01/qa-catalog-mobile-vi-page-2.png`
+- `caseflow-store/.agent/artifacts/qa-final-t01/qa-detail-desktop-en.png`
+- `caseflow-store/.agent/artifacts/qa-final-t01/qa-checkout-boundary-mobile-en.png`
+- `caseflow-store/.agent/artifacts/qa-final-t01/qa-admin-boundary-mobile-en.png`
+- `caseflow-store/.agent/artifacts/d39-t03/accessibility-mobile-performance-check.json`
+- `caseflow-store/.agent/artifacts/d40-t01/release-cleanup-check.json`
+
+### Verification
+
+- `FINAL_QA_BASE_URL=https://caseflow-store.vercel.app npx tsx scripts/verify-final-post-release-qa.ts`:
+  passed with `ok: true` and no findings.
+- `PLAYWRIGHT_PORT=3002 npm run test:e2e`: passed `20/20`.
+- `PRODUCTION_RELEASE_TASK_ID=qa-final-t01 PRODUCTION_RELEASE_BASE_URL=https://caseflow-store.vercel.app npx tsx scripts/verify-v12-production-release.ts`:
+  passed with `ok: true`.
+- `ACCESSIBILITY_MOBILE_BASE_URL=https://caseflow-store.vercel.app npx tsx scripts/verify-accessibility-mobile-performance.ts`:
+  passed with `ok: true`.
+- `npx tsx scripts/verify-release-cleanup.ts`: passed with
+  `totalMatches: 0`.
+- `npm audit --audit-level=high`: passed; moderate Next/PostCSS advisory
+  remains documented as a non-blocking residual.
+- Secret-like scan: passed with no matches.
+- Stale v1.3 release-claim scan: passed with no matches.
+- `npx tsc --noEmit --pretty false`: passed.
+- `npm run lint`: passed.
+- `npm run build`: passed; Next.js generated 42 app routes plus proxy.
+- `git diff --check`: passed.
+
+### Guardrails Preserved
+
+- No runtime feature, database schema, production data import, payment/shipping
+  provider, OTP/email provider, external cover source, fake review/sales
+  signal, marketplace behavior, or stable API contract change was introduced.
+- QA-generated users/orders were cleaned up.
+
+### Next Task
+
+No active implementation task. The practical next step is to push the local
+commits and tags if the user wants the Git remote to preserve `v1.3.0` and the
+QA audit evidence.
