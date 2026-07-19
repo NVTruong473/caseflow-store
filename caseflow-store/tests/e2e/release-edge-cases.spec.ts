@@ -94,7 +94,8 @@ test("quantity boundaries hold across UI, API, and checkout", async ({
       customer.email,
       customer.password,
     );
-    const book = await findAvailableBook(request, { minStock: 2 });
+    const book = await findAvailableBook(request, { maxStock: 20, minStock: 2 });
+    const outOfStockQuantity = 99;
 
     const invalidQuantityResponse = await request.post("/api/cart/validate", {
       data: {
@@ -110,7 +111,7 @@ test("quantity boundaries hold across UI, API, and checkout", async ({
         items: [
           {
             productId: book.edition.id,
-            quantity: book.edition.stockQuantity + 1,
+            quantity: outOfStockQuantity,
           },
         ],
       },
@@ -144,7 +145,7 @@ test("quantity boundaries hold across UI, API, and checkout", async ({
     await seedCart(page, [
       {
         productId: book.edition.id,
-        quantity: book.edition.stockQuantity + 1,
+        quantity: outOfStockQuantity,
       },
     ]);
     await page.goto("/checkout");

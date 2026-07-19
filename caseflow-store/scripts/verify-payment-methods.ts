@@ -35,6 +35,7 @@ const EXPECTED_STATUS_TEXT_EN: Record<PaymentStatus, string> = {
   "awaiting-transfer": "Awaiting bank transfer",
   cancelled: "Cancelled",
   confirmed: "Confirmed",
+  expired: "Expired",
   failed: "Failed",
   pending: "Pending",
 };

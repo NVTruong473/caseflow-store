@@ -1,0 +1,60 @@
+{
+  "task": "PAYQR-T01",
+  "checkedAt": "2026-07-19T12:14:41.809Z",
+  "ok": true,
+  "checks": {
+    "tables": [
+      {
+        "relname": "orders",
+        "relrowsecurity": true,
+        "relforcerowsecurity": false
+      },
+      {
+        "relname": "payments",
+        "relrowsecurity": true,
+        "relforcerowsecurity": false
+      }
+    ],
+    "paymentColumns": [
+      "id",
+      "order_id",
+      "provider",
+      "amount",
+      "currency",
+      "status",
+      "qr_payload",
+      "payment_reference",
+      "expires_at",
+      "paid_at",
+      "created_at",
+      "updated_at"
+    ],
+    "constraints": [
+      "orders_payment_status_check",
+      "payments_amount_positive",
+      "payments_provider_check",
+      "payments_status_check"
+    ],
+    "indexes": [
+      "payments_one_pending_per_order_idx",
+      "payments_order_created_idx",
+      "payments_payment_reference_key",
+      "payments_pkey",
+      "payments_status_expires_idx"
+    ],
+    "policies": [
+      {
+        "policyname": "payments_customer_read_own",
+        "cmd": "SELECT",
+        "roles": "{authenticated}"
+      }
+    ],
+    "rpcExists": true,
+    "counts": {
+      "orders": 2,
+      "order_items": 2,
+      "payments": 0,
+      "active_editions": 100
+    }
+  }
+}

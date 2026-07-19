@@ -3,21 +3,26 @@
 CaseFlow Books is a deployed full-stack bookstore and small-business operations
 demo. The project started as the 20-day CaseFlow Store `v1.0.0` MVP and was
 upgraded through the Day 21-40 roadmap, the `v1.2` realistic catalog release,
-the `v1.3` visual merchandising polish, the `v1.3.1` compact-card hotfix, and
-the `v1.4` real-commerce visual merchandising release into a Vietnam-first,
+the `v1.3` visual merchandising polish, the `v1.3.1` compact-card hotfix,
+the `v1.4` real-commerce visual merchandising release, and the `v1.5.0` QR
+demo payment release into a Vietnam-first,
 bilingual e-commerce application for book discovery, account-gated checkout,
 customer order history/cancellation, order tracking, and admin/staff
-operations. The latest `v1.4.2` patch adds security headers, no-store policies,
-and agent-inspired QA reporting on top of the stable `v1.4.1` closeout.
+operations. The latest release adds server-owned QR payment sessions, VietQR
+demo payloads, mock webhook verification, and production mock-payment locks on
+top of the `v1.4.2` security hardening release.
 
 [Open the production deployment](https://caseflow-store.vercel.app)
 
-Latest release: [`v1.4.2`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.4.2)
+Latest release:
+[`v1.5.0`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.5.0)
 
 > Payments are simulated. The app does not collect card numbers, CVV, card
-> expiry, real bank credentials, or real MoMo/ZaloPay/VNPay credentials. Phone
-> and email fields are validated for shape and checkout readiness, but no real SMS/OTP
-> or email-verification provider is integrated.
+> expiry, real bank credentials, or real MoMo/ZaloPay/VNPay credentials. QR
+> demo payment exists for development/sandbox verification and is locked from
+> production settlement. Phone and email fields are validated for shape and
+> checkout readiness, but no real SMS/OTP or email-verification provider is
+> integrated.
 
 ## Screenshots
 
@@ -71,8 +76,8 @@ Latest release: [`v1.4.2`](https://github.com/NVTruong473/caseflow-store/release
   assumptions.
 - Use a local cart that stores only edition IDs and quantities.
 - Require customer login and a checkout-ready profile before order submission.
-- Complete simulated COD, bank transfer, MoMo, ZaloPay, and VNPay-style
-  checkout flows.
+- Complete simulated COD, bank transfer, wallet/provider-style checkout flows,
+  plus development-only QR demo payment verification.
 - View customer order history, cancel eligible orders, and use guarded public
   order tracking.
 - Use a rule-based bookstore assistant for finding books and buying guidance.
@@ -100,9 +105,9 @@ Latest release: [`v1.4.2`](https://github.com/NVTruong473/caseflow-store/release
   service-role operations.
 - Book domain modeled as categories, works, editions, authors, translators,
   publishers, cover assets, promotions, inventory adjustments, profiles,
-  orders, and order items.
+  orders, order items, and QR payment sessions.
 - Server reloads trusted book records and recalculates subtotal, promotion,
-  VAT, shipping, payment fee, and total values.
+  VAT, shipping, payment fee, total values, and QR payment amounts.
 - Browser-supplied price, subtotal, stock, tax, fee, role, and order status are
   ignored.
 - Zod validates mutating request bodies and public/admin APIs return stable
@@ -129,13 +134,15 @@ Latest release: [`v1.4.2`](https://github.com/NVTruong473/caseflow-store/release
 
 | Gate | Result |
 |---|---|
-| Release tag | `v1.4.2` |
-| GitHub Release | [`CaseFlow Books v1.4.2 - Agent Security QA Hardening`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.4.2) |
+| Release tag | `v1.5.0` |
+| GitHub Release | [`CaseFlow Books v1.5.0 - QR Demo Payment`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.5.0) |
 | Production URL | `https://caseflow-store.vercel.app` |
-| Vercel deployment | `READY`, deployment `dpl_8rPTCFb4pf3MEcoNbXfFiTq7ztSh` |
+| Vercel deployment | `READY`, deployment `dpl_9rMZwbykPksBiFWLLfVyR1i38nPy` |
 | TypeScript | `npx tsc --noEmit --pretty false` passed |
 | ESLint | `npm run lint` passed |
-| Production build | 48 App Router routes plus proxy generated |
+| Production build | 51 App Router routes plus proxy generated |
+| QR demo payment QA | Local QR flow, VietQR CRC, mock webhook HMAC, idempotency, production-safety lock, and UI regression checks passed |
+| Production QA | Release smoke, security posture, final QA smoke, QR production-safety lock, UI regression verifier, and full production Playwright `20/20` passed |
 | v1.4.2 security QA | Security headers/no-store verifier and final QA smoke passed locally and in production; external agent repos were mapped as QA references, not runtime dependencies |
 | v1.4.1 local QA | TypeScript, lint, production build, no-demo copy scan, compact-card overlap, customer order history/cancellation, admin order rejection/cancellation, cleanup, secret scan, audit-high, and `git diff --check` passed |
 | v1.4.1 production QA | Production release smoke, final QA smoke, compact-card overlap, customer order history/cancellation, and admin order rejection/cancellation passed |
@@ -153,6 +160,7 @@ Release evidence is recorded in
 [`caseflow-store/docs/v1.3.1-compact-card-layout-hotfix-release-notes.md`](caseflow-store/docs/v1.3.1-compact-card-layout-hotfix-release-notes.md),
 [`caseflow-store/docs/v1.4.1-stable-closeout-patch-release-notes.md`](caseflow-store/docs/v1.4.1-stable-closeout-patch-release-notes.md),
 [`caseflow-store/docs/v1.4.2-agent-security-qa-report.md`](caseflow-store/docs/v1.4.2-agent-security-qa-report.md),
+[`caseflow-store/docs/v1.5.0-qr-demo-payment-release-notes.md`](caseflow-store/docs/v1.5.0-qr-demo-payment-release-notes.md),
 and `.agent/step-results.md`.
 
 ## Portfolio handoff
@@ -220,6 +228,15 @@ Open [http://localhost:3000](http://localhost:3000).
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Browser and server | Public RLS-scoped key |
 | `SUPABASE_SERVICE_ROLE_KEY` | Server only | Trusted order/admin operations |
 | `NEXT_PUBLIC_SITE_URL` | Browser and server | Canonical URL for metadata, robots, and sitemap |
+| `PAYMENT_MODE` | Server only | `demo` for local QR sandbox or `disabled`; QR demo remains locked in production |
+| `ENABLE_MOCK_PAYMENT` | Server only | Enables local simulate-success endpoint outside production |
+| `CASEFLOW_MERCHANT_NAME` | Server only | Merchant/store display name for demo payment sessions |
+| `DEMO_BANK_BIN` | Server only | Demo VietQR bank BIN |
+| `DEMO_BANK_NAME` | Server only | Demo bank display name |
+| `DEMO_BANK_ACCOUNT_NUMBER` | Server only | Demo account number, default `0000000000` |
+| `DEMO_BANK_ACCOUNT_NAME` | Server only | Optional demo account name; defaults to merchant name plus `DEMO` |
+| `DEMO_PAYMENT_EXPIRES_MINUTES` | Server only | Demo payment expiry window |
+| `MOCK_PAYMENT_WEBHOOK_SECRET` | Server only | Local HMAC secret for mock webhook simulation |
 | `CASEFLOW_ADMIN_EMAIL` | Playwright only | Admin release-test identity |
 | `CASEFLOW_ADMIN_PASSWORD` | Playwright only | Admin release-test password |
 | `CASEFLOW_CUSTOMER_EMAIL` | Playwright only | Customer release-test identity |

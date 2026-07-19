@@ -1,24 +1,44 @@
 # Known Limitations
 
 This document records the intentional boundaries and accepted risks of
-CaseFlow Books through the latest `v1.4.2` release. These items are not hidden
-production capabilities; they define where the portfolio release stops.
+CaseFlow Books through the latest `v1.5.0` QR demo payment release.
+These items are not hidden production capabilities; they define where the
+portfolio release stops.
 
 ## Commerce scope
 
 ### Payments are simulated
 
-Checkout supports COD, bank transfer, MoMo, ZaloPay, and VNPay-style choices,
-but no real provider is integrated. The app does not collect card numbers, CVV,
-card expiry, bank-login data, wallet credentials, QR payment confirmations, or
-webhook callbacks.
+Checkout supports COD, bank transfer, wallet/provider-style choices, and a
+development/sandbox QR payment experience. No real provider is integrated. The
+app does not collect card numbers, CVV, card expiry, bank-login data, wallet
+credentials, real QR payment confirmations, or real provider webhooks.
 
 **Current control:** payment method choices produce pending or awaiting
 confirmation states, and server code calculates the final stored VND totals.
+QR demo sessions read `orders.total_vnd` on the backend, use demo bank
+configuration, verify mock webhook HMAC signatures, and are locked when
+`NODE_ENV=production`.
 
 **Next step:** integrate a real provider only after a new ADR covers provider
 selection, webhook verification, idempotency, reconciliation, refunds, failure
 states, and sensitive-data handling.
+
+### QR demo is not a production payment rail
+
+`v1.5.0` adds a realistic QR waiting page, mock gateway flow, VietQR demo
+payload, countdown, polling, and paid-state simulation for local/development
+verification. It is intentionally disabled for production settlement and should
+not be turned into live payment by only replacing the demo account number.
+
+**Current control:** production runtime denies QR demo payment creation and the
+simulate-success endpoint unless the app is running outside production with
+explicit demo flags. The QR UI marks sandbox payment as demo where it is
+available.
+
+**Next step:** use an official provider, real merchant onboarding, webhook
+secret management, HTTPS callback validation, reconciliation, refunds,
+chargeback/failure handling, monitoring, and a separate security review.
 
 ### Phone and email are not truly verified
 

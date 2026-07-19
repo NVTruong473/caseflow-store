@@ -7,9 +7,10 @@ bookstore and small-business operations demo. See the
 evidence, and portfolio notes.
 
 > Payments are simulated. The app does not collect card numbers, CVV, card
-> expiry, real bank credentials, or real MoMo/ZaloPay/VNPay credentials. Phone
-> fields are validated for profile completeness, but no real SMS/OTP provider is
-> integrated.
+> expiry, real bank credentials, or real MoMo/ZaloPay/VNPay credentials. QR
+> demo payment is available only in development/sandbox and is locked in
+> production. Phone fields are validated for profile completeness, but no real
+> SMS/OTP provider is integrated.
 
 ## Current scope
 
@@ -17,8 +18,8 @@ evidence, and portfolio notes.
 - Vietnamese and English UI modes.
 - VND source-of-truth pricing with optional approximate USD display in English
   mode.
-- Account-gated checkout with simulated COD, bank transfer, MoMo, ZaloPay, and
-  VNPay-style flows.
+- Account-gated checkout with simulated COD, bank transfer, wallet/provider
+  choices, and development-only QR demo payment flows.
 - Customer order history, eligible order cancellation, and guarded public
   tracking.
 - Admin/staff dashboard, order operations, catalog, inventory, promotions,
@@ -65,22 +66,24 @@ runtime.
 
 ## Latest release evidence
 
-- Release tag: `v1.4.2`
+- Release tag: `v1.5.0`
 - GitHub Release:
-  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.4.2`
+  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.5.0`
 - Production alias: `https://caseflow-store.vercel.app`
-- Vercel deployment ID: `dpl_8rPTCFb4pf3MEcoNbXfFiTq7ztSh`
-- Local gates: TypeScript, ESLint, production build, security-header posture
-  verifier, final QA smoke, V14 no-demo runtime copy scan, cleanup, targeted
-  secret scan, dependency audit at high threshold, and `git diff --check`
-  passed.
-- Production smoke: security-header posture verifier, public pages/APIs,
-  cart/checkout boundary, customer/admin boundary, assistant, final QA smoke,
-  robots, and sitemap passed.
+- Vercel deployment ID: `dpl_9rMZwbykPksBiFWLLfVyR1i38nPy`
+- Local gates: TypeScript, ESLint, production build, full Playwright `20/20`,
+  QR payment flow, QR production-safety verifier, UI regression verifier,
+  security posture verifier, final QA smoke, no-demo runtime copy scan, cleanup,
+  targeted secret scan, dependency audit at high threshold, and
+  `git diff --check` passed.
+- Production smoke: release smoke, security posture, final QA smoke, QR
+  production-safety lock, UI regression verifier, and full production
+  Playwright `20/20` passed.
 - Release notes:
-  [`docs/v1.4.2-agent-security-qa-report.md`](docs/v1.4.2-agent-security-qa-report.md)
-- Known boundaries: simulated payments, no real SMS/OTP, no real shipping
-  carrier integration, and no commercial book-cover hotlinking.
+  [`docs/v1.5.0-qr-demo-payment-release-notes.md`](docs/v1.5.0-qr-demo-payment-release-notes.md)
+- Known boundaries: simulated payments, QR demo locked from production
+  settlement, no real SMS/OTP, no real shipping carrier integration, and no
+  commercial book-cover hotlinking.
 
 Architecture and decision records are under [`docs/`](docs/).
 The portfolio handoff packet is

@@ -10,11 +10,45 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: v1.4.2 agent-inspired QA and security hardening complete
-- Current gate: `SECQA-T01` complete
-- Current task: No active implementation task
+- Mode: post-`v1.5.0` QR demo payment release closeout
+- Current gate: no active implementation gate after `PAYQR-T01`
+- Current task: wait for explicit user confirmation before the manual customer
+  order/QR walkthrough; queued next scopes are 500-edition realistic catalog
+  pricing/expansion and the FlowSync-inspired UI humanization audit/refactor
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-19
+
+## Phase PAYQR - Production-Locked QR Demo Payment
+
+- [x] `PAYQR-T01` Integrate Production-Locked QR Demo Payment. - 2026-07-19
+  - Objective: add account-gated QR payment sessions for mock-gateway and
+    VietQR demo providers while keeping amount, status, webhook signature, and
+    production mock-payment controls server-owned.
+  - Acceptance criteria: `ADR-0010` accepted; payment schema is additive;
+    backend APIs create/read/simulate/webhook payment sessions; frontend
+    checkout/payment UI renders QR, countdown, status, and local simulate
+    controls; production simulate controls are absent/rejected; QR feature
+    verifier, no-demo/production-safety gate, security posture, lint,
+    typecheck, build, browser QA, deployment smoke, and release metadata are
+    rerun after final code.
+  - Result: added additive `payments` schema/RLS/RPC, QR payment APIs,
+    server-owned mock-gateway and VietQR demo providers, account-gated
+    `/checkout/payment` UI with QR rendering/countdown/polling, HMAC-verified
+    mock webhook handling, idempotent paid-state updates, production
+    mock-payment locks, and targeted UI fixes for header/catalog/detail/footer
+    regressions reported by screenshot.
+  - Verification: Supabase migration apply and schema/RPC checks passed;
+    `npx tsc --noEmit --pretty false`, `npm run lint`, `npm run build`, local
+    Playwright `20/20`, QR demo payment flow verifier, no-demo runtime copy
+    gate, QR production-safety gate, security posture verifier, final QA
+    smoke, UI regression verifier, release cleanup, secret scan, high/critical
+    dependency audit, and `git diff --check` passed. Production deployment
+    `dpl_9rMZwbykPksBiFWLLfVyR1i38nPy` reached `READY`; production release
+    smoke, QR production lock, security posture, final QA, UI regression, and
+    full production Playwright `20/20` passed.
+  - Guardrail: `v1.4.2` release history was not rewritten; QR demo remains
+    blocked from production settlement and no real bank/wallet provider or real
+    payment credential was added.
 
 ## Phase V14 - Real Commerce And Visual Merchandising Upgrade
 

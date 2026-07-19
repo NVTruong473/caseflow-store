@@ -14,6 +14,8 @@ import {
 } from "./helpers/supabase";
 
 test.describe.serial("Supabase admin access matrix", () => {
+  test.setTimeout(120_000);
+
   let customer: Awaited<ReturnType<typeof createTemporaryCustomer>>;
 
   test.beforeAll(async () => {

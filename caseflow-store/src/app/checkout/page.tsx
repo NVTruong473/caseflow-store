@@ -5,6 +5,7 @@ import { CheckoutPage } from "@/features/checkout";
 import { getCustomerAuthState } from "@/lib/auth/customer";
 import { getCurrencyDisplayRules } from "@/lib/format/currency-display.server";
 import { getRequestLanguage } from "@/lib/i18n/server";
+import { getDemoPaymentConfig } from "@/lib/payments/config";
 import { createPageMetadata } from "@/lib/seo/metadata";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -32,6 +33,7 @@ export default async function CheckoutRoute() {
   const language = await getRequestLanguage();
   const currencyRules = getCurrencyDisplayRules();
   const customerAuthState = await getCustomerAuthState();
+  const paymentConfig = getDemoPaymentConfig();
 
   if (
     customerAuthState.status !== "authenticated" ||
@@ -45,6 +47,7 @@ export default async function CheckoutRoute() {
       currencyRules={currencyRules}
       customerAuthState={customerAuthState}
       language={language}
+      qrDemoPaymentsEnabled={paymentConfig.allowQrDemoPayments}
     />
   );
 }

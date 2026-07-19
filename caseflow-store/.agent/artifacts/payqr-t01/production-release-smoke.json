@@ -1,0 +1,108 @@
+{
+  "baseURL": "https://caseflow-store.vercel.app",
+  "browser": {
+    "pass": {
+      "adminBoundary": true,
+      "assistant": true,
+      "cartEntry": true,
+      "checkoutBoundary": true,
+      "detailPages": true,
+      "languageMode": true,
+      "noHomeOverflow": true
+    },
+    "screenshots": {
+      "homeDesktopEn": ".agent/artifacts/payqr-t01/production-home-desktop-en.png",
+      "catalogMobileVi": ".agent/artifacts/payqr-t01/production-catalog-mobile-vi.png",
+      "detailDesktopEn": ".agent/artifacts/payqr-t01/production-detail-desktop-en.png",
+      "detailMobileVi": ".agent/artifacts/payqr-t01/production-detail-mobile-vi.png",
+      "adminBoundaryMobileEn": ".agent/artifacts/payqr-t01/production-admin-boundary-mobile-en.png"
+    }
+  },
+  "catalogQuality": {
+    "failures": {
+      "brokenCoverCount": 0,
+      "invalidCoreCount": 0,
+      "missingBilingualCopyCount": 0,
+      "placeholderCoverCount": 0,
+      "publicFieldLeakCount": 0
+    },
+    "pass": {
+      "apiOk": true,
+      "bilingualCopy": true,
+      "coverResponses": true,
+      "languageParity": true,
+      "noPlaceholderPrimaryCovers": true,
+      "noPublicFieldLeaks": true,
+      "validCoreFields": true,
+      "volume": true
+    },
+    "summary": {
+      "activeEditionCount": 100,
+      "coverCount": 100,
+      "languageCounts": {
+        "en": 50,
+        "vi": 50
+      },
+      "metaTotal": 100
+    }
+  },
+  "deployment": {
+    "canonicalUrl": "https://caseflow-store.vercel.app",
+    "deploymentId": "dpl_9rMZwbykPksBiFWLLfVyR1i38nPy",
+    "deploymentUrl": null,
+    "inspectorUrl": null,
+    "taskId": "payqr-t01"
+  },
+  "generatedAt": "2026-07-19T13:25:32.103Z",
+  "http": {
+    "pass": {
+      "account": true,
+      "adminUnauthorized": true,
+      "catalogPage": true,
+      "customerUnauthorized": true,
+      "englishDetail": true,
+      "home": true,
+      "robots": true,
+      "sitemap": true,
+      "tracking": true,
+      "vietnameseDetail": true
+    },
+    "status": {
+      "account": 200,
+      "adminOrders": 401,
+      "adminShelves": 401,
+      "catalogPage": 200,
+      "customerOrders": 401,
+      "englishDetail": 200,
+      "home": 200,
+      "robots": 200,
+      "sitemap": 200,
+      "tracking": 200,
+      "vietnameseDetail": 200
+    }
+  },
+  "ok": true,
+  "pass": {
+    "adminBoundary": true,
+    "assistant": true,
+    "canonicalAlias": true,
+    "cartAndCheckoutBoundary": true,
+    "catalogQuality": true,
+    "customerBoundary": true,
+    "detailPages": true,
+    "languageMode": true,
+    "publicPages": true
+  },
+  "targets": {
+    "en": {
+      "id": "00000000-0000-4000-8000-000000007100",
+      "slug": "the-old-man-and-the-sea-english-paperback",
+      "title": "The Old Man and the Sea"
+    },
+    "vi": {
+      "id": "00000000-0000-4000-8000-000000007200",
+      "slug": "the-old-man-and-the-sea-vietnamese-paperback",
+      "title": "Ông già và biển cả"
+    }
+  }
+}

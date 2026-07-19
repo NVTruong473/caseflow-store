@@ -1,0 +1,12 @@
+{
+  "deployment": {
+    "id": "dpl_9rMZwbykPksBiFWLLfVyR1i38nPy",
+    "inspectorUrl": "https://vercel.com/nvt-ruong473/caseflow-store/9rMZwbykPksBiFWLLfVyR1i38nPy",
+    "readyState": "READY",
+    "target": "production",
+    "url": "https://caseflow-store-jw4y1jqrp-nvt-ruong473.vercel.app"
+  },
+  "generatedAt": "2026-07-19T13:38:38.220Z",
+  "productionAlias": "https://caseflow-store.vercel.app",
+  "status": "ok"
+}

@@ -1,0 +1,10 @@
+{
+  "baseUrl": "https://caseflow-store.vercel.app",
+  "duration": "3.1m",
+  "generatedAt": "2026-07-19T13:38:38.220Z",
+  "ok": true,
+  "passed": 20,
+  "skipped": 0,
+  "failed": 0,
+  "command": "PLAYWRIGHT_BASE_URL=https://caseflow-store.vercel.app npm run test:e2e"
+}

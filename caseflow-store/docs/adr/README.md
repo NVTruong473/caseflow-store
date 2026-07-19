@@ -14,6 +14,7 @@ verified implementation outcome of each decision.
 | [ADR-0007](0007-realistic-bookstore-content-merchandising-upgrade.md) | Accepted | Use a provenance-first content and merchandising upgrade for `v1.2` | Released as `v1.2.0` with a 100-edition catalog, 100 project-created covers, truthful merchandising shelves, content-quality gates, and bounded storefront/admin polish. |
 | [ADR-0008](0008-visual-merchandising-brand-polish.md) | Accepted | Use a bounded visual merchandising and brand polish phase for `v1.3` | Governs post-`v1.2.0` visual polish: richer bookstore tokens, cover-led merchandising, Hallmark-informed audit discipline, and no new commerce/integration scope. |
 | [ADR-0009](0009-real-commerce-visual-merchandising-upgrade.md) | Accepted | Use a bounded real-commerce language and visual merchandising upgrade for `v1.4` | Governs post-`v1.3.1` runtime commercial-copy cleanup, structurally varied merchandising layouts, trust/policy surfaces, and operations polish without fake proof signals or new external integrations. |
+| [ADR-0010](0010-qr-demo-payment-provider-boundary.md) | Accepted | Add a production-locked QR demo payment provider boundary | Governs post-`v1.4.2` QR payment sessions, demo VietQR/mock-gateway providers, webhook/idempotency handling, and production mock-payment lockout without approving real payment collection. |
 
 ## Status meanings
 

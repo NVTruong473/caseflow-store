@@ -49,14 +49,15 @@ export async function SiteHeader({ language }: { language: Language }) {
       <Container className="relative flex min-h-16 items-center justify-between gap-case-md py-case-sm">
         <Link
           href="/"
-          className="flex min-w-0 items-center gap-case-sm rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+          className="flex shrink-0 items-center gap-case-sm rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary lg:min-w-[190px]"
           aria-label={copy.homeLabel}
+          data-site-header-brand
         >
           <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-primary text-small font-semibold text-surface">
             CB
           </span>
           <span className="flex min-w-0 flex-col leading-tight">
-            <span className="truncate text-body font-semibold text-foreground">
+            <span className="whitespace-nowrap text-body font-semibold text-foreground">
               CaseFlow Books
             </span>
             <span className="hidden text-small text-text-muted sm:block">
@@ -66,7 +67,7 @@ export async function SiteHeader({ language }: { language: Language }) {
         </Link>
 
         <nav
-          className="hidden items-center gap-case-sm lg:flex"
+          className="hidden items-center gap-case-sm xl:flex"
           aria-label={copy.mainNavigation}
         >
           {navigation.map((item) => (

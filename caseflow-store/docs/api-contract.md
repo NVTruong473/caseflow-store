@@ -29,6 +29,14 @@ are display text and are not a stable machine contract.
 | `ORDER_NOT_FOUND` | 404 | The requested order does not exist or the supplied order lookup contact does not match |
 | `OUT_OF_STOCK` | 409 | Requested quantity exceeds current stock |
 | `ORDER_INVALID_TRANSITION` | 409 | Admin order, payment, or shipping status transition is not allowed |
+| `PAYMENT_ALREADY_PAID` | 409 | The order already has a paid payment state |
+| `PAYMENT_DISABLED` | 403/404 | QR demo payment or mock simulation is disabled in the current environment |
+| `PAYMENT_EXPIRED` | 409 | The payment session has expired and cannot be completed |
+| `PAYMENT_INVALID_SIGNATURE` | 401 | Mock payment webhook signature failed HMAC verification |
+| `PAYMENT_INVALID_STATE` | 409 | Payment/order/provider state transition is not allowed |
+| `PAYMENT_NOT_FOUND` | 404 | Payment does not exist or does not belong to the authenticated customer |
+| `PAYMENT_READ_FAILED` | 500 | Payment persistence read failed |
+| `PAYMENT_WRITE_FAILED` | 500 | Payment persistence write failed |
 | `CUSTOMER_AUTH_FAILED` | 400/429 | Customer sign-up could not be completed or is temporarily rate-limited |
 | `CATALOG_READ_FAILED` | 500 | Catalog persistence read failed |
 | `CART_VALIDATION_FAILED` | 500 | Cart validation could not read current catalog data |
@@ -85,6 +93,83 @@ The response must not expose customer email, phone, shipping address, or item
 details. Missing orders and wrong-contact lookups both return the same
 `ORDER_NOT_FOUND` response so the endpoint does not reveal whether another
 customer's order code exists.
+
+## QR Demo Payments
+
+QR payment endpoints require an authenticated customer session unless noted
+otherwise. They do not accept browser-owned amounts. The backend reloads the
+customer-owned order and uses the stored `orders.total_vnd`.
+
+### `POST /api/payments`
+
+Creates or resumes a QR payment session for the customer's order.
+
+Request body:
+
+```json
+{
+  "orderId": "CF-...",
+  "provider": "DEMO_VIETQR"
+}
+```
+
+`provider` may be `MOCK_GATEWAY` or `DEMO_VIETQR`.
+
+Successful responses return a payment session:
+
+```json
+{
+  "data": {
+    "paymentId": "pay_...",
+    "orderId": "CF-...",
+    "amount": 182300,
+    "currency": "VND",
+    "status": "PENDING",
+    "provider": "DEMO_VIETQR",
+    "qrPayload": "000201...",
+    "paymentReference": "CFPAY-CF-...",
+    "paymentContent": "CF-...",
+    "expiresAt": "2026-07-19T00:00:00.000Z",
+    "serverTime": "2026-07-19T00:00:00.000Z",
+    "allowSimulation": true,
+    "merchant": {
+      "name": "CaseFlow Books",
+      "accountName": "CASEFLOW BOOKS DEMO",
+      "bankName": "Vietcombank - DEMO",
+      "bankBin": "970436",
+      "accountNumber": "0000000000"
+    },
+    "order": {
+      "orderCode": "CF-...",
+      "status": "pending",
+      "paymentStatus": "awaiting-transfer"
+    }
+  },
+  "error": null,
+  "meta": null
+}
+```
+
+When running in production, QR demo payment creation is denied by server-side
+environment checks.
+
+### `GET /api/payments/[paymentId]`
+
+Returns the latest customer-owned payment session and refreshes expired pending
+payments on the server. Cross-customer payment IDs return `PAYMENT_NOT_FOUND`.
+
+### `POST /api/dev/payments/[paymentId]/simulate-success`
+
+Development/sandbox-only endpoint. It is disabled when `NODE_ENV=production`
+or `ENABLE_MOCK_PAYMENT=false`. When enabled, it creates a signed mock webhook
+payload and routes the update through the shared webhook/payment service.
+
+### `POST /api/webhooks/mock-payment`
+
+Server webhook endpoint for the mock gateway. The request body must be signed
+with `x-caseflow-signature` or `x-mock-payment-signature` using the configured
+HMAC secret. Repeated paid webhooks are idempotent: they return success without
+recording payment twice.
 
 ## Admin/Staff Role Permissions
 

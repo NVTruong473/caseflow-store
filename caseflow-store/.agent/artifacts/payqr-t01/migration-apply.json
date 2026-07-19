@@ -1,0 +1,8 @@
+{
+  "task": "PAYQR-T01",
+  "migrationPath": "supabase/migrations/0009_qr_demo_payments.sql",
+  "startedAt": "2026-07-19T12:14:12.696Z",
+  "endedAt": "2026-07-19T12:14:13.711Z",
+  "status": "applied",
+  "statementBytes": 5474
+}

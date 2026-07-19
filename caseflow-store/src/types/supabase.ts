@@ -7,6 +7,7 @@ import type {
   EditionLanguage,
   InventoryStatus,
   OrderStatus,
+  PaymentStatus,
   ShippingStatus,
   UserRole,
 } from "@/types/domain";
@@ -976,7 +977,7 @@ export type Database = {
           customer_id: string | null;
           shipping_address_json: Json | null;
           payment_method: string;
-          payment_status: string;
+          payment_status: PaymentStatus;
           shipping_method: string;
           shipping_status: ShippingStatus;
           internal_notes: string;
@@ -1005,7 +1006,7 @@ export type Database = {
           customer_id?: string | null;
           shipping_address_json?: Json | null;
           payment_method?: string;
-          payment_status?: string;
+          payment_status?: PaymentStatus;
           shipping_method?: string;
           shipping_status?: ShippingStatus;
           internal_notes?: string;
@@ -1033,7 +1034,7 @@ export type Database = {
           customer_id?: string | null;
           shipping_address_json?: Json | null;
           payment_method?: string;
-          payment_status?: string;
+          payment_status?: PaymentStatus;
           shipping_method?: string;
           shipping_status?: ShippingStatus;
           internal_notes?: string;
@@ -1131,6 +1132,59 @@ export type Database = {
           },
         ];
       };
+      payments: {
+        Row: {
+          id: string;
+          order_id: string;
+          provider: "MOCK_GATEWAY" | "DEMO_VIETQR";
+          amount: number;
+          currency: "VND";
+          status: "PENDING" | "PAID" | "EXPIRED" | "FAILED" | "CANCELLED";
+          qr_payload: string;
+          payment_reference: string;
+          expires_at: string;
+          paid_at: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id: string;
+          order_id: string;
+          provider: "MOCK_GATEWAY" | "DEMO_VIETQR";
+          amount: number;
+          currency?: "VND";
+          status?: "PENDING" | "PAID" | "EXPIRED" | "FAILED" | "CANCELLED";
+          qr_payload: string;
+          payment_reference: string;
+          expires_at: string;
+          paid_at?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          order_id?: string;
+          provider?: "MOCK_GATEWAY" | "DEMO_VIETQR";
+          amount?: number;
+          currency?: "VND";
+          status?: "PENDING" | "PAID" | "EXPIRED" | "FAILED" | "CANCELLED";
+          qr_payload?: string;
+          payment_reference?: string;
+          expires_at?: string;
+          paid_at?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "payments_order_id_fkey";
+            columns: ["order_id"];
+            isOneToOne: false;
+            referencedRelation: "orders";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
     };
     Views: Record<string, never>;
     Functions: {
@@ -1165,6 +1219,13 @@ export type Database = {
           p_display_estimate: Json | null;
           p_promotion_code: string | null;
           p_items: Json;
+        };
+        Returns: Json;
+      };
+      mark_demo_payment_paid: {
+        Args: {
+          p_payment_id: string;
+          p_paid_at: string;
         };
         Returns: Json;
       };

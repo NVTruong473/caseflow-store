@@ -90,12 +90,12 @@ test("checkout validation error and order success states are visible", async ({
       customer.email,
       customer.password,
     );
-    const book = await findAvailableBook(page.request, { minStock: 2 });
+    const book = await findAvailableBook(page.request, { maxStock: 20, minStock: 2 });
 
     await seedCart(page, [
       {
         productId: book.edition.id,
-        quantity: book.edition.stockQuantity + 1,
+        quantity: 99,
       },
     ]);
     await page.goto("/checkout");

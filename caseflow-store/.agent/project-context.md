@@ -3,7 +3,7 @@
 ## Project Identity
 
 - Project name: CaseFlow Store `v1.0.0`; CaseFlow Books `v1.1.0`, `v1.2.0`,
-  `v1.3.0`, `v1.3.1`, `v1.4.0`, `v1.4.1`, and `v1.4.2` released
+  `v1.3.0`, `v1.3.1`, `v1.4.0`, `v1.4.1`, `v1.4.2`, and `v1.5.0` released
 - Repository folder: `/Users/vantruong/Documents/TSNN 2`
 - Product domain: books for released `v1.1.0` and `v1.2.0`; phone
   accessories for released `v1.0.0`
@@ -11,9 +11,11 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: `v1.4.2` agent-inspired QA and security hardening complete.
-- Current gate: `SECQA-T01` complete.
-- Current task: No active implementation task.
+- Current mode: post-`v1.5.0` QR demo payment release closeout.
+- Current gate: no active implementation gate after `PAYQR-T01`.
+- Current task: wait for explicit user confirmation before the manual customer
+  order/QR walkthrough; queued next scopes are 500-edition realistic catalog
+  pricing/expansion and the FlowSync-inspired UI humanization audit/refactor.
 
 ## Confirmed Facts
 
@@ -22,6 +24,16 @@
 - The project must be usable locally before public deployment.
 - The project must preserve context across future AI sessions using Markdown files.
 - The user wants critical evaluation of risks, assumptions, and missing data.
+- The user requested QR payment demo integration after `v1.4.2` had already
+  been published; published tag/release history must not be rewritten. The QR
+  scope must ship as a later version after all affected gates are rerun.
+- `PAYQR-T01` was accepted on 2026-07-19 as `v1.5.0`: additive `payments`
+  schema and idempotent RPC applied to Supabase, QR payment APIs and UI were
+  added, VietQR demo payload/CRC and mock webhook HMAC verification passed,
+  mock payment is production-locked, Vercel deployment
+  `dpl_9rMZwbykPksBiFWLLfVyR1i38nPy` is aliased to
+  `https://caseflow-store.vercel.app`, and production Playwright passed
+  `20/20`.
 - Implementation was confirmed by the user on 2026-07-14.
 - Implementation was unblocked by installing the official Node.js LTS binary after Homebrew failed.
 - The Next.js app has been initialized in `caseflow-store`.

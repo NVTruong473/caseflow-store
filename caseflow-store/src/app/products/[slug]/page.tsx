@@ -435,7 +435,7 @@ export default async function ProductDetailPage({
                       {copy.commerceConfidenceDescription}
                     </p>
                   </div>
-                  <dl className="mt-case-md grid gap-case-sm text-small text-text-muted sm:grid-cols-2 lg:grid-cols-4">
+                  <dl className="mt-case-md grid gap-case-sm text-small text-text-muted sm:grid-cols-2 2xl:grid-cols-4">
                     {editionIdentityFacts.map((fact) => (
                       <DetailTerm
                         key={fact.label}
@@ -866,9 +866,9 @@ function DetailTerm({
   value: number | string;
 }) {
   return (
-    <div>
+    <div className="min-w-0">
       <dt className="font-medium text-foreground">{label}</dt>
-      <dd>{value}</dd>
+      <dd className="min-w-0 break-all leading-6">{value}</dd>
     </div>
   );
 }

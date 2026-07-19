@@ -407,13 +407,13 @@ export default async function CatalogPage({ searchParams }: CatalogPageProps) {
         />
 
         <section id="catalog-results" className="flex flex-col gap-case-lg">
-          <div className="grid gap-case-md rounded-lg border border-border bg-surface p-case-md lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
-            <div className="flex min-w-0 flex-col gap-case-sm">
+          <div className="flex min-w-0 flex-col gap-case-md rounded-lg border border-border bg-surface p-case-md">
+            <div className="flex min-w-0 flex-col gap-case-sm sm:flex-row sm:items-end sm:justify-between">
               <h2 className="text-heading-2 font-semibold text-foreground">
                 {copy.breadcrumbCatalog}
               </h2>
               <p
-                className="text-body text-text-muted"
+                className="max-w-full text-small leading-6 text-text-muted sm:text-right"
                 data-catalog-result-count
               >
                 {copy.resultCount(rangeStart, rangeEnd, resultTotal)}
@@ -440,7 +440,7 @@ export default async function CatalogPage({ searchParams }: CatalogPageProps) {
             </div>
 
             <div
-              className="flex flex-wrap gap-case-xs lg:col-span-2"
+              className="flex flex-wrap gap-case-xs"
               data-catalog-result-signals
             >
               {resultSignals.map((signal) => (

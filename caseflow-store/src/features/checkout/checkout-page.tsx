@@ -192,12 +192,17 @@ const checkoutCopy = {
     paymentGatewayBadge: "Gateway choice",
     paymentMethodTitle: "Payment method",
     paymentLabel: "Payment pending",
-    paymentMomoLabel: "MoMo",
+    paymentMockQrDescription:
+      "Sandbox QR gateway for checking a full payment-status flow without real money movement.",
+    paymentMomoLabel: "Simulated QR gateway",
     paymentPolicyLink: "Payment policy",
     paymentPrimaryBadge: "Primary",
     paymentProviderDescription:
       "Selected at checkout; the order remains awaiting payment confirmation before fulfillment.",
     paymentVnpayLabel: "VNPay",
+    paymentVietQrDescription:
+      "Sandbox VietQR transfer details generated from the server-owned order total.",
+    paymentVietQrLabel: "VietQR Demo",
     paymentWalletBadge: "Wallet choice",
     paymentZalopayLabel: "ZaloPay",
     paymentFee: "Payment fee",
@@ -317,12 +322,17 @@ const checkoutCopy = {
     paymentGatewayBadge: "Cổng thanh toán",
     paymentMethodTitle: "Phương thức thanh toán",
     paymentLabel: "Chờ thanh toán",
-    paymentMomoLabel: "MoMo",
+    paymentMockQrDescription:
+      "Cổng QR sandbox để kiểm tra trọn luồng trạng thái thanh toán mà không chuyển tiền thật.",
+    paymentMomoLabel: "Cổng QR giả lập",
     paymentPolicyLink: "Chính sách thanh toán",
     paymentPrimaryBadge: "Ưu tiên",
     paymentProviderDescription:
       "Được chọn trong bước thanh toán; đơn sẽ chờ xác nhận thanh toán trước khi xử lý.",
     paymentVnpayLabel: "VNPay",
+    paymentVietQrDescription:
+      "Thông tin VietQR sandbox được tạo từ tổng đơn hàng do server xác định.",
+    paymentVietQrLabel: "VietQR Demo",
     paymentWalletBadge: "Ví điện tử",
     paymentZalopayLabel: "ZaloPay",
     paymentFee: "Phí thanh toán",
@@ -380,10 +390,12 @@ export function CheckoutPage({
   currencyRules,
   customerAuthState,
   language,
+  qrDemoPaymentsEnabled,
 }: {
   currencyRules: CurrencyDisplayRules;
   customerAuthState: CustomerAuthState;
   language: Language;
+  qrDemoPaymentsEnabled: boolean;
 }) {
   const copy = checkoutCopy[language];
   const { clearCart, hasLoadedStorage, items, openCart, totalQuantity } =
@@ -493,6 +505,7 @@ export function CheckoutPage({
               language={language}
               paymentMethod={paymentMethod}
               promotionCode={promotionCode}
+              qrDemoPaymentsEnabled={qrDemoPaymentsEnabled}
               reviewState={reviewState}
               setPaymentMethod={setPaymentMethod}
               setPromotionCode={setPromotionCode}
@@ -728,6 +741,7 @@ function CheckoutDetailsForm({
   language,
   paymentMethod,
   promotionCode,
+  qrDemoPaymentsEnabled,
   reviewState,
   setPaymentMethod,
   setPromotionCode,
@@ -742,6 +756,7 @@ function CheckoutDetailsForm({
   language: Language;
   paymentMethod: PaymentMethod;
   promotionCode: string;
+  qrDemoPaymentsEnabled: boolean;
   reviewState: CartReviewState;
   setPaymentMethod: (paymentMethod: PaymentMethod) => void;
   setPromotionCode: (promotionCode: string) => void;
@@ -868,6 +883,19 @@ function CheckoutDetailsForm({
         createCheckoutSuccessSnapshot(payload.data),
       );
       clearCart();
+
+      if (
+        qrDemoPaymentsEnabled &&
+        (paymentMethod === "momo" || paymentMethod === "vnpay")
+      ) {
+        router.push(
+          `/checkout/payment?orderCode=${encodeURIComponent(
+            payload.data.order.orderCode,
+          )}&provider=${paymentMethod === "vnpay" ? "DEMO_VIETQR" : "MOCK_GATEWAY"}`,
+        );
+        return;
+      }
+
       router.push(
         `/checkout/success?orderCode=${encodeURIComponent(
           payload.data.order.orderCode,
@@ -1002,7 +1030,7 @@ function CheckoutDetailsForm({
               setPaymentMethod(value);
               setSubmitState({ status: "idle" });
             }}
-            options={getPaymentMethodOptions(copy)}
+            options={getPaymentMethodOptions(copy, qrDemoPaymentsEnabled)}
             value={paymentMethod}
           />
           <CheckoutPolicyLinks copy={copy} />
@@ -1198,8 +1226,9 @@ function getShippingMethodOptions(
 
 function getPaymentMethodOptions(
   copy: (typeof checkoutCopy)[Language],
+  qrDemoPaymentsEnabled: boolean,
 ): CheckoutMethodOption<PaymentMethod>[] {
-  return [
+  const options: CheckoutMethodOption<PaymentMethod>[] = [
     {
       badge: copy.paymentPrimaryBadge,
       description: copy.paymentCodDescription,
@@ -1217,25 +1246,32 @@ function getPaymentMethodOptions(
     {
       badge: copy.paymentWalletBadge,
       description: copy.paymentProviderDescription,
-      label: copy.paymentMomoLabel,
-      tone: "operations",
-      value: "momo",
-    },
-    {
-      badge: copy.paymentWalletBadge,
-      description: copy.paymentProviderDescription,
       label: copy.paymentZalopayLabel,
       tone: "operations",
       value: "zalopay",
     },
-    {
-      badge: copy.paymentGatewayBadge,
-      description: copy.paymentProviderDescription,
-      label: copy.paymentVnpayLabel,
-      tone: "arrival",
-      value: "vnpay",
-    },
   ];
+
+  if (qrDemoPaymentsEnabled) {
+    options.push(
+      {
+        badge: copy.paymentGatewayBadge,
+        description: copy.paymentMockQrDescription,
+        label: copy.paymentMomoLabel,
+        tone: "operations",
+        value: "momo",
+      },
+      {
+        badge: copy.paymentGatewayBadge,
+        description: copy.paymentVietQrDescription,
+        label: copy.paymentVietQrLabel,
+        tone: "arrival",
+        value: "vnpay",
+      },
+    );
+  }
+
+  return options;
 }
 
 function getCheckoutMethodToneClass(tone: CheckoutMethodTone) {

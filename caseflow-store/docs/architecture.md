@@ -6,11 +6,11 @@ This document describes the deployed CaseFlow Books architecture after the Day
 21-40 upgrade, the realistic catalog/content merchandising release, the
 `v1.3.0` visual merchandising polish, the `v1.3.1` compact-card layout hotfix,
 the `v1.4.0` real-commerce visual merchandising release, the `v1.4.1`
-stable closeout patch, and the `v1.4.2` agent-inspired security QA hardening
-patch. The system is
+stable closeout patch, the `v1.4.2` agent-inspired security QA hardening
+patch, and the `v1.5.0` QR demo payment release. The system is
 intentionally a Next.js modular monolith: it demonstrates a realistic
 specialist e-commerce workflow without claiming marketplace scale, real payment
-processing, or enterprise operations.
+settlement, or enterprise operations.
 
 ## System context
 
@@ -78,6 +78,7 @@ production runtime path.
 | `src/lib/repositories` | Supabase persistence, trusted calculations, and operational queries |
 | `src/lib/auth` | Customer/admin/staff session and role checks |
 | `src/lib/checkout` | Server-owned shipping, VAT, payment fee, promotion, and FX estimate rules |
+| `src/lib/payments` | Server-owned QR payment sessions, demo providers, webhook verification, and VietQR payload generation |
 | `src/lib/seo` | Canonical URL, Open Graph, robots, sitemap, and JSON-LD helpers |
 | `supabase/schema.sql` and `supabase/migrations` | Base schema, v1.1 book schema, RLS, grants, constraints, and RPCs |
 | `tests/e2e` | Release flows and access-control verification |
@@ -130,9 +131,34 @@ Customer session
 
 Checkout requires a signed-in customer and enough profile/contact/address data
 to submit the order. The server ignores browser-supplied totals and reloads
-trusted edition records before creating the order. Simulated payment states
-represent pending COD, bank transfer, or provider confirmation; no external
-payment credential is collected or submitted.
+trusted edition records before creating the order. Existing simulated payment
+states represent pending COD, bank transfer, or provider confirmation; no
+external payment credential is collected or submitted.
+
+### QR demo payment session
+
+```text
+Signed-in customer
+  -> checkout creates an order with server-owned totals
+  -> /checkout/payment creates or resumes a payment by order code
+  -> POST /api/payments reloads the order and reads orders.total_vnd
+  -> selected provider builds a QR payload
+  -> browser renders the QR and polls GET /api/payments/[paymentId]
+  -> dev-only simulate endpoint sends a signed mock webhook
+  -> webhook service verifies HMAC and idempotently marks payment/order paid
+```
+
+`payments` is separate from `orders`: order fulfillment state and payment state
+do not share one status field. QR demo payment is available only outside
+production when `PAYMENT_MODE=demo`; the simulate-success endpoint also requires
+`ENABLE_MOCK_PAYMENT=true` and `NODE_ENV !== "production"`. In production, the
+same route handlers are present in the Next.js app but return a denied status
+instead of creating or completing demo payments.
+
+The QR provider boundary supports `MOCK_GATEWAY` and `DEMO_VIETQR`. VietQR
+payloads are generated server-side from configured demo bank data, the
+merchant/store name, the order code, and the trusted stored VND total. The
+frontend does not receive webhook secrets and cannot decide the payable amount.
 
 ### Customer order history, cancellation, and public tracking
 
@@ -188,6 +214,9 @@ project history:
   shipping/tax/payment-fee/promotion snapshots, and guarded tracking fields.
 - `order_items` stores book edition/work snapshots so historical orders do not
   change when catalog records change.
+- `payments` stores QR payment sessions with provider, amount, currency,
+  status, QR payload, payment reference, expiry, paid timestamp, and order
+  relation.
 - `book_promotions` stores simple fixed-VND or percentage promotion codes.
 - `book_inventory_adjustments` records operational stock adjustments.
 - Monetary values are stored as integer VND amounts. USD display is an
@@ -235,6 +264,9 @@ Additional controls:
   cache policy headers.
 - The application does not collect card fields, real e-wallet credentials, or
   bank credentials.
+- QR demo webhook completion requires an HMAC signature and idempotent server
+  update. Mock payment simulation is locked outside development/sandbox and is
+  never a production settlement path.
 - Phone/email profile fields are not backed by real SMS/OTP or email-provider
   verification in `v1.1`.
 - Production does not contain Playwright admin/customer credentials.
@@ -265,8 +297,8 @@ notes, rights-analysis notes, or source-edition matching keys. See
 ## Deployment and verification
 
 - Production alias: `https://caseflow-store.vercel.app`.
-- Current production deployment ID: `dpl_8rPTCFb4pf3MEcoNbXfFiTq7ztSh`
-  (`v1.4.2`).
+- Current production deployment ID: `dpl_9rMZwbykPksBiFWLLfVyR1i38nPy`
+  (`v1.5.0`).
 - Supabase hosts PostgreSQL and Auth.
 - Production runtime variables include the public Supabase URL, public anon key,
   and server-only service-role key. Canonical metadata defaults to the
@@ -298,6 +330,13 @@ notes, rights-analysis notes, or source-edition matching keys. See
   protected-surface no-store policy, an automated security posture verifier,
   agent-inspired QA reporting, production final QA smoke, cleanup, secret scan,
   TypeScript, lint, and production build.
+- The `v1.5.0` release adds the QR demo payment provider boundary,
+  the `payments` table, idempotent payment/order RPC, mock webhook HMAC
+  verification, VietQR demo payload generation, production mock-payment lock,
+  QR flow verifier, production-safety verifier, UI regression verifier, secret
+  scan artifact, full local and production Playwright `20/20`, TypeScript,
+  lint, production build, production release smoke, security posture, and final
+  QA smoke.
 - Dependency audit status is recorded in
   [`v1.2-release-audit.md`](v1.2-release-audit.md).
 

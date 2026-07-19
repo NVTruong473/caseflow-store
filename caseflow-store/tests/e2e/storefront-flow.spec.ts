@@ -40,7 +40,7 @@ test("customer completes homepage to checkout success flow through the UI", asyn
     await page.goto("/catalog");
     await expect(page.locator("[data-catalog-page]"))
       .toHaveAttribute("data-catalog-total-count", "100");
-    await expect(page.locator(`[data-catalog-card="${book.slug}"]`))
+    await expect(page.locator(`[data-catalog-card="${book.slug}"]`).first())
       .toContainText(book.title);
 
     await page.goto(`/products/${book.slug}`);

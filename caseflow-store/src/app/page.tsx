@@ -386,16 +386,19 @@ export default async function Home() {
       group.vietnamese,
     ]),
   );
-  const englishCount = records.filter(
-    (record) => record.edition.language === "en",
-  ).length;
-  const vietnameseCount = records.filter(
-    (record) => record.edition.language === "vi",
-  ).length;
   const stats = [
-    { label: copy.categories, value: categories.length.toString() },
-    { label: copy.editions, value: records.length.toString() },
-    { label: "EN / VI", value: `${englishCount} / ${vietnameseCount}` },
+    {
+      label: language === "vi" ? "Gợi ý nhanh" : "Quick discovery",
+      value: language === "vi" ? "Anh / Việt" : "EN / VI",
+    },
+    {
+      label: language === "vi" ? "Thanh toán" : "Checkout",
+      value: language === "vi" ? "Tài khoản" : "Account",
+    },
+    {
+      label: language === "vi" ? "Tồn kho" : "Stock",
+      value: language === "vi" ? "Hiển thị rõ" : "Visible",
+    },
   ];
 
   return (
@@ -435,14 +438,14 @@ export default async function Home() {
               </Link>
             </div>
 
-            <dl className="grid max-w-xl grid-cols-3 gap-case-sm">
+            <dl className="grid max-w-2xl gap-case-sm sm:grid-cols-3">
               {stats.map((stat) => (
                 <div
                   key={stat.label}
                   className="rounded-md border border-border bg-surface px-3 py-3 shadow-[var(--case-shadow-soft)]"
                 >
                   <dt className="text-small text-text-muted">{stat.label}</dt>
-                  <dd className="mt-1 text-heading-3 font-semibold text-foreground">
+                  <dd className="mt-1 text-body font-semibold text-foreground">
                     {stat.value}
                   </dd>
                 </div>

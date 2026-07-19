@@ -73,6 +73,7 @@ export const PAYMENT_STATUSES = [
   "awaiting-transfer",
   "awaiting-provider-confirmation",
   "confirmed",
+  "expired",
   "failed",
   "cancelled",
 ] as const;

@@ -12746,6 +12746,128 @@ verification, and clean worktree verification complete.
 
 ---
 
+## PAYQR-T01 - Integrate Production-Locked QR Demo Payment
+
+- Date: 2026-07-19
+- Status: completed
+- Phase: post-`v1.4.2` QR demo payment release
+- Release: `v1.5.0`
+
+### Objective
+
+Add account-gated QR payment sessions for mock-gateway and VietQR demo
+providers while keeping amount, payment status, webhook signature validation,
+idempotency, and production mock-payment controls server-owned.
+
+### Actual Result
+
+- Added `ADR-0010` for the QR demo payment provider boundary.
+- Added additive Supabase migration `0009_qr_demo_payments.sql` with
+  `payments`, indexes, RLS policy, and idempotent
+  `mark_demo_payment_paid` RPC.
+- Added payment domain/config/provider/repository/service modules, VietQR
+  payload/CRC generation, payment validation schemas, and typed Supabase
+  payment rows.
+- Added payment endpoints:
+  `POST /api/payments`, `GET /api/payments/[paymentId]`,
+  `POST /api/dev/payments/[paymentId]/simulate-success`, and
+  `POST /api/webhooks/mock-payment`.
+- Added `/checkout/payment` and QR payment UI with QR rendering, server-time
+  countdown, polling, paid/expired/error states, retry, and dev-only simulate
+  controls.
+- Updated checkout so QR demo methods are available only when the server
+  allows them; production does not render simulate controls or create QR demo
+  payment sessions.
+- Fixed user-reported UI regressions around public homepage internal counts,
+  catalog result-count wrapping, ISBN/detail facts overflow, header brand
+  clipping, and footer support/copyright copy.
+- Added PAYQR verification scripts for QR flow, QR production safety, UI
+  regression, and targeted secret scan.
+- Deployed production deployment `dpl_9rMZwbykPksBiFWLLfVyR1i38nPy`, aliased to
+  `https://caseflow-store.vercel.app`.
+
+### Evidence
+
+- `docs/adr/0010-qr-demo-payment-provider-boundary.md`
+- `docs/v1.5.0-qr-demo-payment-release-notes.md`
+- `docs/release-candidate.md`
+- `.agent/artifacts/payqr-t01/migration-apply.json`
+- `.agent/artifacts/payqr-t01/post-migration-db-checks.json`
+- `.agent/artifacts/payqr-t01/qr-demo-payment-flow-check.json`
+- `.agent/artifacts/payqr-t01/qr-payment-production-safety-check.json`
+- `.agent/artifacts/payqr-t01/ui-regression-check.json`
+- `.agent/artifacts/payqr-t01/security-posture-check.json`
+- `.agent/artifacts/payqr-t01/final-post-release-qa.json`
+- `.agent/artifacts/payqr-t01/final-post-release-qa.md`
+- `.agent/artifacts/payqr-t01/no-demo-runtime-copy-check.json`
+- `.agent/artifacts/payqr-t01/secret-scan.json`
+- `.agent/artifacts/payqr-t01/release-cleanup-check.json`
+- `.agent/artifacts/payqr-t01/deployment.json`
+- `.agent/artifacts/payqr-t01/production-release-smoke.json`
+- `.agent/artifacts/payqr-t01/production-playwright-summary.json`
+
+### Verification
+
+- Supabase migration apply: passed.
+- Supabase schema/RLS/RPC checks: passed.
+- `npx tsc --noEmit --pretty false`: passed.
+- `npm run lint`: passed.
+- `npm run build`: passed with 51 App Router routes plus proxy.
+- Local Playwright: passed `20/20`.
+- `PAYQR_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx scripts/verify-qr-demo-payment-flow.ts`:
+  passed with order creation, server-owned amount, QR rendering, VietQR CRC,
+  simulate success, idempotent retry, bad signature rejection, cross-customer
+  denial, reload-paid state, and mobile overflow checks.
+- `NO_DEMO_ARTIFACT_ID=payqr-t01 npx tsx scripts/verify-v14-no-demo-runtime-copy.ts`:
+  passed with QR demo safety labels required.
+- `PAYQR_PRODUCTION_SAFETY_BASE_URL=http://127.0.0.1:3000 npx tsx scripts/verify-qr-payment-production-safety.ts`:
+  passed locally with runtime denied status `401`.
+- `SECURITY_QA_BASE_URL=http://127.0.0.1:3000 npx tsx scripts/verify-security-posture.ts`:
+  passed locally with zero findings.
+- `FINAL_QA_BASE_URL=http://127.0.0.1:3000 npx tsx scripts/verify-final-post-release-qa.ts`:
+  passed locally with zero findings.
+- `PAYQR_UI_BASE_URL=http://127.0.0.1:3000 npx tsx scripts/verify-payqr-ui-regressions.ts`:
+  passed locally.
+- `npm audit --audit-level=high`: passed with no high/critical advisories; the
+  known moderate Next/PostCSS advisory remains documented.
+- `RELEASE_CLEANUP_TASK_ID=payqr-t01 npx tsx scripts/verify-release-cleanup.ts`:
+  passed with `totalMatches: 0`.
+- `PAYQR_ARTIFACT_ID=payqr-t01 npx tsx scripts/verify-payqr-secret-scan.ts`:
+  passed with zero findings.
+- `git diff --check`: passed.
+- `npx vercel --prod --yes`: passed; deployment
+  `dpl_9rMZwbykPksBiFWLLfVyR1i38nPy` reached `READY` and was aliased.
+- `npx vercel inspect https://caseflow-store.vercel.app`: passed; alias points
+  to deployment `dpl_9rMZwbykPksBiFWLLfVyR1i38nPy`.
+- Production release smoke: passed with 100 active editions, 100 cover
+  responses, 50 English editions, 50 Vietnamese editions, catalog quality,
+  public pages, language mode, customer/admin boundaries, assistant, and
+  detail pages.
+- Production QR safety: passed with runtime denied status `401`.
+- Production security posture: passed with zero findings.
+- Production final QA smoke: passed with zero findings.
+- Production UI regression verifier: passed.
+- Production Playwright: first broad attempt found production-test instability
+  in stock-boundary fixture and one teardown timeout; affected tests were
+  hardened and rerun `6/6`, then full production Playwright passed `20/20`.
+
+### Guardrails Preserved
+
+- No real bank account, wallet credential, provider SDK, provider webhook,
+  bank deep link, or payment settlement was added.
+- Frontend never owns QR payment amount or webhook secret.
+- Production mock payment remains disabled even if demo variables are present.
+- Existing `v1.4.2` tag/GitHub Release history was not rewritten.
+
+### Next Task
+
+Manual customer order and QR walkthrough is ready, but must wait for explicit
+user confirmation as requested. The queued automatic scopes after that are the
+500-edition realistic catalog/pricing expansion and the FlowSync-inspired UI
+humanization audit/refactor.
+
+---
+
 ## SECQA-T01 - Agent-Inspired QA And Security Hardening
 
 - Date: 2026-07-19
