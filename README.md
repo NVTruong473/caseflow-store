@@ -6,11 +6,13 @@ upgraded through the Day 21-40 roadmap, the `v1.2` realistic catalog release,
 the `v1.3` visual merchandising polish, the `v1.3.1` compact-card hotfix, and
 the `v1.4` real-commerce visual merchandising release into a Vietnam-first,
 bilingual e-commerce application for book discovery, account-gated checkout,
-order tracking, and admin/staff operations.
+customer order history/cancellation, order tracking, and admin/staff
+operations. The latest `v1.4.1` patch closes the project with stable visual
+layout fixes and verified customer/admin order-cancellation flows.
 
 [Open the production deployment](https://caseflow-store.vercel.app)
 
-Latest release: [`v1.4.0`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.4.0)
+Latest release: [`v1.4.1`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.4.1)
 
 > Payments are simulated. The app does not collect card numbers, CVV, card
 > expiry, real bank credentials, or real MoMo/ZaloPay/VNPay credentials. Phone
@@ -71,7 +73,8 @@ Latest release: [`v1.4.0`](https://github.com/NVTruong473/caseflow-store/release
 - Require customer login and a checkout-ready profile before order submission.
 - Complete simulated COD, bank transfer, MoMo, ZaloPay, and VNPay-style
   checkout flows.
-- View customer order history and guarded public order tracking.
+- View customer order history, cancel eligible orders, and use guarded public
+  order tracking.
 - Use a rule-based bookstore assistant for finding books and buying guidance.
 
 ## Admin and operations scope
@@ -85,7 +88,8 @@ Latest release: [`v1.4.0`](https://github.com/NVTruong473/caseflow-store/release
 - Inventory adjustment workflow with stock snapshots and operational notes.
 - Promotion management for fixed-VND and percentage discounts.
 - Customer management with minimized operational customer data.
-- Order operations for order, payment, shipping status, and internal notes.
+- Order operations for order, payment, shipping status, internal notes, and
+  staff/admin rejection or cancellation of risky orders.
 - Sales and inventory dashboard plus CSV export for operational reporting.
 
 ## Technical highlights
@@ -125,14 +129,15 @@ Latest release: [`v1.4.0`](https://github.com/NVTruong473/caseflow-store/release
 
 | Gate | Result |
 |---|---|
-| Release tag | `v1.4.0` |
-| GitHub Release | [`CaseFlow Books v1.4.0 - Real Commerce And Visual Merchandising`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.4.0) |
+| Release tag | `v1.4.1` |
+| GitHub Release | [`CaseFlow Books v1.4.1 - Stable Closeout Patch`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.4.1) |
 | Production URL | `https://caseflow-store.vercel.app` |
-| Vercel deployment | `READY`, deployment `dpl_7S279YwsGzB4D6H11PiauzG9GvDL` |
+| Vercel deployment | `READY`, deployment `dpl_kd4F5BbcWPTNhhXedWHZmTmxJXTW` |
 | TypeScript | `npx tsc --noEmit --pretty false` passed |
 | ESLint | `npm run lint` passed |
 | Production build | 48 App Router routes plus proxy generated |
-| v1.4 local QA | Full local Playwright `20/20`, V14 visual QA, accessibility/mobile/performance, cleanup, secret scan, TypeScript, lint, build, and `git diff --check` passed |
+| v1.4.1 local QA | TypeScript, lint, production build, no-demo copy scan, compact-card overlap, customer order history/cancellation, admin order rejection/cancellation, cleanup, secret scan, audit-high, and `git diff --check` passed |
+| v1.4.1 production QA | Production release smoke, final QA smoke, compact-card overlap, customer order history/cancellation, and admin order rejection/cancellation passed |
 | v1.4 production QA | Production release smoke passed with 100 active editions, 100 cover responses, public/customer/admin boundaries, assistant, language mode, and representative detail pages |
 | v1.3.1 hotfix QA | Local and production compact-card overlap verifier passed across mobile, tablet, and desktop; affected homepage/detail visual verifiers passed before `v1.4` |
 | Production smoke | Home, catalog, English/Vietnamese detail, 100-cover catalog, language mode, cart/checkout boundary, customer/admin boundaries, assistant, robots, and sitemap passed |
@@ -145,6 +150,7 @@ Release evidence is recorded in
 [`caseflow-store/docs/v1.2-release-audit.md`](caseflow-store/docs/v1.2-release-audit.md),
 [`caseflow-store/docs/v1.3-final-post-release-qa-audit.md`](caseflow-store/docs/v1.3-final-post-release-qa-audit.md),
 [`caseflow-store/docs/v1.3.1-compact-card-layout-hotfix-release-notes.md`](caseflow-store/docs/v1.3.1-compact-card-layout-hotfix-release-notes.md),
+[`caseflow-store/docs/v1.4.1-stable-closeout-patch-release-notes.md`](caseflow-store/docs/v1.4.1-stable-closeout-patch-release-notes.md),
 and `.agent/step-results.md`.
 
 ## Portfolio handoff

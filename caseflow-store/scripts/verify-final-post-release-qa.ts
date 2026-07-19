@@ -3,7 +3,9 @@ import path from "node:path";
 
 import { chromium, type Browser, type Page } from "@playwright/test";
 
-const ARTIFACT_DIR = path.join(".agent", "artifacts", "qa-final-t01");
+const FINAL_QA_TASK_ID =
+  process.env.FINAL_QA_TASK_ID ?? "qa-v14-final-t01";
+const ARTIFACT_DIR = path.join(".agent", "artifacts", FINAL_QA_TASK_ID);
 const REPORT_PATH = path.join(ARTIFACT_DIR, "final-post-release-qa.json");
 const SUMMARY_PATH = path.join(ARTIFACT_DIR, "final-post-release-qa.md");
 const CART_STORAGE_KEY = "caseflow-store.cart.v1";
@@ -525,10 +527,11 @@ async function inspectOrderTracking(
   screenshots: Record<string, string>,
 ) {
   await page.goto("/orders/track", { waitUntil: "domcontentloaded" });
+  await page.waitForLoadState("networkidle");
   await page.locator("[data-order-tracking-page]").waitFor({ state: "visible" });
   await page.locator("[data-order-tracking-code]").fill("CF-MISSING-ORDER-0001");
   await page.locator("[data-order-tracking-contact]").fill("wrong@example.com");
-  await click(page, "[data-order-tracking-submit]");
+  await page.locator("[data-order-tracking-submit]").click();
   await page
     .locator("[data-order-tracking-error]")
     .waitFor({ state: "visible", timeout: 15_000 });
@@ -852,7 +855,7 @@ function createMarkdownSummary(report: {
 
   return `# Final Post-Release QA Audit
 
-- Task: QA-FINAL-T01
+- Task: ${FINAL_QA_TASK_ID.toUpperCase()}
 - Generated: ${report.generatedAt}
 - Base URL: ${report.baseURL}
 - Overall result: ${report.ok ? "pass" : "fail"}

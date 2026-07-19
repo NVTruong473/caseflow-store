@@ -10,8 +10,8 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: v1.4.0 released
-- Current gate: `V14-T13` complete
+- Mode: v1.4.1 stable closeout patch complete
+- Current gate: `V141-T01` complete
 - Current task: No active implementation task
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-19
@@ -182,6 +182,47 @@
   - Guardrail: no schema migration, production catalog mutation, external cover
     import, payment/shipping provider integration, SMS/email provider
     integration, or external AI integration was introduced.
+- [x] `QA-V14-FINAL-T01` Final Post-Release Tester Audit For v1.4.0. -
+  2026-07-19
+  - Result: completed a tester-style post-release production audit for
+    `https://caseflow-store.vercel.app`; verified public storefront, catalog,
+    detail, cart/checkout account boundary, account/admin boundaries,
+    assistant, order tracking, state previews, release/tag/deployment state,
+    cleanup, secret hygiene, and current-release documentation.
+  - Result: prepared a local P3 copy polish for the admin login vendor label
+    so the next patch can remove a remaining tech-stack feel from the public
+    operations login surface; this local patch is not part of the already
+    published `v1.4.0` deployment.
+  - Verification: `FINAL_QA_TASK_ID=qa-v14-final-t01 FINAL_QA_BASE_URL=https://caseflow-store.vercel.app npx tsx scripts/verify-final-post-release-qa.ts`,
+    `PRODUCTION_RELEASE_TASK_ID=qa-v14-final-t01 PRODUCTION_RELEASE_BASE_URL=https://caseflow-store.vercel.app PRODUCTION_RELEASE_DEPLOYMENT_ID=dpl_7S279YwsGzB4D6H11PiauzG9GvDL npx tsx scripts/verify-v12-production-release.ts`,
+    `npx vercel inspect https://caseflow-store.vercel.app`, `gh release view
+    v1.4.0`, `gh api repos/NVTruong473/caseflow-store/releases/latest`,
+    `RELEASE_CLEANUP_TASK_ID=qa-v14-final-t01 npx tsx
+    scripts/verify-release-cleanup.ts`, targeted stale-release scan, targeted
+    secret scan across 1085 files, `npx tsx
+    scripts/verify-v14-no-demo-runtime-copy.ts`, `npm audit
+    --audit-level=high`, `npm run lint`, `npx tsc --noEmit --pretty false`,
+    `npm run build`, and `git diff --check` passed.
+- [x] `V141-T01` Patch Release v1.4.1 And Stable Closeout. - 2026-07-19
+  - Objective: cleanly ship the post-release QA evidence and P3 operations
+    login copy polish as a narrow `v1.4.1` patch release, then close the
+    project in a stable, documented state.
+  - Result: fixed compact book-card collisions on homepage/product detail,
+    added customer own-order cancellation from account order history, clarified
+    staff/admin rejected-cancelled operations, verified staff rejection of risky
+    orders through UI and database persistence, adjusted admin orders layout at
+    standard desktop width, deployed production deployment
+    `dpl_kd4F5BbcWPTNhhXedWHZmTmxJXTW`, and updated latest-release docs.
+  - Verification: `npx tsc --noEmit --pretty false`, `npm run lint`,
+    `npm run build`, V14 no-demo runtime copy scan, compact-card overlap
+    verifier, customer order history/cancellation verifier, admin order
+    operations verifier with `riskRejection: true`, final QA smoke, production
+    release smoke, production affected-flow verifiers, release cleanup
+    `totalMatches: 0`, targeted secret scan across 1100 files,
+    `npm audit --audit-level=high`, and `git diff --check` passed.
+  - Guardrail: no schema migration, production catalog mutation, dependency
+    addition, external integration, payment/shipping provider integration, or
+    catalog asset import.
 
 ## Pre-Implementation Checklist
 

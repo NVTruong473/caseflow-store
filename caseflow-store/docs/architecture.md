@@ -5,7 +5,8 @@
 This document describes the deployed CaseFlow Books architecture after the Day
 21-40 upgrade, the realistic catalog/content merchandising release, the
 `v1.3.0` visual merchandising polish, the `v1.3.1` compact-card layout hotfix,
-and the `v1.4.0` real-commerce visual merchandising release. The system is
+the `v1.4.0` real-commerce visual merchandising release, and the `v1.4.1`
+stable closeout patch. The system is
 intentionally a Next.js modular monolith: it demonstrates a realistic
 specialist e-commerce workflow without claiming marketplace scale, real payment
 processing, or enterprise operations.
@@ -132,18 +133,25 @@ trusted edition records before creating the order. Simulated payment states
 represent pending COD, bank transfer, or provider confirmation; no external
 payment credential is collected or submitted.
 
-### Customer order history and public tracking
+### Customer order history, cancellation, and public tracking
 
 ```text
 Signed-in customer
   -> own order API/page
   -> server session check
   -> own-order response only
+  -> eligible early-state cancellation only after ownership/status checks
 
 Public lookup
   -> order code plus matching email or phone
   -> tracking-safe response
 ```
+
+Signed-in customers can cancel only their own eligible pending/confirmed
+orders before payment or fulfillment moves beyond the accepted cancellation
+window. The cancellation route repeats customer session and order-ownership
+checks on the server, then writes order, payment, and shipping states to
+cancelled as one controlled repository update.
 
 Public tracking intentionally returns the same not-found response for missing
 orders and wrong-contact lookups to reduce order enumeration risk. It does not
@@ -162,8 +170,9 @@ Supabase Auth session
 
 UI navigation is not an authorization boundary. Protected admin Route Handlers
 repeat role and permission checks server-side. Staff can access operational
-screens allowed by policy; high-risk settings and promotion changes remain
-admin-only where implemented.
+screens allowed by policy, including rejecting or cancelling risky orders
+through the same server-side transition checks used by admin users. High-risk
+settings and promotion changes remain admin-only where implemented.
 
 ## Data model
 
@@ -201,10 +210,10 @@ in localStorage and is revalidated before checkout.
 
 ## Security model
 
-| Actor | Catalog | Customer order history | Public tracking | Admin/staff APIs |
+| Actor | Catalog | Customer order history/cancellation | Public tracking | Admin/staff APIs |
 |---|---|---|---|---|
 | Anonymous | Read active rows | Denied | Guarded lookup only | 401 |
-| Authenticated customer | Read catalog and own profile | Own orders only | Guarded lookup only | 403 |
+| Authenticated customer | Read catalog and own profile | Own orders and eligible own-order cancellation only | Guarded lookup only | 403 |
 | Staff | Read catalog and allowed operations | Operational reads as allowed | Guarded lookup only | Permission-scoped |
 | Admin | Read catalog and all operations in scope | Operational reads | Guarded lookup only | Allowed after role check |
 | Server service role | Trusted backend operations | Trusted backend operations | Trusted backend operations | Internal only |
@@ -249,8 +258,8 @@ notes, rights-analysis notes, or source-edition matching keys. See
 ## Deployment and verification
 
 - Production alias: `https://caseflow-store.vercel.app`.
-- Current production deployment ID: `dpl_7S279YwsGzB4D6H11PiauzG9GvDL`
-  (`v1.4.0`).
+- Current production deployment ID: `dpl_kd4F5BbcWPTNhhXedWHZmTmxJXTW`
+  (`v1.4.1`).
 - Supabase hosts PostgreSQL and Auth.
 - Production runtime variables include the public Supabase URL, public anon key,
   and server-only service-role key. Canonical metadata defaults to the
@@ -274,6 +283,10 @@ notes, rights-analysis notes, or source-edition matching keys. See
   editions, 100 cover responses, 50 English editions, 50 Vietnamese editions,
   public/customer/admin boundaries, language mode, assistant, and representative
   detail pages.
+- The `v1.4.1` patch kept the same architecture and verified the stable
+  closeout fixes: compact-card layout, customer order history/cancellation,
+  staff/admin rejection-cancellation operations, final QA smoke, production
+  release smoke, cleanup, secret scan, TypeScript, lint, and production build.
 - Dependency audit status is recorded in
   [`v1.2-release-audit.md`](v1.2-release-audit.md).
 

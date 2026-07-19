@@ -458,7 +458,7 @@ export default async function ProductDetailPage({
                       {copy.editionComparisonDescription}
                     </p>
                   </div>
-                  <div className="mt-case-md grid gap-case-sm 2xl:grid-cols-2">
+                  <div className="mt-case-md grid gap-case-sm">
                     {editionOptions.map((option) => (
                       <EditionOption
                         key={option.edition.id}
@@ -663,10 +663,10 @@ function EditionOption({
           language={language}
           record={option}
           showBadges={false}
-          size="compact"
+          size="inline"
           sizes="56px"
         />
-        <div className="min-w-0 flex-1">
+        <div className="min-w-0 flex-1" data-book-edition-option-content>
           <div className="flex flex-wrap gap-case-xs">
             <Badge variant="neutral" size="sm">
               {getEditionLanguageLabel(option.edition.language, language)}
@@ -680,7 +680,7 @@ function EditionOption({
               </Badge>
             ) : null}
           </div>
-          <h3 className="mt-case-sm line-clamp-2 font-semibold text-foreground">
+          <h3 className="mt-case-sm line-clamp-2 break-words font-semibold text-foreground">
             {title}
           </h3>
           <p className="mt-case-xs text-small text-text-muted">

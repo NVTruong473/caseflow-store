@@ -17,7 +17,11 @@ import type { Json } from "../src/types/supabase";
 
 loadEnvConfig(process.cwd());
 
-const ARTIFACT_DIR = path.join(".agent", "artifacts", "d37-t03");
+const ARTIFACT_DIR = path.join(
+  ".agent",
+  "artifacts",
+  process.env.ADMIN_ORDER_OPS_ARTIFACT_ID ?? "d37-t03",
+);
 const TEST_PASSWORD = "CaseflowBooks#37Orders";
 
 type ApiResponse<TData> = {
@@ -62,6 +66,7 @@ async function main() {
     .toString(36)
     .slice(2, 8)}`;
   const orderCode = `CF-D37OPS-${Date.now().toString(36).toUpperCase()}`;
+  const riskOrderCode = `CF-D37RISK-${Date.now().toString(36).toUpperCase()}`;
   const users = {
     admin: {
       email: `caseflow-d37-orders-admin-${runId}@example.com`,
@@ -92,6 +97,11 @@ async function main() {
       customerId,
       orderCode,
     });
+    await createQaOrder({
+      customer: users.customer,
+      customerId,
+      orderCode: riskOrderCode,
+    });
 
     const anonymousAccess = await inspectAnonymousAccess(browser, baseURL);
     const customerAccess = await inspectCustomerAccess(
@@ -106,8 +116,17 @@ async function main() {
     const staffUi = await exerciseStaffUi(browser, baseURL, users.staff, {
       orderCode,
     });
+    const staffRiskUi = await exerciseStaffRiskRejectionUi(
+      browser,
+      baseURL,
+      users.staff,
+      {
+        orderCode: riskOrderCode,
+      },
+    );
     const finalRow = await readOrderRow(orderCode);
-    const cleanup = await cleanupOrder(orderCode);
+    const finalRiskRow = await readOrderRow(riskOrderCode);
+    const cleanup = await cleanupOrders([orderCode, riskOrderCode]);
     const pass = {
       accessControl:
         anonymousAccess.status === 401 &&
@@ -141,7 +160,20 @@ async function main() {
         finalRow?.payment_status === "confirmed" &&
         finalRow?.shipping_status === "shipped" &&
         finalRow?.internal_notes === staffUi.finalNotes,
-      cleanupRemovedOrder: cleanup.removedRows === 1,
+      riskRejection:
+        staffRiskUi.pageReady &&
+        staffRiskUi.filteredToOrder &&
+        staffRiskUi.statusSuccessVisible &&
+        staffRiskUi.finalStatus === "cancelled" &&
+        staffRiskUi.finalPaymentStatus === "cancelled" &&
+        staffRiskUi.finalShippingStatus === "cancelled" &&
+        staffRiskUi.notesVisible &&
+        !staffRiskUi.hasOverflow &&
+        finalRiskRow?.status === "cancelled" &&
+        finalRiskRow?.payment_status === "cancelled" &&
+        finalRiskRow?.shipping_status === "cancelled" &&
+        finalRiskRow?.internal_notes === staffRiskUi.finalNotes,
+      cleanupRemovedOrder: cleanup.removedRows === 2,
     };
     const ok = Object.values(pass).every(Boolean);
     const report = {
@@ -154,7 +186,9 @@ async function main() {
       ok,
       orderCode,
       pass,
+      riskOrderCode,
       staffApi,
+      staffRiskUi,
       staffUi,
     };
 
@@ -168,6 +202,7 @@ async function main() {
           ok,
           orderCode,
           pass,
+          riskOrderCode,
         },
         null,
         2,
@@ -179,7 +214,7 @@ async function main() {
     }
   } finally {
     await browser.close();
-    await cleanupOrder(orderCode);
+    await cleanupOrders([orderCode, riskOrderCode]);
     await cleanupUsers([...createdUserIds]);
   }
 }
@@ -282,6 +317,10 @@ async function exerciseStaffUi(
   await page
     .locator(`[data-admin-order-code="${options.orderCode}"]`)
     .waitFor({ timeout: 20_000 });
+  await page
+    .locator("[data-admin-order-detail-code]")
+    .filter({ hasText: options.orderCode })
+    .waitFor({ timeout: 20_000 });
   const filteredToOrder = await page
     .locator(`[data-admin-order-code="${options.orderCode}"]`)
     .isVisible();
@@ -291,6 +330,9 @@ async function exerciseStaffUi(
     .locator("[data-admin-order-shipping-status-select]")
     .selectOption("shipped");
   await page.locator("[data-admin-order-internal-notes]").fill(finalNotes);
+  await page
+    .locator("[data-admin-order-status-submit]")
+    .waitFor({ state: "visible", timeout: 20_000 });
   await page.locator("[data-admin-order-status-submit]").click();
   await page
     .locator("[data-admin-order-status-success]")
@@ -318,6 +360,89 @@ async function exerciseStaffUi(
 
   return {
     finalNotes,
+    finalShippingStatus,
+    finalStatus,
+    filteredToOrder,
+    hasOverflow,
+    notesVisible,
+    pageReady,
+    statusSuccessVisible,
+  };
+}
+
+async function exerciseStaffRiskRejectionUi(
+  browser: Browser,
+  baseURL: string,
+  staff: TestUser,
+  options: { orderCode: string },
+) {
+  const context = await newLanguageContext(browser, baseURL, "en", {
+    height: 1000,
+    width: 1440,
+  });
+  const page = await context.newPage();
+  const finalNotes = "Risk review: rejected due to unverified contact.";
+
+  await loginOperationsUser(page, staff.email);
+  await page.goto("/admin/orders", { waitUntil: "domcontentloaded" });
+  await page.locator("[data-admin-orders-page]").waitFor({ timeout: 20_000 });
+  const pageReady = await page.locator("[data-admin-orders-page]").isVisible();
+  await page.locator("[data-admin-orders-filter-search]").fill(options.orderCode);
+  await page.locator("[data-admin-orders-filter-apply]").click();
+  await page
+    .locator(`[data-admin-order-code="${options.orderCode}"]`)
+    .waitFor({ timeout: 20_000 });
+  await page
+    .locator("[data-admin-order-detail-code]")
+    .filter({ hasText: options.orderCode })
+    .waitFor({ timeout: 20_000 });
+  const filteredToOrder = await page
+    .locator(`[data-admin-order-code="${options.orderCode}"]`)
+    .isVisible();
+
+  await page.locator("[data-admin-order-status-select]").selectOption("cancelled");
+  await page
+    .locator("[data-admin-order-payment-status-select]")
+    .selectOption("cancelled");
+  await page
+    .locator("[data-admin-order-shipping-status-select]")
+    .selectOption("cancelled");
+  await page.locator("[data-admin-order-internal-notes]").fill(finalNotes);
+  await page
+    .locator("[data-admin-order-status-submit]")
+    .waitFor({ state: "visible", timeout: 20_000 });
+  await page.locator("[data-admin-order-status-submit]").click();
+  await page
+    .locator("[data-admin-order-status-success]")
+    .waitFor({ timeout: 20_000 });
+  const statusSuccessVisible = await page
+    .locator("[data-admin-order-status-success]")
+    .isVisible();
+  const finalStatus =
+    (await page
+      .locator("[data-admin-order-status-select]")
+      .inputValue()) as OrderStatus;
+  const finalPaymentStatus =
+    (await page
+      .locator("[data-admin-order-payment-status-select]")
+      .inputValue()) as PaymentStatus;
+  const finalShippingStatus =
+    (await page
+      .locator("[data-admin-order-shipping-status-select]")
+      .inputValue()) as ShippingStatus;
+  const notesVisible =
+    (await page.locator("[data-admin-order-internal-notes]").inputValue()) ===
+    finalNotes;
+  const hasOverflow = await hasHorizontalOverflow(page);
+  await page.screenshot({
+    fullPage: true,
+    path: path.join(ARTIFACT_DIR, "admin-order-rejection-desktop-en.png"),
+  });
+  await context.close();
+
+  return {
+    finalNotes,
+    finalPaymentStatus,
     finalShippingStatus,
     finalStatus,
     filteredToOrder,
@@ -495,16 +620,16 @@ async function readOrderRow(orderCode: string) {
   return data;
 }
 
-async function cleanupOrder(orderCode: string) {
+async function cleanupOrders(orderCodes: string[]) {
   const admin = createSupabaseAdminClient();
   const { data, error } = await admin
     .from("orders")
     .delete()
-    .eq("order_code", orderCode)
+    .in("order_code", orderCodes)
     .select("id");
 
   if (error) {
-    console.warn(`Could not clean order operations test order: ${error.message}`);
+    console.warn(`Could not clean order operations test orders: ${error.message}`);
   }
 
   return { removedRows: data?.length ?? 0 };

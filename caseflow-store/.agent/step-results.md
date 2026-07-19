@@ -4,14 +4,14 @@
 
 | Field | Value |
 |---|---|
-| Current mode | v1.4.0 released |
-| Current gate | `V14-T13` complete |
+| Current mode | v1.4.0 final post-release QA passed |
+| Current gate | `QA-V14-FINAL-T01` complete |
 | Implementation started | Yes |
 | Next implementation task | No active implementation task |
 | App initialized | Yes, in `caseflow-store` |
 | Local server verified | Yes, V14-T12 full Playwright `20/20` passed on a production-style local server at `http://127.0.0.1:3001`; V14 visual QA passed on local `next start` at `http://127.0.0.1:3000` |
-| Lint verified | Yes, V14-T13 pre-release lint passed |
-| Build verified | Yes, V14-T13 local and Vercel production builds generated 48 App Router routes plus proxy |
+| Lint verified | Yes, QA-V14-FINAL-T01 lint passed after QA script and local P3 copy patch |
+| Build verified | Yes, QA-V14-FINAL-T01 local production build generated 48 App Router routes plus proxy |
 | Database connected | Yes; live catalog, orders, Auth, role checks, and admin status updates use Supabase |
 | Deployed | Yes, v1.4 production deployment `dpl_7S279YwsGzB4D6H11PiauzG9GvDL` is aliased to `https://caseflow-store.vercel.app` |
 | Last updated | 2026-07-19 |
@@ -130,6 +130,7 @@
 | SR-182 | 2026-07-18 | QA-FINAL-T01 | completed | Passed final post-release tester audit for v1.3.0 with production smoke, full Playwright 20/20, accessibility/mobile/performance, cleanup, static gates, and no P0/P1 findings |
 | SR-183 | 2026-07-19 | V14-T12 | completed | Passed the full local v1.4 quality gate with TypeScript, lint, build, Playwright 20/20, V14 visual QA, cleanup, high/critical audit, targeted secret scan, release-readiness report, and no deploy/tag/release |
 | SR-184 | 2026-07-19 | V14-T13 | completed | Deployed v1.4.0 to Vercel production, passed production smoke, refreshed release docs/evidence, fixed localized-title smoke verification, and prepared GitHub tag/release publication |
+| SR-185 | 2026-07-19 | QA-V14-FINAL-T01 | completed | Passed final post-release tester audit for v1.4.0 with production browser QA, production release smoke, Vercel/GitHub release verification, cleanup, secret scan, no-demo scan, lint, TypeScript, build, and no open P0/P1 findings |
 
 ---
 
@@ -12532,3 +12533,213 @@ Release.
 
 No active implementation task after remote push, tag, and GitHub Release
 verification complete.
+
+---
+
+## QA-V14-FINAL-T01 - Final Post-Release Tester Audit For v1.4.0
+
+- Date: 2026-07-19
+- Status: completed
+- Phase: CaseFlow Books v1.4 post-release QA
+
+### Objective
+
+Verify the published `v1.4.0` production site from a tester perspective after
+the GitHub Release was created, with emphasis on real user flows, production
+release state, current documentation, and release hygiene.
+
+### Actual Result
+
+- Production tester audit passed with `ok: true` and zero automated findings.
+- Production release smoke passed with `ok: true`.
+- Vercel inspection confirmed deployment `dpl_7S279YwsGzB4D6H11PiauzG9GvDL`
+  is `Ready`, target `production`, and aliased to
+  `https://caseflow-store.vercel.app`.
+- GitHub remote verification confirmed `origin/main` at release commit
+  `4b747d0`, annotated tag `v1.4.0`, and a latest non-draft/non-prerelease
+  GitHub Release at
+  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.4.0`.
+- Catalog production baseline remained stable: 100 active editions, 100 cover
+  responses, 50 English editions, and 50 Vietnamese editions.
+- Release cleanup passed with `totalMatches: 0`.
+- Public stale-release scan confirmed current public docs point to `v1.4.0`;
+  broad scan matches for `v1.3.1` are historical tracker records, not current
+  release claims.
+- Targeted candidate-file secret scan passed across 1085 files with zero
+  findings.
+- Local quality after QA script updates and the local admin-login P3 copy patch
+  passed TypeScript, lint, and production build.
+
+### Evidence
+
+- `docs/v1.4-final-post-release-qa-audit.md`
+- `.agent/artifacts/qa-v14-final-t01/final-post-release-qa.json`
+- `.agent/artifacts/qa-v14-final-t01/final-post-release-qa.md`
+- `.agent/artifacts/qa-v14-final-t01/production-release-smoke.json`
+- `.agent/artifacts/qa-v14-final-t01/release-cleanup-check.json`
+- `.agent/artifacts/qa-v14-final-t01/qa-home-desktop-en.png`
+- `.agent/artifacts/qa-v14-final-t01/qa-catalog-mobile-vi-page-2.png`
+- `.agent/artifacts/qa-v14-final-t01/qa-detail-desktop-en.png`
+- `.agent/artifacts/qa-v14-final-t01/qa-order-tracking-error-mobile-vi.png`
+- `.agent/artifacts/qa-v14-final-t01/qa-admin-boundary-mobile-en.png`
+
+### Verification
+
+- `FINAL_QA_TASK_ID=qa-v14-final-t01 FINAL_QA_BASE_URL=https://caseflow-store.vercel.app npx tsx scripts/verify-final-post-release-qa.ts`:
+  passed with `ok: true`.
+- `PRODUCTION_RELEASE_TASK_ID=qa-v14-final-t01 PRODUCTION_RELEASE_BASE_URL=https://caseflow-store.vercel.app PRODUCTION_RELEASE_DEPLOYMENT_ID=dpl_7S279YwsGzB4D6H11PiauzG9GvDL npx tsx scripts/verify-v12-production-release.ts`:
+  passed with `ok: true`.
+- `npx vercel inspect https://caseflow-store.vercel.app`: passed; deployment
+  `Ready`, target `production`.
+- `git ls-remote origin refs/heads/main refs/tags/v1.4.0 'refs/tags/v1.4.0^{}'`:
+  passed.
+- `gh release view v1.4.0 --repo NVTruong473/caseflow-store --json tagName,name,url,isDraft,isPrerelease,publishedAt,targetCommitish`:
+  passed.
+- `gh api repos/NVTruong473/caseflow-store/releases/latest --jq '{tag_name, name, html_url, draft, prerelease, published_at, target_commitish}'`:
+  passed.
+- `RELEASE_CLEANUP_TASK_ID=qa-v14-final-t01 npx tsx scripts/verify-release-cleanup.ts`:
+  passed with `totalMatches: 0`.
+- `npx tsx scripts/verify-v14-no-demo-runtime-copy.ts`: passed.
+- Targeted current-release stale scan: passed.
+- Targeted candidate-file secret scan: passed across 1085 files.
+- `npm audit --audit-level=high`: passed with no high/critical advisories; the
+  known moderate Next/PostCSS advisory remains documented and was not force
+  fixed.
+- `npm run lint`: passed.
+- `npx tsc --noEmit --pretty false`: passed.
+- `npm run build`: passed with 48 App Router routes plus proxy.
+- `git diff --check`: passed.
+
+### Findings
+
+- No P0/P1 findings remain open against the released production site.
+- P3: production admin login still showed the vendor-facing label
+  `Supabase Auth`. A local source patch changes this to business-facing,
+  localized copy, but that patch is not part of the already published
+  `v1.4.0` tag or production deployment.
+
+### Guardrails Preserved
+
+- No schema migration, production catalog mutation, external cover import,
+  payment-provider integration, shipping-carrier integration, SMS/email
+  provider integration, external AI integration, deploy, tag, or GitHub Release
+  change was performed in this QA task.
+
+### Next Task
+
+No active implementation task. The only concrete follow-up is an optional patch
+release if the local P3 admin-login copy polish should be shipped to
+production.
+
+---
+
+## V141-T01 - Patch Release v1.4.1 And Stable Closeout
+
+- Date: 2026-07-19
+- Status: completed
+- Phase: CaseFlow Books stable closeout patch
+
+### Objective
+
+Ship a narrow `v1.4.1` patch that fixes the reported book-card visual
+collisions, adds authenticated customer order cancellation from order history,
+confirms staff/admin rejected-cancelled order operations, deploys the result to
+production, and leaves the project with current release evidence.
+
+### Actual Result
+
+- Fixed compact book-card layout collisions on homepage translated edition
+  links, compact retail cards, related book cards, and product detail edition
+  comparison cards.
+- Added customer own-order cancellation via
+  `PATCH /api/customer/orders/[orderCode]` with server-side customer session,
+  ownership, order status, payment status, and shipping status checks.
+- Customer account order history now shows cancellation controls for eligible
+  orders and updates the local order status after a successful cancellation.
+- Clarified admin/staff operations copy so cancelled order status is presented
+  as rejected/cancelled for risky orders, invalid contact, unavailable stock,
+  or other operations issues.
+- Extended the admin order operations verifier with a dedicated risky-order UI
+  rejection path and database persistence check.
+- Adjusted the admin orders layout breakpoint so standard desktop widths do
+  not squeeze the order list and selected-order detail panel together.
+- Deployed Vercel production deployment
+  `dpl_kd4F5BbcWPTNhhXedWHZmTmxJXTW`, aliased to
+  `https://caseflow-store.vercel.app`.
+- Updated README, app README, architecture, portfolio handoff, known
+  limitations, CV bullets, release notes, and agent trackers for `v1.4.1`.
+
+### Evidence
+
+- `docs/v1.4.1-stable-closeout-patch-release-notes.md`
+- `.agent/artifacts/v141-t01/deployment.json`
+- `.agent/artifacts/v141-t01/production-release-smoke.json`
+- `.agent/artifacts/v141-t01/final-post-release-qa.json`
+- `.agent/artifacts/v141-t01/compact-card-overlap-check.json`
+- `.agent/artifacts/v141-t01/customer-order-history-check.json`
+- `.agent/artifacts/v141-t01/admin-order-operations-check.json`
+- `.agent/artifacts/v141-t01/release-cleanup-check.json`
+- `.agent/artifacts/v141-t01/home-desktop-en.png`
+- `.agent/artifacts/v141-t01/detail-mobile-vi.png`
+- `.agent/artifacts/v141-t01/customer-order-history-desktop-en.png`
+- `.agent/artifacts/v141-t01/admin-order-rejection-desktop-en.png`
+
+### Verification
+
+- `npx tsc --noEmit --pretty false`: passed.
+- `npm run lint`: passed.
+- `npm run build`: passed with 48 App Router routes plus proxy.
+- `npx tsx scripts/verify-v14-no-demo-runtime-copy.ts`: passed with
+  `scannedFiles: 109` and zero findings.
+- `HOTFIX_CARD_LAYOUT_TASK_ID=V141-T01 HOTFIX_CARD_LAYOUT_ARTIFACT_ID=v141-t01 HOTFIX_CARD_LAYOUT_BASE_URL=http://127.0.0.1:3000 npx tsx scripts/verify-hotfix-compact-card-overlap.ts`:
+  passed locally against `next start`.
+- `CUSTOMER_ORDER_HISTORY_ARTIFACT_ID=v141-t01 CUSTOMER_ORDER_HISTORY_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx scripts/verify-customer-order-history.ts`:
+  passed locally with own-page cancellation and cross-customer denial.
+- `ADMIN_ORDER_OPS_ARTIFACT_ID=v141-t01 ADMIN_ORDER_OPS_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx scripts/verify-admin-order-operations.ts`:
+  passed locally with `riskRejection: true`.
+- Targeted candidate-file secret scan: passed across 1100 files with zero
+  findings and without printing secret values.
+- `RELEASE_CLEANUP_TASK_ID=v141-t01 npx tsx scripts/verify-release-cleanup.ts`:
+  passed with `totalMatches: 0`.
+- `npm audit --audit-level=high`: passed with no high/critical advisories; the
+  known moderate Next/PostCSS advisory remains documented and was not force
+  fixed.
+- `git diff --check`: passed.
+- `npx vercel --prod --yes`: passed; deployment
+  `dpl_kd4F5BbcWPTNhhXedWHZmTmxJXTW` reached `READY` and was aliased to
+  `https://caseflow-store.vercel.app`.
+- `npx vercel inspect https://caseflow-store.vercel.app`: passed; alias points
+  to deployment `dpl_kd4F5BbcWPTNhhXedWHZmTmxJXTW`, target `production`,
+  status `Ready`.
+- `PRODUCTION_RELEASE_TASK_ID=v141-t01 PRODUCTION_RELEASE_BASE_URL=https://caseflow-store.vercel.app PRODUCTION_RELEASE_DEPLOYMENT_ID=dpl_kd4F5BbcWPTNhhXedWHZmTmxJXTW npx tsx scripts/verify-v12-production-release.ts`:
+  passed with `ok: true`, canonical alias, public pages, language mode,
+  checkout/customer/admin boundaries, assistant, detail pages, 100 active
+  editions, 100 cover responses, 50 English editions, and 50 Vietnamese
+  editions.
+- `FINAL_QA_TASK_ID=v141-t01 FINAL_QA_BASE_URL=https://caseflow-store.vercel.app npx tsx scripts/verify-final-post-release-qa.ts`:
+  passed with `ok: true` and no findings.
+- Production affected-flow verifier reruns passed sequentially:
+  compact-card overlap, customer order history/cancellation, and admin order
+  operations with `riskRejection: true`.
+- Release cleanup after production affected-flow verification passed with
+  `totalMatches: 0`.
+
+### Notes
+
+- Running multiple Supabase-mutating production verifier suites in parallel
+  caused timing-only false negatives on route/click waits. The accepted
+  release evidence uses sequential production reruns that passed and cleaned
+  test data.
+- No P0/P1 findings remain open in the verified patch scope.
+
+### Guardrails Preserved
+
+- No schema migration, production catalog mutation, dependency addition,
+  external cover import, payment-provider integration, shipping-carrier
+  integration, SMS/email provider integration, external AI integration, or real
+  payment processing was introduced.
+
+### Next Task
+
+No active implementation task after remote push, tag, GitHub Release
+verification, and clean worktree verification complete.

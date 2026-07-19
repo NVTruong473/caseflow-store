@@ -36,6 +36,7 @@ type FieldErrors = {
 const adminLoginCopy = {
   en: {
     access: "Access",
+    accessValue: "Admin or staff role",
     adminEmailError: "Enter the operations email address.",
     adminPasswordError: "Enter the admin password.",
     adminServiceUnavailable:
@@ -45,9 +46,11 @@ const adminLoginCopy = {
     backToStorefront: "Back to storefront",
     emailAddress: "Email address",
     identity: "Identity",
+    identityValue: "Store staff account",
     openingOrders: (name: string) => `Signed in as ${name}. Opening orders.`,
     password: "Password",
     scope: "Scope",
+    scopeValue: "Orders and operations",
     signIn: "Sign in",
     signInDescription: "Use a CaseFlow admin or staff account.",
     signInIntro: "Sign in to review orders and update fulfillment status.",
@@ -57,6 +60,7 @@ const adminLoginCopy = {
   },
   vi: {
     access: "Quyền truy cập",
+    accessValue: "Vai trò quản trị hoặc vận hành",
     adminEmailError: "Nhập email vận hành.",
     adminPasswordError: "Nhập mật khẩu admin/staff.",
     adminServiceUnavailable:
@@ -66,9 +70,11 @@ const adminLoginCopy = {
     backToStorefront: "Quay lại cửa hàng",
     emailAddress: "Địa chỉ email",
     identity: "Định danh",
+    identityValue: "Tài khoản nhân sự cửa hàng",
     openingOrders: (name: string) => `Đã đăng nhập với tên ${name}. Đang mở đơn hàng.`,
     password: "Mật khẩu",
     scope: "Phạm vi",
+    scopeValue: "Đơn hàng và vận hành",
     signIn: "Đăng nhập",
     signInDescription: "Dùng tài khoản admin hoặc staff của CaseFlow.",
     signInIntro: "Đăng nhập để xem đơn hàng và cập nhật trạng thái xử lý.",
@@ -167,9 +173,9 @@ export function AdminLoginPage({ language }: { language: Language }) {
           </div>
 
           <dl className="grid gap-case-sm sm:grid-cols-3">
-            <LoginMetric label={copy.identity} value="Supabase Auth" />
-            <LoginMetric label={copy.access} value="Admin or staff role" />
-            <LoginMetric label={copy.scope} value="Orders" />
+            <LoginMetric label={copy.identity} value={copy.identityValue} />
+            <LoginMetric label={copy.access} value={copy.accessValue} />
+            <LoginMetric label={copy.scope} value={copy.scopeValue} />
           </dl>
         </section>
 

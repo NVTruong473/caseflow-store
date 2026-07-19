@@ -1,0 +1,170 @@
+{
+  "api": {
+    "failures": {
+      "missingCoverCount": 0,
+      "missingPublicCopyCount": 0,
+      "publicLeakPatternFound": false
+    },
+    "languageCounts": {
+      "en": 50,
+      "vi": 50
+    },
+    "pass": {
+      "adminBoundary": true,
+      "catalogQuality": true,
+      "customerBoundary": true,
+      "publicPayloadSafe": true,
+      "publicRoutes": true,
+      "seo": true
+    },
+    "status": {
+      "account": 200,
+      "adminOrders": 401,
+      "adminShelves": 401,
+      "catalogPage": 200,
+      "categories": 200,
+      "customerOrders": 401,
+      "home": 200,
+      "robots": 200,
+      "sitemap": 200,
+      "tracking": 200
+    },
+    "total": 100
+  },
+  "baseURL": "https://caseflow-store.vercel.app",
+  "browserAudit": {
+    "accountBoundary": true,
+    "addToCart": true,
+    "adminBoundary": true,
+    "assistant": true,
+    "cartDrawer": true,
+    "catalogSearch": true,
+    "catalogVietnamese": true,
+    "checkoutLoginBoundary": true,
+    "detail": true,
+    "homepage": true,
+    "orderTracking": true,
+    "pageChecks": [
+      {
+        "hasOverflow": false,
+        "label": "home desktop en",
+        "screenshot": ".agent/artifacts/v141-t01/qa-home-desktop-en.png",
+        "textLeak": false,
+        "url": "https://caseflow-store.vercel.app/"
+      },
+      {
+        "hasOverflow": false,
+        "label": "catalog search desktop en",
+        "screenshot": ".agent/artifacts/v141-t01/qa-catalog-search-desktop-en.png",
+        "textLeak": false,
+        "url": "https://caseflow-store.vercel.app/catalog?q=old&language=en&sort=title-asc"
+      },
+      {
+        "hasOverflow": false,
+        "label": "catalog mobile vi",
+        "screenshot": ".agent/artifacts/v141-t01/qa-catalog-mobile-vi-page-2.png",
+        "textLeak": false,
+        "url": "https://caseflow-store.vercel.app/catalog?language=vi&page=2"
+      },
+      {
+        "hasOverflow": false,
+        "label": "detail desktop en",
+        "screenshot": ".agent/artifacts/v141-t01/qa-detail-desktop-en.png",
+        "textLeak": false,
+        "url": "https://caseflow-store.vercel.app/products/the-old-man-and-the-sea-english-paperback"
+      },
+      {
+        "hasOverflow": false,
+        "label": "checkout boundary mobile en",
+        "screenshot": ".agent/artifacts/v141-t01/qa-checkout-boundary-mobile-en.png",
+        "textLeak": false,
+        "url": "https://caseflow-store.vercel.app/account?next=/checkout"
+      },
+      {
+        "hasOverflow": false,
+        "label": "order tracking error mobile vi",
+        "screenshot": ".agent/artifacts/v141-t01/qa-order-tracking-error-mobile-vi.png",
+        "textLeak": false,
+        "url": "https://caseflow-store.vercel.app/orders/track"
+      },
+      {
+        "hasOverflow": false,
+        "label": "account mobile en",
+        "screenshot": ".agent/artifacts/v141-t01/qa-account-mobile-en.png",
+        "textLeak": false,
+        "url": "https://caseflow-store.vercel.app/account"
+      },
+      {
+        "hasOverflow": false,
+        "label": "admin boundary mobile en",
+        "screenshot": ".agent/artifacts/v141-t01/qa-admin-boundary-mobile-en.png",
+        "textLeak": false,
+        "url": "https://caseflow-store.vercel.app/admin/login?reason=unauthorized"
+      },
+      {
+        "hasOverflow": false,
+        "label": "catalog state preview loading",
+        "screenshot": ".agent/artifacts/v141-t01/qa-catalog-state-preview-loading.png",
+        "textLeak": false,
+        "url": "https://caseflow-store.vercel.app/catalog-state-preview?state=loading"
+      },
+      {
+        "hasOverflow": false,
+        "label": "catalog state preview empty",
+        "screenshot": ".agent/artifacts/v141-t01/qa-catalog-state-preview-empty.png",
+        "textLeak": false,
+        "url": "https://caseflow-store.vercel.app/catalog-state-preview?state=empty"
+      },
+      {
+        "hasOverflow": false,
+        "label": "catalog state preview error",
+        "screenshot": ".agent/artifacts/v141-t01/qa-catalog-state-preview-error.png",
+        "textLeak": false,
+        "url": "https://caseflow-store.vercel.app/catalog-state-preview?state=error"
+      }
+    ],
+    "publicTextSafe": true,
+    "screenshots": {
+      "qa-home-desktop-en.png": ".agent/artifacts/v141-t01/qa-home-desktop-en.png",
+      "qa-catalog-search-desktop-en.png": ".agent/artifacts/v141-t01/qa-catalog-search-desktop-en.png",
+      "qa-catalog-mobile-vi-page-2.png": ".agent/artifacts/v141-t01/qa-catalog-mobile-vi-page-2.png",
+      "qa-detail-desktop-en.png": ".agent/artifacts/v141-t01/qa-detail-desktop-en.png",
+      "qa-checkout-boundary-mobile-en.png": ".agent/artifacts/v141-t01/qa-checkout-boundary-mobile-en.png",
+      "qa-order-tracking-error-mobile-vi.png": ".agent/artifacts/v141-t01/qa-order-tracking-error-mobile-vi.png",
+      "qa-account-mobile-en.png": ".agent/artifacts/v141-t01/qa-account-mobile-en.png",
+      "qa-admin-boundary-mobile-en.png": ".agent/artifacts/v141-t01/qa-admin-boundary-mobile-en.png",
+      "qa-catalog-state-preview-loading.png": ".agent/artifacts/v141-t01/qa-catalog-state-preview-loading.png",
+      "qa-catalog-state-preview-empty.png": ".agent/artifacts/v141-t01/qa-catalog-state-preview-empty.png",
+      "qa-catalog-state-preview-error.png": ".agent/artifacts/v141-t01/qa-catalog-state-preview-error.png"
+    },
+    "statePreviews": true
+  },
+  "findings": [],
+  "generatedAt": "2026-07-19T10:57:23.069Z",
+  "ok": true,
+  "pass": {
+    "accountAndAdminBoundaries": true,
+    "assistantGuidance": true,
+    "catalogDiscovery": true,
+    "cartAndCheckoutBoundary": true,
+    "contentSafety": true,
+    "detailAndEditionComparison": true,
+    "noCriticalFindings": true,
+    "noOverflow": true,
+    "orderTrackingStates": true,
+    "publicRoutes": true,
+    "statePreviews": true
+  },
+  "targets": {
+    "en": {
+      "editionId": "00000000-0000-4000-8000-000000007100",
+      "slug": "the-old-man-and-the-sea-english-paperback",
+      "title": "The Old Man and the Sea"
+    },
+    "vi": {
+      "editionId": "00000000-0000-4000-8000-000000007200",
+      "slug": "the-old-man-and-the-sea-vietnamese-paperback",
+      "title": "Ông già và biển cả"
+    }
+  }
+}

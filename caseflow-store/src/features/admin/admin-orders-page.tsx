@@ -111,14 +111,14 @@ const statusLabelsByLanguage: Record<Language, Record<OrderStatus, string>> = {
     confirmed: "Confirmed",
     shipping: "Shipping",
     completed: "Completed",
-    cancelled: "Cancelled",
+    cancelled: "Rejected / cancelled",
   },
   vi: {
     pending: "Đang chờ",
     confirmed: "Đã xác nhận",
     shipping: "Đang giao",
     completed: "Hoàn tất",
-    cancelled: "Đã hủy",
+    cancelled: "Từ chối / hủy",
   },
 };
 
@@ -199,6 +199,8 @@ const adminOrdersCopy = {
     pageDescription: "Review recent checkout orders and spot pending work.",
     pending: "Pending",
     phone: "Phone",
+    rejectionHint:
+      "Use rejected/cancelled when the order has fraud risk, invalid contact, unavailable stock, or another operations issue.",
     paymentStatus: "Payment status",
     recentOrders: "Recent orders",
     refresh: "Refresh",
@@ -262,6 +264,8 @@ const adminOrdersCopy = {
     pageDescription: "Xem đơn hàng gần đây và phát hiện việc cần xử lý.",
     pending: "Đang chờ",
     phone: "Số điện thoại",
+    rejectionHint:
+      "Dùng từ chối/hủy khi đơn có rủi ro, liên hệ không hợp lệ, thiếu tồn kho hoặc vấn đề vận hành khác.",
     paymentStatus: "Trạng thái thanh toán",
     recentOrders: "Đơn hàng gần đây",
     refresh: "Làm mới",
@@ -660,7 +664,7 @@ export function AdminOrdersPage({
             {orders.length === 0 ? (
               <AdminOrdersEmpty copy={copy} />
             ) : (
-              <div className="grid gap-case-md xl:grid-cols-[minmax(0,1fr)_420px] xl:items-start">
+              <div className="grid gap-case-md 2xl:grid-cols-[minmax(0,1fr)_420px] 2xl:items-start">
                 {selectedOrder ? (
                   <MobileSelectedOrderBar
                     copy={copy}
@@ -1194,6 +1198,9 @@ function AdminOrderDetail({
         <h3 className="text-small font-semibold uppercase tracking-normal text-text-muted">
           {copy.updateStatus}
         </h3>
+        <p className="text-small leading-6 text-text-muted">
+          {copy.rejectionHint}
+        </p>
         <div className="grid gap-case-sm">
           <label className="grid gap-1 text-small font-medium text-foreground">
             <span>{copy.status}</span>

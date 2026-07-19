@@ -90,12 +90,21 @@ export const publicOrderTrackingLookupRequestSchema = z
   })
   .strict();
 
+export const customerOrderActionRequestSchema = z
+  .object({
+    action: z.literal("cancel"),
+  })
+  .strict();
+
 export type CreateOrderRequest = z.infer<typeof createOrderRequestSchema>;
 export type CreateBookOrderRequest = z.infer<
   typeof createBookOrderRequestSchema
 >;
 export type PublicOrderTrackingLookupRequest = z.infer<
   typeof publicOrderTrackingLookupRequestSchema
+>;
+export type CustomerOrderActionRequest = z.infer<
+  typeof customerOrderActionRequestSchema
 >;
 export type AdminOrderFilters = z.infer<typeof adminOrderFiltersSchema>;
 export type UpdateAdminOrderOperationsRequest = z.infer<

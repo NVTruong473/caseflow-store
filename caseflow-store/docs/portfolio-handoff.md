@@ -1,9 +1,9 @@
 # CaseFlow Books Portfolio Handoff
 
-- Latest release: `v1.4.0`
+- Latest release: `v1.4.1`
 - Production URL: `https://caseflow-store.vercel.app`
-- GitHub Release: `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.4.0`
-- Vercel deployment: `dpl_7S279YwsGzB4D6H11PiauzG9GvDL`
+- GitHub Release: `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.4.1`
+- Vercel deployment: `dpl_kd4F5BbcWPTNhhXedWHZmTmxJXTW`
 - Project type: full-stack bookstore and small-business operations portfolio
 - Stack: Next.js 16, React 19, TypeScript 5, Tailwind CSS 4, Supabase
   PostgreSQL/Auth/RLS, Zod, Playwright, Vercel
@@ -13,8 +13,8 @@
 CaseFlow Books is a focused e-commerce portfolio project, not a marketplace
 clone. It demonstrates a realistic specialist bookstore with bilingual
 discovery, account-gated checkout, server-owned order totals, customer order
-tracking, and admin/staff operations in one deployable Next.js modular
-monolith.
+history and cancellation, guarded tracking, and admin/staff operations in one
+deployable Next.js modular monolith.
 
 The strongest technical story is not "many features." It is that commerce,
 access control, content safety, release evidence, and known limitations are
@@ -57,10 +57,11 @@ commit or share passwords.
 
 1. Sign in as a customer, complete profile readiness, and walk through a
    simulated COD/bank/wallet checkout path.
-2. Show customer order history and tracking-safe order details.
+2. Show customer order history, tracking-safe order details, and cancellation
+   of an eligible order before fulfillment.
 3. Sign in as staff/admin and show dashboard metrics, order operations,
    catalog management, inventory adjustments, promotions, customers, settings,
-   and CSV export.
+   CSV export, and rejection/cancellation of a risky order with internal notes.
 4. Highlight that mutating admin/customer APIs repeat server-side role checks.
 
 ## Feature Matrix
@@ -73,7 +74,7 @@ commit or share passwords.
 | Currency | VND source-of-truth, English-mode approximate USD estimate |
 | Cart | Browser-local cart storing edition IDs and quantities only |
 | Checkout | Account-gated simulated COD, bank transfer, MoMo, ZaloPay, VNPay-style choices |
-| Customer | Profile readiness, order history, guarded public tracking |
+| Customer | Profile readiness, order history, eligible cancellation, guarded public tracking |
 | Admin/staff | Dashboard, orders, catalog, inventory, promotions, customers, settings, CSV export |
 | Assistant | Rule-based bookstore assistant with guided result links |
 | SEO | Metadata, canonical URLs, robots, sitemap, and eligible book JSON-LD |
@@ -105,7 +106,11 @@ See `docs/architecture.md` for the full architecture notes.
 
 | Evidence | Location |
 |---|---|
-| Latest release notes | `docs/v1.4-real-commerce-visual-merchandising-release-notes.md` |
+| Latest release notes | `docs/v1.4.1-stable-closeout-patch-release-notes.md` |
+| v1.4.1 production smoke | `.agent/artifacts/v141-t01/production-release-smoke.json` |
+| v1.4.1 customer cancellation | `.agent/artifacts/v141-t01/customer-order-history-check.json` |
+| v1.4.1 admin rejection | `.agent/artifacts/v141-t01/admin-order-operations-check.json` |
+| v1.4.1 compact-card visual check | `.agent/artifacts/v141-t01/compact-card-overlap-check.json` |
 | v1.4 release readiness | `docs/v1.4-release-readiness-report.md` |
 | v1.4 production smoke | `.agent/artifacts/v14-t13/production-release-smoke.json` |
 | v1.4 visual screenshots | `.agent/artifacts/v14-t13/` |
@@ -127,6 +132,8 @@ Latest verified gates include:
 - production release smoke against `https://caseflow-store.vercel.app`
 - V14 visual QA for homepage, catalog, detail, policy, checkout, customer, and
   admin surfaces
+- customer order history and cancellation verifier
+- admin/staff order rejection-cancellation verifier
 - local and production compact-card overlap verifier
 - affected v1.3 homepage/detail visual verifiers
 - release cleanup check
@@ -138,8 +145,9 @@ Latest verified gates include:
 Short version:
 
 > I built and deployed a bilingual bookstore with a 100-edition catalog,
-> account-gated checkout, server-owned totals, customer order tracking, and
-> admin/staff operations. The interesting part is the integrity boundary:
+> account-gated checkout, server-owned totals, customer order history and
+> cancellation, guarded tracking, and admin/staff operations. The interesting
+> part is the integrity boundary:
 > cart state is local and untrusted, prices and totals are recalculated on the
 > server, role checks are repeated server-side, and every release claim has
 > evidence from TypeScript, lint, build, Playwright, production smoke, cleanup,

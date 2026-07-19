@@ -36,7 +36,7 @@ export function SiteFooter({ language }: { language: Language }) {
 
   return (
     <footer className="border-t border-border bg-surface">
-      <Container className="grid gap-case-xl py-case-xl md:grid-cols-[minmax(0,1fr)_minmax(480px,760px)]">
+      <Container className="grid gap-case-xl py-case-xl lg:grid-cols-[minmax(260px,420px)_minmax(0,1fr)]">
         <div className="flex max-w-md flex-col gap-case-sm">
           <Link
             href="/"

@@ -218,6 +218,15 @@ export type UpdateAdminOrderOperationsResult =
       status: 404 | 409;
     };
 
+export type CancelCustomerOrderResult =
+  | { success: true; record: SupabaseOrderRecord }
+  | {
+      success: false;
+      code: "ORDER_NOT_FOUND" | "ORDER_CANCEL_NOT_ALLOWED";
+      message: string;
+      status: 404 | 409;
+    };
+
 export type PublicOrderTrackingRecord = {
   orderCode: string;
   status: OrderStatus;
@@ -334,6 +343,98 @@ export async function getSupabaseOrderForCustomer(
     items: orderItems
       .toSorted((first, second) => first.id.localeCompare(second.id))
       .map(mapOrderItemRowToDomain),
+  };
+}
+
+export async function cancelSupabaseOrderForCustomer(
+  customerId: string,
+  orderCode: string,
+): Promise<CancelCustomerOrderResult> {
+  const supabase = createSupabaseAdminClient();
+  const { data, error } = await supabase
+    .from("orders")
+    .select("*,order_items(*)")
+    .eq("customer_id", customerId)
+    .eq("order_code", orderCode)
+    .maybeSingle();
+
+  if (error) {
+    throw new Error("Failed to read customer order for cancellation", {
+      cause: error,
+    });
+  }
+
+  if (!data) {
+    return {
+      code: "ORDER_NOT_FOUND",
+      message: "Order not found",
+      status: 404,
+      success: false,
+    };
+  }
+
+  if (data.status === "cancelled") {
+    const { order_items: orderItems, ...order } = data;
+
+    return {
+      record: {
+        items: orderItems
+          .toSorted((first, second) => first.id.localeCompare(second.id))
+          .map(mapOrderItemRowToDomain),
+        order: mapOrderRowToDomain(order),
+      },
+      success: true,
+    };
+  }
+
+  if (!canCustomerCancelOrder(data)) {
+    return {
+      code: "ORDER_CANCEL_NOT_ALLOWED",
+      message:
+        "This order can no longer be cancelled from the customer account",
+      status: 409,
+      success: false,
+    };
+  }
+
+  const { data: updatedOrder, error: updateError } = await supabase
+    .from("orders")
+    .update({
+      internal_notes: appendInternalNote(
+        data.internal_notes,
+        "Customer cancelled order from account order history.",
+      ),
+      payment_status: "cancelled",
+      shipping_status: "cancelled",
+      status: "cancelled",
+    } satisfies TableUpdate<"orders">)
+    .eq("id", data.id)
+    .select("*,order_items(*)")
+    .maybeSingle();
+
+  if (updateError) {
+    throw new Error("Failed to cancel customer order", { cause: updateError });
+  }
+
+  if (!updatedOrder) {
+    return {
+      code: "ORDER_NOT_FOUND",
+      message: "Order not found",
+      status: 404,
+      success: false,
+    };
+  }
+
+  const { order_items: orderItems, ...order } = updatedOrder;
+
+  return {
+    record: {
+      items: orderItems
+        .toSorted((first, second) => first.id.localeCompare(second.id))
+        .map(mapOrderItemRowToDomain),
+      order: mapOrderRowToDomain(order),
+    },
+    success: true,
   };
 }
 
@@ -638,6 +739,29 @@ function invalidTransitionResult(
     status: 409,
     success: false,
   };
+}
+
+function canCustomerCancelOrder(row: TableRow<"orders">) {
+  const orderCanCancel = row.status === "pending" || row.status === "confirmed";
+  const paymentCanCancel =
+    row.payment_status === "pending" ||
+    row.payment_status === "awaiting-transfer" ||
+    row.payment_status === "awaiting-provider-confirmation";
+  const shippingCanCancel =
+    row.shipping_status === "pending" || row.shipping_status === "preparing";
+
+  return orderCanCancel && paymentCanCancel && shippingCanCancel;
+}
+
+function appendInternalNote(current: string, note: string) {
+  const line = `[${new Date().toISOString()}] ${note}`;
+  const next = [current.trim(), line].filter(Boolean).join("\n");
+
+  if (next.length <= 2000) {
+    return next;
+  }
+
+  return next.slice(next.length - 2000);
 }
 
 function contactMatchesOrder(row: TableRow<"orders">, contact: string) {

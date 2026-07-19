@@ -1,0 +1,49 @@
+{
+  "generatedAt": "2026-07-19T11:01:01.026Z",
+  "baseURL": "https://caseflow-store.vercel.app",
+  "crossCustomer": {
+    "detailCode": "ORDER_NOT_FOUND",
+    "detailStatus": 404,
+    "listContainsForeignOrder": false,
+    "listStatus": 200
+  },
+  "expectedTotal": 182300,
+  "ok": true,
+  "order": {
+    "orderCode": "CF-MRROPSRD-2210D41E67",
+    "total": 182300
+  },
+  "ownApi": {
+    "detailContainsSnapshot": true,
+    "detailPaymentStatus": "awaiting-transfer",
+    "detailStatus": 200,
+    "listContainsOrder": true,
+    "listStatus": 200
+  },
+  "ownPage": {
+    "cardVisible": true,
+    "cancelButtonVisible": true,
+    "cancelledApiStatus": "cancelled",
+    "cancelledStatusVisible": true,
+    "detailVisible": true,
+    "hasOverflow": false,
+    "itemSnapshotVisible": true,
+    "paymentMethodVisible": true,
+    "paymentStatusVisible": true,
+    "totalText": "182.300 ₫"
+  },
+  "pass": {
+    "crossCustomerDenied": true,
+    "ownApi": true,
+    "ownPage": true
+  },
+  "target": {
+    "editionId": "00000000-0000-4000-8000-000000003027",
+    "priceVnd": 143000,
+    "slug": "a-christmas-carol-english-paperback"
+  },
+  "testEmails": {
+    "customerA": "caseflow-d34-a-mrropclj-x0uzss@example.com",
+    "customerB": "caseflow-d34-b-mrropclj-x0uzss@example.com"
+  }
+}

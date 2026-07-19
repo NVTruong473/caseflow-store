@@ -185,7 +185,7 @@ export function DealStripShelf({
               language={language}
               record={record}
               showBadges={false}
-              size="compact"
+              size="inline"
               sizes="80px"
             />
             <div className="flex min-w-0 flex-col gap-case-xs">
@@ -399,14 +399,14 @@ export function CompactRetailTile({
       data-v14-merchandising-layout="compact-retail-tile"
       href={bookHref(record)}
     >
-      <BookCoverFrame
-        className="w-full"
-        language={language}
-        record={record}
-        showBadges={false}
-        size="compact"
-        sizes="(min-width: 640px) 96px, 80px"
-      />
+        <BookCoverFrame
+          className="w-full"
+          language={language}
+          record={record}
+          showBadges={false}
+          size="inline"
+          sizes="(min-width: 640px) 96px, 80px"
+        />
       <div className="flex min-w-0 flex-col gap-case-xs">
         <div className="flex flex-wrap gap-case-xs">
           <Badge className={getToneBadgeClass(tone)}>
@@ -445,7 +445,8 @@ function PairChoiceLink({
 }) {
   return (
     <Link
-      className="grid min-w-0 grid-cols-[72px_minmax(0,1fr)] gap-case-sm rounded-md bg-surface p-case-sm transition-colors hover:bg-paper focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+      className="grid min-w-0 grid-cols-[64px_minmax(0,1fr)] gap-case-sm rounded-md bg-surface p-case-sm transition-colors hover:bg-paper focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:grid-cols-[72px_minmax(0,1fr)]"
+      data-home-translated-link={record.edition.slug}
       href={bookHref(record)}
     >
       <BookCoverFrame
@@ -453,14 +454,14 @@ function PairChoiceLink({
         language={language}
         record={record}
         showBadges={false}
-        size="compact"
-        sizes="72px"
+        size="inline"
+        sizes="(min-width: 640px) 72px, 64px"
       />
-      <span className="flex min-w-0 flex-col gap-case-xs">
+      <span className="flex min-w-0 flex-col gap-case-xs" data-home-translated-link-content>
         <Badge className="border-translation bg-translation-muted text-translation">
           {getEditionLanguageLabel(record.edition.language, language)}
         </Badge>
-        <span className="line-clamp-2 font-semibold text-foreground">
+        <span className="line-clamp-2 break-words font-semibold text-foreground">
           {getBookEditionTitle(record, language)}
         </span>
         <CurrencyAmount

@@ -16,6 +16,7 @@ const DEFAULT_COVER_PATH = "/images/books/placeholders/book-cover-placeholder.sv
 const coverSizeClasses = {
   compact: "w-20 sm:w-24",
   hero: "w-28 sm:w-36 md:w-44",
+  inline: "",
   shelf: "w-28 sm:w-32",
 } as const;
 

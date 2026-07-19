@@ -10,8 +10,12 @@ import {
 
 import { LANGUAGE_COOKIE, type Language } from "../src/lib/i18n/language";
 
-const TASK_ID = "HOTFIX-V13-T01";
-const ARTIFACT_DIR = path.join(".agent", "artifacts", "hotfix-v13-t01");
+const TASK_ID = process.env.HOTFIX_CARD_LAYOUT_TASK_ID ?? "HOTFIX-V13-T01";
+const ARTIFACT_DIR = path.join(
+  ".agent",
+  "artifacts",
+  process.env.HOTFIX_CARD_LAYOUT_ARTIFACT_ID ?? "hotfix-v13-t01",
+);
 const REPORT_PATH = path.join(ARTIFACT_DIR, "compact-card-overlap-check.json");
 const BASE_URL =
   process.env.HOTFIX_CARD_LAYOUT_BASE_URL ??
@@ -35,6 +39,7 @@ type CardBoxCheck = {
   cover: Rect;
   hasHorizontalCollision: boolean;
   hasRightOverflow: boolean;
+  hasTooNarrowContent: boolean;
   index: number;
   slug: string;
 };
@@ -121,9 +126,11 @@ async function main() {
 
     const allCardChecks = [
       ...detailChecks.flatMap((check) => check.recommendationCards),
+      ...detailChecks.flatMap((check) => check.editionOptionCards),
       ...homeChecks.flatMap((check) => [
         ...check.compactCards,
         ...check.heroCards,
+        ...check.translatedLinks,
       ]),
     ];
     const pass = {
@@ -136,6 +143,15 @@ async function main() {
       ),
       homeCompactCardsPresent: homeChecks.every(
         (check) => check.compactCards.length >= 4,
+      ),
+      homeTranslatedLinksPresent: homeChecks.every(
+        (check) => check.translatedLinks.length >= 4,
+      ),
+      productEditionOptionsPresent: detailChecks.every(
+        (check) => check.editionOptionCards.length >= 2,
+      ),
+      contentWidthReadable: allCardChecks.every(
+        (check) => !check.hasTooNarrowContent,
       ),
       noHorizontalCardCollision: allCardChecks.every(
         (check) => !check.hasHorizontalCollision,
@@ -241,6 +257,7 @@ async function inspectDetailViewport(
   await page.goto(`/products/${target.slug}`, { waitUntil: "domcontentloaded" });
   await page.locator("[data-book-detail]").waitFor();
   await page.locator("[data-book-recommendation-card]").first().waitFor();
+  await page.locator("[data-book-edition-option]").first().waitFor();
   await warmImages(page);
 
   const recommendationCards = await readCardChecks(
@@ -249,6 +266,12 @@ async function inspectDetailViewport(
     "[data-v13-cover-frame]",
     "[data-book-recommendation-content]",
   );
+  const editionOptionCards = await readCardChecks(
+    page,
+    "[data-book-edition-option]",
+    "[data-v13-cover-frame]",
+    "[data-book-edition-option-content]",
+  );
   const hasPageOverflow = await readPageOverflow(page);
   const screenshotPath = path.join(ARTIFACT_DIR, viewport.screenshotName);
   await page.screenshot({ fullPage: true, path: screenshotPath });
@@ -256,6 +279,7 @@ async function inspectDetailViewport(
 
   return {
     hasPageOverflow,
+    editionOptionCards,
     name: viewport.name,
     recommendationCards,
     screenshotPath,
@@ -284,6 +308,12 @@ async function inspectHomeViewport(
     "[data-v13-cover-frame]",
     "[data-home-book-card-content]",
   );
+  const translatedLinks = await readCardChecks(
+    page,
+    "[data-home-translated-link]",
+    "[data-v13-cover-frame]",
+    "[data-home-translated-link-content]",
+  );
   const heroCards =
     viewport.width >= 1024
       ? await readCardChecks(
@@ -304,6 +334,7 @@ async function inspectHomeViewport(
     heroCards,
     name: viewport.name,
     screenshotPath,
+    translatedLinks,
     viewport: { height: viewport.height, width: viewport.width },
   };
 }
@@ -379,11 +410,14 @@ async function readCardChecks(
             cover: empty,
             hasHorizontalCollision: true,
             hasRightOverflow: true,
+            hasTooNarrowContent: true,
             index,
             slug:
               card.getAttribute("data-book-recommendation-card") ??
+              card.getAttribute("data-book-edition-option") ??
               card.getAttribute("data-home-compact-cover-card") ??
               card.getAttribute("data-home-hero-card") ??
+              card.getAttribute("data-home-translated-link") ??
               `card-${index}`,
           };
         }
@@ -425,11 +459,14 @@ async function readCardChecks(
           hasRightOverflow:
             coverRect.right > cardRect.right + tolerance ||
             contentRect.right > cardRect.right + tolerance,
+          hasTooNarrowContent: contentRect.width < 96,
           index,
           slug:
             card.getAttribute("data-book-recommendation-card") ??
+            card.getAttribute("data-book-edition-option") ??
             card.getAttribute("data-home-compact-cover-card") ??
             card.getAttribute("data-home-hero-card") ??
+            card.getAttribute("data-home-translated-link") ??
             `card-${index}`,
         };
       });

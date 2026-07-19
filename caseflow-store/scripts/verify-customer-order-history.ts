@@ -12,7 +12,11 @@ import type { PaymentMethod, ShippingAddress, ShippingMethod } from "../src/type
 
 loadEnvConfig(process.cwd());
 
-const ARTIFACT_DIR = path.join(".agent", "artifacts", "d34-t01");
+const ARTIFACT_DIR = path.join(
+  ".agent",
+  "artifacts",
+  process.env.CUSTOMER_ORDER_HISTORY_ARTIFACT_ID ?? "d34-t01",
+);
 const TEST_PASSWORD = "CaseflowBooks#34";
 
 type ApiResponse<TData> = {
@@ -134,6 +138,9 @@ async function main() {
         ownApi.listContainsOrder &&
         ownApi.detailContainsSnapshot,
       ownPage:
+        ownPage.cancelButtonVisible &&
+        ownPage.cancelledApiStatus === "cancelled" &&
+        ownPage.cancelledStatusVisible &&
         ownPage.cardVisible &&
         ownPage.detailVisible &&
         ownPage.itemSnapshotVisible &&
@@ -247,6 +254,20 @@ async function inspectOwnOrderPage(
   const totalText = await orderCard
     .locator("[data-customer-order-total]")
     .innerText();
+  const cancelButton = orderCard.locator("[data-customer-order-cancel]").first();
+  const cancelButtonVisible = await cancelButton.isVisible();
+
+  if (cancelButtonVisible) {
+    await cancelButton.click();
+    await orderCard.locator("[data-customer-order-cancel-success]").waitFor({
+      timeout: 20_000,
+    });
+  }
+
+  const statusText = await orderCard
+    .locator("[data-customer-order-status]")
+    .innerText();
+  const cancelledDetail = await getCustomerOrderDetail(page, orderCode);
   const pageHasOverflow = await hasOverflow(page);
 
   await page.screenshot({
@@ -256,6 +277,9 @@ async function inspectOwnOrderPage(
 
   return {
     cardVisible: await orderCard.isVisible(),
+    cancelButtonVisible,
+    cancelledApiStatus: cancelledDetail.payload.data?.order.status ?? null,
+    cancelledStatusVisible: statusText.includes("Cancelled"),
     detailVisible: await orderCard
       .locator("[data-customer-order-detail]")
       .evaluate((element) => (element as HTMLDetailsElement).open),
@@ -328,12 +352,28 @@ async function getCustomerOrderDetail(page: Page, orderCode: string) {
 
 async function loginCustomer(page: Page, email: string) {
   await page.goto("/account", { waitUntil: "domcontentloaded" });
-  await page.locator("[data-customer-auth-email]").fill(email);
-  await page.locator("[data-customer-auth-password]").fill(TEST_PASSWORD);
-  await page.locator("[data-customer-auth-submit]").click();
-  await page.locator("[data-customer-account-panel]").waitFor({
-    timeout: 20_000,
-  });
+  const response = await page.request.post(
+    new URL("/api/customer/session", page.url()).toString(),
+    {
+      data: {
+        email,
+        intent: "sign-in",
+        password: TEST_PASSWORD,
+      },
+    },
+  );
+
+  if (!response.ok()) {
+    const body = await response.text();
+    throw new Error(`Customer sign-in failed with ${response.status()}: ${body}`);
+  }
+
+  await page.goto("/account", { waitUntil: "domcontentloaded" });
+  await page
+    .locator("[data-customer-account-panel][data-customer-auth-state='signed-in']")
+    .waitFor({
+      timeout: 20_000,
+    });
 }
 
 async function findTargetEdition(baseURL: string) {

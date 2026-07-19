@@ -1,0 +1,18 @@
+{
+  "status": "ok",
+  "deployment": {
+    "id": "dpl_kd4F5BbcWPTNhhXedWHZmTmxJXTW",
+    "url": "https://caseflow-store-6vlsb9pzi-nvt-ruong473.vercel.app",
+    "inspectorUrl": "https://vercel.com/nvt-ruong473/caseflow-store/kd4F5BbcWPTNhhXedWHZmTmxJXTW",
+    "readyState": "READY",
+    "target": "production",
+    "deploymentApiUrl": "https://api.vercel.com/v13/deployments/dpl_kd4F5BbcWPTNhhXedWHZmTmxJXTW",
+    "aliases": [
+      "https://caseflow-store.vercel.app",
+      "https://caseflow-store-nvt-ruong473.vercel.app",
+      "https://caseflow-store-truongskull014-8447-nvt-ruong473.vercel.app"
+    ]
+  },
+  "message": "Deployment caseflow-store-6vlsb9pzi-nvt-ruong473.vercel.app ready and aliased to https://caseflow-store.vercel.app.",
+  "generatedAt": "2026-07-19T11:02:51.132Z"
+}

@@ -19,7 +19,8 @@ evidence, and portfolio notes.
   mode.
 - Account-gated checkout with simulated COD, bank transfer, MoMo, ZaloPay, and
   VNPay-style flows.
-- Customer order history and guarded public tracking.
+- Customer order history, eligible order cancellation, and guarded public
+  tracking.
 - Admin/staff dashboard, order operations, catalog, inventory, promotions,
   customers, settings, and CSV export.
 - Rule-based bookstore assistant with no external AI API.
@@ -64,21 +65,22 @@ runtime.
 
 ## Latest release evidence
 
-- Release tag: `v1.4.0`
+- Release tag: `v1.4.1`
 - GitHub Release:
-  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.4.0`
+  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.4.1`
 - Production alias: `https://caseflow-store.vercel.app`
-- Vercel deployment ID: `dpl_7S279YwsGzB4D6H11PiauzG9GvDL`
-- Local gates: TypeScript, ESLint, production build, full Playwright `20/20`,
-  V14 no-demo runtime copy scan, V14 visual-token scan, visual QA for
-  homepage/catalog/detail/policy/checkout/customer/admin,
-  accessibility/mobile/performance, cleanup, secret scan, and `git diff
-  --check` passed.
+- Vercel deployment ID: `dpl_kd4F5BbcWPTNhhXedWHZmTmxJXTW`
+- Local gates: TypeScript, ESLint, production build, V14 no-demo runtime copy
+  scan, compact-card overlap, customer order history/cancellation,
+  staff/admin rejection-cancellation operations, cleanup, targeted secret
+  scan, dependency audit at high threshold, and `git diff --check` passed.
 - Production smoke: public pages/APIs, 100-edition catalog quality, 100 cover
   responses, language mode, cart/checkout boundary, customer/admin boundary,
-  assistant, robots, and sitemap passed.
+  assistant, final QA smoke, compact-card overlap, customer order
+  history/cancellation, staff/admin rejection-cancellation operations, robots,
+  and sitemap passed.
 - Release notes:
-  [`docs/v1.4-real-commerce-visual-merchandising-release-notes.md`](docs/v1.4-real-commerce-visual-merchandising-release-notes.md)
+  [`docs/v1.4.1-stable-closeout-patch-release-notes.md`](docs/v1.4.1-stable-closeout-patch-release-notes.md)
 - Known boundaries: simulated payments, no real SMS/OTP, no real shipping
   carrier integration, and no commercial book-cover hotlinking.
 

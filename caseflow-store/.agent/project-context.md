@@ -3,7 +3,7 @@
 ## Project Identity
 
 - Project name: CaseFlow Store `v1.0.0`; CaseFlow Books `v1.1.0`, `v1.2.0`,
-  `v1.3.0`, `v1.3.1`, and `v1.4.0` released
+  `v1.3.0`, `v1.3.1`, `v1.4.0`, and `v1.4.1` released
 - Repository folder: `/Users/vantruong/Documents/TSNN 2`
 - Product domain: books for released `v1.1.0` and `v1.2.0`; phone
   accessories for released `v1.0.0`
@@ -11,8 +11,8 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: `v1.4.0` released.
-- Current gate: `V14-T13` complete.
+- Current mode: `v1.4.1` stable closeout patch complete.
+- Current gate: `V141-T01` complete.
 - Current task: No active implementation task.
 
 ## Confirmed Facts
@@ -247,6 +247,21 @@
   100 cover responses, 50 English editions, and 50 Vietnamese editions. The
   short production smoke verifier was fixed to accept localized detail titles
   and rerun successfully.
+- `QA-V14-FINAL-T01` passed on 2026-07-19 with final production tester audit
+  `ok: true`, production release smoke `ok: true`, Vercel production `Ready`,
+  GitHub Release `v1.4.0` verified as latest/non-draft/non-prerelease, release
+  cleanup `totalMatches: 0`, no-demo runtime copy pass, targeted secret scan
+  pass across 1085 files, public current-release docs pointing to `v1.4.0`,
+  TypeScript, lint, build, and `git diff --check`. No P0/P1 findings remain
+  open. A P3 admin-login vendor-label polish was prepared locally but is not
+  part of the already published `v1.4.0` deployment.
+- `V141-T01` passed on 2026-07-19 as the stable closeout patch: production
+  deployment `dpl_kd4F5BbcWPTNhhXedWHZmTmxJXTW` is aliased to
+  `https://caseflow-store.vercel.app`; compact-card layout, customer order
+  history/cancellation, staff/admin rejected-cancelled operations, final QA
+  smoke, production release smoke, cleanup, secret scan, TypeScript, lint,
+  build, and `git diff --check` passed; latest-release docs now point to
+  `v1.4.1`.
 
 ## v1.2 Canonical Catalog
 
@@ -419,7 +434,7 @@ These are defaults that remain tentative until a later task or ADR freezes them:
   fake ratings/sold counts/bestseller claims, and no stable API contract
   change under v1.3 polish.
 - Release status: `v1.3.1` remains the compact-card layout hotfix release.
-  The current latest production release is `v1.4.0`.
+  The current latest production release is `v1.4.1`.
 
 ## v1.1 Active Product Domain
 

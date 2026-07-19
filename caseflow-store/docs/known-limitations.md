@@ -1,7 +1,7 @@
 # Known Limitations
 
 This document records the intentional boundaries and accepted risks of
-CaseFlow Books through the latest `v1.4.0` release. These items are not hidden
+CaseFlow Books through the latest `v1.4.1` release. These items are not hidden
 production capabilities; they define where the portfolio release stops.
 
 ## Commerce scope
@@ -69,6 +69,20 @@ promotion, stock, VAT, shipping, payment fee, and totals before checkout.
 merge rules, expiry rules, and abandoned-cart cleanup.
 
 ## Customer and admin scope
+
+### Customer cancellation is intentionally limited
+
+Signed-in customers can view their own order history and cancel eligible orders
+while they are still in early operational states. They cannot cancel orders
+after fulfillment or payment has moved beyond the accepted cancellation window.
+
+**Current control:** the customer cancellation API checks the authenticated
+customer, order ownership, order status, payment status, and shipping status on
+the server before setting order, payment, and shipping states to cancelled.
+
+**Next step:** add a full cancellation policy workflow with refund handling,
+stock release/reservation semantics, staff approval windows, and customer
+notifications before accepting real commercial traffic.
 
 ### Public tracking lacks production abuse protection
 

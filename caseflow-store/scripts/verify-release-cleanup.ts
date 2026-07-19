@@ -7,7 +7,9 @@ import { createSupabaseAdminClient } from "../src/lib/supabase/admin";
 
 loadEnvConfig(process.cwd());
 
-const ARTIFACT_DIR = path.join(".agent", "artifacts", "d40-t01");
+const RELEASE_CLEANUP_TASK_ID =
+  process.env.RELEASE_CLEANUP_TASK_ID ?? "d40-t01";
+const ARTIFACT_DIR = path.join(".agent", "artifacts", RELEASE_CLEANUP_TASK_ID);
 
 async function main() {
   fs.mkdirSync(ARTIFACT_DIR, { recursive: true });

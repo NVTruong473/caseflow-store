@@ -840,7 +840,7 @@ function CompactBookLink({
         language={language}
         record={record}
         showBadges={false}
-        size="compact"
+        size="inline"
         sizes="(min-width: 640px) 96px, 80px"
       />
       <div className="flex min-w-0 flex-col gap-case-xs" data-home-book-card-content>
