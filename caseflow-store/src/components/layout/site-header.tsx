@@ -16,7 +16,7 @@ const headerCopy = {
     mainNavigation: "Main navigation",
     cart: "Cart",
     account: "Account",
-    accountSignedIn: "Signed in",
+    accountSignedIn: "My account",
     accountUnavailable: "Account",
     signedOut: "Signed out",
     switcher: "Language",
@@ -29,7 +29,7 @@ const headerCopy = {
     mainNavigation: "Điều hướng chính",
     cart: "Giỏ hàng",
     account: "Tài khoản",
-    accountSignedIn: "Đã đăng nhập",
+    accountSignedIn: "Tài khoản của tôi",
     accountUnavailable: "Tài khoản",
     signedOut: "Chưa đăng nhập",
     switcher: "Ngôn ngữ",
@@ -45,15 +45,15 @@ export async function SiteHeader({ language }: { language: Language }) {
   const accountSummary = getAccountSummary(authState, language);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-surface/95 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur">
       <Container className="relative flex min-h-16 items-center justify-between gap-case-md py-case-sm">
         <Link
           href="/"
-          className="flex shrink-0 items-center gap-case-sm rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary lg:min-w-[190px]"
+          className="group flex shrink-0 items-center gap-case-sm rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary lg:min-w-[210px]"
           aria-label={copy.homeLabel}
           data-site-header-brand
         >
-          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-primary text-small font-semibold text-surface">
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-primary text-small font-semibold text-surface shadow-[var(--case-shadow-cover)] transition-colors group-hover:bg-primary-hover">
             CB
           </span>
           <span className="flex min-w-0 flex-col leading-tight">

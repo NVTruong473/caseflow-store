@@ -522,10 +522,20 @@ export async function updateSupabaseAdminOrderOperations(
 
   const existingOperations = mapOrderRowToAdminOperations(existingOrder);
   const nextOrderStatus = request.status ?? existingOrder.status;
-  const nextPaymentStatus =
+  const requestedPaymentStatus =
     request.paymentStatus ?? existingOperations.paymentStatus;
-  const nextShippingStatus =
+  const requestedShippingStatus =
     request.shippingStatus ?? existingOperations.shippingStatus;
+  const nextPaymentStatus = normalizePaymentStatusForOrderStatus({
+    current: existingOperations.paymentStatus,
+    nextOrderStatus,
+    requested: requestedPaymentStatus,
+  });
+  const nextShippingStatus = normalizeShippingStatusForOrderStatus({
+    current: existingOperations.shippingStatus,
+    nextOrderStatus,
+    requested: requestedShippingStatus,
+  });
 
   if (
     request.status !== undefined &&
@@ -535,7 +545,7 @@ export async function updateSupabaseAdminOrderOperations(
   }
 
   if (
-    request.paymentStatus !== undefined &&
+    nextPaymentStatus !== existingOperations.paymentStatus &&
     !isAllowedPaymentStatusTransition(
       existingOperations.paymentStatus,
       nextPaymentStatus,
@@ -545,7 +555,7 @@ export async function updateSupabaseAdminOrderOperations(
   }
 
   if (
-    request.shippingStatus !== undefined &&
+    nextShippingStatus !== existingOperations.shippingStatus &&
     !isAllowedShippingStatusTransition(
       existingOperations.shippingStatus,
       nextShippingStatus,
@@ -560,12 +570,12 @@ export async function updateSupabaseAdminOrderOperations(
     sanitizedUpdatePayload.internal_notes = request.internalNotes;
   }
 
-  if (request.paymentStatus !== undefined) {
-    sanitizedUpdatePayload.payment_status = request.paymentStatus;
+  if (nextPaymentStatus !== existingOperations.paymentStatus) {
+    sanitizedUpdatePayload.payment_status = nextPaymentStatus;
   }
 
-  if (request.shippingStatus !== undefined) {
-    sanitizedUpdatePayload.shipping_status = request.shippingStatus;
+  if (nextShippingStatus !== existingOperations.shippingStatus) {
+    sanitizedUpdatePayload.shipping_status = nextShippingStatus;
   }
 
   if (request.status !== undefined) {
@@ -751,6 +761,54 @@ function canCustomerCancelOrder(row: TableRow<"orders">) {
     row.shipping_status === "pending" || row.shipping_status === "preparing";
 
   return orderCanCancel && paymentCanCancel && shippingCanCancel;
+}
+
+function normalizePaymentStatusForOrderStatus({
+  current,
+  nextOrderStatus,
+  requested,
+}: {
+  current: PaymentStatus;
+  nextOrderStatus: OrderStatus;
+  requested: PaymentStatus;
+}) {
+  // Khi admin/staff từ chối hoặc hủy đơn, server tự đóng các payment còn
+  // đang chờ để dashboard không tiếp tục ghi nhận là khoản phải thu.
+  if (nextOrderStatus === "cancelled" && isOpenPaymentStatus(current)) {
+    return "cancelled";
+  }
+
+  return requested;
+}
+
+function normalizeShippingStatusForOrderStatus({
+  current,
+  nextOrderStatus,
+  requested,
+}: {
+  current: ShippingStatus;
+  nextOrderStatus: OrderStatus;
+  requested: ShippingStatus;
+}) {
+  // Đơn bị hủy trước khi giao vận rời kho thì trạng thái giao hàng cũng phải
+  // đóng lại; đơn đã giao/hoàn không bị rewrite ngầm.
+  if (nextOrderStatus === "cancelled" && isOpenShippingStatus(current)) {
+    return "cancelled";
+  }
+
+  return requested;
+}
+
+function isOpenPaymentStatus(status: PaymentStatus) {
+  return (
+    status === "pending" ||
+    status === "awaiting-transfer" ||
+    status === "awaiting-provider-confirmation"
+  );
+}
+
+function isOpenShippingStatus(status: ShippingStatus) {
+  return status === "pending" || status === "preparing";
 }
 
 function appendInternalNote(current: string, note: string) {

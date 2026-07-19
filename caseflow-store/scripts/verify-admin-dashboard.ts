@@ -96,11 +96,19 @@ async function main() {
     },
     {
       code: `CF-D38C-${Date.now().toString(36).toUpperCase()}`,
-      paymentStatus: "cancelled",
+      paymentStatus: "awaiting-transfer",
       quantity: 1,
       shippingStatus: "cancelled",
       status: "cancelled",
       totalVnd: 999_000,
+    },
+    {
+      code: `CF-D38D-${Date.now().toString(36).toUpperCase()}`,
+      paymentStatus: "awaiting-provider-confirmation",
+      quantity: 1,
+      shippingStatus: "cancelled",
+      status: "cancelled",
+      totalVnd: 888_000,
     },
   ];
   const createdUserIds = new Set<string>();
@@ -152,14 +160,31 @@ async function main() {
         customerAccess.code === "FORBIDDEN",
       apiMetrics:
         staffApi.status === 200 &&
-        staffApi.data?.orderCount === 3 &&
+        staffApi.data?.orderCount === orderInputs.length &&
         staffApi.data?.revenueEstimateVnd === 500_000 &&
+        staffApi.data?.averageOrderValueVnd === 250_000 &&
         staffApi.data?.topBooks[0]?.title === qaCatalog.title &&
         staffApi.data?.topBooks[0]?.quantitySold === 3 &&
         staffApi.data?.topBooks[0]?.revenueVnd === 500_000 &&
+        staffApi.data?.orderStatusSummary.find(
+          (row) => row.status === "cancelled",
+        )?.count === 2 &&
         staffApi.data?.paymentSummary.find(
           (row) => row.status === "cancelled",
-        )?.count === 1 &&
+        )?.count === 2 &&
+        staffApi.data?.paymentSummary.find(
+          (row) => row.status === "awaiting-transfer",
+        )?.count === 0 &&
+        staffApi.data?.paymentSummary.find(
+          (row) => row.status === "awaiting-provider-confirmation",
+        )?.count === 0 &&
+        staffApi.data?.recentOrders
+          .filter((order) => order.status === "cancelled")
+          .every(
+            (order) =>
+              order.paymentStatus === "cancelled" &&
+              order.shippingStatus === "cancelled",
+          ) &&
         staffApi.data?.lowStockEditions.some(
           (edition) => edition.id === qaCatalog.editionId,
         ),
@@ -176,7 +201,7 @@ async function main() {
         emptyRangeUi.revenueZeroVisible &&
         !emptyRangeUi.hasOverflow,
       cleanup:
-        cleanup.removedOrders === 3 &&
+        cleanup.removedOrders === orderInputs.length &&
         cleanup.removedEditions === 1 &&
         cleanup.removedWorkAuthorLinks === 1 &&
         cleanup.removedWorkCategoryLinks === 1 &&

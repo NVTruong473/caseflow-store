@@ -12,8 +12,8 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: post-`v1.6.0` retail catalog scale release closeout.
-- Current gate: no active implementation gate after `V16-T01`.
+- Current mode: post-`UIH-T01` UI humanization verification.
+- Current gate: no active implementation gate after `UIH-T01`.
 - Current task: manual customer order/QR walkthrough remains the next
   user-confirmed step if requested.
 
@@ -42,6 +42,15 @@
   result-count layout polish, and production deployment
   `dpl_AxywdtLdcWEgeC9ytoiJwqNTwCK7` aliased to
   `https://caseflow-store.vercel.app`.
+- `UIH-T01` was completed on 2026-07-19 as a local UI humanization pass after
+  `v1.6.0`: reference sites were reviewed for principles only,
+  `docs/ui-humanization-audit.md` and `docs/style-guide.md` were added, the
+  storefront header no longer exposes admin as public navigation, homepage
+  hero now uses a reading-table/spine-rail motif, catalog intro and quick
+  links use lighter shelf treatment, product detail edition notes use
+  customer-facing copy and safer metadata wrapping, reduced-motion handling
+  was verified, stale 100-edition E2E/catalog verifier baselines were updated
+  to 500, and full local Playwright passed `20/20`.
 - Implementation was confirmed by the user on 2026-07-14.
 - Implementation was unblocked by installing the official Node.js LTS binary after Homebrew failed.
 - The Next.js app has been initialized in `caseflow-store`.

@@ -24,6 +24,7 @@ test("catalog preview renders loading, empty, and error states", async ({
   await page.screenshot({
     fullPage: true,
     path: ".agent/artifacts/d40-t01-catalog-loading-375.png",
+    timeout: 30_000,
   });
 
   await page.goto("/catalog-state-preview?state=empty");

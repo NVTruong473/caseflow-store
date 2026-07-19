@@ -1212,10 +1212,12 @@ function AdminOrderDetail({
               data-admin-order-status-select
               disabled={isSubmitting}
               onChange={(event) =>
-                onOperationsDraftChange((current) => ({
-                  ...current,
-                  orderStatus: event.target.value as OrderStatus,
-                }))
+                onOperationsDraftChange((current) =>
+                  normalizeOperationsDraftForOrderStatus(
+                    current,
+                    event.target.value as OrderStatus,
+                  ),
+                )
               }
               className="min-h-11 w-full rounded-md border border-border bg-surface px-3 py-2 text-body text-foreground transition-colors hover:border-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:bg-surface-muted disabled:text-text-muted disabled:opacity-70"
             >
@@ -1513,6 +1515,41 @@ function hasOperationsChanges(
     draft.shippingStatus !== record.operations.shippingStatus ||
     draft.internalNotes.trim() !== record.operations.internalNotes
   );
+}
+
+function normalizeOperationsDraftForOrderStatus(
+  current: OrderOperationsDraft,
+  orderStatus: OrderStatus,
+): OrderOperationsDraft {
+  if (orderStatus !== "cancelled") {
+    return {
+      ...current,
+      orderStatus,
+    };
+  }
+
+  return {
+    ...current,
+    orderStatus,
+    paymentStatus: isOpenPaymentStatus(current.paymentStatus)
+      ? "cancelled"
+      : current.paymentStatus,
+    shippingStatus: isOpenShippingStatus(current.shippingStatus)
+      ? "cancelled"
+      : current.shippingStatus,
+  };
+}
+
+function isOpenPaymentStatus(status: PaymentStatus) {
+  return (
+    status === "pending" ||
+    status === "awaiting-transfer" ||
+    status === "awaiting-provider-confirmation"
+  );
+}
+
+function isOpenShippingStatus(status: ShippingStatus) {
+  return status === "pending" || status === "preparing";
 }
 
 function AdminOrdersAuthRequired({

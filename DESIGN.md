@@ -126,3 +126,8 @@ CaseFlow Books should feel like a practical specialist bookstore and small-busin
 - Components should use shared tokens or Tailwind theme values, not random one-off colors.
 - Read this file before changing component colors, typography, radius, spacing, or layout.
 - Any new visual polish must preserve existing routes, checkout/auth boundaries, server-side validation, and content provenance guardrails.
+- For detailed post-`v1.6.0` humanized UI rules, use
+  `caseflow-store/docs/style-guide.md` and
+  `caseflow-store/docs/ui-humanization-audit.md` as the current storefront
+  design reference. The signature motif is the reading table and spine rail,
+  not generic SaaS gradients, fake metrics, or repeated feature cards.

@@ -342,11 +342,11 @@ export function ReadingPathShelf({
               className="group flex h-full min-w-0 flex-col gap-case-sm rounded-md bg-surface p-case-sm transition-colors hover:bg-paper focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
               href={bookHref(record)}
             >
-              <div className="flex items-center justify-between gap-case-sm">
-                <Badge className="border-arrival bg-arrival-muted text-arrival">
+              <div className="flex flex-wrap items-center gap-1.5">
+                <Badge className="shrink-0 whitespace-nowrap border-arrival bg-arrival-muted text-arrival">
                   {language === "vi" ? `Bước ${index + 1}` : `Step ${index + 1}`}
                 </Badge>
-                <span className="text-small text-text-muted">
+                <span className="min-w-0 text-small leading-5 text-text-muted">
                   {getEditionLanguageLabel(record.edition.language, language)}
                 </span>
               </div>

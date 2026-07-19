@@ -53,7 +53,7 @@ export function SiteFooter({ language }: { language: Language }) {
           <p className="text-small leading-6 text-text-muted">
             {copy.description}
           </p>
-          <div className="mt-case-xs rounded-md border border-trust/25 bg-trust-muted p-case-sm">
+          <div className="mt-case-xs border-l-4 border-trust bg-transparent py-case-xs pl-case-sm">
             <p className="text-small font-semibold text-foreground">
               {copy.supportHeading}
             </p>

@@ -11,7 +11,6 @@ import {
 } from "@/components/ui";
 import {
   CurrencyAmount,
-  CurrencyEstimateDisclosure,
 } from "@/components/currency/currency-amount";
 import {
   BookCoverFrame,
@@ -74,7 +73,9 @@ const homeCopy = {
       "A hand-picked shelf for approachable entry points, current offers, and editions readers can choose with confidence.",
     featuredTitle: "Editor picks",
     heroDescription:
-      "A bilingual bookstore for English originals and Vietnamese translations, with VND pricing, COD or bank-transfer checkout, and order tracking in your account.",
+      "Choose the exact edition you want to read or gift: English original, Vietnamese translation, paperback, hardcover, collector edition, or reading-group set.",
+    heroNote:
+      "Prices stay in VND at checkout. Delivery and payment choices are confirmed before the order is placed.",
     heroTitle: "CaseFlow Books",
     inTheCatalog: "in catalog",
     englishEditionsTitle: "English editions",
@@ -140,7 +141,9 @@ const homeCopy = {
       "Tủ sách do CaseFlow chọn cho các ấn bản dễ bắt đầu, đang còn hàng và có thông tin rõ ràng.",
     featuredTitle: "Biên tập chọn",
     heroDescription:
-      "Nhà sách song ngữ tuyển chọn bản gốc tiếng Anh và bản dịch tiếng Việt, giá VND rõ ràng, hỗ trợ COD/chuyển khoản và theo dõi đơn trong tài khoản.",
+      "Chọn đúng ấn bản bạn muốn đọc hoặc tặng: bản gốc tiếng Anh, bản dịch tiếng Việt, bìa mềm, bìa cứng, bản sưu tầm hoặc bộ đọc nhóm.",
+    heroNote:
+      "Giá checkout giữ theo VND. Giao hàng và phương thức thanh toán được xác nhận trước khi đặt đơn.",
     heroTitle: "CaseFlow Books",
     inTheCatalog: "trong catalog",
     englishEditionsTitle: "Sách tiếng Anh",
@@ -411,11 +414,11 @@ export default async function Home() {
       data-homepage-total-editions={records.length}
     >
       <section
-        className="border-b border-border bg-paper"
+        className="border-b border-border bg-reading-table"
         data-home-section="hero"
       >
-        <Container className="grid gap-case-lg py-case-md md:grid-cols-[minmax(0,1fr)_minmax(320px,440px)] md:items-center lg:py-case-lg">
-          <div className="flex min-w-0 flex-col gap-case-md md:gap-case-lg">
+        <Container className="grid gap-case-xl py-case-xl md:grid-cols-[minmax(0,0.95fr)_minmax(340px,1.05fr)] md:items-center lg:py-case-2xl">
+          <div className="flex min-w-0 flex-col gap-case-lg border-l-4 border-reading-rule pl-case-md md:pl-case-lg">
             <div className="flex flex-col gap-case-sm">
               <Badge
                 className="border-discovery bg-discovery-muted text-discovery"
@@ -423,7 +426,7 @@ export default async function Home() {
               >
                 {copy.sectionLabel}
               </Badge>
-              <h1 className="max-w-3xl text-heading-1 font-semibold text-foreground">
+              <h1 className="max-w-3xl text-heading-1 font-semibold leading-tight text-foreground">
                 {copy.heroTitle}
               </h1>
               <p className="max-w-2xl text-body leading-6 text-text-muted md:leading-7">
@@ -434,18 +437,21 @@ export default async function Home() {
             <div className="flex flex-col gap-case-sm sm:flex-row">
               <Link
                 href="/catalog"
-                className="inline-flex min-h-11 w-full items-center justify-center rounded-md border border-primary bg-primary px-4 py-2 text-body font-medium text-surface transition-colors hover:border-primary-hover hover:bg-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:w-auto"
+                className="inline-flex min-h-11 w-full items-center justify-center rounded-md border border-primary bg-primary px-4 py-2 text-body font-medium text-surface transition-colors hover:border-primary-hover hover:bg-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary motion-reduce:transition-none sm:w-auto"
                 data-home-cta="catalog"
               >
                 {copy.browseBooks}
               </Link>
             </div>
 
-            <dl className="grid max-w-2xl gap-case-sm sm:grid-cols-3">
+            <dl
+              className="grid max-w-2xl gap-case-md border-y border-border py-case-md sm:grid-cols-3"
+              data-home-hero-proof
+            >
               {stats.map((stat) => (
                 <div
                   key={stat.label}
-                  className="rounded-md border border-border bg-surface px-3 py-3 shadow-[var(--case-shadow-soft)]"
+                  className="min-w-0 border-l-2 border-border pl-case-sm"
                 >
                   <dt className="text-small text-text-muted">{stat.label}</dt>
                   <dd className="mt-1 text-body font-semibold text-foreground">
@@ -455,14 +461,13 @@ export default async function Home() {
               ))}
             </dl>
 
-            <CurrencyEstimateDisclosure
-              language={language}
-              rules={currencyRules}
-            />
+            <p className="max-w-2xl text-small leading-6 text-text-muted">
+              {copy.heroNote}
+            </p>
           </div>
 
           <div
-            className="min-w-0 rounded-lg border border-border bg-surface p-case-sm shadow-[var(--case-shadow-soft)] md:p-case-md"
+            className="min-w-0 rounded-lg border border-border bg-surface/85 p-case-sm shadow-[var(--case-shadow-soft)] md:p-case-md"
             data-home-hero-books
           >
             <BookCoverStack

@@ -140,6 +140,7 @@ export async function getSupabaseAdminDashboard(
   const revenueEstimateVnd = orders
     .filter((order) => revenueEligibleOrderIds.has(order.id))
     .reduce((sum, order) => sum + order.total_vnd, 0);
+  const revenueEligibleOrderCount = revenueEligibleOrderIds.size;
   const lowStockEditions = editions
     .filter(
       (edition) =>
@@ -165,7 +166,9 @@ export async function getSupabaseAdminDashboard(
 
   return {
     averageOrderValueVnd:
-      orders.length > 0 ? Math.round(revenueEstimateVnd / orders.length) : 0,
+      revenueEligibleOrderCount > 0
+        ? Math.round(revenueEstimateVnd / revenueEligibleOrderCount)
+        : 0,
     generatedAt: new Date().toISOString(),
     inventorySummary: {
       activeEditions: editions.filter((edition) => edition.is_active).length,
@@ -183,11 +186,7 @@ export async function getSupabaseAdminDashboard(
     lowStockEditions,
     orderCount: orders.length,
     orderStatusSummary: summarizeStatuses(orders, ORDER_STATUSES, "status"),
-    paymentSummary: summarizeStatuses(
-      orders,
-      PAYMENT_STATUSES,
-      "payment_status",
-    ),
+    paymentSummary: summarizePaymentStatuses(orders),
     range: {
       from: window.from,
       label: window.label,
@@ -197,8 +196,8 @@ export async function getSupabaseAdminDashboard(
       createdAt: order.created_at,
       customerName: order.customer_name,
       orderCode: order.order_code,
-      paymentStatus: order.payment_status as PaymentStatus,
-      shippingStatus: order.shipping_status as ShippingStatus,
+      paymentStatus: getDashboardPaymentStatus(order),
+      shippingStatus: getDashboardShippingStatus(order),
       status: order.status,
       totalVnd: order.total_vnd,
     })),
@@ -269,6 +268,36 @@ function summarizeStatuses<
   return statuses.map((status) => summary.get(status)!).filter(Boolean);
 }
 
+function summarizePaymentStatuses(
+  orders: DashboardOrderRow[],
+): AdminDashboardStatusSummary<PaymentStatus>[] {
+  const summary = new Map<
+    PaymentStatus,
+    AdminDashboardStatusSummary<PaymentStatus>
+  >(
+    PAYMENT_STATUSES.map((status) => [
+      status,
+      { count: 0, status, totalVnd: 0 },
+    ]),
+  );
+
+  for (const order of orders) {
+    // Dashboard thanh toán phải phản ánh khoản còn cần thu. Nếu đơn đã bị
+    // từ chối/hủy nhưng payment cũ vẫn ở trạng thái chờ, hiển thị như đã hủy.
+    const status = getDashboardPaymentStatus(order);
+    const current = summary.get(status);
+
+    if (!current) {
+      continue;
+    }
+
+    current.count += 1;
+    current.totalVnd += order.total_vnd;
+  }
+
+  return PAYMENT_STATUSES.map((status) => summary.get(status)!).filter(Boolean);
+}
+
 function summarizeTopBooks(
   items: DashboardOrderItemRow[],
   revenueEligibleOrderIds: Set<string>,
@@ -309,6 +338,38 @@ function isRevenueEligibleOrder(order: DashboardOrderRow) {
     order.payment_status !== "failed" &&
     order.payment_status !== "cancelled"
   );
+}
+
+function getDashboardPaymentStatus(order: DashboardOrderRow): PaymentStatus {
+  const paymentStatus = order.payment_status as PaymentStatus;
+
+  if (order.status !== "cancelled") {
+    return paymentStatus;
+  }
+
+  return isOpenPaymentStatus(paymentStatus) ? "cancelled" : paymentStatus;
+}
+
+function isOpenPaymentStatus(status: PaymentStatus) {
+  return (
+    status === "pending" ||
+    status === "awaiting-transfer" ||
+    status === "awaiting-provider-confirmation"
+  );
+}
+
+function getDashboardShippingStatus(order: DashboardOrderRow): ShippingStatus {
+  const shippingStatus = order.shipping_status as ShippingStatus;
+
+  if (order.status !== "cancelled") {
+    return shippingStatus;
+  }
+
+  return isOpenShippingStatus(shippingStatus) ? "cancelled" : shippingStatus;
+}
+
+function isOpenShippingStatus(status: ShippingStatus) {
+  return status === "pending" || status === "preparing";
 }
 
 export function resolveDashboardWindow(query: AdminDashboardQuery) {

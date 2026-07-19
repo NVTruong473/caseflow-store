@@ -10,12 +10,42 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: post-`v1.6.0` retail catalog scale release closeout
-- Current gate: no active implementation gate after `V16-T01`
+- Mode: post-`UIH-T01` UI humanization verification
+- Current gate: no active implementation gate after `UIH-T01`
 - Current task: manual customer order/QR walkthrough remains the next
   user-confirmed step if requested
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-19
+
+## Phase UIH - Humanized Storefront Design Pass
+
+- [x] `UIH-T01` Humanized Storefront Design Audit And Refactor. - 2026-07-19
+  - Objective: audit and refactor the storefront so it feels authored for a
+    bilingual bookstore rather than assembled from a generic AI/SaaS template,
+    while preserving routes, auth, checkout, QR payment safety, admin/staff
+    operations, and database behavior.
+  - Acceptance criteria: inspect reference sites and current pages at mobile,
+    tablet, and desktop; create `docs/ui-humanization-audit.md`; create
+    `docs/style-guide.md`; implement a product-specific design direction with
+    reading-table/spine-rail motif; reduce generic cards, pills, and
+    implementation-style copy; verify responsive overflow, focus visibility,
+    reduced motion, catalog 500-edition baseline, lint, typecheck, build, and
+    E2E.
+  - Result: removed public admin nav, changed signed-in header destination
+    copy, added reading-table hero treatment, removed homepage currency-rate
+    disclosure from the first viewport, softened catalog intro/quick links,
+    rewrote product-detail edition confidence copy, improved detail metadata
+    wrapping, added `scripts/verify-ui-humanization.ts`, and updated stale
+    100-edition catalog/E2E expectations to the current 500-edition baseline.
+  - Verification: reference screenshots and baseline/final screenshots stored
+    under `.agent/artifacts/ui-humanization-t01`; UIH verifier passed; catalog
+    verifier passed with 500 editions and 21 pages; `npx tsc --noEmit
+    --pretty false`, `npm run lint`, `npm run build`, `npm audit
+    --audit-level=high`, `npm run test:e2e` with `20/20`, and `git diff
+    --check` passed.
+  - Guardrail: no dependency, schema, API, auth, payment, production data,
+    deployment, tag, release, fake metric, copied brand asset, or commercial
+    cover scraping was added.
 
 ## Phase V16 - Retail Catalog Scale And Hero Copy Hotfix
 

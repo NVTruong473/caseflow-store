@@ -28,12 +28,15 @@
   --admin-muted: #e7edf3;
   --operations: #364152;
   --operations-muted: #e8edf2;
+  --reading-table: #f5efe3;
+  --reading-rule: #7a4f24;
   --paper: #fbfaf7;
   --paper-deep: #eadcc6;
   --ink: #1f1b16;
   --success: #247857;
   --warning: #a16207;
   --error: #b42318;
+  --focus-ring: #176b5b;
   --case-radius-sm: 4px;
   --case-radius-md: 6px;
   --case-radius-lg: 8px;
@@ -81,12 +84,15 @@
   --color-admin-muted: var(--admin-muted);
   --color-operations: var(--operations);
   --color-operations-muted: var(--operations-muted);
+  --color-reading-table: var(--reading-table);
+  --color-reading-rule: var(--reading-rule);
   --color-paper: var(--paper);
   --color-paper-deep: var(--paper-deep);
   --color-ink: var(--ink);
   --color-success: var(--success);
   --color-warning: var(--warning);
   --color-error: var(--error);
+  --color-focus-ring: var(--focus-ring);
   --radius-sm: var(--case-radius-sm);
   --radius-md: var(--case-radius-md);
   --radius-lg: var(--case-radius-lg);
@@ -122,6 +128,7 @@ body {
   color: var(--foreground);
   font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   font-size: var(--case-text-body);
+  line-height: 1.5;
   text-rendering: optimizeLegibility;
 }
 
@@ -131,6 +138,17 @@ body {
 }
 
 :focus-visible {
-  outline: 2px solid var(--primary);
+  outline: 2px solid var(--focus-ring);
   outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }

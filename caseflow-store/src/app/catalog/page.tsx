@@ -134,7 +134,7 @@ const catalogCopy = {
     eyebrow: "Full bookstore catalog",
     featuredOnly: "Editor picks only",
     filtersDescription:
-      "Use URL-backed filters to narrow the catalog without losing your current view.",
+      "Narrow by title, author, language, format, price, and availability.",
     filtersTitle: "Find books",
     format: "Format",
     formatLabel: "Format",
@@ -174,9 +174,9 @@ const catalogCopy = {
     title: "All book editions",
     totalEditions: "Total editions",
     viewDescription:
-      "Use search, filters, URL-backed state, and pagination to narrow the catalog without loading every edition at once.",
+      "Search, filter, and paginate without losing the shelf you are browsing.",
     viewTitle:
-      "Browse English originals, Vietnamese editions, formats, prices, stock states, and safe cover assets.",
+      "Browse English originals, Vietnamese editions, formats, VND prices, and current stock state.",
   },
   vi: {
     activeView: "Chế độ đang xem",
@@ -203,7 +203,7 @@ const catalogCopy = {
     eyebrow: "Catalog nhà sách đầy đủ",
     featuredOnly: "Chỉ kệ biên tập chọn",
     filtersDescription:
-      "Bộ lọc dùng URL nên bạn có thể quay lại hoặc chia sẻ đúng trạng thái đang xem.",
+      "Lọc theo tên sách, tác giả, ngôn ngữ, định dạng, giá và tình trạng còn hàng.",
     filtersTitle: "Tìm sách",
     format: "Định dạng",
     formatLabel: "Định dạng",
@@ -243,9 +243,9 @@ const catalogCopy = {
     title: "Tất cả ấn bản sách",
     totalEditions: "Tổng ấn bản",
     viewDescription:
-      "Dùng tìm kiếm, bộ lọc, trạng thái trên URL và phân trang để thu hẹp catalog mà không tải toàn bộ ấn bản cùng lúc.",
+      "Tìm kiếm, lọc và chuyển trang mà vẫn giữ đúng kệ sách đang xem.",
     viewTitle:
-      "Duyệt bản gốc tiếng Anh, bản tiếng Việt, định dạng, giá, tồn kho và bìa an toàn.",
+      "Duyệt bản gốc tiếng Anh, bản tiếng Việt, định dạng, giá VND và tình trạng còn hàng.",
   },
 } as const;
 
@@ -302,7 +302,7 @@ export default async function CatalogPage({ searchParams }: CatalogPageProps) {
 
   return (
     <main
-      className="bg-background py-case-2xl text-foreground"
+      className="bg-background py-case-xl text-foreground"
       data-catalog-page
       data-catalog-rendered-count={visibleRecords.length}
       data-catalog-result-total={resultTotal}
@@ -326,7 +326,7 @@ export default async function CatalogPage({ searchParams }: CatalogPageProps) {
           </span>
         </nav>
 
-        <section className="grid gap-case-lg rounded-lg border border-discovery/20 bg-surface p-case-lg shadow-[var(--case-shadow-soft)] lg:grid-cols-[minmax(0,1fr)_320px]">
+        <section className="grid gap-case-lg border-l-4 border-discovery bg-transparent py-case-md pl-case-md lg:grid-cols-[minmax(0,1fr)_280px]">
           <div className="flex min-w-0 flex-col gap-case-sm">
             <Badge
               className="border-discovery bg-discovery-muted text-discovery"
@@ -346,7 +346,7 @@ export default async function CatalogPage({ searchParams }: CatalogPageProps) {
           </div>
 
           <dl className="grid gap-case-sm sm:grid-cols-2 lg:grid-cols-1">
-            <div className="rounded-md border border-border bg-paper px-3 py-3">
+            <div className="border-l border-border bg-transparent px-3 py-2">
               <dt className="text-small text-text-muted">
                 {copy.totalEditions}
               </dt>
@@ -354,7 +354,7 @@ export default async function CatalogPage({ searchParams }: CatalogPageProps) {
                 {totalEditions}
               </dd>
             </div>
-            <div className="rounded-md border border-border bg-paper px-3 py-3">
+            <div className="border-l border-border bg-transparent px-3 py-2">
               <dt className="text-small text-text-muted">{copy.activeView}</dt>
               <dd className="mt-1 text-heading-3 font-semibold text-foreground">
                 {copy.pageOf(currentPage, totalPages)}
@@ -763,11 +763,11 @@ function CatalogQuickLinks({
 
   return (
     <section
-      className="rounded-lg border border-arrival/25 bg-arrival-muted p-case-md"
+      className="border-y border-arrival/30 bg-transparent py-case-md"
       data-catalog-quick-links
       data-v14-catalog-discovery="quick-links"
     >
-      <div className="flex flex-col gap-case-xs">
+      <div className="flex max-w-3xl flex-col gap-case-xs">
         <h2 className="text-heading-3 font-semibold text-foreground">
           {copy.title}
         </h2>
@@ -778,7 +778,7 @@ function CatalogQuickLinks({
           <Link
             key={link.href}
             className={cn(
-              "inline-flex min-h-11 shrink-0 items-center rounded-md border px-3 py-2 text-small font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary",
+              "inline-flex min-h-11 shrink-0 items-center border-b-2 px-1 py-2 text-small font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary",
               getQuickLinkToneClass(link.tone),
             )}
             href={link.href}
@@ -1069,14 +1069,12 @@ function PaginationLink({
 
 function getQuickLinkToneClass(tone: CatalogQuickLinkTone) {
   const classes = {
-    academic: "border-academic bg-academic-muted text-academic hover:bg-surface",
-    arrival: "border-arrival bg-arrival-muted text-arrival hover:bg-surface",
-    editorial:
-      "border-editorial bg-editorial-muted text-editorial hover:bg-surface",
-    offer: "border-offer bg-offer-muted text-offer hover:bg-surface",
-    translation:
-      "border-translation bg-translation-muted text-translation hover:bg-surface",
-    trust: "border-trust bg-trust-muted text-trust hover:bg-surface",
+    academic: "border-academic text-academic hover:text-foreground",
+    arrival: "border-arrival text-arrival hover:text-foreground",
+    editorial: "border-editorial text-editorial hover:text-foreground",
+    offer: "border-offer text-offer hover:text-foreground",
+    translation: "border-translation text-translation hover:text-foreground",
+    trust: "border-trust text-trust hover:text-foreground",
   } satisfies Record<CatalogQuickLinkTone, string>;
 
   return classes[tone];

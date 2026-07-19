@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-19T05:34:53.039Z",
+  "generatedAt": "2026-07-19T16:41:33.968Z",
   "baseURL": "http://127.0.0.1:3000",
   "desktop": {
     "activeFilterCount": 9,
@@ -14,10 +14,10 @@
       "hasStock": true
     },
     "hasHorizontalOverflow": false,
-    "paginationLinks": 5,
+    "paginationLinks": 21,
     "renderedCards": 24,
-    "resultCountText": "Showing 1-24 of 100 editions",
-    "totalEditions": 100,
+    "resultCountText": "Showing 1-24 of 500 editions",
+    "totalEditions": 500,
     "viewport": {
       "height": 1100,
       "width": 1440
@@ -25,15 +25,15 @@
   },
   "expected": {
     "initialRenderedCards": 24,
-    "totalEditions": 100,
-    "totalPages": 5
+    "totalEditions": 500,
+    "totalPages": 21
   },
   "mobile": {
     "activeFilterCount": 9,
     "firstCard": {
       "hasAuthor": false,
       "hasDetailLink": true,
-      "hasFormat": true,
+      "hasFormat": false,
       "hasImage": true,
       "hasLanguage": true,
       "hasPrice": true,
@@ -41,10 +41,10 @@
       "hasStock": true
     },
     "hasHorizontalOverflow": false,
-    "paginationLinks": 5,
+    "paginationLinks": 21,
     "renderedCards": 24,
-    "resultCountText": "Đang hiển thị 25-48 trong 100 ấn bản",
-    "totalEditions": 100,
+    "resultCountText": "Đang hiển thị 25-48 trong 500 ấn bản",
+    "totalEditions": 500,
     "viewport": {
       "height": 900,
       "width": 375

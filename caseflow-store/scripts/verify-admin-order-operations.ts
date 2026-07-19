@@ -67,6 +67,7 @@ async function main() {
     .slice(2, 8)}`;
   const orderCode = `CF-D37OPS-${Date.now().toString(36).toUpperCase()}`;
   const riskOrderCode = `CF-D37RISK-${Date.now().toString(36).toUpperCase()}`;
+  const apiRiskOrderCode = `CF-D37API-${Date.now().toString(36).toUpperCase()}`;
   const users = {
     admin: {
       email: `caseflow-d37-orders-admin-${runId}@example.com`,
@@ -102,6 +103,11 @@ async function main() {
       customerId,
       orderCode: riskOrderCode,
     });
+    const apiRiskOrderId = await createQaOrder({
+      customer: users.customer,
+      customerId,
+      orderCode: apiRiskOrderCode,
+    });
 
     const anonymousAccess = await inspectAnonymousAccess(browser, baseURL);
     const customerAccess = await inspectCustomerAccess(
@@ -110,6 +116,7 @@ async function main() {
       users.customer,
     );
     const staffApi = await exerciseStaffApi(browser, baseURL, users.staff, {
+      apiRiskOrderId,
       orderCode,
       orderId,
     });
@@ -126,7 +133,12 @@ async function main() {
     );
     const finalRow = await readOrderRow(orderCode);
     const finalRiskRow = await readOrderRow(riskOrderCode);
-    const cleanup = await cleanupOrders([orderCode, riskOrderCode]);
+    const finalApiRiskRow = await readOrderRow(apiRiskOrderCode);
+    const cleanup = await cleanupOrders([
+      orderCode,
+      riskOrderCode,
+      apiRiskOrderCode,
+    ]);
     const pass = {
       accessControl:
         anonymousAccess.status === 401 &&
@@ -146,7 +158,13 @@ async function main() {
           "confirmed" &&
         staffApi.validOperations.data?.operations.shippingStatus ===
           "preparing" &&
-        staffApi.invalidPostConfirmTransition.status === 409,
+        staffApi.invalidPostConfirmTransition.status === 409 &&
+        staffApi.statusOnlyCancellation.status === 200 &&
+        staffApi.statusOnlyCancellation.data?.order.status === "cancelled" &&
+        staffApi.statusOnlyCancellation.data?.operations.paymentStatus ===
+          "cancelled" &&
+        staffApi.statusOnlyCancellation.data?.operations.shippingStatus ===
+          "cancelled",
       uiWorkflow:
         staffUi.pageReady &&
         staffUi.filteredToOrder &&
@@ -172,8 +190,11 @@ async function main() {
         finalRiskRow?.status === "cancelled" &&
         finalRiskRow?.payment_status === "cancelled" &&
         finalRiskRow?.shipping_status === "cancelled" &&
-        finalRiskRow?.internal_notes === staffRiskUi.finalNotes,
-      cleanupRemovedOrder: cleanup.removedRows === 2,
+        finalRiskRow?.internal_notes === staffRiskUi.finalNotes &&
+        finalApiRiskRow?.status === "cancelled" &&
+        finalApiRiskRow?.payment_status === "cancelled" &&
+        finalApiRiskRow?.shipping_status === "cancelled",
+      cleanupRemovedOrder: cleanup.removedRows === 3,
     };
     const ok = Object.values(pass).every(Boolean);
     const report = {
@@ -181,9 +202,11 @@ async function main() {
       baseURL,
       cleanup,
       customerAccess,
+      finalApiRiskRow,
       finalRow,
       generatedAt: new Date().toISOString(),
       ok,
+      apiRiskOrderCode,
       orderCode,
       pass,
       riskOrderCode,
@@ -200,6 +223,7 @@ async function main() {
       JSON.stringify(
         {
           ok,
+          apiRiskOrderCode,
           orderCode,
           pass,
           riskOrderCode,
@@ -214,7 +238,7 @@ async function main() {
     }
   } finally {
     await browser.close();
-    await cleanupOrders([orderCode, riskOrderCode]);
+    await cleanupOrders([orderCode, riskOrderCode, apiRiskOrderCode]);
     await cleanupUsers([...createdUserIds]);
   }
 }
@@ -253,7 +277,7 @@ async function exerciseStaffApi(
   browser: Browser,
   baseURL: string,
   staff: TestUser,
-  options: { orderCode: string; orderId: string },
+  options: { apiRiskOrderId: string; orderCode: string; orderId: string },
 ) {
   const context = await newLanguageContext(browser, baseURL, "en", {
     height: 900,
@@ -284,6 +308,14 @@ async function exerciseStaffApi(
     options.orderId,
     { status: "completed" },
   );
+  const statusOnlyCancellation = await adminOrderPatchRequest(
+    page,
+    options.apiRiskOrderId,
+    {
+      internalNotes: "API risk rejection with order status only.",
+      status: "cancelled",
+    },
+  );
   await context.close();
 
   return {
@@ -291,6 +323,7 @@ async function exerciseStaffApi(
     invalidOrderTransition,
     invalidPostConfirmTransition,
     invalidShippingTransition,
+    statusOnlyCancellation,
     validOperations,
   };
 }
@@ -401,12 +434,6 @@ async function exerciseStaffRiskRejectionUi(
     .isVisible();
 
   await page.locator("[data-admin-order-status-select]").selectOption("cancelled");
-  await page
-    .locator("[data-admin-order-payment-status-select]")
-    .selectOption("cancelled");
-  await page
-    .locator("[data-admin-order-shipping-status-select]")
-    .selectOption("cancelled");
   await page.locator("[data-admin-order-internal-notes]").fill(finalNotes);
   await page
     .locator("[data-admin-order-status-submit]")

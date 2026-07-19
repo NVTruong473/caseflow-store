@@ -8,7 +8,6 @@ const navigationCopy = {
       { label: "Categories", href: "/#categories" },
       { label: "Editions", href: "/#translated-editions" },
       { label: "Track order", href: "/orders/track" },
-      { label: "Admin", href: "/admin" },
     ],
     discoveryNavigation: [
       { label: "New arrivals", href: "/#new-arrivals" },
@@ -53,7 +52,6 @@ const navigationCopy = {
       { label: "Danh mục", href: "/#categories" },
       { label: "Ấn bản", href: "/#translated-editions" },
       { label: "Tra cứu đơn", href: "/orders/track" },
-      { label: "Quản trị", href: "/admin" },
     ],
     discoveryNavigation: [
       { label: "Ấn bản mới", href: "/#new-arrivals" },

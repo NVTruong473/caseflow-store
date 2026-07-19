@@ -6,9 +6,9 @@ import { chromium, type Browser, type Page } from "@playwright/test";
 import { LANGUAGE_COOKIE, type Language } from "../src/lib/i18n/language";
 
 const ARTIFACT_DIR = path.join(".agent", "artifacts", "d28-t01");
-const EXPECTED_TOTAL_EDITIONS = 100;
+const EXPECTED_TOTAL_EDITIONS = 500;
 const EXPECTED_INITIAL_RENDERED_CARDS = 24;
-const EXPECTED_TOTAL_PAGES = 5;
+const EXPECTED_TOTAL_PAGES = 21;
 
 async function main() {
   fs.mkdirSync(ARTIFACT_DIR, { recursive: true });
@@ -59,9 +59,9 @@ async function main() {
         pagination.pageTwoRenderedCards === EXPECTED_INITIAL_RENDERED_CARDS,
       resultCountsVisible:
         desktop.resultCountText.includes("1-24") &&
-        desktop.resultCountText.includes("100") &&
+        desktop.resultCountText.includes("500") &&
         mobile.resultCountText.includes("25-48") &&
-        mobile.resultCountText.includes("100"),
+        mobile.resultCountText.includes("500"),
       totalCatalogCount:
         desktop.totalEditions === EXPECTED_TOTAL_EDITIONS &&
         mobile.totalEditions === EXPECTED_TOTAL_EDITIONS,

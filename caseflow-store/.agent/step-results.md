@@ -12746,6 +12746,90 @@ verification, and clean worktree verification complete.
 
 ---
 
+## UIH-T01 - Humanized Storefront Design Audit And Refactor
+
+- Date: 2026-07-19
+- Status: completed locally
+- Phase: UI humanization after `v1.6.0`
+
+### Objective
+
+Audit and refactor the storefront so CaseFlow Books feels like an authored
+bilingual bookstore and not a generic AI/SaaS landing-page template, while
+preserving current functionality and production safety boundaries.
+
+### Actual Result
+
+- Reviewed `https://ytdubbingpro.web.app/`, `https://dub-craft.lovable.app/`,
+  and `https://dubbl-wave-vision.lovable.app/` as visual rhythm references,
+  extracting principles only and rejecting fake metrics, copied brand identity,
+  and generic AI-gradient treatment.
+- Captured baseline and final screenshots under
+  `.agent/artifacts/ui-humanization-t01`.
+- Added `docs/ui-humanization-audit.md` with page/component findings and
+  priorities.
+- Added `docs/style-guide.md` with implemented design direction, color,
+  typography, layout, component, motion, accessibility, Tailwind, writing, and
+  anti-pattern rules.
+- Updated root/app `DESIGN.md` to point future sessions at the new detailed
+  style guide and audit.
+- Removed admin from public storefront navigation while preserving `/admin`.
+- Changed signed-in header destination copy from state wording to account
+  wording.
+- Converted homepage hero to a reading-table/spine-rail composition, removed
+  first-viewport currency-rate disclosure, and replaced stat cards with a proof
+  strip.
+- Made catalog intro and quick links lighter and less card/pill dependent.
+- Rewrote product-detail edition confidence copy into customer-facing edition
+  notes and improved metadata wrapping for long publisher/ISBN values.
+- Added `scripts/verify-ui-humanization.ts`.
+- Updated stale runtime QA baselines from 100 to 500 editions in
+  `tests/e2e/storefront-flow.spec.ts` and `scripts/verify-catalog-page.ts`;
+  increased catalog state screenshot timeout to reduce non-behavioral
+  Playwright flake.
+
+### Evidence
+
+- `docs/ui-humanization-audit.md`
+- `docs/style-guide.md`
+- `.agent/artifacts/ui-humanization-t01/ui-humanization-check.json`
+- `.agent/artifacts/ui-humanization-t01/home-1440.png`
+- `.agent/artifacts/ui-humanization-t01/home-375.png`
+- `.agent/artifacts/ui-humanization-t01/catalog-1440.png`
+- `.agent/artifacts/ui-humanization-t01/catalog-768.png`
+- `.agent/artifacts/ui-humanization-t01/detail-identity-375.png`
+
+### Verification
+
+- `UIH_BASE_URL=http://127.0.0.1:3000 UIH_TASK_ID=ui-humanization-t01 npx tsx scripts/verify-ui-humanization.ts`:
+  passed with no overflow on checked pages, public header no admin link, hero
+  reading-table proof, no hero currency-rate disclosure, catalog non-technical
+  copy, shelf quick links, natural detail copy, no detail metadata overflow,
+  keyboard focus, and reduced-motion guard.
+- `CATALOG_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx scripts/verify-catalog-page.ts`:
+  passed with 500 total editions, 24 cards per page, result-count text for 500,
+  and 21 pages.
+- `npx tsc --noEmit --pretty false`: passed.
+- `npm run lint`: passed.
+- `npm run build`: passed with 51 App Router routes plus proxy.
+- `npm audit --audit-level=high`: passed; known moderate Next/PostCSS advisory
+  remains and was not force-fixed because the suggested fix is breaking.
+- `npm run test:e2e`: passed `20/20` after updating stale 500-edition baseline.
+- `git diff --check`: passed.
+
+### Guardrails Preserved
+
+- No dependency, schema, API, auth, payment, QR, production data, deploy, tag,
+  release, fake metric, testimonial, copied brand asset, or commercial cover
+  scraping was added.
+
+### Next Task
+
+Manual customer order and QR walkthrough still remains the next
+user-confirmed step if requested.
+
+---
+
 ## V16-T01 - Retail Catalog Scale And Hero Copy Hotfix
 
 - Date: 2026-07-19

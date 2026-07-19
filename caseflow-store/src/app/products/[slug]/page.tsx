@@ -46,13 +46,13 @@ const productDetailCopy = {
     breadcrumbHome: "Home",
     breadcrumbLabel: "Book navigation",
     accountRequiredDescription:
-      "Orders continue through a customer account with email, phone, delivery address, and payment choice confirmed before purchase.",
+      "Sign in before purchase so delivery details, contact information, and order history stay tied to your account.",
     accountRequiredTitle: "Account checkout",
     catalogStatus: "Catalog status",
     commerceConfidenceDescription:
-      "The store checks account details, stock, VAT, shipping, and payment totals before the order is confirmed.",
-    commerceConfidenceTitle: "Purchase confidence",
-    editionIdentityTitle: "Edition identity",
+      "Language, format, publisher, stock, and edition notes stay together so you can choose the right copy before checkout.",
+    commerceConfidenceTitle: "Before checkout",
+    editionIdentityTitle: "Edition notes",
     edition: "edition",
     editionComparison: "Edition comparison",
     editionComparisonDescription:
@@ -108,13 +108,13 @@ const productDetailCopy = {
     breadcrumbHome: "Trang chủ",
     breadcrumbLabel: "Điều hướng sách",
     accountRequiredDescription:
-      "Đơn hàng tiếp tục qua tài khoản khách hàng với email, số điện thoại, địa chỉ nhận hàng và phương thức thanh toán được xác nhận trước khi mua.",
+      "Đăng nhập trước khi mua để thông tin giao hàng, liên hệ và lịch sử đơn luôn gắn với tài khoản của bạn.",
     accountRequiredTitle: "Thanh toán bằng tài khoản",
     catalogStatus: "Trạng thái catalog",
     commerceConfidenceDescription:
-      "Cửa hàng kiểm tra tài khoản, tồn kho, VAT, phí vận chuyển và phí thanh toán trước khi xác nhận đơn.",
-    commerceConfidenceTitle: "Độ tin cậy khi mua",
-    editionIdentityTitle: "Nhận diện ấn bản",
+      "Ngôn ngữ, định dạng, nhà xuất bản, tồn kho và ghi chú ấn bản được đặt cùng nhau để bạn chọn đúng bản trước khi checkout.",
+    commerceConfidenceTitle: "Trước khi thanh toán",
+    editionIdentityTitle: "Ghi chú ấn bản",
     edition: "ấn bản",
     editionComparison: "So sánh ấn bản",
     editionComparisonDescription:
@@ -424,7 +424,7 @@ export default async function ProductDetailPage({
                 </p>
 
                 <section
-                  className="rounded-lg border border-trust/25 bg-trust-muted p-case-lg"
+                  className="border-l-4 border-trust bg-transparent py-case-md pl-case-md"
                   data-book-edition-identity
                 >
                   <div className="flex min-w-0 flex-col gap-case-xs">
@@ -435,7 +435,7 @@ export default async function ProductDetailPage({
                       {copy.commerceConfidenceDescription}
                     </p>
                   </div>
-                  <dl className="mt-case-md grid gap-case-sm text-small text-text-muted sm:grid-cols-2 2xl:grid-cols-4">
+                  <dl className="mt-case-md grid gap-case-sm text-small text-text-muted sm:grid-cols-2">
                     {editionIdentityFacts.map((fact) => (
                       <DetailTerm
                         key={fact.label}
@@ -532,7 +532,7 @@ export default async function ProductDetailPage({
             </div>
 
             <section
-              className="grid gap-case-md rounded-lg border border-admin/20 bg-admin-muted p-case-md shadow-[var(--case-shadow-soft)] sm:p-case-lg lg:grid-cols-3"
+              className="grid gap-case-md border-y border-admin/20 py-case-lg lg:grid-cols-3"
               data-book-commerce-hints
               data-book-confidence
             >
@@ -623,7 +623,7 @@ function CommerceHintCard({ item }: { item: CommercePanelItem }) {
   return (
     <article
       className={cn(
-        "min-w-0 rounded-md border bg-surface p-case-md",
+        "min-w-0 border-l-4 bg-transparent py-case-xs pl-case-md",
         getCommerceProofToneClass(item.tone),
       )}
     >
@@ -868,7 +868,9 @@ function DetailTerm({
   return (
     <div className="min-w-0">
       <dt className="font-medium text-foreground">{label}</dt>
-      <dd className="min-w-0 break-all leading-6">{value}</dd>
+      <dd className="min-w-0 break-words leading-6 [overflow-wrap:anywhere]">
+        {value}
+      </dd>
     </div>
   );
 }
@@ -953,10 +955,10 @@ function getCommerceHintItems(copy: ProductDetailCopy): CommercePanelItem[] {
 
 function getCommerceProofToneClass(tone: CommercialTone) {
   const classes = {
-    arrival: "border-arrival/25 bg-arrival-muted",
-    discovery: "border-discovery/25 bg-discovery-muted",
-    offer: "border-offer/25 bg-offer-muted",
-    trust: "border-trust/25 bg-trust-muted",
+    arrival: "border-arrival/40 bg-arrival-muted",
+    discovery: "border-discovery/40 bg-discovery-muted",
+    offer: "border-offer/40 bg-offer-muted",
+    trust: "border-trust/40 bg-trust-muted",
   } satisfies Record<CommercialTone, string>;
 
   return classes[tone];
