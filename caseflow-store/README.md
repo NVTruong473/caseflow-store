@@ -64,19 +64,21 @@ runtime.
 
 ## Latest release evidence
 
-- Release tag: `v1.3.1`
+- Release tag: `v1.4.0`
 - GitHub Release:
-  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.3.1`
+  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.4.0`
 - Production alias: `https://caseflow-store.vercel.app`
-- Vercel deployment ID: `dpl_CtyPPR1cExwXQWctsh7to98Vg3yb`
-- Local gates: TypeScript, ESLint, production build, affected v1.3 visual
-  verifiers, and compact-card overlap verifier passed.
+- Vercel deployment ID: `dpl_7S279YwsGzB4D6H11PiauzG9GvDL`
+- Local gates: TypeScript, ESLint, production build, full Playwright `20/20`,
+  V14 no-demo runtime copy scan, V14 visual-token scan, visual QA for
+  homepage/catalog/detail/policy/checkout/customer/admin,
+  accessibility/mobile/performance, cleanup, secret scan, and `git diff
+  --check` passed.
 - Production smoke: public pages/APIs, 100-edition catalog quality, 100 cover
   responses, language mode, cart/checkout boundary, customer/admin boundary,
   assistant, robots, and sitemap passed.
-- Final v1.3 QA before the hotfix also passed full local Playwright `20/20`,
-  production smoke, accessibility/mobile/performance checks, cleanup,
-  secret-value scan, TypeScript, lint, and build.
+- Release notes:
+  [`docs/v1.4-real-commerce-visual-merchandising-release-notes.md`](docs/v1.4-real-commerce-visual-merchandising-release-notes.md)
 - Known boundaries: simulated payments, no real SMS/OTP, no real shipping
   carrier integration, and no commercial book-cover hotlinking.
 

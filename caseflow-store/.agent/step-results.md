@@ -4,16 +4,16 @@
 
 | Field | Value |
 |---|---|
-| Current mode | v1.4 real commerce and visual merchandising upgrade locally gated |
-| Current gate | `V14-T12` complete; optional `v1.4.0` release task not yet approved |
+| Current mode | v1.4.0 released |
+| Current gate | `V14-T13` complete |
 | Implementation started | Yes |
-| Next implementation task | Awaiting explicit deploy/tag/release approval for optional `v1.4.0` |
+| Next implementation task | No active implementation task |
 | App initialized | Yes, in `caseflow-store` |
 | Local server verified | Yes, V14-T12 full Playwright `20/20` passed on a production-style local server at `http://127.0.0.1:3001`; V14 visual QA passed on local `next start` at `http://127.0.0.1:3000` |
-| Lint verified | Yes, V14-T12 lint passed |
-| Build verified | Yes, V14-T12 production build generated 48 App Router routes plus proxy |
+| Lint verified | Yes, V14-T13 pre-release lint passed |
+| Build verified | Yes, V14-T13 local and Vercel production builds generated 48 App Router routes plus proxy |
 | Database connected | Yes; live catalog, orders, Auth, role checks, and admin status updates use Supabase |
-| Deployed | Yes, v1.3 production deployment `dpl_6in3zn6CsXKtj3mR2xjGVh4X3q59` is aliased to `https://caseflow-store.vercel.app` |
+| Deployed | Yes, v1.4 production deployment `dpl_7S279YwsGzB4D6H11PiauzG9GvDL` is aliased to `https://caseflow-store.vercel.app` |
 | Last updated | 2026-07-19 |
 
 ## Result Index
@@ -129,6 +129,7 @@
 | SR-181 | 2026-07-18 | V13-T10 | completed | Deployed v1.3.0 to Vercel production, passed production smoke, refreshed release docs/evidence, and created the release commit/tag |
 | SR-182 | 2026-07-18 | QA-FINAL-T01 | completed | Passed final post-release tester audit for v1.3.0 with production smoke, full Playwright 20/20, accessibility/mobile/performance, cleanup, static gates, and no P0/P1 findings |
 | SR-183 | 2026-07-19 | V14-T12 | completed | Passed the full local v1.4 quality gate with TypeScript, lint, build, Playwright 20/20, V14 visual QA, cleanup, high/critical audit, targeted secret scan, release-readiness report, and no deploy/tag/release |
+| SR-184 | 2026-07-19 | V14-T13 | completed | Deployed v1.4.0 to Vercel production, passed production smoke, refreshed release docs/evidence, fixed localized-title smoke verification, and prepared GitHub tag/release publication |
 
 ---
 
@@ -12444,3 +12445,90 @@ Release decision.
 
 Await explicit approval for optional `v1.4.0` deploy, smoke test, commit, tag,
 push, and GitHub Release.
+
+---
+
+## V14-T13 - Deploy, Smoke Test, Commit, Tag, Push, And Create GitHub Release v1.4.0
+
+- Date: 2026-07-19
+- Status: completed
+- Phase: CaseFlow Books v1.4 real commerce and visual merchandising release
+
+### Objective
+
+Release the locally gated `v1.4.0` candidate to production, verify production
+behavior, commit/tag/push the release state, and create a professional GitHub
+Release.
+
+### Actual Result
+
+- Confirmed GitHub CLI auth, Vercel project link, no existing local/remote
+  `v1.4.0` tag, no existing GitHub Release `v1.4.0`, and no local
+  Playwright/Next/Vercel process conflict.
+- Ran release-prep gates: `npm run lint`, `npm run build`, V14 runtime
+  no-demo-copy scan, targeted secret scan, and `git diff --check`.
+- Created release-prep commit `3f20bc6` with the V14 implementation, docs,
+  verification scripts, and visual evidence.
+- Deployed production Vercel deployment
+  `dpl_7S279YwsGzB4D6H11PiauzG9GvDL`, aliased to
+  `https://caseflow-store.vercel.app`.
+- Production release smoke passed with public pages, language mode,
+  cart/checkout boundary, customer boundary, admin boundary, assistant,
+  representative detail pages, canonical alias, 100 active editions, 100 cover
+  responses, 50 English editions, and 50 Vietnamese editions.
+- Fixed the older short production smoke verifier to accept localized
+  English/Vietnamese detail titles, then reran it successfully.
+- Added `docs/v1.4-real-commerce-visual-merchandising-release-notes.md` and
+  updated latest-release claims in README, app README, architecture, known
+  limitations, CV bullets, portfolio handoff, and agent trackers.
+
+### Evidence
+
+- `docs/v1.4-real-commerce-visual-merchandising-release-notes.md`
+- `docs/v1.4-release-readiness-report.md`
+- `.agent/artifacts/v14-t13/deployment.json`
+- `.agent/artifacts/v14-t13/production-release-smoke.json`
+- `.agent/artifacts/v14-t13/production-home-desktop-en.png`
+- `.agent/artifacts/v14-t13/production-catalog-mobile-vi.png`
+- `.agent/artifacts/v14-t13/production-detail-desktop-en.png`
+- `.agent/artifacts/v14-t13/production-detail-mobile-vi.png`
+- `.agent/artifacts/v14-t13/production-admin-boundary-mobile-en.png`
+- `.agent/artifacts/d40-t02/production-smoke-check.json`
+
+### Verification
+
+- `gh auth status`: passed for account `NVTruong473`.
+- `npx vercel --version`: passed with Vercel CLI `56.3.2`.
+- `git ls-remote --tags origin 'refs/tags/v1.4.0'`: no existing remote tag.
+- `gh release view v1.4.0 --json tagName,name,url,isDraft,isPrerelease`: no
+  existing release before publication.
+- `npm run lint`: passed.
+- `npm run build`: passed locally with 48 App Router routes plus proxy.
+- `npx tsx scripts/verify-v14-no-demo-runtime-copy.ts`: passed with
+  `scannedFiles: 109` and zero findings.
+- Targeted candidate-file secret scan: passed across 1059 files with zero
+  findings and without printing secret values.
+- `git diff --check`: passed before release-prep commit.
+- `npx vercel --prod --yes`: passed; deployment
+  `dpl_7S279YwsGzB4D6H11PiauzG9GvDL` reached `READY` and was aliased to
+  `https://caseflow-store.vercel.app`.
+- `npx vercel inspect https://caseflow-store-8x2gdsk6j-nvt-ruong473.vercel.app`:
+  passed; status `Ready`, target `production`, alias includes
+  `https://caseflow-store.vercel.app`.
+- `PRODUCTION_RELEASE_TASK_ID=v14-t13 ... npx tsx scripts/verify-v12-production-release.ts`:
+  passed with `ok: true`.
+- `PRODUCTION_SMOKE_BASE_URL=https://caseflow-store.vercel.app npx tsx scripts/verify-production-smoke.ts`:
+  passed after localized-title verifier fix.
+
+### Guardrails Preserved
+
+- No schema migration, production catalog mutation, external cover import,
+  payment-provider integration, shipping-carrier integration, SMS/email
+  provider integration, or external AI integration was introduced.
+- Server-owned price, stock, VAT, shipping, payment-fee, promotion, total, and
+  authorization boundaries remain unchanged.
+
+### Next Task
+
+No active implementation task after remote push, tag, and GitHub Release
+verification complete.

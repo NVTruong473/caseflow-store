@@ -3,13 +3,14 @@
 CaseFlow Books is a deployed full-stack bookstore and small-business operations
 demo. The project started as the 20-day CaseFlow Store `v1.0.0` MVP and was
 upgraded through the Day 21-40 roadmap, the `v1.2` realistic catalog release,
-the `v1.3` visual merchandising polish, and the `v1.3.1` compact-card hotfix
-into a Vietnam-first, bilingual e-commerce application for book discovery,
-account-gated checkout, order tracking, and admin/staff operations.
+the `v1.3` visual merchandising polish, the `v1.3.1` compact-card hotfix, and
+the `v1.4` real-commerce visual merchandising release into a Vietnam-first,
+bilingual e-commerce application for book discovery, account-gated checkout,
+order tracking, and admin/staff operations.
 
 [Open the production deployment](https://caseflow-store.vercel.app)
 
-Latest release: [`v1.3.1`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.3.1)
+Latest release: [`v1.4.0`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.4.0)
 
 > Payments are simulated. The app does not collect card numbers, CVV, card
 > expiry, real bank credentials, or real MoMo/ZaloPay/VNPay credentials. Phone
@@ -124,15 +125,16 @@ Latest release: [`v1.3.1`](https://github.com/NVTruong473/caseflow-store/release
 
 | Gate | Result |
 |---|---|
-| Release tag | `v1.3.1` |
-| GitHub Release | [`CaseFlow Books v1.3.1 - Compact Card Layout Hotfix`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.3.1) |
+| Release tag | `v1.4.0` |
+| GitHub Release | [`CaseFlow Books v1.4.0 - Real Commerce And Visual Merchandising`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.4.0) |
 | Production URL | `https://caseflow-store.vercel.app` |
-| Vercel deployment | `READY`, deployment `dpl_CtyPPR1cExwXQWctsh7to98Vg3yb` |
+| Vercel deployment | `READY`, deployment `dpl_7S279YwsGzB4D6H11PiauzG9GvDL` |
 | TypeScript | `npx tsc --noEmit --pretty false` passed |
 | ESLint | `npm run lint` passed |
-| Production build | 42 App Router routes plus proxy generated |
-| v1.3 final QA | Full local Playwright `20/20`, production smoke, accessibility/mobile/performance, cleanup, secret scan, TypeScript, lint, build, and `git diff --check` passed |
-| v1.3.1 hotfix QA | Local and production compact-card overlap verifier passed across mobile, tablet, and desktop; affected homepage/detail visual verifiers passed |
+| Production build | 48 App Router routes plus proxy generated |
+| v1.4 local QA | Full local Playwright `20/20`, V14 visual QA, accessibility/mobile/performance, cleanup, secret scan, TypeScript, lint, build, and `git diff --check` passed |
+| v1.4 production QA | Production release smoke passed with 100 active editions, 100 cover responses, public/customer/admin boundaries, assistant, language mode, and representative detail pages |
+| v1.3.1 hotfix QA | Local and production compact-card overlap verifier passed across mobile, tablet, and desktop; affected homepage/detail visual verifiers passed before `v1.4` |
 | Production smoke | Home, catalog, English/Vietnamese detail, 100-cover catalog, language mode, cart/checkout boundary, customer/admin boundaries, assistant, robots, and sitemap passed |
 | Catalog quality | 100 active editions, 50 English, 50 Vietnamese, zero primary placeholder covers |
 | Secret scan | Clean |

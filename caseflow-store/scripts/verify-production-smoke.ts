@@ -10,6 +10,12 @@ type ApiResponse<TData> = {
 };
 
 type CatalogItem = {
+  edition?: {
+    localizedDisplayTitle?: {
+      en?: string;
+      vi?: string;
+    };
+  };
   slug: string;
   title: string;
 };
@@ -53,7 +59,9 @@ async function main() {
       checks.catalogPage.body.includes("Book catalog"),
     detailPage:
       checks.detailPage.status === 200 &&
-      checks.detailPage.body.includes(target.title),
+      detailTitleCandidates(target).some((title) =>
+        checks.detailPage.body.includes(title),
+      ),
     home:
       checks.home.status === 200 &&
       checks.home.body.includes("CaseFlow Books"),
@@ -91,6 +99,14 @@ async function main() {
   if (!ok) {
     process.exitCode = 1;
   }
+}
+
+function detailTitleCandidates(target: CatalogItem) {
+  return [
+    target.title,
+    target.edition?.localizedDisplayTitle?.en,
+    target.edition?.localizedDisplayTitle?.vi,
+  ].filter((title): title is string => Boolean(title));
 }
 
 async function fetchText(url: URL) {

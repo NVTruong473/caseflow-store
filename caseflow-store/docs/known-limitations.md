@@ -1,7 +1,7 @@
 # Known Limitations
 
 This document records the intentional boundaries and accepted risks of
-CaseFlow Books through the latest `v1.3.1` release. These items are not hidden
+CaseFlow Books through the latest `v1.4.0` release. These items are not hidden
 production capabilities; they define where the portfolio release stops.
 
 ## Commerce scope
@@ -154,7 +154,7 @@ availability.
 
 ## Accepted dependency advisory
 
-At the latest closeout gate, `npm audit --audit-level=high` passed. The known
+At the latest release gate, `npm audit --audit-level=high` passed. The known
 moderate advisory remains inherited through Next.js/PostCSS and is documented
 because the available automated forced fix proposes a breaking downgrade path.
 At the original `v1.2` release audit, `npm audit --audit-level=moderate`

@@ -1,9 +1,9 @@
 # CaseFlow Books Portfolio Handoff
 
-- Latest release: `v1.3.1`
+- Latest release: `v1.4.0`
 - Production URL: `https://caseflow-store.vercel.app`
-- GitHub Release: `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.3.1`
-- Vercel deployment: `dpl_CtyPPR1cExwXQWctsh7to98Vg3yb`
+- GitHub Release: `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.4.0`
+- Vercel deployment: `dpl_7S279YwsGzB4D6H11PiauzG9GvDL`
 - Project type: full-stack bookstore and small-business operations portfolio
 - Stack: Next.js 16, React 19, TypeScript 5, Tailwind CSS 4, Supabase
   PostgreSQL/Auth/RLS, Zod, Playwright, Vercel
@@ -105,7 +105,10 @@ See `docs/architecture.md` for the full architecture notes.
 
 | Evidence | Location |
 |---|---|
-| Latest release notes | `docs/v1.3.1-compact-card-layout-hotfix-release-notes.md` |
+| Latest release notes | `docs/v1.4-real-commerce-visual-merchandising-release-notes.md` |
+| v1.4 release readiness | `docs/v1.4-release-readiness-report.md` |
+| v1.4 production smoke | `.agent/artifacts/v14-t13/production-release-smoke.json` |
+| v1.4 visual screenshots | `.agent/artifacts/v14-t13/` |
 | Final post-release QA | `docs/v1.3-final-post-release-qa-audit.md` |
 | v1.3.1 overlap verifier | `scripts/verify-hotfix-compact-card-overlap.ts` |
 | v1.3.1 production smoke | `.agent/artifacts/hotfix-v13-t01/production-release-smoke.json` |
@@ -122,6 +125,8 @@ Latest verified gates include:
 - `npm run lint`
 - `npm run build`
 - production release smoke against `https://caseflow-store.vercel.app`
+- V14 visual QA for homepage, catalog, detail, policy, checkout, customer, and
+  admin surfaces
 - local and production compact-card overlap verifier
 - affected v1.3 homepage/detail visual verifiers
 - release cleanup check
@@ -148,8 +153,9 @@ What to emphasize:
   provenance, order snapshots, inventory and promotions.
 - Security posture: service role stays server-only, stable API envelopes,
   RLS/session checks, explicit admin/staff permissions.
-- QA discipline: release gates, screenshots, production smoke, cleanup, and
-  the `v1.3.1` hotfix verifier added after a real visual defect was found.
+- QA discipline: release gates, screenshots, production smoke, cleanup,
+  the `v1.3.1` hotfix verifier added after a real visual defect was found, and
+  the `v1.4` real-commerce visual merchandising gate.
 
 ## Honest Boundaries
 

@@ -4,10 +4,11 @@
 
 This document describes the deployed CaseFlow Books architecture after the Day
 21-40 upgrade, the realistic catalog/content merchandising release, the
-`v1.3.0` visual merchandising polish, and the `v1.3.1` compact-card layout
-hotfix. The system is intentionally a Next.js modular monolith: it demonstrates
-a realistic specialist e-commerce workflow without claiming marketplace scale,
-real payment processing, or enterprise operations.
+`v1.3.0` visual merchandising polish, the `v1.3.1` compact-card layout hotfix,
+and the `v1.4.0` real-commerce visual merchandising release. The system is
+intentionally a Next.js modular monolith: it demonstrates a realistic
+specialist e-commerce workflow without claiming marketplace scale, real payment
+processing, or enterprise operations.
 
 ## System context
 
@@ -248,8 +249,8 @@ notes, rights-analysis notes, or source-edition matching keys. See
 ## Deployment and verification
 
 - Production alias: `https://caseflow-store.vercel.app`.
-- Current production deployment ID: `dpl_6in3zn6CsXKtj3mR2xjGVh4X3q59`
-  (`v1.3.0`).
+- Current production deployment ID: `dpl_7S279YwsGzB4D6H11PiauzG9GvDL`
+  (`v1.4.0`).
 - Supabase hosts PostgreSQL and Auth.
 - Production runtime variables include the public Supabase URL, public anon key,
   and server-only service-role key. Canonical metadata defaults to the
@@ -266,6 +267,13 @@ notes, rights-analysis notes, or source-edition matching keys. See
   production-style Playwright `20/20`, final tester audit, accessibility/
   mobile/performance checks, cleanup, secret-like scan, stale-claim scan,
   TypeScript, lint, and production build.
+- The `v1.4.0` production release kept the same architecture and added
+  customer-facing commercial copy cleanup, structurally varied merchandising
+  layouts, trust/policy pages, checkout/customer surface polish, and admin
+  operations visual hierarchy. Production release smoke passed with 100 active
+  editions, 100 cover responses, 50 English editions, 50 Vietnamese editions,
+  public/customer/admin boundaries, language mode, assistant, and representative
+  detail pages.
 - Dependency audit status is recorded in
   [`v1.2-release-audit.md`](v1.2-release-audit.md).
 

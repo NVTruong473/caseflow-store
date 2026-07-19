@@ -1,6 +1,6 @@
 {
   "baseURL": "https://caseflow-store.vercel.app",
-  "generatedAt": "2026-07-17T07:47:37.577Z",
+  "generatedAt": "2026-07-19T08:34:43.187Z",
   "ok": true,
   "pass": {
     "account": true,
@@ -25,74 +25,104 @@
     "tracking": 200
   },
   "target": {
-    "id": "00000000-0000-4000-8000-000000003027",
+    "id": "00000000-0000-4000-8000-000000007200",
     "type": "book-edition",
-    "slug": "a-christmas-carol-english-paperback",
-    "title": "A Christmas Carol",
+    "slug": "the-old-man-and-the-sea-vietnamese-paperback",
+    "title": "Ông già và biển cả",
     "edition": {
-      "id": "00000000-0000-4000-8000-000000003027",
-      "slug": "a-christmas-carol-english-paperback",
-      "displayTitle": "A Christmas Carol",
+      "id": "00000000-0000-4000-8000-000000007200",
+      "slug": "the-old-man-and-the-sea-vietnamese-paperback",
+      "displayTitle": "Ông già và biển cả",
       "localizedDisplayTitle": {
-        "vi": "Bai ca Giang sinh",
-        "en": "A Christmas Carol"
+        "vi": "Ông già và biển cả",
+        "en": "The Old Man and the Sea"
       },
       "subtitle": null,
-      "language": "en",
+      "language": "vi",
       "format": "paperback",
-      "isbn13": null,
-      "isbn10": null,
-      "publicationYear": 1843,
+      "isbn13": "9786043498363",
+      "isbn10": "6043498367",
+      "publicationYear": 2022,
       "pageCount": null,
-      "dimensions": {
-        "widthMm": 130,
-        "heightMm": 205,
-        "thicknessMm": null
-      },
-      "weightGrams": 360,
-      "priceVnd": 143000,
+      "dimensions": null,
+      "weightGrams": null,
+      "priceVnd": 129000,
       "compareAtPriceVnd": null,
-      "stockQuantity": 11,
-      "lowStockThreshold": 5,
+      "stockQuantity": 26,
+      "lowStockThreshold": 10,
       "inventoryStatus": "in-stock",
       "summary": {
-        "vi": "Mot cau chuyen dao duc ngan gon noi ky uc va tuong tuong thuc day mot ke keo kiet huong den rong luong va sua sai. An ban tieng Anh phu hop cho doc gia song ngu va nhu cau doc hoc thuat.",
-        "en": "A compact moral tale where memory and imagination push a miser toward generosity and repair. This English edition is positioned for bilingual readers and classroom-friendly browsing."
+        "vi": "Cuộc vật lộn đơn độc ngoài khơi của một lão ngư trở thành suy ngẫm cô đọng về sức bền, tay nghề, phẩm giá và mất mát.",
+        "en": "An aging fisherman's solitary struggle at sea becomes a spare study of endurance, craft, dignity, and loss."
       },
       "tableOfContents": null,
-      "sampleExcerptPolicy": "No commercial excerpt is stored in seed data; use short internal preview copy only.",
+      "sampleExcerptPolicy": "No copyrighted excerpt is stored; use project-written preview guidance only.",
+      "pairId": "00000000-0000-4000-8000-000000007050",
+      "pairedEditionId": "00000000-0000-4000-8000-000000007100",
+      "reasonToRead": {
+        "vi": "Ấn bản tiếng Việt của Ông già và biển cả, dành cho độc giả muốn đọc và đối chiếu tác phẩm ở cả hai ngôn ngữ trong danh mục.",
+        "en": "Vietnamese edition of The Old Man and the Sea for readers comparing the work across both catalog languages."
+      },
+      "displayFacts": [
+        {
+          "key": "isbn",
+          "label": {
+            "vi": "ISBN",
+            "en": "ISBN"
+          },
+          "value": {
+            "vi": "9786043498363",
+            "en": "9786043498363"
+          },
+          "provenanceRecordId": "00000000-0000-4000-8000-000000011981"
+        },
+        {
+          "key": "publication-year",
+          "label": {
+            "vi": "Năm xuất bản",
+            "en": "Publication year"
+          },
+          "value": {
+            "vi": "2022",
+            "en": "2022"
+          },
+          "provenanceRecordId": "00000000-0000-4000-8000-000000011983"
+        }
+      ],
+      "omittedOptionalFactKeys": [
+        "publisher",
+        "translator",
+        "page-count",
+        "source-physical-format"
+      ],
       "isFeatured": false,
-      "createdAt": "2026-07-16T00:00:00+00:00",
-      "updatedAt": "2026-07-16T06:19:00.769299+00:00"
+      "createdAt": "2026-07-17T00:00:00+00:00",
+      "updatedAt": "2026-07-17T21:02:08.622433+00:00"
     },
     "work": {
-      "id": "00000000-0000-4000-8000-000000002027",
-      "slug": "a-christmas-carol",
-      "title": "A Christmas Carol",
+      "id": "00000000-0000-4000-8000-000000007000",
+      "slug": "the-old-man-and-the-sea",
+      "title": "The Old Man and the Sea",
       "originalTitle": null,
       "localizedTitle": {
-        "vi": "Bai ca Giang sinh",
-        "en": "A Christmas Carol"
+        "vi": "Ông già và biển cả",
+        "en": "The Old Man and the Sea"
       },
       "originalLanguage": "English",
-      "themes": [
-        "redemption",
-        "generosity",
-        "memory"
-      ],
+      "themes": [],
       "ageRating": null,
-      "publicationEra": "1843",
+      "publicationEra": null,
       "canonicalSummary": {
-        "vi": "Mot cau chuyen dao duc ngan gon noi ky uc va tuong tuong thuc day mot ke keo kiet huong den rong luong va sua sai.",
-        "en": "A compact moral tale where memory and imagination push a miser toward generosity and repair."
+        "vi": "Cuộc vật lộn đơn độc ngoài khơi của một lão ngư trở thành suy ngẫm cô đọng về sức bền, tay nghề, phẩm giá và mất mát.",
+        "en": "An aging fisherman's solitary struggle at sea becomes a spare study of endurance, craft, dignity, and loss."
       }
     },
     "authors": [
       {
-        "id": "00000000-0000-4000-8000-000000001003",
-        "slug": "charles-dickens",
-        "name": "Charles Dickens",
-        "country": "United Kingdom"
+        "id": "0409eaaa-59b6-44f4-8c26-e84b7f03705f",
+        "slug": "ernest-hemingway",
+        "name": "Ernest Hemingway",
+        "country": "United States"
       }
     ],
     "categories": [
@@ -126,21 +156,15 @@
       }
     ],
     "translators": [],
-    "publisher": {
-      "id": "00000000-0000-4000-8000-000000000001",
-      "slug": "caseflow-books-demo-editions",
-      "name": "CaseFlow Books Demo Editions",
-      "country": "Vietnam",
-      "website": null
-    },
+    "publisher": null,
     "coverAsset": {
-      "id": "00000000-0000-4000-8000-000000000050",
-      "path": "/images/books/placeholders/book-cover-placeholder.svg",
+      "id": "00000000-0000-4000-8000-000000009074",
+      "path": "/images/books/v12-covers/the-old-man-and-the-sea-vietnamese-paperback.svg",
       "altText": {
-        "vi": "Bia sach tam thoi noi bo cua CaseFlow Books",
-        "en": "CaseFlow Books internal placeholder cover"
+        "vi": "Bìa minh họa CaseFlow Books cho Ông già và biển cả của Ernest Hemingway.",
+        "en": "CaseFlow Books illustrative cover for The Old Man and the Sea by Ernest Hemingway."
       },
-      "source": "internal"
+      "source": "generated"
     }
   }
 }

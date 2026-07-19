@@ -1,7 +1,7 @@
 # Verified CV Bullets
 
 These bullets are grounded in repository files, command output, deployment
-evidence, and production smoke checks through the `v1.3.1` release. They
+evidence, and production smoke checks through the `v1.4.0` release. They
 intentionally avoid unmeasured
 performance claims, inflated scale claims, revenue claims, and the implication
 that simulated payment flows process real money.
@@ -22,8 +22,8 @@ that simulated payment flows process real money.
   full local Playwright `20/20`, production smoke checks, full production
   Playwright `20/20`, assistant verification, cleanup checks, secret scan,
   content/provenance/cover quality checks, accessibility/mobile screenshots,
-  documented dependency audit findings, and a post-release visual hotfix with a
-  dedicated compact-card overlap verifier.
+  documented dependency audit findings, a post-release visual hotfix with a
+  dedicated compact-card overlap verifier, and a `v1.4` merchandising QA gate.
 
 ## Alternative bullets by focus
 
@@ -94,7 +94,7 @@ cover images, or claim real commercial revenue.
 
 | Claim | Evidence |
 |---|---|
-| Public production deployment | `https://caseflow-store.vercel.app`; latest release `v1.3.1`; `caseflow-store/docs/v1.3.1-compact-card-layout-hotfix-release-notes.md` |
+| Public production deployment | `https://caseflow-store.vercel.app`; latest release `v1.4.0`; `caseflow-store/docs/v1.4-real-commerce-visual-merchandising-release-notes.md` |
 | 100 active book editions and 50 works in production | `caseflow-store/.agent/artifacts/v12-t11/post-migration-supabase-check.json`; `caseflow-store/.agent/artifacts/v12-t18/production-release-smoke.json` |
 | 100 project-created cover assets | `docs/v1.2-cover-portfolio.md`; `caseflow-store/.agent/artifacts/v12-t07/cover-portfolio-check.json`; `caseflow-store/.agent/artifacts/v12-t18/production-release-smoke.json` |
 | Provenance and content-quality policy | `docs/domain.md`; `docs/v1.2-provenance-content-quality-contracts.md`; `docs/v1.2-release-audit.md` |
@@ -102,8 +102,9 @@ cover images, or claim real commercial revenue.
 | Customer/admin/staff access boundaries | `tests/e2e/admin-access.spec.ts`; `caseflow-store/.agent/artifacts/d35-t01/role-access-check.json`; `caseflow-store/.agent/artifacts/v12-t18/production-release-smoke.json` |
 | Admin operations | `src/features/admin/`; `caseflow-store/.agent/artifacts/d37-t03/order-operations-check.json`; `caseflow-store/.agent/artifacts/d38-t01/admin-dashboard-check.json`; `caseflow-store/.agent/artifacts/v12-t15/admin-content-operations-check.json` |
 | Local release gate | `.agent/step-results.md` SR-170; `caseflow-store/.agent/artifacts/v12-t17/local-quality-gate-check.json` |
-| Production release smoke | `.agent/step-results.md`; `caseflow-store/.agent/artifacts/hotfix-v13-t01/production-release-smoke.json` |
+| Production release smoke | `.agent/step-results.md`; `caseflow-store/.agent/artifacts/v14-t13/production-release-smoke.json` |
 | Production Playwright pass | `caseflow-store/.agent/artifacts/v12-t18/production-playwright-summary.json`; `caseflow-store/.agent/artifacts/qa-final-t01/final-post-release-qa.json` |
 | Post-release visual hotfix | `caseflow-store/scripts/verify-hotfix-compact-card-overlap.ts`; `caseflow-store/.agent/artifacts/hotfix-v13-t01/compact-card-overlap-check.json` |
+| Real-commerce visual merchandising upgrade | `caseflow-store/docs/v1.4-real-commerce-visual-merchandising-release-notes.md`; `caseflow-store/.agent/artifacts/v14-t13/production-release-smoke.json`; `caseflow-store/.agent/artifacts/v14-t11/admin-operations-visual-check.json` |
 | Accessibility/mobile/performance pass | `caseflow-store/.agent/artifacts/d39-t03/accessibility-mobile-performance-check.json`; `caseflow-store/docs/screenshots/` |
 | Known release boundaries | `docs/known-limitations.md`; `docs/v1.2-release-audit.md` |

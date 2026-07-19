@@ -1,0 +1,13 @@
+{
+  "status": "ok",
+  "deployment": {
+    "id": "dpl_7S279YwsGzB4D6H11PiauzG9GvDL",
+    "url": "https://caseflow-store-8x2gdsk6j-nvt-ruong473.vercel.app",
+    "inspectorUrl": "https://vercel.com/nvt-ruong473/caseflow-store/7S279YwsGzB4D6H11PiauzG9GvDL",
+    "readyState": "READY",
+    "target": "production",
+    "alias": "https://caseflow-store.vercel.app"
+  },
+  "releasePrepCommit": "3f20bc6",
+  "generatedAt": "2026-07-19T08:34:43.187Z"
+}

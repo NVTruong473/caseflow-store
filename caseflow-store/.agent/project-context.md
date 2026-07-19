@@ -3,7 +3,7 @@
 ## Project Identity
 
 - Project name: CaseFlow Store `v1.0.0`; CaseFlow Books `v1.1.0`, `v1.2.0`,
-  `v1.3.0`, and `v1.3.1` released
+  `v1.3.0`, `v1.3.1`, and `v1.4.0` released
 - Repository folder: `/Users/vantruong/Documents/TSNN 2`
 - Product domain: books for released `v1.1.0` and `v1.2.0`; phone
   accessories for released `v1.0.0`
@@ -11,10 +11,9 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: `v1.4` release in progress.
-- Current gate: `V14-T12` complete; `V14-T13` in progress.
-- Current task: `V14-T13 - Deploy, Smoke Test, Commit, Tag, Push, And Create
-  GitHub Release v1.4.0`.
+- Current mode: `v1.4.0` released.
+- Current gate: `V14-T13` complete.
+- Current task: No active implementation task.
 
 ## Confirmed Facts
 
@@ -239,6 +238,15 @@
   remain active: no schema migration, production catalog mutation, payment/
   shipping provider integration, or external cover import is allowed inside
   this release task.
+- `V14-T13` deployed production release candidate commit `3f20bc6` to Vercel
+  deployment `dpl_7S279YwsGzB4D6H11PiauzG9GvDL`, aliased it to
+  `https://caseflow-store.vercel.app`, and passed production smoke on
+  2026-07-19. Production release smoke returned `ok: true` with public pages,
+  language mode, cart/checkout boundary, customer boundary, admin boundary,
+  assistant, representative detail pages, canonical alias, 100 active editions,
+  100 cover responses, 50 English editions, and 50 Vietnamese editions. The
+  short production smoke verifier was fixed to accept localized detail titles
+  and rerun successfully.
 
 ## v1.2 Canonical Catalog
 
@@ -410,10 +418,8 @@ These are defaults that remain tentative until a later task or ADR freezes them:
   integrations, no external stock imagery, no commercial cover copying, no
   fake ratings/sold counts/bestseller claims, and no stable API contract
   change under v1.3 polish.
-- Release status: `v1.3.1` is the latest production patch release. Vercel
-  deployment `dpl_CtyPPR1cExwXQWctsh7to98Vg3yb` is aliased to
-  `https://caseflow-store.vercel.app`, compact-card overlap verification and
-  production smoke passed, and the next release tag is `v1.3.1`.
+- Release status: `v1.3.1` remains the compact-card layout hotfix release.
+  The current latest production release is `v1.4.0`.
 
 ## v1.1 Active Product Domain
 

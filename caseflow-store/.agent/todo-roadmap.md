@@ -10,10 +10,9 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: v1.4 release in progress
-- Current gate: `V14-T12` complete; `V14-T13` in progress
-- Current task: `V14-T13 - Deploy, Smoke Test, Commit, Tag, Push, And Create
-  GitHub Release v1.4.0`
+- Mode: v1.4.0 released
+- Current gate: `V14-T13` complete
+- Current task: No active implementation task
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-19
 
@@ -164,21 +163,25 @@
   - Guardrail: no deploy, tag, GitHub Release, schema migration, production
     catalog mutation, payment/shipping provider integration, or external cover
     import was performed.
-- [/] `V14-T13` Deploy, Smoke Test, Commit, Tag, Push, And Create GitHub
+- [x] `V14-T13` Deploy, Smoke Test, Commit, Tag, Push, And Create GitHub
   Release v1.4.0. - 2026-07-19
-  - Objective: release the locally gated `v1.4.0` candidate to production,
-    verify production behavior, commit/tag/push the exact release state, and
-    create a professional GitHub Release.
-  - Acceptance criteria: release preflight passes; no existing `v1.4.0` tag or
-    release blocks the task; release commit contains V14 code, docs, and
-    evidence; Vercel production deploy is ready and aliased to
-    `https://caseflow-store.vercel.app`; production smoke passes; annotated
-    tag `v1.4.0` is created and pushed; GitHub Release `v1.4.0` is created and
-    verified.
-  - Verification: `git status`, tag/release preflight, `npm run lint`,
-    `npm run build`, V14 runtime copy scan, targeted secret scan,
-    `git diff --check`, Vercel deploy/inspect/alias evidence, production
-    smoke, `git ls-remote` for main and tag, and `gh release view v1.4.0`.
+  - Result: created release-prep commit `3f20bc6`, deployed Vercel production
+    deployment `dpl_7S279YwsGzB4D6H11PiauzG9GvDL`, aliased it to
+    `https://caseflow-store.vercel.app`, added `v1.4.0` release notes, updated
+    latest-release docs, and prepared the release commit for annotated tag and
+    GitHub Release publication.
+  - Verification: preflight confirmed GitHub auth, Vercel project link, no
+    existing `v1.4.0` tag/release, and no server/process conflicts; `npm run
+    lint`, `npm run build`, V14 no-demo runtime copy scan, targeted secret scan
+    across 1059 files, and `git diff --check` passed; Vercel inspect reported
+    production `READY`; production release smoke passed with public pages,
+    language mode, checkout/customer/admin boundaries, assistant,
+    representative detail pages, 100 active editions, 100 cover responses, 50
+    English editions, and 50 Vietnamese editions; short production smoke was
+    fixed for localized detail titles and rerun successfully.
+  - Guardrail: no schema migration, production catalog mutation, external cover
+    import, payment/shipping provider integration, SMS/email provider
+    integration, or external AI integration was introduced.
 
 ## Pre-Implementation Checklist
 
