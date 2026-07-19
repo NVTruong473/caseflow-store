@@ -3,11 +3,11 @@
     "code": null,
     "data": [
       {
-        "id": "ee7ed93c-2616-43c1-8c57-b49b35d207af",
-        "createdAt": "2026-07-17T04:59:26.661212+00:00",
+        "id": "cb379723-cd35-4e8f-b8bb-105aa505f696",
+        "createdAt": "2026-07-19T07:24:01.967402+00:00",
         "defaultShippingAddressSummary": null,
         "displayName": "D37 Incomplete Customer",
-        "email": "caseflow-d37-customers-incomplete-mrogxmg3-lrlzmz@example.com",
+        "email": "caseflow-d37-customers-incomplete-mrrgytaz-4ifhbr@example.com",
         "emailVerified": true,
         "fullName": "D37 Incomplete Customer",
         "hasPhone": false,
@@ -24,23 +24,23 @@
           ]
         },
         "totalSpendVnd": 0,
-        "updatedAt": "2026-07-17T04:59:26.661212+00:00"
+        "updatedAt": "2026-07-19T07:24:01.967402+00:00"
       },
       {
-        "id": "04561257-862e-4298-88ff-6626612764bb",
-        "createdAt": "2026-07-17T04:59:26.368079+00:00",
+        "id": "ef7e957a-b77b-47b1-9b81-be266003400a",
+        "createdAt": "2026-07-19T07:24:01.602622+00:00",
         "defaultShippingAddressSummary": {
           "countryCode": "VN",
           "district": "District 1",
           "province": "Ho Chi Minh City"
         },
         "displayName": "D37 Complete Customer",
-        "email": "caseflow-d37-customers-complete-mrogxmg3-lrlzmz@example.com",
+        "email": "caseflow-d37-customers-complete-mrrgytaz-4ifhbr@example.com",
         "emailVerified": true,
         "fullName": "D37 Complete Customer",
         "hasPhone": true,
-        "lastOrderAt": "2026-07-17T04:59:27.081919+00:00",
-        "lastOrderCode": "CF-D37CUST-MROGXMG3",
+        "lastOrderAt": "2026-07-19T07:24:02.381269+00:00",
+        "lastOrderCode": "CF-D37CUST-MRRGYTAZ",
         "orderCount": 1,
         "phoneLast4": "5678",
         "phoneVerified": false,
@@ -49,7 +49,105 @@
           "missingFields": []
         },
         "totalSpendVnd": 200000,
-        "updatedAt": "2026-07-17T04:59:30.592661+00:00"
+        "updatedAt": "2026-07-19T07:24:11.62354+00:00"
+      },
+      {
+        "id": "2a0cc82c-da61-4847-b1ca-bd63caf7721e",
+        "createdAt": "2026-07-19T07:24:01.098944+00:00",
+        "defaultShippingAddressSummary": null,
+        "displayName": "D36 Inventory Customer",
+        "email": "caseflow-d36-inventory-customer-mrrgytaz-prhnp6@example.com",
+        "emailVerified": true,
+        "fullName": "D36 Inventory Customer",
+        "hasPhone": true,
+        "lastOrderAt": null,
+        "lastOrderCode": null,
+        "orderCount": 0,
+        "phoneLast4": "5678",
+        "phoneVerified": false,
+        "profileCompleteness": {
+          "isCompleteForCheckout": false,
+          "missingFields": [
+            "shippingAddress"
+          ]
+        },
+        "totalSpendVnd": 0,
+        "updatedAt": "2026-07-19T07:24:11.541101+00:00"
+      },
+      {
+        "id": "48cbf31f-a139-426f-8b0d-4462cc9044e1",
+        "createdAt": "2026-07-19T06:49:55.993743+00:00",
+        "defaultShippingAddressSummary": {
+          "countryCode": "VN",
+          "district": "District 1",
+          "province": "Ho Chi Minh City"
+        },
+        "displayName": "CaseFlow Surface Customer",
+        "email": "caseflow-v14-surfaces-mrrfr560-92z34n@example.com",
+        "emailVerified": true,
+        "fullName": "CaseFlow Surface Customer",
+        "hasPhone": true,
+        "lastOrderAt": "2026-07-19T06:50:07.586679+00:00",
+        "lastOrderCode": "CF-MRRFRPU4-137E6D67DF",
+        "orderCount": 1,
+        "phoneLast4": "5678",
+        "phoneVerified": false,
+        "profileCompleteness": {
+          "isCompleteForCheckout": true,
+          "missingFields": []
+        },
+        "totalSpendVnd": 182300,
+        "updatedAt": "2026-07-19T06:49:56.815032+00:00"
+      },
+      {
+        "id": "bd120a78-07d1-4c68-9b76-2f609c63591e",
+        "createdAt": "2026-07-19T04:18:01.684706+00:00",
+        "defaultShippingAddressSummary": {
+          "countryCode": "VN",
+          "district": "huyện Hàm Thuận Nam",
+          "province": "tỉnh Bình Thuận"
+        },
+        "displayName": "Nguyễn Văn Trường",
+        "email": "truong040723@gmail.com",
+        "emailVerified": true,
+        "fullName": "Nguyễn Văn Trường",
+        "hasPhone": true,
+        "lastOrderAt": "2026-07-19T04:23:03.461519+00:00",
+        "lastOrderCode": "CF-MRRAIL5W-9207A155BA",
+        "orderCount": 1,
+        "phoneLast4": "7490",
+        "phoneVerified": false,
+        "profileCompleteness": {
+          "isCompleteForCheckout": true,
+          "missingFields": []
+        },
+        "totalSpendVnd": 182300,
+        "updatedAt": "2026-07-19T04:22:42.462482+00:00"
+      },
+      {
+        "id": "a873016b-39b6-4f51-ac37-54ce158b5c94",
+        "createdAt": "2026-07-18T17:54:53.043655+00:00",
+        "defaultShippingAddressSummary": {
+          "countryCode": "VN",
+          "district": "District 1",
+          "province": "Ho Chi Minh City"
+        },
+        "displayName": "CaseFlow Demo Customer",
+        "email": "caseflow.demo.customer@example.com",
+        "emailVerified": true,
+        "fullName": "CaseFlow Demo Customer",
+        "hasPhone": true,
+        "lastOrderAt": null,
+        "lastOrderCode": null,
+        "orderCount": 0,
+        "phoneLast4": "5678",
+        "phoneVerified": true,
+        "profileCompleteness": {
+          "isCompleteForCheckout": true,
+          "missingFields": []
+        },
+        "totalSpendVnd": 0,
+        "updatedAt": "2026-07-18T17:54:53.043655+00:00"
       }
     ],
     "status": 200
@@ -59,7 +157,7 @@
     "data": null,
     "status": 401
   },
-  "baseURL": "http://127.0.0.1:3006",
+  "baseURL": "http://127.0.0.1:3000",
   "cleanup": {
     "removedRows": 1
   },
@@ -68,9 +166,9 @@
     "data": null,
     "status": 403
   },
-  "generatedAt": "2026-07-17T04:59:39.464Z",
+  "generatedAt": "2026-07-19T07:24:44.814Z",
   "ok": true,
-  "orderCode": "CF-D37CUST-MROGXMG3",
+  "orderCode": "CF-D37CUST-MRRGYTAZ",
   "pass": {
     "accessControl": true,
     "adminStaffCanRead": true,
@@ -82,11 +180,11 @@
     "code": null,
     "data": [
       {
-        "id": "ee7ed93c-2616-43c1-8c57-b49b35d207af",
-        "createdAt": "2026-07-17T04:59:26.661212+00:00",
+        "id": "cb379723-cd35-4e8f-b8bb-105aa505f696",
+        "createdAt": "2026-07-19T07:24:01.967402+00:00",
         "defaultShippingAddressSummary": null,
         "displayName": "D37 Incomplete Customer",
-        "email": "caseflow-d37-customers-incomplete-mrogxmg3-lrlzmz@example.com",
+        "email": "caseflow-d37-customers-incomplete-mrrgytaz-4ifhbr@example.com",
         "emailVerified": true,
         "fullName": "D37 Incomplete Customer",
         "hasPhone": false,
@@ -103,23 +201,23 @@
           ]
         },
         "totalSpendVnd": 0,
-        "updatedAt": "2026-07-17T04:59:26.661212+00:00"
+        "updatedAt": "2026-07-19T07:24:01.967402+00:00"
       },
       {
-        "id": "04561257-862e-4298-88ff-6626612764bb",
-        "createdAt": "2026-07-17T04:59:26.368079+00:00",
+        "id": "ef7e957a-b77b-47b1-9b81-be266003400a",
+        "createdAt": "2026-07-19T07:24:01.602622+00:00",
         "defaultShippingAddressSummary": {
           "countryCode": "VN",
           "district": "District 1",
           "province": "Ho Chi Minh City"
         },
         "displayName": "D37 Complete Customer",
-        "email": "caseflow-d37-customers-complete-mrogxmg3-lrlzmz@example.com",
+        "email": "caseflow-d37-customers-complete-mrrgytaz-4ifhbr@example.com",
         "emailVerified": true,
         "fullName": "D37 Complete Customer",
         "hasPhone": true,
-        "lastOrderAt": "2026-07-17T04:59:27.081919+00:00",
-        "lastOrderCode": "CF-D37CUST-MROGXMG3",
+        "lastOrderAt": "2026-07-19T07:24:02.381269+00:00",
+        "lastOrderCode": "CF-D37CUST-MRRGYTAZ",
         "orderCount": 1,
         "phoneLast4": "5678",
         "phoneVerified": false,
@@ -128,25 +226,123 @@
           "missingFields": []
         },
         "totalSpendVnd": 200000,
-        "updatedAt": "2026-07-17T04:59:30.592661+00:00"
+        "updatedAt": "2026-07-19T07:24:11.62354+00:00"
+      },
+      {
+        "id": "2a0cc82c-da61-4847-b1ca-bd63caf7721e",
+        "createdAt": "2026-07-19T07:24:01.098944+00:00",
+        "defaultShippingAddressSummary": null,
+        "displayName": "D36 Inventory Customer",
+        "email": "caseflow-d36-inventory-customer-mrrgytaz-prhnp6@example.com",
+        "emailVerified": true,
+        "fullName": "D36 Inventory Customer",
+        "hasPhone": true,
+        "lastOrderAt": null,
+        "lastOrderCode": null,
+        "orderCount": 0,
+        "phoneLast4": "5678",
+        "phoneVerified": false,
+        "profileCompleteness": {
+          "isCompleteForCheckout": false,
+          "missingFields": [
+            "shippingAddress"
+          ]
+        },
+        "totalSpendVnd": 0,
+        "updatedAt": "2026-07-19T07:24:11.541101+00:00"
+      },
+      {
+        "id": "48cbf31f-a139-426f-8b0d-4462cc9044e1",
+        "createdAt": "2026-07-19T06:49:55.993743+00:00",
+        "defaultShippingAddressSummary": {
+          "countryCode": "VN",
+          "district": "District 1",
+          "province": "Ho Chi Minh City"
+        },
+        "displayName": "CaseFlow Surface Customer",
+        "email": "caseflow-v14-surfaces-mrrfr560-92z34n@example.com",
+        "emailVerified": true,
+        "fullName": "CaseFlow Surface Customer",
+        "hasPhone": true,
+        "lastOrderAt": "2026-07-19T06:50:07.586679+00:00",
+        "lastOrderCode": "CF-MRRFRPU4-137E6D67DF",
+        "orderCount": 1,
+        "phoneLast4": "5678",
+        "phoneVerified": false,
+        "profileCompleteness": {
+          "isCompleteForCheckout": true,
+          "missingFields": []
+        },
+        "totalSpendVnd": 182300,
+        "updatedAt": "2026-07-19T06:49:56.815032+00:00"
+      },
+      {
+        "id": "bd120a78-07d1-4c68-9b76-2f609c63591e",
+        "createdAt": "2026-07-19T04:18:01.684706+00:00",
+        "defaultShippingAddressSummary": {
+          "countryCode": "VN",
+          "district": "huyện Hàm Thuận Nam",
+          "province": "tỉnh Bình Thuận"
+        },
+        "displayName": "Nguyễn Văn Trường",
+        "email": "truong040723@gmail.com",
+        "emailVerified": true,
+        "fullName": "Nguyễn Văn Trường",
+        "hasPhone": true,
+        "lastOrderAt": "2026-07-19T04:23:03.461519+00:00",
+        "lastOrderCode": "CF-MRRAIL5W-9207A155BA",
+        "orderCount": 1,
+        "phoneLast4": "7490",
+        "phoneVerified": false,
+        "profileCompleteness": {
+          "isCompleteForCheckout": true,
+          "missingFields": []
+        },
+        "totalSpendVnd": 182300,
+        "updatedAt": "2026-07-19T04:22:42.462482+00:00"
+      },
+      {
+        "id": "a873016b-39b6-4f51-ac37-54ce158b5c94",
+        "createdAt": "2026-07-18T17:54:53.043655+00:00",
+        "defaultShippingAddressSummary": {
+          "countryCode": "VN",
+          "district": "District 1",
+          "province": "Ho Chi Minh City"
+        },
+        "displayName": "CaseFlow Demo Customer",
+        "email": "caseflow.demo.customer@example.com",
+        "emailVerified": true,
+        "fullName": "CaseFlow Demo Customer",
+        "hasPhone": true,
+        "lastOrderAt": null,
+        "lastOrderCode": null,
+        "orderCount": 0,
+        "phoneLast4": "5678",
+        "phoneVerified": true,
+        "profileCompleteness": {
+          "isCompleteForCheckout": true,
+          "missingFields": []
+        },
+        "totalSpendVnd": 0,
+        "updatedAt": "2026-07-18T17:54:53.043655+00:00"
       }
     ],
     "status": 200,
     "completeCustomer": {
-      "id": "04561257-862e-4298-88ff-6626612764bb",
-      "createdAt": "2026-07-17T04:59:26.368079+00:00",
+      "id": "ef7e957a-b77b-47b1-9b81-be266003400a",
+      "createdAt": "2026-07-19T07:24:01.602622+00:00",
       "defaultShippingAddressSummary": {
         "countryCode": "VN",
         "district": "District 1",
         "province": "Ho Chi Minh City"
       },
       "displayName": "D37 Complete Customer",
-      "email": "caseflow-d37-customers-complete-mrogxmg3-lrlzmz@example.com",
+      "email": "caseflow-d37-customers-complete-mrrgytaz-4ifhbr@example.com",
       "emailVerified": true,
       "fullName": "D37 Complete Customer",
       "hasPhone": true,
-      "lastOrderAt": "2026-07-17T04:59:27.081919+00:00",
-      "lastOrderCode": "CF-D37CUST-MROGXMG3",
+      "lastOrderAt": "2026-07-19T07:24:02.381269+00:00",
+      "lastOrderCode": "CF-D37CUST-MRRGYTAZ",
       "orderCount": 1,
       "phoneLast4": "5678",
       "phoneVerified": false,
@@ -155,7 +351,7 @@
         "missingFields": []
       },
       "totalSpendVnd": 200000,
-      "updatedAt": "2026-07-17T04:59:30.592661+00:00"
+      "updatedAt": "2026-07-19T07:24:11.62354+00:00"
     },
     "includesIncompleteCustomer": true,
     "queryMatchedCompleteCustomer": true,
@@ -171,7 +367,7 @@
     "pageReady": true
   },
   "testEmails": {
-    "complete": "caseflow-d37-customers-complete-mrogxmg3-lrlzmz@example.com",
-    "incomplete": "caseflow-d37-customers-incomplete-mrogxmg3-lrlzmz@example.com"
+    "complete": "caseflow-d37-customers-complete-mrrgytaz-4ifhbr@example.com",
+    "incomplete": "caseflow-d37-customers-incomplete-mrrgytaz-4ifhbr@example.com"
   }
 }

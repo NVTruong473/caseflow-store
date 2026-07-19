@@ -28,6 +28,7 @@ import type { AdminWorkspaceRole } from "@/lib/auth/admin";
 import type { AdminPermission } from "@/lib/auth/admin";
 
 import { AdminOperationsNavigation } from "./admin-navigation";
+import { AdminOperationsRail } from "./admin-shell-page";
 
 type ApiErrorBody = {
   code: string;
@@ -567,12 +568,12 @@ export function AdminOrdersPage({
 
   return (
     <main
-      className="bg-background py-case-2xl text-foreground"
+      className="bg-admin-muted py-case-2xl text-foreground"
       data-admin-orders-page
       data-admin-workspace-role={adminRole}
     >
-      <Container className="flex flex-col gap-case-xl">
-        <section className="flex flex-col gap-case-lg lg:flex-row lg:items-end lg:justify-between">
+      <Container className="flex flex-col gap-case-lg">
+        <section className="flex flex-col gap-case-lg rounded-lg border border-admin/20 bg-surface p-case-lg shadow-[var(--case-shadow-soft)] lg:flex-row lg:items-end lg:justify-between">
           <div className="min-w-0">
             <p className="text-small font-medium text-text-muted">
               {copy.signedInAs(adminName)}
@@ -616,7 +617,7 @@ export function AdminOrdersPage({
             </Button>
             <Link
               href="/"
-              className="inline-flex min-h-11 items-center justify-center rounded-md border border-border bg-surface px-4 py-2 text-body font-medium text-foreground transition-colors hover:border-primary hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              className="inline-flex min-h-11 items-center justify-center rounded-md border border-admin/20 bg-admin px-4 py-2 text-body font-medium text-surface transition-colors hover:bg-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
             >
               {copy.storefront}
             </Link>
@@ -626,6 +627,14 @@ export function AdminOrdersPage({
         <AdminOperationsNavigation
           active="orders"
           language={language}
+          permissions={adminPermissions}
+          role={adminRole}
+        />
+
+        <AdminOperationsRail
+          active="orders"
+          language={language}
+          metricsCount={state.status === "success" ? 4 : 0}
           permissions={adminPermissions}
           role={adminRole}
         />
@@ -705,7 +714,7 @@ function AdminOrdersFilters({
 }) {
   return (
     <form
-      className="grid gap-case-md rounded-lg border border-border bg-surface p-case-md"
+      className="grid gap-case-md rounded-lg border border-admin/20 bg-surface p-case-md shadow-[var(--case-shadow-soft)]"
       onSubmit={onFilterSubmit}
       data-admin-orders-filters
     >
@@ -863,7 +872,8 @@ function AdminOrdersSummary({
       <SummaryMetric label={copy.orders} value={orders.length.toString()} />
       <SummaryMetric label={copy.pending} value={pendingCount.toString()} />
       <SummaryMetric label={copy.items} value={itemCount.toString()} />
-      <div className="col-span-2 rounded-md border border-border bg-surface p-case-md md:col-span-3">
+      <div className="relative col-span-2 overflow-hidden rounded-md border border-admin/20 bg-surface p-case-md pl-case-lg md:col-span-3">
+        <span className="absolute inset-y-0 left-0 w-1 bg-admin" />
         <dt className="text-small text-text-muted">{copy.serverTotal}</dt>
         <dd
           className="mt-case-xs text-heading-3 font-semibold text-foreground"
@@ -878,7 +888,8 @@ function AdminOrdersSummary({
 
 function SummaryMetric({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-md border border-border bg-surface p-case-md">
+    <div className="relative overflow-hidden rounded-md border border-admin/20 bg-surface p-case-md pl-case-lg">
+      <span className="absolute inset-y-0 left-0 w-1 bg-admin" />
       <dt className="text-small text-text-muted">{label}</dt>
       <dd className="mt-case-xs text-heading-3 font-semibold text-foreground">
         {value}
@@ -903,7 +914,7 @@ function AdminOrdersList({
   return (
     <section
       id="admin-orders-list"
-      className="scroll-mt-case-lg rounded-lg border border-border bg-surface"
+      className="scroll-mt-case-lg rounded-lg border border-admin/20 bg-surface shadow-[var(--case-shadow-soft)]"
       data-admin-orders-list
     >
       <div className="border-b border-border px-case-md py-case-md">
@@ -1156,7 +1167,7 @@ function AdminOrderDetail({
       id="admin-order-detail-panel"
       ref={detailRef}
       tabIndex={-1}
-      className="scroll-mt-case-lg rounded-lg border border-border bg-surface p-case-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+      className="scroll-mt-case-lg rounded-lg border border-operations/25 bg-operations-muted p-case-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
       data-admin-order-detail
     >
       <div className="flex flex-col gap-case-sm sm:flex-row sm:items-start sm:justify-between">
@@ -1176,7 +1187,7 @@ function AdminOrderDetail({
       </div>
 
       <form
-        className="mt-case-lg grid gap-case-md rounded-md border border-border bg-surface-muted p-case-md"
+        className="mt-case-lg grid gap-case-md rounded-md border border-admin/20 bg-surface p-case-md"
         onSubmit={onStatusSubmit}
         data-admin-order-status-form
       >

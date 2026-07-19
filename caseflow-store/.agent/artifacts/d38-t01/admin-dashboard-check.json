@@ -4,7 +4,7 @@
     "data": null,
     "status": 401
   },
-  "baseURL": "http://localhost:3000",
+  "baseURL": "http://127.0.0.1:3000",
   "cleanup": {
     "removedAuthors": 1,
     "removedEditions": 1,
@@ -24,12 +24,12 @@
     "pageReady": true,
     "revenueZeroVisible": true
   },
-  "generatedAt": "2026-07-18T14:29:08.133Z",
+  "generatedAt": "2026-07-19T07:25:57.583Z",
   "ok": true,
   "orderCodes": [
-    "CF-D38A-MRQGP8VW",
-    "CF-D38B-MRQGP8VW",
-    "CF-D38C-MRQGP8VW"
+    "CF-D38A-MRRH0WWK",
+    "CF-D38B-MRRH0WWK",
+    "CF-D38C-MRRH0WWK"
   ],
   "pass": {
     "accessControl": true,
@@ -39,17 +39,17 @@
     "cleanup": true
   },
   "qaCatalog": {
-    "authorId": "bf3898bf-e7ba-4374-a22f-689b7d342de7",
+    "authorId": "94e63d68-d66a-4cde-8a72-7a9eeb5c0417",
     "categoryId": "00000000-0000-4000-8000-000000000100",
-    "editionId": "c55ac412-0547-48fc-b4a9-4cc8a5b2d0fe",
-    "title": "D38 Dashboard QA Book mrqgp8vw-yexcu3",
-    "workId": "29e8c2f4-1430-494a-8434-112013d36d79"
+    "editionId": "b4f7a71e-eb63-4c40-9a74-a485c806243d",
+    "title": "D38 Dashboard QA Book mrrh0wwk-vmzz2d",
+    "workId": "91b98f9b-1815-4175-b589-6d54887c2796"
   },
   "staffApi": {
     "code": null,
     "data": {
       "averageOrderValueVnd": 166667,
-      "generatedAt": "2026-07-18T14:28:49.995Z",
+      "generatedAt": "2026-07-19T07:25:42.297Z",
       "inventorySummary": {
         "activeEditions": 101,
         "lowStockCount": 9,
@@ -57,12 +57,12 @@
       },
       "lowStockEditions": [
         {
-          "id": "c55ac412-0547-48fc-b4a9-4cc8a5b2d0fe",
+          "id": "b4f7a71e-eb63-4c40-9a74-a485c806243d",
           "inventoryStatus": "low-stock",
           "lowStockThreshold": 5,
-          "slug": "d38-dashboard-qa-mrqgp8vw-yexcu3-paperback",
+          "slug": "d38-dashboard-qa-mrrh0wwk-vmzz2d-paperback",
           "stockQuantity": 2,
-          "title": "D38 Dashboard QA Book mrqgp8vw-yexcu3"
+          "title": "D38 Dashboard QA Book mrrh0wwk-vmzz2d"
         },
         {
           "id": "00000000-0000-4000-8000-000000004000",
@@ -190,7 +190,7 @@
         {
           "createdAt": "2099-01-15T03:00:00+00:00",
           "customerName": "D38 Dashboard Customer",
-          "orderCode": "CF-D38C-MRQGP8VW",
+          "orderCode": "CF-D38C-MRRH0WWK",
           "paymentStatus": "cancelled",
           "shippingStatus": "cancelled",
           "status": "cancelled",
@@ -199,7 +199,7 @@
         {
           "createdAt": "2099-01-15T02:00:00+00:00",
           "customerName": "D38 Dashboard Customer",
-          "orderCode": "CF-D38B-MRQGP8VW",
+          "orderCode": "CF-D38B-MRRH0WWK",
           "paymentStatus": "pending",
           "shippingStatus": "pending",
           "status": "pending",
@@ -208,7 +208,7 @@
         {
           "createdAt": "2099-01-15T01:00:00+00:00",
           "customerName": "D38 Dashboard Customer",
-          "orderCode": "CF-D38A-MRQGP8VW",
+          "orderCode": "CF-D38A-MRRH0WWK",
           "paymentStatus": "confirmed",
           "shippingStatus": "delivered",
           "status": "completed",
@@ -218,10 +218,10 @@
       "revenueEstimateVnd": 500000,
       "topBooks": [
         {
-          "editionId": "c55ac412-0547-48fc-b4a9-4cc8a5b2d0fe",
+          "editionId": "b4f7a71e-eb63-4c40-9a74-a485c806243d",
           "quantitySold": 3,
           "revenueVnd": 500000,
-          "title": "D38 Dashboard QA Book mrqgp8vw-yexcu3"
+          "title": "D38 Dashboard QA Book mrrh0wwk-vmzz2d"
         }
       ]
     },
@@ -231,7 +231,7 @@
     "hasOverflow": false,
     "lowStockVisible": true,
     "pageReady": true,
-    "recentOrderCount": 3,
+    "recentOrderCount": 6,
     "revenueVisible": true,
     "topBookVisible": true
   }

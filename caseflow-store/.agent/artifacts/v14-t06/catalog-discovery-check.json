@@ -1,0 +1,504 @@
+{
+  "taskId": "V14-T06",
+  "generatedAt": "2026-07-19T07:44:58.490Z",
+  "baseURL": "http://127.0.0.1:3000",
+  "ok": true,
+  "pass": {
+    "activeFilterSummaryVisible": true,
+    "cardCountPreserved": true,
+    "cardVariantVariety": true,
+    "coverAspectRatio": true,
+    "filterPanelVisible": true,
+    "localImagesOnly": true,
+    "noOverflow": true,
+    "productLinksPreserved": true,
+    "quickLinksVisible": true
+  },
+  "viewportChecks": [
+    {
+      "cardVariants": [
+        "academic",
+        "editorial",
+        "offer",
+        "translation"
+      ],
+      "counts": {
+        "activeFilterContainers": 1,
+        "cards": 24,
+        "coverFrames": 24,
+        "filterPanels": 1,
+        "productLinks": 24,
+        "quickLinks": 6
+      },
+      "coverFrameBoxes": [
+        {
+          "height": 132,
+          "ratio": 0.667,
+          "width": 88
+        },
+        {
+          "height": 132,
+          "ratio": 0.667,
+          "width": 88
+        },
+        {
+          "height": 132,
+          "ratio": 0.667,
+          "width": 88
+        },
+        {
+          "height": 132,
+          "ratio": 0.667,
+          "width": 88
+        },
+        {
+          "height": 132,
+          "ratio": 0.667,
+          "width": 88
+        },
+        {
+          "height": 132,
+          "ratio": 0.667,
+          "width": 88
+        },
+        {
+          "height": 132,
+          "ratio": 0.667,
+          "width": 88
+        },
+        {
+          "height": 132,
+          "ratio": 0.667,
+          "width": 88
+        },
+        {
+          "height": 132,
+          "ratio": 0.667,
+          "width": 88
+        },
+        {
+          "height": 132,
+          "ratio": 0.667,
+          "width": 88
+        },
+        {
+          "height": 132,
+          "ratio": 0.667,
+          "width": 88
+        },
+        {
+          "height": 132,
+          "ratio": 0.667,
+          "width": 88
+        },
+        {
+          "height": 132,
+          "ratio": 0.667,
+          "width": 88
+        },
+        {
+          "height": 132,
+          "ratio": 0.667,
+          "width": 88
+        },
+        {
+          "height": 132,
+          "ratio": 0.667,
+          "width": 88
+        },
+        {
+          "height": 132,
+          "ratio": 0.667,
+          "width": 88
+        },
+        {
+          "height": 132,
+          "ratio": 0.667,
+          "width": 88
+        },
+        {
+          "height": 132,
+          "ratio": 0.667,
+          "width": 88
+        },
+        {
+          "height": 132,
+          "ratio": 0.667,
+          "width": 88
+        },
+        {
+          "height": 132,
+          "ratio": 0.667,
+          "width": 88
+        },
+        {
+          "height": 132,
+          "ratio": 0.667,
+          "width": 88
+        },
+        {
+          "height": 132,
+          "ratio": 0.667,
+          "width": 88
+        },
+        {
+          "height": 132,
+          "ratio": 0.667,
+          "width": 88
+        },
+        {
+          "height": 132,
+          "ratio": 0.667,
+          "width": 88
+        }
+      ],
+      "imageSourceCount": 24,
+      "layout": {
+        "documentWidth": 375,
+        "hasHorizontalOverflow": false,
+        "viewportWidth": 375
+      },
+      "localImageSourceProblems": [],
+      "name": "mobile-vi",
+      "pass": {
+        "activeFilterSummaryVisible": true,
+        "cardCountPreserved": true,
+        "cardVariantVariety": true,
+        "coverAspectRatio": true,
+        "filterPanelVisible": true,
+        "localImagesOnly": true,
+        "noOverflow": true,
+        "productLinksPreserved": true,
+        "quickLinksVisible": true
+      },
+      "screenshotPath": ".agent/artifacts/v14-t06/catalog-v14-mobile-vi-page-2.png",
+      "viewport": {
+        "height": 900,
+        "width": 375
+      }
+    },
+    {
+      "cardVariants": [
+        "academic",
+        "offer",
+        "translation"
+      ],
+      "counts": {
+        "activeFilterContainers": 1,
+        "cards": 24,
+        "coverFrames": 24,
+        "filterPanels": 1,
+        "productLinks": 24,
+        "quickLinks": 6
+      },
+      "coverFrameBoxes": [
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        }
+      ],
+      "imageSourceCount": 24,
+      "layout": {
+        "documentWidth": 1440,
+        "hasHorizontalOverflow": false,
+        "viewportWidth": 1440
+      },
+      "localImageSourceProblems": [],
+      "name": "desktop-en",
+      "pass": {
+        "activeFilterSummaryVisible": true,
+        "cardCountPreserved": true,
+        "cardVariantVariety": true,
+        "coverAspectRatio": true,
+        "filterPanelVisible": true,
+        "localImagesOnly": true,
+        "noOverflow": true,
+        "productLinksPreserved": true,
+        "quickLinksVisible": true
+      },
+      "screenshotPath": ".agent/artifacts/v14-t06/catalog-v14-desktop-en.png",
+      "viewport": {
+        "height": 1100,
+        "width": 1440
+      }
+    },
+    {
+      "cardVariants": [
+        "academic",
+        "editorial",
+        "offer",
+        "translation"
+      ],
+      "counts": {
+        "activeFilterContainers": 1,
+        "cards": 24,
+        "coverFrames": 24,
+        "filterPanels": 1,
+        "productLinks": 24,
+        "quickLinks": 6
+      },
+      "coverFrameBoxes": [
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        },
+        {
+          "height": 192,
+          "ratio": 0.667,
+          "width": 128
+        }
+      ],
+      "imageSourceCount": 24,
+      "layout": {
+        "documentWidth": 1280,
+        "hasHorizontalOverflow": false,
+        "viewportWidth": 1280
+      },
+      "localImageSourceProblems": [],
+      "name": "filtered-desktop-en",
+      "pass": {
+        "activeFilterSummaryVisible": true,
+        "cardCountPreserved": true,
+        "cardVariantVariety": true,
+        "coverAspectRatio": true,
+        "filterPanelVisible": true,
+        "localImagesOnly": true,
+        "noOverflow": true,
+        "productLinksPreserved": true,
+        "quickLinksVisible": true
+      },
+      "screenshotPath": ".agent/artifacts/v14-t06/catalog-v14-filtered-desktop-en.png",
+      "viewport": {
+        "height": 1000,
+        "width": 1280
+      }
+    }
+  ]
+}

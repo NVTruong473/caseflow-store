@@ -1,0 +1,583 @@
+{
+  "taskId": "V14-T07",
+  "baseURL": "http://127.0.0.1:3000",
+  "generatedAt": "2026-07-19T07:44:56.683Z",
+  "ok": true,
+  "pass": {
+    "commerceTrustVisible": true,
+    "coverAspectRatio": true,
+    "detailBasicsVisible": true,
+    "localImagesOnly": true,
+    "noHorizontalCardCollision": true,
+    "noHorizontalOverflow": true,
+    "noRecommendationRightOverflow": true,
+    "recommendationsVisible": true
+  },
+  "target": {
+    "recommendationCards": 4,
+    "slug": "the-old-man-and-the-sea-english-paperback"
+  },
+  "viewportChecks": [
+    {
+      "counts": {
+        "commercialProof": 1,
+        "confidenceSections": 1,
+        "detailImages": 1,
+        "detailPages": 1,
+        "editionComparison": 1,
+        "identitySections": 1,
+        "pricePanels": 1,
+        "purchaseControls": 1
+      },
+      "coverFrameBoxes": [
+        {
+          "height": 279,
+          "ratio": 0.667,
+          "width": 186
+        },
+        {
+          "height": 120,
+          "ratio": 0.667,
+          "width": 80
+        },
+        {
+          "height": 120,
+          "ratio": 0.667,
+          "width": 80
+        },
+        {
+          "height": 120,
+          "ratio": 0.667,
+          "width": 80
+        },
+        {
+          "height": 120,
+          "ratio": 0.667,
+          "width": 80
+        },
+        {
+          "height": 120,
+          "ratio": 0.667,
+          "width": 80
+        },
+        {
+          "height": 120,
+          "ratio": 0.667,
+          "width": 80
+        }
+      ],
+      "imageSourceCount": 7,
+      "layout": {
+        "documentWidth": 390,
+        "hasHorizontalOverflow": false,
+        "viewportWidth": 390
+      },
+      "localImageSourceProblems": [],
+      "name": "mobile-vi",
+      "recommendationCards": [
+        {
+          "card": {
+            "bottom": 4023,
+            "height": 156,
+            "left": 16,
+            "right": 374,
+            "top": 3867,
+            "width": 358
+          },
+          "content": {
+            "bottom": 4014,
+            "height": 138,
+            "left": 129,
+            "right": 365,
+            "top": 3876,
+            "width": 236
+          },
+          "cover": {
+            "bottom": 4000,
+            "height": 120,
+            "left": 29,
+            "right": 109,
+            "top": 3880,
+            "width": 80
+          },
+          "hasHorizontalCollision": false,
+          "hasRightOverflow": false,
+          "index": 0,
+          "slug": "a-christmas-carol-english-paperback"
+        },
+        {
+          "card": {
+            "bottom": 4195,
+            "height": 156,
+            "left": 16,
+            "right": 374,
+            "top": 4039,
+            "width": 358
+          },
+          "content": {
+            "bottom": 4186,
+            "height": 138,
+            "left": 129,
+            "right": 365,
+            "top": 4048,
+            "width": 236
+          },
+          "cover": {
+            "bottom": 4172,
+            "height": 120,
+            "left": 29,
+            "right": 109,
+            "top": 4052,
+            "width": 80
+          },
+          "hasHorizontalCollision": false,
+          "hasRightOverflow": false,
+          "index": 1,
+          "slug": "a-tale-of-two-cities-english-paperback"
+        },
+        {
+          "card": {
+            "bottom": 4390,
+            "height": 180,
+            "left": 16,
+            "right": 374,
+            "top": 4211,
+            "width": 358
+          },
+          "content": {
+            "bottom": 4381,
+            "height": 162,
+            "left": 129,
+            "right": 365,
+            "top": 4220,
+            "width": 236
+          },
+          "cover": {
+            "bottom": 4344,
+            "height": 120,
+            "left": 29,
+            "right": 109,
+            "top": 4224,
+            "width": 80
+          },
+          "hasHorizontalCollision": false,
+          "hasRightOverflow": false,
+          "index": 2,
+          "slug": "adventures-of-huckleberry-finn-english-paperback"
+        },
+        {
+          "card": {
+            "bottom": 4562,
+            "height": 156,
+            "left": 16,
+            "right": 374,
+            "top": 4406,
+            "width": 358
+          },
+          "content": {
+            "bottom": 4553,
+            "height": 138,
+            "left": 129,
+            "right": 365,
+            "top": 4415,
+            "width": 236
+          },
+          "cover": {
+            "bottom": 4539,
+            "height": 120,
+            "left": 29,
+            "right": 109,
+            "top": 4419,
+            "width": 80
+          },
+          "hasHorizontalCollision": false,
+          "hasRightOverflow": false,
+          "index": 3,
+          "slug": "anna-karenina-english-paperback"
+        }
+      ],
+      "screenshotPath": ".agent/artifacts/v14-t07/book-detail-v14-mobile-vi.png",
+      "viewport": {
+        "height": 1050,
+        "language": "vi",
+        "name": "mobile-vi",
+        "screenshotName": "book-detail-v14-mobile-vi.png",
+        "width": 390
+      }
+    },
+    {
+      "counts": {
+        "commercialProof": 1,
+        "confidenceSections": 1,
+        "detailImages": 1,
+        "detailPages": 1,
+        "editionComparison": 1,
+        "identitySections": 1,
+        "pricePanels": 1,
+        "purchaseControls": 1
+      },
+      "coverFrameBoxes": [
+        {
+          "height": 264,
+          "ratio": 0.667,
+          "width": 176
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        }
+      ],
+      "imageSourceCount": 7,
+      "layout": {
+        "documentWidth": 900,
+        "hasHorizontalOverflow": false,
+        "viewportWidth": 900
+      },
+      "localImageSourceProblems": [],
+      "name": "tablet-vi",
+      "recommendationCards": [
+        {
+          "card": {
+            "bottom": 3464,
+            "height": 170,
+            "left": 24,
+            "right": 876,
+            "top": 3294,
+            "width": 852
+          },
+          "content": {
+            "bottom": 3433,
+            "height": 108,
+            "left": 153,
+            "right": 867,
+            "top": 3325,
+            "width": 714
+          },
+          "cover": {
+            "bottom": 3451,
+            "height": 144,
+            "left": 37,
+            "right": 133,
+            "top": 3307,
+            "width": 96
+          },
+          "hasHorizontalCollision": false,
+          "hasRightOverflow": false,
+          "index": 0,
+          "slug": "a-christmas-carol-english-paperback"
+        },
+        {
+          "card": {
+            "bottom": 3650,
+            "height": 170,
+            "left": 24,
+            "right": 876,
+            "top": 3480,
+            "width": 852
+          },
+          "content": {
+            "bottom": 3619,
+            "height": 108,
+            "left": 153,
+            "right": 867,
+            "top": 3511,
+            "width": 714
+          },
+          "cover": {
+            "bottom": 3637,
+            "height": 144,
+            "left": 37,
+            "right": 133,
+            "top": 3493,
+            "width": 96
+          },
+          "hasHorizontalCollision": false,
+          "hasRightOverflow": false,
+          "index": 1,
+          "slug": "a-tale-of-two-cities-english-paperback"
+        },
+        {
+          "card": {
+            "bottom": 3836,
+            "height": 170,
+            "left": 24,
+            "right": 876,
+            "top": 3666,
+            "width": 852
+          },
+          "content": {
+            "bottom": 3805,
+            "height": 108,
+            "left": 153,
+            "right": 867,
+            "top": 3697,
+            "width": 714
+          },
+          "cover": {
+            "bottom": 3823,
+            "height": 144,
+            "left": 37,
+            "right": 133,
+            "top": 3679,
+            "width": 96
+          },
+          "hasHorizontalCollision": false,
+          "hasRightOverflow": false,
+          "index": 2,
+          "slug": "adventures-of-huckleberry-finn-english-paperback"
+        },
+        {
+          "card": {
+            "bottom": 4022,
+            "height": 170,
+            "left": 24,
+            "right": 876,
+            "top": 3852,
+            "width": 852
+          },
+          "content": {
+            "bottom": 3991,
+            "height": 108,
+            "left": 153,
+            "right": 867,
+            "top": 3883,
+            "width": 714
+          },
+          "cover": {
+            "bottom": 4009,
+            "height": 144,
+            "left": 37,
+            "right": 133,
+            "top": 3865,
+            "width": 96
+          },
+          "hasHorizontalCollision": false,
+          "hasRightOverflow": false,
+          "index": 3,
+          "slug": "anna-karenina-english-paperback"
+        }
+      ],
+      "screenshotPath": ".agent/artifacts/v14-t07/book-detail-v14-tablet-vi.png",
+      "viewport": {
+        "height": 950,
+        "language": "vi",
+        "name": "tablet-vi",
+        "screenshotName": "book-detail-v14-tablet-vi.png",
+        "width": 900
+      }
+    },
+    {
+      "counts": {
+        "commercialProof": 1,
+        "confidenceSections": 1,
+        "detailImages": 1,
+        "detailPages": 1,
+        "editionComparison": 1,
+        "identitySections": 1,
+        "pricePanels": 1,
+        "purchaseControls": 1
+      },
+      "coverFrameBoxes": [
+        {
+          "height": 264,
+          "ratio": 0.667,
+          "width": 176
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        },
+        {
+          "height": 144,
+          "ratio": 0.667,
+          "width": 96
+        }
+      ],
+      "imageSourceCount": 7,
+      "layout": {
+        "documentWidth": 1440,
+        "hasHorizontalOverflow": false,
+        "viewportWidth": 1440
+      },
+      "localImageSourceProblems": [],
+      "name": "desktop-en",
+      "recommendationCards": [
+        {
+          "card": {
+            "bottom": 2539,
+            "height": 175,
+            "left": 568,
+            "right": 908,
+            "top": 2364,
+            "width": 340
+          },
+          "content": {
+            "bottom": 2530,
+            "height": 157,
+            "left": 697,
+            "right": 899,
+            "top": 2373,
+            "width": 202
+          },
+          "cover": {
+            "bottom": 2521,
+            "height": 144,
+            "left": 581,
+            "right": 677,
+            "top": 2377,
+            "width": 96
+          },
+          "hasHorizontalCollision": false,
+          "hasRightOverflow": false,
+          "index": 0,
+          "slug": "a-christmas-carol-english-paperback"
+        },
+        {
+          "card": {
+            "bottom": 2539,
+            "height": 175,
+            "left": 924,
+            "right": 1264,
+            "top": 2364,
+            "width": 340
+          },
+          "content": {
+            "bottom": 2530,
+            "height": 157,
+            "left": 1053,
+            "right": 1255,
+            "top": 2373,
+            "width": 202
+          },
+          "cover": {
+            "bottom": 2521,
+            "height": 144,
+            "left": 937,
+            "right": 1033,
+            "top": 2377,
+            "width": 96
+          },
+          "hasHorizontalCollision": false,
+          "hasRightOverflow": false,
+          "index": 1,
+          "slug": "a-tale-of-two-cities-english-paperback"
+        },
+        {
+          "card": {
+            "bottom": 2755,
+            "height": 199,
+            "left": 568,
+            "right": 908,
+            "top": 2555,
+            "width": 340
+          },
+          "content": {
+            "bottom": 2746,
+            "height": 181,
+            "left": 697,
+            "right": 899,
+            "top": 2564,
+            "width": 202
+          },
+          "cover": {
+            "bottom": 2712,
+            "height": 144,
+            "left": 581,
+            "right": 677,
+            "top": 2568,
+            "width": 96
+          },
+          "hasHorizontalCollision": false,
+          "hasRightOverflow": false,
+          "index": 2,
+          "slug": "adventures-of-huckleberry-finn-english-paperback"
+        },
+        {
+          "card": {
+            "bottom": 2755,
+            "height": 199,
+            "left": 924,
+            "right": 1264,
+            "top": 2555,
+            "width": 340
+          },
+          "content": {
+            "bottom": 2734,
+            "height": 157,
+            "left": 1053,
+            "right": 1255,
+            "top": 2576,
+            "width": 202
+          },
+          "cover": {
+            "bottom": 2712,
+            "height": 144,
+            "left": 937,
+            "right": 1033,
+            "top": 2568,
+            "width": 96
+          },
+          "hasHorizontalCollision": false,
+          "hasRightOverflow": false,
+          "index": 3,
+          "slug": "anna-karenina-english-paperback"
+        }
+      ],
+      "screenshotPath": ".agent/artifacts/v14-t07/book-detail-v14-desktop-en.png",
+      "viewport": {
+        "height": 1200,
+        "language": "en",
+        "name": "desktop-en",
+        "screenshotName": "book-detail-v14-desktop-en.png",
+        "width": 1440
+      }
+    }
+  ]
+}

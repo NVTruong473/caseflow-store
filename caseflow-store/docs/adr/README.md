@@ -13,6 +13,7 @@ verified implementation outcome of each decision.
 | [ADR-0006](0006-pivot-to-caseflow-books.md) | Accepted | Pivot `v1.1` to CaseFlow Books | Implemented as a Vietnam-first bilingual bookstore with 100 editions, account-gated checkout, customer tracking, admin/staff operations, rule-based assistant, SEO, and documented content/payment limits. |
 | [ADR-0007](0007-realistic-bookstore-content-merchandising-upgrade.md) | Accepted | Use a provenance-first content and merchandising upgrade for `v1.2` | Released as `v1.2.0` with a 100-edition catalog, 100 project-created covers, truthful merchandising shelves, content-quality gates, and bounded storefront/admin polish. |
 | [ADR-0008](0008-visual-merchandising-brand-polish.md) | Accepted | Use a bounded visual merchandising and brand polish phase for `v1.3` | Governs post-`v1.2.0` visual polish: richer bookstore tokens, cover-led merchandising, Hallmark-informed audit discipline, and no new commerce/integration scope. |
+| [ADR-0009](0009-real-commerce-visual-merchandising-upgrade.md) | Accepted | Use a bounded real-commerce language and visual merchandising upgrade for `v1.4` | Governs post-`v1.3.1` runtime commercial-copy cleanup, structurally varied merchandising layouts, trust/policy surfaces, and operations polish without fake proof signals or new external integrations. |
 
 ## Status meanings
 

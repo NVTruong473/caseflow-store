@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-07-16T11:32:47.261Z",
-  "baseURL": "http://127.0.0.1:3005",
+  "generatedAt": "2026-07-19T06:44:09.075Z",
+  "baseURL": "http://127.0.0.1:3000",
   "ok": true,
   "pass": {
     "checkoutBlockedUntilProfileComplete": true,
@@ -35,7 +35,7 @@
     "editionId": "00000000-0000-4000-8000-000000003027",
     "slug": "a-christmas-carol-english-paperback"
   },
-  "testEmail": "caseflow-d31-profile-mrnfjgmp-4ip9ch@example.com",
+  "testEmail": "caseflow-d31-profile-mrrfixvc-x93rqg@example.com",
   "zodValidation": {
     "invalidPhoneRejected": true,
     "missingFieldsRejected": true,

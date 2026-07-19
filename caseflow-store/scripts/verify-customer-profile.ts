@@ -162,6 +162,7 @@ async function inspectVietnameseValidation(
   const hasHorizontalOverflow = await hasOverflow(page);
 
   await page.screenshot({
+    caret: "initial",
     fullPage: true,
     path: path.join(
       ARTIFACT_DIR,
@@ -240,6 +241,7 @@ async function inspectProfileFlow(
   const checkoutBlockedHasOverflow = await hasOverflow(page);
 
   await page.screenshot({
+    caret: "initial",
     fullPage: true,
     path: path.join(ARTIFACT_DIR, "checkout-profile-blocked-desktop-en.png"),
   });
@@ -261,6 +263,7 @@ async function inspectProfileFlow(
   const profileCompleteHasOverflow = await hasOverflow(page);
 
   await page.screenshot({
+    caret: "initial",
     fullPage: true,
     path: path.join(ARTIFACT_DIR, "customer-profile-complete-desktop-en.png"),
   });
@@ -288,6 +291,7 @@ async function inspectProfileFlow(
   const checkoutReadyHasOverflow = await hasOverflow(page);
 
   await page.screenshot({
+    caret: "initial",
     fullPage: true,
     path: path.join(ARTIFACT_DIR, "checkout-profile-ready-desktop-en.png"),
   });
@@ -313,9 +317,23 @@ async function inspectProfileFlow(
 
 async function loginCustomer(page: Page, email: string) {
   await page.goto("/account", { waitUntil: "domcontentloaded" });
-  await page.locator("[data-customer-auth-email]").fill(email);
-  await page.locator("[data-customer-auth-password]").fill(TEST_PASSWORD);
-  await page.locator("[data-customer-auth-submit]").click();
+  const response = await page.request.post(
+    new URL("/api/customer/session", page.url()).toString(),
+    {
+      data: {
+        email,
+        intent: "sign-in",
+        password: TEST_PASSWORD,
+      },
+    },
+  );
+
+  if (!response.ok()) {
+    const body = await response.text();
+    throw new Error(`Customer sign-in failed with ${response.status()}: ${body}`);
+  }
+
+  await page.goto("/account", { waitUntil: "domcontentloaded" });
   await page.locator("[data-customer-account-panel]").waitFor({ timeout: 20_000 });
 }
 

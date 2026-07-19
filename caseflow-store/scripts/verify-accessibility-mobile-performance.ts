@@ -432,7 +432,13 @@ async function inspectAdminPages(
 async function capturePageCheck(page: Page, filename: string, label: string) {
   const fullPath = path.join(ARTIFACT_DIR, filename);
 
-  await page.screenshot({ fullPage: true, path: fullPath });
+  await page.screenshot({
+    animations: "disabled",
+    caret: "initial",
+    fullPage: true,
+    path: fullPath,
+    timeout: 60_000,
+  });
 
   return {
     exists: fs.existsSync(fullPath),

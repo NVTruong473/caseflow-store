@@ -50,7 +50,8 @@ const customerProfileCopy = {
     district: "District",
     districtError: "Enter the district.",
     email: "Email",
-    emailHint: "Email belongs to the Supabase Auth account and is not changed here.",
+    emailHint:
+      "Email is tied to your CaseFlow Books account and cannot be changed in this form.",
     fullName: "Full name",
     fullNameError: "Enter your full name.",
     optional: "Optional",
@@ -79,7 +80,8 @@ const customerProfileCopy = {
     district: "Quận/huyện",
     districtError: "Nhập quận/huyện.",
     email: "Email",
-    emailHint: "Email thuộc tài khoản Supabase Auth và không đổi tại đây.",
+    emailHint:
+      "Email gắn với tài khoản CaseFlow Books và không đổi tại biểu mẫu này.",
     fullName: "Họ và tên",
     fullNameError: "Nhập họ và tên.",
     optional: "Không bắt buộc",

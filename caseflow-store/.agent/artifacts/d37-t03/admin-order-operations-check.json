@@ -4,7 +4,7 @@
     "data": null,
     "status": 401
   },
-  "baseURL": "http://127.0.0.1:3006",
+  "baseURL": "http://127.0.0.1:3000",
   "cleanup": {
     "removedRows": 1
   },
@@ -19,9 +19,9 @@
     "shipping_status": "shipped",
     "internal_notes": "UI note: packed and handed to carrier."
   },
-  "generatedAt": "2026-07-17T05:29:53.058Z",
+  "generatedAt": "2026-07-19T07:21:04.185Z",
   "ok": true,
-  "orderCode": "CF-D37OPS-MROI0FZR",
+  "orderCode": "CF-D37OPS-MRRGUTHP",
   "pass": {
     "accessControl": true,
     "apiTransitions": true,
@@ -36,9 +36,9 @@
         {
           "items": [
             {
-              "id": "479b0faf-3f88-449e-ad91-b85119574d92",
-              "orderId": "db566a46-136c-4d51-9df3-22c01a99e896",
-              "productId": "479b0faf-3f88-449e-ad91-b85119574d92",
+              "id": "76290c0d-626d-4633-9b0a-fe683d9724e7",
+              "orderId": "0735f412-068d-4249-b2d3-288679ba0204",
+              "productId": "76290c0d-626d-4633-9b0a-fe683d9724e7",
               "productName": "D37 QA Book Edition",
               "unitPrice": 220000,
               "quantity": 1,
@@ -52,10 +52,10 @@
             "shippingStatus": "pending"
           },
           "order": {
-            "id": "db566a46-136c-4d51-9df3-22c01a99e896",
-            "orderCode": "CF-D37OPS-MROI0FZR",
+            "id": "0735f412-068d-4249-b2d3-288679ba0204",
+            "orderCode": "CF-D37OPS-MRRGUTHP",
             "customerName": "D37 Orders Customer",
-            "customerEmail": "caseflow-d37-orders-customer-mroi0fzr-k9q5lg@example.com",
+            "customerEmail": "caseflow-d37-orders-customer-mrrguthp-wyq7qj@example.com",
             "customerPhone": "+84 912 345 678",
             "shippingAddress": "12 Nguyen Hue, Ben Nghe, District 1, Ho Chi Minh City, VN",
             "status": "pending",
@@ -63,8 +63,8 @@
             "paymentStatus": "pending",
             "shippingMethod": "standard",
             "subtotal": 220000,
-            "createdAt": "2026-07-17T05:29:38.712875+00:00",
-            "updatedAt": "2026-07-17T05:29:38.712875+00:00"
+            "createdAt": "2026-07-19T07:20:37.183414+00:00",
+            "updatedAt": "2026-07-19T07:20:37.183414+00:00"
           },
           "transitions": {
             "orderStatus": [
@@ -110,9 +110,9 @@
       "data": {
         "items": [
           {
-            "id": "479b0faf-3f88-449e-ad91-b85119574d92",
-            "orderId": "db566a46-136c-4d51-9df3-22c01a99e896",
-            "productId": "479b0faf-3f88-449e-ad91-b85119574d92",
+            "id": "76290c0d-626d-4633-9b0a-fe683d9724e7",
+            "orderId": "0735f412-068d-4249-b2d3-288679ba0204",
+            "productId": "76290c0d-626d-4633-9b0a-fe683d9724e7",
             "productName": "D37 QA Book Edition",
             "unitPrice": 220000,
             "quantity": 1,
@@ -126,10 +126,10 @@
           "shippingStatus": "preparing"
         },
         "order": {
-          "id": "db566a46-136c-4d51-9df3-22c01a99e896",
-          "orderCode": "CF-D37OPS-MROI0FZR",
+          "id": "0735f412-068d-4249-b2d3-288679ba0204",
+          "orderCode": "CF-D37OPS-MRRGUTHP",
           "customerName": "D37 Orders Customer",
-          "customerEmail": "caseflow-d37-orders-customer-mroi0fzr-k9q5lg@example.com",
+          "customerEmail": "caseflow-d37-orders-customer-mrrguthp-wyq7qj@example.com",
           "customerPhone": "+84 912 345 678",
           "shippingAddress": "12 Nguyen Hue, Ben Nghe, District 1, Ho Chi Minh City, VN",
           "status": "confirmed",
@@ -137,8 +137,8 @@
           "paymentStatus": "confirmed",
           "shippingMethod": "standard",
           "subtotal": 220000,
-          "createdAt": "2026-07-17T05:29:38.712875+00:00",
-          "updatedAt": "2026-07-17T05:29:47.317981+00:00"
+          "createdAt": "2026-07-19T07:20:37.183414+00:00",
+          "updatedAt": "2026-07-19T07:20:46.178112+00:00"
         },
         "transitions": {
           "orderStatus": [

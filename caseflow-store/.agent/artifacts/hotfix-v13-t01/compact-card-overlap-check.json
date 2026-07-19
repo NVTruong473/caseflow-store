@@ -1,6 +1,6 @@
 {
   "taskId": "HOTFIX-V13-T01",
-  "baseURL": "https://caseflow-store.vercel.app",
+  "baseURL": "http://127.0.0.1:3000",
   "detailTarget": {
     "recommendationCards": 4,
     "slug": "the-old-man-and-the-sea-english-paperback"
@@ -12,27 +12,27 @@
       "recommendationCards": [
         {
           "card": {
-            "bottom": 3182.13,
-            "height": 171.19,
+            "bottom": 4022.69,
+            "height": 155.89,
             "left": 16,
             "right": 374,
-            "top": 3010.94,
+            "top": 3866.8,
             "width": 358
           },
           "content": {
-            "bottom": 3165.13,
-            "height": 137.19,
+            "bottom": 4013.69,
+            "height": 137.89,
             "left": 129,
-            "right": 357,
-            "top": 3027.94,
-            "width": 228
+            "right": 365,
+            "top": 3875.8,
+            "width": 236
           },
           "cover": {
-            "bottom": 3147.94,
+            "bottom": 3999.8,
             "height": 120,
-            "left": 33,
-            "right": 113,
-            "top": 3027.94,
+            "left": 29,
+            "right": 109,
+            "top": 3879.8,
             "width": 80
           },
           "hasHorizontalCollision": false,
@@ -42,27 +42,27 @@
         },
         {
           "card": {
-            "bottom": 3369.31,
-            "height": 171.19,
+            "bottom": 4194.58,
+            "height": 155.89,
             "left": 16,
             "right": 374,
-            "top": 3198.13,
+            "top": 4038.69,
             "width": 358
           },
           "content": {
-            "bottom": 3352.31,
-            "height": 137.19,
+            "bottom": 4185.58,
+            "height": 137.89,
             "left": 129,
-            "right": 357,
-            "top": 3215.13,
-            "width": 228
+            "right": 365,
+            "top": 4047.69,
+            "width": 236
           },
           "cover": {
-            "bottom": 3335.13,
+            "bottom": 4171.69,
             "height": 120,
-            "left": 33,
-            "right": 113,
-            "top": 3215.13,
+            "left": 29,
+            "right": 109,
+            "top": 4051.69,
             "width": 80
           },
           "hasHorizontalCollision": false,
@@ -72,27 +72,27 @@
         },
         {
           "card": {
-            "bottom": 3580.5,
-            "height": 195.19,
+            "bottom": 4390.47,
+            "height": 179.89,
             "left": 16,
             "right": 374,
-            "top": 3385.31,
+            "top": 4210.58,
             "width": 358
           },
           "content": {
-            "bottom": 3563.5,
-            "height": 161.19,
+            "bottom": 4381.47,
+            "height": 161.89,
             "left": 129,
-            "right": 357,
-            "top": 3402.31,
-            "width": 228
+            "right": 365,
+            "top": 4219.58,
+            "width": 236
           },
           "cover": {
-            "bottom": 3522.31,
+            "bottom": 4343.58,
             "height": 120,
-            "left": 33,
-            "right": 113,
-            "top": 3402.31,
+            "left": 29,
+            "right": 109,
+            "top": 4223.58,
             "width": 80
           },
           "hasHorizontalCollision": false,
@@ -102,27 +102,27 @@
         },
         {
           "card": {
-            "bottom": 3767.69,
-            "height": 171.19,
+            "bottom": 4562.36,
+            "height": 155.89,
             "left": 16,
             "right": 374,
-            "top": 3596.5,
+            "top": 4406.47,
             "width": 358
           },
           "content": {
-            "bottom": 3750.69,
-            "height": 137.19,
+            "bottom": 4553.36,
+            "height": 137.89,
             "left": 129,
-            "right": 357,
-            "top": 3613.5,
-            "width": 228
+            "right": 365,
+            "top": 4415.47,
+            "width": 236
           },
           "cover": {
-            "bottom": 3733.5,
+            "bottom": 4539.47,
             "height": 120,
-            "left": 33,
-            "right": 113,
-            "top": 3613.5,
+            "left": 29,
+            "right": 109,
+            "top": 4419.47,
             "width": 80
           },
           "hasHorizontalCollision": false,
@@ -143,27 +143,27 @@
       "recommendationCards": [
         {
           "card": {
-            "bottom": 2817.05,
-            "height": 178,
+            "bottom": 3463.72,
+            "height": 170,
             "left": 24,
-            "right": 442,
-            "top": 2639.05,
-            "width": 418
+            "right": 876,
+            "top": 3293.72,
+            "width": 852
           },
           "content": {
-            "bottom": 2762.94,
-            "height": 106.89,
+            "bottom": 3432.52,
+            "height": 107.59,
             "left": 153,
-            "right": 425,
-            "top": 2656.05,
-            "width": 272
+            "right": 867,
+            "top": 3324.92,
+            "width": 714
           },
           "cover": {
-            "bottom": 2800.05,
+            "bottom": 3450.72,
             "height": 144,
-            "left": 41,
-            "right": 137,
-            "top": 2656.05,
+            "left": 37,
+            "right": 133,
+            "top": 3306.72,
             "width": 96
           },
           "hasHorizontalCollision": false,
@@ -173,27 +173,27 @@
         },
         {
           "card": {
-            "bottom": 2817.05,
-            "height": 178,
-            "left": 458,
+            "bottom": 3649.72,
+            "height": 170,
+            "left": 24,
             "right": 876,
-            "top": 2639.05,
-            "width": 418
+            "top": 3479.72,
+            "width": 852
           },
           "content": {
-            "bottom": 2762.94,
-            "height": 106.89,
-            "left": 587,
-            "right": 859,
-            "top": 2656.05,
-            "width": 272
+            "bottom": 3618.52,
+            "height": 107.59,
+            "left": 153,
+            "right": 867,
+            "top": 3510.92,
+            "width": 714
           },
           "cover": {
-            "bottom": 2800.05,
+            "bottom": 3636.72,
             "height": 144,
-            "left": 475,
-            "right": 571,
-            "top": 2656.05,
+            "left": 37,
+            "right": 133,
+            "top": 3492.72,
             "width": 96
           },
           "hasHorizontalCollision": false,
@@ -203,27 +203,27 @@
         },
         {
           "card": {
-            "bottom": 3011.05,
-            "height": 178,
+            "bottom": 3835.72,
+            "height": 170,
             "left": 24,
-            "right": 442,
-            "top": 2833.05,
-            "width": 418
+            "right": 876,
+            "top": 3665.72,
+            "width": 852
           },
           "content": {
-            "bottom": 2980.94,
-            "height": 130.89,
+            "bottom": 3804.52,
+            "height": 107.59,
             "left": 153,
-            "right": 425,
-            "top": 2850.05,
-            "width": 272
+            "right": 867,
+            "top": 3696.92,
+            "width": 714
           },
           "cover": {
-            "bottom": 2994.05,
+            "bottom": 3822.72,
             "height": 144,
-            "left": 41,
-            "right": 137,
-            "top": 2850.05,
+            "left": 37,
+            "right": 133,
+            "top": 3678.72,
             "width": 96
           },
           "hasHorizontalCollision": false,
@@ -233,27 +233,27 @@
         },
         {
           "card": {
-            "bottom": 3011.05,
-            "height": 178,
-            "left": 458,
+            "bottom": 4021.72,
+            "height": 170,
+            "left": 24,
             "right": 876,
-            "top": 2833.05,
-            "width": 418
+            "top": 3851.72,
+            "width": 852
           },
           "content": {
-            "bottom": 2956.94,
-            "height": 106.89,
-            "left": 587,
-            "right": 859,
-            "top": 2850.05,
-            "width": 272
+            "bottom": 3990.52,
+            "height": 107.59,
+            "left": 153,
+            "right": 867,
+            "top": 3882.92,
+            "width": 714
           },
           "cover": {
-            "bottom": 2994.05,
+            "bottom": 4008.72,
             "height": 144,
-            "left": 475,
-            "right": 571,
-            "top": 2850.05,
+            "left": 37,
+            "right": 133,
+            "top": 3864.72,
             "width": 96
           },
           "hasHorizontalCollision": false,
@@ -274,27 +274,27 @@
       "recommendationCards": [
         {
           "card": {
-            "bottom": 2181.45,
-            "height": 195.19,
+            "bottom": 2539.23,
+            "height": 175.48,
             "left": 568,
             "right": 908,
-            "top": 1986.27,
+            "top": 2363.75,
             "width": 340
           },
           "content": {
-            "bottom": 2164.45,
-            "height": 161.19,
+            "bottom": 2530.23,
+            "height": 157.48,
             "left": 697,
-            "right": 891,
-            "top": 2003.27,
-            "width": 194
+            "right": 899,
+            "top": 2372.75,
+            "width": 202
           },
           "cover": {
-            "bottom": 2147.27,
+            "bottom": 2520.75,
             "height": 144,
-            "left": 585,
-            "right": 681,
-            "top": 2003.27,
+            "left": 581,
+            "right": 677,
+            "top": 2376.75,
             "width": 96
           },
           "hasHorizontalCollision": false,
@@ -304,27 +304,27 @@
         },
         {
           "card": {
-            "bottom": 2181.45,
-            "height": 195.19,
+            "bottom": 2539.23,
+            "height": 175.48,
             "left": 924,
             "right": 1264,
-            "top": 1986.27,
+            "top": 2363.75,
             "width": 340
           },
           "content": {
-            "bottom": 2164.45,
-            "height": 161.19,
+            "bottom": 2530.23,
+            "height": 157.48,
             "left": 1053,
-            "right": 1247,
-            "top": 2003.27,
-            "width": 194
+            "right": 1255,
+            "top": 2372.75,
+            "width": 202
           },
           "cover": {
-            "bottom": 2147.27,
+            "bottom": 2520.75,
             "height": 144,
-            "left": 941,
-            "right": 1037,
-            "top": 2003.27,
+            "left": 937,
+            "right": 1033,
+            "top": 2376.75,
             "width": 96
           },
           "hasHorizontalCollision": false,
@@ -334,27 +334,27 @@
         },
         {
           "card": {
-            "bottom": 2416.64,
-            "height": 219.19,
+            "bottom": 2754.72,
+            "height": 199.48,
             "left": 568,
             "right": 908,
-            "top": 2197.45,
+            "top": 2555.23,
             "width": 340
           },
           "content": {
-            "bottom": 2399.64,
-            "height": 185.19,
+            "bottom": 2745.72,
+            "height": 181.48,
             "left": 697,
-            "right": 891,
-            "top": 2214.45,
-            "width": 194
+            "right": 899,
+            "top": 2564.23,
+            "width": 202
           },
           "cover": {
-            "bottom": 2358.45,
+            "bottom": 2712.23,
             "height": 144,
-            "left": 585,
-            "right": 681,
-            "top": 2214.45,
+            "left": 581,
+            "right": 677,
+            "top": 2568.23,
             "width": 96
           },
           "hasHorizontalCollision": false,
@@ -364,27 +364,27 @@
         },
         {
           "card": {
-            "bottom": 2416.64,
-            "height": 219.19,
+            "bottom": 2754.72,
+            "height": 199.48,
             "left": 924,
             "right": 1264,
-            "top": 2197.45,
+            "top": 2555.23,
             "width": 340
           },
           "content": {
-            "bottom": 2375.64,
-            "height": 161.19,
+            "bottom": 2733.72,
+            "height": 157.48,
             "left": 1053,
-            "right": 1247,
-            "top": 2214.45,
-            "width": 194
+            "right": 1255,
+            "top": 2576.23,
+            "width": 202
           },
           "cover": {
-            "bottom": 2358.45,
+            "bottom": 2712.23,
             "height": 144,
-            "left": 941,
-            "right": 1037,
-            "top": 2214.45,
+            "left": 937,
+            "right": 1033,
+            "top": 2568.23,
             "width": 96
           },
           "hasHorizontalCollision": false,
@@ -400,489 +400,249 @@
       }
     }
   ],
-  "generatedAt": "2026-07-18T17:35:30.391Z",
+  "generatedAt": "2026-07-19T05:45:29.130Z",
   "homeChecks": [
     {
       "compactCards": [
         {
           "card": {
-            "bottom": 5399.13,
-            "height": 144.89,
-            "left": 16,
-            "right": 374,
-            "top": 5254.23,
-            "width": 358
+            "bottom": 7597.06,
+            "height": 151.19,
+            "left": 33,
+            "right": 357,
+            "top": 7445.88,
+            "width": 324
           },
           "content": {
-            "bottom": 5390.13,
-            "height": 126.89,
-            "left": 121,
-            "right": 365,
-            "top": 5263.23,
-            "width": 244
+            "bottom": 7588.06,
+            "height": 133.19,
+            "left": 138,
+            "right": 348,
+            "top": 7454.88,
+            "width": 210
           },
           "cover": {
-            "bottom": 5383.23,
+            "bottom": 7574.88,
             "height": 120,
-            "left": 25,
-            "right": 105,
-            "top": 5263.23,
+            "left": 42,
+            "right": 122,
+            "top": 7454.88,
             "width": 80
           },
           "hasHorizontalCollision": false,
           "hasRightOverflow": false,
           "index": 0,
-          "slug": "alice-in-wonderland-english-paperback"
+          "slug": "the-brothers-karamazov-vietnamese-hardcover"
         },
         {
           "card": {
-            "bottom": 5560.02,
-            "height": 144.89,
-            "left": 16,
-            "right": 374,
-            "top": 5415.13,
-            "width": 358
+            "bottom": 7743.06,
+            "height": 138,
+            "left": 33,
+            "right": 357,
+            "top": 7605.06,
+            "width": 324
           },
           "content": {
-            "bottom": 5551.02,
-            "height": 126.89,
-            "left": 121,
-            "right": 365,
-            "top": 5424.13,
-            "width": 244
+            "bottom": 7716.95,
+            "height": 102.89,
+            "left": 138,
+            "right": 348,
+            "top": 7614.06,
+            "width": 210
           },
           "cover": {
-            "bottom": 5544.13,
+            "bottom": 7734.06,
             "height": 120,
-            "left": 25,
-            "right": 105,
-            "top": 5424.13,
+            "left": 42,
+            "right": 122,
+            "top": 7614.06,
             "width": 80
           },
           "hasHorizontalCollision": false,
           "hasRightOverflow": false,
           "index": 1,
-          "slug": "alice-in-wonderland-vietnamese-paperback"
+          "slug": "anna-karenina-vietnamese-paperback"
         },
         {
           "card": {
-            "bottom": 5714.02,
-            "height": 138,
-            "left": 16,
-            "right": 374,
-            "top": 5576.02,
-            "width": 358
+            "bottom": 7895.95,
+            "height": 144.89,
+            "left": 33,
+            "right": 357,
+            "top": 7751.06,
+            "width": 324
           },
           "content": {
-            "bottom": 5687.91,
-            "height": 102.89,
-            "left": 121,
-            "right": 365,
-            "top": 5585.02,
-            "width": 244
+            "bottom": 7886.95,
+            "height": 126.89,
+            "left": 138,
+            "right": 348,
+            "top": 7760.06,
+            "width": 210
           },
           "cover": {
-            "bottom": 5705.02,
+            "bottom": 7880.06,
             "height": 120,
-            "left": 25,
-            "right": 105,
-            "top": 5585.02,
+            "left": 42,
+            "right": 122,
+            "top": 7760.06,
             "width": 80
           },
           "hasHorizontalCollision": false,
           "hasRightOverflow": false,
           "index": 2,
-          "slug": "the-secret-garden-english-paperback"
+          "slug": "anne-of-green-gables-vietnamese-paperback"
         },
         {
           "card": {
-            "bottom": 5868.02,
+            "bottom": 8041.95,
             "height": 138,
-            "left": 16,
-            "right": 374,
-            "top": 5730.02,
-            "width": 358
+            "left": 33,
+            "right": 357,
+            "top": 7903.95,
+            "width": 324
           },
           "content": {
-            "bottom": 5841.91,
+            "bottom": 8015.84,
             "height": 102.89,
-            "left": 121,
-            "right": 365,
-            "top": 5739.02,
-            "width": 244
+            "left": 138,
+            "right": 348,
+            "top": 7912.95,
+            "width": 210
           },
           "cover": {
-            "bottom": 5859.02,
+            "bottom": 8032.95,
             "height": 120,
-            "left": 25,
-            "right": 105,
-            "top": 5739.02,
+            "left": 42,
+            "right": 122,
+            "top": 7912.95,
             "width": 80
           },
           "hasHorizontalCollision": false,
           "hasRightOverflow": false,
           "index": 3,
-          "slug": "the-secret-garden-vietnamese-paperback"
+          "slug": "the-three-musketeers-vietnamese-paperback"
         },
         {
           "card": {
-            "bottom": 7970.84,
-            "height": 151.19,
+            "bottom": 8323.95,
+            "height": 138,
             "left": 33,
             "right": 357,
-            "top": 7819.66,
+            "top": 8185.95,
             "width": 324
           },
           "content": {
-            "bottom": 7961.84,
-            "height": 133.19,
+            "bottom": 8297.84,
+            "height": 102.89,
             "left": 138,
             "right": 348,
-            "top": 7828.66,
+            "top": 8194.95,
             "width": 210
           },
           "cover": {
-            "bottom": 7948.66,
+            "bottom": 8314.95,
             "height": 120,
             "left": 42,
             "right": 122,
-            "top": 7828.66,
+            "top": 8194.95,
             "width": 80
           },
           "hasHorizontalCollision": false,
           "hasRightOverflow": false,
           "index": 4,
-          "slug": "the-brothers-karamazov-vietnamese-hardcover"
+          "slug": "a-tale-of-two-cities-english-paperback"
         },
         {
           "card": {
-            "bottom": 8116.84,
+            "bottom": 8469.95,
             "height": 138,
             "left": 33,
             "right": 357,
-            "top": 7978.84,
+            "top": 8331.95,
             "width": 324
           },
           "content": {
-            "bottom": 8090.73,
+            "bottom": 8443.84,
             "height": 102.89,
             "left": 138,
             "right": 348,
-            "top": 7987.84,
+            "top": 8340.95,
             "width": 210
           },
           "cover": {
-            "bottom": 8107.84,
+            "bottom": 8460.95,
             "height": 120,
             "left": 42,
             "right": 122,
-            "top": 7987.84,
+            "top": 8340.95,
             "width": 80
           },
           "hasHorizontalCollision": false,
           "hasRightOverflow": false,
           "index": 5,
-          "slug": "anna-karenina-vietnamese-paperback"
+          "slug": "dracula-english-paperback"
         },
         {
           "card": {
-            "bottom": 8269.73,
-            "height": 144.89,
+            "bottom": 8615.95,
+            "height": 138,
             "left": 33,
             "right": 357,
-            "top": 8124.84,
+            "top": 8477.95,
             "width": 324
           },
           "content": {
-            "bottom": 8260.73,
-            "height": 126.89,
+            "bottom": 8589.84,
+            "height": 102.89,
             "left": 138,
             "right": 348,
-            "top": 8133.84,
+            "top": 8486.95,
             "width": 210
           },
           "cover": {
-            "bottom": 8253.84,
+            "bottom": 8606.95,
             "height": 120,
             "left": 42,
             "right": 122,
-            "top": 8133.84,
+            "top": 8486.95,
             "width": 80
           },
           "hasHorizontalCollision": false,
           "hasRightOverflow": false,
           "index": 6,
-          "slug": "anne-of-green-gables-vietnamese-paperback"
+          "slug": "frankenstein-english-hardcover"
         },
         {
           "card": {
-            "bottom": 8415.73,
+            "bottom": 8761.95,
             "height": 138,
             "left": 33,
             "right": 357,
-            "top": 8277.73,
+            "top": 8623.95,
             "width": 324
           },
           "content": {
-            "bottom": 8389.63,
+            "bottom": 8735.84,
             "height": 102.89,
             "left": 138,
             "right": 348,
-            "top": 8286.73,
+            "top": 8632.95,
             "width": 210
           },
           "cover": {
-            "bottom": 8406.73,
+            "bottom": 8752.95,
             "height": 120,
             "left": 42,
             "right": 122,
-            "top": 8286.73,
+            "top": 8632.95,
             "width": 80
           },
           "hasHorizontalCollision": false,
           "hasRightOverflow": false,
           "index": 7,
-          "slug": "the-three-musketeers-vietnamese-paperback"
-        },
-        {
-          "card": {
-            "bottom": 8697.73,
-            "height": 138,
-            "left": 33,
-            "right": 357,
-            "top": 8559.73,
-            "width": 324
-          },
-          "content": {
-            "bottom": 8671.63,
-            "height": 102.89,
-            "left": 138,
-            "right": 348,
-            "top": 8568.73,
-            "width": 210
-          },
-          "cover": {
-            "bottom": 8688.73,
-            "height": 120,
-            "left": 42,
-            "right": 122,
-            "top": 8568.73,
-            "width": 80
-          },
-          "hasHorizontalCollision": false,
-          "hasRightOverflow": false,
-          "index": 8,
-          "slug": "a-tale-of-two-cities-english-paperback"
-        },
-        {
-          "card": {
-            "bottom": 8843.73,
-            "height": 138,
-            "left": 33,
-            "right": 357,
-            "top": 8705.73,
-            "width": 324
-          },
-          "content": {
-            "bottom": 8817.63,
-            "height": 102.89,
-            "left": 138,
-            "right": 348,
-            "top": 8714.73,
-            "width": 210
-          },
-          "cover": {
-            "bottom": 8834.73,
-            "height": 120,
-            "left": 42,
-            "right": 122,
-            "top": 8714.73,
-            "width": 80
-          },
-          "hasHorizontalCollision": false,
-          "hasRightOverflow": false,
-          "index": 9,
-          "slug": "dracula-english-paperback"
-        },
-        {
-          "card": {
-            "bottom": 8989.73,
-            "height": 138,
-            "left": 33,
-            "right": 357,
-            "top": 8851.73,
-            "width": 324
-          },
-          "content": {
-            "bottom": 8963.63,
-            "height": 102.89,
-            "left": 138,
-            "right": 348,
-            "top": 8860.73,
-            "width": 210
-          },
-          "cover": {
-            "bottom": 8980.73,
-            "height": 120,
-            "left": 42,
-            "right": 122,
-            "top": 8860.73,
-            "width": 80
-          },
-          "hasHorizontalCollision": false,
-          "hasRightOverflow": false,
-          "index": 10,
-          "slug": "frankenstein-english-hardcover"
-        },
-        {
-          "card": {
-            "bottom": 9135.73,
-            "height": 138,
-            "left": 33,
-            "right": 357,
-            "top": 8997.73,
-            "width": 324
-          },
-          "content": {
-            "bottom": 9109.63,
-            "height": 102.89,
-            "left": 138,
-            "right": 348,
-            "top": 9006.73,
-            "width": 210
-          },
-          "cover": {
-            "bottom": 9126.73,
-            "height": 120,
-            "left": 42,
-            "right": 122,
-            "top": 9006.73,
-            "width": 80
-          },
-          "hasHorizontalCollision": false,
-          "hasRightOverflow": false,
-          "index": 11,
           "slug": "great-expectations-english-paperback"
-        },
-        {
-          "card": {
-            "bottom": 9430.92,
-            "height": 151.19,
-            "left": 33,
-            "right": 357,
-            "top": 9279.73,
-            "width": 324
-          },
-          "content": {
-            "bottom": 9421.92,
-            "height": 133.19,
-            "left": 138,
-            "right": 348,
-            "top": 9288.73,
-            "width": 210
-          },
-          "cover": {
-            "bottom": 9408.73,
-            "height": 120,
-            "left": 42,
-            "right": 122,
-            "top": 9288.73,
-            "width": 80
-          },
-          "hasHorizontalCollision": false,
-          "hasRightOverflow": false,
-          "index": 12,
-          "slug": "pride-and-prejudice-vietnamese-special-edition"
-        },
-        {
-          "card": {
-            "bottom": 9614.11,
-            "height": 175.19,
-            "left": 33,
-            "right": 357,
-            "top": 9438.92,
-            "width": 324
-          },
-          "content": {
-            "bottom": 9605.11,
-            "height": 157.19,
-            "left": 138,
-            "right": 348,
-            "top": 9447.92,
-            "width": 210
-          },
-          "cover": {
-            "bottom": 9567.92,
-            "height": 120,
-            "left": 42,
-            "right": 122,
-            "top": 9447.92,
-            "width": 80
-          },
-          "hasHorizontalCollision": false,
-          "hasRightOverflow": false,
-          "index": 13,
-          "slug": "the-wealth-of-nations-vietnamese-paperback"
-        },
-        {
-          "card": {
-            "bottom": 9773.3,
-            "height": 151.19,
-            "left": 33,
-            "right": 357,
-            "top": 9622.11,
-            "width": 324
-          },
-          "content": {
-            "bottom": 9764.3,
-            "height": 133.19,
-            "left": 138,
-            "right": 348,
-            "top": 9631.11,
-            "width": 210
-          },
-          "cover": {
-            "bottom": 9751.11,
-            "height": 120,
-            "left": 42,
-            "right": 122,
-            "top": 9631.11,
-            "width": 80
-          },
-          "hasHorizontalCollision": false,
-          "hasRightOverflow": false,
-          "index": 14,
-          "slug": "the-call-of-the-wild-vietnamese-paperback"
-        },
-        {
-          "card": {
-            "bottom": 9932.48,
-            "height": 151.19,
-            "left": 33,
-            "right": 357,
-            "top": 9781.3,
-            "width": 324
-          },
-          "content": {
-            "bottom": 9923.48,
-            "height": 133.19,
-            "left": 138,
-            "right": 348,
-            "top": 9790.3,
-            "width": 210
-          },
-          "cover": {
-            "bottom": 9910.3,
-            "height": 120,
-            "left": 42,
-            "right": 122,
-            "top": 9790.3,
-            "width": 80
-          },
-          "hasHorizontalCollision": false,
-          "hasRightOverflow": false,
-          "index": 15,
-          "slug": "pride-and-prejudice-english-special-edition"
         }
       ],
       "hasPageOverflow": false,
@@ -898,483 +658,243 @@
       "compactCards": [
         {
           "card": {
-            "bottom": 2483.16,
+            "bottom": 5641.83,
             "height": 162,
-            "left": 24,
-            "right": 442,
-            "top": 2321.16,
-            "width": 418
+            "left": 41,
+            "right": 859,
+            "top": 5479.83,
+            "width": 818
           },
           "content": {
-            "bottom": 2457.05,
-            "height": 126.89,
-            "left": 145,
-            "right": 433,
-            "top": 2330.16,
-            "width": 288
+            "bottom": 5591.72,
+            "height": 102.89,
+            "left": 162,
+            "right": 850,
+            "top": 5488.83,
+            "width": 688
           },
           "cover": {
-            "bottom": 2474.16,
+            "bottom": 5632.83,
             "height": 144,
-            "left": 33,
-            "right": 129,
-            "top": 2330.16,
+            "left": 50,
+            "right": 146,
+            "top": 5488.83,
             "width": 96
           },
           "hasHorizontalCollision": false,
           "hasRightOverflow": false,
           "index": 0,
-          "slug": "alice-in-wonderland-english-paperback"
+          "slug": "the-brothers-karamazov-vietnamese-hardcover"
         },
         {
           "card": {
-            "bottom": 2483.16,
+            "bottom": 5811.83,
             "height": 162,
-            "left": 458,
-            "right": 876,
-            "top": 2321.16,
-            "width": 418
+            "left": 41,
+            "right": 859,
+            "top": 5649.83,
+            "width": 818
           },
           "content": {
-            "bottom": 2457.05,
-            "height": 126.89,
-            "left": 579,
-            "right": 867,
-            "top": 2330.16,
-            "width": 288
+            "bottom": 5761.72,
+            "height": 102.89,
+            "left": 162,
+            "right": 850,
+            "top": 5658.83,
+            "width": 688
           },
           "cover": {
-            "bottom": 2474.16,
+            "bottom": 5802.83,
             "height": 144,
-            "left": 467,
-            "right": 563,
-            "top": 2330.16,
+            "left": 50,
+            "right": 146,
+            "top": 5658.83,
             "width": 96
           },
           "hasHorizontalCollision": false,
           "hasRightOverflow": false,
           "index": 1,
-          "slug": "alice-in-wonderland-vietnamese-paperback"
+          "slug": "anna-karenina-vietnamese-paperback"
         },
         {
           "card": {
-            "bottom": 2661.16,
+            "bottom": 5981.83,
             "height": 162,
-            "left": 24,
-            "right": 442,
-            "top": 2499.16,
-            "width": 418
+            "left": 41,
+            "right": 859,
+            "top": 5819.83,
+            "width": 818
           },
           "content": {
-            "bottom": 2611.05,
+            "bottom": 5931.72,
             "height": 102.89,
-            "left": 145,
-            "right": 433,
-            "top": 2508.16,
-            "width": 288
+            "left": 162,
+            "right": 850,
+            "top": 5828.83,
+            "width": 688
           },
           "cover": {
-            "bottom": 2652.16,
+            "bottom": 5972.83,
             "height": 144,
-            "left": 33,
-            "right": 129,
-            "top": 2508.16,
+            "left": 50,
+            "right": 146,
+            "top": 5828.83,
             "width": 96
           },
           "hasHorizontalCollision": false,
           "hasRightOverflow": false,
           "index": 2,
-          "slug": "the-secret-garden-english-paperback"
+          "slug": "anne-of-green-gables-vietnamese-paperback"
         },
         {
           "card": {
-            "bottom": 2661.16,
+            "bottom": 6151.83,
             "height": 162,
-            "left": 458,
-            "right": 876,
-            "top": 2499.16,
-            "width": 418
+            "left": 41,
+            "right": 859,
+            "top": 5989.83,
+            "width": 818
           },
           "content": {
-            "bottom": 2611.05,
+            "bottom": 6101.72,
             "height": 102.89,
-            "left": 579,
-            "right": 867,
-            "top": 2508.16,
-            "width": 288
+            "left": 162,
+            "right": 850,
+            "top": 5998.83,
+            "width": 688
           },
           "cover": {
-            "bottom": 2652.16,
+            "bottom": 6142.83,
             "height": 144,
-            "left": 467,
-            "right": 563,
-            "top": 2508.16,
+            "left": 50,
+            "right": 146,
+            "top": 5998.83,
             "width": 96
           },
           "hasHorizontalCollision": false,
           "hasRightOverflow": false,
           "index": 3,
-          "slug": "the-secret-garden-vietnamese-paperback"
+          "slug": "the-three-musketeers-vietnamese-paperback"
         },
         {
           "card": {
-            "bottom": 4541.2,
+            "bottom": 6433.83,
             "height": 162,
             "left": 41,
             "right": 859,
-            "top": 4379.2,
+            "top": 6271.83,
             "width": 818
           },
           "content": {
-            "bottom": 4491.09,
+            "bottom": 6383.72,
             "height": 102.89,
             "left": 162,
             "right": 850,
-            "top": 4388.2,
+            "top": 6280.83,
             "width": 688
           },
           "cover": {
-            "bottom": 4532.2,
+            "bottom": 6424.83,
             "height": 144,
             "left": 50,
             "right": 146,
-            "top": 4388.2,
+            "top": 6280.83,
             "width": 96
           },
           "hasHorizontalCollision": false,
           "hasRightOverflow": false,
           "index": 4,
-          "slug": "the-brothers-karamazov-vietnamese-hardcover"
+          "slug": "a-tale-of-two-cities-english-paperback"
         },
         {
           "card": {
-            "bottom": 4711.2,
+            "bottom": 6603.83,
             "height": 162,
             "left": 41,
             "right": 859,
-            "top": 4549.2,
+            "top": 6441.83,
             "width": 818
           },
           "content": {
-            "bottom": 4661.09,
+            "bottom": 6553.72,
             "height": 102.89,
             "left": 162,
             "right": 850,
-            "top": 4558.2,
+            "top": 6450.83,
             "width": 688
           },
           "cover": {
-            "bottom": 4702.2,
+            "bottom": 6594.83,
             "height": 144,
             "left": 50,
             "right": 146,
-            "top": 4558.2,
+            "top": 6450.83,
             "width": 96
           },
           "hasHorizontalCollision": false,
           "hasRightOverflow": false,
           "index": 5,
-          "slug": "anna-karenina-vietnamese-paperback"
+          "slug": "dracula-english-paperback"
         },
         {
           "card": {
-            "bottom": 4881.2,
+            "bottom": 6773.83,
             "height": 162,
             "left": 41,
             "right": 859,
-            "top": 4719.2,
+            "top": 6611.83,
             "width": 818
           },
           "content": {
-            "bottom": 4831.09,
+            "bottom": 6723.72,
             "height": 102.89,
             "left": 162,
             "right": 850,
-            "top": 4728.2,
+            "top": 6620.83,
             "width": 688
           },
           "cover": {
-            "bottom": 4872.2,
+            "bottom": 6764.83,
             "height": 144,
             "left": 50,
             "right": 146,
-            "top": 4728.2,
+            "top": 6620.83,
             "width": 96
           },
           "hasHorizontalCollision": false,
           "hasRightOverflow": false,
           "index": 6,
-          "slug": "anne-of-green-gables-vietnamese-paperback"
+          "slug": "frankenstein-english-hardcover"
         },
         {
           "card": {
-            "bottom": 5051.2,
+            "bottom": 6943.83,
             "height": 162,
             "left": 41,
             "right": 859,
-            "top": 4889.2,
+            "top": 6781.83,
             "width": 818
           },
           "content": {
-            "bottom": 5001.09,
+            "bottom": 6893.72,
             "height": 102.89,
             "left": 162,
             "right": 850,
-            "top": 4898.2,
+            "top": 6790.83,
             "width": 688
           },
           "cover": {
-            "bottom": 5042.2,
+            "bottom": 6934.83,
             "height": 144,
             "left": 50,
             "right": 146,
-            "top": 4898.2,
+            "top": 6790.83,
             "width": 96
           },
           "hasHorizontalCollision": false,
           "hasRightOverflow": false,
           "index": 7,
-          "slug": "the-three-musketeers-vietnamese-paperback"
-        },
-        {
-          "card": {
-            "bottom": 5333.2,
-            "height": 162,
-            "left": 41,
-            "right": 859,
-            "top": 5171.2,
-            "width": 818
-          },
-          "content": {
-            "bottom": 5283.09,
-            "height": 102.89,
-            "left": 162,
-            "right": 850,
-            "top": 5180.2,
-            "width": 688
-          },
-          "cover": {
-            "bottom": 5324.2,
-            "height": 144,
-            "left": 50,
-            "right": 146,
-            "top": 5180.2,
-            "width": 96
-          },
-          "hasHorizontalCollision": false,
-          "hasRightOverflow": false,
-          "index": 8,
-          "slug": "a-tale-of-two-cities-english-paperback"
-        },
-        {
-          "card": {
-            "bottom": 5503.2,
-            "height": 162,
-            "left": 41,
-            "right": 859,
-            "top": 5341.2,
-            "width": 818
-          },
-          "content": {
-            "bottom": 5453.09,
-            "height": 102.89,
-            "left": 162,
-            "right": 850,
-            "top": 5350.2,
-            "width": 688
-          },
-          "cover": {
-            "bottom": 5494.2,
-            "height": 144,
-            "left": 50,
-            "right": 146,
-            "top": 5350.2,
-            "width": 96
-          },
-          "hasHorizontalCollision": false,
-          "hasRightOverflow": false,
-          "index": 9,
-          "slug": "dracula-english-paperback"
-        },
-        {
-          "card": {
-            "bottom": 5673.2,
-            "height": 162,
-            "left": 41,
-            "right": 859,
-            "top": 5511.2,
-            "width": 818
-          },
-          "content": {
-            "bottom": 5623.09,
-            "height": 102.89,
-            "left": 162,
-            "right": 850,
-            "top": 5520.2,
-            "width": 688
-          },
-          "cover": {
-            "bottom": 5664.2,
-            "height": 144,
-            "left": 50,
-            "right": 146,
-            "top": 5520.2,
-            "width": 96
-          },
-          "hasHorizontalCollision": false,
-          "hasRightOverflow": false,
-          "index": 10,
-          "slug": "frankenstein-english-hardcover"
-        },
-        {
-          "card": {
-            "bottom": 5843.2,
-            "height": 162,
-            "left": 41,
-            "right": 859,
-            "top": 5681.2,
-            "width": 818
-          },
-          "content": {
-            "bottom": 5793.09,
-            "height": 102.89,
-            "left": 162,
-            "right": 850,
-            "top": 5690.2,
-            "width": 688
-          },
-          "cover": {
-            "bottom": 5834.2,
-            "height": 144,
-            "left": 50,
-            "right": 146,
-            "top": 5690.2,
-            "width": 96
-          },
-          "hasHorizontalCollision": false,
-          "hasRightOverflow": false,
-          "index": 11,
           "slug": "great-expectations-english-paperback"
-        },
-        {
-          "card": {
-            "bottom": 6125.2,
-            "height": 162,
-            "left": 41,
-            "right": 859,
-            "top": 5963.2,
-            "width": 818
-          },
-          "content": {
-            "bottom": 6075.09,
-            "height": 102.89,
-            "left": 162,
-            "right": 850,
-            "top": 5972.2,
-            "width": 688
-          },
-          "cover": {
-            "bottom": 6116.2,
-            "height": 144,
-            "left": 50,
-            "right": 146,
-            "top": 5972.2,
-            "width": 96
-          },
-          "hasHorizontalCollision": false,
-          "hasRightOverflow": false,
-          "index": 12,
-          "slug": "pride-and-prejudice-vietnamese-special-edition"
-        },
-        {
-          "card": {
-            "bottom": 6295.2,
-            "height": 162,
-            "left": 41,
-            "right": 859,
-            "top": 6133.2,
-            "width": 818
-          },
-          "content": {
-            "bottom": 6245.09,
-            "height": 102.89,
-            "left": 162,
-            "right": 850,
-            "top": 6142.2,
-            "width": 688
-          },
-          "cover": {
-            "bottom": 6286.2,
-            "height": 144,
-            "left": 50,
-            "right": 146,
-            "top": 6142.2,
-            "width": 96
-          },
-          "hasHorizontalCollision": false,
-          "hasRightOverflow": false,
-          "index": 13,
-          "slug": "the-wealth-of-nations-vietnamese-paperback"
-        },
-        {
-          "card": {
-            "bottom": 6465.2,
-            "height": 162,
-            "left": 41,
-            "right": 859,
-            "top": 6303.2,
-            "width": 818
-          },
-          "content": {
-            "bottom": 6415.09,
-            "height": 102.89,
-            "left": 162,
-            "right": 850,
-            "top": 6312.2,
-            "width": 688
-          },
-          "cover": {
-            "bottom": 6456.2,
-            "height": 144,
-            "left": 50,
-            "right": 146,
-            "top": 6312.2,
-            "width": 96
-          },
-          "hasHorizontalCollision": false,
-          "hasRightOverflow": false,
-          "index": 14,
-          "slug": "the-call-of-the-wild-vietnamese-paperback"
-        },
-        {
-          "card": {
-            "bottom": 6635.2,
-            "height": 162,
-            "left": 41,
-            "right": 859,
-            "top": 6473.2,
-            "width": 818
-          },
-          "content": {
-            "bottom": 6585.09,
-            "height": 102.89,
-            "left": 162,
-            "right": 850,
-            "top": 6482.2,
-            "width": 688
-          },
-          "cover": {
-            "bottom": 6626.2,
-            "height": 144,
-            "left": 50,
-            "right": 146,
-            "top": 6482.2,
-            "width": 96
-          },
-          "hasHorizontalCollision": false,
-          "hasRightOverflow": false,
-          "index": 15,
-          "slug": "pride-and-prejudice-english-special-edition"
         }
       ],
       "hasPageOverflow": false,
@@ -1390,483 +910,243 @@
       "compactCards": [
         {
           "card": {
-            "bottom": 2456.5,
-            "height": 195.48,
-            "left": 176,
-            "right": 490,
-            "top": 2261.02,
-            "width": 314
+            "bottom": 3901.98,
+            "height": 162,
+            "left": 193,
+            "right": 695,
+            "top": 3739.98,
+            "width": 502
           },
           "content": {
-            "bottom": 2417.2,
-            "height": 147.19,
-            "left": 297,
-            "right": 481,
-            "top": 2270.02,
-            "width": 184
+            "bottom": 3872.17,
+            "height": 123.19,
+            "left": 314,
+            "right": 686,
+            "top": 3748.98,
+            "width": 372
           },
           "cover": {
-            "bottom": 2414.02,
+            "bottom": 3892.98,
             "height": 144,
-            "left": 185,
-            "right": 281,
-            "top": 2270.02,
+            "left": 202,
+            "right": 298,
+            "top": 3748.98,
             "width": 96
           },
           "hasHorizontalCollision": false,
           "hasRightOverflow": false,
           "index": 0,
-          "slug": "alice-in-wonderland-english-paperback"
+          "slug": "the-brothers-karamazov-vietnamese-hardcover"
         },
         {
           "card": {
-            "bottom": 2456.5,
-            "height": 195.48,
-            "left": 506,
-            "right": 820,
-            "top": 2261.02,
-            "width": 314
+            "bottom": 4071.98,
+            "height": 162,
+            "left": 193,
+            "right": 695,
+            "top": 3909.98,
+            "width": 502
           },
           "content": {
-            "bottom": 2447.5,
-            "height": 177.48,
-            "left": 627,
-            "right": 811,
-            "top": 2270.02,
-            "width": 184
+            "bottom": 4042.17,
+            "height": 123.19,
+            "left": 314,
+            "right": 686,
+            "top": 3918.98,
+            "width": 372
           },
           "cover": {
-            "bottom": 2414.02,
+            "bottom": 4062.98,
             "height": 144,
-            "left": 515,
-            "right": 611,
-            "top": 2270.02,
+            "left": 202,
+            "right": 298,
+            "top": 3918.98,
             "width": 96
           },
           "hasHorizontalCollision": false,
           "hasRightOverflow": false,
           "index": 1,
-          "slug": "alice-in-wonderland-vietnamese-paperback"
+          "slug": "anna-karenina-vietnamese-paperback"
         },
         {
           "card": {
-            "bottom": 2634.5,
+            "bottom": 4241.98,
             "height": 162,
-            "left": 176,
-            "right": 490,
-            "top": 2472.5,
-            "width": 314
+            "left": 193,
+            "right": 695,
+            "top": 4079.98,
+            "width": 502
           },
           "content": {
-            "bottom": 2604.69,
+            "bottom": 4212.17,
             "height": 123.19,
-            "left": 297,
-            "right": 481,
-            "top": 2481.5,
-            "width": 184
+            "left": 314,
+            "right": 686,
+            "top": 4088.98,
+            "width": 372
           },
           "cover": {
-            "bottom": 2625.5,
+            "bottom": 4232.98,
             "height": 144,
-            "left": 185,
-            "right": 281,
-            "top": 2481.5,
+            "left": 202,
+            "right": 298,
+            "top": 4088.98,
             "width": 96
           },
           "hasHorizontalCollision": false,
           "hasRightOverflow": false,
           "index": 2,
-          "slug": "the-secret-garden-english-paperback"
+          "slug": "anne-of-green-gables-vietnamese-paperback"
         },
         {
           "card": {
-            "bottom": 2634.5,
+            "bottom": 4411.98,
             "height": 162,
-            "left": 506,
-            "right": 820,
-            "top": 2472.5,
-            "width": 314
+            "left": 193,
+            "right": 695,
+            "top": 4249.98,
+            "width": 502
           },
           "content": {
-            "bottom": 2604.69,
+            "bottom": 4382.17,
             "height": 123.19,
-            "left": 627,
-            "right": 811,
-            "top": 2481.5,
-            "width": 184
+            "left": 314,
+            "right": 686,
+            "top": 4258.98,
+            "width": 372
           },
           "cover": {
-            "bottom": 2625.5,
+            "bottom": 4402.98,
             "height": 144,
-            "left": 515,
-            "right": 611,
-            "top": 2481.5,
+            "left": 202,
+            "right": 298,
+            "top": 4258.98,
             "width": 96
           },
           "hasHorizontalCollision": false,
           "hasRightOverflow": false,
           "index": 3,
-          "slug": "the-secret-garden-vietnamese-paperback"
+          "slug": "the-three-musketeers-vietnamese-paperback"
         },
         {
           "card": {
-            "bottom": 3571.36,
-            "height": 195.48,
-            "left": 193,
-            "right": 511,
-            "top": 3375.88,
-            "width": 318
+            "bottom": 3901.98,
+            "height": 162,
+            "left": 745,
+            "right": 1247,
+            "top": 3739.98,
+            "width": 502
           },
           "content": {
-            "bottom": 3562.36,
-            "height": 177.48,
-            "left": 314,
-            "right": 502,
-            "top": 3384.88,
-            "width": 188
+            "bottom": 3872.17,
+            "height": 123.19,
+            "left": 866,
+            "right": 1238,
+            "top": 3748.98,
+            "width": 372
           },
           "cover": {
-            "bottom": 3528.88,
+            "bottom": 3892.98,
             "height": 144,
-            "left": 202,
-            "right": 298,
-            "top": 3384.88,
+            "left": 754,
+            "right": 850,
+            "top": 3748.98,
             "width": 96
           },
           "hasHorizontalCollision": false,
           "hasRightOverflow": false,
           "index": 4,
-          "slug": "the-brothers-karamazov-vietnamese-hardcover"
+          "slug": "a-tale-of-two-cities-english-paperback"
         },
         {
           "card": {
-            "bottom": 3741.36,
+            "bottom": 4071.98,
             "height": 162,
-            "left": 193,
-            "right": 511,
-            "top": 3579.36,
-            "width": 318
+            "left": 745,
+            "right": 1247,
+            "top": 3909.98,
+            "width": 502
           },
           "content": {
-            "bottom": 3711.55,
+            "bottom": 4042.17,
             "height": 123.19,
-            "left": 314,
-            "right": 502,
-            "top": 3588.36,
-            "width": 188
+            "left": 866,
+            "right": 1238,
+            "top": 3918.98,
+            "width": 372
           },
           "cover": {
-            "bottom": 3732.36,
+            "bottom": 4062.98,
             "height": 144,
-            "left": 202,
-            "right": 298,
-            "top": 3588.36,
+            "left": 754,
+            "right": 850,
+            "top": 3918.98,
             "width": 96
           },
           "hasHorizontalCollision": false,
           "hasRightOverflow": false,
           "index": 5,
-          "slug": "anna-karenina-vietnamese-paperback"
+          "slug": "dracula-english-paperback"
         },
         {
           "card": {
-            "bottom": 3911.36,
+            "bottom": 4241.98,
             "height": 162,
-            "left": 193,
-            "right": 511,
-            "top": 3749.36,
-            "width": 318
+            "left": 745,
+            "right": 1247,
+            "top": 4079.98,
+            "width": 502
           },
           "content": {
-            "bottom": 3881.55,
+            "bottom": 4212.17,
             "height": 123.19,
-            "left": 314,
-            "right": 502,
-            "top": 3758.36,
-            "width": 188
+            "left": 866,
+            "right": 1238,
+            "top": 4088.98,
+            "width": 372
           },
           "cover": {
-            "bottom": 3902.36,
+            "bottom": 4232.98,
             "height": 144,
-            "left": 202,
-            "right": 298,
-            "top": 3758.36,
+            "left": 754,
+            "right": 850,
+            "top": 4088.98,
             "width": 96
           },
           "hasHorizontalCollision": false,
           "hasRightOverflow": false,
           "index": 6,
-          "slug": "anne-of-green-gables-vietnamese-paperback"
+          "slug": "frankenstein-english-hardcover"
         },
         {
           "card": {
-            "bottom": 4081.36,
+            "bottom": 4411.98,
             "height": 162,
-            "left": 193,
-            "right": 511,
-            "top": 3919.36,
-            "width": 318
+            "left": 745,
+            "right": 1247,
+            "top": 4249.98,
+            "width": 502
           },
           "content": {
-            "bottom": 4051.55,
+            "bottom": 4382.17,
             "height": 123.19,
-            "left": 314,
-            "right": 502,
-            "top": 3928.36,
-            "width": 188
+            "left": 866,
+            "right": 1238,
+            "top": 4258.98,
+            "width": 372
           },
           "cover": {
-            "bottom": 4072.36,
+            "bottom": 4402.98,
             "height": 144,
-            "left": 202,
-            "right": 298,
-            "top": 3928.36,
+            "left": 754,
+            "right": 850,
+            "top": 4258.98,
             "width": 96
           },
           "hasHorizontalCollision": false,
           "hasRightOverflow": false,
           "index": 7,
-          "slug": "the-three-musketeers-vietnamese-paperback"
-        },
-        {
-          "card": {
-            "bottom": 3537.88,
-            "height": 162,
-            "left": 561,
-            "right": 879,
-            "top": 3375.88,
-            "width": 318
-          },
-          "content": {
-            "bottom": 3508.06,
-            "height": 123.19,
-            "left": 682,
-            "right": 870,
-            "top": 3384.88,
-            "width": 188
-          },
-          "cover": {
-            "bottom": 3528.88,
-            "height": 144,
-            "left": 570,
-            "right": 666,
-            "top": 3384.88,
-            "width": 96
-          },
-          "hasHorizontalCollision": false,
-          "hasRightOverflow": false,
-          "index": 8,
-          "slug": "a-tale-of-two-cities-english-paperback"
-        },
-        {
-          "card": {
-            "bottom": 3707.88,
-            "height": 162,
-            "left": 561,
-            "right": 879,
-            "top": 3545.88,
-            "width": 318
-          },
-          "content": {
-            "bottom": 3678.06,
-            "height": 123.19,
-            "left": 682,
-            "right": 870,
-            "top": 3554.88,
-            "width": 188
-          },
-          "cover": {
-            "bottom": 3698.88,
-            "height": 144,
-            "left": 570,
-            "right": 666,
-            "top": 3554.88,
-            "width": 96
-          },
-          "hasHorizontalCollision": false,
-          "hasRightOverflow": false,
-          "index": 9,
-          "slug": "dracula-english-paperback"
-        },
-        {
-          "card": {
-            "bottom": 3877.88,
-            "height": 162,
-            "left": 561,
-            "right": 879,
-            "top": 3715.88,
-            "width": 318
-          },
-          "content": {
-            "bottom": 3848.06,
-            "height": 123.19,
-            "left": 682,
-            "right": 870,
-            "top": 3724.88,
-            "width": 188
-          },
-          "cover": {
-            "bottom": 3868.88,
-            "height": 144,
-            "left": 570,
-            "right": 666,
-            "top": 3724.88,
-            "width": 96
-          },
-          "hasHorizontalCollision": false,
-          "hasRightOverflow": false,
-          "index": 10,
-          "slug": "frankenstein-english-hardcover"
-        },
-        {
-          "card": {
-            "bottom": 4047.88,
-            "height": 162,
-            "left": 561,
-            "right": 879,
-            "top": 3885.88,
-            "width": 318
-          },
-          "content": {
-            "bottom": 4018.06,
-            "height": 123.19,
-            "left": 682,
-            "right": 870,
-            "top": 3894.88,
-            "width": 188
-          },
-          "cover": {
-            "bottom": 4038.88,
-            "height": 144,
-            "left": 570,
-            "right": 666,
-            "top": 3894.88,
-            "width": 96
-          },
-          "hasHorizontalCollision": false,
-          "hasRightOverflow": false,
-          "index": 11,
           "slug": "great-expectations-english-paperback"
-        },
-        {
-          "card": {
-            "bottom": 3547.36,
-            "height": 171.48,
-            "left": 929,
-            "right": 1247,
-            "top": 3375.88,
-            "width": 318
-          },
-          "content": {
-            "bottom": 3538.36,
-            "height": 153.48,
-            "left": 1050,
-            "right": 1238,
-            "top": 3384.88,
-            "width": 188
-          },
-          "cover": {
-            "bottom": 3528.88,
-            "height": 144,
-            "left": 938,
-            "right": 1034,
-            "top": 3384.88,
-            "width": 96
-          },
-          "hasHorizontalCollision": false,
-          "hasRightOverflow": false,
-          "index": 12,
-          "slug": "pride-and-prejudice-vietnamese-special-edition"
-        },
-        {
-          "card": {
-            "bottom": 3726.84,
-            "height": 171.48,
-            "left": 929,
-            "right": 1247,
-            "top": 3555.36,
-            "width": 318
-          },
-          "content": {
-            "bottom": 3717.84,
-            "height": 153.48,
-            "left": 1050,
-            "right": 1238,
-            "top": 3564.36,
-            "width": 188
-          },
-          "cover": {
-            "bottom": 3708.36,
-            "height": 144,
-            "left": 938,
-            "right": 1034,
-            "top": 3564.36,
-            "width": 96
-          },
-          "hasHorizontalCollision": false,
-          "hasRightOverflow": false,
-          "index": 13,
-          "slug": "the-wealth-of-nations-vietnamese-paperback"
-        },
-        {
-          "card": {
-            "bottom": 3906.33,
-            "height": 171.48,
-            "left": 929,
-            "right": 1247,
-            "top": 3734.84,
-            "width": 318
-          },
-          "content": {
-            "bottom": 3897.33,
-            "height": 153.48,
-            "left": 1050,
-            "right": 1238,
-            "top": 3743.84,
-            "width": 188
-          },
-          "cover": {
-            "bottom": 3887.84,
-            "height": 144,
-            "left": 938,
-            "right": 1034,
-            "top": 3743.84,
-            "width": 96
-          },
-          "hasHorizontalCollision": false,
-          "hasRightOverflow": false,
-          "index": 14,
-          "slug": "the-call-of-the-wild-vietnamese-paperback"
-        },
-        {
-          "card": {
-            "bottom": 4085.81,
-            "height": 171.48,
-            "left": 929,
-            "right": 1247,
-            "top": 3914.33,
-            "width": 318
-          },
-          "content": {
-            "bottom": 4076.81,
-            "height": 153.48,
-            "left": 1050,
-            "right": 1238,
-            "top": 3923.33,
-            "width": 188
-          },
-          "cover": {
-            "bottom": 4067.33,
-            "height": 144,
-            "left": 938,
-            "right": 1034,
-            "top": 3923.33,
-            "width": 96
-          },
-          "hasHorizontalCollision": false,
-          "hasRightOverflow": false,
-          "index": 15,
-          "slug": "pride-and-prejudice-english-special-edition"
         }
       ],
       "hasPageOverflow": false,

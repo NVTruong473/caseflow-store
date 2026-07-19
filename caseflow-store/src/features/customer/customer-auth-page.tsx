@@ -58,7 +58,7 @@ const customerAuthCopy = {
     confirmPasswordError: "Passwords must match.",
     createAccount: "Create account",
     createAccountIntro:
-      "Create a CaseFlow Books account before checkout. Email confirmation depends on the Supabase Auth setting for this project.",
+      "Create a CaseFlow Books account before checkout. Email confirmation may be requested before sign-in.",
     creatingAccount: "Creating account",
     email: "Email address",
     emailError: "Enter a valid email address.",
@@ -72,12 +72,12 @@ const customerAuthCopy = {
       "Browse freely, keep your cart on this device, and sign in when you are ready to checkout.",
     login: "Sign in",
     loginIntro:
-      "Use the customer account tied to your order email. Admin accounts should still use the admin workspace.",
+      "Use the customer account tied to your order email and delivery profile.",
     loggingIn: "Signing in",
     logout: "Sign out",
     logoutFailed: "Could not sign out. Try again before continuing.",
     noPhoneVerification:
-      "Phone verification is not claimed here. Phone and shipping details are completed in the checkout profile step.",
+      "Phone and shipping details are completed in the customer profile before checkout.",
     openingAccount: "Signed in. Opening your account.",
     orderHistory: "Order history",
     password: "Password",
@@ -89,7 +89,7 @@ const customerAuthCopy = {
     submitFailed: "Customer authentication failed.",
     title: "Your CaseFlow Books account",
     verificationRequired:
-      "Account created. Check your email if this Supabase project requires email confirmation, then return to sign in.",
+      "Account created. Check your email if confirmation is requested, then return to sign in.",
     viewAdmin: "Open admin workspace",
   },
   vi: {
@@ -103,7 +103,7 @@ const customerAuthCopy = {
     confirmPasswordError: "Mật khẩu nhập lại chưa khớp.",
     createAccount: "Tạo tài khoản",
     createAccountIntro:
-      "Tạo tài khoản CaseFlow Books trước khi thanh toán. Việc xác nhận email phụ thuộc cấu hình Supabase Auth của project này.",
+      "Tạo tài khoản CaseFlow Books trước khi thanh toán. Email có thể cần được xác nhận trước khi đăng nhập.",
     creatingAccount: "Đang tạo tài khoản",
     email: "Địa chỉ email",
     emailError: "Nhập địa chỉ email hợp lệ.",
@@ -117,12 +117,12 @@ const customerAuthCopy = {
       "Bạn có thể xem sách và thêm vào giỏ tự do, rồi đăng nhập khi sẵn sàng thanh toán.",
     login: "Đăng nhập",
     loginIntro:
-      "Dùng tài khoản khách hàng gắn với email đặt hàng. Tài khoản admin vẫn nên vào khu vực quản trị riêng.",
+      "Dùng tài khoản khách hàng gắn với email đặt hàng và hồ sơ giao hàng.",
     loggingIn: "Đang đăng nhập",
     logout: "Đăng xuất",
     logoutFailed: "Chưa thể đăng xuất. Vui lòng thử lại trước khi tiếp tục.",
     noPhoneVerification:
-      "Trang này không xác nhận số điện thoại. Số điện thoại và địa chỉ giao hàng sẽ được hoàn tất ở bước hồ sơ thanh toán.",
+      "Số điện thoại và địa chỉ giao hàng được hoàn tất trong hồ sơ khách hàng trước khi thanh toán.",
     openingAccount: "Đã đăng nhập. Đang mở tài khoản.",
     orderHistory: "Lịch sử đơn hàng",
     password: "Mật khẩu",
@@ -134,7 +134,7 @@ const customerAuthCopy = {
     submitFailed: "Xác thực khách hàng thất bại.",
     title: "Tài khoản CaseFlow Books của bạn",
     verificationRequired:
-      "Đã tạo tài khoản. Hãy kiểm tra email nếu project Supabase này yêu cầu xác nhận email, sau đó quay lại đăng nhập.",
+      "Đã tạo tài khoản. Hãy kiểm tra email nếu hệ thống yêu cầu xác nhận, sau đó quay lại đăng nhập.",
     viewAdmin: "Mở khu vực quản trị",
   },
 } as const;
@@ -292,7 +292,7 @@ export function CustomerAuthPage({
           </div>
 
           <div
-            className="rounded-lg border border-border bg-surface p-case-lg"
+            className="rounded-lg border border-trust/25 bg-trust-muted p-case-lg"
             data-customer-auth-guidance
           >
             <h2 className="text-heading-3 font-semibold text-foreground">
@@ -316,7 +316,7 @@ export function CustomerAuthPage({
           />
         ) : (
           <section
-            className="rounded-lg border border-border bg-surface p-case-lg"
+            className="rounded-lg border border-operations/25 bg-surface p-case-lg"
             data-customer-auth-panel
           >
             {authState.status === "error" ? (
@@ -489,7 +489,7 @@ function SignedInPanel({
 
   return (
     <section
-      className="rounded-lg border border-border bg-surface p-case-lg"
+      className="rounded-lg border border-trust/25 bg-trust-muted p-case-lg"
       data-customer-account-panel
       data-customer-auth-state="signed-in"
     >

@@ -21,8 +21,18 @@ tokens:
     discoveryMuted: "#E4F2ED"
     offer: "#B7791F"
     offerMuted: "#FFF3D6"
+    translation: "#B04436"
+    translationMuted: "#FBE6DF"
+    academic: "#2F5D8C"
+    academicMuted: "#E4ECF6"
+    trust: "#2D6E62"
+    trustMuted: "#E1F0EB"
+    arrival: "#6A5D2F"
+    arrivalMuted: "#F1ECD8"
     admin: "#243247"
     adminMuted: "#E7EDF3"
+    operations: "#364152"
+    operationsMuted: "#E8EDF2"
     paper: "#FBFAF7"
     paperDeep: "#EADCC6"
     ink: "#1F1B16"
@@ -61,6 +71,7 @@ CaseFlow Books should feel like a practical specialist bookstore and small-busin
 - Mobile-first with a strong desktop layout.
 - Book covers, edition metadata, and merchandising shelves are the main visual signal.
 - Use a balanced bookstore palette: warm paper/ink foundations, moss/teal for discovery, wine for editorial emphasis, amber for offers, and navy for admin trust surfaces.
+- For v1.4 merchandising variety, use role-based accents rather than recoloring one repeated card: clay red for translation pairs, ink blue for academic/classic detail, muted teal for trust and service surfaces, olive for new-arrival/reading-path surfaces, amber only for real offers, and graphite/navy for operations.
 - Avoid overly decorative gradients, floating blobs, oversized hero cards, or animation-heavy UI.
 - Use restrained polish: consistent spacing, clear hierarchy, good focus states, stable layouts, and visible cover density.
 - Avoid one-note blue/slate, beige-only, purple-gradient, or random one-off color systems.
@@ -98,6 +109,7 @@ CaseFlow Books should feel like a practical specialist bookstore and small-busin
 - Product cards must remain stable when loading images.
 - Do not put long marketing copy inside product cards.
 - Cards should use cover art, language/format chips, price clarity, and one primary action.
+- v1.4 card variants must differ by structure and information hierarchy, not only color. Acceptable variants include compact search rows, retail grid cards, editorial feature panels, translation pair comparisons, deal strips, and admin quality cards.
 
 ### Cart Drawer
 

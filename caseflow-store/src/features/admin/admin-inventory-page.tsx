@@ -205,7 +205,7 @@ export function AdminInventoryPage({
         className="grid gap-case-lg xl:grid-cols-[minmax(0,1fr)_minmax(340px,420px)]"
         data-admin-inventory-page
       >
-        <div className="min-w-0 rounded-lg border border-border bg-surface p-case-lg">
+        <div className="min-w-0 rounded-lg border border-admin/20 bg-surface p-case-lg shadow-[var(--case-shadow-soft)]">
           <Input
             label={copy.search}
             value={query}
@@ -224,8 +224,8 @@ export function AdminInventoryPage({
                     "rounded-md border p-case-md text-left transition-colors",
                     "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary",
                     selectedId === item.id
-                      ? "border-primary bg-surface-muted"
-                      : "border-border bg-surface hover:border-primary",
+                      ? "border-admin bg-admin-muted"
+                      : "border-border bg-surface hover:border-admin",
                   )}
                   data-admin-inventory-item={item.slug}
                 >
@@ -260,7 +260,7 @@ export function AdminInventoryPage({
         <div className="grid gap-case-lg">
           <form
             onSubmit={submitAdjustment}
-            className="rounded-lg border border-border bg-surface p-case-lg"
+            className="rounded-lg border border-operations/25 bg-operations-muted p-case-lg shadow-[var(--case-shadow-soft)]"
             data-admin-inventory-adjust-form
           >
             <h2 className="text-heading-3 font-semibold text-foreground">
@@ -336,7 +336,7 @@ export function AdminInventoryPage({
               {adjustments.slice(0, 8).map((adjustment) => (
                 <div
                   key={adjustment.id}
-                  className="rounded-md border border-border bg-surface-muted p-case-sm"
+                  className="rounded-md border border-admin/20 bg-admin-muted p-case-sm"
                   data-admin-inventory-adjustment={adjustment.id}
                 >
                   <p className="text-small font-semibold text-foreground">

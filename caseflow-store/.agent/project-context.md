@@ -11,9 +11,10 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: `v1.3.1` released; final repository hygiene audit complete.
-- Current gate: `CLOSEOUT-T02` complete; no active implementation task.
-- Current task: No active implementation task.
+- Current mode: `v1.4` release in progress.
+- Current gate: `V14-T12` complete; `V14-T13` in progress.
+- Current task: `V14-T13 - Deploy, Smoke Test, Commit, Tag, Push, And Create
+  GitHub Release v1.4.0`.
 
 ## Confirmed Facts
 
@@ -157,6 +158,87 @@
   dependency audit, TypeScript, lint, build, production smoke, compact-card
   verifier, cleanup, and `git diff --check` all passed. No runtime feature,
   schema, dependency, deploy, tag, or release change was introduced.
+- The user approved `V14-T01 - Real Commerce + Visual Merchandising ADR` on
+  2026-07-19 and authorized automatic implementation of the accepted
+  `V14-T02` through `V14-T12` roadmap without per-step confirmation, while
+  preserving verification after each task.
+- `ADR-0009: Real Commerce And Visual Merchandising Upgrade For v1.4` was
+  accepted on 2026-07-19. It governs post-`v1.3.1` runtime commercial-copy
+  cleanup, structurally varied merchandising layouts, trust/policy surfaces,
+  and operations polish without fake proof signals, commercial-cover copying,
+  database migrations, new external integrations, deploys, tags, or releases
+  unless a later task explicitly authorizes them.
+- `V14-T02` was completed on 2026-07-19 with a runtime no-demo-copy verifier
+  scanning `src/app`, `src/components`, and `src/features`; the verifier passed
+  across 101 runtime UI files after commercial-language cleanup in homepage,
+  footer, checkout, checkout success, and assistant copy. No auth/API/database
+  or payment behavior changed.
+- `V14-T03` was completed on 2026-07-19 with token-backed visual roles for
+  translation, academic, trust, arrival, and operations surfaces in `DESIGN.md`
+  and `src/app/globals.css`, plus a verifier proving required CSS/theme tokens
+  exist and runtime UI code has no raw hex color additions.
+- `V14-T04` was completed on 2026-07-19 with additive merchandising layout
+  components in `src/features/books/merchandising-layouts.tsx` for editorial
+  feature shelves, deal strips, translation pairs, category spine rails,
+  reading paths, and compact retail tiles. The library compiles but is not yet
+  wired into homepage/catalog/detail until later V14 tasks.
+- `V14-T05` was completed on 2026-07-19 by rewiring homepage sections to use
+  structurally distinct V14 layouts: category spine rail, editorial feature,
+  reading path, translation pair shelf, and deal strip. Verification passed for
+  mobile/tablet/desktop screenshots, no overflow, local images, cover aspect
+  ratios, hero card count, product links, and runtime no-demo copy.
+- `V14-T06` was completed on 2026-07-19 by adding catalog quick discovery
+  links, a stronger active-filter summary, and token-backed catalog card
+  variants for offer, translation, editorial, academic, trust, and standard
+  records. Catalog visual, filter, pagination, no-demo, TypeScript, lint, and
+  diff checks passed.
+- `V14-T07` was completed on 2026-07-19 by adding product-detail commercial
+  trust panels, edition identity, account checkout proof, inventory proof, and
+  structurally varied recommendation tiles while preserving purchase,
+  edition-switching, cart, and SEO behavior.
+- `V14-T08` was completed on 2026-07-19 by adding bilingual customer-facing
+  contact, shipping, payment, returns, privacy, and terms pages; footer support
+  context; sitemap/robots coverage; and policy-page visual verification.
+- `V14-T09` was completed on 2026-07-19 by making checkout copy and payment
+  presentation read like a real bookstore flow: COD and bank transfer are
+  prioritized, wallet/gateway methods remain awaiting-confirmation choices,
+  policy links are visible, and VND checkout with English USD comparison is
+  explicit.
+- `V14-T10` was completed on 2026-07-19 by polishing account, customer
+  profile, public tracking, and assistant surfaces: internal Supabase/project
+  copy was removed from runtime UI, public tracking now exposes a privacy guard
+  and minimal public data, assistant is positioned on the mobile right side,
+  customer/public tracking verifier login was stabilized through API sessions,
+  and screenshot capture avoids Playwright caret-induced hydration warnings.
+- On 2026-07-19, the user suggested Project Gutenberg, Standard Ebooks, and
+  several Vietnamese ebook/PDF sites as future book-cover/title sources. These
+  were recorded in `docs/v1.2-cover-asset-pipeline.md` as source candidates,
+  not approved runtime assets; direct cover reuse still requires documented
+  public-domain, CC0, license, permission, or replacement/takedown provenance.
+- `V14-T11` was completed on 2026-07-19 by adding a reusable admin operations
+  rail, denser admin metric treatment, dashboard status rails, mobile recent
+  order cards, and operations/trust panel treatment for orders, inventory, and
+  customer admin surfaces. Verification covered dashboard/orders/catalog/
+  inventory/customers visual smoke across mobile and desktop, staff/admin
+  access boundaries, order operations, catalog management, inventory
+  adjustments, customer management, dashboard/export/navigation regressions,
+  TypeScript, lint, no-demo runtime copy, visual tokens, and diff check.
+- `V14-T12` was completed on 2026-07-19 with
+  `docs/v1.4-release-readiness-report.md`. The local `v1.4.0` candidate passed
+  TypeScript, lint, production build with 48 generated App Router routes, full
+  Playwright `20/20` against `next start`, V14 no-demo runtime copy scan,
+  V14 visual-token scan, home/catalog/detail/policy/checkout/customer/admin
+  visual QA, accessibility/mobile/performance, cleanup `totalMatches: 0`,
+  high/critical dependency audit, targeted secret scan across 1058 candidate
+  files, and `git diff --check`. A verifier-only screenshot timeout in the
+  older accessibility script was fixed and rerun successfully. No deploy, tag,
+  GitHub Release, schema migration, production catalog mutation, payment/
+  shipping provider integration, or external cover import was performed.
+- The user explicitly approved `V14-T13 - Deploy, Smoke Test, Commit, Tag,
+  Push, And Create GitHub Release v1.4.0` on 2026-07-19. Release guardrails
+  remain active: no schema migration, production catalog mutation, payment/
+  shipping provider integration, or external cover import is allowed inside
+  this release task.
 
 ## v1.2 Canonical Catalog
 

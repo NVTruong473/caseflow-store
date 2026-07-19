@@ -1,7 +1,7 @@
 {
   "adminAccess": {
     "ordersCode": null,
-    "ordersCount": 1,
+    "ordersCount": 3,
     "ordersStatus": 200,
     "pageRole": "admin",
     "patchCode": null,
@@ -15,7 +15,7 @@
     "settingsCode": "UNAUTHORIZED",
     "settingsStatus": 401
   },
-  "baseURL": "http://127.0.0.1:3005",
+  "baseURL": "http://127.0.0.1:3000",
   "customerAccess": {
     "ordersCode": "FORBIDDEN",
     "ordersCount": null,
@@ -52,7 +52,7 @@
         "amountVnd": 0,
         "label": "Payment method fee estimate",
         "sourceNote": {
-          "checkedAt": "2026-07-16T14:39:23.432Z",
+          "checkedAt": "2026-07-19T07:16:41.613Z",
           "label": "CaseFlow Books checkout totals configuration",
           "license": null,
           "url": null
@@ -68,7 +68,7 @@
         "label": "VAT estimate",
         "rateBasisPoints": 1000,
         "sourceNote": {
-          "checkedAt": "2026-07-16T14:39:23.432Z",
+          "checkedAt": "2026-07-19T07:16:41.613Z",
           "label": "CaseFlow Books checkout totals configuration",
           "license": null,
           "url": null
@@ -78,15 +78,15 @@
     "taxTotalVnd": 14300,
     "totalVnd": 182300
   },
-  "generatedAt": "2026-07-16T14:39:23.432Z",
+  "generatedAt": "2026-07-19T07:16:41.613Z",
   "ok": true,
   "order": {
-    "id": "ea787c8e-f69f-4076-8a57-70eada838c2b",
-    "orderCode": "CF-MRNM7AVA-7C18FCB7FB",
+    "id": "12e56409-9a59-4750-bebf-7463ef4628c3",
+    "orderCode": "CF-MRRGOQ3P-F82285F1DC",
     "totalVnd": 182300
   },
   "orderRow": {
-    "id": "ea787c8e-f69f-4076-8a57-70eada838c2b",
+    "id": "12e56409-9a59-4750-bebf-7463ef4628c3",
     "status": "shipping",
     "total_vnd": 182300
   },
@@ -105,7 +105,7 @@
   },
   "staffAccess": {
     "ordersCode": null,
-    "ordersCount": 1,
+    "ordersCount": 3,
     "ordersStatus": 200,
     "pageRole": "staff",
     "patchCode": null,

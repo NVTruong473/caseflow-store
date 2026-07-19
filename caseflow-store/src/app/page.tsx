@@ -17,6 +17,14 @@ import {
   BookCoverFrame,
   BookCoverStack,
 } from "@/features/books/cover-merchandising";
+import {
+  CategorySpineRail,
+  DealStripShelf,
+  EditorialFeatureShelf,
+  ReadingPathShelf,
+  TranslationPairShelf,
+  type CategorySpineItem,
+} from "@/features/books/merchandising-layouts";
 import { getCurrencyDisplayRules } from "@/lib/format/currency-display.server";
 import {
   getEditionLanguageLabel,
@@ -36,7 +44,7 @@ import {
   resolveSupabaseMerchandisingShelves,
   type SupabaseResolvedMerchandisingShelf,
 } from "@/lib/repositories/supabase-merchandising";
-import type { BookCategory, BookFormat, InventoryStatus } from "@/types/domain";
+import type { BookCategory, InventoryStatus } from "@/types/domain";
 
 const HOME_LIMITS = {
   categoryCards: 8,
@@ -63,7 +71,7 @@ const homeCopy = {
     editionChoiceTitle: "English and Vietnamese editions",
     editions: "Editions",
     featuredDescription:
-      "A curated shelf selected from approved merchandising rules, not fake sales velocity or review data.",
+      "A hand-picked shelf for approachable entry points, current offers, and editions readers can choose with confidence.",
     featuredTitle: "Editor picks",
     heroDescription:
       "A Vietnam-first bookstore for English originals and Vietnamese translations, with visible covers, stock, VND pricing, and account-gated checkout.",
@@ -110,9 +118,9 @@ const homeCopy = {
       },
       {
         stat: "Safe",
-        title: "Content policy respected",
+        title: "Clear edition content",
         description:
-          "The homepage uses internal summaries and project-created cover assets.",
+          "Short summaries, edition details, and cover art help readers choose without clutter.",
       },
     ],
   },
@@ -129,7 +137,7 @@ const homeCopy = {
     editionChoiceTitle: "Bản tiếng Anh và bản tiếng Việt",
     editions: "Ấn bản",
     featuredDescription:
-      "Kệ sách được chọn từ rule merchandising đã duyệt, không dựa trên số bán hay đánh giá giả.",
+      "Tủ sách do CaseFlow chọn cho các ấn bản dễ bắt đầu, đang còn hàng và có thông tin rõ ràng.",
     featuredTitle: "Biên tập chọn",
     heroDescription:
       "Nhà sách ưu tiên thị trường Việt Nam cho bản gốc tiếng Anh và bản dịch tiếng Việt, có bìa, tồn kho, giá VND và checkout theo tài khoản rõ ràng.",
@@ -176,9 +184,9 @@ const homeCopy = {
       },
       {
         stat: "An toàn",
-        title: "Tôn trọng chính sách nội dung",
+        title: "Nội dung ấn bản rõ ràng",
         description:
-          "Trang chủ dùng tóm tắt tự viết và bìa do dự án tạo ra.",
+          "Tóm tắt ngắn, thông tin ấn bản và bìa sách giúp người đọc chọn nhanh hơn.",
       },
     ],
   },
@@ -274,6 +282,14 @@ type TranslatedEditionGroup = {
   workSlug: string;
 };
 
+const categorySpineTones = [
+  "discovery",
+  "editorial",
+  "academic",
+  "translation",
+  "arrival",
+] satisfies Array<NonNullable<CategorySpineItem["tone"]>>;
+
 export default async function Home() {
   const language = await getRequestLanguage();
   const copy = homeCopy[language];
@@ -348,6 +364,16 @@ export default async function Home() {
     HOME_LIMITS.translatedGroups,
   );
   const categoryCards = categories.slice(0, HOME_LIMITS.categoryCards);
+  const categorySpineItems = categoryCards.map((category, index) => ({
+    description: getCategoryDescription(category, language),
+    href: `/catalog?category=${category.slug}`,
+    label: getCategoryLabel(category, language),
+    tone: categorySpineTones[index % categorySpineTones.length],
+  }));
+  const translationPairs = translatedEditionGroups.map((group) => ({
+    english: group.english,
+    vietnamese: group.vietnamese,
+  }));
   const renderedEditionCount = countUniqueRenderedEditions(
     heroRecords,
     editorRecords,
@@ -461,31 +487,11 @@ export default async function Home() {
           className="flex flex-col gap-case-lg"
           data-home-section="categories"
         >
-          <SectionHeader
+          <CategorySpineRail
             description={copy.categoriesDescription}
-            eyebrow={copy.allBooksNote}
+            items={categorySpineItems}
             title={copy.categoriesTitle}
           />
-
-          <div className="grid gap-case-md sm:grid-cols-2 lg:grid-cols-4">
-            {categoryCards.map((category) => (
-              <Card
-                key={category.id}
-                className="h-full transition-colors hover:bg-discovery-muted/50"
-                data-home-category-card={category.slug}
-                variant="interactive"
-              >
-                <CardHeader>
-                  <CardTitle>
-                    {getCategoryLabel(category, language)}
-                  </CardTitle>
-                  <CardDescription>
-                    {getCategoryDescription(category, language)}
-                  </CardDescription>
-                </CardHeader>
-              </Card>
-            ))}
-          </div>
         </section>
 
         <section
@@ -505,21 +511,17 @@ export default async function Home() {
             title={getShelfTitle(editorShelf, language, copy.featuredTitle)}
           />
 
-          <div className="grid gap-case-md sm:grid-cols-2 lg:grid-cols-4">
-            {editorRecords.map((record) => (
-              <BookCard
-                key={record.edition.id}
-                detailsLabel={copy.details}
-                language={language}
-                offerLabel={copy.offerLabel}
-                priority
-                record={record}
-                rules={currencyRules}
-                stockLabel={copy.stockLabel}
-                trackingAttribute="data-home-featured-card"
-              />
-            ))}
-          </div>
+          <EditorialFeatureShelf
+            description={getShelfDescription(
+              editorShelf,
+              language,
+              copy.featuredDescription,
+            )}
+            language={language}
+            records={editorRecords}
+            rules={currencyRules}
+            title={getShelfTitle(editorShelf, language, copy.featuredTitle)}
+          />
         </section>
 
         <section
@@ -529,30 +531,17 @@ export default async function Home() {
           data-home-shelf={weekendShelf?.shelf.slug ?? "weekend-starter-set"}
         >
           <div className="flex flex-col gap-case-lg">
-            <SectionHeader
+            <ReadingPathShelf
               description={getShelfDescription(
                 weekendShelf,
                 language,
                 copy.featuredDescription,
               )}
+              language={language}
+              records={weekendRecords}
+              rules={currencyRules}
               title={getShelfTitle(weekendShelf, language, copy.weekendTitle)}
             />
-
-            <div className="grid gap-case-md sm:grid-cols-2">
-              {weekendRecords.map((record) => (
-                <CompactBookLink
-                  key={record.edition.id}
-                  language={language}
-                  offerLabel={copy.offerLabel}
-                  record={record}
-                  rules={currencyRules}
-                  trackingAttribute="data-home-weekend-card"
-                />
-              ))}
-              {weekendRecords.length === 0 ? (
-                <EmptyShelfNotice message={copy.noShelfItems} />
-              ) : null}
-            </div>
           </div>
 
           <aside
@@ -586,30 +575,34 @@ export default async function Home() {
             pairedEditionShelf?.shelf.slug ?? "paired-edition-comparison"
           }
         >
-          <SectionHeader
+          <TranslationPairShelf
             description={getShelfDescription(
               pairedEditionShelf,
               language,
               copy.translatedDescription,
             )}
+            language={language}
+            pairs={translationPairs}
+            rules={currencyRules}
             title={getShelfTitle(
               pairedEditionShelf,
               language,
               copy.translatedTitle,
             )}
           />
-
-          <div className="grid gap-case-md lg:grid-cols-3">
-            {translatedEditionGroups.map((group) => (
-              <TranslatedEditionCard
-                key={group.workSlug}
-                group={group}
-                language={language}
-                rules={currencyRules}
-              />
-            ))}
-          </div>
         </section>
+
+        <DealStripShelf
+          description={getShelfDescription(
+            promotionShelf,
+            language,
+            copy.featuredDescription,
+          )}
+          language={language}
+          records={promotionRecords}
+          rules={currencyRules}
+          title={getShelfTitle(promotionShelf, language, copy.promotionTitle)}
+        />
 
         <section
           id="language-offers"
@@ -621,7 +614,7 @@ export default async function Home() {
             title={copy.languageShelvesTitle}
           />
 
-          <div className="grid gap-case-md lg:grid-cols-3">
+          <div className="grid gap-case-md lg:grid-cols-2">
             <ShelfRail
               emptyMessage={copy.noShelfItems}
               language={language}
@@ -641,16 +634,6 @@ export default async function Home() {
               shelf={englishShelf}
               titleFallback={copy.englishEditionsTitle}
               trackingAttribute="data-home-english-card"
-            />
-            <ShelfRail
-              emptyMessage={copy.noShelfItems}
-              language={language}
-              offerLabel={copy.offerLabel}
-              records={promotionRecords}
-              rules={currencyRules}
-              shelf={promotionShelf}
-              titleFallback={copy.promotionTitle}
-              trackingAttribute="data-home-promotion-card"
             />
           </div>
         </section>
@@ -831,89 +814,6 @@ function HeroBookLink({
   );
 }
 
-function BookCard({
-  detailsLabel,
-  language,
-  offerLabel,
-  priority = false,
-  record,
-  rules,
-  stockLabel,
-  trackingAttribute,
-}: {
-  detailsLabel: string;
-  language: Language;
-  offerLabel: string;
-  priority?: boolean;
-  record: SupabaseBookCatalogRecord;
-  rules: ReturnType<typeof getCurrencyDisplayRules>;
-  stockLabel: string;
-  trackingAttribute: string;
-}) {
-  return (
-    <Card
-      className="h-full"
-      data-home-book-card={record.edition.slug}
-      data-home-card-kind={trackingAttribute}
-      padding="none"
-      variant="interactive"
-    >
-      <Link
-        className="group flex h-full flex-col rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-        href={`/products/${record.edition.slug}`}
-        {...{ [trackingAttribute]: record.edition.slug }}
-      >
-        <div className="p-case-md">
-          <BookCoverFrame
-            className="w-full"
-            imageClassName="transition duration-300 group-hover:scale-[1.025]"
-            language={language}
-            priority={priority}
-            record={record}
-            showBadges={false}
-            size="shelf"
-            sizes="(max-width: 768px) 45vw, 260px"
-          />
-        </div>
-        <div className="flex flex-1 flex-col gap-case-sm px-case-md pb-case-md">
-          <div className="flex flex-wrap gap-case-xs">
-            <Badge variant="neutral">
-              {getEditionLanguageLabel(record.edition.language, language)}
-            </Badge>
-            <Badge variant="neutral">
-              {getFormatLabel(record.edition.format, language)}
-            </Badge>
-            {record.edition.compareAtPriceVnd ? (
-              <Badge variant="warning">{offerLabel}</Badge>
-            ) : null}
-          </div>
-          <h3 className="line-clamp-2 text-body font-semibold text-foreground">
-            {getEditionTitle(record, language)}
-          </h3>
-          <p className="text-small leading-6 text-text-muted">
-            {record.authors.map((author) => author.name).join(", ")}
-          </p>
-          <p className="text-small leading-6 text-text-muted">
-            {stockLabel}:{" "}
-            {getInventoryStatusLabel(record.edition.inventoryStatus, language)}
-          </p>
-          <CurrencyAmount
-            amountVnd={record.edition.priceVnd}
-            className="mt-auto text-heading-3 font-semibold text-foreground"
-            estimateClassName="text-small font-medium text-text-muted"
-            language={language}
-            rules={rules}
-            size="sm"
-          />
-          <span className="text-small font-medium text-primary">
-            {detailsLabel}
-          </span>
-        </div>
-      </Link>
-    </Card>
-  );
-}
-
 function CompactBookLink({
   language,
   offerLabel,
@@ -970,99 +870,6 @@ function CompactBookLink({
           size="sm"
         />
       </div>
-    </Link>
-  );
-}
-
-function TranslatedEditionCard({
-  group,
-  language,
-  rules,
-}: {
-  group: TranslatedEditionGroup;
-  language: Language;
-  rules: ReturnType<typeof getCurrencyDisplayRules>;
-}) {
-  const workTitle = getWorkTitle(group, language);
-  const authorLine = group.english.authors.map((author) => author.name).join(", ");
-
-  return (
-    <Card
-      className="h-full"
-      data-home-translated-group={group.workSlug}
-      padding="none"
-      variant="interactive"
-    >
-      <div className="flex h-full flex-col gap-case-md p-case-md">
-        <div className="flex gap-case-md">
-          <BookCoverFrame
-            className="w-24 shrink-0"
-            language={language}
-            record={group.english}
-            showBadges={false}
-            size="compact"
-            sizes="96px"
-          />
-          <div className="flex min-w-0 flex-col gap-case-xs">
-            <Badge variant="primary">
-              {getEditionLanguageLabel("en", language)} /{" "}
-              {getEditionLanguageLabel("vi", language)}
-            </Badge>
-            <h3 className="line-clamp-3 text-heading-3 font-semibold text-foreground">
-              {workTitle}
-            </h3>
-            <p className="text-small leading-6 text-text-muted">{authorLine}</p>
-          </div>
-        </div>
-
-        <div className="mt-auto grid gap-case-sm">
-          <EditionChoiceLink
-            language={language}
-            record={group.english}
-            rules={rules}
-          />
-          <EditionChoiceLink
-            language={language}
-            record={group.vietnamese}
-            rules={rules}
-          />
-        </div>
-      </div>
-    </Card>
-  );
-}
-
-function EditionChoiceLink({
-  language,
-  record,
-  rules,
-}: {
-  language: Language;
-  record: SupabaseBookCatalogRecord;
-  rules: ReturnType<typeof getCurrencyDisplayRules>;
-}) {
-  return (
-    <Link
-      className="grid min-w-0 grid-cols-[minmax(0,1fr)_auto] gap-case-sm rounded-md border border-border bg-background p-case-sm transition-colors hover:border-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-      data-home-translated-link={record.edition.slug}
-      href={`/products/${record.edition.slug}`}
-    >
-      <span className="min-w-0">
-        <span className="block truncate text-small font-semibold text-foreground">
-          {getEditionLanguageLabel(record.edition.language, language)}
-        </span>
-        <span className="block truncate text-small text-text-muted">
-          {getFormatLabel(record.edition.format, language)}
-        </span>
-      </span>
-      <CurrencyAmount
-        amountVnd={record.edition.priceVnd}
-        className="items-end text-small font-medium text-primary"
-        estimateClassName="text-text-muted"
-        language={language}
-        rules={rules}
-        size="sm"
-      />
     </Link>
   );
 }
@@ -1172,17 +979,6 @@ function getEditionTitle(record: SupabaseBookCatalogRecord, language: Language) 
   );
 }
 
-function getWorkTitle(group: TranslatedEditionGroup, language: Language) {
-  return (
-    titleOverrides[language][group.workSlug] ??
-    pickLocalizedText(
-      group.english.work.localizedTitle,
-      language,
-      group.english.work.title,
-    )
-  );
-}
-
 function getCategoryLabel(category: BookCategory, language: Language) {
   return (
     categoryDisplayCopy[language][category.slug]?.label ??
@@ -1195,25 +991,6 @@ function getCategoryDescription(category: BookCategory, language: Language) {
     categoryDisplayCopy[language][category.slug]?.description ??
     pickLocalizedText(category.description, language)
   );
-}
-
-function getFormatLabel(format: BookFormat, language: Language) {
-  const labels: Record<Language, Record<BookFormat, string>> = {
-    en: {
-      "box-set": "Box set",
-      hardcover: "Hardcover",
-      paperback: "Paperback",
-      "special-edition": "Special edition",
-    },
-    vi: {
-      "box-set": "Bộ sách",
-      hardcover: "Bìa cứng",
-      paperback: "Bìa mềm",
-      "special-edition": "Ấn bản đặc biệt",
-    },
-  };
-
-  return labels[language][format];
 }
 
 function getInventoryStatusLabel(

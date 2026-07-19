@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "requiredRoles": [
+    "translation",
+    "translation-muted",
+    "academic",
+    "academic-muted",
+    "trust",
+    "trust-muted",
+    "arrival",
+    "arrival-muted",
+    "operations",
+    "operations-muted"
+  ],
+  "missingCssVars": [],
+  "missingTailwindVars": [],
+  "missingDesignKeys": [],
+  "runtimeRawHexFindings": []
+}

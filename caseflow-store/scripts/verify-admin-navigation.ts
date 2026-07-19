@@ -204,9 +204,22 @@ async function expectNavigationItems(
 
 async function loginOperationsUser(page: Page, email: string) {
   await page.goto("/admin/login", { waitUntil: "domcontentloaded" });
-  await page.locator("[data-admin-login-email]").fill(email);
-  await page.locator("[data-admin-login-password]").fill(TEST_PASSWORD);
-  await page.locator("[data-admin-login-submit]").click();
+  const response = await page.request.post(
+    new URL("/api/admin/session", page.url()).toString(),
+    {
+      data: {
+        email,
+        password: TEST_PASSWORD,
+      },
+    },
+  );
+
+  if (!response.ok()) {
+    const body = await response.text();
+    throw new Error(`Operations login failed with ${response.status()}: ${body}`);
+  }
+
+  await page.goto("/admin", { waitUntil: "domcontentloaded" });
   await page.locator("[data-admin-shell-page='dashboard']").waitFor({
     timeout: 20_000,
   });

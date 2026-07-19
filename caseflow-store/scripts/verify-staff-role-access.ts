@@ -408,9 +408,23 @@ async function postBookOrder(page: Page, body: BookCheckoutPayload) {
 
 async function loginCustomer(page: Page, email: string) {
   await page.goto("/account", { waitUntil: "domcontentloaded" });
-  await page.locator("[data-customer-auth-email]").fill(email);
-  await page.locator("[data-customer-auth-password]").fill(TEST_PASSWORD);
-  await page.locator("[data-customer-auth-submit]").click();
+  const response = await page.request.post(
+    new URL("/api/customer/session", page.url()).toString(),
+    {
+      data: {
+        email,
+        intent: "sign-in",
+        password: TEST_PASSWORD,
+      },
+    },
+  );
+
+  if (!response.ok()) {
+    const body = await response.text();
+    throw new Error(`Customer sign-in failed with ${response.status()}: ${body}`);
+  }
+
+  await page.goto("/account", { waitUntil: "domcontentloaded" });
   await page.locator("[data-customer-account-panel]").waitFor({
     timeout: 20_000,
   });

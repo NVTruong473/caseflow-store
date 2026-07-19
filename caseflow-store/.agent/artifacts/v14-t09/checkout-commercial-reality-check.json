@@ -1,0 +1,241 @@
+{
+  "taskId": "V14-T09",
+  "baseURL": "http://127.0.0.1:3000",
+  "generatedAt": "2026-07-19T07:46:03.877Z",
+  "ok": true,
+  "pass": {
+    "assuranceVisible": true,
+    "codAndBankPrioritized": true,
+    "noHorizontalOverflow": true,
+    "paymentMethodsVisible": true,
+    "policyLinksVisible": true,
+    "primaryBadgesVisible": true,
+    "submitFlowWorks": true,
+    "usdEstimateClearForEnglish": true
+  },
+  "target": {
+    "id": "00000000-0000-4000-8000-000000003027",
+    "type": "book-edition",
+    "slug": "a-christmas-carol-english-paperback",
+    "title": "A Christmas Carol",
+    "edition": {
+      "id": "00000000-0000-4000-8000-000000003027",
+      "slug": "a-christmas-carol-english-paperback",
+      "displayTitle": "A Christmas Carol",
+      "localizedDisplayTitle": {
+        "vi": "Bài ca Giáng sinh",
+        "en": "A Christmas Carol"
+      },
+      "subtitle": null,
+      "language": "en",
+      "format": "paperback",
+      "isbn13": "9780141389479",
+      "isbn10": "0141389478",
+      "publicationYear": 2012,
+      "pageCount": null,
+      "dimensions": null,
+      "weightGrams": null,
+      "priceVnd": 143000,
+      "compareAtPriceVnd": null,
+      "stockQuantity": 11,
+      "lowStockThreshold": 10,
+      "inventoryStatus": "in-stock",
+      "summary": {
+        "vi": "Câu chuyện đạo đức cô đọng nơi ký ức và tưởng tượng thúc đẩy một người keo kiệt hướng tới rộng lượng và sửa sai.",
+        "en": "A compact moral tale where memory and imagination push a miser toward generosity and repair."
+      },
+      "tableOfContents": null,
+      "sampleExcerptPolicy": "No copyrighted excerpt is stored; use project-written preview guidance only.",
+      "pairId": "00000000-0000-4000-8000-000000006027",
+      "pairedEditionId": "00000000-0000-4000-8000-000000004027",
+      "reasonToRead": {
+        "vi": "Ấn bản tiếng Anh của Bài ca Giáng sinh, dành cho độc giả muốn đọc và đối chiếu tác phẩm ở cả hai ngôn ngữ trong danh mục.",
+        "en": "English edition of A Christmas Carol for readers comparing the work across both catalog languages."
+      },
+      "displayFacts": [
+        {
+          "key": "isbn",
+          "label": {
+            "vi": "ISBN",
+            "en": "ISBN"
+          },
+          "value": {
+            "vi": "9780141389479",
+            "en": "9780141389479"
+          },
+          "provenanceRecordId": "00000000-0000-4000-8000-000000011082"
+        },
+        {
+          "key": "publisher",
+          "label": {
+            "vi": "Nhà xuất bản",
+            "en": "Publisher"
+          },
+          "value": {
+            "vi": "Penguin English Library",
+            "en": "Penguin English Library"
+          },
+          "provenanceRecordId": "00000000-0000-4000-8000-000000011081"
+        },
+        {
+          "key": "publication-year",
+          "label": {
+            "vi": "Năm xuất bản",
+            "en": "Publication year"
+          },
+          "value": {
+            "vi": "2012",
+            "en": "2012"
+          },
+          "provenanceRecordId": "00000000-0000-4000-8000-000000011084"
+        }
+      ],
+      "omittedOptionalFactKeys": [
+        "translator",
+        "page-count",
+        "source-physical-format"
+      ],
+      "isFeatured": false,
+      "createdAt": "2026-07-16T00:00:00+00:00",
+      "updatedAt": "2026-07-17T21:02:08.622433+00:00"
+    },
+    "work": {
+      "id": "00000000-0000-4000-8000-000000002027",
+      "slug": "a-christmas-carol",
+      "title": "A Christmas Carol",
+      "originalTitle": null,
+      "localizedTitle": {
+        "vi": "Bài ca Giáng sinh",
+        "en": "A Christmas Carol"
+      },
+      "originalLanguage": "English",
+      "themes": [
+        "redemption",
+        "generosity",
+        "memory"
+      ],
+      "ageRating": null,
+      "publicationEra": "1843",
+      "canonicalSummary": {
+        "vi": "Câu chuyện đạo đức cô đọng nơi ký ức và tưởng tượng thúc đẩy một người keo kiệt hướng tới rộng lượng và sửa sai.",
+        "en": "A compact moral tale where memory and imagination push a miser toward generosity and repair."
+      }
+    },
+    "authors": [
+      {
+        "id": "00000000-0000-4000-8000-000000001003",
+        "slug": "charles-dickens",
+        "name": "Charles Dickens",
+        "country": "United Kingdom"
+      }
+    ],
+    "categories": [
+      {
+        "id": "00000000-0000-4000-8000-000000000101",
+        "type": "book-category",
+        "slug": "classic-literature",
+        "labels": {
+          "vi": "Van hoc kinh dien",
+          "en": "Classic literature"
+        },
+        "description": {
+          "vi": "Nhung tac pham lau ben, phu hop cho tu sach ca nhan va hoc thuat.",
+          "en": "Enduring works suited for personal libraries and study shelves."
+        },
+        "sortOrder": 1
+      },
+      {
+        "id": "00000000-0000-4000-8000-000000000100",
+        "type": "book-category",
+        "slug": "fiction",
+        "labels": {
+          "vi": "Van hoc",
+          "en": "Fiction"
+        },
+        "description": {
+          "vi": "Tieu thuyet va tac pham hu cau de doc theo chu de, tac gia va ngon ngu.",
+          "en": "Novels and fiction works browsed by theme, author, and language."
+        },
+        "sortOrder": 0
+      }
+    ],
+    "translators": [],
+    "publisher": {
+      "id": "5e5621f7-bf82-44b2-81ee-9ec438f5c36c",
+      "slug": "penguin-english-library",
+      "name": "Penguin English Library",
+      "country": null,
+      "website": null
+    },
+    "coverAsset": {
+      "id": "00000000-0000-4000-8000-000000009001",
+      "path": "/images/books/v12-covers/a-christmas-carol-english-paperback.svg",
+      "altText": {
+        "vi": "Bìa minh họa CaseFlow Books cho Bài ca Giáng sinh của Charles Dickens.",
+        "en": "CaseFlow Books illustrative cover for A Christmas Carol by Charles Dickens."
+      },
+      "source": "generated"
+    }
+  },
+  "testEmail": "caseflow-v14-checkout-mrrhqoab-je0jb1@example.com",
+  "viewportChecks": [
+    {
+      "bodyText": "CB\nCaseFlow Books\nBilingual bookstore\nHome\nCatalog\nCategories\nEditions\nTrack order\nAdmin\nSigned in\nVN\nVI\nUK\nEN\nCart (1)\nBack to books\nBook checkout\nCheckout\n\nReview current stock, confirm shipping details, choose a payment method, and place the order for bookstore confirmation.\n\nCheckout confidence\n\nAccount, phone, and delivery address are checked before confirmation.\n\nPrices, stock, VAT estimate, shipping, payment fee, and promotion are recalculated from store rules.\n\nShipping, payment, and returns policies stay available during checkout.\n\nContact and shipping\n\nContact details are used for the order record.\n\nCustomer profile is complete. Checkout details are prefilled from your account where available.\n2. Customer/contact\n\nOrder contact details come from your customer account.\n\nFull name\n\nUse the name for order support.\n\nEmail\n\nA confirmation can be sent here later.\n\nPhone\n\nDigits, spaces, +, -, parentheses, and dots are accepted.\n\nShipping address\n\nStreet, ward or district, city, and delivery note if needed.\n\nUpdate profile\n3. Shipping method\nStandard delivery\nRecommended for most local bookstore deliveries.\nExpress delivery\nFaster delivery estimate for Vietnam addresses after order review.\n4. Payment method\nCash on delivery\nPrimary\nPrimary Vietnam choice. Pay on receipt when the bookstore delivery is handed over.\nBank transfer\nPrimary\nPrimary prepaid choice. Transfer details are reviewed with the order before fulfillment.\nMoMo\nWallet choice\nSelected at checkout; the order remains awaiting payment confirmation before fulfillment.\nZaloPay\nWallet choice\nSelected at checkout; the order remains awaiting payment confirmation before fulfillment.\nVNPay\nGateway choice\nSelected at checkout; the order remains awaiting payment confirmation before fulfillment.\nStore policies\nShipping policy\nPayment policy\nReturns policy\nPromotion code\nPromotion code\n\nOptional\n\n5. Review and submit\n\nFinal totals are checked again before the order is recorded.\n\nitems\n1 item\nSubtotal\n143.000 ₫\nShipping estimate\n25.000 ₫\nVAT estimate\n14.300 ₫\nPayment fee\n0 ₫\nOrder total\n182.300 ₫\nApprox. USD total\n$7.11\nRate source: HSBC Vietnam telegraphic selling rate, 26.400 ₫/USD, Jul 16, 2026, 08:35 AM GMT+7. Estimated international payment fee: 3%. VND remains the checkout currency; USD is an estimate for comparison.\n\nChoose a payment method for the order. The bookstore confirms transfer or provider status before fulfillment.\n\nPlace order\n1. Cart review\n\n1 item\n\nChecked\nA Christmas Carol\n\nCharles Dickens\n\nClassic literature\nEnglish\nPaperback\n11 left\n\n1 x 143.000 ₫\n\n143.000 ₫\n\nOrder summary\n\nTotals are recalculated after cart validation.\n\nChecked\nitems\n1 item\nSubtotal\n143.000 ₫\nShipping estimate\n25.000 ₫\nVAT estimate\n14.300 ₫\nPayment fee\n0 ₫\nOrder total\n182.300 ₫\nApprox. USD total\n$7.11\nRate source: HSBC Vietnam telegraphic selling rate, 26.400 ₫/USD, Jul 16, 2026, 08:35 AM GMT+7. Estimated international payment fee: 3%. VND remains the checkout currency; USD is an estimate for comparison.\n\nFinal totals are checked again before the order is recorded.\n\nCaseFlow Books\n\nA focused bookstore storefront for bilingual discovery, edition choice, and small-business catalog operations.\n\nSupport window\n\nMon-Sat, 09:00-18:00 ICT\n\nOrder lookup with order code and matching contact\nAccount profile for delivery details\nSHOP\nAll catalog\nBook categories\nNew arrivals\nEnglish/Vietnamese editions\nCurrent offers\nHELP\nContact support\nShipping policy\nPayment policy\nReturns policy\nTrack order\nAccount\nSTORE POLICIES\nPrivacy policy\nTerms of service\n\nPayment choices are confirmed during checkout, with COD and bank transfer prioritized for Vietnam orders.",
+      "counts": {
+        "assuranceItems": 3,
+        "paymentMethods": 5,
+        "policyLinks": 3,
+        "usdEstimates": 2
+      },
+      "hasHorizontalOverflow": false,
+      "language": "en",
+      "name": "desktop-en",
+      "paymentOrder": [
+        "cod",
+        "bank-transfer",
+        "momo",
+        "zalopay",
+        "vnpay"
+      ],
+      "primaryBadgeCount": 4,
+      "screenshotPath": ".agent/artifacts/v14-t09/checkout-v14-desktop-en.png",
+      "submitCheck": {
+        "cartClearedAfterSubmit": true,
+        "successCodeVisible": true,
+        "successHasHorizontalOverflow": false,
+        "successPageReached": true,
+        "successScreenshotPath": ".agent/artifacts/v14-t09/checkout-v14-desktop-en-success.png"
+      },
+      "viewport": {
+        "height": 1150,
+        "width": 1440
+      }
+    },
+    {
+      "bodyText": "CB\nCaseFlow Books\nMenu\nQuay lại danh sách sách\nThanh toán sách\nThanh toán\n\nKiểm tra tồn kho hiện tại, xác nhận thông tin giao hàng, chọn phương thức thanh toán và đặt đơn để nhà sách xác nhận.\n\nĐộ tin cậy thanh toán\n\nTài khoản, số điện thoại và địa chỉ giao hàng được kiểm tra trước khi xác nhận.\n\nGiá, tồn kho, VAT ước tính, phí giao hàng, phí thanh toán và khuyến mãi được tính lại từ quy tắc cửa hàng.\n\nChính sách giao hàng, thanh toán và đổi trả luôn có sẵn trong bước thanh toán.\n\nThông tin liên hệ và giao hàng\n\nThông tin liên hệ được dùng cho đơn hàng hiện tại.\n\nHồ sơ khách hàng đã đủ. Thông tin thanh toán được điền từ tài khoản nếu có.\n2. Khách hàng/liên hệ\n\nThông tin liên hệ đơn hàng lấy từ tài khoản khách hàng.\n\nHọ và tên\n\nDùng tên này để hỗ trợ đơn hàng.\n\nEmail\n\nSau này có thể gửi xác nhận tới email này.\n\nSố điện thoại\n\nChấp nhận chữ số, khoảng trắng, +, -, ngoặc và dấu chấm.\n\nĐịa chỉ giao hàng\n\nĐường, phường/xã hoặc quận/huyện, thành phố và ghi chú giao hàng nếu cần.\n\nCập nhật hồ sơ\n3. Phương thức giao hàng\nGiao tiêu chuẩn\nPhù hợp với đa số đơn sách nội địa.\nGiao nhanh\nƯớc tính giao nhanh cho địa chỉ tại Việt Nam sau khi đơn được kiểm tra.\n4. Phương thức thanh toán\nCOD\nƯu tiên\nLựa chọn ưu tiên tại Việt Nam. Thanh toán khi đơn được bàn giao.\nChuyển khoản\nƯu tiên\nLựa chọn trả trước ưu tiên. Thông tin chuyển khoản được kiểm tra cùng đơn trước khi xử lý.\nMoMo\nVí điện tử\nĐược chọn trong bước thanh toán; đơn sẽ chờ xác nhận thanh toán trước khi xử lý.\nZaloPay\nVí điện tử\nĐược chọn trong bước thanh toán; đơn sẽ chờ xác nhận thanh toán trước khi xử lý.\nVNPay\nCổng thanh toán\nĐược chọn trong bước thanh toán; đơn sẽ chờ xác nhận thanh toán trước khi xử lý.\nChính sách cửa hàng\nChính sách giao hàng\nChính sách thanh toán\nChính sách đổi trả\nMã khuyến mãi\nMã khuyến mãi\n\nKhông bắt buộc\n\n5. Kiểm tra và đặt đơn\n\nTổng cuối cùng được kiểm tra lại trước khi đơn hàng được ghi nhận.\n\nsản phẩm\n1 sản phẩm\nTạm tính\n143.000 ₫\nPhí giao hàng ước tính\n25.000 ₫\nVAT ước tính\n14.300 ₫\nPhí thanh toán\n0 ₫\nTổng đơn hàng\n182.300 ₫\n\nChọn phương thức thanh toán cho đơn hàng. Nhà sách sẽ xác nhận chuyển khoản hoặc trạng thái nhà cung cấp trước khi xử lý.\n\nĐặt đơn\n1. Kiểm tra giỏ hàng\n\n1 sản phẩm\n\nĐã kiểm tra\nA Christmas Carol\n\nCharles Dickens\n\nVan hoc kinh dien\nTiếng Anh\nBìa mềm\nCòn 11\n\n1 x 143.000 ₫\n\n143.000 ₫\n\nTóm tắt đơn hàng\n\nTổng tiền được tính lại sau khi kiểm tra giỏ hàng.\n\nĐã kiểm tra\nsản phẩm\n1 sản phẩm\nTạm tính\n143.000 ₫\nPhí giao hàng ước tính\n25.000 ₫\nVAT ước tính\n14.300 ₫\nPhí thanh toán\n0 ₫\nTổng đơn hàng\n182.300 ₫\n\nTổng cuối cùng được kiểm tra lại trước khi đơn hàng được ghi nhận.\n\nCaseFlow Books\n\nNhà sách trực tuyến tập trung vào khám phá song ngữ, lựa chọn ấn bản và vận hành danh mục cho doanh nghiệp nhỏ.\n\nKhung giờ hỗ trợ\n\nThứ 2-Thứ 7, 09:00-18:00 ICT\n\nTra cứu đơn bằng mã đơn và liên hệ trùng khớp\nHồ sơ tài khoản cho thông tin giao hàng\nMUA SÁCH\nTất cả catalog\nDanh mục sách\nẤn bản mới\nẤn bản Anh/Việt\nƯu đãi hiện có\nHỖ TRỢ\nLiên hệ hỗ trợ\nChính sách giao hàng\nChính sách thanh toán\nChính sách đổi trả\nTra cứu đơn hàng\nTài khoản\nCHÍNH SÁCH\nQuyền riêng tư\nĐiều khoản dịch vụ\n\nCác lựa chọn thanh toán được xác nhận ở bước thanh toán, ưu tiên COD và chuyển khoản cho đơn tại Việt Nam.",
+      "counts": {
+        "assuranceItems": 3,
+        "paymentMethods": 5,
+        "policyLinks": 3,
+        "usdEstimates": 0
+      },
+      "hasHorizontalOverflow": false,
+      "language": "vi",
+      "name": "mobile-vi",
+      "paymentOrder": [
+        "cod",
+        "bank-transfer",
+        "momo",
+        "zalopay",
+        "vnpay"
+      ],
+      "primaryBadgeCount": 2,
+      "screenshotPath": ".agent/artifacts/v14-t09/checkout-v14-mobile-vi.png",
+      "submitCheck": null,
+      "viewport": {
+        "height": 1150,
+        "width": 390
+      }
+    }
+  ]
+}

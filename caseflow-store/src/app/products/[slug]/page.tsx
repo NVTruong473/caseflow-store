@@ -6,7 +6,7 @@ import {
   CurrencyAmount,
   CurrencyEstimateDisclosure,
 } from "@/components/currency/currency-amount";
-import { Badge, Card, Container } from "@/components/ui";
+import { Badge, Container } from "@/components/ui";
 import { BookCoverFrame } from "@/features/books/cover-merchandising";
 import { BookEditionPurchaseControls } from "@/features/books/book-edition-purchase-controls";
 import { formatVnd } from "@/lib/format/currency";
@@ -45,6 +45,14 @@ const productDetailCopy = {
     breadcrumbBooks: "Books",
     breadcrumbHome: "Home",
     breadcrumbLabel: "Book navigation",
+    accountRequiredDescription:
+      "Orders continue through a customer account with email, phone, delivery address, and payment choice confirmed before purchase.",
+    accountRequiredTitle: "Account checkout",
+    catalogStatus: "Catalog status",
+    commerceConfidenceDescription:
+      "The store checks account details, stock, VAT, shipping, and payment totals before the order is confirmed.",
+    commerceConfidenceTitle: "Purchase confidence",
+    editionIdentityTitle: "Edition identity",
     edition: "edition",
     editionComparison: "Edition comparison",
     editionComparisonDescription:
@@ -79,7 +87,13 @@ const productDetailCopy = {
       "Standard delivery is prepared for Vietnam addresses. Shipping, VAT, and fee estimates are recalculated at checkout.",
     shippingTitle: "Shipping and totals",
     stock: "Stock",
+    stockCheckDescription:
+      "Stock is checked again before confirmation so unavailable editions cannot be ordered.",
+    stockCheckTitle: "Inventory check",
     themes: "Themes",
+    trustedTotalsDescription:
+      "Checkout recalculates item price, VAT, shipping, and payment fees from the current catalog before confirmation.",
+    trustedTotalsTitle: "Trusted totals",
     translator: "Translator",
     verifiedFacts: "Verified edition facts",
     verifiedFactsDescription:
@@ -93,6 +107,14 @@ const productDetailCopy = {
     breadcrumbBooks: "Sách",
     breadcrumbHome: "Trang chủ",
     breadcrumbLabel: "Điều hướng sách",
+    accountRequiredDescription:
+      "Đơn hàng tiếp tục qua tài khoản khách hàng với email, số điện thoại, địa chỉ nhận hàng và phương thức thanh toán được xác nhận trước khi mua.",
+    accountRequiredTitle: "Thanh toán bằng tài khoản",
+    catalogStatus: "Trạng thái catalog",
+    commerceConfidenceDescription:
+      "Cửa hàng kiểm tra tài khoản, tồn kho, VAT, phí vận chuyển và phí thanh toán trước khi xác nhận đơn.",
+    commerceConfidenceTitle: "Độ tin cậy khi mua",
+    editionIdentityTitle: "Nhận diện ấn bản",
     edition: "ấn bản",
     editionComparison: "So sánh ấn bản",
     editionComparisonDescription:
@@ -127,7 +149,13 @@ const productDetailCopy = {
       "Giao hàng tiêu chuẩn áp dụng cho địa chỉ tại Việt Nam. Phí ship, VAT và phí thanh toán được tính lại ở bước thanh toán.",
     shippingTitle: "Vận chuyển và tổng tiền",
     stock: "Tồn kho",
+    stockCheckDescription:
+      "Tồn kho được kiểm tra lại trước khi xác nhận để tránh đặt nhầm ấn bản không còn hàng.",
+    stockCheckTitle: "Kiểm tra tồn kho",
     themes: "Chủ đề",
+    trustedTotalsDescription:
+      "Checkout tính lại giá sách, VAT, phí vận chuyển và phí thanh toán từ catalog hiện tại trước khi xác nhận.",
+    trustedTotalsTitle: "Tổng tiền đáng tin",
     translator: "Dịch giả",
     verifiedFacts: "Thông tin ấn bản đã kiểm chứng",
     verifiedFactsDescription:
@@ -203,6 +231,9 @@ export default async function ProductDetailPage({
   const editionTitle = getEditionTitle(record, language);
   const authorLine = getAuthorLine(record);
   const displayFacts = record.edition.displayFacts;
+  const editionIdentityFacts = getEditionIdentityFacts(record, language, copy);
+  const commerceProofItems = getCommerceProofItems(copy);
+  const commerceHintItems = getCommerceHintItems(copy);
   const workFacts = getWorkFacts(record, language, copy);
   const reasonToRead = record.edition.reasonToRead
     ? pickLocalizedText(record.edition.reasonToRead, language)
@@ -316,7 +347,7 @@ export default async function ProductDetailPage({
 
             <div className="grid gap-case-md xl:grid-cols-[minmax(0,1fr)_320px] xl:items-start">
               <aside className="order-first flex min-w-0 flex-col gap-case-md xl:order-last xl:sticky xl:top-case-xl">
-                <div className="rounded-lg border border-offer/30 bg-offer-muted p-case-md shadow-[var(--case-shadow-soft)] lg:p-case-lg">
+                <div className="rounded-lg border border-offer/30 border-l-4 border-l-offer bg-offer-muted p-case-md shadow-[var(--case-shadow-soft)] lg:p-case-lg">
                   <div className="grid grid-cols-3 gap-case-sm xl:grid-cols-1 xl:gap-case-md">
                     <div className="min-w-0">
                       <p className="text-small font-medium uppercase text-text-muted">
@@ -373,6 +404,15 @@ export default async function ProductDetailPage({
                   language={language}
                   stockQuantity={record.edition.stockQuantity}
                 />
+
+                <section
+                  className="grid gap-case-sm"
+                  data-book-commercial-proof
+                >
+                  {commerceProofItems.map((item) => (
+                    <CommerceProofCard key={item.title} item={item} />
+                  ))}
+                </section>
               </aside>
 
               <div className="flex min-w-0 flex-col gap-case-md">
@@ -382,6 +422,29 @@ export default async function ProductDetailPage({
                 >
                   {pickLocalizedText(record.edition.summary, language)}
                 </p>
+
+                <section
+                  className="rounded-lg border border-trust/25 bg-trust-muted p-case-lg"
+                  data-book-edition-identity
+                >
+                  <div className="flex min-w-0 flex-col gap-case-xs">
+                    <h2 className="text-heading-3 font-semibold text-foreground">
+                      {copy.editionIdentityTitle}
+                    </h2>
+                    <p className="text-small leading-6 text-text-muted">
+                      {copy.commerceConfidenceDescription}
+                    </p>
+                  </div>
+                  <dl className="mt-case-md grid gap-case-sm text-small text-text-muted sm:grid-cols-2 lg:grid-cols-4">
+                    {editionIdentityFacts.map((fact) => (
+                      <DetailTerm
+                        key={fact.label}
+                        label={fact.label}
+                        value={fact.value}
+                      />
+                    ))}
+                  </dl>
+                </section>
 
                 <section
                   className="rounded-lg border border-discovery/20 bg-surface p-case-lg"
@@ -469,34 +532,13 @@ export default async function ProductDetailPage({
             </div>
 
             <section
-              className="grid gap-case-md rounded-lg border border-admin/20 bg-admin-muted p-case-lg lg:grid-cols-3"
+              className="grid gap-case-md rounded-lg border border-admin/20 bg-admin-muted p-case-md shadow-[var(--case-shadow-soft)] sm:p-case-lg lg:grid-cols-3"
               data-book-commerce-hints
               data-book-confidence
             >
-              <div className="min-w-0">
-                <h2 className="text-heading-3 font-semibold text-foreground">
-                  {copy.shippingTitle}
-                </h2>
-                <p className="mt-case-sm text-small leading-6 text-text-muted">
-                  {copy.shippingDescription}
-                </p>
-              </div>
-              <div className="min-w-0">
-                <h2 className="text-heading-3 font-semibold text-foreground">
-                  {copy.paymentTitle}
-                </h2>
-                <p className="mt-case-sm text-small leading-6 text-text-muted">
-                  {copy.paymentDescription}
-                </p>
-              </div>
-              <div className="min-w-0">
-                <h2 className="text-heading-3 font-semibold text-foreground">
-                  {copy.returnTitle}
-                </h2>
-                <p className="mt-case-sm text-small leading-6 text-text-muted">
-                  {copy.returnDescription}
-                </p>
-              </div>
+              {commerceHintItems.map((item) => (
+                <CommerceHintCard key={item.title} item={item} />
+              ))}
             </section>
 
             {recommendedRecords.length > 0 ? (
@@ -545,6 +587,55 @@ export default async function ProductDetailPage({
 
 type ProductDetailCopy = (typeof productDetailCopy)[Language];
 type CurrencyRules = ReturnType<typeof getCurrencyDisplayRules>;
+type CommercialTone = "arrival" | "discovery" | "offer" | "trust";
+type RecommendationTone =
+  | "academic"
+  | "arrival"
+  | "discovery"
+  | "editorial"
+  | "translation";
+
+type CommercePanelItem = {
+  description: string;
+  title: string;
+  tone: CommercialTone;
+};
+
+function CommerceProofCard({ item }: { item: CommercePanelItem }) {
+  return (
+    <article
+      className={cn(
+        "min-w-0 rounded-md border p-case-sm",
+        getCommerceProofToneClass(item.tone),
+      )}
+    >
+      <h3 className="text-small font-semibold text-foreground">
+        {item.title}
+      </h3>
+      <p className="mt-case-xs text-small leading-6 text-text-muted">
+        {item.description}
+      </p>
+    </article>
+  );
+}
+
+function CommerceHintCard({ item }: { item: CommercePanelItem }) {
+  return (
+    <article
+      className={cn(
+        "min-w-0 rounded-md border bg-surface p-case-md",
+        getCommerceProofToneClass(item.tone),
+      )}
+    >
+      <h2 className="text-heading-3 font-semibold text-foreground">
+        {item.title}
+      </h2>
+      <p className="mt-case-sm text-small leading-6 text-text-muted">
+        {item.description}
+      </p>
+    </article>
+  );
+}
 
 function EditionOption({
   copy,
@@ -674,53 +765,96 @@ function RecommendationGrid({
       data-book-recommendation-group={wrapperDataAttribute}
     >
       <h3 className="text-body font-semibold text-foreground">{title}</h3>
-      <div className="grid gap-case-md sm:grid-cols-2">
-        {records.map(({ record: recommended, reasons }) => (
-          <Card
+      <div className="grid gap-case-md lg:grid-cols-2">
+        {records.map(({ record: recommended, reasons }, index) => (
+          <RecommendationTile
             key={recommended.edition.id}
-            variant="interactive"
-            data-book-recommendation-card={recommended.edition.slug}
-          >
-            <Link
-              href={`/products/${recommended.edition.slug}`}
-              className="grid min-w-0 grid-cols-[80px_minmax(0,1fr)] items-start gap-case-md rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:grid-cols-[96px_minmax(0,1fr)]"
-              data-book-recommendation-link
-            >
-              <BookCoverFrame
-                className="w-full"
-                language={language}
-                record={recommended}
-                showBadges={false}
-                size="compact"
-                sizes="(min-width: 640px) 96px, 80px"
-              />
-              <div className="min-w-0" data-book-recommendation-content>
-                <div className="flex flex-wrap gap-case-xs">
-                  {reasons.map((reason) => (
-                    <Badge key={reason} variant="neutral" size="sm">
-                      {getRecommendationReasonLabel(reason, copy)}
-                    </Badge>
-                  ))}
-                </div>
-                <h4 className="mt-case-sm line-clamp-2 break-words font-semibold text-foreground">
-                  {getEditionTitle(recommended, language)}
-                </h4>
-                <p className="mt-case-xs truncate text-small text-text-muted">
-                  {recommended.authors.map((author) => author.name).join(", ")}
-                </p>
-                <p className="mt-case-xs text-small font-medium text-foreground">
-                  <CurrencyAmount
-                    amountVnd={recommended.edition.priceVnd}
-                    language={language}
-                    rules={rules}
-                  />
-                </p>
-              </div>
-            </Link>
-          </Card>
+            copy={copy}
+            index={index}
+            language={language}
+            reasons={reasons}
+            record={recommended}
+            rules={rules}
+            tone={getRecommendationTone(wrapperDataAttribute, reasons, index)}
+          />
         ))}
       </div>
     </div>
+  );
+}
+
+function RecommendationTile({
+  copy,
+  index,
+  language,
+  reasons,
+  record,
+  rules,
+  tone,
+}: {
+  copy: ProductDetailCopy;
+  index: number;
+  language: Language;
+  reasons: RecommendationReason[];
+  record: SupabaseBookCatalogRecord;
+  rules: CurrencyRules;
+  tone: RecommendationTone;
+}) {
+  return (
+    <Link
+      href={`/products/${record.edition.slug}`}
+      className={cn(
+        "group grid min-w-0 grid-cols-[88px_minmax(0,1fr)] items-start gap-case-md rounded-lg border p-case-sm transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:grid-cols-[104px_minmax(0,1fr)]",
+        getRecommendationToneClass(tone),
+      )}
+      data-book-recommendation-card={record.edition.slug}
+      data-book-recommendation-index={index + 1}
+      data-book-recommendation-link
+    >
+      <div
+        className={cn(
+          "min-w-0 rounded-md p-case-xs",
+          getRecommendationCoverSurfaceClass(tone),
+        )}
+      >
+        <BookCoverFrame
+          className="w-full"
+          imageClassName="transition duration-300 group-hover:scale-[1.02]"
+          language={language}
+          record={record}
+          showBadges={false}
+          size="compact"
+          sizes="(min-width: 640px) 104px, 88px"
+        />
+      </div>
+      <div className="min-w-0 self-center" data-book-recommendation-content>
+        <div className="flex flex-wrap gap-case-xs">
+          {reasons.map((reason) => (
+            <Badge
+              key={reason}
+              className={getRecommendationBadgeClass(tone)}
+              size="sm"
+            >
+              {getRecommendationReasonLabel(reason, copy)}
+            </Badge>
+          ))}
+        </div>
+        <h4 className="mt-case-sm line-clamp-2 break-words font-semibold text-foreground">
+          {getEditionTitle(record, language)}
+        </h4>
+        <p className="mt-case-xs truncate text-small text-text-muted">
+          {record.authors.map((author) => author.name).join(", ")}
+        </p>
+        <CurrencyAmount
+          amountVnd={record.edition.priceVnd}
+          className="mt-case-xs text-small font-semibold text-primary"
+          estimateClassName="text-text-muted"
+          language={language}
+          rules={rules}
+          size="sm"
+        />
+      </div>
+    </Link>
   );
 }
 
@@ -737,6 +871,95 @@ function DetailTerm({
       <dd>{value}</dd>
     </div>
   );
+}
+
+function getEditionIdentityFacts(
+  record: SupabaseBookCatalogRecord,
+  language: Language,
+  copy: ProductDetailCopy,
+) {
+  const facts: Array<{ label: string; value: string }> = [
+    {
+      label: copy.language,
+      value: getEditionLanguageLabel(record.edition.language, language),
+    },
+    {
+      label: copy.format,
+      value: getFormatLabel(record.edition.format, language),
+    },
+    {
+      label: copy.catalogStatus,
+      value: getInventoryStatusLabel(record.edition.inventoryStatus, language),
+    },
+  ];
+  const isbn = record.edition.isbn13 ?? record.edition.isbn10;
+
+  if (record.publisher) {
+    facts.splice(2, 0, {
+      label: copy.publisher,
+      value: record.publisher.name,
+    });
+  }
+
+  if (isbn) {
+    facts.push({
+      label: copy.isbn,
+      value: isbn,
+    });
+  }
+
+  return facts;
+}
+
+function getCommerceProofItems(copy: ProductDetailCopy): CommercePanelItem[] {
+  return [
+    {
+      description: copy.accountRequiredDescription,
+      title: copy.accountRequiredTitle,
+      tone: "trust",
+    },
+    {
+      description: copy.stockCheckDescription,
+      title: copy.stockCheckTitle,
+      tone: "arrival",
+    },
+    {
+      description: copy.trustedTotalsDescription,
+      title: copy.trustedTotalsTitle,
+      tone: "offer",
+    },
+  ];
+}
+
+function getCommerceHintItems(copy: ProductDetailCopy): CommercePanelItem[] {
+  return [
+    {
+      description: copy.shippingDescription,
+      title: copy.shippingTitle,
+      tone: "arrival",
+    },
+    {
+      description: copy.paymentDescription,
+      title: copy.paymentTitle,
+      tone: "offer",
+    },
+    {
+      description: copy.returnDescription,
+      title: copy.returnTitle,
+      tone: "trust",
+    },
+  ];
+}
+
+function getCommerceProofToneClass(tone: CommercialTone) {
+  const classes = {
+    arrival: "border-arrival/25 bg-arrival-muted",
+    discovery: "border-discovery/25 bg-discovery-muted",
+    offer: "border-offer/25 bg-offer-muted",
+    trust: "border-trust/25 bg-trust-muted",
+  } satisfies Record<CommercialTone, string>;
+
+  return classes[tone];
 }
 
 function getEditionTitle(record: SupabaseBookCatalogRecord, language: Language) {
@@ -1034,4 +1257,61 @@ function getRecommendationReasonLabel(
     case "language":
       return copy.reasonLanguage;
   }
+}
+
+function getRecommendationTone(
+  group: "author" | "related",
+  reasons: RecommendationReason[],
+  index: number,
+): RecommendationTone {
+  if (group === "author") {
+    return index % 2 === 0 ? "editorial" : "academic";
+  }
+
+  if (reasons.includes("category")) {
+    return "discovery";
+  }
+
+  if (reasons.includes("language")) {
+    return "translation";
+  }
+
+  return "arrival";
+}
+
+function getRecommendationToneClass(tone: RecommendationTone) {
+  const classes = {
+    academic: "border-academic/25 bg-academic-muted hover:border-academic",
+    arrival: "border-arrival/25 bg-arrival-muted hover:border-arrival",
+    discovery: "border-discovery/25 bg-discovery-muted hover:border-discovery",
+    editorial: "border-editorial/25 bg-editorial-muted hover:border-editorial",
+    translation:
+      "border-translation/25 bg-translation-muted hover:border-translation",
+  } satisfies Record<RecommendationTone, string>;
+
+  return classes[tone];
+}
+
+function getRecommendationCoverSurfaceClass(tone: RecommendationTone) {
+  const classes = {
+    academic: "bg-surface",
+    arrival: "bg-arrival-muted",
+    discovery: "bg-surface",
+    editorial: "bg-editorial-muted",
+    translation: "bg-translation-muted",
+  } satisfies Record<RecommendationTone, string>;
+
+  return classes[tone];
+}
+
+function getRecommendationBadgeClass(tone: RecommendationTone) {
+  const classes = {
+    academic: "border-academic bg-surface text-academic",
+    arrival: "border-arrival bg-surface text-arrival",
+    discovery: "border-discovery bg-surface text-discovery",
+    editorial: "border-editorial bg-surface text-editorial",
+    translation: "border-translation bg-surface text-translation",
+  } satisfies Record<RecommendationTone, string>;
+
+  return classes[tone];
 }

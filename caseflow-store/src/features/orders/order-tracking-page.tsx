@@ -44,6 +44,9 @@ const orderTrackingCopy = {
     orderStatus: "Order status",
     paymentMethod: "Payment method",
     paymentStatus: "Payment status",
+    privacyGuardDescription:
+      "Tracking requires both the order code and matching contact. Customer profile, address, and account details are not shown here.",
+    privacyGuardTitle: "Private lookup",
     shippingMethod: "Shipping method",
     subtitle:
       "Enter the order code and matching checkout contact to view the current status.",
@@ -68,6 +71,9 @@ const orderTrackingCopy = {
     orderStatus: "Trạng thái đơn",
     paymentMethod: "Phương thức thanh toán",
     paymentStatus: "Trạng thái thanh toán",
+    privacyGuardDescription:
+      "Tra cứu cần cả mã đơn và liên hệ trùng khớp. Hồ sơ khách hàng, địa chỉ và thông tin tài khoản không hiển thị tại đây.",
+    privacyGuardTitle: "Tra cứu riêng tư",
     shippingMethod: "Phương thức giao hàng",
     subtitle:
       "Nhập mã đơn và thông tin liên hệ khớp với lúc thanh toán để xem trạng thái hiện tại.",
@@ -134,6 +140,17 @@ export function OrderTrackingPage({ language }: { language: Language }) {
               {copy.subtitle}
             </p>
           </div>
+          <section
+            className="mt-case-lg rounded-lg border border-trust/25 bg-trust-muted p-case-md"
+            data-order-tracking-privacy-guard
+          >
+            <h2 className="text-heading-3 font-semibold text-foreground">
+              {copy.privacyGuardTitle}
+            </h2>
+            <p className="mt-case-sm text-small leading-6 text-text-muted">
+              {copy.privacyGuardDescription}
+            </p>
+          </section>
 
           {state.status === "found" ? (
             <TrackingResult
@@ -146,7 +163,7 @@ export function OrderTrackingPage({ language }: { language: Language }) {
           )}
         </section>
 
-        <aside className="rounded-lg border border-border bg-surface p-case-lg">
+        <aside className="rounded-lg border border-operations/25 bg-operations-muted p-case-lg">
           <form
             className="grid gap-case-md"
             data-order-tracking-form
@@ -211,7 +228,7 @@ function TrackingResult({
       className="mt-case-xl grid gap-case-lg"
       data-order-tracking-result
     >
-      <div className="rounded-lg border border-border bg-surface p-case-lg">
+      <div className="rounded-lg border border-trust/25 bg-trust-muted p-case-lg">
         <div className="flex flex-col gap-case-sm sm:flex-row sm:items-start sm:justify-between">
           <div className="min-w-0">
             <p className="text-small text-text-muted">{copy.orderCodeLabel}</p>
@@ -263,7 +280,7 @@ function TrackingResult({
       </div>
 
       <section
-        className="rounded-lg border border-border bg-surface p-case-lg"
+        className="rounded-lg border border-operations/25 bg-surface p-case-lg"
         aria-labelledby="order-tracking-timeline"
       >
         <h2
@@ -294,7 +311,7 @@ function TrackingEmptyState({
 }) {
   return (
     <section
-      className="mt-case-xl rounded-lg border border-border bg-surface p-case-lg"
+      className="mt-case-xl rounded-lg border border-trust/25 bg-trust-muted p-case-lg"
       data-order-tracking-empty
     >
       <h2 className="text-heading-3 font-semibold text-foreground">
@@ -320,7 +337,7 @@ function TrackingMetric({
 
   return (
     <div
-      className="rounded-md border border-border bg-surface-muted p-case-md"
+      className="rounded-md border border-operations/25 bg-surface p-case-md"
       {...dataAttribute}
     >
       <dt className="text-small text-text-muted">{label}</dt>

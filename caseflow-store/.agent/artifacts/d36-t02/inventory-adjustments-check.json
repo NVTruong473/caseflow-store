@@ -5,28 +5,28 @@
   },
   "auditTrail": [
     {
-      "id": "082ccd8f-2ae6-49da-b2fd-fcab95d0a152",
-      "edition_id": "2c3f5ef6-4aad-4419-8cd6-10f7843467ab",
+      "id": "1a57d84b-c333-481d-9d4a-c10b6955c96d",
+      "edition_id": "3431f1fe-c79f-4d4c-b2df-610067bab95a",
       "quantity_delta": -1,
       "reason": "QA final sell-through boundary",
-      "created_at": "2026-07-17T04:10:16.303156+00:00"
+      "created_at": "2026-07-19T07:24:50.80952+00:00"
     },
     {
-      "id": "a8c5522e-0a91-4853-abb8-f3b4c7868a55",
-      "edition_id": "2c3f5ef6-4aad-4419-8cd6-10f7843467ab",
+      "id": "5a1d7cf0-4c88-4cf6-b383-79ad16e3ea62",
+      "edition_id": "3431f1fe-c79f-4d4c-b2df-610067bab95a",
       "quantity_delta": -6,
       "reason": "QA stock correction",
-      "created_at": "2026-07-17T04:10:14.889423+00:00"
+      "created_at": "2026-07-19T07:24:47.974367+00:00"
     },
     {
-      "id": "5d60efd2-8cdb-4416-aade-0e14183c9517",
-      "edition_id": "2c3f5ef6-4aad-4419-8cd6-10f7843467ab",
+      "id": "080a82ac-3aea-4ecb-afb0-ba73d344aae7",
+      "edition_id": "3431f1fe-c79f-4d4c-b2df-610067bab95a",
       "quantity_delta": 5,
       "reason": "QA restock adjustment",
-      "created_at": "2026-07-17T04:10:14.004472+00:00"
+      "created_at": "2026-07-19T07:24:46.66136+00:00"
     }
   ],
-  "baseURL": "http://127.0.0.1:3006",
+  "baseURL": "http://127.0.0.1:3000",
   "cartBoundary": {
     "code": "OUT_OF_STOCK",
     "status": 409
@@ -43,17 +43,17 @@
     "code": null,
     "data": {
       "adjustment": {
-        "id": "082ccd8f-2ae6-49da-b2fd-fcab95d0a152",
-        "editionId": "2c3f5ef6-4aad-4419-8cd6-10f7843467ab",
+        "id": "1a57d84b-c333-481d-9d4a-c10b6955c96d",
+        "editionId": "3431f1fe-c79f-4d4c-b2df-610067bab95a",
         "quantityDelta": -1,
         "reason": "QA final sell-through boundary",
-        "createdByUserId": "f9251f33-d33a-4ee1-be4f-8ff9db6a4274",
-        "createdAt": "2026-07-17T04:10:16.303156+00:00"
+        "createdByUserId": "9dbaf4d9-3996-46be-bf81-e7a7a75c5a7e",
+        "createdAt": "2026-07-19T07:24:50.80952+00:00"
       },
       "item": {
-        "id": "2c3f5ef6-4aad-4419-8cd6-10f7843467ab",
-        "title": "QA D36 Inventory qa-d36-inventory-mrof65ja-6368aa",
-        "slug": "qa-d36-inventory-mrof65ja-6368aa",
+        "id": "3431f1fe-c79f-4d4c-b2df-610067bab95a",
+        "title": "QA D36 Inventory qa-d36-inventory-mrrgytaz-prhnp6",
+        "slug": "qa-d36-inventory-mrrgytaz-prhnp6",
         "authors": [
           {
             "id": "00000000-0000-4000-8000-000000001000",
@@ -67,12 +67,12 @@
         "stockQuantity": 0,
         "lowStockThreshold": 2,
         "inventoryStatus": "out-of-stock",
-        "publicPath": "/products/qa-d36-inventory-mrof65ja-6368aa"
+        "publicPath": "/products/qa-d36-inventory-mrrgytaz-prhnp6"
       }
     },
     "status": 201
   },
-  "generatedAt": "2026-07-17T04:10:17.380Z",
+  "generatedAt": "2026-07-19T07:24:52.897Z",
   "ok": true,
   "pass": {
     "anonymousDenied": true,
@@ -95,8 +95,8 @@
     "stockQuantity": 0
   },
   "qaEdition": {
-    "id": "2c3f5ef6-4aad-4419-8cd6-10f7843467ab",
-    "slug": "qa-d36-inventory-mrof65ja-6368aa",
+    "id": "3431f1fe-c79f-4d4c-b2df-610067bab95a",
+    "slug": "qa-d36-inventory-mrrgytaz-prhnp6",
     "stock_quantity": 2,
     "inventory_status": "low-stock"
   },
@@ -116,17 +116,17 @@
       "code": null,
       "data": {
         "adjustment": {
-          "id": "a8c5522e-0a91-4853-abb8-f3b4c7868a55",
-          "editionId": "2c3f5ef6-4aad-4419-8cd6-10f7843467ab",
+          "id": "5a1d7cf0-4c88-4cf6-b383-79ad16e3ea62",
+          "editionId": "3431f1fe-c79f-4d4c-b2df-610067bab95a",
           "quantityDelta": -6,
           "reason": "QA stock correction",
-          "createdByUserId": "f9251f33-d33a-4ee1-be4f-8ff9db6a4274",
-          "createdAt": "2026-07-17T04:10:14.889423+00:00"
+          "createdByUserId": "9dbaf4d9-3996-46be-bf81-e7a7a75c5a7e",
+          "createdAt": "2026-07-19T07:24:47.974367+00:00"
         },
         "item": {
-          "id": "2c3f5ef6-4aad-4419-8cd6-10f7843467ab",
-          "title": "QA D36 Inventory qa-d36-inventory-mrof65ja-6368aa",
-          "slug": "qa-d36-inventory-mrof65ja-6368aa",
+          "id": "3431f1fe-c79f-4d4c-b2df-610067bab95a",
+          "title": "QA D36 Inventory qa-d36-inventory-mrrgytaz-prhnp6",
+          "slug": "qa-d36-inventory-mrrgytaz-prhnp6",
           "authors": [
             {
               "id": "00000000-0000-4000-8000-000000001000",
@@ -140,7 +140,7 @@
           "stockQuantity": 1,
           "lowStockThreshold": 2,
           "inventoryStatus": "low-stock",
-          "publicPath": "/products/qa-d36-inventory-mrof65ja-6368aa"
+          "publicPath": "/products/qa-d36-inventory-mrrgytaz-prhnp6"
         }
       },
       "status": 201
@@ -150,17 +150,17 @@
       "code": null,
       "data": {
         "adjustment": {
-          "id": "5d60efd2-8cdb-4416-aade-0e14183c9517",
-          "editionId": "2c3f5ef6-4aad-4419-8cd6-10f7843467ab",
+          "id": "080a82ac-3aea-4ecb-afb0-ba73d344aae7",
+          "editionId": "3431f1fe-c79f-4d4c-b2df-610067bab95a",
           "quantityDelta": 5,
           "reason": "QA restock adjustment",
-          "createdByUserId": "f9251f33-d33a-4ee1-be4f-8ff9db6a4274",
-          "createdAt": "2026-07-17T04:10:14.004472+00:00"
+          "createdByUserId": "9dbaf4d9-3996-46be-bf81-e7a7a75c5a7e",
+          "createdAt": "2026-07-19T07:24:46.66136+00:00"
         },
         "item": {
-          "id": "2c3f5ef6-4aad-4419-8cd6-10f7843467ab",
-          "title": "QA D36 Inventory qa-d36-inventory-mrof65ja-6368aa",
-          "slug": "qa-d36-inventory-mrof65ja-6368aa",
+          "id": "3431f1fe-c79f-4d4c-b2df-610067bab95a",
+          "title": "QA D36 Inventory qa-d36-inventory-mrrgytaz-prhnp6",
+          "slug": "qa-d36-inventory-mrrgytaz-prhnp6",
           "authors": [
             {
               "id": "00000000-0000-4000-8000-000000001000",
@@ -174,7 +174,7 @@
           "stockQuantity": 7,
           "lowStockThreshold": 2,
           "inventoryStatus": "in-stock",
-          "publicPath": "/products/qa-d36-inventory-mrof65ja-6368aa"
+          "publicPath": "/products/qa-d36-inventory-mrrgytaz-prhnp6"
         }
       },
       "status": 201

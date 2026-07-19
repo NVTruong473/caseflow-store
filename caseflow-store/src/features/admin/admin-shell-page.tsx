@@ -21,7 +21,20 @@ type ShellMetric = {
 const shellCopy = {
   en: {
     backToStorefront: "Storefront",
+    metricSignals: (count: number) => `${count} live signals`,
+    operationsRail: "Operations rail",
+    permissionScope: (count: number) => `${count} permissions`,
     signedInAs: (name: string) => `Signed in as ${name}`,
+    surface: "Active surface",
+    surfaces: {
+      catalog: "Catalog operations",
+      customers: "Customer operations",
+      dashboard: "Sales overview",
+      inventory: "Inventory control",
+      orders: "Order queue",
+      promotions: "Promotion desk",
+      settings: "Workspace settings",
+    },
     roleLabel: "Workspace role",
     roleNames: {
       admin: "Admin",
@@ -30,7 +43,20 @@ const shellCopy = {
   },
   vi: {
     backToStorefront: "Cửa hàng",
+    metricSignals: (count: number) => `${count} tín hiệu`,
+    operationsRail: "Thanh vận hành",
+    permissionScope: (count: number) => `${count} quyền`,
     signedInAs: (name: string) => `Đã đăng nhập: ${name}`,
+    surface: "Khu vực đang xử lý",
+    surfaces: {
+      catalog: "Vận hành danh mục",
+      customers: "Vận hành khách hàng",
+      dashboard: "Tổng quan doanh số",
+      inventory: "Kiểm soát tồn kho",
+      orders: "Hàng đợi đơn",
+      promotions: "Bàn khuyến mãi",
+      settings: "Cài đặt workspace",
+    },
     roleLabel: "Vai trò",
     roleNames: {
       admin: "Admin",
@@ -109,13 +135,23 @@ export function AdminShellPage({
           role={role}
         />
 
+        <AdminOperationsRail
+          active={active}
+          language={language}
+          metricsCount={metrics.length}
+          permissions={permissions}
+          role={role}
+        />
+
         {metrics.length > 0 ? (
           <dl className="grid gap-case-sm sm:grid-cols-2 lg:grid-cols-4">
             {metrics.map((metric) => (
               <div
                 key={metric.label}
-                className="rounded-md border border-admin/20 bg-surface p-case-md shadow-[var(--case-shadow-soft)]"
+                className="relative overflow-hidden rounded-md border border-admin/20 bg-surface p-case-md pl-case-lg shadow-[var(--case-shadow-soft)]"
+                data-admin-shell-metric
               >
+                <span className="absolute inset-y-0 left-0 w-1 bg-admin" />
                 <dt className="text-small text-text-muted">{metric.label}</dt>
                 <dd className="mt-case-xs text-heading-3 font-semibold text-foreground">
                   {metric.value}
@@ -128,5 +164,61 @@ export function AdminShellPage({
         {children}
       </Container>
     </main>
+  );
+}
+
+export function AdminOperationsRail({
+  active,
+  language,
+  metricsCount,
+  permissions,
+  role,
+}: {
+  active: AdminNavigationKey;
+  language: Language;
+  metricsCount: number;
+  permissions: AdminPermission[];
+  role: AdminWorkspaceRole;
+}) {
+  const copy = shellCopy[language];
+  const items = [
+    {
+      label: copy.surface,
+      value: copy.surfaces[active],
+    },
+    {
+      label: copy.roleLabel,
+      value: copy.roleNames[role],
+    },
+    {
+      label: language === "vi" ? "Phạm vi quyền" : "Permission scope",
+      value: copy.permissionScope(permissions.length),
+    },
+    {
+      label: language === "vi" ? "Tín hiệu hiển thị" : "Visible signals",
+      value: copy.metricSignals(metricsCount),
+    },
+  ];
+
+  return (
+    <section
+      aria-label={copy.operationsRail}
+      className="grid gap-case-sm rounded-lg border border-admin/20 bg-surface p-case-md shadow-[var(--case-shadow-soft)] md:grid-cols-4"
+      data-admin-operations-rail
+      data-admin-operations-rail-active={active}
+    >
+      {items.map((item) => (
+        <div
+          key={item.label}
+          className="rounded-md border-l-4 border-admin bg-admin-muted px-case-sm py-case-sm"
+          data-admin-operations-rail-item
+        >
+          <p className="text-small text-text-muted">{item.label}</p>
+          <p className="mt-1 break-words text-small font-semibold text-admin">
+            {item.value}
+          </p>
+        </div>
+      ))}
+    </section>
   );
 }

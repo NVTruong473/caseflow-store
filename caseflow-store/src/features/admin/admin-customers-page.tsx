@@ -156,7 +156,7 @@ export function AdminCustomersPage({
         className="grid gap-case-lg xl:grid-cols-[minmax(0,1fr)_minmax(340px,440px)]"
         data-admin-customers-page
       >
-        <div className="min-w-0 rounded-lg border border-border bg-surface p-case-lg">
+        <div className="min-w-0 rounded-lg border border-admin/20 bg-surface p-case-lg shadow-[var(--case-shadow-soft)]">
           <Input
             label={copy.search}
             value={query}
@@ -175,8 +175,8 @@ export function AdminCustomersPage({
                     "rounded-md border p-case-md text-left transition-colors",
                     "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary",
                     selectedCustomer?.id === customer.id
-                      ? "border-primary bg-surface-muted"
-                      : "border-border bg-surface hover:border-primary",
+                      ? "border-admin bg-admin-muted"
+                      : "border-border bg-surface hover:border-admin",
                   )}
                   data-admin-customer-item={customer.id}
                 >
@@ -238,7 +238,7 @@ function CustomerDetailPanel({
   if (!customer) {
     return (
       <aside
-        className="rounded-lg border border-border bg-surface p-case-lg"
+        className="rounded-lg border border-operations/25 bg-operations-muted p-case-lg"
         data-admin-customer-detail
       >
         <h2 className="text-heading-3 font-semibold text-foreground">
@@ -255,7 +255,7 @@ function CustomerDetailPanel({
 
   return (
     <aside
-      className="rounded-lg border border-border bg-surface p-case-lg"
+      className="rounded-lg border border-operations/25 bg-operations-muted p-case-lg"
       data-admin-customer-detail={customer.id}
     >
       <div className="flex flex-col gap-case-sm">
@@ -341,7 +341,7 @@ function DetailMetric({
 }) {
   return (
     <div
-      className="rounded-md border border-border bg-surface-muted p-case-md"
+      className="rounded-md border border-admin/20 bg-surface p-case-md"
       {...(dataAttr ? { [dataAttr]: true } : {})}
     >
       <dt className="text-small text-text-muted">{label}</dt>

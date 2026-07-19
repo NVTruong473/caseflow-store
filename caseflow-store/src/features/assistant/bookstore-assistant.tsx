@@ -75,9 +75,9 @@ const assistantCopy = {
     title: "CaseFlow Books assistant",
     viewBook: "View book",
     welcome:
-      "Ask me for a title, author, category, language, format, price range, or buying steps. I use store rules only, not an AI API.",
+      "Ask for a title, author, category, language, format, price range, or buying steps. I will guide you through the current bookstore catalog.",
     checkout:
-      "To buy: add an edition to cart, open the cart, sign in or complete your account profile, then confirm shipping and payment at checkout. I can guide the steps, but checkout validation still runs on the server.",
+      "To buy: add an edition to cart, open the cart, sign in or complete your account profile, then confirm shipping and payment at checkout. The store checks your account, cart, and total before confirming the order.",
   },
   vi: {
     assistant: "Trợ lý nhà sách",
@@ -105,9 +105,9 @@ const assistantCopy = {
     title: "Trợ lý CaseFlow Books",
     viewBook: "Xem sách",
     welcome:
-      "Bạn có thể hỏi theo tên sách, tác giả, danh mục, ngôn ngữ, định dạng, khoảng giá hoặc các bước mua hàng. Tôi chỉ dùng luật của website, không dùng AI API.",
+      "Bạn có thể hỏi theo tên sách, tác giả, danh mục, ngôn ngữ, định dạng, khoảng giá hoặc các bước mua hàng. Tôi sẽ hướng dẫn theo catalog hiện có của nhà sách.",
     checkout:
-      "Để mua sách: thêm đúng ấn bản vào giỏ, mở giỏ hàng, đăng nhập hoặc hoàn tất hồ sơ, rồi xác nhận giao hàng và thanh toán ở checkout. Tôi chỉ hướng dẫn từng bước; server vẫn kiểm tra tài khoản, giỏ hàng và tổng tiền.",
+      "Để mua sách: thêm đúng ấn bản vào giỏ, mở giỏ hàng, đăng nhập hoặc hoàn tất hồ sơ, rồi xác nhận giao hàng và thanh toán ở checkout. Nhà sách sẽ kiểm tra tài khoản, giỏ hàng và tổng tiền trước khi xác nhận đơn.",
   },
 } as const;
 
@@ -237,10 +237,10 @@ export function BookstoreAssistant({ language }: { language: Language }) {
   }
 
   return (
-    <div className="fixed bottom-4 left-4 z-50" data-book-assistant-root>
+    <div className="fixed bottom-4 right-4 z-50" data-book-assistant-root>
       {isOpen ? (
         <section
-          className="mb-case-sm flex max-h-[min(680px,calc(100vh-120px))] w-[calc(100vw-2rem)] max-w-md flex-col overflow-hidden rounded-lg border border-border bg-surface shadow-xl"
+          className="mb-case-sm flex max-h-[min(680px,calc(100vh-120px))] w-[calc(100vw-2rem)] max-w-md flex-col overflow-hidden rounded-lg border border-trust/25 bg-surface shadow-xl"
           aria-label={copy.assistant}
           data-book-assistant-panel
         >

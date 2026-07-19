@@ -15,6 +15,7 @@ import {
 } from "@/lib/i18n/language";
 import { getRequestLanguage } from "@/lib/i18n/server";
 import { createPageMetadata } from "@/lib/seo/metadata";
+import { cn } from "@/lib/utils/cn";
 import {
   listSupabaseBookCategories,
   listSupabaseBookCatalog,
@@ -71,6 +72,20 @@ type CatalogMerchandisingEntry = {
   shelfSlugs: string[];
 };
 type CatalogMerchandisingIndex = Map<string, CatalogMerchandisingEntry>;
+type CatalogQuickLinkTone =
+  | "academic"
+  | "arrival"
+  | "editorial"
+  | "offer"
+  | "translation"
+  | "trust";
+type CatalogCardTone =
+  | "academic"
+  | "editorial"
+  | "offer"
+  | "standard"
+  | "translation"
+  | "trust";
 
 type CatalogPageProps = {
   searchParams?: Promise<Record<string, string | string[] | undefined>>;
@@ -96,6 +111,7 @@ export async function generateMetadata(): Promise<Metadata> {
 const catalogCopy = {
   en: {
     activeView: "Active view",
+    activeFilterSummary: "Current selection",
     allCategories: "All categories",
     allFormats: "All formats",
     allLanguages: "All languages",
@@ -132,6 +148,15 @@ const catalogCopy = {
     pairedBadge: "Bilingual pair",
     previous: "Previous",
     promotionBadge: "Offer",
+    quickAvailable: "In stock now",
+    quickDescription:
+      "Start from common buying intents before opening the full filter panel.",
+    quickEnglish: "English originals",
+    quickOffers: "Editor picks",
+    quickPaperback: "Paperback editions",
+    quickTitle: "Quick discovery",
+    quickUnder150: "Under 150k VND",
+    quickVietnamese: "Vietnamese editions",
     resultCount: (start: number, end: number, total: number) =>
       `Showing ${start}-${end} of ${total} editions`,
     resultSignalAvailability: (label: string) => `Availability: ${label}`,
@@ -155,6 +180,7 @@ const catalogCopy = {
   },
   vi: {
     activeView: "Chế độ đang xem",
+    activeFilterSummary: "Lựa chọn hiện tại",
     allCategories: "Tất cả danh mục",
     allFormats: "Tất cả định dạng",
     allLanguages: "Tất cả ngôn ngữ",
@@ -191,6 +217,15 @@ const catalogCopy = {
     pairedBadge: "Cặp song ngữ",
     previous: "Trước",
     promotionBadge: "Ưu đãi",
+    quickAvailable: "Còn hàng ngay",
+    quickDescription:
+      "Bắt đầu từ nhu cầu mua phổ biến trước khi mở toàn bộ bộ lọc.",
+    quickEnglish: "Bản gốc tiếng Anh",
+    quickOffers: "Biên tập chọn",
+    quickPaperback: "Ấn bản bìa mềm",
+    quickTitle: "Tìm nhanh",
+    quickUnder150: "Dưới 150k VND",
+    quickVietnamese: "Ấn bản tiếng Việt",
     resultCount: (start: number, end: number, total: number) =>
       `Đang hiển thị ${start}-${end} trong ${total} ấn bản`,
     resultSignalAvailability: (label: string) => `Tình trạng: ${label}`,
@@ -328,6 +363,19 @@ export default async function CatalogPage({ searchParams }: CatalogPageProps) {
           </dl>
         </section>
 
+        <CatalogQuickLinks
+          copy={{
+            available: copy.quickAvailable,
+            description: copy.quickDescription,
+            english: copy.quickEnglish,
+            offers: copy.quickOffers,
+            paperback: copy.quickPaperback,
+            title: copy.quickTitle,
+            under150: copy.quickUnder150,
+            vietnamese: copy.quickVietnamese,
+          }}
+        />
+
         <CatalogFilterForm
           authorOptions={authorOptions}
           categories={categories}
@@ -373,14 +421,22 @@ export default async function CatalogPage({ searchParams }: CatalogPageProps) {
             </div>
 
             <div
-              className="flex flex-wrap gap-case-xs"
+              className="rounded-md border border-trust/20 bg-trust-muted p-case-sm"
               data-catalog-active-filters
             >
-              {activeViewChips.map((chip) => (
-                <Badge key={chip} variant="neutral">
-                  {chip}
-                </Badge>
-              ))}
+              <p className="text-small font-semibold text-trust">
+                {copy.activeFilterSummary}
+              </p>
+              <div className="mt-case-xs flex flex-wrap gap-case-xs">
+                {activeViewChips.map((chip) => (
+                  <Badge
+                    key={chip}
+                    className="border-trust bg-surface text-trust"
+                  >
+                    {chip}
+                  </Badge>
+                ))}
+              </div>
             </div>
 
             <div
@@ -654,6 +710,87 @@ function CatalogFilterForm({
   );
 }
 
+function CatalogQuickLinks({
+  copy,
+}: {
+  copy: {
+    available: string;
+    description: string;
+    english: string;
+    offers: string;
+    paperback: string;
+    title: string;
+    under150: string;
+    vietnamese: string;
+  };
+}) {
+  const quickLinks = [
+    {
+      href: "/catalog?maxPriceVnd=150000",
+      label: copy.under150,
+      tone: "offer",
+    },
+    {
+      href: "/catalog?language=vi",
+      label: copy.vietnamese,
+      tone: "translation",
+    },
+    {
+      href: "/catalog?language=en",
+      label: copy.english,
+      tone: "academic",
+    },
+    {
+      href: "/catalog?availability=available",
+      label: copy.available,
+      tone: "trust",
+    },
+    {
+      href: "/catalog?featured=true",
+      label: copy.offers,
+      tone: "editorial",
+    },
+    {
+      href: "/catalog?format=paperback",
+      label: copy.paperback,
+      tone: "arrival",
+    },
+  ] satisfies Array<{
+    href: string;
+    label: string;
+    tone: CatalogQuickLinkTone;
+  }>;
+
+  return (
+    <section
+      className="rounded-lg border border-arrival/25 bg-arrival-muted p-case-md"
+      data-catalog-quick-links
+      data-v14-catalog-discovery="quick-links"
+    >
+      <div className="flex flex-col gap-case-xs">
+        <h2 className="text-heading-3 font-semibold text-foreground">
+          {copy.title}
+        </h2>
+        <p className="text-small leading-6 text-text-muted">{copy.description}</p>
+      </div>
+      <div className="mt-case-md flex gap-case-sm overflow-x-auto pb-1 sm:flex-wrap sm:overflow-visible">
+        {quickLinks.map((link) => (
+          <Link
+            key={link.href}
+            className={cn(
+              "inline-flex min-h-11 shrink-0 items-center rounded-md border px-3 py-2 text-small font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary",
+              getQuickLinkToneClass(link.tone),
+            )}
+            href={link.href}
+          >
+            {link.label}
+          </Link>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function Field({
   children,
   label,
@@ -703,6 +840,7 @@ function CatalogBookCard({
   const authorLine = record.authors.map((author) => author.name).join(", ");
   const categoryLine = getCategoryLine(record, language);
   const hasOffer = hasRealOffer(record);
+  const cardTone = getCatalogCardTone({ hasOffer, merchandising, record });
   const saleStateLabel = getSaleStateLabel({
     hasEditorialShelf: merchandising.hasEditorialShelf,
     hasOffer,
@@ -712,7 +850,10 @@ function CatalogBookCard({
 
   return (
     <Card
-      className="h-full overflow-hidden shadow-[var(--case-shadow-soft)] transition-colors hover:border-discovery"
+      className={cn(
+        "h-full overflow-hidden border-l-4 shadow-[var(--case-shadow-soft)] transition-colors hover:border-discovery",
+        getCatalogCardBorderClass(cardTone),
+      )}
       data-catalog-author={getPrimaryAuthorName(record)}
       data-catalog-card={record.edition.slug}
       data-catalog-card-title={title}
@@ -723,6 +864,7 @@ function CatalogBookCard({
       data-catalog-price-vnd={record.edition.priceVnd}
       data-catalog-promotion={hasOffer ? "compare-at" : "none"}
       data-catalog-shelf-slugs={merchandising.shelfSlugs.join(",")}
+      data-catalog-card-variant={cardTone}
       padding="none"
       variant="interactive"
     >
@@ -731,16 +873,23 @@ function CatalogBookCard({
         className="group grid h-full grid-cols-[96px_minmax(0,1fr)] gap-case-sm rounded-lg p-case-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:flex sm:flex-col sm:p-0"
         href={`/products/${record.edition.slug}`}
       >
-        <BookCoverFrame
-          className="w-full sm:m-case-md sm:mb-0 sm:w-auto"
-          imageClassName="transition duration-300 group-hover:scale-[1.025]"
-          language={language}
-          priority={priority}
-          record={record}
-          showBadges={false}
-          size="shelf"
-          sizes="(max-width: 639px) 96px, (max-width: 1023px) 42vw, (max-width: 1279px) 30vw, 240px"
-        />
+        <div
+          className={cn(
+            "flex min-w-0 items-start justify-center rounded-md p-case-xs sm:rounded-none sm:p-case-md",
+            getCatalogCardSurfaceClass(cardTone),
+          )}
+        >
+          <BookCoverFrame
+            className="w-full max-w-24 sm:mx-auto sm:max-w-36"
+            imageClassName="transition duration-300 group-hover:scale-[1.025]"
+            language={language}
+            priority={priority}
+            record={record}
+            showBadges={false}
+            size="shelf"
+            sizes="(max-width: 639px) 96px, (max-width: 1023px) 42vw, (max-width: 1279px) 30vw, 240px"
+          />
+        </div>
         <div className="flex min-w-0 flex-1 flex-col gap-case-sm sm:px-case-md sm:pb-case-md">
           <div className="flex flex-wrap gap-case-xs">
             <Badge variant="neutral">
@@ -916,6 +1065,67 @@ function PaginationLink({
       {children}
     </Link>
   );
+}
+
+function getQuickLinkToneClass(tone: CatalogQuickLinkTone) {
+  const classes = {
+    academic: "border-academic bg-academic-muted text-academic hover:bg-surface",
+    arrival: "border-arrival bg-arrival-muted text-arrival hover:bg-surface",
+    editorial:
+      "border-editorial bg-editorial-muted text-editorial hover:bg-surface",
+    offer: "border-offer bg-offer-muted text-offer hover:bg-surface",
+    translation:
+      "border-translation bg-translation-muted text-translation hover:bg-surface",
+    trust: "border-trust bg-trust-muted text-trust hover:bg-surface",
+  } satisfies Record<CatalogQuickLinkTone, string>;
+
+  return classes[tone];
+}
+
+function getCatalogCardTone({
+  hasOffer,
+  merchandising,
+  record,
+}: {
+  hasOffer: boolean;
+  merchandising: CatalogMerchandisingEntry;
+  record: SupabaseBookCatalogRecord;
+}): CatalogCardTone {
+  if (hasOffer) return "offer";
+  if (merchandising.hasPairedShelf || record.edition.language === "vi") {
+    return "translation";
+  }
+  if (merchandising.hasEditorialShelf) return "editorial";
+  if (record.edition.language === "en") return "academic";
+  if (record.edition.inventoryStatus === "in-stock") return "trust";
+
+  return "standard";
+}
+
+function getCatalogCardBorderClass(tone: CatalogCardTone) {
+  const classes = {
+    academic: "border-l-academic",
+    editorial: "border-l-editorial",
+    offer: "border-l-offer",
+    standard: "border-l-border",
+    translation: "border-l-translation",
+    trust: "border-l-trust",
+  } satisfies Record<CatalogCardTone, string>;
+
+  return classes[tone];
+}
+
+function getCatalogCardSurfaceClass(tone: CatalogCardTone) {
+  const classes = {
+    academic: "bg-academic-muted",
+    editorial: "bg-editorial-muted",
+    offer: "bg-offer-muted",
+    standard: "bg-paper",
+    translation: "bg-translation-muted",
+    trust: "bg-trust-muted",
+  } satisfies Record<CatalogCardTone, string>;
+
+  return classes[tone];
 }
 
 function clampPage(page: number, totalPages: number) {

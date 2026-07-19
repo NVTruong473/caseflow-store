@@ -6,8 +6,8 @@
     "settingsAllowed": true,
     "settingsVisible": true
   },
-  "baseURL": "http://127.0.0.1:3006",
-  "generatedAt": "2026-07-17T04:43:57.563Z",
+  "baseURL": "http://127.0.0.1:3000",
+  "generatedAt": "2026-07-19T07:28:37.779Z",
   "ok": true,
   "pass": {
     "staffNavigation": true,

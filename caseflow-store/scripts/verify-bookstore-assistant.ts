@@ -105,6 +105,7 @@ async function inspectFindBookScenario(browser: Browser, baseURL: string) {
   const hasOverflow = await hasHorizontalOverflow(page);
 
   await page.screenshot({
+    caret: "initial",
     path: path.join(ARTIFACT_DIR, "assistant-find-book-desktop-en.png"),
   });
   await context.close();
@@ -163,6 +164,7 @@ async function inspectNoResultScenario(browser: Browser, baseURL: string) {
   const hasOverflow = await hasHorizontalOverflow(page);
 
   await page.screenshot({
+    caret: "initial",
     path: path.join(ARTIFACT_DIR, "assistant-no-result-mobile-en.png"),
   });
   await context.close();
@@ -215,6 +217,7 @@ async function inspectPurchaseGuidanceScenario(
   const hasOverflow = await hasHorizontalOverflow(page);
 
   await page.screenshot({
+    caret: "initial",
     path: path.join(ARTIFACT_DIR, "assistant-checkout-guidance-desktop-en.png"),
   });
   await context.close();

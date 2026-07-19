@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-07-16T14:12:00.950Z",
-  "baseURL": "http://127.0.0.1:3005",
+  "generatedAt": "2026-07-19T06:46:52.262Z",
+  "baseURL": "http://127.0.0.1:3000",
   "expectedTotal": 182300,
   "invalidCodeLookup": {
     "code": "VALIDATION_ERROR",
@@ -24,7 +24,7 @@
   },
   "ok": true,
   "order": {
-    "orderCode": "CF-MRNL8D9O-72CC2E679A",
+    "orderCode": "CF-MRRFMU50-8DC05C6FC9",
     "total": 182300
   },
   "pass": {
@@ -42,7 +42,7 @@
   "validEmailLookup": {
     "code": null,
     "message": null,
-    "orderCode": "CF-MRNL8D9O-72CC2E679A",
+    "orderCode": "CF-MRRFMU50-8DC05C6FC9",
     "paymentMethod": "bank-transfer",
     "paymentStatus": "awaiting-transfer",
     "shippingMethod": "standard",
@@ -52,7 +52,7 @@
   "validPhoneLookup": {
     "code": null,
     "message": null,
-    "orderCode": "CF-MRNL8D9O-72CC2E679A",
+    "orderCode": "CF-MRRFMU50-8DC05C6FC9",
     "paymentMethod": "bank-transfer",
     "paymentStatus": "awaiting-transfer",
     "shippingMethod": "standard",

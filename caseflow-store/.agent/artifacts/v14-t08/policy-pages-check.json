@@ -1,0 +1,220 @@
+{
+  "taskId": "V14-T08",
+  "baseURL": "http://127.0.0.1:3000",
+  "footerCheck": {
+    "hrefs": [
+      "http://127.0.0.1:3000/",
+      "http://127.0.0.1:3000/catalog",
+      "http://127.0.0.1:3000/#categories",
+      "http://127.0.0.1:3000/#new-arrivals",
+      "http://127.0.0.1:3000/#translated-editions",
+      "http://127.0.0.1:3000/#offers",
+      "http://127.0.0.1:3000/contact",
+      "http://127.0.0.1:3000/shipping",
+      "http://127.0.0.1:3000/payment",
+      "http://127.0.0.1:3000/returns",
+      "http://127.0.0.1:3000/orders/track",
+      "http://127.0.0.1:3000/account",
+      "http://127.0.0.1:3000/privacy",
+      "http://127.0.0.1:3000/terms"
+    ],
+    "uniqueLocalPaths": [
+      "/account",
+      "/catalog",
+      "/contact",
+      "/orders/track",
+      "/payment",
+      "/privacy",
+      "/returns",
+      "/shipping",
+      "/terms"
+    ],
+    "unresolvedRoutes": []
+  },
+  "generatedAt": "2026-07-19T07:44:41.197Z",
+  "ok": true,
+  "pass": {
+    "footerLinksResolve": true,
+    "footerPolicyLinksPresent": true,
+    "noHorizontalOverflow": true,
+    "policyRoutesRender": true,
+    "screenshotsCaptured": true,
+    "seoPolicyRoutesPresent": true
+  },
+  "routeChecks": [
+    {
+      "counts": {
+        "highlights": 1,
+        "pages": 1,
+        "sections": 3
+      },
+      "hasHorizontalOverflow": false,
+      "language": "vi",
+      "path": "/contact",
+      "slug": "contact",
+      "status": 200
+    },
+    {
+      "counts": {
+        "highlights": 1,
+        "pages": 1,
+        "sections": 3
+      },
+      "hasHorizontalOverflow": false,
+      "language": "vi",
+      "path": "/shipping",
+      "slug": "shipping",
+      "status": 200
+    },
+    {
+      "counts": {
+        "highlights": 1,
+        "pages": 1,
+        "sections": 3
+      },
+      "hasHorizontalOverflow": false,
+      "language": "vi",
+      "path": "/payment",
+      "slug": "payment",
+      "status": 200
+    },
+    {
+      "counts": {
+        "highlights": 1,
+        "pages": 1,
+        "sections": 3
+      },
+      "hasHorizontalOverflow": false,
+      "language": "vi",
+      "path": "/returns",
+      "slug": "returns",
+      "status": 200
+    },
+    {
+      "counts": {
+        "highlights": 1,
+        "pages": 1,
+        "sections": 3
+      },
+      "hasHorizontalOverflow": false,
+      "language": "vi",
+      "path": "/privacy",
+      "slug": "privacy",
+      "status": 200
+    },
+    {
+      "counts": {
+        "highlights": 1,
+        "pages": 1,
+        "sections": 3
+      },
+      "hasHorizontalOverflow": false,
+      "language": "vi",
+      "path": "/terms",
+      "slug": "terms",
+      "status": 200
+    },
+    {
+      "counts": {
+        "highlights": 1,
+        "pages": 1,
+        "sections": 3
+      },
+      "hasHorizontalOverflow": false,
+      "language": "en",
+      "path": "/contact",
+      "slug": "contact",
+      "status": 200
+    },
+    {
+      "counts": {
+        "highlights": 1,
+        "pages": 1,
+        "sections": 3
+      },
+      "hasHorizontalOverflow": false,
+      "language": "en",
+      "path": "/shipping",
+      "slug": "shipping",
+      "status": 200
+    },
+    {
+      "counts": {
+        "highlights": 1,
+        "pages": 1,
+        "sections": 3
+      },
+      "hasHorizontalOverflow": false,
+      "language": "en",
+      "path": "/payment",
+      "slug": "payment",
+      "status": 200
+    },
+    {
+      "counts": {
+        "highlights": 1,
+        "pages": 1,
+        "sections": 3
+      },
+      "hasHorizontalOverflow": false,
+      "language": "en",
+      "path": "/returns",
+      "slug": "returns",
+      "status": 200
+    },
+    {
+      "counts": {
+        "highlights": 1,
+        "pages": 1,
+        "sections": 3
+      },
+      "hasHorizontalOverflow": false,
+      "language": "en",
+      "path": "/privacy",
+      "slug": "privacy",
+      "status": 200
+    },
+    {
+      "counts": {
+        "highlights": 1,
+        "pages": 1,
+        "sections": 3
+      },
+      "hasHorizontalOverflow": false,
+      "language": "en",
+      "path": "/terms",
+      "slug": "terms",
+      "status": 200
+    }
+  ],
+  "seoCheck": {
+    "robotsBody": "User-Agent: *\nAllow: /\nAllow: /catalog\nAllow: /contact\nAllow: /orders/track\nAllow: /payment\nAllow: /privacy\nAllow: /products/\nAllow: /returns\nAllow: /shipping\nAllow: /terms\nDisallow: /account\nDisallow: /admin\nDisallow: /api\nDisallow: /catalog-state-preview\nDisallow: /checkout\nDisallow: /ui-preview\n\nSitemap: http://localhost:3000/sitemap.xml\n",
+    "robotsOk": true,
+    "robotsStatus": 200,
+    "sitemapBody": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n<url>\n<loc>http://localhost:3000/</loc>\n<lastmod>2026-07-19T07:44:29.596Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>1</priority>\n</url>\n<url>\n<loc>http://localhost:3000/catalog</loc>\n<lastmod>2026-07-19T07:44:29.596Z</lastmod>\n<changefreq>daily</changefreq>\n<priority>0.9</priority>\n</url>\n<url>\n<loc>http://localhost:3000/orders/track</loc>\n<lastmod>2026-07-19T07:44:29.596Z</lastmod>\n<changefreq>monthly</changefreq>\n<priority>0.5</priority>\n</url>\n<url>\n<loc>http://localhost:3000/contact</loc>\n<lastmod>2026-07-19T07:44:29.596Z</lastmod>\n<changefreq>monthly</changefreq>\n<priority>0.45</priority>\n</url>\n<url>\n<loc>http://localhost:3000/shipping</loc>\n<lastmod>2026-07-19T07:44:29.596Z</lastmod>\n<changefreq>monthly</changefreq>\n<priority>0.45</priority>\n</url>\n<url>\n<loc>http://localhost:3000/payment</loc>\n<lastmod>2026-07-19T07:44:29.596Z</lastmod>\n<changefreq>monthly</changefreq>\n<priority>0.45</priority>\n</url>\n<url>\n<loc>http://localhost:3000/returns</loc>\n<lastmod>2026-07-19T07:44:29.596Z</lastmod>\n<changefreq>monthly</changefreq>\n<priority>0.45</priority>\n</url>\n<url>\n<loc>http://localhost:3000/privacy</loc>\n<lastmod>2026-07-19T07:44:29.596Z</lastmod>\n<changefreq>monthly</changefreq>\n<priority>0.45</priority>\n</url>\n<url>\n<loc>http://localhost:3000/terms</loc>\n<lastmod>2026-07-19T07:44:29.596Z</lastmod>\n<changefreq>monthly</changefreq>\n<priority>0.45</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/a-christmas-carol-english-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/a-tale-of-two-cities-english-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/adventures-of-huckleberry-finn-english-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/aesops-fables-english-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/alice-in-wonderland-english-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/andersens-fairy-tales-english-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-brothers-karamazov-vietnamese-hardcover</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/anna-karenina-english-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/anna-karenina-vietnamese-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/anne-of-green-gables-english-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/anne-of-green-gables-vietnamese-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/around-the-world-in-eighty-days-english-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-three-musketeers-vietnamese-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/dracula-vietnamese-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-count-of-monte-cristo-vietnamese-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/a-christmas-carol-vietnamese-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-art-of-war-vietnamese-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-picture-of-dorian-gray-vietnamese-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-war-of-the-worlds-vietnamese-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/war-and-peace-vietnamese-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-time-machine-vietnamese-special-edition</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-republic-vietnamese-hardcover</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/crime-and-punishment-english-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/alice-in-wonderland-vietnamese-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/tao-te-ching-vietnamese-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/treasure-island-vietnamese-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/wuthering-heights-vietnamese-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/don-quixote-vietnamese-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/don-quixote-english-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/dracula-english-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/frankenstein-vietnamese-hardcover</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/frankenstein-english-hardcover</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-wind-in-the-willows-vietnamese-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/great-expectations-english-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/grimms-fairy-tales-english-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/a-tale-of-two-cities-vietnamese-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/journey-to-the-center-of-the-earth-vietnamese-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-metamorphosis-vietnamese-special-edition</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-iliad-vietnamese-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/jane-eyre-vietnamese-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/jane-eyre-english-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/journey-to-the-center-of-the-earth-english-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-secret-garden-vietnamese-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/pride-and-prejudice-vietnamese-special-edition</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/les-miserables-english-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/little-women-english-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/meditations-english-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/moby-dick-english-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/moby-dick-vietnamese-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/aesops-fables-vietnamese-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-prophet-vietnamese-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/adventures-of-huckleberry-finn-vietnamese-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-adventures-of-sherlock-holmes-vietnamese-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-adventures-of-tom-sawyer-vietnamese-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/great-expectations-vietnamese-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/les-miserables-vietnamese-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/little-women-vietnamese-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-odyssey-vietnamese-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/oliver-twist-english-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/oliver-twist-vietnamese-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-old-man-and-the-sea-vietnamese-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-wonderful-wizard-of-oz-vietnamese-hardcover</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/pride-and-prejudice-english-special-edition</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-jungle-book-vietnamese-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/siddhartha-english-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/siddhartha-vietnamese-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-wealth-of-nations-vietnamese-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/meditations-vietnamese-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/tao-te-ching-english-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-divine-comedy-vietnamese-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-adventures-of-sherlock-holmes-english-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-adventures-of-tom-sawyer-english-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-art-of-war-english-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-brothers-karamazov-english-hardcover</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-call-of-the-wild-english-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-count-of-monte-cristo-english-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-divine-comedy-english-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-iliad-english-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-jungle-book-english-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-metamorphosis-english-special-edition</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-odyssey-english-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-old-man-and-the-sea-english-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-picture-of-dorian-gray-english-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-prophet-english-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-republic-english-hardcover</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-secret-garden-english-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-three-musketeers-english-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-time-machine-english-special-edition</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-war-of-the-worlds-english-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-wealth-of-nations-english-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-wind-in-the-willows-english-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-wonderful-wizard-of-oz-english-hardcover</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/the-call-of-the-wild-vietnamese-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/crime-and-punishment-vietnamese-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/treasure-island-english-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/andersens-fairy-tales-vietnamese-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/grimms-fairy-tales-vietnamese-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/around-the-world-in-eighty-days-vietnamese-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/war-and-peace-english-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n<url>\n<loc>http://localhost:3000/products/wuthering-heights-english-paperback</loc>\n<lastmod>2026-07-17T21:02:08.622Z</lastmod>\n<changefreq>weekly</changefreq>\n<priority>0.8</priority>\n</url>\n</urlset>\n",
+    "sitemapOk": true,
+    "sitemapStatus": 200
+  },
+  "screenshotChecks": [
+    {
+      "hasHorizontalOverflow": false,
+      "name": "contact-mobile-vi",
+      "path": "/contact",
+      "screenshotPath": ".agent/artifacts/v14-t08/policy-contact-mobile-vi.png",
+      "viewport": {
+        "height": 1100,
+        "width": 390
+      }
+    },
+    {
+      "hasHorizontalOverflow": false,
+      "name": "privacy-desktop-en",
+      "path": "/privacy",
+      "screenshotPath": ".agent/artifacts/v14-t08/policy-privacy-desktop-en.png",
+      "viewport": {
+        "height": 1000,
+        "width": 1440
+      }
+    }
+  ]
+}

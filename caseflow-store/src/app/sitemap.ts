@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 
+import { bookstorePolicies } from "@/lib/policies/bookstore-policies";
 import { listSupabaseBookCatalog } from "@/lib/repositories/supabase-books";
 import { absoluteUrl } from "@/lib/seo/metadata";
 
@@ -25,6 +26,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.5,
       url: absoluteUrl("/orders/track"),
     },
+    ...bookstorePolicies.map((policy) => ({
+      changeFrequency: "monthly" as const,
+      lastModified: now,
+      priority: 0.45,
+      url: absoluteUrl(policy.path),
+    })),
   ];
   const bookPages = records.map((record) => ({
     changeFrequency: "weekly" as const,

@@ -5,7 +5,18 @@ import { absoluteUrl } from "@/lib/seo/metadata";
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
-      allow: ["/", "/catalog", "/orders/track", "/products/"],
+      allow: [
+        "/",
+        "/catalog",
+        "/contact",
+        "/orders/track",
+        "/payment",
+        "/privacy",
+        "/products/",
+        "/returns",
+        "/shipping",
+        "/terms",
+      ],
       disallow: [
         "/account",
         "/admin",

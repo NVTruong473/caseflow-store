@@ -13,8 +13,8 @@ export async function generateMetadata(): Promise<Metadata> {
   return createPageMetadata({
     description:
       language === "vi"
-        ? "Checkout CaseFlow Books yêu cầu đăng nhập, hồ sơ khách hàng đầy đủ, địa chỉ giao hàng và tổng tiền do server tính lại."
-        : "CaseFlow Books checkout requires sign-in, a complete customer profile, shipping details, and server-recalculated totals.",
+        ? "Thanh toán CaseFlow Books yêu cầu đăng nhập, hồ sơ khách hàng đầy đủ, địa chỉ giao hàng và tổng tiền được cửa hàng tính lại."
+        : "CaseFlow Books checkout requires sign-in, a complete customer profile, shipping details, and store-recalculated totals.",
     language,
     path: "/checkout",
     robots: {

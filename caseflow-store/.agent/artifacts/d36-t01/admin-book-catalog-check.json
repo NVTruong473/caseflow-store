@@ -3,7 +3,7 @@
     "code": "UNAUTHORIZED",
     "status": 401
   },
-  "baseURL": "http://localhost:3000",
+  "baseURL": "http://127.0.0.1:3000",
   "cleanup": {
     "removedRows": 1
   },
@@ -11,7 +11,7 @@
     "code": "FORBIDDEN",
     "status": 403
   },
-  "generatedAt": "2026-07-18T14:30:16.237Z",
+  "generatedAt": "2026-07-19T07:18:03.325Z",
   "ok": true,
   "pass": {
     "anonymousDenied": true,
@@ -22,11 +22,11 @@
     "staffCrud": true,
     "uiHealthy": true
   },
-  "qaSlug": "qa-d36-catalog-mrqgqh3z-5l7kih",
+  "qaSlug": "qa-d36-catalog-mrrgqacn-ab35hs",
   "rowAfterFlow": {
-    "id": "871907a8-66c0-4479-9b6b-2ef2ee730f42",
-    "slug": "qa-d36-catalog-mrqgqh3z-5l7kih",
-    "display_title": "QA D36 Catalog Updated mrqgqh3z-5l7kih",
+    "id": "19ffa989-9f35-4ac2-8409-f0082aa02b44",
+    "slug": "qa-d36-catalog-mrrgqacn-ab35hs",
+    "display_title": "QA D36 Catalog Updated mrrgqacn-ab35hs",
     "is_active": true,
     "stock_quantity": 8
   },
@@ -34,16 +34,16 @@
     "created": {
       "code": null,
       "data": {
-        "id": "871907a8-66c0-4479-9b6b-2ef2ee730f42",
+        "id": "19ffa989-9f35-4ac2-8409-f0082aa02b44",
         "type": "admin-book-edition",
         "edition": {
-          "id": "871907a8-66c0-4479-9b6b-2ef2ee730f42",
+          "id": "19ffa989-9f35-4ac2-8409-f0082aa02b44",
           "workId": "00000000-0000-4000-8000-000000002027",
-          "slug": "qa-d36-catalog-mrqgqh3z-5l7kih",
-          "displayTitle": "QA D36 Catalog qa-d36-catalog-mrqgqh3z-5l7kih",
+          "slug": "qa-d36-catalog-mrrgqacn-ab35hs",
+          "displayTitle": "QA D36 Catalog qa-d36-catalog-mrrgqacn-ab35hs",
           "localizedDisplayTitle": {
-            "vi": "QA D36 Catalog qa-d36-catalog-mrqgqh3z-5l7kih",
-            "en": "QA D36 Catalog qa-d36-catalog-mrqgqh3z-5l7kih"
+            "vi": "QA D36 Catalog qa-d36-catalog-mrrgqacn-ab35hs",
+            "en": "QA D36 Catalog qa-d36-catalog-mrrgqacn-ab35hs"
           },
           "subtitle": null,
           "language": "en",
@@ -76,8 +76,8 @@
           "sourceReviewStatus": null,
           "isFeatured": false,
           "isActive": true,
-          "createdAt": "2026-07-18T14:30:00.569179+00:00",
-          "updatedAt": "2026-07-18T14:30:00.569179+00:00"
+          "createdAt": "2026-07-19T07:17:49.163884+00:00",
+          "updatedAt": "2026-07-19T07:17:49.163884+00:00"
         },
         "work": {
           "id": "00000000-0000-4000-8000-000000002027",
@@ -160,16 +160,16 @@
     "deactivated": {
       "code": null,
       "data": {
-        "id": "871907a8-66c0-4479-9b6b-2ef2ee730f42",
+        "id": "19ffa989-9f35-4ac2-8409-f0082aa02b44",
         "type": "admin-book-edition",
         "edition": {
-          "id": "871907a8-66c0-4479-9b6b-2ef2ee730f42",
+          "id": "19ffa989-9f35-4ac2-8409-f0082aa02b44",
           "workId": "00000000-0000-4000-8000-000000002027",
-          "slug": "qa-d36-catalog-mrqgqh3z-5l7kih",
-          "displayTitle": "QA D36 Catalog Updated mrqgqh3z-5l7kih",
+          "slug": "qa-d36-catalog-mrrgqacn-ab35hs",
+          "displayTitle": "QA D36 Catalog Updated mrrgqacn-ab35hs",
           "localizedDisplayTitle": {
-            "vi": "QA D36 Catalog qa-d36-catalog-mrqgqh3z-5l7kih",
-            "en": "QA D36 Catalog qa-d36-catalog-mrqgqh3z-5l7kih"
+            "vi": "QA D36 Catalog qa-d36-catalog-mrrgqacn-ab35hs",
+            "en": "QA D36 Catalog qa-d36-catalog-mrrgqacn-ab35hs"
           },
           "subtitle": null,
           "language": "en",
@@ -199,8 +199,8 @@
           "sourceReviewStatus": null,
           "isFeatured": false,
           "isActive": false,
-          "createdAt": "2026-07-18T14:30:00.569179+00:00",
-          "updatedAt": "2026-07-18T14:30:06.888473+00:00"
+          "createdAt": "2026-07-19T07:17:49.163884+00:00",
+          "updatedAt": "2026-07-19T07:17:56.554416+00:00"
         },
         "work": {
           "id": "00000000-0000-4000-8000-000000002027",
@@ -284,16 +284,16 @@
     "edited": {
       "code": null,
       "data": {
-        "id": "871907a8-66c0-4479-9b6b-2ef2ee730f42",
+        "id": "19ffa989-9f35-4ac2-8409-f0082aa02b44",
         "type": "admin-book-edition",
         "edition": {
-          "id": "871907a8-66c0-4479-9b6b-2ef2ee730f42",
+          "id": "19ffa989-9f35-4ac2-8409-f0082aa02b44",
           "workId": "00000000-0000-4000-8000-000000002027",
-          "slug": "qa-d36-catalog-mrqgqh3z-5l7kih",
-          "displayTitle": "QA D36 Catalog Updated mrqgqh3z-5l7kih",
+          "slug": "qa-d36-catalog-mrrgqacn-ab35hs",
+          "displayTitle": "QA D36 Catalog Updated mrrgqacn-ab35hs",
           "localizedDisplayTitle": {
-            "vi": "QA D36 Catalog qa-d36-catalog-mrqgqh3z-5l7kih",
-            "en": "QA D36 Catalog qa-d36-catalog-mrqgqh3z-5l7kih"
+            "vi": "QA D36 Catalog qa-d36-catalog-mrrgqacn-ab35hs",
+            "en": "QA D36 Catalog qa-d36-catalog-mrrgqacn-ab35hs"
           },
           "subtitle": null,
           "language": "en",
@@ -326,8 +326,8 @@
           "sourceReviewStatus": null,
           "isFeatured": false,
           "isActive": true,
-          "createdAt": "2026-07-18T14:30:00.569179+00:00",
-          "updatedAt": "2026-07-18T14:30:04.304002+00:00"
+          "createdAt": "2026-07-19T07:17:49.163884+00:00",
+          "updatedAt": "2026-07-19T07:17:55.09893+00:00"
         },
         "work": {
           "id": "00000000-0000-4000-8000-000000002027",
@@ -407,7 +407,7 @@
       "message": null,
       "status": 200
     },
-    "editRequestBody": "{\"compareAtPriceVnd\":null,\"displayTitle\":\"QA D36 Catalog Updated mrqgqh3z-5l7kih\",\"format\":\"paperback\",\"inventoryStatus\":\"in-stock\",\"isActive\":true,\"isFeatured\":false,\"language\":\"en\",\"localizedDisplayTitle\":{\"en\":\"QA D36 Catalog qa-d36-catalog-mrqgqh3z-5l7kih\",\"vi\":\"QA D36 Catalog qa-d36-catalog-mrqgqh3z-5l7kih\"},\"lowStockThreshold\":2,\"priceVnd\":188000,\"reasonToRead\":{\"en\":\"A clear fit for readers who want a well-positioned bookstore edition.\",\"vi\":\"Phu hop voi doc gia can mot an ban sach duoc gioi thieu ro rang.\"},\"sampleExcerptPolicy\":\"No excerpt is displayed for this managed edition.\",\"slug\":\"qa-d36-catalog-mrqgqh3z-5l7kih\",\"stockQuantity\":8,\"subtitle\":null,\"summary\":{\"en\":\"QA summary written for D36 admin catalog verification.\",\"vi\":\"Tom tat QA cho kiem thu quan ly catalog D36.\"},\"workId\":\"00000000-0000-4000-8000-000000002027\"}",
+    "editRequestBody": "{\"compareAtPriceVnd\":null,\"displayTitle\":\"QA D36 Catalog Updated mrrgqacn-ab35hs\",\"format\":\"paperback\",\"inventoryStatus\":\"in-stock\",\"isActive\":true,\"isFeatured\":false,\"language\":\"en\",\"localizedDisplayTitle\":{\"en\":\"QA D36 Catalog qa-d36-catalog-mrrgqacn-ab35hs\",\"vi\":\"QA D36 Catalog qa-d36-catalog-mrrgqacn-ab35hs\"},\"lowStockThreshold\":2,\"priceVnd\":188000,\"reasonToRead\":{\"en\":\"A clear fit for readers who want a well-positioned bookstore edition.\",\"vi\":\"Phu hop voi doc gia can mot an ban sach duoc gioi thieu ro rang.\"},\"sampleExcerptPolicy\":\"No excerpt is displayed for this managed edition.\",\"slug\":\"qa-d36-catalog-mrrgqacn-ab35hs\",\"stockQuantity\":8,\"subtitle\":null,\"summary\":{\"en\":\"QA summary written for D36 admin catalog verification.\",\"vi\":\"Tom tat QA cho kiem thu quan ly catalog D36.\"},\"workId\":\"00000000-0000-4000-8000-000000002027\"}",
     "hasOverflow": false,
     "invalidPayload": {
       "code": "VALIDATION_ERROR",
@@ -421,16 +421,16 @@
     "reactivated": {
       "code": null,
       "data": {
-        "id": "871907a8-66c0-4479-9b6b-2ef2ee730f42",
+        "id": "19ffa989-9f35-4ac2-8409-f0082aa02b44",
         "type": "admin-book-edition",
         "edition": {
-          "id": "871907a8-66c0-4479-9b6b-2ef2ee730f42",
+          "id": "19ffa989-9f35-4ac2-8409-f0082aa02b44",
           "workId": "00000000-0000-4000-8000-000000002027",
-          "slug": "qa-d36-catalog-mrqgqh3z-5l7kih",
-          "displayTitle": "QA D36 Catalog Updated mrqgqh3z-5l7kih",
+          "slug": "qa-d36-catalog-mrrgqacn-ab35hs",
+          "displayTitle": "QA D36 Catalog Updated mrrgqacn-ab35hs",
           "localizedDisplayTitle": {
-            "vi": "QA D36 Catalog qa-d36-catalog-mrqgqh3z-5l7kih",
-            "en": "QA D36 Catalog qa-d36-catalog-mrqgqh3z-5l7kih"
+            "vi": "QA D36 Catalog qa-d36-catalog-mrrgqacn-ab35hs",
+            "en": "QA D36 Catalog qa-d36-catalog-mrrgqacn-ab35hs"
           },
           "subtitle": null,
           "language": "en",
@@ -460,8 +460,8 @@
           "sourceReviewStatus": null,
           "isFeatured": false,
           "isActive": true,
-          "createdAt": "2026-07-18T14:30:00.569179+00:00",
-          "updatedAt": "2026-07-18T14:30:09.045327+00:00"
+          "createdAt": "2026-07-19T07:17:49.163884+00:00",
+          "updatedAt": "2026-07-19T07:17:58.251034+00:00"
         },
         "work": {
           "id": "00000000-0000-4000-8000-000000002027",

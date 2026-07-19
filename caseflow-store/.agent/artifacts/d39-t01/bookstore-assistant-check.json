@@ -1,5 +1,5 @@
 {
-  "baseURL": "https://caseflow-store.vercel.app",
+  "baseURL": "http://127.0.0.1:3000",
   "filterGuide": {
     "catalogHref": "/catalog?language=en&format=paperback&maxPriceVnd=200000",
     "catalogStatus": 200
@@ -12,7 +12,7 @@
     "hasOverflow": false,
     "resultCount": 2
   },
-  "generatedAt": "2026-07-17T07:48:49.864Z",
+  "generatedAt": "2026-07-19T06:45:57.553Z",
   "noResult": {
     "catalogHref": "/catalog?language=en",
     "catalogStatus": 200,

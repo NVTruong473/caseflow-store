@@ -36,6 +36,7 @@ import {
   customerPhoneSchema,
   shippingAddressSchema,
 } from "@/lib/validation/domain";
+import { cn } from "@/lib/utils/cn";
 import type { ValidatedCartData } from "@/types/catalog";
 import type {
   BookFormat,
@@ -87,10 +88,14 @@ type CheckoutSubmitState =
   | { status: "error"; message: string };
 
 type CheckoutMethodOption<TValue extends string> = {
+  badge?: string;
   description: string;
   label: string;
+  tone: CheckoutMethodTone;
   value: TValue;
 };
+
+type CheckoutMethodTone = "arrival" | "offer" | "operations" | "trust";
 
 type CheckoutProfileRequirement = {
   blocksCheckout: boolean;
@@ -135,6 +140,13 @@ const checkoutCopy = {
       "Cart review must be checked before placing the order.",
     cartValidationFallback: "Cart could not be validated for checkout.",
     clearCart: "Clear cart",
+    checkoutAssuranceAccount:
+      "Account, phone, and delivery address are checked before confirmation.",
+    checkoutAssurancePolicies:
+      "Shipping, payment, and returns policies stay available during checkout.",
+    checkoutAssuranceTitle: "Checkout confidence",
+    checkoutAssuranceTotals:
+      "Prices, stock, VAT estimate, shipping, payment fee, and promotion are recalculated from store rules.",
     contactAndShipping: "Contact and shipping",
     contactConfirmation: "Customer/contact confirmation",
     contactConfirmationDescription:
@@ -143,7 +155,7 @@ const checkoutCopy = {
     customerDetailsValid:
       "Customer details are valid for the next checkout step.",
     description:
-      "Review the cart against current stock, confirm shipping details, and place an order without payment card fields.",
+      "Review current stock, confirm shipping details, choose a payment method, and place the order for bookstore confirmation.",
     emailError: "Enter your email address.",
     emailHint: "A confirmation can be sent here later.",
     emailInvalid: "Enter a valid email address.",
@@ -157,7 +169,8 @@ const checkoutCopy = {
     item: "item",
     items: "items",
     networkError: "Cart validation is unavailable. Try again before ordering.",
-    noCardFields: "No card number, expiry date, or CVV is collected.",
+    noCardFields:
+      "Choose a payment method for the order. The bookstore confirms transfer or provider status before fulfillment.",
     openCart: "Open cart",
     orderCouldNotBeCreated:
       "Order could not be created. Review the cart and try again.",
@@ -167,19 +180,25 @@ const checkoutCopy = {
     orderSummaryDescription:
       "Totals are recalculated after cart validation.",
     orderSummaryNext:
-      "These totals are recalculated again on the server before the order is created.",
+      "Final totals are checked again before the order is recorded.",
     orderTotal: "Order total",
     payment: "Payment",
-    paymentBankDescription: "Transfer details can be confirmed after order creation.",
+    paymentBankDescription:
+      "Primary prepaid choice. Transfer details are reviewed with the order before fulfillment.",
     paymentBankLabel: "Bank transfer",
-    paymentCodDescription: "Pay when the bookstore delivery is completed.",
+    paymentCodDescription:
+      "Primary Vietnam choice. Pay on receipt when the bookstore delivery is handed over.",
     paymentCodLabel: "Cash on delivery",
+    paymentGatewayBadge: "Gateway choice",
     paymentMethodTitle: "Payment method",
-    paymentLabel: "No payment collected",
+    paymentLabel: "Payment pending",
     paymentMomoLabel: "MoMo",
+    paymentPolicyLink: "Payment policy",
+    paymentPrimaryBadge: "Primary",
     paymentProviderDescription:
-      "Provider confirmation is represented without collecting wallet credentials.",
+      "Selected at checkout; the order remains awaiting payment confirmation before fulfillment.",
     paymentVnpayLabel: "VNPay",
+    paymentWalletBadge: "Wallet choice",
     paymentZalopayLabel: "ZaloPay",
     paymentFee: "Payment fee",
     phoneError: "Enter your phone number.",
@@ -190,6 +209,7 @@ const checkoutCopy = {
     promotionCode: "Promotion code",
     promotionDiscount: "Promotion discount",
     promotionHint: "Optional",
+    policyLinksTitle: "Store policies",
     profileComplete:
       "Customer profile is complete. Checkout details are prefilled from your account where available.",
     profileIncomplete:
@@ -205,12 +225,14 @@ const checkoutCopy = {
     shippingAddressInvalid:
       "Shipping address must be 500 characters or fewer.",
     shippingAddressLabel: "Shipping address",
-    shippingExpressDescription: "Faster delivery estimate for Vietnam addresses.",
+    shippingExpressDescription:
+      "Faster delivery estimate for Vietnam addresses after order review.",
     shippingExpressLabel: "Express delivery",
     shippingLabel: "Shipping estimate",
     shippingMethodTitle: "Shipping method",
+    shippingPolicyLink: "Shipping policy",
     shippingStandardDescription:
-      "Best for most local bookstore deliveries.",
+      "Recommended for most local bookstore deliveries.",
     shippingStandardLabel: "Standard delivery",
     stepCart: "1. Cart review",
     stepContact: "2. Customer/contact",
@@ -221,9 +243,11 @@ const checkoutCopy = {
     title: "Checkout",
     updateProfile: "Update profile",
     usdEstimate: "Approx. USD total",
-    usdEstimateFee: "Display-only international payment fee",
+    usdEstimateFee: "Estimated international payment fee",
     usdEstimateSource: "Rate source",
-    vndAuthoritative: "VND remains the checkout currency.",
+    returnsPolicyLink: "Returns policy",
+    vndAuthoritative:
+      "VND remains the checkout currency; USD is an estimate for comparison.",
     vatEstimate: "VAT estimate",
   },
   vi: {
@@ -241,6 +265,13 @@ const checkoutCopy = {
       "Cần kiểm tra giỏ hàng trước khi đặt đơn.",
     cartValidationFallback: "Không thể kiểm tra giỏ hàng cho bước thanh toán.",
     clearCart: "Xóa giỏ hàng",
+    checkoutAssuranceAccount:
+      "Tài khoản, số điện thoại và địa chỉ giao hàng được kiểm tra trước khi xác nhận.",
+    checkoutAssurancePolicies:
+      "Chính sách giao hàng, thanh toán và đổi trả luôn có sẵn trong bước thanh toán.",
+    checkoutAssuranceTitle: "Độ tin cậy thanh toán",
+    checkoutAssuranceTotals:
+      "Giá, tồn kho, VAT ước tính, phí giao hàng, phí thanh toán và khuyến mãi được tính lại từ quy tắc cửa hàng.",
     contactAndShipping: "Thông tin liên hệ và giao hàng",
     contactConfirmation: "Xác nhận khách hàng/liên hệ",
     contactConfirmationDescription:
@@ -249,7 +280,7 @@ const checkoutCopy = {
     customerDetailsValid:
       "Thông tin khách hàng hợp lệ cho bước thanh toán tiếp theo.",
     description:
-      "Kiểm tra giỏ hàng theo tồn kho hiện tại, xác nhận thông tin giao hàng và đặt đơn mà không cần trường thẻ thanh toán.",
+      "Kiểm tra tồn kho hiện tại, xác nhận thông tin giao hàng, chọn phương thức thanh toán và đặt đơn để nhà sách xác nhận.",
     emailError: "Nhập email của bạn.",
     emailHint: "Sau này có thể gửi xác nhận tới email này.",
     emailInvalid: "Nhập email hợp lệ.",
@@ -263,7 +294,8 @@ const checkoutCopy = {
     item: "sản phẩm",
     items: "sản phẩm",
     networkError: "Chưa thể kiểm tra giỏ hàng. Vui lòng thử lại trước khi đặt.",
-    noCardFields: "Không thu số thẻ, ngày hết hạn hoặc CVV.",
+    noCardFields:
+      "Chọn phương thức thanh toán cho đơn hàng. Nhà sách sẽ xác nhận chuyển khoản hoặc trạng thái nhà cung cấp trước khi xử lý.",
     openCart: "Mở giỏ hàng",
     orderCouldNotBeCreated:
       "Không thể tạo đơn hàng. Hãy kiểm tra giỏ hàng rồi thử lại.",
@@ -273,19 +305,25 @@ const checkoutCopy = {
     orderSummaryDescription:
       "Tổng tiền được tính lại sau khi kiểm tra giỏ hàng.",
     orderSummaryNext:
-      "Các khoản này sẽ được server tính lại lần nữa trước khi tạo đơn.",
+      "Tổng cuối cùng được kiểm tra lại trước khi đơn hàng được ghi nhận.",
     orderTotal: "Tổng đơn hàng",
     payment: "Thanh toán",
-    paymentBankDescription: "Thông tin chuyển khoản có thể xác nhận sau khi tạo đơn.",
+    paymentBankDescription:
+      "Lựa chọn trả trước ưu tiên. Thông tin chuyển khoản được kiểm tra cùng đơn trước khi xử lý.",
     paymentBankLabel: "Chuyển khoản",
-    paymentCodDescription: "Thanh toán khi nhận hàng từ nhà sách.",
+    paymentCodDescription:
+      "Lựa chọn ưu tiên tại Việt Nam. Thanh toán khi đơn được bàn giao.",
     paymentCodLabel: "COD",
+    paymentGatewayBadge: "Cổng thanh toán",
     paymentMethodTitle: "Phương thức thanh toán",
-    paymentLabel: "Không thu tiền",
+    paymentLabel: "Chờ thanh toán",
     paymentMomoLabel: "MoMo",
+    paymentPolicyLink: "Chính sách thanh toán",
+    paymentPrimaryBadge: "Ưu tiên",
     paymentProviderDescription:
-      "Trạng thái nhà cung cấp được thể hiện mà không thu thông tin ví.",
+      "Được chọn trong bước thanh toán; đơn sẽ chờ xác nhận thanh toán trước khi xử lý.",
     paymentVnpayLabel: "VNPay",
+    paymentWalletBadge: "Ví điện tử",
     paymentZalopayLabel: "ZaloPay",
     paymentFee: "Phí thanh toán",
     phoneError: "Nhập số điện thoại.",
@@ -297,6 +335,7 @@ const checkoutCopy = {
     promotionCode: "Mã khuyến mãi",
     promotionDiscount: "Giảm giá",
     promotionHint: "Không bắt buộc",
+    policyLinksTitle: "Chính sách cửa hàng",
     profileComplete:
       "Hồ sơ khách hàng đã đủ. Thông tin thanh toán được điền từ tài khoản nếu có.",
     profileIncomplete:
@@ -311,10 +350,12 @@ const checkoutCopy = {
     shippingAddressInvalid:
       "Địa chỉ giao hàng phải từ 500 ký tự trở xuống.",
     shippingAddressLabel: "Địa chỉ giao hàng",
-    shippingExpressDescription: "Ước tính giao nhanh cho địa chỉ tại Việt Nam.",
+    shippingExpressDescription:
+      "Ước tính giao nhanh cho địa chỉ tại Việt Nam sau khi đơn được kiểm tra.",
     shippingExpressLabel: "Giao nhanh",
     shippingLabel: "Phí giao hàng ước tính",
     shippingMethodTitle: "Phương thức giao hàng",
+    shippingPolicyLink: "Chính sách giao hàng",
     shippingStandardDescription: "Phù hợp với đa số đơn sách nội địa.",
     shippingStandardLabel: "Giao tiêu chuẩn",
     stepCart: "1. Kiểm tra giỏ hàng",
@@ -326,9 +367,11 @@ const checkoutCopy = {
     title: "Thanh toán",
     updateProfile: "Cập nhật hồ sơ",
     usdEstimate: "Tổng USD ước tính",
-    usdEstimateFee: "Phí thanh toán quốc tế chỉ để tham khảo",
+    usdEstimateFee: "Phí thanh toán quốc tế ước tính",
     usdEstimateSource: "Nguồn tỷ giá",
-    vndAuthoritative: "VND vẫn là tiền tệ thanh toán.",
+    returnsPolicyLink: "Chính sách đổi trả",
+    vndAuthoritative:
+      "VND vẫn là tiền tệ thanh toán; USD là ước tính để so sánh.",
     vatEstimate: "VAT ước tính",
   },
 } as const;
@@ -432,6 +475,7 @@ export function CheckoutPage({
               {copy.description}
             </p>
           </div>
+          <CheckoutAssuranceStrip copy={copy} />
         </div>
 
         {!hasLoadedStorage ? (
@@ -610,6 +654,68 @@ function CheckoutEmptyState({
         </Link>
       </div>
     </section>
+  );
+}
+
+function CheckoutAssuranceStrip({
+  copy,
+}: {
+  copy: (typeof checkoutCopy)[Language];
+}) {
+  const assuranceItems = [
+    copy.checkoutAssuranceAccount,
+    copy.checkoutAssuranceTotals,
+    copy.checkoutAssurancePolicies,
+  ];
+
+  return (
+    <section
+      className="grid gap-case-sm rounded-lg border border-trust/25 bg-trust-muted p-case-md md:grid-cols-3"
+      data-checkout-assurance
+    >
+      <h2 className="sr-only">{copy.checkoutAssuranceTitle}</h2>
+      {assuranceItems.map((item, index) => (
+        <p
+          key={item}
+          className="min-w-0 rounded-md border border-trust/20 bg-surface p-case-sm text-small leading-6 text-text-muted"
+          data-checkout-assurance-item={index + 1}
+        >
+          {item}
+        </p>
+      ))}
+    </section>
+  );
+}
+
+function CheckoutPolicyLinks({
+  copy,
+}: {
+  copy: (typeof checkoutCopy)[Language];
+}) {
+  const links = [
+    { href: "/shipping", label: copy.shippingPolicyLink },
+    { href: "/payment", label: copy.paymentPolicyLink },
+    { href: "/returns", label: copy.returnsPolicyLink },
+  ];
+
+  return (
+    <div
+      className="flex min-w-0 flex-wrap items-center gap-case-sm rounded-md border border-border bg-paper p-case-sm"
+      data-checkout-policy-links
+    >
+      <span className="text-small font-semibold text-foreground">
+        {copy.policyLinksTitle}
+      </span>
+      {links.map((link) => (
+        <Link
+          key={link.href}
+          href={link.href}
+          className="text-small font-medium text-primary hover:text-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+        >
+          {link.label}
+        </Link>
+      ))}
+    </div>
   );
 }
 
@@ -899,6 +1005,7 @@ function CheckoutDetailsForm({
             options={getPaymentMethodOptions(copy)}
             value={paymentMethod}
           />
+          <CheckoutPolicyLinks copy={copy} />
         </CheckoutStep>
 
         <CheckoutStep title={copy.promotionCode}>
@@ -1032,7 +1139,10 @@ function CheckoutMethodChoiceGroup<TValue extends PaymentMethod | ShippingMethod
       {options.map((option) => (
         <label
           key={option.value}
-          className="flex min-w-0 cursor-pointer gap-case-sm rounded-md border border-border bg-surface p-case-md transition-colors hover:border-primary has-[:checked]:border-primary has-[:checked]:bg-primary/5"
+          className={cn(
+            "flex min-w-0 cursor-pointer gap-case-sm rounded-md border bg-surface p-case-md transition-colors hover:border-primary has-[:checked]:border-primary has-[:checked]:bg-primary/5",
+            getCheckoutMethodToneClass(option.tone),
+          )}
           data-checkout-payment-method={
             name === "paymentMethod" ? option.value : undefined
           }
@@ -1049,8 +1159,13 @@ function CheckoutMethodChoiceGroup<TValue extends PaymentMethod | ShippingMethod
             className="mt-1 h-4 w-4 shrink-0 accent-primary"
           />
           <span className="min-w-0">
-            <span className="block font-medium text-foreground">
-              {option.label}
+            <span className="flex min-w-0 flex-wrap items-center gap-case-xs">
+              <span className="font-medium text-foreground">{option.label}</span>
+              {option.badge ? (
+                <Badge className={getCheckoutMethodBadgeClass(option.tone)} size="sm">
+                  {option.badge}
+                </Badge>
+              ) : null}
             </span>
             <span className="mt-case-xs block text-small leading-6 text-text-muted">
               {option.description}
@@ -1069,11 +1184,13 @@ function getShippingMethodOptions(
     {
       description: copy.shippingStandardDescription,
       label: copy.shippingStandardLabel,
+      tone: "trust",
       value: "standard",
     },
     {
       description: copy.shippingExpressDescription,
       label: copy.shippingExpressLabel,
+      tone: "arrival",
       value: "express",
     },
   ];
@@ -1084,31 +1201,63 @@ function getPaymentMethodOptions(
 ): CheckoutMethodOption<PaymentMethod>[] {
   return [
     {
+      badge: copy.paymentPrimaryBadge,
       description: copy.paymentCodDescription,
       label: copy.paymentCodLabel,
+      tone: "trust",
       value: "cod",
     },
     {
+      badge: copy.paymentPrimaryBadge,
       description: copy.paymentBankDescription,
       label: copy.paymentBankLabel,
+      tone: "offer",
       value: "bank-transfer",
     },
     {
+      badge: copy.paymentWalletBadge,
       description: copy.paymentProviderDescription,
       label: copy.paymentMomoLabel,
+      tone: "operations",
       value: "momo",
     },
     {
+      badge: copy.paymentWalletBadge,
       description: copy.paymentProviderDescription,
       label: copy.paymentZalopayLabel,
+      tone: "operations",
       value: "zalopay",
     },
     {
+      badge: copy.paymentGatewayBadge,
       description: copy.paymentProviderDescription,
       label: copy.paymentVnpayLabel,
+      tone: "arrival",
       value: "vnpay",
     },
   ];
+}
+
+function getCheckoutMethodToneClass(tone: CheckoutMethodTone) {
+  const classes = {
+    arrival: "border-arrival/25 hover:border-arrival",
+    offer: "border-offer/25 hover:border-offer",
+    operations: "border-operations/25 hover:border-operations",
+    trust: "border-trust/25 hover:border-trust",
+  } satisfies Record<CheckoutMethodTone, string>;
+
+  return classes[tone];
+}
+
+function getCheckoutMethodBadgeClass(tone: CheckoutMethodTone) {
+  const classes = {
+    arrival: "border-arrival bg-arrival-muted text-arrival",
+    offer: "border-offer bg-offer-muted text-offer",
+    operations: "border-operations bg-operations-muted text-operations",
+    trust: "border-trust bg-trust-muted text-trust",
+  } satisfies Record<CheckoutMethodTone, string>;
+
+  return classes[tone];
 }
 
 function CheckoutProfileRequirementPanel({

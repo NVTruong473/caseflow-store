@@ -79,7 +79,7 @@
       }
     ]
   },
-  "baseURL": "https://caseflow-store.vercel.app",
+  "baseURL": "http://127.0.0.1:3000",
   "checkoutFlow": {
     "checkoutReady": true,
     "focusChecks": [
@@ -97,7 +97,7 @@
         "active": true,
         "disabled": false,
         "focusVisible": true,
-        "height": 110,
+        "height": 136,
         "label": "checkout payment option",
         "selector": "[data-checkout-payment-method='bank-transfer']",
         "visible": true,
@@ -107,11 +107,11 @@
         "active": true,
         "disabled": false,
         "focusVisible": true,
-        "height": 50,
+        "height": 74,
         "label": "checkout submit",
         "selector": "[data-checkout-submit]",
         "visible": true,
-        "width": 129
+        "width": 99
       }
     ],
     "overflowChecks": [
@@ -159,7 +159,7 @@
       }
     ]
   },
-  "generatedAt": "2026-07-18T15:31:44.561Z",
+  "generatedAt": "2026-07-19T07:50:53.131Z",
   "ok": true,
   "pass": {
     "adminControls": true,
@@ -173,7 +173,7 @@
     "catalog": {
       "cardCount": 24,
       "hasPagination": true,
-      "navigationMs": 1537,
+      "navigationMs": 563,
       "renderedCount": 24,
       "resultTotal": 100,
       "totalCount": 100

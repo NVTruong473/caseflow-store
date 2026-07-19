@@ -7,7 +7,7 @@
     "header": "{\"data\":null,\"error\":{\"code\":\"UNAUTHORIZED\",\"message\":\"Operations authentication required\"},\"meta\":null}",
     "status": 401
   },
-  "baseURL": "http://127.0.0.1:3006",
+  "baseURL": "http://127.0.0.1:3000",
   "cleanup": {
     "removedRows": 1
   },
@@ -23,9 +23,9 @@
     "href": "/api/admin/exports/orders?from=2099-02-01&to=2099-02-01",
     "pageReady": true
   },
-  "generatedAt": "2026-07-17T06:01:45.420Z",
+  "generatedAt": "2026-07-19T07:27:59.812Z",
   "ok": true,
-  "orderCode": "CF-D38CSV-MROJ5JA3",
+  "orderCode": "CF-D38CSV-MRRH3N9X",
   "pass": {
     "accessControl": true,
     "csvHeaders": true,
@@ -35,11 +35,19 @@
     "cleanupRemovedOrder": true
   },
   "staffExport": {
-    "body": "order_code,created_at,updated_at,order_status,payment_method,payment_status,shipping_method,shipping_status,item_count,subtotal_vnd,discount_total_vnd,shipping_fee_vnd,tax_total_vnd,payment_fee_vnd,total_vnd,promotion_code\nCF-D38CSV-MROJ5JA3,2099-02-01T01:00:00+00:00,2026-07-17T06:01:34.159552+00:00,completed,cod,confirmed,standard,delivered,2,440000,0,0,0,0,440000,\n",
+    "body": "order_code,created_at,updated_at,order_status,payment_method,payment_status,shipping_method,shipping_status,item_count,item_languages,item_formats,item_summary,subtotal_vnd,discount_total_vnd,shipping_fee_vnd,tax_total_vnd,payment_fee_vnd,total_vnd,promotion_code\nCF-D38CSV-MRRH3N9X,2099-02-01T01:00:00+00:00,2026-07-19T07:27:43.267336+00:00,completed,cod,confirmed,standard,delivered,2,en,paperback,2x A Christmas Carol (en; paperback; edition:00000000-0000-4000-8000-000000003027),286000,0,0,0,0,286000,\n",
     "code": null,
-    "contentDisposition": "attachment; filename=\"caseflow-orders-20260717.csv\"",
+    "contentDisposition": "attachment; filename=\"caseflow-orders-20260719.csv\"",
     "contentType": "text/csv; charset=utf-8",
-    "header": "order_code,created_at,updated_at,order_status,payment_method,payment_status,shipping_method,shipping_status,item_count,subtotal_vnd,discount_total_vnd,shipping_fee_vnd,tax_total_vnd,payment_fee_vnd,total_vnd,promotion_code",
+    "header": "order_code,created_at,updated_at,order_status,payment_method,payment_status,shipping_method,shipping_status,item_count,item_languages,item_formats,item_summary,subtotal_vnd,discount_total_vnd,shipping_fee_vnd,tax_total_vnd,payment_fee_vnd,total_vnd,promotion_code",
     "status": 200
+  },
+  "target": {
+    "displayTitle": "A Christmas Carol",
+    "format": "paperback",
+    "id": "00000000-0000-4000-8000-000000003027",
+    "language": "en",
+    "priceVnd": 143000,
+    "workId": "00000000-0000-4000-8000-000000002027"
   }
 }

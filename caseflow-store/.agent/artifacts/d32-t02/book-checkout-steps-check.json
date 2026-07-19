@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-16T12:12:53.677Z",
+  "generatedAt": "2026-07-19T06:26:17.088Z",
   "apiValidation": {
     "emptyCartStatus": 400,
     "expectedServerTotal": 182300,
@@ -9,7 +9,7 @@
     "tamperedTotalsStatus": 201,
     "tamperedTotalsValue": 182300
   },
-  "baseURL": "http://127.0.0.1:3005",
+  "baseURL": "http://127.0.0.1:3000",
   "browserFlow": {
     "cartClearedAfterSubmit": true,
     "cartReviewVisible": true,
@@ -38,5 +38,5 @@
     "slug": "a-christmas-carol-english-paperback",
     "stockQuantity": 11
   },
-  "testEmail": "caseflow-d32-checkout-mrngz1wx-8tdj3n@example.com"
+  "testEmail": "caseflow-d32-checkout-mrrewdtu-c60fal@example.com"
 }

@@ -10,11 +10,175 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: v1.3.1 released; final repository hygiene audit complete
-- Current gate: `CLOSEOUT-T02` complete; no active implementation task
-- Current task: No active implementation task
+- Mode: v1.4 release in progress
+- Current gate: `V14-T12` complete; `V14-T13` in progress
+- Current task: `V14-T13 - Deploy, Smoke Test, Commit, Tag, Push, And Create
+  GitHub Release v1.4.0`
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-19
+
+## Phase V14 - Real Commerce And Visual Merchandising Upgrade
+
+- [x] `V14-T01` Create Real Commerce + Visual Merchandising ADR and detailed
+  `V14-T02` through `V14-T12` roadmap. - 2026-07-19
+  - Result: accepted `ADR-0009` and
+    `docs/v1.4-real-commerce-visual-merchandising-roadmap.md`.
+  - Verification: file inspection and `git diff --check` planned with the
+    first V14 verification pass.
+- [x] `V14-T02` Runtime No-Demo Copy Audit And Commercial Language Pass. -
+  2026-07-19
+  - Result: added runtime no-demo-copy verifier and replaced storefront,
+    footer, checkout, checkout success, and assistant copy that exposed demo or
+    implementation framing.
+  - Verification: `npx tsx scripts/verify-v14-no-demo-runtime-copy.ts`,
+    `npm run lint`, and `git diff --check` passed.
+- [x] `V14-T03` Expand Commerce Visual Tokens. - 2026-07-19
+  - Result: added token-backed visual roles for translation, academic, trust,
+    arrival, and operations, plus verifier coverage for required CSS/theme
+    variables and raw runtime hex usage.
+  - Verification: `npx tsx scripts/verify-v14-visual-tokens.ts`,
+    `npm run lint`, and `git diff --check` passed.
+- [x] `V14-T04` Build Merchandising Layout Library. - 2026-07-19
+  - Result: added additive merchandising layout components for editorial
+    feature shelves, deal strips, translation pairs, category spine rails,
+    reading paths, and compact retail tiles.
+  - Verification: `npx tsc --noEmit --pretty false`, `npm run lint`,
+    visual-token verifier, no-demo runtime verifier, and `git diff --check`
+    passed.
+- [x] `V14-T05` Homepage Retail Floor Redesign. - 2026-07-19
+  - Result: homepage now uses V14 category spine rail, editorial feature,
+    reading path, translation pair, and deal strip layouts while preserving
+    hero/catalog links, currency display, local images, and existing sections.
+  - Verification: `HOMEPAGE_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx
+    scripts/verify-v14-homepage-visual-merchandising.ts`,
+    `npx tsc --noEmit --pretty false`, `npm run lint`, visual-token verifier,
+    no-demo runtime verifier, and `git diff --check` passed.
+- [x] `V14-T06` Catalog Discovery And Card System V2. - 2026-07-19
+  - Result: catalog now includes quick discovery links, stronger active-filter
+    summary, and card variants with token-backed tone surfaces for offer,
+    translation, editorial, academic, trust, and standard results.
+  - Verification: `CATALOG_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx
+    scripts/verify-v14-catalog-discovery.ts`, `verify-catalog-filters.ts`,
+    `verify-catalog-page.ts`, `npx tsc --noEmit --pretty false`,
+    `npm run lint`, visual-token verifier, no-demo runtime verifier, and
+    `git diff --check` passed.
+- [x] `V14-T07` Product Detail Commercial Trust And Recommendation Redesign. -
+  2026-07-19
+  - Result: product detail pages now include token-backed edition identity,
+    account checkout, inventory check, trusted-total proof panels, and varied
+    recommendation tiles while preserving purchase controls, edition switching,
+    JSON-LD, local covers, and existing catalog data.
+  - Verification: `BOOK_DETAIL_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx
+    scripts/verify-v14-book-detail-commercial-trust.ts`,
+    `verify-hotfix-compact-card-overlap.ts`, `npx tsc --noEmit --pretty
+    false`, `npm run lint`, visual-token verifier, no-demo runtime verifier,
+    and `git diff --check` passed.
+- [x] `V14-T08` Trust, Policy, And Footer Pages. - 2026-07-19
+  - Result: added route-language-aware contact, shipping, payment, returns,
+    privacy, and terms pages; updated customer footer navigation with support
+    channels/hours; removed admin from footer; and added policy routes to
+    sitemap/robots.
+  - Verification: `POLICY_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx
+    scripts/verify-v14-policy-pages.ts`, `npx tsc --noEmit --pretty false`,
+    `npm run lint`, `npm run build`, no-demo runtime verifier, visual-token
+    verifier, and `git diff --check` passed.
+- [x] `V14-T09` Checkout Commercial Reality Pass. - 2026-07-19
+  - Result: checkout now presents COD and bank transfer as priority methods,
+    keeps wallet/gateway choices in awaiting-confirmation language, adds
+    checkout confidence and policy links, clarifies VND/USD estimate wording,
+    and fixes local `127.0.0.1` Next dev hydration via `allowedDevOrigins`.
+  - Verification: `CHECKOUT_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx
+    scripts/verify-v14-checkout-commercial-reality.ts`,
+    `BOOK_CHECKOUT_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx
+    scripts/verify-book-checkout-steps.ts`, `npx tsc --noEmit --pretty
+    false`, `npm run lint`, no-demo runtime verifier, visual-token verifier,
+    and `git diff --check` passed.
+- [x] `V14-T10` Customer, Tracking, Assistant, And Account Surface Polish. -
+  2026-07-19
+  - Result: account/customer profile copy no longer exposes Supabase/project
+    implementation language; customer profile and signed-in panels use
+    trust/operations surface treatment.
+  - Result: public order tracking now includes a visible privacy guard,
+    preserves minimal public payload behavior, and records API response status
+    evidence in the V14 verifier.
+  - Result: assistant floating control is positioned on the mobile right side,
+    keeps guidance/order actions visible, and still does not create orders from
+    chat.
+  - Result: customer/profile, public-tracking, and assistant verification
+    screenshots avoid Playwright caret-induced hydration warnings.
+  - Verification:
+    `CUSTOMER_SURFACES_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx
+    scripts/verify-v14-customer-surfaces.ts`,
+    `CUSTOMER_PROFILE_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx
+    scripts/verify-customer-profile.ts`,
+    `PUBLIC_ORDER_TRACKING_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx
+    scripts/verify-public-order-tracking.ts`,
+    `BOOKSTORE_ASSISTANT_BASE_URL=http://127.0.0.1:3000 npx tsx
+    scripts/verify-bookstore-assistant.ts`, `npx tsc --noEmit --pretty false`,
+    `npm run lint`, no-demo runtime verifier, and `git diff --check` passed.
+- [x] `V14-T11` Admin Operations Visual Upgrade. - 2026-07-19
+  - Result: added a reusable admin operations rail with active surface, role,
+    permission scope, and visible signal context across shell-based admin
+    pages and the custom orders page.
+  - Result: admin metric cards now use dense operational stripe treatment;
+    dashboard payment/order summaries include status rails; dashboard mobile
+    recent orders render as cards while desktop keeps the table.
+  - Result: orders, inventory, and customers surfaces use operations/admin
+    panel treatment without changing API calls, auth rules, schema, or
+    permissions.
+  - Verification:
+    `ADMIN_OPERATIONS_VISUAL_BASE_URL=http://127.0.0.1:3000 npx tsx
+    scripts/verify-v14-admin-operations-visual.ts`,
+    `STAFF_ROLE_ACCESS_BASE_URL=http://127.0.0.1:3000 npx tsx
+    scripts/verify-staff-role-access.ts`,
+    `ADMIN_ORDER_OPS_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx
+    scripts/verify-admin-order-operations.ts`,
+    `ADMIN_BOOK_CATALOG_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx
+    scripts/verify-admin-book-catalog.ts`,
+    `INVENTORY_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx
+    scripts/verify-inventory-adjustments.ts`,
+    `ADMIN_CUSTOMERS_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx
+    scripts/verify-admin-customers.ts`,
+    `ADMIN_DASHBOARD_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx
+    scripts/verify-admin-dashboard.ts`,
+    `ADMIN_NAVIGATION_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx
+    scripts/verify-admin-navigation.ts`,
+    `ADMIN_ORDERS_CSV_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx
+    scripts/verify-admin-orders-csv-export.ts`, `npx tsc --noEmit --pretty
+    false`, `npm run lint`, no-demo runtime verifier, visual-token verifier,
+    and `git diff --check` passed.
+- [x] `V14-T12` Full Local Quality Gate And Release Readiness Report. -
+  2026-07-19
+  - Result: created `docs/v1.4-release-readiness-report.md` and accepted the
+    local `v1.4.0` release candidate as release-ready for a later explicit
+    deploy/tag/release task.
+  - Verification: `npx tsc --noEmit --pretty false`, `npm run lint`,
+    `npm run build`, full Playwright `20/20`, V14 no-demo runtime copy scan,
+    V14 visual-token scan, homepage/catalog/detail/policy/checkout/customer/
+    admin visual QA, accessibility/mobile/performance, cleanup
+    `totalMatches: 0`, high/critical dependency audit, targeted secret scan
+    across 1058 candidate files, and `git diff --check` passed.
+  - Note: one verifier-only screenshot timeout in the older accessibility
+    script was fixed by disabling animation/caret side effects and increasing
+    screenshot timeout; the rerun passed.
+  - Guardrail: no deploy, tag, GitHub Release, schema migration, production
+    catalog mutation, payment/shipping provider integration, or external cover
+    import was performed.
+- [/] `V14-T13` Deploy, Smoke Test, Commit, Tag, Push, And Create GitHub
+  Release v1.4.0. - 2026-07-19
+  - Objective: release the locally gated `v1.4.0` candidate to production,
+    verify production behavior, commit/tag/push the exact release state, and
+    create a professional GitHub Release.
+  - Acceptance criteria: release preflight passes; no existing `v1.4.0` tag or
+    release blocks the task; release commit contains V14 code, docs, and
+    evidence; Vercel production deploy is ready and aliased to
+    `https://caseflow-store.vercel.app`; production smoke passes; annotated
+    tag `v1.4.0` is created and pushed; GitHub Release `v1.4.0` is created and
+    verified.
+  - Verification: `git status`, tag/release preflight, `npm run lint`,
+    `npm run build`, V14 runtime copy scan, targeted secret scan,
+    `git diff --check`, Vercel deploy/inspect/alias evidence, production
+    smoke, `git ls-remote` for main and tag, and `gh release view v1.4.0`.
 
 ## Pre-Implementation Checklist
 

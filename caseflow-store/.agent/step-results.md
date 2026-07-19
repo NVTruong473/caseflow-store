@@ -4,17 +4,17 @@
 
 | Field | Value |
 |---|---|
-| Current mode | v1.3.0 released; final post-release QA passed |
-| Current gate | `QA-FINAL-T01` complete; no P0/P1 tester findings |
+| Current mode | v1.4 real commerce and visual merchandising upgrade locally gated |
+| Current gate | `V14-T12` complete; optional `v1.4.0` release task not yet approved |
 | Implementation started | Yes |
-| Next implementation task | No active implementation task |
+| Next implementation task | Awaiting explicit deploy/tag/release approval for optional `v1.4.0` |
 | App initialized | Yes, in `caseflow-store` |
-| Local server verified | Yes, QA-FINAL-T01 full Playwright `20/20` passed on a production-style local server at `http://127.0.0.1:3002` |
-| Lint verified | Yes, QA-FINAL-T01 lint passed |
-| Build verified | Yes, QA-FINAL-T01 production build generated 42 App Router routes plus proxy |
+| Local server verified | Yes, V14-T12 full Playwright `20/20` passed on a production-style local server at `http://127.0.0.1:3001`; V14 visual QA passed on local `next start` at `http://127.0.0.1:3000` |
+| Lint verified | Yes, V14-T12 lint passed |
+| Build verified | Yes, V14-T12 production build generated 48 App Router routes plus proxy |
 | Database connected | Yes; live catalog, orders, Auth, role checks, and admin status updates use Supabase |
 | Deployed | Yes, v1.3 production deployment `dpl_6in3zn6CsXKtj3mR2xjGVh4X3q59` is aliased to `https://caseflow-store.vercel.app` |
-| Last updated | 2026-07-18 |
+| Last updated | 2026-07-19 |
 
 ## Result Index
 
@@ -128,6 +128,7 @@
 | SR-180 | 2026-07-18 | V13-T09 | completed | Passed the full v1.3 local visual/documentation QA gate, added release notes, verified cleanup/stale/secret scans, and left deploy/tag pending explicit instruction |
 | SR-181 | 2026-07-18 | V13-T10 | completed | Deployed v1.3.0 to Vercel production, passed production smoke, refreshed release docs/evidence, and created the release commit/tag |
 | SR-182 | 2026-07-18 | QA-FINAL-T01 | completed | Passed final post-release tester audit for v1.3.0 with production smoke, full Playwright 20/20, accessibility/mobile/performance, cleanup, static gates, and no P0/P1 findings |
+| SR-183 | 2026-07-19 | V14-T12 | completed | Passed the full local v1.4 quality gate with TypeScript, lint, build, Playwright 20/20, V14 visual QA, cleanup, high/critical audit, targeted secret scan, release-readiness report, and no deploy/tag/release |
 
 ---
 
@@ -11587,3 +11588,859 @@ without changing runtime behavior.
 
 No active implementation task. The project is closed out and portfolio-ready at
 `v1.3.1`.
+
+---
+
+## V14-T01 - Real Commerce + Visual Merchandising ADR
+
+- Date: 2026-07-19
+- Status: completed
+- Phase: CaseFlow Books v1.4 real commerce and visual merchandising upgrade
+
+### Objective
+
+Create the governing ADR and detailed post-`v1.3.1` roadmap for making
+CaseFlow Books feel more like a real operating bookstore while also resolving
+the user's critique that many tabs, shelves, smaller pages, and book cards look
+too visually uniform.
+
+### Actual Result
+
+- Added `ADR-0009: Real Commerce And Visual Merchandising Upgrade For v1.4`.
+- Added `docs/v1.4-real-commerce-visual-merchandising-roadmap.md` with
+  `V14-T02` through `V14-T12`, acceptance criteria, and verification for each
+  task.
+- Updated the ADR index and agent trackers to reflect the accepted phase and
+  next task.
+- Preserved the explicit boundary that v1.4 may improve runtime commercial
+  wording and visual merchandising, but may not fake reviews, fake sold counts,
+  copy commercial covers, add real payment/shipping/SMS/email/AI integrations,
+  mutate production data, deploy, tag, or release unless a later task
+  explicitly authorizes it.
+
+### Evidence
+
+- `docs/adr/0009-real-commerce-visual-merchandising-upgrade.md`
+- `docs/v1.4-real-commerce-visual-merchandising-roadmap.md`
+- `docs/adr/README.md`
+- `.agent/project-context.md`
+- `.agent/todo-roadmap.md`
+
+### Verification
+
+- File inspection: completed during patch review.
+- `git diff --check`: to run with the first V14 verification pass.
+
+### Guardrails Preserved
+
+- No runtime feature, schema migration, production data mutation, dependency,
+  deployment, tag, or GitHub Release was introduced by this planning task.
+- Work remains one V14 task at a time; `V14-T02` is the next implementation
+  task.
+
+### Next Task
+
+`V14-T02 - Runtime No-Demo Copy Audit And Commercial Language Pass`.
+
+---
+
+## V14-T02 - Runtime No-Demo Copy Audit And Commercial Language Pass
+
+- Date: 2026-07-19
+- Status: completed
+- Phase: CaseFlow Books v1.4 real commerce and visual merchandising upgrade
+
+### Objective
+
+Remove customer-facing runtime copy that made the live web feel like a demo,
+mock, implementation artifact, or portfolio explanation, while keeping honest
+limitations in documentation and preserving all commerce/auth/API behavior.
+
+### Actual Result
+
+- Added `scripts/verify-v14-no-demo-runtime-copy.ts`, which scans runtime UI
+  files under `src/app`, `src/components`, and `src/features` for prohibited
+  demo/internal phrases.
+- Replaced homepage merchandising copy that mentioned fake sales or review
+  signals with customer-facing bookstore language.
+- Replaced footer payment caveat copy with commercial checkout/payment
+  expectation copy.
+- Replaced checkout and checkout-success phrases such as "No payment
+  collected", "display-only", "represented without collecting", and admin/server
+  review wording with customer-facing order confirmation, payment pending, and
+  bookstore confirmation wording.
+- Replaced assistant implementation disclaimer copy with bookstore guidance
+  language.
+
+### Evidence
+
+- `scripts/verify-v14-no-demo-runtime-copy.ts`
+- `.agent/artifacts/v14-t02/no-demo-runtime-copy-check.json`
+- `src/app/page.tsx`
+- `src/components/layout/site-footer.tsx`
+- `src/features/checkout/checkout-page.tsx`
+- `src/features/checkout/checkout-success-page.tsx`
+- `src/features/assistant/bookstore-assistant.tsx`
+
+### Verification
+
+- `npx tsx scripts/verify-v14-no-demo-runtime-copy.ts`: passed with `ok: true`,
+  `scannedFiles: 101`, and zero findings.
+- `npm run lint`: passed.
+- Targeted runtime phrase scan: no prohibited matches in `src/app`,
+  `src/features`, or `src/components`.
+- `git diff --check`: passed.
+
+### Guardrails Preserved
+
+- No auth, API, database, payment-provider, shipping-provider, production data,
+  dependency, deployment, tag, or release behavior changed.
+- Documentation may still explain project boundaries; runtime customer-facing
+  UI now uses commercial language.
+
+### Next Task
+
+`V14-T03 - Expand Commerce Visual Tokens`.
+
+---
+
+## V14-T03 - Expand Commerce Visual Tokens
+
+- Date: 2026-07-19
+- Status: completed
+- Phase: CaseFlow Books v1.4 real commerce and visual merchandising upgrade
+
+### Objective
+
+Extend the design system with token-backed commerce roles so later V14 visual
+work can become structurally and chromatically richer without random one-off
+colors or a simple recolor of the old card system.
+
+### Actual Result
+
+- Added `translation`, `academic`, `trust`, `arrival`, and `operations` color
+  roles plus muted variants to `DESIGN.md`.
+- Added matching CSS variables and Tailwind theme aliases to
+  `src/app/globals.css`.
+- Added `scripts/verify-v14-visual-tokens.ts` to check required token presence
+  and fail on raw hex colors inside runtime UI files.
+- Updated design guidance to require v1.4 card variants to differ by structure
+  and information hierarchy, not only color.
+
+### Evidence
+
+- `DESIGN.md`
+- `src/app/globals.css`
+- `scripts/verify-v14-visual-tokens.ts`
+- `.agent/artifacts/v14-t03/visual-token-check.json`
+
+### Verification
+
+- `npx tsx scripts/verify-v14-visual-tokens.ts`: passed with all required
+  roles present and zero runtime raw-hex findings.
+- `npm run lint`: passed.
+- `git diff --check`: passed.
+
+### Guardrails Preserved
+
+- No runtime flow, auth, API, database, external integration, dependency,
+  deployment, tag, or release change was introduced.
+- New color usage is token-backed and ready for later V14 UI work.
+
+### Next Task
+
+`V14-T04 - Build Merchandising Layout Library`.
+
+---
+
+## V14-T04 - Build Merchandising Layout Library
+
+- Date: 2026-07-19
+- Status: completed
+- Phase: CaseFlow Books v1.4 real commerce and visual merchandising upgrade
+
+### Objective
+
+Add reusable layout primitives that make merchandising surfaces structurally
+different rather than just differently colored, while preserving existing data,
+routes, cover assets, and commerce boundaries.
+
+### Actual Result
+
+- Added `src/features/books/merchandising-layouts.tsx`.
+- Added additive components for:
+  - editorial feature shelves;
+  - deal strips;
+  - English/Vietnamese translation pair shelves;
+  - category spine rails;
+  - reading-path shelves;
+  - compact retail tiles.
+- Components use existing `SupabaseBookCatalogRecord` data, existing
+  project-created cover assets, `CurrencyAmount`, `Badge`, and token-backed
+  color roles.
+- No homepage/catalog/detail route was rewired in this task; the library is
+  ready for `V14-T05` and later tasks.
+
+### Evidence
+
+- `src/features/books/merchandising-layouts.tsx`
+- `.agent/artifacts/v14-t02/no-demo-runtime-copy-check.json`
+- `.agent/artifacts/v14-t03/visual-token-check.json`
+
+### Verification
+
+- `npx tsc --noEmit --pretty false`: passed.
+- `npm run lint`: passed.
+- `npx tsx scripts/verify-v14-visual-tokens.ts`: passed.
+- `npx tsx scripts/verify-v14-no-demo-runtime-copy.ts`: passed with
+  `scannedFiles: 102` and zero findings.
+- `git diff --check`: passed.
+
+### Guardrails Preserved
+
+- No new dependency, route rewrite, database/schema/data migration, external
+  integration, payment/shipping/AI provider, deploy, tag, or release change was
+  introduced.
+- The layout library is additive and uses existing cover/content provenance.
+
+### Next Task
+
+`V14-T05 - Homepage Retail Floor Redesign`.
+
+---
+
+## V14-T05 - Homepage Retail Floor Redesign
+
+- Date: 2026-07-19
+- Status: completed
+- Phase: CaseFlow Books v1.4 real commerce and visual merchandising upgrade
+
+### Objective
+
+Rebuild homepage merchandising rhythm so the page no longer feels like a single
+repeated card system, while preserving the existing catalog data, language
+mode, currency display, hero entry point, local covers, and route behavior.
+
+### Actual Result
+
+- Replaced the old category card grid with a V14 category spine rail.
+- Replaced the old featured product grid with an editorial feature shelf.
+- Replaced the weekend compact grid with a reading-path shelf.
+- Replaced translated-edition cards with a V14 translation-pair shelf.
+- Replaced the repeated promotion rail with a V14 offer/deal strip.
+- Preserved hero cards, product links, support/trust signals, language shelves,
+  VND/USD display, local cover assets, and existing homepage section anchors.
+- Removed the duplicated category heading found during visual review.
+- Removed unused homepage card components left behind by the redesign.
+
+### Evidence
+
+- `src/app/page.tsx`
+- `src/features/books/merchandising-layouts.tsx`
+- `scripts/verify-v14-homepage-visual-merchandising.ts`
+- `.agent/artifacts/v14-t05/homepage-visual-check.json`
+- `.agent/artifacts/v14-t05/home-v14-mobile-vi.png`
+- `.agent/artifacts/v14-t05/home-v14-tablet-en.png`
+- `.agent/artifacts/v14-t05/home-v14-desktop-en.png`
+
+### Verification
+
+- `HOMEPAGE_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx scripts/verify-v14-homepage-visual-merchandising.ts`:
+  passed with layout variety, local images, cover aspect ratios, no overflow,
+  product links, hero count, and next-section visibility all true.
+- Visual screenshot review: passed after removing the duplicated category
+  heading.
+- `npx tsc --noEmit --pretty false`: passed.
+- `npm run lint`: passed.
+- `npx tsx scripts/verify-v14-visual-tokens.ts`: passed.
+- `npx tsx scripts/verify-v14-no-demo-runtime-copy.ts`: passed with
+  `scannedFiles: 102` and zero findings.
+- `git diff --check`: passed.
+
+### Guardrails Preserved
+
+- No database/schema/data migration, auth/API behavior change, external
+  integration, fake proof signal, commercial cover source, dependency, deploy,
+  tag, or release was introduced.
+- Homepage changes are structural presentation changes over existing catalog
+  and merchandising data.
+
+### Next Task
+
+`V14-T06 - Catalog Discovery And Card System V2`.
+
+---
+
+## V14-T06 - Catalog Discovery And Card System V2
+
+- Date: 2026-07-19
+- Status: completed
+- Phase: CaseFlow Books v1.4 real commerce and visual merchandising upgrade
+
+### Objective
+
+Make catalog browsing less monotonous and easier to scan, especially on
+mobile, by adding quick discovery entry points, clearer active-filter state,
+and structurally/tone-distinct catalog cards.
+
+### Actual Result
+
+- Added quick discovery links for under-150k pricing, Vietnamese editions,
+  English originals, in-stock records, editor picks, and paperback editions.
+- Reframed the active-filter area as a visible current-selection summary.
+- Added catalog card variants via `data-catalog-card-variant` and token-backed
+  cover surfaces for offer, translation, editorial, academic, trust, and
+  standard result records.
+- Preserved URL-backed filters, pagination, result counts, 24-card page size,
+  local covers, product links, and existing catalog data boundaries.
+- Added `scripts/verify-v14-catalog-discovery.ts`.
+
+### Evidence
+
+- `src/app/catalog/page.tsx`
+- `scripts/verify-v14-catalog-discovery.ts`
+- `.agent/artifacts/v14-t06/catalog-discovery-check.json`
+- `.agent/artifacts/v14-t06/catalog-v14-mobile-vi-page-2.png`
+- `.agent/artifacts/v14-t06/catalog-v14-desktop-en.png`
+- `.agent/artifacts/v14-t06/catalog-v14-filtered-desktop-en.png`
+
+### Verification
+
+- `CATALOG_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx scripts/verify-v14-catalog-discovery.ts`:
+  passed with quick links, active-filter summary, card variant variety, cover
+  aspect ratio, filter panel, local images, no overflow, product links, and
+  card counts all true.
+- `PLAYWRIGHT_BASE_URL=http://127.0.0.1:3000 npx tsx scripts/verify-catalog-filters.ts`:
+  passed with API/UI count agreement, combined filters, clear filters, invalid
+  params, price sort, author sort, and no overflow.
+- `PLAYWRIGHT_BASE_URL=http://127.0.0.1:3000 npx tsx scripts/verify-catalog-page.ts`:
+  passed with result counts, pagination, metadata, mobile/desktop no overflow,
+  and 100 total editions.
+- `npx tsc --noEmit --pretty false`: passed.
+- `npm run lint`: passed.
+- `npx tsx scripts/verify-v14-visual-tokens.ts`: passed.
+- `npx tsx scripts/verify-v14-no-demo-runtime-copy.ts`: passed with zero
+  findings.
+- `git diff --check`: passed.
+
+### Guardrails Preserved
+
+- No schema/data migration, API/auth behavior change, external integration,
+  fake proof signal, commercial cover source, dependency, deploy, tag, or
+  release was introduced.
+- Quick links use existing URL-backed filter semantics.
+
+### Next Task
+
+`V14-T07 - Product Detail Commercial Trust And Recommendation Redesign`.
+
+---
+
+## V14-T07 - Product Detail Commercial Trust And Recommendation Redesign
+
+- Date: 2026-07-19
+- Status: completed
+- Phase: CaseFlow Books v1.4 real commerce and visual merchandising upgrade
+
+### Objective
+
+Make book detail pages feel closer to a working bookstore by improving
+commercial trust, edition identity, and related-book presentation without
+inventing operational proof or changing commerce/auth boundaries.
+
+### Actual Result
+
+- Added bilingual product-detail copy for account checkout, inventory
+  re-check, trusted checkout totals, purchase confidence, and edition identity.
+- Added a token-backed edition identity panel using existing fields: language,
+  format, publisher, catalog status, and ISBN when available.
+- Added side-panel commerce proof cards below purchase controls for account
+  checkout, inventory check, and trusted totals.
+- Reworked shipping/payment/return confidence content into varied token-backed
+  cards.
+- Replaced same-looking related-book cards with recommendation tiles whose
+  visual tone follows author/category/language recommendation reasons.
+- Preserved purchase controls, server-trusted checkout boundaries, edition
+  comparison, structured data, local covers, and existing catalog records.
+- Added `scripts/verify-v14-book-detail-commercial-trust.ts`.
+
+### Evidence
+
+- `src/app/products/[slug]/page.tsx`
+- `scripts/verify-v14-book-detail-commercial-trust.ts`
+- `.agent/artifacts/v14-t07/book-detail-commercial-trust-check.json`
+- `.agent/artifacts/v14-t07/book-detail-v14-mobile-vi.png`
+- `.agent/artifacts/v14-t07/book-detail-v14-tablet-vi.png`
+- `.agent/artifacts/v14-t07/book-detail-v14-desktop-en.png`
+
+### Verification
+
+- `BOOK_DETAIL_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx scripts/verify-v14-book-detail-commercial-trust.ts`:
+  passed with commercial proof, edition identity, confidence sections, cover
+  aspect ratio, local images, recommendations, no card collision, no right
+  overflow, and no page overflow all true.
+- `HOTFIX_CARD_LAYOUT_BASE_URL=http://127.0.0.1:3000 npx tsx scripts/verify-hotfix-compact-card-overlap.ts`:
+  passed with detail/home recommendation and compact card overlap checks all
+  true.
+- Visual screenshot review: passed for mobile, tablet, and desktop detail
+  layouts; one follow-up candidate remains for a later sitewide polish task:
+  mobile assistant floating button placement can sit close to purchase controls.
+- `npx tsc --noEmit --pretty false`: passed.
+- `npm run lint`: passed.
+- `npx tsx scripts/verify-v14-visual-tokens.ts`: passed.
+- `npx tsx scripts/verify-v14-no-demo-runtime-copy.ts`: passed with
+  `scannedFiles: 102` and zero findings.
+- `git diff --check`: passed.
+
+### Guardrails Preserved
+
+- No schema/data migration, API/auth behavior change, external integration,
+  fake review, fake SLA, commercial cover source, dependency, deploy, tag, or
+  release was introduced.
+- Commercial copy uses verifiable system behavior and existing catalog fields
+  rather than fabricated business proof.
+
+### Next Task
+
+`V14-T08 - Trust, Policy, And Footer Pages`.
+
+---
+
+## V14-T08 - Trust, Policy, And Footer Pages
+
+- Date: 2026-07-19
+- Status: completed
+- Phase: CaseFlow Books v1.4 real commerce and visual merchandising upgrade
+
+### Objective
+
+Add customer-facing policy and trust pages expected from a working online
+bookstore, while avoiding legal overclaiming and unsupported provider claims.
+
+### Actual Result
+
+- Added a shared bookstore policy data contract for contact, shipping,
+  payment, returns, privacy, and terms pages.
+- Added route-language-aware pages at `/contact`, `/shipping`, `/payment`,
+  `/returns`, `/privacy`, and `/terms`, each with metadata and bilingual copy.
+- Added `BookstorePolicyPage` with policy hero, highlights, details, policy
+  navigation, and contact rows where relevant.
+- Updated footer navigation into customer-facing shop, help, and store-policy
+  groups; removed admin from footer links.
+- Added support window and support-channel information to the footer without
+  inventing an email/domain or external support provider.
+- Added policy routes to sitemap and robots allow-list.
+- Added `scripts/verify-v14-policy-pages.ts`.
+
+### Evidence
+
+- `src/lib/policies/bookstore-policies.ts`
+- `src/features/policies/bookstore-policy-page.tsx`
+- `src/app/contact/page.tsx`
+- `src/app/shipping/page.tsx`
+- `src/app/payment/page.tsx`
+- `src/app/returns/page.tsx`
+- `src/app/privacy/page.tsx`
+- `src/app/terms/page.tsx`
+- `src/components/layout/navigation.ts`
+- `src/components/layout/site-footer.tsx`
+- `src/app/sitemap.ts`
+- `src/app/robots.ts`
+- `scripts/verify-v14-policy-pages.ts`
+- `.agent/artifacts/v14-t08/policy-pages-check.json`
+- `.agent/artifacts/v14-t08/policy-contact-mobile-vi.png`
+- `.agent/artifacts/v14-t08/policy-privacy-desktop-en.png`
+
+### Verification
+
+- `POLICY_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx scripts/verify-v14-policy-pages.ts`:
+  passed with all bilingual policy routes rendering, footer local routes
+  resolving, required policy links present, no horizontal overflow, screenshots
+  captured, and sitemap/robots policy routes present.
+- Visual screenshot review: passed for mobile Vietnamese contact page and
+  desktop English privacy page; assistant floating-button placement remains a
+  sitewide polish candidate for `V14-T10`.
+- `npx tsc --noEmit --pretty false`: passed.
+- `npm run lint`: passed.
+- `npm run build`: passed with policy routes included in route summary.
+- `npx tsx scripts/verify-v14-no-demo-runtime-copy.ts`: passed with
+  `scannedFiles: 109` and zero findings.
+- `npx tsx scripts/verify-v14-visual-tokens.ts`: passed.
+- `git diff --check`: passed.
+
+### Guardrails Preserved
+
+- No schema/data migration, API/auth behavior change, payment provider,
+  shipping-carrier integration, support-provider integration, new dependency,
+  deploy, tag, or release was introduced.
+- Contact/support copy uses app-backed account and order-tracking surfaces
+  rather than fabricated support channels.
+
+### Next Task
+
+`V14-T09 - Checkout Commercial Reality Pass`.
+
+---
+
+## V14-T09 - Checkout Commercial Reality Pass
+
+- Date: 2026-07-19
+- Status: completed
+- Phase: CaseFlow Books v1.4 real commerce and visual merchandising upgrade
+
+### Objective
+
+Make checkout read and behave closer to a real customer-facing bookstore
+checkout while preserving account-gated checkout and server-owned totals.
+
+### Actual Result
+
+- Updated checkout metadata and runtime copy so customer-facing language
+  references store-recalculated totals rather than internal/server phrasing.
+- Added a checkout confidence strip for account/contact checks, trusted
+  recalculation, and available shipping/payment/returns policies.
+- Presented COD and bank transfer as priority payment choices with distinct
+  badges and tone classes.
+- Kept MoMo, ZaloPay, and VNPay-style choices in awaiting-confirmation language
+  without claiming credential collection or settlement.
+- Added checkout policy links to `/shipping`, `/payment`, and `/returns`.
+- Clarified English USD estimate wording: VND remains the checkout currency and
+  USD is an estimate for comparison.
+- Added `scripts/verify-v14-checkout-commercial-reality.ts`, including
+  authenticated checkout rendering, policy-link checks, payment priority
+  checks, USD/VND wording, no-overflow checks, and a real submit-to-success
+  flow with cleanup.
+- Added `allowedDevOrigins: ["127.0.0.1"]` in `next.config.ts` after Next 16
+  dev logs showed blocked HMR resources for 127.0.0.1; this fixed checkout
+  hydration for local verifier URLs.
+- Updated `scripts/verify-book-checkout-steps.ts` to use API session login,
+  avoiding form-hydration timing flake while preserving checkout API/order
+  verification.
+
+### Evidence
+
+- `src/app/checkout/page.tsx`
+- `src/features/checkout/checkout-page.tsx`
+- `next.config.ts`
+- `scripts/verify-v14-checkout-commercial-reality.ts`
+- `scripts/verify-book-checkout-steps.ts`
+- `.agent/artifacts/v14-t09/checkout-commercial-reality-check.json`
+- `.agent/artifacts/v14-t09/checkout-v14-desktop-en.png`
+- `.agent/artifacts/v14-t09/checkout-v14-mobile-vi.png`
+- `.agent/artifacts/v14-t09/checkout-v14-desktop-en-success.png`
+
+### Verification
+
+- `CHECKOUT_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx scripts/verify-v14-checkout-commercial-reality.ts`:
+  passed with assurance strip, COD/bank priority, five payment methods,
+  policy links, primary badges, English USD/VND estimate clarity, no horizontal
+  overflow, and submit-to-success flow all true.
+- `BOOK_CHECKOUT_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx scripts/verify-book-checkout-steps.ts`:
+  passed with API tamper validation, browser order creation, checkout steps,
+  validation cases, and no-overflow checks all true.
+- Visual screenshot review: passed for desktop English checkout, mobile
+  Vietnamese checkout, and desktop English success page. Next dev overlay
+  appeared in screenshots only during local compilation and is not app UI.
+- `npx tsc --noEmit --pretty false`: passed.
+- `npm run lint`: passed.
+- `npx tsx scripts/verify-v14-no-demo-runtime-copy.ts`: passed with
+  `scannedFiles: 109` and zero findings.
+- `npx tsx scripts/verify-v14-visual-tokens.ts`: passed.
+- `git diff --check`: passed.
+
+### Guardrails Preserved
+
+- No schema/data migration, payment-provider integration, shipping-carrier
+  integration, auth boundary change, order API contract change, deploy, tag, or
+  release was introduced.
+- Browser-submitted totals remain ignored by the order API and server-owned
+  recalculation is still verified.
+
+### Next Task
+
+`V14-T10 - Customer, Tracking, Assistant, And Account Surface Polish`.
+
+---
+
+## V14-T10 - Customer, Tracking, Assistant, And Account Surface Polish
+
+- Date: 2026-07-19
+- Status: completed
+- Phase: CaseFlow Books v1.4 real commerce and visual merchandising upgrade
+
+### Objective
+
+Make customer account, profile, public tracking, and assistant surfaces feel
+like real bookstore operations while preserving account-gated checkout, minimal
+public tracking data, and role-safe behavior.
+
+### Actual Result
+
+- Replaced remaining customer-facing Supabase/project implementation copy in
+  account creation and profile email hints with CaseFlow Books account language.
+- Updated signed-in account/profile surface treatment to use the V14
+  trust/operations visual roles.
+- Added a visible privacy guard on public order tracking explaining that lookup
+  requires both order code and matching contact and does not reveal customer
+  profile, address, or account details.
+- Kept public tracking payload minimal; email, phone, and street address remain
+  absent from the public result.
+- Moved the assistant launcher to the mobile right side and verified purchase
+  guidance actions remain visible without submitting `/api/orders`.
+- Added `scripts/verify-v14-customer-surfaces.ts` for account, tracking, and
+  assistant checks with Supabase test-user/order cleanup.
+- Stabilized customer profile and public tracking verifiers by switching their
+  login helper to the existing API session route instead of timing-sensitive UI
+  form login.
+- Updated customer/profile, public-tracking, assistant, and V14 screenshot
+  helpers to use `caret: "initial"` so Playwright screenshots do not inject
+  caret-hiding inline styles that trigger misleading Next dev hydration issue
+  overlays.
+
+### Evidence
+
+- `src/features/customer/customer-auth-page.tsx`
+- `src/features/customer/customer-profile-form.tsx`
+- `src/features/orders/order-tracking-page.tsx`
+- `src/features/assistant/bookstore-assistant.tsx`
+- `scripts/verify-v14-customer-surfaces.ts`
+- `scripts/verify-customer-profile.ts`
+- `scripts/verify-public-order-tracking.ts`
+- `scripts/verify-bookstore-assistant.ts`
+- `.agent/artifacts/v14-t10/customer-surfaces-check.json`
+- `.agent/artifacts/v14-t10/account-surface-desktop-en.png`
+- `.agent/artifacts/v14-t10/tracking-surface-mobile-vi.png`
+- `.agent/artifacts/v14-t10/assistant-surface-mobile-en.png`
+
+### Verification
+
+- `CUSTOMER_SURFACES_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx scripts/verify-v14-customer-surfaces.ts`:
+  passed with account surface, tracking privacy, and assistant surface all true.
+- `CUSTOMER_PROFILE_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx scripts/verify-customer-profile.ts`:
+  passed with profile completion, checkout gate, prefill, bilingual validation,
+  no overflow, and no phone-verification claim all true.
+- `PUBLIC_ORDER_TRACKING_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx scripts/verify-public-order-tracking.ts`:
+  passed with API guards, minimal public payload, tracking data, desktop
+  English success UI, and mobile Vietnamese error UI all true.
+- `BOOKSTORE_ASSISTANT_BASE_URL=http://127.0.0.1:3000 npx tsx scripts/verify-bookstore-assistant.ts`:
+  passed with find-book, filter, no-result, purchase-guidance, and source-boundary
+  checks all true.
+- `npx tsc --noEmit --pretty false`: passed.
+- `npm run lint`: passed.
+- `npx tsx scripts/verify-v14-no-demo-runtime-copy.ts`: passed with
+  `scannedFiles: 109` and zero findings.
+- `npx tsx scripts/verify-v14-visual-tokens.ts`: passed.
+- `git diff --check`: passed.
+
+### Guardrails Preserved
+
+- No schema migration, catalog data mutation, production write beyond temporary
+  test orders/users with cleanup, external assistant provider, payment-provider
+  integration, deploy, tag, or release was introduced.
+- Public tracking still requires both order code and matching contact, and does
+  not expose private profile or shipping-address data.
+
+### Next Task
+
+`V14-T11 - Admin Operations Visual Upgrade`.
+
+---
+
+## V14-T11 - Admin Operations Visual Upgrade
+
+- Date: 2026-07-19
+- Status: completed
+- Phase: CaseFlow Books v1.4 real commerce and visual merchandising upgrade
+
+### Objective
+
+Make admin read more like a small-business operations console while preserving
+server-side authorization, role boundaries, existing API contracts, and the
+current database shape.
+
+### Actual Result
+
+- Added reusable `AdminOperationsRail` with active surface, role, permission
+  scope, and visible-signal context across `AdminShellPage` surfaces.
+- Reused the operations rail on the custom admin orders page so orders no
+  longer visually diverge from dashboard/catalog/inventory/customers.
+- Upgraded admin metric cards with dense operational stripe treatment.
+- Added dashboard payment/order status rails while preserving existing summary
+  data and totals.
+- Fixed dashboard mobile horizontal overflow by applying `min-w-0` to grid
+  dashboard sections, so wide recent-order table content scrolls internally
+  instead of expanding the document.
+- Replaced dashboard mobile recent-orders table rendering with compact order
+  cards; desktop/tablet still use the table.
+- Updated orders, inventory, and customers panels to use admin/operations
+  visual roles without changing state machines, API calls, permissions, schema,
+  or data mutations.
+- Stabilized several older admin verification scripts by switching form-login
+  helpers to existing API session routes for customer/admin/staff test users.
+
+### Evidence
+
+- `src/features/admin/admin-shell-page.tsx`
+- `src/features/admin/admin-dashboard-page.tsx`
+- `src/features/admin/admin-orders-page.tsx`
+- `src/features/admin/admin-inventory-page.tsx`
+- `src/features/admin/admin-customers-page.tsx`
+- `scripts/verify-v14-admin-operations-visual.ts`
+- `scripts/verify-staff-role-access.ts`
+- `scripts/verify-admin-order-operations.ts`
+- `scripts/verify-inventory-adjustments.ts`
+- `scripts/verify-admin-customers.ts`
+- `scripts/verify-admin-navigation.ts`
+- `scripts/verify-admin-orders-csv-export.ts`
+- `.agent/artifacts/v14-t11/admin-operations-visual-check.json`
+- `.agent/artifacts/v14-t11/admin-v14-dashboard-mobile-vi.png`
+- `.agent/artifacts/v14-t11/admin-v14-dashboard-desktop-en.png`
+- `.agent/artifacts/v14-t11/admin-v14-orders-mobile-vi.png`
+- `.agent/artifacts/v14-t11/admin-v14-orders-desktop-en.png`
+- `.agent/artifacts/v14-t11/admin-v14-catalog-mobile-vi.png`
+- `.agent/artifacts/v14-t11/admin-v14-catalog-desktop-en.png`
+- `.agent/artifacts/v14-t11/admin-v14-inventory-mobile-vi.png`
+- `.agent/artifacts/v14-t11/admin-v14-inventory-desktop-en.png`
+- `.agent/artifacts/v14-t11/admin-v14-customers-mobile-vi.png`
+- `.agent/artifacts/v14-t11/admin-v14-customers-desktop-en.png`
+
+### Verification
+
+- `ADMIN_OPERATIONS_VISUAL_BASE_URL=http://127.0.0.1:3000 npx tsx scripts/verify-v14-admin-operations-visual.ts`:
+  passed for dashboard, orders, catalog, inventory, and customers at mobile
+  Vietnamese and desktop English viewports with admin palette, operations rail,
+  role boundary, task panels, and no horizontal overflow all true.
+- `STAFF_ROLE_ACCESS_BASE_URL=http://127.0.0.1:3000 npx tsx scripts/verify-staff-role-access.ts`:
+  passed for anonymous, customer, staff, admin, order update, and role policy
+  documentation checks.
+- `ADMIN_ORDER_OPS_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx scripts/verify-admin-order-operations.ts`:
+  passed with access control, API transitions, UI workflow, persistence, and
+  cleanup true.
+- `ADMIN_BOOK_CATALOG_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx scripts/verify-admin-book-catalog.ts`:
+  passed with anonymous/customer denial, invalid payload rejection, staff CRUD,
+  public active-state reflection, UI health, and cleanup true.
+- `INVENTORY_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx scripts/verify-inventory-adjustments.ts`:
+  passed with anonymous/customer denial, invalid adjustment rejection, audit
+  trail storage, low-stock visibility, out-of-stock boundary, staff UI flow, and
+  cleanup true.
+- `ADMIN_CUSTOMERS_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx scripts/verify-admin-customers.ts`:
+  passed with access control, admin/staff read, minimized customer data, staff
+  UI health, and cleanup true.
+- `ADMIN_DASHBOARD_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx scripts/verify-admin-dashboard.ts`:
+  passed with access control, API metrics, UI metrics, empty state, and cleanup
+  true.
+- `ADMIN_NAVIGATION_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx scripts/verify-admin-navigation.ts`:
+  passed for staff and admin navigation.
+- `ADMIN_ORDERS_CSV_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx scripts/verify-admin-orders-csv-export.ts`:
+  passed with access control, CSV headers/rows, sensitive-field exclusion,
+  dashboard link, and cleanup true.
+- `npx tsc --noEmit --pretty false`: passed.
+- `npm run lint`: passed.
+- `npx tsx scripts/verify-v14-no-demo-runtime-copy.ts`: passed with
+  `scannedFiles: 109` and zero findings.
+- `npx tsx scripts/verify-v14-visual-tokens.ts`: passed.
+- `git diff --check`: passed.
+
+### Guardrails Preserved
+
+- No schema migration, permission expansion, production data import, external
+  service, payment/shipping integration, deploy, tag, or release was introduced.
+- Admin/staff/customer role checks remain server-owned; UI polish did not
+  weaken API authorization.
+
+### Next Task
+
+`V14-T12 - Full Local Quality Gate And Release Readiness Report`.
+
+---
+
+## V14-T12 - Full Local Quality Gate And Release Readiness Report
+
+- Date: 2026-07-19
+- Status: completed
+- Phase: CaseFlow Books v1.4 real commerce and visual merchandising upgrade
+
+### Objective
+
+Verify the complete local `v1.4.0` candidate before any deploy, tag, or GitHub
+Release decision.
+
+### Actual Result
+
+- Created `docs/v1.4-release-readiness-report.md`.
+- Accepted the local `v1.4.0` candidate as release-ready for a later explicit
+  release task.
+- Verified the V14 runtime copy, visual-token system, home/catalog/detail/
+  policy/checkout/customer/admin visual QA, full E2E suite, cleanup, high/
+  critical dependency audit, targeted secret scan, and whitespace gate.
+- Fixed a verifier-only screenshot timeout in
+  `scripts/verify-accessibility-mobile-performance.ts` by disabling animation
+  and caret side effects during screenshot capture and increasing the
+  screenshot timeout to 60 seconds; the rerun passed.
+- Recorded the user-provided Project Gutenberg, Standard Ebooks, and
+  Vietnamese ebook/PDF sources as future cover-source candidates only; no
+  external cover import or runtime catalog mutation was performed.
+
+### Evidence
+
+- `docs/v1.4-release-readiness-report.md`
+- `scripts/verify-accessibility-mobile-performance.ts`
+- `.agent/artifacts/v14-t05/homepage-visual-check.json`
+- `.agent/artifacts/v14-t06/catalog-discovery-check.json`
+- `.agent/artifacts/v14-t07/book-detail-commercial-trust-check.json`
+- `.agent/artifacts/v14-t08/policy-pages-check.json`
+- `.agent/artifacts/v14-t09/checkout-commercial-reality-check.json`
+- `.agent/artifacts/v14-t10/customer-surfaces-check.json`
+- `.agent/artifacts/v14-t11/admin-operations-visual-check.json`
+- `.agent/artifacts/d39-t03/accessibility-mobile-performance-check.json`
+- `.agent/artifacts/d40-t01/release-cleanup-check.json`
+
+### Verification
+
+- `npx tsc --noEmit --pretty false`: passed.
+- `npm run lint`: passed.
+- `npm run build`: passed with 48 App Router routes generated.
+- `npm run test:e2e`: passed `20/20` against `next start` on port `3001`.
+- `npx tsx scripts/verify-v14-no-demo-runtime-copy.ts`: passed with
+  `scannedFiles: 109` and zero findings.
+- `npx tsx scripts/verify-v14-visual-tokens.ts`: passed with all required V14
+  roles present and zero runtime raw-hex findings.
+- `HOMEPAGE_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx scripts/verify-v14-homepage-visual-merchandising.ts`:
+  passed.
+- `CATALOG_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx scripts/verify-v14-catalog-discovery.ts`:
+  passed.
+- `BOOK_DETAIL_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx scripts/verify-v14-book-detail-commercial-trust.ts`:
+  passed.
+- `POLICY_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx scripts/verify-v14-policy-pages.ts`:
+  passed.
+- `CHECKOUT_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx scripts/verify-v14-checkout-commercial-reality.ts`:
+  passed.
+- `CUSTOMER_SURFACES_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx scripts/verify-v14-customer-surfaces.ts`:
+  passed.
+- `ADMIN_OPERATIONS_VISUAL_BASE_URL=http://127.0.0.1:3000 npx tsx scripts/verify-v14-admin-operations-visual.ts`:
+  passed.
+- `ACCESSIBILITY_MOBILE_BASE_URL=http://127.0.0.1:3000 npx tsx scripts/verify-accessibility-mobile-performance.ts`:
+  passed with admin controls, catalog performance, checkout controls, focus
+  states, no overflow, and screenshots all true.
+- `npx tsx scripts/verify-release-cleanup.ts`: passed with
+  `totalMatches: 0`.
+- `npm audit --audit-level=high`: passed; two known moderate PostCSS advisories
+  remain through Next.js and are documented as non-blocking.
+- Targeted candidate-file secret scan: passed across 1058 files with zero
+  findings and without printing secret values.
+- `git diff --check`: passed after the final V14-T12 documentation update.
+
+### Guardrails Preserved
+
+- No deploy, tag, GitHub Release, schema migration, production catalog
+  mutation, payment-provider integration, shipping-carrier integration, SMS/
+  email provider integration, external AI service, or external cover import was
+  performed.
+- Admin/staff/customer authorization remains server-owned.
+- Server-owned price, stock, VAT, shipping, payment-fee, promotion, and total
+  calculation boundaries remain unchanged.
+
+### Next Task
+
+Await explicit approval for optional `v1.4.0` deploy, smoke test, commit, tag,
+push, and GitHub Release.

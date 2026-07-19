@@ -189,7 +189,7 @@ export function AdminDashboardPage({
       userName={userName}
     >
       <section
-        className="grid gap-case-lg"
+        className="grid min-w-0 gap-case-lg"
         data-admin-dashboard-page
         data-admin-dashboard-range={dashboard.range.label}
       >
@@ -207,7 +207,7 @@ export function AdminDashboardPage({
           </section>
         ) : null}
 
-        <div className="grid gap-case-md xl:grid-cols-[minmax(0,1fr)_minmax(320px,0.8fr)]">
+        <div className="grid min-w-0 gap-case-md xl:grid-cols-[minmax(0,1fr)_minmax(320px,0.8fr)]">
           <StatusSummarySection
             copyTitle={copy.paymentState}
             dataAttribute="data-admin-dashboard-payment-summary"
@@ -222,7 +222,7 @@ export function AdminDashboardPage({
           />
         </div>
 
-        <div className="grid gap-case-md xl:grid-cols-[minmax(0,1fr)_minmax(360px,0.9fr)]">
+        <div className="grid min-w-0 gap-case-md xl:grid-cols-[minmax(0,1fr)_minmax(360px,0.9fr)]">
           <TopBooksSection dashboard={dashboard} language={language} />
           <LowStockSection dashboard={dashboard} language={language} />
         </div>
@@ -243,7 +243,7 @@ function DashboardRangeLinks({
   const copy = dashboardCopy[language];
 
   return (
-    <section className="rounded-lg border border-admin/20 bg-surface p-case-md shadow-[var(--case-shadow-soft)]">
+    <section className="min-w-0 rounded-lg border border-admin/20 bg-surface p-case-md shadow-[var(--case-shadow-soft)]">
       <div className="flex flex-col gap-case-sm md:flex-row md:items-center md:justify-between">
         <div>
           <h2 className="text-heading-3 font-semibold text-foreground">
@@ -291,9 +291,11 @@ function StatusSummarySection<TStatus extends string>({
   labels: Record<TStatus, string>;
   rows: AdminDashboardStatusSummary<TStatus>[];
 }) {
+  const totalCount = rows.reduce((sum, row) => sum + row.count, 0);
+
   return (
     <section
-      className="rounded-lg border border-admin/20 bg-surface p-case-md shadow-[var(--case-shadow-soft)]"
+      className="min-w-0 rounded-lg border border-admin/20 bg-surface p-case-md shadow-[var(--case-shadow-soft)]"
       {...{ [dataAttribute]: true }}
     >
       <h2 className="text-heading-3 font-semibold text-foreground">
@@ -303,21 +305,42 @@ function StatusSummarySection<TStatus extends string>({
         {rows.map((row) => (
           <div
             key={row.status}
-            className="grid grid-cols-[minmax(0,1fr)_72px_minmax(96px,auto)] gap-case-sm border-b border-border pb-case-sm text-small last:border-b-0 last:pb-0"
+            className="grid gap-case-xs border-b border-border pb-case-sm text-small last:border-b-0 last:pb-0"
             data-admin-dashboard-status-row={row.status}
           >
-            <span className="font-medium text-foreground">
-              {labels[row.status]}
-            </span>
-            <span className="text-right text-text-muted">{row.count}</span>
-            <span className="text-right font-semibold text-foreground">
-              {formatVnd(row.totalVnd)}
-            </span>
+            <div className="grid grid-cols-[minmax(0,1fr)_72px_minmax(96px,auto)] gap-case-sm">
+              <span className="font-medium text-foreground">
+                {labels[row.status]}
+              </span>
+              <span className="text-right text-text-muted">{row.count}</span>
+              <span className="text-right font-semibold text-foreground">
+                {formatVnd(row.totalVnd)}
+              </span>
+            </div>
+            <div
+              className="h-2 overflow-hidden rounded-full bg-admin-muted"
+              data-admin-dashboard-status-rail={row.status}
+            >
+              <span
+                className="block h-full rounded-full bg-admin"
+                style={{
+                  width: `${getStatusSharePercent(row.count, totalCount)}%`,
+                }}
+              />
+            </div>
           </div>
         ))}
       </div>
     </section>
   );
+}
+
+function getStatusSharePercent(count: number, totalCount: number) {
+  if (totalCount <= 0 || count <= 0) {
+    return 0;
+  }
+
+  return Math.max(6, Math.round((count / totalCount) * 100));
 }
 
 function TopBooksSection({
@@ -331,7 +354,7 @@ function TopBooksSection({
 
   return (
     <section
-      className="rounded-lg border border-discovery/20 bg-surface p-case-md shadow-[var(--case-shadow-soft)]"
+      className="min-w-0 rounded-lg border border-discovery/20 bg-surface p-case-md shadow-[var(--case-shadow-soft)]"
       data-admin-dashboard-top-books
     >
       <h2 className="text-heading-3 font-semibold text-foreground">
@@ -377,7 +400,7 @@ function LowStockSection({
 
   return (
     <section
-      className="rounded-lg border border-warning/30 bg-offer-muted p-case-md shadow-[var(--case-shadow-soft)]"
+      className="min-w-0 rounded-lg border border-warning/30 bg-offer-muted p-case-md shadow-[var(--case-shadow-soft)]"
       data-admin-dashboard-low-stock
     >
       <div className="flex items-start justify-between gap-case-sm">
@@ -441,7 +464,7 @@ function RecentOrdersSection({
 
   return (
     <section
-      className="rounded-lg border border-admin/20 bg-surface p-case-md shadow-[var(--case-shadow-soft)]"
+      className="min-w-0 rounded-lg border border-admin/20 bg-surface p-case-md shadow-[var(--case-shadow-soft)]"
       data-admin-dashboard-recent-orders
     >
       <h2 className="text-heading-3 font-semibold text-foreground">
@@ -452,7 +475,41 @@ function RecentOrdersSection({
           {copy.noRecentOrders}
         </p>
       ) : (
-        <div className="mt-case-md overflow-x-auto">
+        <>
+        <div className="mt-case-md grid gap-case-sm md:hidden">
+          {dashboard.recentOrders.map((order) => (
+            <article
+              key={order.orderCode}
+              className="rounded-md border border-admin/20 bg-admin-muted p-case-sm"
+              data-admin-dashboard-recent-order
+            >
+              <div className="flex items-start justify-between gap-case-sm">
+                <div className="min-w-0">
+                  <p className="break-words text-small font-semibold text-foreground">
+                    {order.orderCode}
+                  </p>
+                  <p className="mt-1 text-small text-text-muted">
+                    {order.customerName}
+                  </p>
+                </div>
+                <p className="shrink-0 text-small font-semibold text-foreground">
+                  {formatVnd(order.totalVnd)}
+                </p>
+              </div>
+              <div className="mt-case-sm grid grid-cols-2 gap-case-xs text-small text-text-muted">
+                <span>{orderStatusLabels[language][order.status]}</span>
+                <span className="text-right">
+                  {paymentStatusLabels[language][order.paymentStatus]}
+                </span>
+              </div>
+              <p className="mt-case-xs text-small text-text-muted">
+                {formatDateTime(order.createdAt, language)}
+              </p>
+            </article>
+          ))}
+        </div>
+
+        <div className="mt-case-md hidden overflow-x-auto md:block">
           <table className="w-full min-w-[720px] border-collapse text-left text-small">
             <thead className="bg-admin-muted text-text-muted">
               <tr>
@@ -496,6 +553,7 @@ function RecentOrdersSection({
             </tbody>
           </table>
         </div>
+        </>
       )}
     </section>
   );

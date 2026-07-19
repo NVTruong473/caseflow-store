@@ -1,0 +1,395 @@
+{
+  "taskId": "V14-T11",
+  "baseURL": "http://127.0.0.1:3000",
+  "checks": [
+    {
+      "classes": {
+        "main": "bg-admin-muted py-case-2xl text-foreground",
+        "navigation": "rounded-lg border border-admin bg-admin p-case-sm shadow-[var(--case-shadow-soft)]"
+      },
+      "counts": {
+        "catalogForm": 0,
+        "catalogItems": 0,
+        "customerDetail": 0,
+        "customerItems": 0,
+        "dashboardPanels": 4,
+        "dashboardStatusRails": 11,
+        "inventoryAdjustForm": 0,
+        "inventoryAdjustments": 0,
+        "inventoryItems": 0,
+        "navigationItems": 7,
+        "operationsRail": 1,
+        "operationsRailItems": 4,
+        "orderDetail": 0,
+        "orderFilters": 0,
+        "orderList": 0,
+        "orderSummary": 0,
+        "ready": 1,
+        "roleBadges": 1,
+        "shellMetrics": 4
+      },
+      "hasHorizontalOverflow": false,
+      "pass": {
+        "adminPaletteApplied": true,
+        "noHorizontalOverflow": true,
+        "operationsRailVisible": true,
+        "roleBoundaryVisible": true,
+        "surfaceTaskPanelsVisible": true
+      },
+      "screenshotPath": ".agent/artifacts/v14-t11/admin-v14-dashboard-mobile-vi.png",
+      "surface": "dashboard",
+      "viewport": "mobile-vi"
+    },
+    {
+      "classes": {
+        "main": "bg-admin-muted py-case-2xl text-foreground",
+        "navigation": "rounded-lg border border-admin bg-admin p-case-sm shadow-[var(--case-shadow-soft)]"
+      },
+      "counts": {
+        "catalogForm": 0,
+        "catalogItems": 0,
+        "customerDetail": 0,
+        "customerItems": 0,
+        "dashboardPanels": 4,
+        "dashboardStatusRails": 11,
+        "inventoryAdjustForm": 0,
+        "inventoryAdjustments": 0,
+        "inventoryItems": 0,
+        "navigationItems": 7,
+        "operationsRail": 1,
+        "operationsRailItems": 4,
+        "orderDetail": 0,
+        "orderFilters": 0,
+        "orderList": 0,
+        "orderSummary": 0,
+        "ready": 1,
+        "roleBadges": 1,
+        "shellMetrics": 4
+      },
+      "hasHorizontalOverflow": false,
+      "pass": {
+        "adminPaletteApplied": true,
+        "noHorizontalOverflow": true,
+        "operationsRailVisible": true,
+        "roleBoundaryVisible": true,
+        "surfaceTaskPanelsVisible": true
+      },
+      "screenshotPath": ".agent/artifacts/v14-t11/admin-v14-dashboard-desktop-en.png",
+      "surface": "dashboard",
+      "viewport": "desktop-en"
+    },
+    {
+      "classes": {
+        "main": "bg-admin-muted py-case-2xl text-foreground",
+        "navigation": "rounded-lg border border-admin bg-admin p-case-sm shadow-[var(--case-shadow-soft)]"
+      },
+      "counts": {
+        "catalogForm": 0,
+        "catalogItems": 0,
+        "customerDetail": 0,
+        "customerItems": 0,
+        "dashboardPanels": 0,
+        "dashboardStatusRails": 0,
+        "inventoryAdjustForm": 0,
+        "inventoryAdjustments": 0,
+        "inventoryItems": 0,
+        "navigationItems": 7,
+        "operationsRail": 1,
+        "operationsRailItems": 4,
+        "orderDetail": 1,
+        "orderFilters": 1,
+        "orderList": 1,
+        "orderSummary": 1,
+        "ready": 1,
+        "roleBadges": 1,
+        "shellMetrics": 0
+      },
+      "hasHorizontalOverflow": false,
+      "pass": {
+        "adminPaletteApplied": true,
+        "noHorizontalOverflow": true,
+        "operationsRailVisible": true,
+        "roleBoundaryVisible": true,
+        "surfaceTaskPanelsVisible": true
+      },
+      "screenshotPath": ".agent/artifacts/v14-t11/admin-v14-orders-mobile-vi.png",
+      "surface": "orders",
+      "viewport": "mobile-vi"
+    },
+    {
+      "classes": {
+        "main": "bg-admin-muted py-case-2xl text-foreground",
+        "navigation": "rounded-lg border border-admin bg-admin p-case-sm shadow-[var(--case-shadow-soft)]"
+      },
+      "counts": {
+        "catalogForm": 0,
+        "catalogItems": 0,
+        "customerDetail": 0,
+        "customerItems": 0,
+        "dashboardPanels": 0,
+        "dashboardStatusRails": 0,
+        "inventoryAdjustForm": 0,
+        "inventoryAdjustments": 0,
+        "inventoryItems": 0,
+        "navigationItems": 7,
+        "operationsRail": 1,
+        "operationsRailItems": 4,
+        "orderDetail": 1,
+        "orderFilters": 1,
+        "orderList": 1,
+        "orderSummary": 1,
+        "ready": 1,
+        "roleBadges": 1,
+        "shellMetrics": 0
+      },
+      "hasHorizontalOverflow": false,
+      "pass": {
+        "adminPaletteApplied": true,
+        "noHorizontalOverflow": true,
+        "operationsRailVisible": true,
+        "roleBoundaryVisible": true,
+        "surfaceTaskPanelsVisible": true
+      },
+      "screenshotPath": ".agent/artifacts/v14-t11/admin-v14-orders-desktop-en.png",
+      "surface": "orders",
+      "viewport": "desktop-en"
+    },
+    {
+      "classes": {
+        "main": "bg-admin-muted py-case-2xl text-foreground",
+        "navigation": "rounded-lg border border-admin bg-admin p-case-sm shadow-[var(--case-shadow-soft)]"
+      },
+      "counts": {
+        "catalogForm": 1,
+        "catalogItems": 102,
+        "customerDetail": 0,
+        "customerItems": 0,
+        "dashboardPanels": 0,
+        "dashboardStatusRails": 0,
+        "inventoryAdjustForm": 0,
+        "inventoryAdjustments": 0,
+        "inventoryItems": 0,
+        "navigationItems": 7,
+        "operationsRail": 1,
+        "operationsRailItems": 4,
+        "orderDetail": 0,
+        "orderFilters": 0,
+        "orderList": 0,
+        "orderSummary": 0,
+        "ready": 1,
+        "roleBadges": 1,
+        "shellMetrics": 6
+      },
+      "hasHorizontalOverflow": false,
+      "pass": {
+        "adminPaletteApplied": true,
+        "noHorizontalOverflow": true,
+        "operationsRailVisible": true,
+        "roleBoundaryVisible": true,
+        "surfaceTaskPanelsVisible": true
+      },
+      "screenshotPath": ".agent/artifacts/v14-t11/admin-v14-catalog-mobile-vi.png",
+      "surface": "catalog",
+      "viewport": "mobile-vi"
+    },
+    {
+      "classes": {
+        "main": "bg-admin-muted py-case-2xl text-foreground",
+        "navigation": "rounded-lg border border-admin bg-admin p-case-sm shadow-[var(--case-shadow-soft)]"
+      },
+      "counts": {
+        "catalogForm": 1,
+        "catalogItems": 102,
+        "customerDetail": 0,
+        "customerItems": 0,
+        "dashboardPanels": 0,
+        "dashboardStatusRails": 0,
+        "inventoryAdjustForm": 0,
+        "inventoryAdjustments": 0,
+        "inventoryItems": 0,
+        "navigationItems": 7,
+        "operationsRail": 1,
+        "operationsRailItems": 4,
+        "orderDetail": 0,
+        "orderFilters": 0,
+        "orderList": 0,
+        "orderSummary": 0,
+        "ready": 1,
+        "roleBadges": 1,
+        "shellMetrics": 6
+      },
+      "hasHorizontalOverflow": false,
+      "pass": {
+        "adminPaletteApplied": true,
+        "noHorizontalOverflow": true,
+        "operationsRailVisible": true,
+        "roleBoundaryVisible": true,
+        "surfaceTaskPanelsVisible": true
+      },
+      "screenshotPath": ".agent/artifacts/v14-t11/admin-v14-catalog-desktop-en.png",
+      "surface": "catalog",
+      "viewport": "desktop-en"
+    },
+    {
+      "classes": {
+        "main": "bg-admin-muted py-case-2xl text-foreground",
+        "navigation": "rounded-lg border border-admin bg-admin p-case-sm shadow-[var(--case-shadow-soft)]"
+      },
+      "counts": {
+        "catalogForm": 0,
+        "catalogItems": 0,
+        "customerDetail": 0,
+        "customerItems": 0,
+        "dashboardPanels": 0,
+        "dashboardStatusRails": 0,
+        "inventoryAdjustForm": 1,
+        "inventoryAdjustments": 1,
+        "inventoryItems": 102,
+        "navigationItems": 7,
+        "operationsRail": 1,
+        "operationsRailItems": 4,
+        "orderDetail": 0,
+        "orderFilters": 0,
+        "orderList": 0,
+        "orderSummary": 0,
+        "ready": 1,
+        "roleBadges": 1,
+        "shellMetrics": 3
+      },
+      "hasHorizontalOverflow": false,
+      "pass": {
+        "adminPaletteApplied": true,
+        "noHorizontalOverflow": true,
+        "operationsRailVisible": true,
+        "roleBoundaryVisible": true,
+        "surfaceTaskPanelsVisible": true
+      },
+      "screenshotPath": ".agent/artifacts/v14-t11/admin-v14-inventory-mobile-vi.png",
+      "surface": "inventory",
+      "viewport": "mobile-vi"
+    },
+    {
+      "classes": {
+        "main": "bg-admin-muted py-case-2xl text-foreground",
+        "navigation": "rounded-lg border border-admin bg-admin p-case-sm shadow-[var(--case-shadow-soft)]"
+      },
+      "counts": {
+        "catalogForm": 0,
+        "catalogItems": 0,
+        "customerDetail": 0,
+        "customerItems": 0,
+        "dashboardPanels": 0,
+        "dashboardStatusRails": 0,
+        "inventoryAdjustForm": 1,
+        "inventoryAdjustments": 1,
+        "inventoryItems": 102,
+        "navigationItems": 7,
+        "operationsRail": 1,
+        "operationsRailItems": 4,
+        "orderDetail": 0,
+        "orderFilters": 0,
+        "orderList": 0,
+        "orderSummary": 0,
+        "ready": 1,
+        "roleBadges": 1,
+        "shellMetrics": 3
+      },
+      "hasHorizontalOverflow": false,
+      "pass": {
+        "adminPaletteApplied": true,
+        "noHorizontalOverflow": true,
+        "operationsRailVisible": true,
+        "roleBoundaryVisible": true,
+        "surfaceTaskPanelsVisible": true
+      },
+      "screenshotPath": ".agent/artifacts/v14-t11/admin-v14-inventory-desktop-en.png",
+      "surface": "inventory",
+      "viewport": "desktop-en"
+    },
+    {
+      "classes": {
+        "main": "bg-admin-muted py-case-2xl text-foreground",
+        "navigation": "rounded-lg border border-admin bg-admin p-case-sm shadow-[var(--case-shadow-soft)]"
+      },
+      "counts": {
+        "catalogForm": 0,
+        "catalogItems": 0,
+        "customerDetail": 1,
+        "customerItems": 3,
+        "dashboardPanels": 0,
+        "dashboardStatusRails": 0,
+        "inventoryAdjustForm": 0,
+        "inventoryAdjustments": 0,
+        "inventoryItems": 0,
+        "navigationItems": 7,
+        "operationsRail": 1,
+        "operationsRailItems": 4,
+        "orderDetail": 0,
+        "orderFilters": 0,
+        "orderList": 0,
+        "orderSummary": 0,
+        "ready": 1,
+        "roleBadges": 1,
+        "shellMetrics": 3
+      },
+      "hasHorizontalOverflow": false,
+      "pass": {
+        "adminPaletteApplied": true,
+        "noHorizontalOverflow": true,
+        "operationsRailVisible": true,
+        "roleBoundaryVisible": true,
+        "surfaceTaskPanelsVisible": true
+      },
+      "screenshotPath": ".agent/artifacts/v14-t11/admin-v14-customers-mobile-vi.png",
+      "surface": "customers",
+      "viewport": "mobile-vi"
+    },
+    {
+      "classes": {
+        "main": "bg-admin-muted py-case-2xl text-foreground",
+        "navigation": "rounded-lg border border-admin bg-admin p-case-sm shadow-[var(--case-shadow-soft)]"
+      },
+      "counts": {
+        "catalogForm": 0,
+        "catalogItems": 0,
+        "customerDetail": 1,
+        "customerItems": 3,
+        "dashboardPanels": 0,
+        "dashboardStatusRails": 0,
+        "inventoryAdjustForm": 0,
+        "inventoryAdjustments": 0,
+        "inventoryItems": 0,
+        "navigationItems": 7,
+        "operationsRail": 1,
+        "operationsRailItems": 4,
+        "orderDetail": 0,
+        "orderFilters": 0,
+        "orderList": 0,
+        "orderSummary": 0,
+        "ready": 1,
+        "roleBadges": 1,
+        "shellMetrics": 3
+      },
+      "hasHorizontalOverflow": false,
+      "pass": {
+        "adminPaletteApplied": true,
+        "noHorizontalOverflow": true,
+        "operationsRailVisible": true,
+        "roleBoundaryVisible": true,
+        "surfaceTaskPanelsVisible": true
+      },
+      "screenshotPath": ".agent/artifacts/v14-t11/admin-v14-customers-desktop-en.png",
+      "surface": "customers",
+      "viewport": "desktop-en"
+    }
+  ],
+  "generatedAt": "2026-07-19T07:48:25.301Z",
+  "ok": true,
+  "pass": {
+    "adminPaletteApplied": true,
+    "noHorizontalOverflow": true,
+    "operationsRailVisible": true,
+    "roleBoundaryVisible": true,
+    "surfaceTaskPanelsVisible": true
+  }
+}
