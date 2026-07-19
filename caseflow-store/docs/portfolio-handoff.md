@@ -1,9 +1,9 @@
 # CaseFlow Books Portfolio Handoff
 
-- Latest release: `v1.6.0`
+- Latest release: `v1.7.0`
 - Production URL: `https://caseflow-store.vercel.app`
-- GitHub Release: `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.6.0`
-- Vercel deployment: `dpl_AxywdtLdcWEgeC9ytoiJwqNTwCK7`
+- GitHub Release: `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.7.0`
+- Vercel deployment: `dpl_EKSUm28mL8w4acchGxoZeeJA8iJc`
 - Project type: full-stack bookstore and small-business operations portfolio
 - Stack: Next.js 16, React 19, TypeScript 5, Tailwind CSS 4, Supabase
   PostgreSQL/Auth/RLS, Zod, Playwright, Vercel
@@ -28,6 +28,10 @@ handled deliberately:
 - The 500-edition catalog uses local project-created cover assets and
   self-written summaries instead of copied commercial covers or publisher
   blurbs.
+- The v1.7 storefront uses a reading-table/spine-rail motif and deliberately
+  varied section rhythm instead of generic landing-page card grids.
+- Cancelled/rejected orders are normalized server-side so admin/staff
+  dashboards do not count stale pending payments as still collectable.
 - Release claims are backed by Playwright, production smoke, cleanup, audit,
   and screenshot evidence.
 
@@ -106,7 +110,14 @@ See `docs/architecture.md` for the full architecture notes.
 
 | Evidence | Location |
 |---|---|
-| Latest release notes | `docs/v1.6.0-retail-catalog-scale-release-notes.md` |
+| Latest release notes | `docs/v1.7.0-ui-humanization-release-notes.md` |
+| v1.7 production UI humanization | `.agent/artifacts/v17-t01-production/ui-humanization-check.json` |
+| v1.7 production release smoke | `.agent/artifacts/v17-t01-production/production-release-smoke.json` |
+| v1.7 production final QA | `.agent/artifacts/v17-t01-production/final-post-release-qa.json` |
+| v1.7 production security posture | `.agent/artifacts/v17-t01-production/security-posture-check.json` |
+| v1.7 QR production lock | `.agent/artifacts/v17-t01-production/qr-payment-production-safety-check.json` |
+| UI humanization audit | `docs/ui-humanization-audit.md` |
+| UI style guide | `docs/style-guide.md` |
 | v1.6 production catalog polish | `.agent/artifacts/v16-t01-production/catalog-retail-polish-check.json` |
 | v1.6 production final QA | `.agent/artifacts/v16-t01-production/final-post-release-qa.json` |
 | v1.6 production release smoke | `.agent/artifacts/v16-t01-production/production-release-smoke.json` |
@@ -134,6 +145,11 @@ Latest verified gates include:
 - `npx tsc --noEmit --pretty false`
 - `npm run lint`
 - `npm run build`
+- `npm run test:e2e`
+- admin dashboard cancellation/payment summary verifier
+- admin/staff cancellation normalization verifier
+- UI humanization verifier
+- 500-edition catalog verifier
 - production release smoke against `https://caseflow-store.vercel.app`
 - V14 visual QA for homepage, catalog, detail, policy, checkout, customer, and
   admin surfaces
@@ -149,14 +165,16 @@ Latest verified gates include:
 
 Short version:
 
-> I built and deployed a bilingual bookstore with a 100-edition catalog,
+> I built and deployed a bilingual bookstore with a 500-edition catalog,
 > account-gated checkout, server-owned totals, customer order history and
 > cancellation, guarded tracking, and admin/staff operations. The interesting
 > part is the integrity boundary:
 > cart state is local and untrusted, prices and totals are recalculated on the
 > server, role checks are repeated server-side, and every release claim has
 > evidence from TypeScript, lint, build, Playwright, production smoke, cleanup,
-> and visual verification.
+> and visual verification. The v1.7 pass also tightened the visual system so
+> the site reads like a specialist bookstore rather than a generic AI-generated
+> landing page.
 
 What to emphasize:
 
@@ -169,6 +187,9 @@ What to emphasize:
 - QA discipline: release gates, screenshots, production smoke, cleanup,
   the `v1.3.1` hotfix verifier added after a real visual defect was found, and
   the `v1.4` real-commerce visual merchandising gate.
+- Product design discipline: v1.7 introduced an audit-backed style guide,
+  product-specific visual motif, reduced generic card repetition, and
+  regression checks for overflow and focus behavior.
 
 ## Honest Boundaries
 

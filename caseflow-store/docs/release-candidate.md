@@ -1,78 +1,69 @@
 # CaseFlow Books Release Candidate
 
-- Candidate: `v1.6.0-rc.1`, accepted and released as `v1.6.0`
+- Candidate: `v1.7.0-rc.1`, accepted and released as `v1.7.0`
 - Date: 2026-07-19
 - Status: production deployed, smoke tested, tagged, and released
-- Governing ADR:
-  `docs/adr/0011-retail-catalog-scale-and-hero-polish.md`
+- Governing documents:
+  `docs/ui-humanization-audit.md` and `docs/style-guide.md`
 - Release notes:
-  `docs/v1.6.0-retail-catalog-scale-release-notes.md`
+  `docs/v1.7.0-ui-humanization-release-notes.md`
 - Production alias: `https://caseflow-store.vercel.app`
 - Vercel deployment:
-  `dpl_AxywdtLdcWEgeC9ytoiJwqNTwCK7`
+  `dpl_EKSUm28mL8w4acchGxoZeeJA8iJc`
 
 ## Passed Local Gates
 
-- Supabase production catalog expansion passed with 500 active editions, 250
-  English editions, 250 Vietnamese editions, 400 generated v1.6 retail
-  editions, and a 120,000 VND active price floor.
-- v1.6 catalog retail-polish verifier passed locally and in production for
-  hero copy, catalog result-count layout, cover assets, language parity,
-  no-overflow, and public API total.
-
-- Database migration applied additively: `payments` table, indexes, RLS policy,
-  and idempotent `mark_demo_payment_paid` RPC.
-- Post-migration Supabase checks passed for orders, order items, payments,
-  active editions, RLS, and RPC availability.
 - `npx tsc --noEmit --pretty false`: passed.
 - `npm run lint`: passed.
 - `npm run build`: passed with 51 App Router routes plus proxy.
-- Full Playwright E2E: passed `20/20`.
-- Production Playwright E2E: passed `20/20`.
-- QR demo payment flow verifier passed against local development runtime:
-  order creation, backend-owned total, QR rendering, VietQR CRC/order content,
-  simulate paid transition, idempotent retry, bad webhook signature rejection,
-  cross-customer payment denial, reload-paid state, and mobile overflow.
-- Production-safety verifier passed against local production runtime with mock
-  payment disabled.
-- Final QA smoke passed against local production runtime with no findings.
-- Security posture verifier passed against local production runtime with no
-  findings.
-- No-demo runtime copy gate passed with intentional QR demo files allowlisted
-  and required demo safety labels checked.
-- UI regression verifier passed for header brand clipping, homepage internal
-  count copy, catalog count wrapping, ISBN/facts overflow, footer support copy,
-  and horizontal overflow.
+- `npm run test:e2e`: passed `20/20`.
+- Admin dashboard verifier passed with cancelled/rejected orders counted under
+  cancelled payment state instead of pending/awaiting payment.
+- Admin/staff order operations verifier passed with server-side cancellation
+  normalization for open payment and shipping states.
+- UI humanization verifier passed locally for header, homepage, catalog,
+  detail metadata wrapping, keyboard focus, reduced motion, and no checked
+  overflow.
+- Catalog page verifier passed locally with 500 editions, 24 cards per page,
+  and 21 pages.
+- QR production-safety verifier passed static checks.
+- Security posture verifier passed against a local production-style server.
 - Release cleanup passed with `totalMatches: 0`.
-- Secret scan passed across candidate text files with zero findings.
+- Secret scan passed with zero findings.
 - `npm audit --audit-level=high`: passed; 0 high/critical advisories.
-- `git diff --check`: passed.
-- Vercel production deployment
-  `dpl_9rMZwbykPksBiFWLLfVyR1i38nPy` reached `READY` and was aliased to
-  `https://caseflow-store.vercel.app`.
+- `git diff --check`: passed before deployment.
+
+## Passed Production Gates
+
+- Vercel deployment `dpl_EKSUm28mL8w4acchGxoZeeJA8iJc` reached `READY` and was
+  aliased to `https://caseflow-store.vercel.app`.
+- `vercel inspect https://caseflow-store.vercel.app`: passed; alias points to
+  deployment `dpl_EKSUm28mL8w4acchGxoZeeJA8iJc`.
+- Production catalog verifier passed with 500 editions and 21 pages.
+- Production UI humanization verifier passed.
 - Production release smoke passed with public pages, language mode, catalog
-  quality at the 500-edition baseline, cart/checkout boundary,
-  customer/admin boundary, assistant, and representative detail pages.
+  quality at the 500-edition baseline, cart/checkout boundary, customer/admin
+  boundary, assistant, and representative detail pages.
+- Production security posture passed with zero findings.
+- Production QR safety passed with runtime denied status `401`.
+- Production final QA smoke passed with zero findings.
 
 ## Candidate Findings Resolved
 
-- Frontend payment flow no longer creates paid state directly. It calls a
-  development-only simulate endpoint that routes through a signed mock webhook
-  and shared payment service.
-- Payment amount is no longer browser-owned. `POST /api/payments` accepts an
-  order identifier, reloads the customer-owned order, and reads
-  `orders.total_vnd`.
-- Order status and payment status are separated. Payment states include
-  `PENDING`, `PAID`, `EXPIRED`, `FAILED`, and `CANCELLED`; order/payment status
-  labels were updated for expired state handling.
-- Mock payment is production-locked on both frontend and backend. Production
-  does not render the simulate button and the simulate endpoint returns a
-  denied response.
-- QR display includes accessible QR image rendering, server-time countdown,
-  loading/error states, retry path, paid state, expired state, and mobile
-  overflow checks.
-- Recent UI defects reported by screenshot were fixed and covered by a targeted
-  regression verifier.
+- The public storefront no longer exposes admin navigation as a customer-facing
+  tab.
+- Homepage layout now uses a bookstore-specific reading table and spine rail
+  instead of a generic centered landing-page stack.
+- Catalog intro and quick links have lighter hierarchy and less repeated
+  pill/card treatment.
+- Product-detail edition notes and metadata wrapping avoid implementation copy
+  and long-code overflow.
+- Reading-path cards no longer wrap `Step 2` or `Step 4` vertically at the
+  audited desktop width.
+- Cancelled/rejected orders with stale active payment statuses no longer appear
+  as pending/awaiting payment in the admin dashboard.
+- Admin/staff cancellation now normalizes open payment and shipping states on
+  the server, not only through UI dropdown behavior.
 
 ## Accepted Non-Blockers
 
@@ -88,23 +79,22 @@
   unless a provider integration is added later.
 - The known moderate Next/PostCSS advisory remains accepted because the
   available forced fix proposes a breaking downgrade path.
+- Production Playwright `20/20` was not rerun after the production deploy for
+  this UI-focused release. The full local E2E suite and production smoke, UIH,
+  catalog, security, QR-safety, and final QA gates passed.
 
 ## Evidence
 
-- `.agent/artifacts/payqr-t01/migration-apply.json`
-- `.agent/artifacts/payqr-t01/post-migration-db-checks.json`
-- `.agent/artifacts/payqr-t01/qr-demo-payment-flow-check.json`
-- `.agent/artifacts/payqr-t01/qr-payment-production-safety-check.json`
-- `.agent/artifacts/payqr-t01/ui-regression-check.json`
-- `.agent/artifacts/payqr-t01/security-posture-check.json`
-- `.agent/artifacts/payqr-t01/final-post-release-qa.json`
-- `.agent/artifacts/payqr-t01/final-post-release-qa.md`
-- `.agent/artifacts/payqr-t01/no-demo-runtime-copy-check.json`
-- `.agent/artifacts/payqr-t01/secret-scan.json`
-- `.agent/artifacts/payqr-t01/release-cleanup-check.json`
-- `.agent/artifacts/payqr-t01/deployment.json`
-- `.agent/artifacts/payqr-t01/production-release-smoke.json`
-- `.agent/artifacts/payqr-t01/production-playwright-summary.json`
-- `.agent/artifacts/payqr-t01/qr-payment-desktop-pending-vi.png`
-- `.agent/artifacts/payqr-t01/qr-payment-desktop-paid-vi.png`
-- `.agent/artifacts/payqr-t01/qr-payment-mobile-paid-vi.png`
+- `docs/v1.7.0-ui-humanization-release-notes.md`
+- `docs/ui-humanization-audit.md`
+- `docs/style-guide.md`
+- `.agent/artifacts/ui-humanization-t01/ui-humanization-check.json`
+- `.agent/artifacts/uih-t01-order-fix/ui-humanization-check.json`
+- `.agent/artifacts/uih-t01-order-fix/home-1024-reading-path-full.png`
+- `.agent/artifacts/uih-t01-order-sync/admin-order-operations-check.json`
+- `.agent/artifacts/d38-t01/admin-dashboard-check.json`
+- `.agent/artifacts/v17-t01-production/ui-humanization-check.json`
+- `.agent/artifacts/v17-t01-production/production-release-smoke.json`
+- `.agent/artifacts/v17-t01-production/security-posture-check.json`
+- `.agent/artifacts/v17-t01-production/qr-payment-production-safety-check.json`
+- `.agent/artifacts/v17-t01-production/final-post-release-qa.json`

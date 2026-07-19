@@ -67,21 +67,22 @@ runtime.
 
 ## Latest release evidence
 
-- Release tag: `v1.6.0`
+- Release tag: `v1.7.0`
 - GitHub Release:
-  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.6.0`
+  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.7.0`
 - Production alias: `https://caseflow-store.vercel.app`
-- Vercel deployment ID: `dpl_AxywdtLdcWEgeC9ytoiJwqNTwCK7`
+- Vercel deployment ID: `dpl_EKSUm28mL8w4acchGxoZeeJA8iJc`
 - Local gates: TypeScript, ESLint, production build, full Playwright `20/20`,
-  QR payment flow, QR production-safety verifier, UI regression verifier,
-  security posture verifier, final QA smoke, v1.6 catalog retail-polish
-  verifier, no-demo runtime copy scan, targeted secret scan, dependency audit
-  at high threshold, and `git diff --check` passed.
-- Production smoke: v1.6 catalog retail-polish verifier, release smoke,
-  security posture, final QA smoke, QR production-safety lock, and UI
-  regression verifier passed.
+  admin dashboard cancellation/payment summary verifier, admin/staff order
+  cancellation verifier, UI humanization verifier, 500-edition catalog
+  verifier, QR production-safety verifier, security posture verifier, final QA
+  smoke, release cleanup, targeted secret scan, dependency audit at high
+  threshold, and `git diff --check` passed.
+- Production smoke: 500-edition catalog verifier, UI humanization verifier,
+  release smoke, security posture, final QA smoke, and QR production-safety
+  lock passed.
 - Release notes:
-  [`docs/v1.6.0-retail-catalog-scale-release-notes.md`](docs/v1.6.0-retail-catalog-scale-release-notes.md)
+  [`docs/v1.7.0-ui-humanization-release-notes.md`](docs/v1.7.0-ui-humanization-release-notes.md)
 - Known boundaries: simulated payments, QR demo locked from production
   settlement, no real SMS/OTP, no real shipping carrier integration, and no
   commercial book-cover hotlinking.

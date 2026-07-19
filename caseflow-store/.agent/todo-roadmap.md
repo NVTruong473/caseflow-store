@@ -10,8 +10,8 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: post-`UIH-T01` UI humanization verification
-- Current gate: no active implementation gate after `UIH-T01`
+- Mode: post-`v1.7.0` release verification
+- Current gate: no active implementation gate after `v1.7.0`
 - Current task: manual customer order/QR walkthrough remains the next
   user-confirmed step if requested
 - Implementation day: Day 40 complete
@@ -46,6 +46,34 @@
   - Guardrail: no dependency, schema, API, auth, payment, production data,
     deployment, tag, release, fake metric, copied brand asset, or commercial
     cover scraping was added.
+
+- [x] `UIH-T02` Ship UI Humanization Release v1.7.0. - 2026-07-19
+  - Objective: fix the user-reported admin dashboard/payment-state mismatch
+    and reading-path label overflow, then deploy, smoke test, document, tag,
+    and release the UI humanization work as `v1.7.0`.
+  - Acceptance criteria: cancelled/rejected orders do not appear as active
+    pending/awaiting payments in admin dashboards; admin/staff cancellation
+    normalizes open payment and shipping states server-side; reading path
+    labels do not wrap vertically; local lint/typecheck/build/E2E and affected
+    verifiers pass; production deploy, smoke, security, QR-safety, catalog, UIH,
+    and final QA checks pass; release notes and docs are updated.
+  - Result: dashboard payment summaries now derive effective payment status
+    from cancelled/rejected orders, admin/staff cancellation normalizes open
+    payment/shipping states, the orders UI mirrors that transition, reading
+    path labels use wrapping-safe inline treatment, release docs now point to
+    v1.7.0, and Vercel deployment `dpl_EKSUm28mL8w4acchGxoZeeJA8iJc` is
+    aliased to `https://caseflow-store.vercel.app`.
+  - Verification: `npx tsc --noEmit --pretty false`, `npm run lint`,
+    `npm run build`, `npm run test:e2e` (`20/20`), admin dashboard verifier,
+    admin order operations verifier, UIH verifier, catalog verifier,
+    release-cleanup check, secret scan, QR production-safety gate, security
+    posture verifier on local production-style server, high/critical dependency
+    audit, and `git diff --check` passed locally. Production catalog, UIH,
+    release smoke, security posture, QR production-safety, and final QA smoke
+    passed against `https://caseflow-store.vercel.app`.
+  - Guardrail: no schema migration, real payment/shipping/email/SMS provider,
+    external AI integration, copied commercial cover art, or fake proof claim
+    was added.
 
 ## Phase V16 - Retail Catalog Scale And Hero Copy Hotfix
 

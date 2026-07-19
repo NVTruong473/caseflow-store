@@ -3,8 +3,8 @@
 ## Project Identity
 
 - Project name: CaseFlow Store `v1.0.0`; CaseFlow Books `v1.1.0`, `v1.2.0`,
-  `v1.3.0`, `v1.3.1`, `v1.4.0`, `v1.4.1`, `v1.4.2`, and `v1.5.0` released
-  with `v1.6.0` production-deployed for retail catalog scale
+  `v1.3.0`, `v1.3.1`, `v1.4.0`, `v1.4.1`, `v1.4.2`, `v1.5.0`, `v1.6.0`,
+  and `v1.7.0` released
 - Repository folder: `/Users/vantruong/Documents/TSNN 2`
 - Product domain: books for released `v1.1.0` and `v1.2.0`; phone
   accessories for released `v1.0.0`
@@ -12,8 +12,8 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: post-`UIH-T01` UI humanization verification.
-- Current gate: no active implementation gate after `UIH-T01`.
+- Current mode: post-`v1.7.0` release verification.
+- Current gate: no active implementation gate after `v1.7.0`.
 - Current task: manual customer order/QR walkthrough remains the next
   user-confirmed step if requested.
 
@@ -51,6 +51,14 @@
   customer-facing copy and safer metadata wrapping, reduced-motion handling
   was verified, stale 100-edition E2E/catalog verifier baselines were updated
   to 500, and full local Playwright passed `20/20`.
+- `UIH-T02` was accepted on 2026-07-19 as the v1.7.0 production release:
+  admin dashboard payment summaries now treat cancelled/rejected orders with
+  stale active payment states as cancelled, admin/staff cancellation
+  normalizes open payment and shipping states server-side, reading-path step
+  labels no longer wrap vertically, Vercel deployment
+  `dpl_EKSUm28mL8w4acchGxoZeeJA8iJc` is aliased to
+  `https://caseflow-store.vercel.app`, and production smoke, UIH, catalog,
+  security posture, QR production-safety, and final QA checks passed.
 - Implementation was confirmed by the user on 2026-07-14.
 - Implementation was unblocked by installing the official Node.js LTS binary after Homebrew failed.
 - The Next.js app has been initialized in `caseflow-store`.
@@ -472,7 +480,7 @@ These are defaults that remain tentative until a later task or ADR freezes them:
   change under v1.3 polish.
 - Release status: `v1.3.1` remains the compact-card layout hotfix release.
   Later production releases now supersede it; the current latest production
-  release is `v1.6.0`.
+  release is `v1.7.0`.
 
 ## v1.1 Active Product Domain
 

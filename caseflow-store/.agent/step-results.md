@@ -4,16 +4,16 @@
 
 | Field | Value |
 |---|---|
-| Current mode | v1.4.0 final post-release QA passed |
-| Current gate | `QA-V14-FINAL-T01` complete |
+| Current mode | v1.7.0 production release passed |
+| Current gate | `UIH-T02` complete |
 | Implementation started | Yes |
 | Next implementation task | No active implementation task |
 | App initialized | Yes, in `caseflow-store` |
-| Local server verified | Yes, V14-T12 full Playwright `20/20` passed on a production-style local server at `http://127.0.0.1:3001`; V14 visual QA passed on local `next start` at `http://127.0.0.1:3000` |
-| Lint verified | Yes, QA-V14-FINAL-T01 lint passed after QA script and local P3 copy patch |
-| Build verified | Yes, QA-V14-FINAL-T01 local production build generated 48 App Router routes plus proxy |
+| Local server verified | Yes, UIH-T02 full Playwright `20/20`, admin dashboard/order verifiers, catalog verifier, and UIH verifier passed locally |
+| Lint verified | Yes, UIH-T02 lint passed |
+| Build verified | Yes, UIH-T02 local production build generated 51 App Router routes plus proxy |
 | Database connected | Yes; live catalog, orders, Auth, role checks, and admin status updates use Supabase |
-| Deployed | Yes, v1.4 production deployment `dpl_7S279YwsGzB4D6H11PiauzG9GvDL` is aliased to `https://caseflow-store.vercel.app` |
+| Deployed | Yes, v1.7.0 production deployment `dpl_EKSUm28mL8w4acchGxoZeeJA8iJc` is aliased to `https://caseflow-store.vercel.app` |
 | Last updated | 2026-07-19 |
 
 ## Result Index
@@ -12827,6 +12827,99 @@ preserving current functionality and production safety boundaries.
 
 Manual customer order and QR walkthrough still remains the next
 user-confirmed step if requested.
+
+---
+
+## UIH-T02 - Ship UI Humanization Release v1.7.0
+
+- Date: 2026-07-19
+- Status: completed
+- Phase: production release after `UIH-T01`
+- Release: `v1.7.0`
+
+### Objective
+
+Fix the user-reported admin dashboard payment-state mismatch and reading-path
+label overflow, then deploy, smoke test, document, tag, and release the UI
+humanization work as `v1.7.0`.
+
+### Actual Result
+
+- Admin dashboard payment summaries now use an effective payment status:
+  cancelled/rejected orders with stale active payment statuses are counted as
+  cancelled, not as pending/awaiting payments.
+- Admin/staff cancellation now normalizes open payment and shipping states on
+  the server when an order is cancelled/rejected.
+- Admin order UI mirrors the same cancellation transition in the dropdown draft
+  state, but authorization and persistence remain server-side.
+- Homepage reading-path labels now avoid vertical wrapping for `Step 2` and
+  `Step 4` inside compact book tiles.
+- Release notes, release-candidate docs, app/root README, architecture, and
+  portfolio handoff were updated for `v1.7.0`.
+- Vercel production deployment `dpl_EKSUm28mL8w4acchGxoZeeJA8iJc` reached
+  `READY` and was aliased to `https://caseflow-store.vercel.app`.
+
+### Evidence
+
+- `docs/v1.7.0-ui-humanization-release-notes.md`
+- `.agent/artifacts/d38-t01/admin-dashboard-check.json`
+- `.agent/artifacts/d38-t01/admin-dashboard-desktop-en.png`
+- `.agent/artifacts/uih-t01-order-sync/admin-order-operations-check.json`
+- `.agent/artifacts/uih-t01-order-fix/home-1024-reading-path-full.png`
+- `.agent/artifacts/v17-t01-production/ui-humanization-check.json`
+- `.agent/artifacts/v17-t01-production/production-release-smoke.json`
+- `.agent/artifacts/v17-t01-production/security-posture-check.json`
+- `.agent/artifacts/v17-t01-production/qr-payment-production-safety-check.json`
+- `.agent/artifacts/v17-t01-production/final-post-release-qa.json`
+
+### Verification
+
+- `npx tsc --noEmit --pretty false`: passed.
+- `npm run lint`: passed.
+- `npm run build`: passed with 51 App Router routes plus proxy.
+- `npm run test:e2e`: passed `20/20`.
+- `ADMIN_DASHBOARD_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx scripts/verify-admin-dashboard.ts`:
+  passed with two cancelled orders summarized under cancelled payment state.
+- `ADMIN_ORDER_OPS_VERIFY_BASE_URL=http://127.0.0.1:3000 ADMIN_ORDER_OPS_ARTIFACT_ID=uih-t01-order-sync npx tsx scripts/verify-admin-order-operations.ts`:
+  passed with server-side cancellation normalization.
+- `UIH_BASE_URL=http://127.0.0.1:3000 UIH_TASK_ID=uih-t01-order-fix npx tsx scripts/verify-ui-humanization.ts`:
+  passed.
+- `CATALOG_VERIFY_BASE_URL=http://127.0.0.1:3000 npx tsx scripts/verify-catalog-page.ts`:
+  passed with 500 editions and 21 pages.
+- `RELEASE_CLEANUP_TASK_ID=uih-t01-order-fix npx tsx scripts/verify-release-cleanup.ts`:
+  passed with `totalMatches: 0`.
+- `PAYQR_ARTIFACT_ID=uih-t01-order-fix npx tsx scripts/verify-payqr-secret-scan.ts`:
+  passed with zero findings.
+- `PAYQR_ARTIFACT_ID=uih-t01-order-fix npx tsx scripts/verify-qr-payment-production-safety.ts`:
+  passed static checks.
+- `SECURITY_QA_ARTIFACT_ID=uih-t01-order-fix SECURITY_QA_BASE_URL=http://127.0.0.1:3003 npx tsx scripts/verify-security-posture.ts`:
+  passed against a local production-style server.
+- `npm audit --audit-level=high`: passed for high/critical advisories; the
+  known moderate Next/PostCSS advisory remains documented.
+- `git diff --check`: passed before deployment.
+- `CATALOG_VERIFY_BASE_URL=https://caseflow-store.vercel.app npx tsx scripts/verify-catalog-page.ts`:
+  passed with 500 editions and 21 pages.
+- `UIH_BASE_URL=https://caseflow-store.vercel.app UIH_TASK_ID=v17-t01-production npx tsx scripts/verify-ui-humanization.ts`:
+  passed.
+- `PRODUCTION_RELEASE_TASK_ID=v17-t01-production PRODUCTION_RELEASE_BASE_URL=https://caseflow-store.vercel.app PRODUCTION_RELEASE_DEPLOYMENT_ID=dpl_EKSUm28mL8w4acchGxoZeeJA8iJc npx tsx scripts/verify-v12-production-release.ts`:
+  passed.
+- `SECURITY_QA_ARTIFACT_ID=v17-t01-production SECURITY_QA_BASE_URL=https://caseflow-store.vercel.app npx tsx scripts/verify-security-posture.ts`:
+  passed with zero findings.
+- `PAYQR_PRODUCTION_SAFETY_BASE_URL=https://caseflow-store.vercel.app PAYQR_ARTIFACT_ID=v17-t01-production npx tsx scripts/verify-qr-payment-production-safety.ts`:
+  passed with runtime denied status `401`.
+- `FINAL_QA_TASK_ID=v17-t01-production FINAL_QA_BASE_URL=https://caseflow-store.vercel.app npx tsx scripts/verify-final-post-release-qa.ts`:
+  passed with zero findings.
+
+### Guardrails Preserved
+
+- No schema migration, production catalog mutation, real payment provider,
+  shipping carrier, email/SMS provider, external AI integration, commercial
+  cover import, fake review/rating/sales claim, or package dependency was
+  added.
+
+### Next Task
+
+Manual customer order and QR walkthrough remains the next user-confirmed step.
 
 ---
 

@@ -1,0 +1,109 @@
+{
+  "baseURL": "https://caseflow-store.vercel.app",
+  "browser": {
+    "pass": {
+      "adminBoundary": true,
+      "assistant": true,
+      "cartEntry": true,
+      "checkoutBoundary": true,
+      "detailPages": true,
+      "languageMode": true,
+      "noHomeOverflow": true
+    },
+    "screenshots": {
+      "homeDesktopEn": ".agent/artifacts/v17-t01-production/production-home-desktop-en.png",
+      "catalogMobileVi": ".agent/artifacts/v17-t01-production/production-catalog-mobile-vi.png",
+      "detailDesktopEn": ".agent/artifacts/v17-t01-production/production-detail-desktop-en.png",
+      "detailMobileVi": ".agent/artifacts/v17-t01-production/production-detail-mobile-vi.png",
+      "adminBoundaryMobileEn": ".agent/artifacts/v17-t01-production/production-admin-boundary-mobile-en.png"
+    }
+  },
+  "catalogQuality": {
+    "failures": {
+      "brokenCoverCount": 0,
+      "invalidCoreCount": 0,
+      "missingBilingualCopyCount": 0,
+      "placeholderCoverCount": 0,
+      "publicFieldLeakCount": 0
+    },
+    "pass": {
+      "apiOk": true,
+      "bilingualCopy": true,
+      "coverResponses": true,
+      "languageParity": true,
+      "noPlaceholderPrimaryCovers": true,
+      "noPublicFieldLeaks": true,
+      "validCoreFields": true,
+      "volume": true
+    },
+    "summary": {
+      "activeEditionCount": 100,
+      "coverCount": 100,
+      "languageCounts": {
+        "en": 40,
+        "vi": 60
+      },
+      "metaTotal": 500,
+      "expectedActiveEditionTotal": 500
+    }
+  },
+  "deployment": {
+    "canonicalUrl": "https://caseflow-store.vercel.app",
+    "deploymentId": "dpl_EKSUm28mL8w4acchGxoZeeJA8iJc",
+    "deploymentUrl": "https://caseflow-store-kdldr2f93-nvt-ruong473.vercel.app",
+    "inspectorUrl": "https://vercel.com/nvt-ruong473/caseflow-store/EKSUm28mL8w4acchGxoZeeJA8iJc",
+    "taskId": "v17-t01-production"
+  },
+  "generatedAt": "2026-07-19T17:06:44.379Z",
+  "http": {
+    "pass": {
+      "account": true,
+      "adminUnauthorized": true,
+      "catalogPage": true,
+      "customerUnauthorized": true,
+      "englishDetail": true,
+      "home": true,
+      "robots": true,
+      "sitemap": true,
+      "tracking": true,
+      "vietnameseDetail": true
+    },
+    "status": {
+      "account": 200,
+      "adminOrders": 401,
+      "adminShelves": 401,
+      "catalogPage": 200,
+      "customerOrders": 401,
+      "englishDetail": 200,
+      "home": 200,
+      "robots": 200,
+      "sitemap": 200,
+      "tracking": 200,
+      "vietnameseDetail": 200
+    }
+  },
+  "ok": true,
+  "pass": {
+    "adminBoundary": true,
+    "assistant": true,
+    "canonicalAlias": true,
+    "cartAndCheckoutBoundary": true,
+    "catalogQuality": true,
+    "customerBoundary": true,
+    "detailPages": true,
+    "languageMode": true,
+    "publicPages": true
+  },
+  "targets": {
+    "en": {
+      "id": "2a64d757-4805-4b51-8fa7-bc4c3edd89c5",
+      "slug": "a-christmas-carol-english-collector-special",
+      "title": "A Christmas Carol - Collector's Edition"
+    },
+    "vi": {
+      "id": "4b699db9-2d9f-48e4-8473-860b6beb9d17",
+      "slug": "the-brothers-karamazov-vietnamese-collector-special",
+      "title": "Anh em nhà Karamazov - Bản chú giải tiếng Việt"
+    }
+  }
+}

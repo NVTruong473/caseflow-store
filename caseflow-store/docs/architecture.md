@@ -7,8 +7,8 @@ This document describes the deployed CaseFlow Books architecture after the Day
 `v1.3.0` visual merchandising polish, the `v1.3.1` compact-card layout hotfix,
 the `v1.4.0` real-commerce visual merchandising release, the `v1.4.1`
 stable closeout patch, the `v1.4.2` agent-inspired security QA hardening
-patch, the `v1.5.0` QR demo payment release, and the `v1.6.0` retail catalog
-scale release. The system is
+patch, the `v1.5.0` QR demo payment release, the `v1.6.0` retail catalog
+scale release, and the `v1.7.0` UI humanization release. The system is
 intentionally a Next.js modular monolith: it demonstrates a realistic
 specialist e-commerce workflow without claiming marketplace scale, real payment
 settlement, or enterprise operations.
@@ -298,8 +298,8 @@ notes, rights-analysis notes, or source-edition matching keys. See
 ## Deployment and verification
 
 - Production alias: `https://caseflow-store.vercel.app`.
-- Current production deployment ID: `dpl_AxywdtLdcWEgeC9ytoiJwqNTwCK7`
-  (`v1.6.0`).
+- Current production deployment ID: `dpl_EKSUm28mL8w4acchGxoZeeJA8iJc`
+  (`v1.7.0`).
 - Supabase hosts PostgreSQL and Auth.
 - Production runtime variables include the public Supabase URL, public anon key,
   and server-only service-role key. Canonical metadata defaults to the
@@ -343,6 +343,12 @@ notes, rights-analysis notes, or source-edition matching keys. See
   products, 400 generated v1.6 retail-edition covers, refreshed VND price
   bands, customer-facing homepage hero copy, catalog count layout polish, and
   updated QA baselines for the 500-edition catalog.
+- The `v1.7.0` release keeps the same architecture and adds UI humanization:
+  audit-backed style guidance, a bookstore-specific reading-table/spine-rail
+  motif, reduced generic card/pill repetition, public header cleanup, product
+  detail metadata wrapping, reading-path label overflow fixes, and admin
+  dashboard/order-operation normalization so cancelled orders do not appear as
+  collectable pending payments.
 - Dependency audit status is recorded in
   [`v1.2-release-audit.md`](v1.2-release-audit.md).
 

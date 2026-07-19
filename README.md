@@ -5,18 +5,18 @@ demo. The project started as the 20-day CaseFlow Store `v1.0.0` MVP and was
 upgraded through the Day 21-40 roadmap, the `v1.2` realistic catalog release,
 the `v1.3` visual merchandising polish, the `v1.3.1` compact-card hotfix,
 the `v1.4` real-commerce visual merchandising release, the `v1.5.0` QR
-demo payment release, and the `v1.6.0` retail catalog scale release into a Vietnam-first,
-bilingual e-commerce application for book discovery, account-gated checkout,
-customer order history/cancellation, order tracking, and admin/staff
-operations. The latest release expands the bookstore catalog to 500 active
-sellable editions, preserves 250/250 English/Vietnamese parity, refreshes VND
-pricing, and polishes homepage hero copy on top of the QR payment and security
-hardening releases.
+demo payment release, the `v1.6.0` retail catalog scale release, and the
+`v1.7.0` UI humanization release into a Vietnam-first, bilingual e-commerce
+application for book discovery, account-gated checkout, customer order
+history/cancellation, order tracking, and admin/staff operations. The latest
+release keeps the 500-edition catalog while making the storefront feel more
+authored and bookstore-specific, and it fixes cancellation/payment dashboard
+reporting for rejected orders.
 
 [Open the production deployment](https://caseflow-store.vercel.app)
 
 Latest release:
-[`v1.6.0`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.6.0)
+[`v1.7.0`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.7.0)
 
 > Payments are simulated. The app does not collect card numbers, CVV, card
 > expiry, real bank credentials, or real MoMo/ZaloPay/VNPay credentials. QR
@@ -136,22 +136,24 @@ Latest release:
 
 | Gate | Result |
 |---|---|
-| Release tag | `v1.5.0` |
-| GitHub Release | [`CaseFlow Books v1.5.0 - QR Demo Payment`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.5.0) |
+| Release tag | `v1.7.0` |
+| GitHub Release | [`CaseFlow Books v1.7.0 - UI Humanization`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.7.0) |
 | Production URL | `https://caseflow-store.vercel.app` |
-| Vercel deployment | `READY`, deployment `dpl_9rMZwbykPksBiFWLLfVyR1i38nPy` |
+| Vercel deployment | `READY`, deployment `dpl_EKSUm28mL8w4acchGxoZeeJA8iJc` |
 | TypeScript | `npx tsc --noEmit --pretty false` passed |
 | ESLint | `npm run lint` passed |
 | Production build | 51 App Router routes plus proxy generated |
+| UI humanization QA | Storefront style audit, design-system guide, no-overflow screenshots, focus visibility, reduced-motion guard, and reading-path label fix passed |
+| Admin cancellation QA | Dashboard payment summaries and admin/staff cancellation normalization passed |
 | QR demo payment QA | Local QR flow, VietQR CRC, mock webhook HMAC, idempotency, production-safety lock, and UI regression checks passed |
-| Production QA | Release smoke, security posture, final QA smoke, QR production-safety lock, UI regression verifier, and full production Playwright `20/20` passed |
+| Production QA | Release smoke, 500-edition catalog verifier, UI humanization verifier, security posture, final QA smoke, and QR production-safety lock passed |
 | v1.4.2 security QA | Security headers/no-store verifier and final QA smoke passed locally and in production; external agent repos were mapped as QA references, not runtime dependencies |
 | v1.4.1 local QA | TypeScript, lint, production build, no-demo copy scan, compact-card overlap, customer order history/cancellation, admin order rejection/cancellation, cleanup, secret scan, audit-high, and `git diff --check` passed |
 | v1.4.1 production QA | Production release smoke, final QA smoke, compact-card overlap, customer order history/cancellation, and admin order rejection/cancellation passed |
 | v1.4 production QA | Production release smoke passed with 100 active editions, 100 cover responses, public/customer/admin boundaries, assistant, language mode, and representative detail pages |
 | v1.3.1 hotfix QA | Local and production compact-card overlap verifier passed across mobile, tablet, and desktop; affected homepage/detail visual verifiers passed before `v1.4` |
 | Production smoke | Home, catalog, English/Vietnamese detail, 100-cover catalog, language mode, cart/checkout boundary, customer/admin boundaries, assistant, robots, and sitemap passed |
-| Catalog quality | 100 active editions, 50 English, 50 Vietnamese, zero primary placeholder covers |
+| Catalog quality | 500 active editions, 250 English, 250 Vietnamese, zero primary placeholder covers in checked public catalog payload |
 | Secret scan | Clean |
 | Cleanup check | Zero stale test/QA matches |
 
@@ -163,6 +165,8 @@ Release evidence is recorded in
 [`caseflow-store/docs/v1.4.1-stable-closeout-patch-release-notes.md`](caseflow-store/docs/v1.4.1-stable-closeout-patch-release-notes.md),
 [`caseflow-store/docs/v1.4.2-agent-security-qa-report.md`](caseflow-store/docs/v1.4.2-agent-security-qa-report.md),
 [`caseflow-store/docs/v1.5.0-qr-demo-payment-release-notes.md`](caseflow-store/docs/v1.5.0-qr-demo-payment-release-notes.md),
+[`caseflow-store/docs/v1.6.0-retail-catalog-scale-release-notes.md`](caseflow-store/docs/v1.6.0-retail-catalog-scale-release-notes.md),
+[`caseflow-store/docs/v1.7.0-ui-humanization-release-notes.md`](caseflow-store/docs/v1.7.0-ui-humanization-release-notes.md),
 and `.agent/step-results.md`.
 
 ## Portfolio handoff

@@ -1,0 +1,27 @@
+{
+  "ok": true,
+  "pass": {
+    "homeNoOverflowDesktop": true,
+    "publicHeaderNoAdmin": true,
+    "heroUsesReadingTable": true,
+    "heroNoCurrencyRateDisclosure": true,
+    "homeNoOverflowMobile": true,
+    "mobileMenuVisible": true,
+    "catalogNoOverflowDesktop": true,
+    "catalogNoTechnicalCopy": true,
+    "catalogQuickLinksAreShelfLinks": true,
+    "catalogNoOverflowTablet": true,
+    "detailNoOverflowMobile": true,
+    "detailIdentityNaturalCopy": true,
+    "detailTermsDoNotOverflow": true,
+    "keyboardFocusVisible": true,
+    "reducedMotionGuard": true
+  },
+  "screenshots": [
+    ".agent/artifacts/v17-t01-production/home-1440.png",
+    ".agent/artifacts/v17-t01-production/home-375.png",
+    ".agent/artifacts/v17-t01-production/catalog-1440.png",
+    ".agent/artifacts/v17-t01-production/catalog-768.png",
+    ".agent/artifacts/v17-t01-production/detail-identity-375.png"
+  ]
+}
