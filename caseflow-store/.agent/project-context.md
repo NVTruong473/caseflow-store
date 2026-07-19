@@ -4,6 +4,7 @@
 
 - Project name: CaseFlow Store `v1.0.0`; CaseFlow Books `v1.1.0`, `v1.2.0`,
   `v1.3.0`, `v1.3.1`, `v1.4.0`, `v1.4.1`, `v1.4.2`, and `v1.5.0` released
+  with `v1.6.0` production-deployed for retail catalog scale
 - Repository folder: `/Users/vantruong/Documents/TSNN 2`
 - Product domain: books for released `v1.1.0` and `v1.2.0`; phone
   accessories for released `v1.0.0`
@@ -11,11 +12,10 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: post-`v1.5.0` QR demo payment release closeout.
-- Current gate: no active implementation gate after `PAYQR-T01`.
-- Current task: wait for explicit user confirmation before the manual customer
-  order/QR walkthrough; queued next scopes are 500-edition realistic catalog
-  pricing/expansion and the FlowSync-inspired UI humanization audit/refactor.
+- Current mode: post-`v1.6.0` retail catalog scale release closeout.
+- Current gate: no active implementation gate after `V16-T01`.
+- Current task: manual customer order/QR walkthrough remains the next
+  user-confirmed step if requested.
 
 ## Confirmed Facts
 
@@ -34,6 +34,14 @@
   `dpl_9rMZwbykPksBiFWLLfVyR1i38nPy` is aliased to
   `https://caseflow-store.vercel.app`, and production Playwright passed
   `20/20`.
+- `V16-T01` was accepted on 2026-07-19 as the retail catalog scale and hero
+  copy hotfix: Supabase production now has 500 active editions, 250 English
+  editions, 250 Vietnamese editions, 400 generated v1.6 retail editions,
+  400 new generated local covers, refreshed realistic VND price bands, a
+  120,000 VND active price floor, customer-facing homepage hero copy, catalog
+  result-count layout polish, and production deployment
+  `dpl_AxywdtLdcWEgeC9ytoiJwqNTwCK7` aliased to
+  `https://caseflow-store.vercel.app`.
 - Implementation was confirmed by the user on 2026-07-14.
 - Implementation was unblocked by installing the official Node.js LTS binary after Homebrew failed.
 - The Next.js app has been initialized in `caseflow-store`.
@@ -454,7 +462,8 @@ These are defaults that remain tentative until a later task or ADR freezes them:
   fake ratings/sold counts/bestseller claims, and no stable API contract
   change under v1.3 polish.
 - Release status: `v1.3.1` remains the compact-card layout hotfix release.
-  The current latest production release is `v1.4.2`.
+  Later production releases now supersede it; the current latest production
+  release is `v1.6.0`.
 
 ## v1.1 Active Product Domain
 
@@ -464,7 +473,8 @@ Confirmed by ADR-0006 and `D22-T01`.
 - Domain: books and sellable book editions.
 - Source of truth: `docs/domain.md`.
 - Market focus: Vietnam-first, with English as a secondary language mode.
-- Catalog target: about 100 sellable book editions.
+- Catalog target: 500 active sellable book editions at the current v1.6
+  baseline, with 250 English and 250 Vietnamese editions.
 - Domain-specific features: book works vs editions, English/Vietnamese edition relationships, book-specific filters, account-gated checkout, simulated Vietnam payment methods, staff/admin/customer roles, inventory and sales operations, and a rule-based bookstore assistant.
 - Content boundary: use factual metadata carefully; write summaries internally; do not copy commercial covers, publisher blurbs, reviews, or protected excerpts without a clearly permitted source.
 

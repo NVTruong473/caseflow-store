@@ -14,7 +14,8 @@ evidence, and portfolio notes.
 
 ## Current scope
 
-- 100 sellable book editions across 50 works.
+- 500 sellable book editions across 50 works, with 250 English and 250
+  Vietnamese editions.
 - Vietnamese and English UI modes.
 - VND source-of-truth pricing with optional approximate USD display in English
   mode.
@@ -66,21 +67,21 @@ runtime.
 
 ## Latest release evidence
 
-- Release tag: `v1.5.0`
+- Release tag: `v1.6.0`
 - GitHub Release:
-  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.5.0`
+  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.6.0`
 - Production alias: `https://caseflow-store.vercel.app`
-- Vercel deployment ID: `dpl_9rMZwbykPksBiFWLLfVyR1i38nPy`
+- Vercel deployment ID: `dpl_AxywdtLdcWEgeC9ytoiJwqNTwCK7`
 - Local gates: TypeScript, ESLint, production build, full Playwright `20/20`,
   QR payment flow, QR production-safety verifier, UI regression verifier,
-  security posture verifier, final QA smoke, no-demo runtime copy scan, cleanup,
-  targeted secret scan, dependency audit at high threshold, and
-  `git diff --check` passed.
-- Production smoke: release smoke, security posture, final QA smoke, QR
-  production-safety lock, UI regression verifier, and full production
-  Playwright `20/20` passed.
+  security posture verifier, final QA smoke, v1.6 catalog retail-polish
+  verifier, no-demo runtime copy scan, targeted secret scan, dependency audit
+  at high threshold, and `git diff --check` passed.
+- Production smoke: v1.6 catalog retail-polish verifier, release smoke,
+  security posture, final QA smoke, QR production-safety lock, and UI
+  regression verifier passed.
 - Release notes:
-  [`docs/v1.5.0-qr-demo-payment-release-notes.md`](docs/v1.5.0-qr-demo-payment-release-notes.md)
+  [`docs/v1.6.0-retail-catalog-scale-release-notes.md`](docs/v1.6.0-retail-catalog-scale-release-notes.md)
 - Known boundaries: simulated payments, QR demo locked from production
   settlement, no real SMS/OTP, no real shipping carrier integration, and no
   commercial book-cover hotlinking.

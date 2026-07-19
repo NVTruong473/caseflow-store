@@ -1,9 +1,9 @@
 # CaseFlow Books Portfolio Handoff
 
-- Latest release: `v1.4.2`
+- Latest release: `v1.6.0`
 - Production URL: `https://caseflow-store.vercel.app`
-- GitHub Release: `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.4.2`
-- Vercel deployment: `dpl_8rPTCFb4pf3MEcoNbXfFiTq7ztSh`
+- GitHub Release: `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.6.0`
+- Vercel deployment: `dpl_AxywdtLdcWEgeC9ytoiJwqNTwCK7`
 - Project type: full-stack bookstore and small-business operations portfolio
 - Stack: Next.js 16, React 19, TypeScript 5, Tailwind CSS 4, Supabase
   PostgreSQL/Auth/RLS, Zod, Playwright, Vercel
@@ -25,7 +25,7 @@ handled deliberately:
   promotion, VAT, shipping, payment fee, and final VND totals.
 - Customer/admin/staff access boundaries are checked server-side, not only by
   hiding UI.
-- The 100-edition catalog uses local project-created cover assets and
+- The 500-edition catalog uses local project-created cover assets and
   self-written summaries instead of copied commercial covers or publisher
   blurbs.
 - Release claims are backed by Playwright, production smoke, cleanup, audit,
@@ -69,7 +69,7 @@ commit or share passwords.
 | Area | Implemented |
 |---|---|
 | Storefront | Homepage merchandising, catalog, filters, sorting, book detail, edition comparison, related books |
-| Catalog content | 50 works, 100 sellable editions, English/Vietnamese pairs, local SVG cover portfolio |
+| Catalog content | 50 works, 500 sellable editions, 250 English/250 Vietnamese products, local SVG cover portfolio |
 | Localization | Vietnamese and English UI modes |
 | Currency | VND source-of-truth, English-mode approximate USD estimate |
 | Cart | Browser-local cart storing edition IDs and quantities only |
@@ -106,9 +106,12 @@ See `docs/architecture.md` for the full architecture notes.
 
 | Evidence | Location |
 |---|---|
-| Latest release notes | `docs/v1.4.2-agent-security-qa-report.md` |
+| Latest release notes | `docs/v1.6.0-retail-catalog-scale-release-notes.md` |
+| v1.6 production catalog polish | `.agent/artifacts/v16-t01-production/catalog-retail-polish-check.json` |
+| v1.6 production final QA | `.agent/artifacts/v16-t01-production/final-post-release-qa.json` |
+| v1.6 production release smoke | `.agent/artifacts/v16-t01-production/production-release-smoke.json` |
+| v1.6 QR production lock | `.agent/artifacts/v16-t01-production/qr-payment-production-safety-check.json` |
 | v1.4.2 security posture | `.agent/artifacts/secqa-t01/security-posture-check.json` |
-| v1.4.2 final QA | `.agent/artifacts/secqa-t01/final-post-release-qa.json` |
 | v1.4.1 production smoke | `.agent/artifacts/v141-t01/production-release-smoke.json` |
 | v1.4.1 customer cancellation | `.agent/artifacts/v141-t01/customer-order-history-check.json` |
 | v1.4.1 admin rejection | `.agent/artifacts/v141-t01/admin-order-operations-check.json` |

@@ -150,11 +150,11 @@ const catalogCopy = {
     promotionBadge: "Offer",
     quickAvailable: "In stock now",
     quickDescription:
-      "Start from common buying intents before opening the full filter panel.",
+      "Start from language, format, offers, and availability before opening the full filter panel.",
     quickEnglish: "English originals",
-    quickOffers: "Editor picks",
+    quickOffers: "Selected shelves",
     quickPaperback: "Paperback editions",
-    quickTitle: "Quick discovery",
+    quickTitle: "Popular ways to browse",
     quickUnder150: "Under 150k VND",
     quickVietnamese: "Vietnamese editions",
     resultCount: (start: number, end: number, total: number) =>
@@ -219,11 +219,11 @@ const catalogCopy = {
     promotionBadge: "Ưu đãi",
     quickAvailable: "Còn hàng ngay",
     quickDescription:
-      "Bắt đầu từ nhu cầu mua phổ biến trước khi mở toàn bộ bộ lọc.",
+      "Bắt đầu từ ngôn ngữ, định dạng, ưu đãi và tình trạng còn hàng trước khi mở toàn bộ bộ lọc.",
     quickEnglish: "Bản gốc tiếng Anh",
-    quickOffers: "Biên tập chọn",
+    quickOffers: "Kệ sách chọn lọc",
     quickPaperback: "Ấn bản bìa mềm",
-    quickTitle: "Tìm nhanh",
+    quickTitle: "Lối vào mua sách",
     quickUnder150: "Dưới 150k VND",
     quickVietnamese: "Ấn bản tiếng Việt",
     resultCount: (start: number, end: number, total: number) =>
@@ -408,12 +408,12 @@ export default async function CatalogPage({ searchParams }: CatalogPageProps) {
 
         <section id="catalog-results" className="flex flex-col gap-case-lg">
           <div className="flex min-w-0 flex-col gap-case-md rounded-lg border border-border bg-surface p-case-md">
-            <div className="flex min-w-0 flex-col gap-case-sm sm:flex-row sm:items-end sm:justify-between">
+            <div className="flex min-w-0 flex-col gap-case-sm sm:flex-row sm:items-center sm:justify-between">
               <h2 className="text-heading-2 font-semibold text-foreground">
                 {copy.breadcrumbCatalog}
               </h2>
               <p
-                className="max-w-full text-small leading-6 text-text-muted sm:text-right"
+                className="inline-flex w-fit max-w-full items-center rounded-md border border-border bg-paper px-3 py-1 text-small leading-6 text-text-muted sm:shrink-0 sm:whitespace-nowrap sm:text-right"
                 data-catalog-result-count
               >
                 {copy.resultCount(rangeStart, rangeEnd, resultTotal)}
@@ -456,7 +456,7 @@ export default async function CatalogPage({ searchParams }: CatalogPageProps) {
               className="grid gap-case-md sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
               data-catalog-grid
             >
-              {visibleRecords.map((record, index) => (
+              {visibleRecords.map((record) => (
                 <CatalogBookCard
                   key={record.edition.id}
                   copy={{
@@ -477,7 +477,7 @@ export default async function CatalogPage({ searchParams }: CatalogPageProps) {
                     merchandisingIndex.get(record.edition.id) ??
                     createEmptyMerchandisingEntry()
                   }
-                  priority={index < 4}
+                  priority
                   record={record}
                   rules={currencyRules}
                 />

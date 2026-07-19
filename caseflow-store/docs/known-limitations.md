@@ -1,11 +1,25 @@
 # Known Limitations
 
 This document records the intentional boundaries and accepted risks of
-CaseFlow Books through the latest `v1.5.0` QR demo payment release.
+CaseFlow Books through the latest `v1.6.0` retail catalog scale release.
 These items are not hidden production capabilities; they define where the
 portfolio release stops.
 
 ## Commerce scope
+
+### Catalog scale is edition-based
+
+`v1.6.0` expands the active catalog to 500 sellable products by adding retail
+edition variants across the existing 50 works. This improves browsing scale,
+price realism, and merchandising density, but it is not the same as curating
+250 unique works.
+
+**Current control:** generated v1.6 editions use project-created covers,
+source-safe copy, no fake ISBN values, active language parity at 250 English
+and 250 Vietnamese editions, and Supabase-backed public API totals.
+
+**Next step:** a future unique-work expansion should run a separate
+provenance/content curation pass before claiming hundreds of unique titles.
 
 ### Payments are simulated
 

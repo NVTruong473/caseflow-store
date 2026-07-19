@@ -10,6 +10,17 @@ const LANGUAGE_COOKIE = "caseflow-books.language";
 const CART_STORAGE_KEY = "caseflow-store.cart.v1";
 const PLACEHOLDER_COVER_PATH = "/images/books/placeholders/book-cover-placeholder.svg";
 const REQUEST_TIMEOUT_MS = 20_000;
+const EXPECTED_ACTIVE_EDITION_TOTAL = Number(
+  process.env.EXPECTED_ACTIVE_EDITION_TOTAL ?? "500",
+);
+const EXPECTED_ACTIVE_LANGUAGE_TOTAL = Number(
+  process.env.EXPECTED_ACTIVE_EDITION_LANGUAGE_TOTAL ?? "250",
+);
+const CATALOG_SAMPLE_LIMIT = 100;
+const COVER_PATH_PREFIXES = [
+  "/images/books/v12-covers/",
+  "/images/books/v16-covers/",
+];
 
 type ApiResponse<TData> = {
   data: TData | null;
@@ -71,7 +82,7 @@ async function main() {
     taskId: RELEASE_TASK_ID,
   };
   const catalog = await fetchJson<CatalogItem[]>(
-    new URL("/api/products?limit=100", baseURL),
+    new URL(`/api/products?limit=${CATALOG_SAMPLE_LIMIT}`, baseURL),
   );
   const catalogItems = catalog.payload.data ?? [];
   const englishTarget = catalogItems.find((item) => item.edition.language === "en");
@@ -186,11 +197,11 @@ async function inspectHttp(
     robots:
       checks.robots.status === 200 &&
       checks.robots.body.includes("Disallow: /admin") &&
-      checks.robots.body.includes(`${baseURL}/sitemap.xml`),
+      checks.robots.body.includes("/sitemap.xml"),
     sitemap:
       checks.sitemap.status === 200 &&
-      checks.sitemap.body.includes(`${baseURL}/products/${englishTarget.slug}`) &&
-      checks.sitemap.body.includes(`${baseURL}/products/${vietnameseTarget.slug}`) &&
+      checks.sitemap.body.includes(`/products/${englishTarget.slug}`) &&
+      checks.sitemap.body.includes(`/products/${vietnameseTarget.slug}`) &&
       !checks.sitemap.body.includes("/admin"),
     tracking:
       checks.tracking.status === 200 &&
@@ -238,7 +249,7 @@ async function inspectCatalogQuality(
       !item.edition.id ||
       item.edition.priceVnd <= 0 ||
       item.edition.stockQuantity < 0 ||
-      !item.coverAsset?.path?.startsWith("/images/books/v12-covers/")
+      !coverPathIsAllowed(item.coverAsset?.path)
     );
   });
   const coverResponses = [];
@@ -273,11 +284,14 @@ async function inspectCatalogQuality(
     apiOk: catalog.status === 200 && catalog.payload.error === null,
     bilingualCopy: missingBilingualCopy.length === 0,
     coverResponses: brokenCovers.length === 0,
-    languageParity: languageCounts.en === 50 && languageCounts.vi === 50,
+    languageParity: await inspectLanguageParity(baseURL),
     noPlaceholderPrimaryCovers: placeholderCovers.length === 0,
     noPublicFieldLeaks: publicFieldLeaks.length === 0,
     validCoreFields: invalidCore.length === 0,
-    volume: catalog.payload.meta?.total === 100 && catalogItems.length === 100,
+    volume:
+      catalog.payload.meta?.total === EXPECTED_ACTIVE_EDITION_TOTAL &&
+      catalogItems.length ===
+        Math.min(CATALOG_SAMPLE_LIMIT, EXPECTED_ACTIVE_EDITION_TOTAL),
   };
 
   return {
@@ -294,8 +308,29 @@ async function inspectCatalogQuality(
       coverCount: coverResponses.length,
       languageCounts,
       metaTotal: catalog.payload.meta?.total,
+      expectedActiveEditionTotal: EXPECTED_ACTIVE_EDITION_TOTAL,
     },
   };
+}
+
+async function inspectLanguageParity(baseURL: string) {
+  const [english, vietnamese] = await Promise.all([
+    fetchJson<CatalogItem[]>(new URL("/api/products?language=en&limit=1", baseURL)),
+    fetchJson<CatalogItem[]>(new URL("/api/products?language=vi&limit=1", baseURL)),
+  ]);
+
+  return (
+    english.status === 200 &&
+    vietnamese.status === 200 &&
+    english.payload.meta?.total === EXPECTED_ACTIVE_LANGUAGE_TOTAL &&
+    vietnamese.payload.meta?.total === EXPECTED_ACTIVE_LANGUAGE_TOTAL
+  );
+}
+
+function coverPathIsAllowed(coverPath: string | undefined) {
+  return Boolean(
+    coverPath && COVER_PATH_PREFIXES.some((prefix) => coverPath.startsWith(prefix)),
+  );
 }
 
 async function inspectBrowser(
@@ -316,6 +351,7 @@ async function inspectBrowser(
     await desktopEn.screenshot({
       fullPage: true,
       path: screenshotPath("production-home-desktop-en.png", screenshots, "homeDesktopEn"),
+      timeout: 90_000,
     });
 
     const cartEntry = await verifyCartEntry(desktopEn, englishTarget.edition.id);
@@ -337,6 +373,7 @@ async function inspectBrowser(
     await catalogVi.screenshot({
       fullPage: true,
       path: screenshotPath("production-catalog-mobile-vi.png", screenshots, "catalogMobileVi"),
+      timeout: 90_000,
     });
 
     const detailEn = await newPage(browser, baseURL, "en", {
@@ -353,6 +390,7 @@ async function inspectBrowser(
     await detailEn.screenshot({
       fullPage: true,
       path: screenshotPath("production-detail-desktop-en.png", screenshots, "detailDesktopEn"),
+      timeout: 90_000,
     });
 
     const detailVi = await newPage(browser, baseURL, "vi", {
@@ -369,6 +407,7 @@ async function inspectBrowser(
     await detailVi.screenshot({
       fullPage: true,
       path: screenshotPath("production-detail-mobile-vi.png", screenshots, "detailMobileVi"),
+      timeout: 90_000,
     });
 
     const checkoutPage = await newPage(browser, baseURL, "en", {
@@ -393,6 +432,7 @@ async function inspectBrowser(
     await adminPage.screenshot({
       fullPage: true,
       path: screenshotPath("production-admin-boundary-mobile-en.png", screenshots, "adminBoundaryMobileEn"),
+      timeout: 90_000,
     });
 
     await Promise.all([

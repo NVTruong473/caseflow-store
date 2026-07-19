@@ -7,7 +7,8 @@ This document describes the deployed CaseFlow Books architecture after the Day
 `v1.3.0` visual merchandising polish, the `v1.3.1` compact-card layout hotfix,
 the `v1.4.0` real-commerce visual merchandising release, the `v1.4.1`
 stable closeout patch, the `v1.4.2` agent-inspired security QA hardening
-patch, and the `v1.5.0` QR demo payment release. The system is
+patch, the `v1.5.0` QR demo payment release, and the `v1.6.0` retail catalog
+scale release. The system is
 intentionally a Next.js modular monolith: it demonstrates a realistic
 specialist e-commerce workflow without claiming marketplace scale, real payment
 settlement, or enterprise operations.
@@ -274,8 +275,8 @@ Additional controls:
 ## Content and asset model
 
 CaseFlow Books uses factual classic/public-domain-style book metadata where
-practical, self-written summaries, and 100 local project-created SVG cover
-illustrations for the active `v1.2` catalog. The generic placeholder remains
+practical, self-written summaries, and 500 local project-created SVG cover
+illustrations across the active v1.6 catalog. The generic placeholder remains
 only as a fallback/admin quality state. The project does not hotlink commercial
 book covers or copy publisher blurbs, reviews, or protected excerpts. The
 current policy is documented in [`domain.md`](domain.md),
@@ -297,8 +298,8 @@ notes, rights-analysis notes, or source-edition matching keys. See
 ## Deployment and verification
 
 - Production alias: `https://caseflow-store.vercel.app`.
-- Current production deployment ID: `dpl_9rMZwbykPksBiFWLLfVyR1i38nPy`
-  (`v1.5.0`).
+- Current production deployment ID: `dpl_AxywdtLdcWEgeC9ytoiJwqNTwCK7`
+  (`v1.6.0`).
 - Supabase hosts PostgreSQL and Auth.
 - Production runtime variables include the public Supabase URL, public anon key,
   and server-only service-role key. Canonical metadata defaults to the
@@ -337,6 +338,11 @@ notes, rights-analysis notes, or source-edition matching keys. See
   scan artifact, full local and production Playwright `20/20`, TypeScript,
   lint, production build, production release smoke, security posture, and final
   QA smoke.
+- The `v1.6.0` release keeps the same architecture and scales the active
+  catalog to 500 sellable editions with 250 English and 250 Vietnamese
+  products, 400 generated v1.6 retail-edition covers, refreshed VND price
+  bands, customer-facing homepage hero copy, catalog count layout polish, and
+  updated QA baselines for the 500-edition catalog.
 - Dependency audit status is recorded in
   [`v1.2-release-audit.md`](v1.2-release-audit.md).
 

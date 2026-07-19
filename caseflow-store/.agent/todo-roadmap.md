@@ -10,13 +10,41 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: post-`v1.5.0` QR demo payment release closeout
-- Current gate: no active implementation gate after `PAYQR-T01`
-- Current task: wait for explicit user confirmation before the manual customer
-  order/QR walkthrough; queued next scopes are 500-edition realistic catalog
-  pricing/expansion and the FlowSync-inspired UI humanization audit/refactor
+- Mode: post-`v1.6.0` retail catalog scale release closeout
+- Current gate: no active implementation gate after `V16-T01`
+- Current task: manual customer order/QR walkthrough remains the next
+  user-confirmed step if requested
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-19
+
+## Phase V16 - Retail Catalog Scale And Hero Copy Hotfix
+
+- [x] `V16-T01` Retail Catalog Scale And Hero Copy Hotfix. - 2026-07-19
+  - Objective: make the production bookstore match the requested 500-product
+    catalog scale and remove unprofessional implementation-style homepage
+    copy from the customer-facing hero.
+  - Acceptance criteria: accepted `ADR-0011`; Supabase production has 500
+    active sellable editions with 250 English and 250 Vietnamese editions;
+    400 generated v1.6 retail-edition covers exist locally; active VND prices
+    use realistic bookstore bands; homepage hero shows customer-facing
+    retail signals; catalog result count does not wrap vertically; current QA
+    scripts use the 500-edition baseline; production deploy and smoke pass.
+  - Result: added an idempotent v1.6 catalog expansion script, generated
+    400 local SVG covers under `public/images/books/v16-covers`, upserted
+    400 active retail edition variants into Supabase production, repriced the
+    existing active 100 editions, polished homepage hero copy, improved
+    catalog result-count layout, and prioritized first-page catalog cover
+    loading.
+  - Verification: `npx tsx scripts/apply-v16-catalog-expansion.ts --apply`
+    passed with 500 active editions, 250 English, 250 Vietnamese, 400 v1.6
+    editions, and a 120,000 VND active price floor; local and production
+    `verify-v16-catalog-retail-polish`, UI regression, final QA, release
+    smoke, security posture, and QR production-safety checks passed; `npx tsc
+    --noEmit --pretty false`, `npm run lint`, `npm run build`, no-demo scan,
+    secret scan, high/critical dependency audit, and `git diff --check`
+    passed.
+  - Guardrail: no schema migration, real payment provider, shipping/email/SMS
+    provider, fake ISBN values, or copied commercial cover art was added.
 
 ## Phase PAYQR - Production-Locked QR Demo Payment
 

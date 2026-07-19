@@ -1,17 +1,24 @@
 # CaseFlow Books Release Candidate
 
-- Candidate: `v1.5.0-rc.1`, accepted and released as `v1.5.0`
+- Candidate: `v1.6.0-rc.1`, accepted and released as `v1.6.0`
 - Date: 2026-07-19
 - Status: production deployed, smoke tested, tagged, and released
 - Governing ADR:
-  `docs/adr/0010-qr-demo-payment-provider-boundary.md`
+  `docs/adr/0011-retail-catalog-scale-and-hero-polish.md`
 - Release notes:
-  `docs/v1.5.0-qr-demo-payment-release-notes.md`
+  `docs/v1.6.0-retail-catalog-scale-release-notes.md`
 - Production alias: `https://caseflow-store.vercel.app`
 - Vercel deployment:
-  `dpl_9rMZwbykPksBiFWLLfVyR1i38nPy`
+  `dpl_AxywdtLdcWEgeC9ytoiJwqNTwCK7`
 
 ## Passed Local Gates
+
+- Supabase production catalog expansion passed with 500 active editions, 250
+  English editions, 250 Vietnamese editions, 400 generated v1.6 retail
+  editions, and a 120,000 VND active price floor.
+- v1.6 catalog retail-polish verifier passed locally and in production for
+  hero copy, catalog result-count layout, cover assets, language parity,
+  no-overflow, and public API total.
 
 - Database migration applied additively: `payments` table, indexes, RLS policy,
   and idempotent `mark_demo_payment_paid` RPC.
@@ -44,8 +51,8 @@
   `dpl_9rMZwbykPksBiFWLLfVyR1i38nPy` reached `READY` and was aliased to
   `https://caseflow-store.vercel.app`.
 - Production release smoke passed with public pages, language mode, catalog
-  quality, cart/checkout boundary, customer/admin boundary, assistant, and
-  representative detail pages.
+  quality at the 500-edition baseline, cart/checkout boundary,
+  customer/admin boundary, assistant, and representative detail pages.
 
 ## Candidate Findings Resolved
 
@@ -74,9 +81,9 @@
 - Production payment settlement, reconciliation, refunds, provider dashboards,
   real webhook callbacks, and dispute/failure operations require a separate ADR
   and provider contract.
-- The active catalog remains 100 editions. The requested 500-edition expansion
-  and realistic repricing require a separate catalog-data migration and source
-  review.
+- The 500 products are edition variants across the existing 50 works, not 250
+  unique works. Generated v1.6 editions intentionally omit ISBNs instead of
+  inventing fake identifiers.
 - Email confirmation is still not backed by a real email delivery provider
   unless a provider integration is added later.
 - The known moderate Next/PostCSS advisory remains accepted because the

@@ -1,0 +1,117 @@
+{
+  "api": {
+    "coverResponses": [
+      {
+        "contentType": "image/svg+xml",
+        "ok": true,
+        "path": "/images/books/v16-covers/a-christmas-carol-english-collector-special.svg",
+        "status": 200
+      },
+      {
+        "contentType": "image/svg+xml",
+        "ok": true,
+        "path": "/images/books/v16-covers/a-christmas-carol-english-library-hardcover.svg",
+        "status": 200
+      },
+      {
+        "contentType": "image/svg+xml",
+        "ok": true,
+        "path": "/images/books/v16-covers/a-christmas-carol-english-reader-paperback.svg",
+        "status": 200
+      },
+      {
+        "contentType": "image/svg+xml",
+        "ok": true,
+        "path": "/images/books/v16-covers/a-christmas-carol-english-reading-group-box-set.svg",
+        "status": 200
+      },
+      {
+        "contentType": "image/svg+xml",
+        "ok": true,
+        "path": "/images/books/v16-covers/a-tale-of-two-cities-english-collector-special.svg",
+        "status": 200
+      },
+      {
+        "contentType": "image/svg+xml",
+        "ok": true,
+        "path": "/images/books/v16-covers/a-tale-of-two-cities-english-library-hardcover.svg",
+        "status": 200
+      },
+      {
+        "contentType": "image/svg+xml",
+        "ok": true,
+        "path": "/images/books/v16-covers/a-tale-of-two-cities-english-reader-paperback.svg",
+        "status": 200
+      },
+      {
+        "contentType": "image/svg+xml",
+        "ok": true,
+        "path": "/images/books/v16-covers/a-tale-of-two-cities-english-reading-group-box-set.svg",
+        "status": 200
+      }
+    ],
+    "coverSamples": 8,
+    "coverSamplesOk": true,
+    "firstPageCount": 24,
+    "firstPageStatus": 200,
+    "total": 500,
+    "v16SearchCount": 12,
+    "v16SearchStatus": 200
+  },
+  "baseURL": "http://127.0.0.1:3000",
+  "browser": {
+    "catalog": {
+      "englishResultTotal": 250,
+      "noHorizontalOverflow": true,
+      "resultBox": {
+        "height": 34,
+        "lineHeight": 24,
+        "width": 264
+      },
+      "resultCountStable": true,
+      "resultText": "Đang hiển thị 1-24 trong 500 ấn bản",
+      "vietnameseResultTotal": 250
+    },
+    "home": {
+      "includesCatalogTotal": true,
+      "noHorizontalOverflow": true,
+      "textSample": "Nhà sách trực tuyến\nCaseFlow Books\n\nNhà sách song ngữ tuyển chọn bản gốc tiếng Anh và bản dịch tiếng Việt, giá VND rõ ràng, hỗ trợ COD/chuyển khoản và theo dõi đơn trong tài khoản.\n\nDuyệt sách\nTủ sách chọn lọc\n500 ấn bản\nẤn bản song ngữ\nAnh & Việt\nThanh toán\nCOD & chuyển khoản\nKiêu hãnh và định kiến\nJane Eyre\nĐồi gió hú\nKiêu hãnh và định kiến\nTiếng Anh\nSắp hết\n\nKiêu hãnh và định kiến\n\nJane Austen\n\nTồn kho: 8\n\n354.000 ₫\nJane Eyre\nTiếng Anh\nCòn hàng\n\nJane Eyre\n\nCharlotte Bronte\n\nTồn kho: 13\n\n217.000 ₫\nĐồi gió hú\nTiếng Anh\nCòn hàng\n\nĐồi gió hú\n\nEmily Bronte\n\nTồn kho: 18\n\n174.000 ₫"
+    },
+    "screenshots": {
+      "catalog": ".agent/artifacts/v16-t01/catalog-920-vi.png",
+      "home": ".agent/artifacts/v16-t01/home-1440-vi.png"
+    }
+  },
+  "db": {
+    "activeEditions": 500,
+    "activeEnglishEditions": 250,
+    "activeV16Editions": 400,
+    "activeVietnameseEditions": 250,
+    "maximumActivePriceVnd": 871000,
+    "minimumActivePriceVnd": 120000
+  },
+  "generatedAt": "2026-07-19T15:08:39.670Z",
+  "localAssets": {
+    "directory": "/Users/vantruong/Documents/TSNN 2/caseflow-store/public/images/books/v16-covers",
+    "fileCount": 400,
+    "sample": [
+      "a-christmas-carol-english-collector-special.svg",
+      "a-christmas-carol-english-library-hardcover.svg",
+      "a-christmas-carol-english-reader-paperback.svg",
+      "a-christmas-carol-english-reading-group-box-set.svg",
+      "a-christmas-carol-vietnamese-collector-special.svg"
+    ]
+  },
+  "ok": true,
+  "pass": {
+    "apiTotal": true,
+    "catalogResultCountLayout": true,
+    "coverAssets": true,
+    "databaseTotal": true,
+    "heroCopy": true,
+    "languageParity": true,
+    "noHorizontalOverflow": true,
+    "priceFloor": true,
+    "v16EditionCount": true
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "baseURL": "http://127.0.0.1:3000",
+  "checks": [
+    {
+      "kind": "home",
+      "name": "desktop-home-vi",
+      "pass": {
+        "footerSupportVisible": true,
+        "headerBrandNotClipped": true,
+        "noHorizontalOverflow": true,
+        "noInternalHeroCounts": true
+      },
+      "screenshotPath": ".agent/artifacts/v16-t01/desktop-home-vi.png",
+      "textSample": "Nhà sách trực tuyến\nCaseFlow Books\n\nNhà sách song ngữ tuyển chọn bản gốc tiếng Anh và bản dịch tiếng Việt, giá VND rõ ràng, hỗ trợ COD/chuyển khoản và theo dõi đơn trong tài khoản.\n\nDuyệt sách\nTủ sách chọn lọc\n500 ấn bản\nẤn bản song ngữ\nAnh & Việt\nThanh toán\nCOD & chuyển khoản\nKiêu hãnh và định kiến\nJane Eyre\nĐồi gió hú\nKiêu hãnh và định kiến\nTiếng Anh\nSắp hết\n\nKiêu hãnh và định kiến\n\nJane Austen\n",
+      "viewport": {
+        "height": 900,
+        "width": 1440
+      }
+    },
+    {
+      "kind": "catalog",
+      "name": "desktop-catalog-vi",
+      "pass": {
+        "footerSupportVisible": true,
+        "headerBrandNotClipped": true,
+        "noHorizontalOverflow": true,
+        "noNarrowResultCount": true
+      },
+      "resultBox": {
+        "height": 34,
+        "lineHeight": 24,
+        "width": 264
+      },
+      "screenshotPath": ".agent/artifacts/v16-t01/desktop-catalog-vi.png",
+      "viewport": {
+        "height": 820,
+        "width": 920
+      }
+    },
+    {
+      "kind": "catalog",
+      "name": "mobile-catalog-vi",
+      "pass": {
+        "footerSupportVisible": true,
+        "headerBrandNotClipped": true,
+        "noHorizontalOverflow": true,
+        "noNarrowResultCount": true
+      },
+      "resultBox": {
+        "height": 34,
+        "lineHeight": 24,
+        "width": 264
+      },
+      "screenshotPath": ".agent/artifacts/v16-t01/mobile-catalog-vi.png",
+      "viewport": {
+        "height": 900,
+        "width": 375
+      }
+    },
+    {
+      "kind": "detail",
+      "name": "desktop-detail-vi",
+      "pass": {
+        "footerSupportVisible": true,
+        "headerBrandNotClipped": true,
+        "noHorizontalOverflow": true,
+        "noNarrowVerifiedFacts": true
+      },
+      "screenshotPath": ".agent/artifacts/v16-t01/desktop-detail-vi.png",
+      "termBoxes": [
+        {
+          "height": 24,
+          "parentRight": 664,
+          "right": 664,
+          "text": "Tiếng Việt",
+          "width": 151
+        },
+        {
+          "height": 24,
+          "parentRight": 823,
+          "right": 823,
+          "text": "Bìa mềm",
+          "width": 151
+        },
+        {
+          "height": 24,
+          "parentRight": 664,
+          "right": 664,
+          "text": "Còn hàng",
+          "width": 151
+        }
+      ],
+      "viewport": {
+        "height": 920,
+        "width": 1280
+      }
+    },
+    {
+      "kind": "detail",
+      "name": "mobile-detail-vi",
+      "pass": {
+        "footerSupportVisible": true,
+        "headerBrandNotClipped": true,
+        "noHorizontalOverflow": true,
+        "noNarrowVerifiedFacts": true
+      },
+      "screenshotPath": ".agent/artifacts/v16-t01/mobile-detail-vi.png",
+      "termBoxes": [
+        {
+          "height": 24,
+          "parentRight": 349,
+          "right": 349,
+          "text": "Tiếng Việt",
+          "width": 308
+        },
+        {
+          "height": 24,
+          "parentRight": 349,
+          "right": 349,
+          "text": "Bìa mềm",
+          "width": 308
+        },
+        {
+          "height": 24,
+          "parentRight": 349,
+          "right": 349,
+          "text": "Còn hàng",
+          "width": 308
+        }
+      ],
+      "viewport": {
+        "height": 900,
+        "width": 390
+      }
+    }
+  ],
+  "detailSlug": "the-picture-of-dorian-gray-vietnamese-paperback",
+  "generatedAt": "2026-07-19T15:09:18.781Z",
+  "ok": true,
+  "pass": {
+    "footerSupportVisible": true,
+    "headerBrandNotClipped": true,
+    "noHorizontalOverflow": true,
+    "noInternalHeroCounts": true,
+    "noNarrowResultCount": true,
+    "noNarrowVerifiedFacts": true
+  }
+}

@@ -1,7 +1,7 @@
 # Verified CV Bullets
 
 These bullets are grounded in repository files, command output, deployment
-evidence, and production smoke checks through the `v1.4.2` release. They
+evidence, and production smoke checks through the `v1.6.0` release. They
 intentionally avoid unmeasured
 performance claims, inflated scale claims, revenue claims, and the implication
 that simulated payment flows process real money.
@@ -10,7 +10,7 @@ that simulated payment flows process real money.
 
 - Built and deployed CaseFlow Books, a full-stack bilingual bookstore with
   Next.js 16, TypeScript, Supabase PostgreSQL/Auth, and Vercel, covering a
-  100-edition catalog, project-created cover portfolio, book-specific filters,
+  500-edition catalog, project-created cover portfolio, book-specific filters,
   local cart, account-gated checkout, customer order history and cancellation,
   guarded tracking, and admin/staff operations.
 - Implemented server-authoritative commerce logic with Zod validation,
@@ -23,8 +23,9 @@ that simulated payment flows process real money.
   Playwright `20/20`, assistant verification, cleanup checks, secret scan,
   content/provenance/cover quality checks, accessibility/mobile screenshots,
   documented dependency audit findings, a post-release visual hotfix with a
-  dedicated compact-card overlap verifier, a `v1.4` merchandising QA gate, and
-  a `v1.4.2` security-header posture verifier.
+  dedicated compact-card overlap verifier, a `v1.4` merchandising QA gate, a
+  `v1.4.2` security-header posture verifier, `v1.5.0` QR production-safety
+  gates, and a `v1.6.0` 500-edition catalog verifier.
 
 ## Alternative bullets by focus
 
@@ -96,9 +97,9 @@ cover images, or claim real commercial revenue.
 
 | Claim | Evidence |
 |---|---|
-| Public production deployment | `https://caseflow-store.vercel.app`; latest release `v1.4.2`; `caseflow-store/docs/v1.4.2-agent-security-qa-report.md` |
-| 100 active book editions and 50 works in production | `caseflow-store/.agent/artifacts/v12-t11/post-migration-supabase-check.json`; `caseflow-store/.agent/artifacts/v12-t18/production-release-smoke.json` |
-| 100 project-created cover assets | `docs/v1.2-cover-portfolio.md`; `caseflow-store/.agent/artifacts/v12-t07/cover-portfolio-check.json`; `caseflow-store/.agent/artifacts/v12-t18/production-release-smoke.json` |
+| Public production deployment | `https://caseflow-store.vercel.app`; latest release `v1.6.0`; `caseflow-store/docs/v1.6.0-retail-catalog-scale-release-notes.md` |
+| 500 active book editions and 50 works in production | `caseflow-store/.agent/artifacts/v16-t01/catalog-expansion-apply.json`; `caseflow-store/.agent/artifacts/v16-t01-production/catalog-retail-polish-check.json` |
+| 500 project-created cover assets | `docs/v1.2-cover-portfolio.md`; `caseflow-store/public/images/books/v16-covers/`; `caseflow-store/.agent/artifacts/v16-t01-production/catalog-retail-polish-check.json` |
 | Provenance and content-quality policy | `docs/domain.md`; `docs/v1.2-provenance-content-quality-contracts.md`; `docs/v1.2-release-audit.md` |
 | Server-owned totals and book order creation | `src/app/api/orders/route.ts`; `src/lib/checkout/`; `src/lib/repositories/supabase-orders.ts`; `supabase/migrations/0006_caseflow_books_schema_draft.sql` |
 | Customer/admin/staff access boundaries | `tests/e2e/admin-access.spec.ts`; `caseflow-store/.agent/artifacts/d35-t01/role-access-check.json`; `caseflow-store/.agent/artifacts/v12-t18/production-release-smoke.json` |

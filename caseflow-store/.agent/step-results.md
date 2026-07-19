@@ -12746,6 +12746,88 @@ verification, and clean worktree verification complete.
 
 ---
 
+## V16-T01 - Retail Catalog Scale And Hero Copy Hotfix
+
+- Date: 2026-07-19
+- Status: completed
+- Phase: post-`v1.5.0` production catalog/UI hotfix
+- Release: `v1.6.0`
+
+### Objective
+
+Make the production bookstore match the requested 500-product catalog scale and
+remove unprofessional implementation-style homepage hero copy from the
+customer-facing UI.
+
+### Actual Result
+
+- Added `ADR-0011` for the 500-edition retail catalog scale decision.
+- Added idempotent script `scripts/apply-v16-catalog-expansion.ts`.
+- Generated 400 local SVG covers under `public/images/books/v16-covers`.
+- Upserted 400 active v1.6 retail-edition variants into Supabase production.
+- Repriced the existing active 100 editions into more realistic VND bands.
+- Production Supabase now reports 500 active editions, 250 English editions,
+  250 Vietnamese editions, 400 v1.6 generated retail editions, and a 120,000
+  VND active price floor.
+- Replaced homepage hero chips/copy that read like internal implementation
+  notes with customer-facing retail signals.
+- Fixed catalog result-count presentation and prioritized first-page catalog
+  cover loading.
+- Updated final QA and production smoke verifiers from the 100-edition
+  baseline to the 500-edition baseline.
+- Deployed Vercel production deployment
+  `dpl_AxywdtLdcWEgeC9ytoiJwqNTwCK7`, aliased to
+  `https://caseflow-store.vercel.app`.
+
+### Evidence
+
+- `docs/adr/0011-retail-catalog-scale-and-hero-polish.md`
+- `docs/v1.6.0-retail-catalog-scale-release-notes.md`
+- `.agent/artifacts/v16-t01/catalog-expansion-apply.json`
+- `.agent/artifacts/v16-t01/catalog-retail-polish-check.json`
+- `.agent/artifacts/v16-t01/final-post-release-qa.json`
+- `.agent/artifacts/v16-t01/production-release-smoke.json`
+- `.agent/artifacts/v16-t01-production/catalog-retail-polish-check.json`
+- `.agent/artifacts/v16-t01-production/final-post-release-qa.json`
+- `.agent/artifacts/v16-t01-production/production-release-smoke.json`
+- `.agent/artifacts/v16-t01-production/security-posture-check.json`
+- `.agent/artifacts/v16-t01-production/qr-payment-production-safety-check.json`
+
+### Verification
+
+- `npx tsx scripts/apply-v16-catalog-expansion.ts --build-assets`: passed.
+- `npx tsx scripts/apply-v16-catalog-expansion.ts --apply`: passed.
+- Local and production `verify-v16-catalog-retail-polish`: passed.
+- Local and production `verify-payqr-ui-regressions`: passed.
+- Local and production `verify-final-post-release-qa`: passed with zero
+  findings.
+- Local and production `verify-v12-production-release`: passed with
+  `metaTotal: 500`.
+- Production `verify-security-posture`: passed.
+- Production `verify-qr-payment-production-safety`: passed with runtime denied
+  status `401`.
+- `npx tsc --noEmit --pretty false`: passed.
+- `npm run lint`: passed.
+- `npm run build`: passed.
+- `npx tsx scripts/verify-v14-no-demo-runtime-copy.ts`: passed.
+- `npx tsx scripts/verify-payqr-secret-scan.ts`: passed.
+- `npm audit --audit-level=high`: passed for high/critical advisories; the
+  known moderate Next/PostCSS advisory remains documented.
+- `git diff --check`: passed.
+
+### Guardrails Preserved
+
+- No schema migration, real payment provider, shipping/email/SMS provider,
+  external AI integration, copied commercial cover art, or fake ISBN values
+  were added.
+
+### Next Task
+
+Manual customer order and QR walkthrough remains the next user-confirmed step
+if requested.
+
+---
+
 ## PAYQR-T01 - Integrate Production-Locked QR Demo Payment
 
 - Date: 2026-07-19

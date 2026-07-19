@@ -125,7 +125,10 @@ async function inspectHome(
       noInternalHeroCounts:
         !text.includes("50 / 50") &&
         !text.includes("100 ấn bản") &&
-        !text.includes("100 sellable"),
+        !text.includes("100 sellable") &&
+        !/Gợi ý nhanh|Quick discovery|Hiển thị rõ|Visible stock|stock visibility|checkout theo tài khoản|account-gated checkout/i.test(
+          text,
+        ),
     },
     screenshotPath,
     textSample: text.slice(0, 400),

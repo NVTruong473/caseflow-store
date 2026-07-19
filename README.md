@@ -4,18 +4,19 @@ CaseFlow Books is a deployed full-stack bookstore and small-business operations
 demo. The project started as the 20-day CaseFlow Store `v1.0.0` MVP and was
 upgraded through the Day 21-40 roadmap, the `v1.2` realistic catalog release,
 the `v1.3` visual merchandising polish, the `v1.3.1` compact-card hotfix,
-the `v1.4` real-commerce visual merchandising release, and the `v1.5.0` QR
-demo payment release into a Vietnam-first,
+the `v1.4` real-commerce visual merchandising release, the `v1.5.0` QR
+demo payment release, and the `v1.6.0` retail catalog scale release into a Vietnam-first,
 bilingual e-commerce application for book discovery, account-gated checkout,
 customer order history/cancellation, order tracking, and admin/staff
-operations. The latest release adds server-owned QR payment sessions, VietQR
-demo payloads, mock webhook verification, and production mock-payment locks on
-top of the `v1.4.2` security hardening release.
+operations. The latest release expands the bookstore catalog to 500 active
+sellable editions, preserves 250/250 English/Vietnamese parity, refreshes VND
+pricing, and polishes homepage hero copy on top of the QR payment and security
+hardening releases.
 
 [Open the production deployment](https://caseflow-store.vercel.app)
 
 Latest release:
-[`v1.5.0`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.5.0)
+[`v1.6.0`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.6.0)
 
 > Payments are simulated. The app does not collect card numbers, CVV, card
 > expiry, real bank credentials, or real MoMo/ZaloPay/VNPay credentials. QR
@@ -63,8 +64,9 @@ Latest release:
 
 ## Product scope
 
-- Browse a seeded catalog of 100 sellable book editions across 50 works.
-- Use 100 edition-specific, project-created SVG cover illustrations with
+- Browse a seeded catalog of 500 sellable book editions across 50 works, with
+  250 English and 250 Vietnamese products.
+- Use 500 edition-specific, project-created SVG cover illustrations with
   provenance and content-quality checks.
 - Filter and sort by category, author, language, format, price, stock state,
   publication era, and search text.
@@ -123,8 +125,8 @@ Latest release:
   practical.
 - self-written summaries and merchandising copy are created inside the project
   instead of copied from publisher blurbs or reviews.
-- The active `v1.2` catalog uses 100 local project-created SVG covers. The
-  generic placeholder remains only as a fallback/admin quality state.
+- The active catalog uses 500 local project-created SVG covers. The generic
+  placeholder remains only as a fallback/admin quality state.
 - Source and rights assumptions are documented in
   [`caseflow-store/docs/v1.2-cover-portfolio.md`](caseflow-store/docs/v1.2-cover-portfolio.md),
   [`caseflow-store/docs/v1.2-provenance-content-quality-contracts.md`](caseflow-store/docs/v1.2-provenance-content-quality-contracts.md),

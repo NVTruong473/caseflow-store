@@ -59,7 +59,7 @@ const HOME_LIMITS = {
 
 const homeCopy = {
   en: {
-    allBooksNote: "100 sellable editions in the catalog",
+    allBooksNote: "500 sellable editions in the catalog",
     browseBooks: "Browse books",
     categories: "Categories",
     categoriesDescription:
@@ -74,7 +74,7 @@ const homeCopy = {
       "A hand-picked shelf for approachable entry points, current offers, and editions readers can choose with confidence.",
     featuredTitle: "Editor picks",
     heroDescription:
-      "A Vietnam-first bookstore for English originals and Vietnamese translations, with visible covers, stock, VND pricing, and account-gated checkout.",
+      "A bilingual bookstore for English originals and Vietnamese translations, with VND pricing, COD or bank-transfer checkout, and order tracking in your account.",
     heroTitle: "CaseFlow Books",
     inTheCatalog: "in catalog",
     englishEditionsTitle: "English editions",
@@ -84,7 +84,7 @@ const homeCopy = {
     noShelfItems: "This shelf is being refreshed.",
     offerLabel: "Offer",
     promotionTitle: "Promotion-ready",
-    sectionLabel: "Bookstore homepage",
+    sectionLabel: "Online bookstore",
     shippingSignalsDescription:
       "Buying confidence comes from visible stock, VND source pricing, safe catalog content, and Vietnam-first delivery expectations.",
     shippingSignalsTitle: "Trust and shipping signals",
@@ -125,7 +125,7 @@ const homeCopy = {
     ],
   },
   vi: {
-    allBooksNote: "100 ấn bản có thể bán trong catalog",
+    allBooksNote: "500 ấn bản có thể bán trong catalog",
     browseBooks: "Duyệt sách",
     categories: "Danh mục",
     categoriesDescription:
@@ -140,7 +140,7 @@ const homeCopy = {
       "Tủ sách do CaseFlow chọn cho các ấn bản dễ bắt đầu, đang còn hàng và có thông tin rõ ràng.",
     featuredTitle: "Biên tập chọn",
     heroDescription:
-      "Nhà sách ưu tiên thị trường Việt Nam cho bản gốc tiếng Anh và bản dịch tiếng Việt, có bìa, tồn kho, giá VND và checkout theo tài khoản rõ ràng.",
+      "Nhà sách song ngữ tuyển chọn bản gốc tiếng Anh và bản dịch tiếng Việt, giá VND rõ ràng, hỗ trợ COD/chuyển khoản và theo dõi đơn trong tài khoản.",
     heroTitle: "CaseFlow Books",
     inTheCatalog: "trong catalog",
     englishEditionsTitle: "Sách tiếng Anh",
@@ -150,7 +150,7 @@ const homeCopy = {
     noShelfItems: "Kệ này đang được cập nhật.",
     offerLabel: "Ưu đãi",
     promotionTitle: "Đang có ưu đãi",
-    sectionLabel: "Trang chủ nhà sách",
+    sectionLabel: "Nhà sách trực tuyến",
     shippingSignalsDescription:
       "Độ tin cậy đến từ tồn kho rõ, giá gốc VND, nội dung catalog an toàn và kỳ vọng giao hàng ưu tiên Việt Nam.",
     shippingSignalsTitle: "Tín hiệu tin cậy và giao hàng",
@@ -198,8 +198,8 @@ export async function generateMetadata(): Promise<Metadata> {
   return createPageMetadata({
     description:
       language === "vi"
-        ? "CaseFlow Books là nhà sách song ngữ ưu tiên Việt Nam, có catalog ấn bản Anh/Việt, giá VND, tồn kho và checkout theo tài khoản."
-        : "CaseFlow Books is a Vietnam-first bilingual bookstore with English/Vietnamese editions, VND pricing, stock visibility, and account-gated checkout.",
+        ? "CaseFlow Books là nhà sách song ngữ ưu tiên độc giả Việt Nam, có catalog ấn bản Anh/Việt, giá VND rõ ràng và theo dõi đơn trong tài khoản."
+        : "CaseFlow Books is a bilingual bookstore for readers in Vietnam, with English/Vietnamese editions, clear VND pricing, and account order tracking.",
     language,
     path: "/",
     title:
@@ -388,16 +388,19 @@ export default async function Home() {
   );
   const stats = [
     {
-      label: language === "vi" ? "Gợi ý nhanh" : "Quick discovery",
-      value: language === "vi" ? "Anh / Việt" : "EN / VI",
+      label: language === "vi" ? "Tủ sách chọn lọc" : "Curated catalog",
+      value:
+        language === "vi"
+          ? `${records.length.toLocaleString("vi-VN")} ấn bản`
+          : `${records.length.toLocaleString("en-US")} editions`,
     },
     {
-      label: language === "vi" ? "Thanh toán" : "Checkout",
-      value: language === "vi" ? "Tài khoản" : "Account",
+      label: language === "vi" ? "Ấn bản song ngữ" : "Bilingual editions",
+      value: language === "vi" ? "Anh & Việt" : "English & Vietnamese",
     },
     {
-      label: language === "vi" ? "Tồn kho" : "Stock",
-      value: language === "vi" ? "Hiển thị rõ" : "Visible",
+      label: language === "vi" ? "Thanh toán" : "Payment",
+      value: language === "vi" ? "COD & chuyển khoản" : "COD & bank transfer",
     },
   ];
 

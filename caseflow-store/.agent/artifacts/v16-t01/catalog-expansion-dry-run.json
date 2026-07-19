@@ -1,0 +1,32 @@
+{
+  "applied": null,
+  "generatedAt": "2026-07-19T14:28:07.784Z",
+  "mode": "dry-run",
+  "postApplyCounts": null,
+  "taskId": "v16-t01",
+  "target": {
+    "activeEditionTotal": 500,
+    "activeEnglishEditions": 250,
+    "activeVietnameseEditions": 250,
+    "generatedEditions": 400,
+    "generatedWorks": 50,
+    "minActivePriceVnd": 99000
+  },
+  "planned": {
+    "activeBaseEditions": 100,
+    "activeWorkPairs": 50,
+    "covers": 400,
+    "existingPriceUpdates": 100,
+    "generatedEditions": 400,
+    "qualityRows": 8000
+  },
+  "pass": {
+    "generated400Editions": true,
+    "has50BaseWorkPairs": true,
+    "planned500Total": true,
+    "postApplyActiveTotal": true,
+    "postApplyLanguageParity": true,
+    "postApplyPriceFloor": true,
+    "wroteAssets": true
+  }
+}

@@ -13,6 +13,17 @@ const LANGUAGE_COOKIE = "caseflow-books.language";
 const IMAGE_WARMUP_TIMEOUT_MS = 5_000;
 const PUBLIC_LEAK_PATTERN =
   /sourceEditionKey|sourceReviewStatus|reviewerNote|rightsAnalysis|SUPABASE_SERVICE_ROLE|NEXT_PUBLIC_SUPABASE_ANON_KEY|undefined|TBC/i;
+const EXPECTED_ACTIVE_EDITION_TOTAL = Number(
+  process.env.EXPECTED_ACTIVE_EDITION_TOTAL ?? "500",
+);
+const EXPECTED_ACTIVE_LANGUAGE_TOTAL = Number(
+  process.env.EXPECTED_ACTIVE_EDITION_LANGUAGE_TOTAL ?? "250",
+);
+const CATALOG_SAMPLE_LIMIT = 100;
+const COVER_PATH_PREFIXES = [
+  "/images/books/v12-covers/",
+  "/images/books/v16-covers/",
+];
 
 type ApiResponse<TData> = {
   data: TData | null;
@@ -66,7 +77,7 @@ async function main() {
     process.env.FINAL_QA_BASE_URL ?? "https://caseflow-store.vercel.app",
   );
   const catalog = await fetchJson<CatalogItem[]>(
-    new URL("/api/products?limit=100", baseURL),
+    new URL(`/api/products?limit=${CATALOG_SAMPLE_LIMIT}`, baseURL),
   );
   const catalogItems = catalog.payload.data ?? [];
   const englishTarget = catalogItems.find(
@@ -195,7 +206,7 @@ async function inspectApiSurface(
     { en: 0, vi: 0 },
   );
   const missingCover = catalogItems.filter(
-    (item) => !item.coverAsset?.path?.startsWith("/images/books/v12-covers/"),
+    (item) => !coverPathIsAllowed(item.coverAsset?.path),
   );
   const missingPublicCopy = catalogItems.filter((item) => {
     const summary = item.edition.summary;
@@ -213,10 +224,10 @@ async function inspectApiSurface(
     catalogQuality:
       catalog.status === 200 &&
       catalog.payload.error === null &&
-      catalog.payload.meta?.total === 100 &&
-      catalogItems.length === 100 &&
-      languageCounts.en === 50 &&
-      languageCounts.vi === 50 &&
+      catalog.payload.meta?.total === EXPECTED_ACTIVE_EDITION_TOTAL &&
+      catalogItems.length ===
+        Math.min(CATALOG_SAMPLE_LIMIT, EXPECTED_ACTIVE_EDITION_TOTAL) &&
+      (await inspectLanguageParity(baseURL)) &&
       missingCover.length === 0 &&
       missingPublicCopy.length === 0,
     customerBoundary:
@@ -250,6 +261,26 @@ async function inspectApiSurface(
     ),
     total: catalog.payload.meta?.total ?? null,
   };
+}
+
+async function inspectLanguageParity(baseURL: string) {
+  const [english, vietnamese] = await Promise.all([
+    fetchJson<CatalogItem[]>(new URL("/api/products?language=en&limit=1", baseURL)),
+    fetchJson<CatalogItem[]>(new URL("/api/products?language=vi&limit=1", baseURL)),
+  ]);
+
+  return (
+    english.status === 200 &&
+    vietnamese.status === 200 &&
+    english.payload.meta?.total === EXPECTED_ACTIVE_LANGUAGE_TOTAL &&
+    vietnamese.payload.meta?.total === EXPECTED_ACTIVE_LANGUAGE_TOTAL
+  );
+}
+
+function coverPathIsAllowed(coverPath: string | undefined) {
+  return Boolean(
+    coverPath && COVER_PATH_PREFIXES.some((prefix) => coverPath.startsWith(prefix)),
+  );
 }
 
 async function inspectBrowserSurface(
@@ -438,7 +469,11 @@ async function inspectVietnameseCatalog(
     await page.locator("[data-catalog-page]").getAttribute("data-catalog-total-count"),
   );
 
-  return /Danh mục|Tiếng Việt|Sách/i.test(text) && renderedCount > 0 && totalCount === 100;
+  return (
+    /Danh mục|Tiếng Việt|Sách/i.test(text) &&
+    renderedCount > 0 &&
+    totalCount === EXPECTED_ACTIVE_EDITION_TOTAL
+  );
 }
 
 async function inspectDetail(
@@ -531,7 +566,7 @@ async function inspectOrderTracking(
   await page.locator("[data-order-tracking-page]").waitFor({ state: "visible" });
   await page.locator("[data-order-tracking-code]").fill("CF-MISSING-ORDER-0001");
   await page.locator("[data-order-tracking-contact]").fill("wrong@example.com");
-  await page.locator("[data-order-tracking-submit]").click();
+  await click(page, "[data-order-tracking-submit]");
   await page
     .locator("[data-order-tracking-error]")
     .waitFor({ state: "visible", timeout: 15_000 });

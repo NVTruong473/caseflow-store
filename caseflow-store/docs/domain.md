@@ -465,9 +465,9 @@ Rules:
 - Translation availability is modeled as a relationship between editions of the
   same work, not as automatic machine translation of a book.
 
-## Seed Data Target For v1.1
+## Seed Data Target History
 
-Target:
+The original v1.1 target was:
 
 - About 100 sellable editions.
 - Prefer roughly 50 works with paired English and Vietnamese editions where it
@@ -483,6 +483,9 @@ Minimum useful distribution:
 - At least 10 works with both English and Vietnamese editions linked.
 - At least 10 out-of-stock or low-stock examples for operational workflows.
 - At least 10 promoted or featured editions for merchandising.
+
+The current v1.6 production baseline is 500 active sellable editions across
+the same 50-work bilingual model, with 250 English and 250 Vietnamese products.
 
 ## Acceptance Criteria For D22-T01
 
