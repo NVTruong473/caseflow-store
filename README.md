@@ -7,12 +7,12 @@ the `v1.3` visual merchandising polish, the `v1.3.1` compact-card hotfix, and
 the `v1.4` real-commerce visual merchandising release into a Vietnam-first,
 bilingual e-commerce application for book discovery, account-gated checkout,
 customer order history/cancellation, order tracking, and admin/staff
-operations. The latest `v1.4.1` patch closes the project with stable visual
-layout fixes and verified customer/admin order-cancellation flows.
+operations. The latest `v1.4.2` patch adds security headers, no-store policies,
+and agent-inspired QA reporting on top of the stable `v1.4.1` closeout.
 
 [Open the production deployment](https://caseflow-store.vercel.app)
 
-Latest release: [`v1.4.1`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.4.1)
+Latest release: [`v1.4.2`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.4.2)
 
 > Payments are simulated. The app does not collect card numbers, CVV, card
 > expiry, real bank credentials, or real MoMo/ZaloPay/VNPay credentials. Phone
@@ -129,13 +129,14 @@ Latest release: [`v1.4.1`](https://github.com/NVTruong473/caseflow-store/release
 
 | Gate | Result |
 |---|---|
-| Release tag | `v1.4.1` |
-| GitHub Release | [`CaseFlow Books v1.4.1 - Stable Closeout Patch`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.4.1) |
+| Release tag | `v1.4.2` |
+| GitHub Release | [`CaseFlow Books v1.4.2 - Agent Security QA Hardening`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.4.2) |
 | Production URL | `https://caseflow-store.vercel.app` |
-| Vercel deployment | `READY`, deployment `dpl_kd4F5BbcWPTNhhXedWHZmTmxJXTW` |
+| Vercel deployment | `READY`, deployment `dpl_8rPTCFb4pf3MEcoNbXfFiTq7ztSh` |
 | TypeScript | `npx tsc --noEmit --pretty false` passed |
 | ESLint | `npm run lint` passed |
 | Production build | 48 App Router routes plus proxy generated |
+| v1.4.2 security QA | Security headers/no-store verifier and final QA smoke passed locally and in production; external agent repos were mapped as QA references, not runtime dependencies |
 | v1.4.1 local QA | TypeScript, lint, production build, no-demo copy scan, compact-card overlap, customer order history/cancellation, admin order rejection/cancellation, cleanup, secret scan, audit-high, and `git diff --check` passed |
 | v1.4.1 production QA | Production release smoke, final QA smoke, compact-card overlap, customer order history/cancellation, and admin order rejection/cancellation passed |
 | v1.4 production QA | Production release smoke passed with 100 active editions, 100 cover responses, public/customer/admin boundaries, assistant, language mode, and representative detail pages |
@@ -151,6 +152,7 @@ Release evidence is recorded in
 [`caseflow-store/docs/v1.3-final-post-release-qa-audit.md`](caseflow-store/docs/v1.3-final-post-release-qa-audit.md),
 [`caseflow-store/docs/v1.3.1-compact-card-layout-hotfix-release-notes.md`](caseflow-store/docs/v1.3.1-compact-card-layout-hotfix-release-notes.md),
 [`caseflow-store/docs/v1.4.1-stable-closeout-patch-release-notes.md`](caseflow-store/docs/v1.4.1-stable-closeout-patch-release-notes.md),
+[`caseflow-store/docs/v1.4.2-agent-security-qa-report.md`](caseflow-store/docs/v1.4.2-agent-security-qa-report.md),
 and `.agent/step-results.md`.
 
 ## Portfolio handoff

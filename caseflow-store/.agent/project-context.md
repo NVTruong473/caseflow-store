@@ -3,7 +3,7 @@
 ## Project Identity
 
 - Project name: CaseFlow Store `v1.0.0`; CaseFlow Books `v1.1.0`, `v1.2.0`,
-  `v1.3.0`, `v1.3.1`, `v1.4.0`, and `v1.4.1` released
+  `v1.3.0`, `v1.3.1`, `v1.4.0`, `v1.4.1`, and `v1.4.2` released
 - Repository folder: `/Users/vantruong/Documents/TSNN 2`
 - Product domain: books for released `v1.1.0` and `v1.2.0`; phone
   accessories for released `v1.0.0`
@@ -11,8 +11,8 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: `v1.4.1` stable closeout patch complete.
-- Current gate: `V141-T01` complete.
+- Current mode: `v1.4.2` agent-inspired QA and security hardening complete.
+- Current gate: `SECQA-T01` complete.
 - Current task: No active implementation task.
 
 ## Confirmed Facts
@@ -262,6 +262,14 @@
   smoke, production release smoke, cleanup, secret scan, TypeScript, lint,
   build, and `git diff --check` passed; latest-release docs now point to
   `v1.4.1`.
+- `SECQA-T01` passed on 2026-07-19 as an agent-inspired QA and security
+  hardening patch: production deployment `dpl_8rPTCFb4pf3MEcoNbXfFiTq7ztSh`
+  is aliased to `https://caseflow-store.vercel.app`; `browser-use/web-ui` and
+  `agentlabs-dev/auto-inspector` were mapped as QA workflow references, not
+  runtime dependencies; security headers/no-store policy were added; security
+  posture verifier and final QA smoke passed locally and in production; no
+  new dependency, schema migration, external agent integration, or production
+  data mutation was introduced.
 
 ## v1.2 Canonical Catalog
 
@@ -434,7 +442,7 @@ These are defaults that remain tentative until a later task or ADR freezes them:
   fake ratings/sold counts/bestseller claims, and no stable API contract
   change under v1.3 polish.
 - Release status: `v1.3.1` remains the compact-card layout hotfix release.
-  The current latest production release is `v1.4.1`.
+  The current latest production release is `v1.4.2`.
 
 ## v1.1 Active Product Domain
 

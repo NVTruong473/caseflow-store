@@ -65,22 +65,20 @@ runtime.
 
 ## Latest release evidence
 
-- Release tag: `v1.4.1`
+- Release tag: `v1.4.2`
 - GitHub Release:
-  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.4.1`
+  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.4.2`
 - Production alias: `https://caseflow-store.vercel.app`
-- Vercel deployment ID: `dpl_kd4F5BbcWPTNhhXedWHZmTmxJXTW`
-- Local gates: TypeScript, ESLint, production build, V14 no-demo runtime copy
-  scan, compact-card overlap, customer order history/cancellation,
-  staff/admin rejection-cancellation operations, cleanup, targeted secret
-  scan, dependency audit at high threshold, and `git diff --check` passed.
-- Production smoke: public pages/APIs, 100-edition catalog quality, 100 cover
-  responses, language mode, cart/checkout boundary, customer/admin boundary,
-  assistant, final QA smoke, compact-card overlap, customer order
-  history/cancellation, staff/admin rejection-cancellation operations, robots,
-  and sitemap passed.
+- Vercel deployment ID: `dpl_8rPTCFb4pf3MEcoNbXfFiTq7ztSh`
+- Local gates: TypeScript, ESLint, production build, security-header posture
+  verifier, final QA smoke, V14 no-demo runtime copy scan, cleanup, targeted
+  secret scan, dependency audit at high threshold, and `git diff --check`
+  passed.
+- Production smoke: security-header posture verifier, public pages/APIs,
+  cart/checkout boundary, customer/admin boundary, assistant, final QA smoke,
+  robots, and sitemap passed.
 - Release notes:
-  [`docs/v1.4.1-stable-closeout-patch-release-notes.md`](docs/v1.4.1-stable-closeout-patch-release-notes.md)
+  [`docs/v1.4.2-agent-security-qa-report.md`](docs/v1.4.2-agent-security-qa-report.md)
 - Known boundaries: simulated payments, no real SMS/OTP, no real shipping
   carrier integration, and no commercial book-cover hotlinking.
 

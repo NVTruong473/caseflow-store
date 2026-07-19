@@ -1,7 +1,7 @@
 # Known Limitations
 
 This document records the intentional boundaries and accepted risks of
-CaseFlow Books through the latest `v1.4.1` release. These items are not hidden
+CaseFlow Books through the latest `v1.4.2` release. These items are not hidden
 production capabilities; they define where the portfolio release stops.
 
 ## Commerce scope
@@ -152,6 +152,21 @@ quality states.
 image processing, CDN caching, alt text, and takedown handling.
 
 ## Production operations
+
+### Security headers are not a complete security program
+
+The `v1.4.2` patch adds runtime security headers, CSP, no-store cache policy on
+protected/API surfaces, and a security posture verifier. These controls reduce
+common browser-side and response-handling risks, but they are not equivalent to
+a full security operations program.
+
+**Current control:** public, account, admin, checkout, and API routes are
+checked by `scripts/verify-security-posture.ts`, and final QA smoke verifies
+the app still works after the header policy.
+
+**Next step:** add rate limiting, WAF/bot controls, admin MFA, append-only
+audit logs, strict nonce-based CSP, monitoring/alerting, incident response, and
+backup-restore drills before treating the app as a real commercial system.
 
 ### Managed deployment is not a full operations program
 

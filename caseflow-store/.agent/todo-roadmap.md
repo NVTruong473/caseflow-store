@@ -10,8 +10,8 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: v1.4.1 stable closeout patch complete
-- Current gate: `V141-T01` complete
+- Mode: v1.4.2 agent-inspired QA and security hardening complete
+- Current gate: `SECQA-T01` complete
 - Current task: No active implementation task
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-19
@@ -223,6 +223,27 @@
   - Guardrail: no schema migration, production catalog mutation, dependency
     addition, external integration, payment/shipping provider integration, or
     catalog asset import.
+
+## Phase SECQA - Agent-Inspired QA And Security Hardening
+
+- [x] `SECQA-T01` Agent-Inspired QA And Security Hardening. - 2026-07-19
+  - Objective: use `browser-use/web-ui` and `agentlabs-dev/auto-inspector` as
+    external QA workflow references, not runtime dependencies, then apply a
+    bounded security hardening patch for CaseFlow Books.
+  - Result: added `docs/v1.4.2-agent-security-qa-report.md`, implemented
+    runtime security headers and protected/API no-store policy in
+    `next.config.ts`, added `scripts/verify-security-posture.ts`, deployed
+    production deployment `dpl_8rPTCFb4pf3MEcoNbXfFiTq7ztSh`, and updated
+    latest-release docs for `v1.4.2`.
+  - Verification: TypeScript, lint, production build, security posture
+    verifier, final QA smoke, no-demo runtime copy scan, release cleanup
+    `totalMatches: 0`, targeted secret scan across 1136 files,
+    `npm audit --audit-level=high`, `git diff --check`, Vercel inspect, and
+    production security/final QA verifiers passed.
+  - Guardrail: do not add third-party agent services, Docker sidecars, LLM API
+    calls, new dependencies, schema migrations, production data mutations, real
+    payment/shipping integrations, or real customer credentials to automated
+    agents.
 
 ## Pre-Implementation Checklist
 

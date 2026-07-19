@@ -12743,3 +12743,94 @@ production, and leaves the project with current release evidence.
 
 No active implementation task after remote push, tag, GitHub Release
 verification, and clean worktree verification complete.
+
+---
+
+## SECQA-T01 - Agent-Inspired QA And Security Hardening
+
+- Date: 2026-07-19
+- Status: completed
+- Phase: Security QA patch after `v1.4.1`
+
+### Objective
+
+Use `browser-use/web-ui` and `agentlabs-dev/auto-inspector` as external QA
+workflow references, then apply a bounded security hardening patch for
+CaseFlow Books without adding third-party agent runtime dependencies or
+expanding product scope.
+
+### Actual Result
+
+- Reviewed `browser-use/web-ui` as a browser-agent exploratory testing
+  reference and rejected direct runtime integration because persistent browser
+  sessions and own-browser mode can carry real credentials or local profile
+  state.
+- Reviewed `agentlabs-dev/auto-inspector` as a user-story-driven web testing
+  reference and rejected self-host/runtime integration because it is still
+  described as not ready to self-host and would require an LLM/API-key/testing
+  service boundary outside the current stack.
+- Added runtime security headers in `next.config.ts`: CSP, HSTS,
+  `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`,
+  `Permissions-Policy`, COOP, CORP, cross-domain-policy blocking, disabled
+  legacy XSS filter, and disabled `X-Powered-By`.
+- Added `Cache-Control: no-store, max-age=0` on API, account, admin, checkout,
+  and order surfaces.
+- Added `scripts/verify-security-posture.ts` to verify headers and cache policy
+  across public, protected, and API routes.
+- Added `docs/v1.4.2-agent-security-qa-report.md` with the requested three-part
+  report, clarifying questions, top-0.1% improvement plan, and challenged
+  framing.
+- Deployed Vercel production deployment
+  `dpl_8rPTCFb4pf3MEcoNbXfFiTq7ztSh`, aliased to
+  `https://caseflow-store.vercel.app`.
+- Updated latest-release docs for `v1.4.2`.
+
+### Evidence
+
+- `docs/v1.4.2-agent-security-qa-report.md`
+- `.agent/artifacts/secqa-t01/deployment.json`
+- `.agent/artifacts/secqa-t01/security-posture-check.json`
+- `.agent/artifacts/secqa-t01/final-post-release-qa.json`
+- `.agent/artifacts/secqa-t01/final-post-release-qa.md`
+- `.agent/artifacts/secqa-t01/qa-home-desktop-en.png`
+- `.agent/artifacts/secqa-t01/qa-catalog-mobile-vi-page-2.png`
+- `.agent/artifacts/secqa-t01/qa-detail-desktop-en.png`
+- `.agent/artifacts/secqa-t01/qa-admin-boundary-mobile-en.png`
+
+### Verification
+
+- `npx tsc --noEmit --pretty false`: passed.
+- `npm run lint`: passed.
+- `npm run build`: passed with 48 App Router routes plus proxy.
+- `SECURITY_QA_ARTIFACT_ID=secqa-t01 SECURITY_QA_BASE_URL=http://127.0.0.1:3000 npx tsx scripts/verify-security-posture.ts`:
+  passed locally with zero findings.
+- `FINAL_QA_TASK_ID=secqa-t01 FINAL_QA_BASE_URL=http://127.0.0.1:3000 npx tsx scripts/verify-final-post-release-qa.ts`:
+  passed locally with `ok: true` and zero findings.
+- `npx tsx scripts/verify-v14-no-demo-runtime-copy.ts`: passed.
+- `RELEASE_CLEANUP_TASK_ID=secqa-t01 npx tsx scripts/verify-release-cleanup.ts`:
+  passed with `totalMatches: 0`.
+- Targeted secret scan: passed across 1136 files with zero findings.
+- `npm audit --audit-level=high`: passed with no high/critical advisories; the
+  known moderate Next/PostCSS advisory remains documented.
+- `git diff --check`: passed.
+- `npx vercel --prod --yes`: passed; deployment
+  `dpl_8rPTCFb4pf3MEcoNbXfFiTq7ztSh` reached `READY` and was aliased to
+  `https://caseflow-store.vercel.app`.
+- `npx vercel inspect https://caseflow-store.vercel.app`: passed; alias points
+  to deployment `dpl_8rPTCFb4pf3MEcoNbXfFiTq7ztSh`.
+- `SECURITY_QA_ARTIFACT_ID=secqa-t01 SECURITY_QA_BASE_URL=https://caseflow-store.vercel.app npx tsx scripts/verify-security-posture.ts`:
+  passed in production with zero findings.
+- `FINAL_QA_TASK_ID=secqa-t01 FINAL_QA_BASE_URL=https://caseflow-store.vercel.app npx tsx scripts/verify-final-post-release-qa.ts`:
+  passed in production with `ok: true` and zero findings.
+
+### Guardrails Preserved
+
+- No third-party browser agent service, Docker sidecar, LLM API call, new
+  dependency, schema migration, production data mutation, real customer/admin
+  credential handoff, payment/shipping provider integration, or external AI
+  integration was added.
+
+### Next Task
+
+No active implementation task after remote push, tag, GitHub Release
+verification, and clean worktree verification complete.

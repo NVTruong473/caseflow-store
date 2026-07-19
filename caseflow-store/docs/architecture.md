@@ -5,8 +5,9 @@
 This document describes the deployed CaseFlow Books architecture after the Day
 21-40 upgrade, the realistic catalog/content merchandising release, the
 `v1.3.0` visual merchandising polish, the `v1.3.1` compact-card layout hotfix,
-the `v1.4.0` real-commerce visual merchandising release, and the `v1.4.1`
-stable closeout patch. The system is
+the `v1.4.0` real-commerce visual merchandising release, the `v1.4.1`
+stable closeout patch, and the `v1.4.2` agent-inspired security QA hardening
+patch. The system is
 intentionally a Next.js modular monolith: it demonstrates a realistic
 specialist e-commerce workflow without claiming marketplace scale, real payment
 processing, or enterprise operations.
@@ -226,6 +227,12 @@ Additional controls:
   `NEXT_PUBLIC_*`.
 - Server code recalculates price, promotion, VAT, shipping, payment fee, and
   total values.
+- Runtime responses include security headers for CSP, HSTS, frame blocking,
+  content-type sniffing protection, referrer policy, permissions policy, and
+  cross-origin isolation controls where compatible with the current Next.js
+  runtime.
+- API, account, admin, checkout, and order tracking surfaces send no-store
+  cache policy headers.
 - The application does not collect card fields, real e-wallet credentials, or
   bank credentials.
 - Phone/email profile fields are not backed by real SMS/OTP or email-provider
@@ -258,8 +265,8 @@ notes, rights-analysis notes, or source-edition matching keys. See
 ## Deployment and verification
 
 - Production alias: `https://caseflow-store.vercel.app`.
-- Current production deployment ID: `dpl_kd4F5BbcWPTNhhXedWHZmTmxJXTW`
-  (`v1.4.1`).
+- Current production deployment ID: `dpl_8rPTCFb4pf3MEcoNbXfFiTq7ztSh`
+  (`v1.4.2`).
 - Supabase hosts PostgreSQL and Auth.
 - Production runtime variables include the public Supabase URL, public anon key,
   and server-only service-role key. Canonical metadata defaults to the
@@ -287,6 +294,10 @@ notes, rights-analysis notes, or source-edition matching keys. See
   closeout fixes: compact-card layout, customer order history/cancellation,
   staff/admin rejection-cancellation operations, final QA smoke, production
   release smoke, cleanup, secret scan, TypeScript, lint, and production build.
+- The `v1.4.2` patch kept the same architecture and added security headers,
+  protected-surface no-store policy, an automated security posture verifier,
+  agent-inspired QA reporting, production final QA smoke, cleanup, secret scan,
+  TypeScript, lint, and production build.
 - Dependency audit status is recorded in
   [`v1.2-release-audit.md`](v1.2-release-audit.md).
 

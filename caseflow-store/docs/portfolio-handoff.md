@@ -1,9 +1,9 @@
 # CaseFlow Books Portfolio Handoff
 
-- Latest release: `v1.4.1`
+- Latest release: `v1.4.2`
 - Production URL: `https://caseflow-store.vercel.app`
-- GitHub Release: `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.4.1`
-- Vercel deployment: `dpl_kd4F5BbcWPTNhhXedWHZmTmxJXTW`
+- GitHub Release: `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.4.2`
+- Vercel deployment: `dpl_8rPTCFb4pf3MEcoNbXfFiTq7ztSh`
 - Project type: full-stack bookstore and small-business operations portfolio
 - Stack: Next.js 16, React 19, TypeScript 5, Tailwind CSS 4, Supabase
   PostgreSQL/Auth/RLS, Zod, Playwright, Vercel
@@ -106,7 +106,9 @@ See `docs/architecture.md` for the full architecture notes.
 
 | Evidence | Location |
 |---|---|
-| Latest release notes | `docs/v1.4.1-stable-closeout-patch-release-notes.md` |
+| Latest release notes | `docs/v1.4.2-agent-security-qa-report.md` |
+| v1.4.2 security posture | `.agent/artifacts/secqa-t01/security-posture-check.json` |
+| v1.4.2 final QA | `.agent/artifacts/secqa-t01/final-post-release-qa.json` |
 | v1.4.1 production smoke | `.agent/artifacts/v141-t01/production-release-smoke.json` |
 | v1.4.1 customer cancellation | `.agent/artifacts/v141-t01/customer-order-history-check.json` |
 | v1.4.1 admin rejection | `.agent/artifacts/v141-t01/admin-order-operations-check.json` |
