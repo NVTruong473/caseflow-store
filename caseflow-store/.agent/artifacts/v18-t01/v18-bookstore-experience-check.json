@@ -1,0 +1,31 @@
+{
+  "ok": true,
+  "baseURL": "http://127.0.0.1:3000",
+  "generatedAt": "2026-07-20T17:48:41.966Z",
+  "pass": {
+    "desktopSearchVisible": true,
+    "desktopCategoryMenuVisible": true,
+    "homeNoOverflow": true,
+    "searchRoutesToCatalog": true,
+    "catalogNoOverflow": true,
+    "catalogCardMotionClass": true,
+    "coverObjectContain": true,
+    "mobileSearchVisible": true,
+    "mobileCategoryLinks": true,
+    "mobileNoOverflow": true,
+    "backToTopVisible": true,
+    "detailNoOverflow": true,
+    "manifestHas500Products": true,
+    "manifestHasEntries": true,
+    "manifestNoExternalCoverUrls": true,
+    "manifestMarksSynthetic": true,
+    "motionTokensPresent": true
+  },
+  "findings": [],
+  "screenshots": {
+    "home": ".agent/artifacts/v18-t01/home-1440.png",
+    "catalog": ".agent/artifacts/v18-t01/catalog-1440.png",
+    "mobileMenu": ".agent/artifacts/v18-t01/mobile-menu-390.png",
+    "detail": ".agent/artifacts/v18-t01/detail-390.png"
+  }
+}

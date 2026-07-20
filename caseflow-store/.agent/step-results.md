@@ -12746,6 +12746,102 @@ verification, and clean worktree verification complete.
 
 ---
 
+## V18-T01 - Modern Editorial Bookstore Experience Audit And Local Redesign
+
+- Date: 2026-07-21
+- Status: completed locally
+- Phase: post-`v1.7.0` modern editorial bookstore pass
+- Release: not released; no production deploy, tag, or GitHub Release created
+
+### Objective
+
+Audit and refactor the bookstore so the public storefront feels more like a
+real, intentional bookstore commerce experience while preserving existing
+routes, auth, checkout, QR payment safety, admin/staff operations, catalog
+data, and honest content boundaries.
+
+### Actual Result
+
+- Added `ADR-0012` for the modern editorial bookstore experience boundary.
+- Added `docs/ui-ux-audit.md` with current-site findings, reference-site
+  review, rejected fake-proof features, and implementation priorities.
+- Added `docs/v1.8-modern-editorial-bookstore-roadmap.md` and updated
+  `docs/style-guide.md` to reflect search-first discovery, category access,
+  cover provenance, motion tokens, and long-page helpers.
+- Added desktop header search that submits to `/catalog?q=...`.
+- Added desktop category discovery from live active category data and mobile
+  search/category links.
+- Updated cover rendering to use `object-fit: contain` and label fallback
+  covers as cover-updating states instead of implying official artwork.
+- Added `scripts/generate-book-cover-source-manifest.mjs` and generated
+  `assets/book-covers/sources.json` for the active 500-edition catalog.
+- Added restrained CSS motion tokens and `case-product-card-motion` for
+  product-card feedback, with reduced-motion guardrails.
+- Added a reduced-motion-aware bottom-left back-to-top control for long pages.
+- Added `scripts/verify-v18-bookstore-experience.mjs` with desktop/mobile
+  browser checks, cover manifest checks, no-overflow checks, and motion checks.
+- Hardened the Playwright `seedCart` helper so E2E cart fixtures seed
+  `localStorage` before React cart hydration and do not clear checkout success
+  state on later navigations.
+
+### Evidence
+
+- `docs/adr/0012-modern-editorial-bookstore-experience.md`
+- `docs/ui-ux-audit.md`
+- `docs/v1.8-modern-editorial-bookstore-roadmap.md`
+- `docs/style-guide.md`
+- `assets/book-covers/sources.json`
+- `.agent/artifacts/v18-t01/baseline/home-1440.png`
+- `.agent/artifacts/v18-t01/baseline/home-390.png`
+- `.agent/artifacts/v18-t01/baseline/catalog-1440.png`
+- `.agent/artifacts/v18-t01/baseline/detail-390.png`
+- `.agent/artifacts/v18-t01/references/phuongnam-1440.png`
+- `.agent/artifacts/v18-t01/references/xcodi-1440.png`
+- `.agent/artifacts/v18-t01/references/fahasa-1440.png`
+- `.agent/artifacts/v18-t01/v18-bookstore-experience-check.json`
+- `.agent/artifacts/v18-t01/home-1440.png`
+- `.agent/artifacts/v18-t01/catalog-1440.png`
+- `.agent/artifacts/v18-t01/mobile-menu-390.png`
+- `.agent/artifacts/v18-t01/detail-390.png`
+
+### Verification
+
+- `node scripts/generate-book-cover-source-manifest.mjs`: passed with 500
+  products, 500 verified local/project-generated covers, 500 synthetic entries,
+  and 0 fallback entries.
+- `node scripts/verify-v18-bookstore-experience.mjs`: passed with zero
+  findings.
+- `npm run lint`: passed.
+- `npm exec -- tsc --noEmit --pretty false`: passed.
+- `npm run build`: passed with 51 App Router routes plus proxy.
+- `npm run test:e2e`: passed `20/20` after hardening the E2E cart seeding
+  helper.
+- Production-style Playwright console capture on
+  `/products/pride-and-prejudice-english-special-edition` from `next start`:
+  passed with no captured hydration, warning, error, or pageerror messages.
+- `npm audit --audit-level=high`: passed for high/critical vulnerabilities;
+  npm still reports the previously documented moderate Next/PostCSS advisory
+  with a breaking downgrade fix path.
+- `git diff --check`: passed.
+
+### Guardrails Preserved
+
+- No schema migration, production data mutation, deploy, tag, or release was
+  performed.
+- No commercial cover scraping, external image hotlinking, fake reviews,
+  fake ratings, fake sales counts, unsupported newsletter, wishlist, quick
+  view, real payment, real email, or real shipping provider was added.
+- Existing customer checkout, QR payment safety, account/order history,
+  admin/staff operations, and API boundaries were preserved.
+
+### Next Task
+
+If the user wants this local V18 work public, the next task is a bounded
+`V18-T02`/release task: final diff review, production deploy, production smoke,
+tag, and release notes for `v1.8.0`.
+
+---
+
 ## UIH-T01 - Humanized Storefront Design Audit And Refactor
 
 - Date: 2026-07-19

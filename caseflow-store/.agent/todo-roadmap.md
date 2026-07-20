@@ -10,12 +10,45 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: post-`v1.7.0` release verification
-- Current gate: no active implementation gate after `v1.7.0`
-- Current task: manual customer order/QR walkthrough remains the next
-  user-confirmed step if requested
+- Mode: post-`v1.7.0` with completed local `V18-T01`
+- Current gate: local `v1.8` implementation and QA passed; production deploy,
+  tag, and GitHub Release are not yet performed
+- Current task: decide whether to ship the local V18 work as `v1.8.0`
 - Implementation day: Day 40 complete
-- Last updated: 2026-07-19
+- Last updated: 2026-07-21
+
+## Phase V18 - Modern Editorial Bookstore Experience
+
+- [x] `V18-T01` Audit, ADR, roadmap, implementation, and local QA for the
+  modern editorial bookstore pass. - 2026-07-21
+  - Objective: make the bookstore feel more like an intentional real-commerce
+    bookshop while preserving routes, auth, checkout, payment safety,
+    admin/staff operations, 500-edition catalog behavior, and honest content
+    boundaries.
+  - Acceptance criteria: inspect current site and references; create
+    `docs/ui-ux-audit.md`; accept `ADR-0012`; create
+    `docs/v1.8-modern-editorial-bookstore-roadmap.md`; update
+    `docs/style-guide.md`; add header search, data-backed category menu,
+    mobile search/category discovery, cover provenance manifest, honest
+    fallback-cover labeling, restrained motion tokens, product-card motion,
+    and a reduced-motion-aware back-to-top control; preserve no-fake-proof and
+    no-scraped-cover rules; pass local quality gates.
+  - Result: public header now supports title/author/ISBN search and live
+    category discovery, mobile navigation includes search and category links,
+    covers render with `object-fit: contain` and fallback labeling, cover
+    provenance manifest records all 500 active editions as local/project
+    generated synthetic assets, catalog cards use restrained motion, long pages
+    have a bottom-left back-to-top control, and E2E cart seeding was hardened
+    to avoid storage hydration flakes.
+  - Verification: `node scripts/generate-book-cover-source-manifest.mjs`,
+    `node scripts/verify-v18-bookstore-experience.mjs`, `npm run lint`,
+    `npm exec -- tsc --noEmit --pretty false`, `npm run build`,
+    `npm run test:e2e` (`20/20`), `npm audit --audit-level=high`, and
+    `git diff --check` passed.
+  - Guardrail: no schema migration, production data mutation, real payment/
+    email/shipping integration, fake review/rating/sales claim, newsletter,
+    wishlist, quick-view modal, copied commercial cover art, deploy, tag, or
+    release was added.
 
 ## Phase UIH - Humanized Storefront Design Pass
 

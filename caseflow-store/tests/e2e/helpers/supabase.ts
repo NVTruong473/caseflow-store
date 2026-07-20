@@ -9,6 +9,7 @@ import {
 
 import type { Database } from "@/types/supabase";
 
+export const CART_STORAGE_VERSION = 1;
 export const CART_STORAGE_KEY = "caseflow-store.cart.v1";
 export const CHECKOUT_SUCCESS_STORAGE_KEY =
   "caseflow-store.checkout.success.v1";
@@ -202,21 +203,38 @@ export async function seedCart(
   page: Page,
   items: Array<{ productId: string; quantity: number }>,
 ) {
-  await page.goto("/");
-  await page.evaluate(
-    ({ cartKey, cartItems, successKey }) => {
+  const cartPayload = { version: CART_STORAGE_VERSION, items };
+  const seedFlag = `caseflow-store.e2e.seed-cart.${Date.now()}-${Math.random()}`;
+  await page.addInitScript(
+    ({ cartKey, cartItems, seedKey, successKey, version }) => {
+      if (window.sessionStorage.getItem(seedKey) === "done") {
+        return;
+      }
+
       window.localStorage.setItem(
         cartKey,
-        JSON.stringify({ version: 1, items: cartItems }),
+        JSON.stringify({ version, items: cartItems }),
       );
       window.sessionStorage.removeItem(successKey);
+      window.sessionStorage.setItem(seedKey, "done");
     },
     {
       cartKey: CART_STORAGE_KEY,
       cartItems: items,
+      seedKey: seedFlag,
       successKey: CHECKOUT_SUCCESS_STORAGE_KEY,
+      version: CART_STORAGE_VERSION,
     },
   );
+  await page.goto("/");
+  await expect
+    .poll(() =>
+      page.evaluate(
+        (cartKey) => window.localStorage.getItem(cartKey),
+        CART_STORAGE_KEY,
+      ),
+    )
+    .toBe(JSON.stringify(cartPayload));
 }
 
 export async function clearClientOrderState(page: Page) {

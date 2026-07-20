@@ -1,7 +1,7 @@
 # CaseFlow Books Style Guide
 
-- Task: `UIH-T01`
-- Status: implemented guidance for the UI humanization pass
+- Task: `UIH-T01`, extended by `V18-T01`
+- Status: implemented guidance for the UI humanization and modern editorial bookstore pass
 - Product: CaseFlow Books
 
 ## 1. Overview
@@ -16,6 +16,10 @@ Target audience:
 - Small-business operators reviewing catalog, stock, order, and promotion workflows.
 
 Signature visual idea: the reading table and spine rail. Book covers, spine-like side rules, edition ledgers, and shelf rows should create the brand character. Do not use generic glowing orbs, AI gradients, floating blobs, or fake metrics as identity.
+
+V18 extension: discovery should feel search-first and inventory-aware. Header
+search, category access, cover provenance, and restrained product motion are now
+part of the core storefront identity.
 
 Hierarchy strategy:
 
@@ -122,6 +126,9 @@ Breakpoints:
 Header:
 
 - Customer-facing navigation should show shopping, discovery, tracking, account, language, and cart.
+- Desktop storefront navigation includes a search form for title, author, or
+  ISBN, and the form submits to `/catalog` with a URL-backed `q` parameter.
+- Desktop category navigation uses real active category data in a compact menu.
 - Back-office routes must not look like customer navigation.
 - Active and hover states should be quiet and visible.
 
@@ -134,6 +141,8 @@ Mobile navigation:
 
 - Use a semantic button.
 - Keep account, language, and cart reachable.
+- Include mobile search and the top active categories so product discovery is
+  not hidden behind homepage-only sections.
 - Close menu after link activation.
 
 Buttons:
@@ -170,6 +179,9 @@ Product demonstrations:
 
 - Use actual book covers, current UI screenshots, or realistic in-app panels.
 - Do not hotlink external images.
+- Cover assets must be backed by `assets/book-covers/sources.json`. Project
+  generated covers are acceptable when marked as synthetic; missing or fallback
+  covers must say that the cover is being updated.
 
 Forms and inputs:
 
@@ -205,12 +217,25 @@ Use shadows sparingly:
 
 Default duration: `150-200ms`.
 
+Runtime motion tokens:
+
+- `--case-duration-instant`: `80ms`
+- `--case-duration-fast`: `150ms`
+- `--case-duration-normal`: `220ms`
+- `--case-duration-slow`: `320ms`
+- `--case-ease-standard`: `cubic-bezier(0.2, 0, 0, 1)`
+- `--case-ease-out`: `cubic-bezier(0, 0, 0.2, 1)`
+
 Use transitions for:
 
 - Button hover/active/focus.
 - Link hover.
 - Product cover emphasis.
 - Menu open/close visibility.
+- Product cards may use the `case-product-card-motion` helper for a small
+  hover lift and border/surface feedback.
+- Long pages may use the bottom-left back-to-top control; it must not overlap
+  the assistant button or checkout controls.
 
 Avoid:
 
@@ -326,6 +351,18 @@ Interaction:
 - File: `src/components/layout/mobile-navigation.tsx`
 - Semantic menu button, accessible labels, close-on-navigation behavior, keyboard focus styles.
 
+Discovery/header interaction:
+
+- File: `src/components/layout/site-header.tsx`
+- Search-first desktop header, data-backed category menu, and utility links for
+  support/tracking without exposing admin as public retail navigation.
+
+Long-page helper:
+
+- File: `src/components/layout/back-to-top-button.tsx`
+- Appears only after scroll, has a clear accessible name, and respects reduced
+  motion when scrolling back to the top.
+
 ## 15. Anti-Patterns
 
 Do not use:
@@ -347,3 +384,5 @@ Do not use:
 - New dependencies for simple visual polish.
 - Duplicated utility clusters when a shared component exists.
 - Public UI copy that exposes implementation details.
+- Unverified external cover URLs, scraped commercial covers, or generated
+  covers presented as official publisher artwork.

@@ -68,22 +68,29 @@ export function BookCoverFrame({
   const title = getBookEditionTitle(record, language);
   const coverPath = getBookCoverPath(record);
   const languageLabel = getEditionLanguageLabel(record.edition.language, language);
+  const hasVerifiedCover = coverPath !== DEFAULT_COVER_PATH;
 
   return (
     <figure
       className={cn("min-w-0", coverSizeClasses[size], className)}
       data-v13-cover-frame
+      data-v18-cover-fallback={hasVerifiedCover ? "false" : "true"}
       data-v13-cover-source={record.coverAsset?.source ?? "missing"}
     >
-      <div className="relative aspect-[2/3] overflow-hidden rounded-lg border border-border bg-paper-deep shadow-[var(--case-shadow-cover)]">
+      <div className="relative aspect-[2/3] overflow-hidden rounded-sm border border-border bg-paper-deep p-1 shadow-[var(--case-shadow-cover)]">
         <Image
           alt={getBookCoverAlt(record, language)}
-          className={cn("object-cover", imageClassName)}
+          className={cn("object-contain", imageClassName)}
           fill
           priority={priority}
           sizes={sizes ?? "(max-width: 768px) 35vw, 180px"}
           src={coverPath}
         />
+        {!hasVerifiedCover ? (
+          <div className="absolute inset-x-2 bottom-2 rounded-sm bg-surface/95 px-2 py-1 text-center text-[10px] font-semibold leading-4 text-foreground">
+            {language === "vi" ? "Bìa đang cập nhật" : "Cover updating"}
+          </div>
+        ) : null}
       </div>
       {showBadges ? (
         <figcaption className="mt-2 flex min-w-0 flex-wrap items-center gap-1.5">

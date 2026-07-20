@@ -42,6 +42,12 @@
   --case-radius-lg: 8px;
   --case-shadow-soft: 0 18px 45px rgb(31 27 22 / 0.08);
   --case-shadow-cover: 0 16px 35px rgb(31 27 22 / 0.18);
+  --case-duration-instant: 100ms;
+  --case-duration-fast: 160ms;
+  --case-duration-normal: 240ms;
+  --case-duration-slow: 380ms;
+  --case-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --case-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --case-space-xs: 4px;
   --case-space-sm: 8px;
   --case-space-md: 16px;
@@ -142,6 +148,38 @@ body {
   outline-offset: 2px;
 }
 
+.case-soft-reveal {
+  animation: case-soft-reveal var(--case-duration-slow) var(--case-ease-out)
+    both;
+}
+
+.case-product-card-motion {
+  transition:
+    border-color var(--case-duration-fast) var(--case-ease-standard),
+    box-shadow var(--case-duration-fast) var(--case-ease-standard),
+    transform var(--case-duration-fast) var(--case-ease-standard);
+}
+
+.case-product-card-motion:hover {
+  transform: translateY(-2px);
+}
+
+.case-product-card-motion:active {
+  transform: translateY(0);
+}
+
+@keyframes case-soft-reveal {
+  from {
+    opacity: 0.01;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -150,5 +188,13 @@ body {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .case-soft-reveal,
+  .case-product-card-motion,
+  .case-product-card-motion:hover,
+  .case-product-card-motion:active {
+    animation: none !important;
+    transform: none !important;
   }
 }

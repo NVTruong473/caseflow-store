@@ -851,7 +851,7 @@ function CatalogBookCard({
   return (
     <Card
       className={cn(
-        "h-full overflow-hidden border-l-4 shadow-[var(--case-shadow-soft)] transition-colors hover:border-discovery",
+        "case-product-card-motion h-full overflow-hidden border-l-4 shadow-[var(--case-shadow-soft)] transition-colors hover:border-discovery",
         getCatalogCardBorderClass(cardTone),
       )}
       data-catalog-author={getPrimaryAuthorName(record)}

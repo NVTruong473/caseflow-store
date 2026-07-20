@@ -12,10 +12,12 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: post-`v1.7.0` release verification.
-- Current gate: no active implementation gate after `v1.7.0`.
-- Current task: manual customer order/QR walkthrough remains the next
-  user-confirmed step if requested.
+- Current mode: post-`v1.7.0` with completed local `V18-T01` modern editorial
+  bookstore pass.
+- Current gate: local `v1.8` implementation and QA passed; no production
+  deploy, tag, or GitHub Release has been created for this phase yet.
+- Current task: review the `V18-T01` local result and decide whether to ship it
+  as a production release.
 
 ## Confirmed Facts
 
@@ -59,6 +61,18 @@
   `dpl_EKSUm28mL8w4acchGxoZeeJA8iJc` is aliased to
   `https://caseflow-store.vercel.app`, and production smoke, UIH, catalog,
   security posture, QR production-safety, and final QA checks passed.
+- `V18-T01` was completed locally on 2026-07-21 as the modern editorial
+  bookstore pass governed by `ADR-0012`: created
+  `docs/ui-ux-audit.md`, `docs/v1.8-modern-editorial-bookstore-roadmap.md`,
+  and updated `docs/style-guide.md`; added search-first desktop header,
+  live category menu, mobile search/category discovery, cover provenance
+  manifest generation, honest fallback-cover labeling, restrained product-card
+  motion tokens, and a reduced-motion-aware back-to-top control. Local QA
+  passed `npm run lint`, `npm exec -- tsc --noEmit --pretty false`,
+  `npm run build`, `npm run test:e2e` (`20/20`),
+  `node scripts/verify-v18-bookstore-experience.mjs`, high/critical
+  dependency audit, and `git diff --check`. No production deploy/tag/release
+  was performed.
 - Implementation was confirmed by the user on 2026-07-14.
 - Implementation was unblocked by installing the official Node.js LTS binary after Homebrew failed.
 - The Next.js app has been initialized in `caseflow-store`.
