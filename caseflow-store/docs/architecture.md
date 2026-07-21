@@ -282,6 +282,11 @@ Additional controls:
 
 - RLS is enabled on catalog, profile, order, promotion, and inventory tables.
 - Public/admin mutating bodies are validated with Zod.
+- Signed-in users can change only their own Supabase Auth password. The
+  password-change route reads the current auth user on the server, verifies the
+  current password through Supabase re-authentication, and then calls Supabase
+  Auth to update the password. Admin/staff password resets for other accounts
+  are intentionally outside the application UI.
 - The service-role key is read only by server modules and never exposed through
   `NEXT_PUBLIC_*`.
 - Server code recalculates price, promotion, VAT, shipping, payment fee, and

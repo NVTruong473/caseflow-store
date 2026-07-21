@@ -14153,3 +14153,70 @@ weakened, and no secret was committed.
 - Do not disable email confirmations to bypass rate limits.
 - Do not mark the post-fix real-email redirect UAT as pass until a real
   confirmation email can be received and clicked.
+
+---
+
+## AUTH-PASSWORD-T01 - Signed-In Account Password Change
+
+- Date: 2026-07-21
+- Status: completed locally
+- Scope: `/account`, `PATCH /api/customer/password`, account security verifier
+
+### Objective
+
+Add a practical password-change flow for signed-in accounts while preserving
+Supabase Auth boundaries and avoiding admin/staff reset controls for other
+users.
+
+### Result
+
+Implemented a self-service password-change route and account-page form. The
+server reads the signed-in Supabase user, validates the request with Zod,
+re-authenticates the current password through Supabase, rejects same-password
+updates, and updates only the current account password through Supabase Auth.
+
+The account UI now shows the password panel before the delivery-profile form so
+customers, staff, and admins can find it without scrolling through the full
+shipping form first.
+
+`.env.local` was updated with non-secret operational SMTP helper values:
+`SUPABASE_PROJECT_REF`, `SMTP_PORT=587`, and
+`SMTP_SENDER_NAME=CaseFlow Books`. Real SMTP secrets remain absent, so custom
+SMTP apply-mode still blocks safely before Supabase API mutation.
+
+### Evidence
+
+- `src/app/api/customer/password/route.ts`
+- `src/features/customer/customer-password-form.tsx`
+- `src/features/customer/customer-auth-page.tsx`
+- `src/lib/validation/auth.ts`
+- `src/lib/api/error-codes.ts`
+- `docs/api-contract.md`
+- `docs/architecture.md`
+- `scripts/verify-customer-password-change.ts`
+- `.agent/artifacts/auth-password-t01/customer-password-change-check.json`
+- `.agent/artifacts/auth-password-t01/customer-password-changed.png`
+
+### Verification
+
+- `AUTH_SMTP_APPLY=true npm exec -- tsx scripts/configure-supabase-custom-smtp.ts`:
+  expected non-zero preflight; stopped because `SUPABASE_ACCESS_TOKEN`,
+  `SMTP_ADMIN_EMAIL`, `SMTP_HOST`, `SMTP_USER`, and `SMTP_PASS` are still
+  missing.
+- `npm exec -- tsc --noEmit --pretty false`: passed.
+- `npm run lint`: passed.
+- `npm run build`: passed; route output includes `/api/customer/password`.
+- `PASSWORD_CHANGE_BASE_URL=http://127.0.0.1:3000 npm exec -- tsx scripts/verify-customer-password-change.ts`:
+  passed. It created a temporary confirmed customer, changed the password from
+  the account UI, verified the old password is rejected, verified the new
+  password signs in, captured a screenshot, and cleaned up the user.
+- `npm run test:e2e`: passed `20/20`.
+- `git diff --check`: passed.
+
+### Guardrails
+
+- No real SMTP secrets were added or committed.
+- No fake SMTP credentials were activated.
+- No admin/staff reset-password-for-other-user feature was added.
+- No production deploy, tag, release, or Supabase Auth custom SMTP mutation was
+  performed in this task.

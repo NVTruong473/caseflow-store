@@ -37,6 +37,7 @@ are display text and are not a stable machine contract.
 | `PAYMENT_NOT_FOUND` | 404 | Payment does not exist or does not belong to the authenticated customer |
 | `PAYMENT_READ_FAILED` | 500 | Payment persistence read failed |
 | `PAYMENT_WRITE_FAILED` | 500 | Payment persistence write failed |
+| `PASSWORD_UPDATE_FAILED` | 503 | Auth provider could not update the signed-in account password |
 | `CUSTOMER_AUTH_FAILED` | 400/429 | Customer sign-up could not be completed or is temporarily rate-limited |
 | `CATALOG_READ_FAILED` | 500 | Catalog persistence read failed |
 | `CART_VALIDATION_FAILED` | 500 | Cart validation could not read current catalog data |
@@ -50,6 +51,43 @@ are display text and are not a stable machine contract.
 The compile-time source of truth is `src/lib/api/error-codes.ts`. Adding,
 renaming, or removing a code changes the public API contract and requires an
 explicit compatibility review.
+
+## Customer Password Change
+
+`PATCH /api/customer/password` changes the password for the signed-in Supabase
+Auth account. It applies to the current session owner only; it does not let
+admin or staff reset another user's password.
+
+Request body:
+
+```json
+{
+  "currentPassword": "current-password",
+  "newPassword": "new-password",
+  "confirmPassword": "new-password"
+}
+```
+
+Server behavior:
+
+- requires an authenticated Supabase session;
+- reads the account email from the server-side auth user, not from the browser;
+- validates the body with Zod;
+- re-authenticates the current password with Supabase before changing it;
+- rejects same-password updates;
+- updates the password through Supabase Auth only after re-auth succeeds.
+
+Successful response:
+
+```json
+{
+  "data": {
+    "passwordUpdated": true
+  },
+  "error": null,
+  "meta": null
+}
+```
 
 ## Public Order Tracking
 

@@ -163,6 +163,14 @@
   blocked before any Supabase API mutation for the same missing credentials;
   production inspect, smoke, security posture, and QR production-safety checks
   passed against `https://caseflow-store.vercel.app`.
+- `AUTH-PASSWORD-T01` was completed locally on 2026-07-21: `.env.local` was
+  updated with non-secret SMTP helper values (`SUPABASE_PROJECT_REF`,
+  `SMTP_PORT=587`, `SMTP_SENDER_NAME=CaseFlow Books`) while real SMTP secrets
+  remain absent; added a self-service signed-in password change form on
+  `/account`, `PATCH /api/customer/password`, validation/API contract docs, and
+  a Playwright verifier proving the old password is rejected after change and
+  the new password signs in. The feature does not let admin/staff reset another
+  user's password.
 - Implementation was confirmed by the user on 2026-07-14.
 - Implementation was unblocked by installing the official Node.js LTS binary after Homebrew failed.
 - The Next.js app has been initialized in `caseflow-store`.

@@ -12,6 +12,7 @@ import type {
 import type { Language } from "@/lib/i18n/language";
 import type { CustomerSignupVoucher } from "@/types/domain";
 
+import { CustomerPasswordForm } from "./customer-password-form";
 import { CustomerProfileForm } from "./customer-profile-form";
 
 type ApiErrorBody = {
@@ -632,6 +633,8 @@ function SignedInPanel({
           {copy.logout}
         </Button>
       </div>
+
+      <CustomerPasswordForm language={language} />
 
       {currentUser.role === "customer" ? (
         <CustomerProfileForm

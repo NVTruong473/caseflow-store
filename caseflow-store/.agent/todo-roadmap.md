@@ -19,6 +19,22 @@
 
 ## Phase UAT-MANUAL - Production Customer Manual Acceptance
 
+- [x] `AUTH-PASSWORD-T01` Add Signed-In Account Password Change. -
+  2026-07-21
+  - Objective: let signed-in customer, staff, and admin accounts change their
+    own password from the account page without exposing service-role reset
+    controls or letting one user reset another user's password.
+  - Result: added `PATCH /api/customer/password`, Zod validation, API error
+    contract entry, customer account password form, and
+    `scripts/verify-customer-password-change.ts`.
+  - Verification: local `.env.local` was updated with non-secret SMTP defaults
+    (`SUPABASE_PROJECT_REF`, `SMTP_PORT`, `SMTP_SENDER_NAME`) while real SMTP
+    secrets remain absent; SMTP apply-mode still blocks safely. Typecheck,
+    lint, production build, dedicated password-change verifier, and full E2E
+    `20/20` passed.
+  - Guardrail: password change is self-service for the signed-in account only;
+    no admin/staff password reset for other accounts was added.
+
 - [!] `AUTH-SMTP-T01` Automate Supabase Auth Custom SMTP Configuration. -
   2026-07-21
   - Objective: make custom SMTP setup repeatable and safe so Supabase Auth
