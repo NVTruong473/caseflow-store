@@ -14128,9 +14128,23 @@ weakened, and no secret was committed.
   non-zero dry-run; listed missing `SUPABASE_ACCESS_TOKEN`,
   `SMTP_ADMIN_EMAIL`, `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, and `SMTP_PASS`
   without printing secrets.
+- `AUTH_SMTP_APPLY=true npm exec -- tsx scripts/configure-supabase-custom-smtp.ts`:
+  expected non-zero apply-mode preflight; stopped before any Supabase API
+  mutation because the same required secrets are missing.
+- Local env presence check: `.env.local` exists and contains
+  `NEXT_PUBLIC_SUPABASE_URL`, but not `SUPABASE_ACCESS_TOKEN`,
+  `SMTP_ADMIN_EMAIL`, `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, or `SMTP_PASS`.
 - `npm exec -- tsc --noEmit --pretty false`: passed.
 - `npm run lint`: passed.
 - `git diff --check`: passed.
+- `npx vercel inspect https://caseflow-store.vercel.app`: passed; production
+  alias points to ready deployment `dpl_AXPMXSQ73rvofGE4cYLT5hnF5kd5`.
+- `PRODUCTION_SMOKE_BASE_URL=https://caseflow-store.vercel.app PRODUCTION_SMOKE_ARTIFACT_ID=auto-current-smoke npm exec -- tsx scripts/verify-production-smoke.ts`:
+  passed.
+- `SECURITY_QA_BASE_URL=https://caseflow-store.vercel.app SECURITY_QA_ARTIFACT_ID=auto-current-security npm exec -- tsx scripts/verify-security-posture.ts`:
+  passed.
+- `PAYQR_PRODUCTION_SAFETY_BASE_URL=https://caseflow-store.vercel.app PAYQR_ARTIFACT_ID=auto-current-qr-safety npm exec -- tsx scripts/verify-qr-payment-production-safety.ts`:
+  passed.
 
 ### Guardrails
 

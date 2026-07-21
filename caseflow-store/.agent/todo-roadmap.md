@@ -30,7 +30,10 @@
   - Verification: dry-run correctly blocked because
     `SUPABASE_ACCESS_TOKEN`, `SMTP_ADMIN_EMAIL`, `SMTP_HOST`, `SMTP_PORT`,
     `SMTP_USER`, and `SMTP_PASS` are missing; typecheck, lint, and
-    `git diff --check` passed.
+    `git diff --check` passed. A follow-up automatic apply-mode run on
+    2026-07-21 23:29 +07 also blocked before any Supabase API mutation because
+    the same credentials are still absent; production inspect, smoke, security,
+    and QR production-safety checks passed.
   - Blocker: real SMTP provider credentials and a Supabase Management API
     access token are required. Do not use fake values or commit secrets.
 

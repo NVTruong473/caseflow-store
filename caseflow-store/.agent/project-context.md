@@ -159,7 +159,10 @@
   placeholders for Supabase Management API and SMTP settings. Dry-run blocks
   safely because `SUPABASE_ACCESS_TOKEN`, `SMTP_ADMIN_EMAIL`, `SMTP_HOST`,
   `SMTP_PORT`, `SMTP_USER`, and `SMTP_PASS` are missing. No fake SMTP
-  configuration was applied.
+  configuration was applied. A later automatic apply-mode preflight also
+  blocked before any Supabase API mutation for the same missing credentials;
+  production inspect, smoke, security posture, and QR production-safety checks
+  passed against `https://caseflow-store.vercel.app`.
 - Implementation was confirmed by the user on 2026-07-14.
 - Implementation was unblocked by installing the official Node.js LTS binary after Homebrew failed.
 - The Next.js app has been initialized in `caseflow-store`.
