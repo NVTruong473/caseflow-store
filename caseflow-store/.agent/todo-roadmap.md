@@ -10,12 +10,68 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: post-`v1.8.0` production release verification
-- Current gate: `V18-T02` production deploy, smoke, tag, and GitHub Release
-  complete
+- Mode: post-`v1.9.0` production release verification
+- Current gate: `V19-T04` production deploy, Supabase cover apply, smoke, and
+  QA complete
 - Current task: no active implementation task
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-21
+
+## Phase V19 - Real Cover Commerce Polish
+
+- [x] `V19-T01` Asset Metadata And Assistant Recovery Hardening. - 2026-07-21
+  - Objective: remove embedded generator/provenance metadata from public image
+    assets and make the assistant more reliable for customer-facing bookstore
+    questions.
+  - Result: generated SVG cover scripts no longer emit metadata/data id
+    markers, current public generated SVGs were stripped, the fallback cover
+    copy is more retail-safe, and assistant logic now handles suggestions,
+    malformed search intent, recommendations, price/language terms, and
+    admin/security/off-topic boundaries.
+  - Verification: `node scripts/verify-public-asset-metadata.mjs` and
+    `ASSISTANT_UAT_BASE_URL=http://127.0.0.1:3000 npm exec -- tsx scripts/verify-assistant-customer-questions.ts`
+    passed.
+
+- [x] `V19-T02` Project Gutenberg Cover Asset Pipeline. - 2026-07-21
+  - Objective: add a reproducible local cover pipeline and apply reviewed
+    public-domain source-work covers only after the assets are deployed.
+  - Result: added `scripts/apply-v19-gutenberg-covers.ts`, downloaded 49
+    local Project Gutenberg JPEG covers, stripped JPEG metadata, wrote
+    `assets/book-covers/gutenberg-sources.json`, deployed assets to
+    production, then upserted 49 cover rows and updated 490 active edition
+    references in Supabase production. The 10 *The Old Man and the Sea*
+    editions remain generated because no matching public-domain Gutenberg cover
+    is mapped.
+  - Verification: local download/verify and production apply/verify passed;
+    production catalog API reports 500 active editions, 490 `public-domain`
+    cover assets, and 10 generated cover assets.
+
+- [x] `V19-T03` Homepage Retail Floor Redesign. - 2026-07-21
+  - Objective: make the homepage feel more like an active bookstore retail
+    floor without fake proof signals or generic landing-page structure.
+  - Result: homepage hero now includes catalog search, quick category links,
+    browse/order-tracking CTAs, a live front-table shelf, and local cover-led
+    product proof while preserving existing routes and merchandising sections.
+  - Verification:
+    `V19_BASE_URL=http://127.0.0.1:3000 npm exec -- tsx scripts/verify-v19-commerce-homepage.ts`
+    and production
+    `V19_BASE_URL=https://caseflow-store.vercel.app V19_EXPECT_GUTENBERG_COVERS=true V19_ARTIFACT_ID=v19-production npm exec -- tsx scripts/verify-v19-commerce-homepage.ts`
+    passed.
+
+- [x] `V19-T04` Production Deploy, Cover Apply, Smoke, And QA. - 2026-07-21
+  - Objective: ship V19 safely by deploying assets before mutating Supabase
+    cover references, then rerun affected production gates.
+  - Result: pushed runtime commit `df7500c`, deployed Vercel production
+    deployment `dpl_GozgRJiNvpPTwC2WUua9VXXovErd`, applied Supabase cover
+    references after production assets returned `200`, regenerated
+    `assets/book-covers/sources.json`, and documented the release in
+    `docs/v1.9.0-real-cover-commerce-polish-release-notes.md`.
+  - Verification: production smoke, security posture, QR production-safety,
+    V18 compatibility, V19 homepage, final QA, lint, typecheck, build, metadata
+    scan, and `git diff --check` passed.
+  - Guardrail: no remote hotlinked covers, real payment/shipping/email/SMS
+    provider, fake review/rating/sales claim, external AI service, schema
+    migration, or anti-bot scraping bypass was added.
 
 ## Phase V18 - Modern Editorial Bookstore Experience
 

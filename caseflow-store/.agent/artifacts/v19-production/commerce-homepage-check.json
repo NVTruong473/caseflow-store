@@ -1,0 +1,28 @@
+{
+  "baseURL": "https://caseflow-store.vercel.app",
+  "expectGutenbergCovers": true,
+  "findings": [],
+  "generatedAt": "2026-07-21T06:46:48.378Z",
+  "ok": true,
+  "pass": {
+    "heroSearchVisible": true,
+    "heroQuickLinksVisible": true,
+    "frontTableVisible": true,
+    "heroCardCountPreserved": true,
+    "trackOrderCtaVisible": true,
+    "desktopNoOverflow": true,
+    "desktopHeroTextReadable": true,
+    "noFakeProofCopy": true,
+    "heroSearchRoutes": true,
+    "coverImagesNotClipped": true,
+    "gutenbergCoversWhenExpected": true,
+    "mobileSearchVisible": true,
+    "mobileQuickLinksVisible": true,
+    "mobileNoOverflow": true,
+    "mobileHeroCardsVisible": true
+  },
+  "screenshots": {
+    "desktop": ".agent/artifacts/v19-production/home-v19-desktop.png",
+    "mobile": ".agent/artifacts/v19-production/home-v19-mobile.png"
+  }
+}

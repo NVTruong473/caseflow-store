@@ -23,6 +23,7 @@ const CATALOG_SAMPLE_LIMIT = 100;
 const COVER_PATH_PREFIXES = [
   "/images/books/v12-covers/",
   "/images/books/v16-covers/",
+  "/images/books/gutenberg-covers/",
 ];
 
 type ApiResponse<TData> = {

@@ -87,9 +87,14 @@ try {
   pass.manifestHas500Products = manifest.totals?.products === 500;
   pass.manifestHasEntries = Array.isArray(manifest.entries) && manifest.entries.length === 500;
   pass.manifestNoExternalCoverUrls = manifest.entries.every(
-    (entry) => entry.sourceUrl === null,
+    (entry) =>
+      entry.sourceUrl === null ||
+      (entry.sourceType === "public-domain-local" &&
+        String(entry.localPath ?? "").startsWith("/images/books/gutenberg-covers/")),
   );
-  pass.manifestMarksSynthetic = manifest.totals?.synthetic === 500;
+  pass.manifestHasRealCoverSourceMix =
+    manifest.entries.some((entry) => entry.sourceType === "public-domain-local") &&
+    Number(manifest.totals?.synthetic ?? 500) < 500;
   pass.motionTokensPresent =
     css.includes("--case-duration-fast") &&
     css.includes(".case-soft-reveal") &&

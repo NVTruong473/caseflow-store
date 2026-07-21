@@ -179,9 +179,12 @@ Product demonstrations:
 
 - Use actual book covers, current UI screenshots, or realistic in-app panels.
 - Do not hotlink external images.
-- Cover assets must be backed by `assets/book-covers/sources.json`. Project
-  generated covers are acceptable when marked as synthetic; missing or fallback
-  covers must say that the cover is being updated.
+- Cover assets must be backed by `assets/book-covers/sources.json`.
+  Public-domain local covers introduced by ADR-0013 are preferred when a
+  matching source-work cover is available; project-generated covers remain
+  acceptable only when marked as synthetic or when no reviewed source cover is
+  available. Missing or fallback covers must say that the cover is being
+  updated.
 
 Forms and inputs:
 

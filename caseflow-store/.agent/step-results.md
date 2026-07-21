@@ -12747,6 +12747,113 @@ verification, and clean worktree verification complete.
 
 ---
 
+## V19-T01..T04 - Real Cover Commerce Polish
+
+- Date: 2026-07-21
+- Status: completed
+- Phase: post-`v1.8.0` real cover and commerce homepage polish
+- Release: `v1.9.0`
+
+### Objective
+
+Make CaseFlow Books look and behave more like a real commerce bookstore by
+using local real source-work covers where practical, removing public image
+metadata, hardening assistant customer guidance, and improving the homepage
+first viewport into a retail discovery surface.
+
+### Actual Result
+
+- Accepted `ADR-0013` and created the V19 roadmap.
+- Removed embedded metadata/data markers from generated public SVG cover assets
+  and updated future generated cover scripts.
+- Added `scripts/verify-public-asset-metadata.mjs`.
+- Hardened the rule-based assistant for suggestions, malformed customer
+  searches, recommendations, language/format/price terms, and off-topic/admin/
+  security fallbacks.
+- Added `scripts/apply-v19-gutenberg-covers.ts`.
+- Downloaded 49 Project Gutenberg source-work JPEG covers into
+  `public/images/books/gutenberg-covers`, stripped APP/comment metadata, and
+  recorded provenance in `assets/book-covers/gutenberg-sources.json`.
+- Deployed Vercel production deployment
+  `dpl_GozgRJiNvpPTwC2WUua9VXXovErd`, aliased to
+  `https://caseflow-store.vercel.app`.
+- After production assets returned `200`, applied 49 `public-domain` cover
+  asset rows and updated 490 active edition cover references in Supabase
+  production.
+- Regenerated `assets/book-covers/sources.json` from production: 500 products,
+  500 verified covers, 490 `public-domain-local`, 10 `project-generated`, and
+  0 fallback.
+- Redesigned the homepage hero into a retail discovery floor with catalog
+  search, quick category links, browse/order-tracking CTAs, and a live front
+  table shelf.
+- Updated V18/final QA verifiers to accept the new cover-source mix.
+- Documented release notes in
+  `docs/v1.9.0-real-cover-commerce-polish-release-notes.md`.
+
+### Evidence
+
+- `docs/adr/0013-real-cover-and-commerce-homepage-upgrade.md`
+- `docs/v1.9-real-cover-commerce-polish-roadmap.md`
+- `docs/v1.9.0-real-cover-commerce-polish-release-notes.md`
+- `assets/book-covers/gutenberg-sources.json`
+- `assets/book-covers/sources.json`
+- `.agent/artifacts/v19-t02/gutenberg-cover-assets.json`
+- `.agent/artifacts/v19-t03/commerce-homepage-check.json`
+- `.agent/artifacts/v19-production/commerce-homepage-check.json`
+- `.agent/artifacts/v19-production/production-smoke-check.json`
+- `.agent/artifacts/v19-production/security-posture-check.json`
+- `.agent/artifacts/v19-production/qr-payment-production-safety-check.json`
+- `.agent/artifacts/v19-production/final-post-release-qa.json`
+- `.agent/artifacts/v19-production/final-post-release-qa.md`
+- `.agent/artifacts/v19-production-v18-compat/v18-bookstore-experience-check.json`
+
+### Verification
+
+- `npm exec -- tsx scripts/apply-v19-gutenberg-covers.ts --download --verify-local`:
+  passed with 49 local JPEG covers and zero APP/comment metadata segments.
+- `npm exec -- tsx scripts/apply-v19-gutenberg-covers.ts --apply --verify-local`:
+  passed with 49 cover rows and 490 active edition references updated.
+- `CASEFLOW_MANIFEST_BASE_URL=https://caseflow-store.vercel.app node scripts/generate-book-cover-source-manifest.mjs`:
+  passed with 500 products, 500 verified covers, 490 public-domain-local, 10
+  project-generated, and 0 fallback.
+- `ASSET_METADATA_ARTIFACT_ID=v19-production node scripts/verify-public-asset-metadata.mjs`:
+  passed across 565 public image files.
+- `ASSISTANT_UAT_BASE_URL=http://127.0.0.1:3000 npm exec -- tsx scripts/verify-assistant-customer-questions.ts`:
+  passed.
+- `V19_BASE_URL=http://127.0.0.1:3000 npm exec -- tsx scripts/verify-v19-commerce-homepage.ts`:
+  passed locally.
+- `npm run lint`: passed.
+- `npm exec -- tsc --noEmit --pretty false`: passed.
+- `npm run build`: passed with 51 App Router routes plus proxy.
+- `git diff --check`: passed.
+- `npx vercel --prod --yes`: passed; deployment
+  `dpl_GozgRJiNvpPTwC2WUua9VXXovErd` reached `READY` and was aliased.
+- Production V19 homepage verifier passed with `V19_EXPECT_GUTENBERG_COVERS=true`.
+- Production V18 compatibility verifier passed.
+- Production smoke passed.
+- Production security posture passed with zero findings.
+- Production QR production-safety passed with runtime denied status `401`.
+- Production final QA passed with zero findings.
+
+### Guardrails Preserved
+
+- No remote cover hotlinks were added.
+- No anti-bot scraping bypass was used for Fahasa; automated Fahasa requests
+  remained blocked by challenge responses.
+- No customer-facing Project Gutenberg brand claim was added.
+- No real payment, shipping, email, SMS, review/rating, or external AI provider
+  was added.
+- No schema migration was required.
+
+### Next Task
+
+If the user wants even more real Vietnamese covers, collect reviewed direct
+image URLs or licensed assets for the Vietnamese editions, then run a separate
+manifest-backed cover update pass. Manual customer order and QR walkthrough is
+still available but should be started only after the user explicitly confirms.
+
+---
+
 ## V18-T01 - Modern Editorial Bookstore Experience Audit And Local Redesign
 
 - Date: 2026-07-21

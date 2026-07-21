@@ -1,65 +1,62 @@
 # CaseFlow Books Release Candidate
 
-- Candidate: `v1.8.0-rc.1`, accepted and released as `v1.8.0`
+- Candidate: `v1.9.0-rc.1`, accepted and deployed as `v1.9.0`
 - Date: 2026-07-21
-- Status: production deployed, smoke tested, tagged, and released
+- Status: production deployed, Supabase cover references applied, smoke tested,
+  and QA verified
 - Governing documents:
-  `docs/adr/0012-modern-editorial-bookstore-experience.md`,
-  `docs/ui-ux-audit.md`, `docs/v1.8-modern-editorial-bookstore-roadmap.md`,
+  `docs/adr/0013-real-cover-and-commerce-homepage-upgrade.md`,
+  `docs/v1.9-real-cover-commerce-polish-roadmap.md`,
   and `docs/style-guide.md`
 - Release notes:
-  `docs/v1.8.0-modern-editorial-bookstore-release-notes.md`
+  `docs/v1.9.0-real-cover-commerce-polish-release-notes.md`
 - Production alias: `https://caseflow-store.vercel.app`
 - Vercel deployment:
-  `dpl_9FRaok8hK8sddmbGBL3RvkMM9fLs`
+  `dpl_GozgRJiNvpPTwC2WUua9VXXovErd`
 
 ## Passed Local Gates
 
-- `node scripts/generate-book-cover-source-manifest.mjs`: passed with 500
-  products, 500 verified local/project-generated covers, 500 synthetic entries,
-  and 0 fallback entries.
-- `node scripts/verify-v18-bookstore-experience.mjs`: passed with search,
-  category navigation, mobile drawer, cover, motion, no-overflow, and manifest
-  checks.
+- `npm exec -- tsx scripts/apply-v19-gutenberg-covers.ts --download --verify-local`:
+  passed with 49 local Gutenberg JPEG covers and zero APP/comment metadata
+  segments.
+- `node scripts/verify-public-asset-metadata.mjs`: passed across 565 public
+  image files with zero findings.
+- `npm exec -- tsx scripts/verify-assistant-customer-questions.ts`: passed.
+- `npm exec -- tsx scripts/verify-v19-commerce-homepage.ts`: passed locally.
 - `npm run lint`: passed.
 - `npm exec -- tsc --noEmit --pretty false`: passed.
 - `npm run build`: passed with 51 App Router routes plus proxy.
-- `npm run test:e2e`: passed `20/20`.
-- `npm audit --audit-level=high`: passed for high/critical advisories; the
-  known moderate Next/PostCSS advisory remains accepted because the forced fix
-  proposes a breaking downgrade path.
 - `git diff --check`: passed before deployment.
 
 ## Passed Production Gates
 
-- Vercel deployment `dpl_9FRaok8hK8sddmbGBL3RvkMM9fLs` reached `READY` and was
+- Vercel deployment `dpl_GozgRJiNvpPTwC2WUua9VXXovErd` reached `READY` and was
   aliased to `https://caseflow-store.vercel.app`.
 - `vercel inspect https://caseflow-store.vercel.app`: passed; alias points to
-  deployment `dpl_9FRaok8hK8sddmbGBL3RvkMM9fLs`.
-- Production V18 bookstore experience verifier passed with zero findings.
-- Production catalog verifier passed with 500 editions and 21 pages.
-- Production release smoke passed with public pages, language mode, catalog
-  quality at the 500-edition baseline, cart/checkout boundary, customer/admin
-  boundary, assistant, and representative detail pages.
+  deployment `dpl_GozgRJiNvpPTwC2WUua9VXXovErd`.
+- `npm exec -- tsx scripts/apply-v19-gutenberg-covers.ts --apply --verify-local`:
+  passed after deployment with 49 cover rows and 490 active edition references
+  updated.
+- `node scripts/generate-book-cover-source-manifest.mjs`: passed against
+  production with 500 products, 500 verified covers, 490 public-domain-local,
+  10 project-generated, and 0 fallback.
+- Production V19 homepage verifier passed with Gutenberg covers required.
+- Production V18 compatibility verifier passed with the new cover-source mix.
+- Production release smoke passed.
 - Production security posture passed with zero findings.
 - Production QR safety passed with runtime denied status `401`.
 - Production final QA smoke passed with zero findings.
 
 ## Candidate Findings Resolved
 
-- Header now has a direct title/author/ISBN search entry instead of relying on
-  homepage sections for discovery.
-- Desktop category discovery is backed by active category data.
-- Mobile navigation includes search and category links.
-- Book covers use stable `object-fit: contain` treatment and explicit fallback
-  labels.
-- Cover source assumptions are recorded in
-  `assets/book-covers/sources.json`.
-- Product-card motion is restrained, CSS-first, and reduced-motion aware.
-- Long catalog/detail pages include a non-overlapping bottom-left back-to-top
-  control.
-- E2E cart fixtures are less flaky because cart data is seeded before React
-  cart hydration.
+- Homepage hero now behaves like a retail entry point with catalog search,
+  quick category links, browse/order-tracking CTAs, and a live front-table
+  shelf.
+- 490 active editions now use local Project Gutenberg source-work covers.
+- Public image assets no longer carry embedded SVG generator/provenance
+  metadata.
+- Assistant suggestion, malformed query, and off-topic/admin/security behavior
+  now has automated browser coverage.
 
 ## Accepted Non-Blockers
 
@@ -68,10 +65,12 @@
 - Production payment settlement, reconciliation, refunds, provider dashboards,
   real webhook callbacks, and dispute/failure operations require a separate ADR
   and provider contract.
-- The 500 products are edition variants across the existing 50 works, not 250
+- The 500 products are edition variants across the existing 50 works, not 500
   unique works.
-- Cover art is local/project-generated portfolio art, not official publisher
-  cover artwork.
+- 10 *The Old Man and the Sea* editions still use generated cover art because
+  no matching Project Gutenberg public-domain source cover was mapped.
+- Fahasa automation is blocked by anti-bot challenge responses; future official
+  Vietnamese cover updates need reviewed direct image URLs or licensed assets.
 - Reviews, ratings, wishlist, newsletter, and quick-view remain intentionally
   out of scope until backed by real data/storage/operations.
 - Email confirmation is still not backed by a real email delivery provider
@@ -81,17 +80,15 @@
 
 ## Evidence
 
-- `docs/v1.8.0-modern-editorial-bookstore-release-notes.md`
-- `docs/adr/0012-modern-editorial-bookstore-experience.md`
-- `docs/ui-ux-audit.md`
-- `docs/v1.8-modern-editorial-bookstore-roadmap.md`
+- `docs/v1.9.0-real-cover-commerce-polish-release-notes.md`
+- `docs/adr/0013-real-cover-and-commerce-homepage-upgrade.md`
+- `docs/v1.9-real-cover-commerce-polish-roadmap.md`
 - `docs/style-guide.md`
 - `assets/book-covers/sources.json`
-- `.agent/artifacts/v18-t01/v18-bookstore-experience-check.json`
-- `.agent/artifacts/v18-t02-production/deployment.json`
-- `.agent/artifacts/v18-t02-production/v18-bookstore-experience-check.json`
-- `.agent/artifacts/v18-t02-production/production-release-smoke.json`
-- `.agent/artifacts/v18-t02-production/security-posture-check.json`
-- `.agent/artifacts/v18-t02-production/qr-payment-production-safety-check.json`
-- `.agent/artifacts/v18-t02-production/final-post-release-qa.json`
-- `.agent/artifacts/v18-t02-production/final-post-release-qa.md`
+- `assets/book-covers/gutenberg-sources.json`
+- `.agent/artifacts/v19-production/commerce-homepage-check.json`
+- `.agent/artifacts/v19-production/production-smoke-check.json`
+- `.agent/artifacts/v19-production/security-posture-check.json`
+- `.agent/artifacts/v19-production/qr-payment-production-safety-check.json`
+- `.agent/artifacts/v19-production/final-post-release-qa.json`
+- `.agent/artifacts/v19-production/final-post-release-qa.md`

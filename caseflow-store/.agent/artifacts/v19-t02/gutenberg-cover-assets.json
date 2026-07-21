@@ -1,9 +1,259 @@
 {
-  "applied": null,
-  "generatedAt": "2026-07-21T06:33:35.808Z",
+  "applied": {
+    "coverRows": 49,
+    "editionReferencesUpdated": 490,
+    "updateResults": [
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "pride-and-prejudice"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "jane-eyre"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "wuthering-heights"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "great-expectations"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "oliver-twist"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "a-tale-of-two-cities"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "moby-dick"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "little-women"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "the-adventures-of-sherlock-holmes"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "dracula"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "frankenstein"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "the-picture-of-dorian-gray"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "the-count-of-monte-cristo"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "les-miserables"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "the-three-musketeers"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "around-the-world-in-eighty-days"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "journey-to-the-center-of-the-earth"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "the-time-machine"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "the-war-of-the-worlds"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "alice-in-wonderland"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "the-wonderful-wizard-of-oz"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "the-secret-garden"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "anne-of-green-gables"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "treasure-island"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "the-call-of-the-wild"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "the-jungle-book"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "the-wind-in-the-willows"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "a-christmas-carol"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "the-adventures-of-tom-sawyer"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "adventures-of-huckleberry-finn"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "the-brothers-karamazov"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "crime-and-punishment"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "anna-karenina"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "war-and-peace"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "the-metamorphosis"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "siddhartha"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "the-prophet"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "the-art-of-war"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "meditations"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "tao-te-ching"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "the-republic"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "don-quixote"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "the-divine-comedy"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "the-iliad"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "the-odyssey"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "grimms-fairy-tales"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "andersens-fairy-tales"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "aesops-fables"
+      },
+      {
+        "count": 10,
+        "status": "updated",
+        "workSlug": "the-wealth-of-nations"
+      }
+    ]
+  },
+  "generatedAt": "2026-07-21T06:41:12.525Z",
   "manifestPath": "assets/book-covers/gutenberg-sources.json",
   "mode": {
-    "apply": false,
+    "apply": true,
     "download": false,
     "verifyLocal": true
   },

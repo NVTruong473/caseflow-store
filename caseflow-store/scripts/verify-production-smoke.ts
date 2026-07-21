@@ -1,7 +1,11 @@
 import fs from "node:fs";
 import path from "node:path";
 
-const ARTIFACT_DIR = path.join(".agent", "artifacts", "d40-t02");
+const ARTIFACT_DIR = path.join(
+  ".agent",
+  "artifacts",
+  process.env.PRODUCTION_SMOKE_ARTIFACT_ID ?? "d40-t02",
+);
 
 type ApiResponse<TData> = {
   data: TData | null;
