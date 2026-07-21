@@ -4,16 +4,16 @@
 
 | Field | Value |
 |---|---|
-| Current mode | v1.8.0 production release passed |
-| Current gate | `V18-T02` complete |
+| Current mode | post-`v1.10.0` release consistency audit passed |
+| Current gate | `POSTV110-T01` complete |
 | Implementation started | Yes |
 | Next implementation task | No active implementation task |
 | App initialized | Yes, in `caseflow-store` |
-| Local server verified | Yes, V18-T01 full Playwright `20/20`, V18 verifier, catalog verifier, lint, typecheck, build, high/critical audit, and diff check passed locally |
-| Lint verified | Yes, V18-T01 lint passed |
-| Build verified | Yes, V18-T01 local production build generated 51 App Router routes plus proxy |
+| Local server verified | Yes, v1.10.0 local typecheck, lint, build, E2E, and signup-voucher verifier passed during `SIGNUPVOUCHER-T02`; `POSTV110-T01` is production consistency verification only |
+| Lint verified | Yes, v1.10.0 lint passed during `SIGNUPVOUCHER-T02`; no runtime source change in `POSTV110-T01` |
+| Build verified | Yes, v1.10.0 production build generated 51 App Router routes plus proxy during `SIGNUPVOUCHER-T02`; no runtime source change in `POSTV110-T01` |
 | Database connected | Yes; live catalog, orders, Auth, role checks, and admin status updates use Supabase |
-| Deployed | Yes, v1.8.0 production deployment `dpl_9FRaok8hK8sddmbGBL3RvkMM9fLs` is aliased to `https://caseflow-store.vercel.app` |
+| Deployed | Yes, v1.10.0 production deployment `dpl_FPZwifR2vJr9ZFDa1cbbJ8y89QsW` is aliased to `https://caseflow-store.vercel.app` |
 | Last updated | 2026-07-21 |
 
 ## Result Index
@@ -132,6 +132,10 @@
 | SR-184 | 2026-07-19 | V14-T13 | completed | Deployed v1.4.0 to Vercel production, passed production smoke, refreshed release docs/evidence, fixed localized-title smoke verification, and prepared GitHub tag/release publication |
 | SR-185 | 2026-07-19 | QA-V14-FINAL-T01 | completed | Passed final post-release tester audit for v1.4.0 with production browser QA, production release smoke, Vercel/GitHub release verification, cleanup, secret scan, no-demo scan, lint, TypeScript, build, and no open P0/P1 findings |
 | SR-186 | 2026-07-21 | V18-T02 | completed | Shipped v1.8.0: pushed V18 commit, deployed Vercel production deployment dpl_9FRaok8hK8sddmbGBL3RvkMM9fLs, passed production V18/catalog/release/security/QR/final QA gates, refreshed release docs/evidence, and created the release tag/GitHub Release |
+| SR-187 | 2026-07-21 | V19-T04 | completed | Shipped v1.9.0: deployed real-cover commerce polish, applied reviewed Project Gutenberg cover references after assets were live, passed production V19/smoke/security/QR/final QA gates, and preserved commercial-cover/legal guardrails |
+| SR-188 | 2026-07-21 | SIGNUPVOUCHER-T01 | completed | Added account-bound signup vouchers locally with Supabase migration, server-side grant/reserve/confirm/release logic, checkout/account UI, and focused verifier coverage |
+| SR-189 | 2026-07-21 | SIGNUPVOUCHER-T02 | completed | Shipped v1.10.0: pushed runtime and release-evidence commits, deployed Vercel deployment dpl_FPZwifR2vJr9ZFDa1cbbJ8y89QsW, passed production signup-voucher/smoke/security/QR/final QA gates, and created the tag/GitHub Release |
+| SR-190 | 2026-07-21 | POSTV110-T01 | completed | Audited v1.10.0 release consistency across local Git, origin/main, annotated tag, GitHub latest release, Vercel production alias, release docs, production smoke, security posture, QR production lock, and final QA |
 
 ---
 
@@ -13711,8 +13715,8 @@ successful order creation, and reservation release on order failure.
 ### Result
 
 The account-bound signup voucher and real-cover retail UI polish patch was
-committed, pushed to `origin/main`, deployed to production, smoke tested, and
-prepared for the `v1.10.0` tag/GitHub Release.
+committed, pushed to `origin/main`, deployed to production, smoke tested,
+tagged as `v1.10.0`, and published as a GitHub Release.
 
 ### Release Facts
 
@@ -13764,3 +13768,62 @@ prepared for the `v1.10.0` tag/GitHub Release.
 - No real payment settlement, production mock-payment enablement, SMS/email
   marketing provider, fake scarcity timer, force-push, or release history
   rewrite was performed.
+
+---
+
+## POSTV110-T01 - Final v1.10.0 Release Consistency Audit
+
+- Date: 2026-07-21
+- Status: completed
+- Release audited: `v1.10.0`
+
+### Result
+
+The local repository, remote branch, annotated tag, GitHub Release/latest
+metadata, Vercel production alias, release documentation, and production smoke
+evidence are consistent with `v1.10.0`.
+
+The audit corrected stale top-level `.agent` snapshot text that still described
+`v1.8.0` as the current production release.
+
+### Evidence
+
+- `docs/v1.10.0-release-consistency-audit.md`
+- `.agent/artifacts/postv110-t01/production-smoke-check.json`
+- `.agent/artifacts/postv110-t01/security-posture-check.json`
+- `.agent/artifacts/postv110-t01/qr-payment-production-safety-check.json`
+- `.agent/artifacts/postv110-t01/final-post-release-qa.json`
+- `.agent/artifacts/postv110-t01/final-post-release-qa.md`
+
+### Verification
+
+- `git status --short`: clean before audit artifacts.
+- `git branch --show-current`: `main`.
+- `git rev-parse HEAD`: `653d28591bbb633386a5fe9fe90d86380a0a7e99`.
+- `git tag --points-at HEAD`: `v1.10.0`.
+- `git ls-remote origin refs/heads/main refs/tags/v1.10.0 'refs/tags/v1.10.0^{}'`:
+  passed; remote `main` and peeled tag both point to
+  `653d28591bbb633386a5fe9fe90d86380a0a7e99`.
+- `gh release view v1.10.0 --json ...`: passed; release is published, not
+  draft, and not prerelease.
+- `gh api repos/NVTruong473/caseflow-store/releases/latest --jq ...`: passed;
+  latest release is `v1.10.0`.
+- `npx vercel inspect https://caseflow-store.vercel.app`: passed; alias points
+  to deployment `dpl_FPZwifR2vJr9ZFDa1cbbJ8y89QsW` with status `READY`.
+- `PRODUCTION_SMOKE_BASE_URL=https://caseflow-store.vercel.app PRODUCTION_SMOKE_ARTIFACT_ID=postv110-t01 npm exec -- tsx scripts/verify-production-smoke.ts`:
+  passed.
+- `SECURITY_QA_BASE_URL=https://caseflow-store.vercel.app SECURITY_QA_ARTIFACT_ID=postv110-t01 npm exec -- tsx scripts/verify-security-posture.ts`:
+  passed with zero findings.
+- `PAYQR_PRODUCTION_SAFETY_BASE_URL=https://caseflow-store.vercel.app PAYQR_ARTIFACT_ID=postv110-t01 npm exec -- tsx scripts/verify-qr-payment-production-safety.ts`:
+  passed; production QR runtime remains denied with status `401`.
+- `FINAL_QA_BASE_URL=https://caseflow-store.vercel.app FINAL_QA_TASK_ID=postv110-t01 npm exec -- tsx scripts/verify-final-post-release-qa.ts`:
+  passed with zero findings.
+
+### Guardrails
+
+- No runtime feature, schema migration, production data mutation, deploy, tag,
+  release rewrite, or force-push was performed.
+- The signup voucher verifier was not re-run because it writes to the fixed
+  `.agent/artifacts/signup-vouchers` directory and would overwrite release
+  evidence; the production signup-voucher verifier pass from `SIGNUPVOUCHER-T02`
+  remains the release evidence for that flow.

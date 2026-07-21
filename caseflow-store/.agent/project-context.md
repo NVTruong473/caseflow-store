@@ -103,7 +103,13 @@
   `dpl_FPZwifR2vJr9ZFDa1cbbJ8y89QsW`, verified
   `https://caseflow-store.vercel.app`, passed production signup-voucher
   verifier, production smoke, security posture, QR production-safety, and
-  final QA, and prepared the `v1.10.0` tag/GitHub Release.
+  final QA, and created the `v1.10.0` tag/GitHub Release.
+- `POSTV110-T01` was completed on 2026-07-21 as the final `v1.10.0` release
+  consistency audit: local `main`, `origin/main`, the peeled `v1.10.0` tag,
+  GitHub latest release metadata, Vercel alias
+  `https://caseflow-store.vercel.app`, production smoke, security posture, QR
+  production-safety, and final QA are consistent with `v1.10.0`; stale
+  top-level `.agent` snapshot text from `v1.8.0` was corrected.
 - Implementation was confirmed by the user on 2026-07-14.
 - Implementation was unblocked by installing the official Node.js LTS binary after Homebrew failed.
 - The Next.js app has been initialized in `caseflow-store`.
@@ -525,7 +531,7 @@ These are defaults that remain tentative until a later task or ADR freezes them:
   change under v1.3 polish.
 - Release status: `v1.3.1` remains the compact-card layout hotfix release.
   Later production releases now supersede it; the current latest production
-  release is `v1.8.0`.
+  release is `v1.10.0`.
 
 ## v1.1 Active Product Domain
 

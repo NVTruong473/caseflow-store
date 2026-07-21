@@ -12,10 +12,28 @@
 - Project: CaseFlow Books
 - Mode: post-`v1.10.0` production release verification
 - Current gate: `SIGNUPVOUCHER-T02` production deploy, smoke, tag, and
-  GitHub Release complete
+  GitHub Release complete; `POSTV110-T01` consistency audit passed
 - Current task: no active implementation task
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-21
+
+## Phase POSTV110 - Final v1.10.0 Release Consistency Audit
+
+- [x] `POSTV110-T01` Final v1.10.0 Release Consistency Audit. - 2026-07-21
+  - Objective: verify that local Git, remote `main`, the `v1.10.0` tag,
+    GitHub latest release metadata, Vercel production alias, release docs, and
+    current production smoke evidence all describe the same release.
+  - Result: local `main` is clean before audit artifacts, `origin/main` and
+    the peeled `v1.10.0` tag point to
+    `653d28591bbb633386a5fe9fe90d86380a0a7e99`, GitHub Release `v1.10.0` is
+    published and latest, Vercel alias `https://caseflow-store.vercel.app`
+    points to deployment `dpl_FPZwifR2vJr9ZFDa1cbbJ8y89QsW`, and stale
+    top-level `.agent` release-state text from `v1.8.0` was corrected.
+  - Verification: production smoke, security posture, QR production-safety, and
+    final QA were re-run against production with `postv110-t01` artifacts and
+    passed.
+  - Guardrail: no runtime source change, schema migration, production data
+    mutation, deploy, tag, release rewrite, or force-push was performed.
 
 ## Phase SIGNUPVOUCHER - Account-Bound Signup Conversion Offer
 
@@ -59,7 +77,7 @@
     force-push, history rewrite, or production mock-payment enablement.
   - Result: pushed commit `97f5c67`, deployed Vercel production deployment
     `dpl_FPZwifR2vJr9ZFDa1cbbJ8y89QsW`, aliased it to
-    `https://caseflow-store.vercel.app`, updated release docs, and prepared
+    `https://caseflow-store.vercel.app`, updated release docs, and created
     the `v1.10.0` tag/GitHub Release.
   - Verification: production signup-voucher verifier, production smoke,
     security posture, QR production-safety, final QA, and Vercel inspect
