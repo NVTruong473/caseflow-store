@@ -534,18 +534,33 @@ async function newPage(
 }
 
 async function seedCart(page: Page, editionId: string) {
-  await page.goto("/", { waitUntil: "domcontentloaded" });
-  await page.evaluate(
-    ({ key, productId }) => {
+  const seedKey = `caseflow-store.release-smoke.seed-cart.${Date.now()}`;
+  await page.addInitScript(
+    ({ cartKey, productId, seedFlag }) => {
+      if (window.sessionStorage.getItem(seedFlag) === "done") {
+        return;
+      }
+
       window.localStorage.setItem(
-        key,
+        cartKey,
         JSON.stringify({
           items: [{ productId, quantity: 1 }],
           version: 1,
         }),
       );
+      window.sessionStorage.setItem(seedFlag, "done");
     },
-    { key: CART_STORAGE_KEY, productId: editionId },
+    {
+      cartKey: CART_STORAGE_KEY,
+      productId: editionId,
+      seedFlag: seedKey,
+    },
+  );
+  await page.goto("/", { waitUntil: "domcontentloaded" });
+  await page.waitForFunction(
+    ({ cartKey, productId }) =>
+      window.localStorage.getItem(cartKey)?.includes(productId) ?? false,
+    { cartKey: CART_STORAGE_KEY, productId: editionId },
   );
 }
 

@@ -140,7 +140,7 @@ Latest release:
 | Release tag | `v1.8.0` |
 | GitHub Release | [`CaseFlow Books v1.8.0 - Modern Editorial Bookstore`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.8.0) |
 | Production URL | `https://caseflow-store.vercel.app` |
-| Vercel deployment | `READY`, deployment `dpl_Cqb9tNErhi3zCESYsNsttbqRUziT` |
+| Vercel deployment | `READY`, deployment `dpl_9FRaok8hK8sddmbGBL3RvkMM9fLs` |
 | TypeScript | `npx tsc --noEmit --pretty false` passed |
 | ESLint | `npm run lint` passed |
 | Production build | 51 App Router routes plus proxy generated |

@@ -71,7 +71,7 @@ runtime.
 - GitHub Release:
   `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.8.0`
 - Production alias: `https://caseflow-store.vercel.app`
-- Vercel deployment ID: `dpl_Cqb9tNErhi3zCESYsNsttbqRUziT`
+- Vercel deployment ID: `dpl_9FRaok8hK8sddmbGBL3RvkMM9fLs`
 - Local gates: TypeScript, ESLint, production build, full Playwright `20/20`,
   V18 bookstore experience verifier, 500-edition catalog verifier, QR
   production-safety verifier, security posture verifier, final QA smoke,

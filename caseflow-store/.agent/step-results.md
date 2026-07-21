@@ -13,7 +13,7 @@
 | Lint verified | Yes, V18-T01 lint passed |
 | Build verified | Yes, V18-T01 local production build generated 51 App Router routes plus proxy |
 | Database connected | Yes; live catalog, orders, Auth, role checks, and admin status updates use Supabase |
-| Deployed | Yes, v1.8.0 production deployment `dpl_Cqb9tNErhi3zCESYsNsttbqRUziT` is aliased to `https://caseflow-store.vercel.app` |
+| Deployed | Yes, v1.8.0 production deployment `dpl_9FRaok8hK8sddmbGBL3RvkMM9fLs` is aliased to `https://caseflow-store.vercel.app` |
 | Last updated | 2026-07-21 |
 
 ## Result Index
@@ -131,7 +131,7 @@
 | SR-183 | 2026-07-19 | V14-T12 | completed | Passed the full local v1.4 quality gate with TypeScript, lint, build, Playwright 20/20, V14 visual QA, cleanup, high/critical audit, targeted secret scan, release-readiness report, and no deploy/tag/release |
 | SR-184 | 2026-07-19 | V14-T13 | completed | Deployed v1.4.0 to Vercel production, passed production smoke, refreshed release docs/evidence, fixed localized-title smoke verification, and prepared GitHub tag/release publication |
 | SR-185 | 2026-07-19 | QA-V14-FINAL-T01 | completed | Passed final post-release tester audit for v1.4.0 with production browser QA, production release smoke, Vercel/GitHub release verification, cleanup, secret scan, no-demo scan, lint, TypeScript, build, and no open P0/P1 findings |
-| SR-186 | 2026-07-21 | V18-T02 | completed | Shipped v1.8.0: pushed V18 commit, deployed Vercel production deployment dpl_Cqb9tNErhi3zCESYsNsttbqRUziT, passed production V18/catalog/release/security/QR/final QA gates, refreshed release docs/evidence, and created the release tag/GitHub Release |
+| SR-186 | 2026-07-21 | V18-T02 | completed | Shipped v1.8.0: pushed V18 commit, deployed Vercel production deployment dpl_9FRaok8hK8sddmbGBL3RvkMM9fLs, passed production V18/catalog/release/security/QR/final QA gates, refreshed release docs/evidence, and created the release tag/GitHub Release |
 
 ---
 
@@ -12862,7 +12862,7 @@ the GitHub Release.
 - Pushed `b93175b` (`V18-T01 modern editorial bookstore pass`) to
   `origin/main`.
 - Deployed Vercel production deployment
-  `dpl_Cqb9tNErhi3zCESYsNsttbqRUziT`.
+  `dpl_9FRaok8hK8sddmbGBL3RvkMM9fLs`.
 - Verified `https://caseflow-store.vercel.app` is aliased to the new
   deployment.
 - Ran production V18, catalog, release smoke, security posture, QR
@@ -12896,14 +12896,14 @@ the GitHub Release.
 
 - `git push origin main`: passed.
 - `npm exec -- vercel --prod --yes`: passed; deployment
-  `dpl_Cqb9tNErhi3zCESYsNsttbqRUziT` reached `READY`.
+  `dpl_9FRaok8hK8sddmbGBL3RvkMM9fLs` reached `READY`.
 - `npm exec -- vercel inspect https://caseflow-store.vercel.app`: passed;
-  alias points to deployment `dpl_Cqb9tNErhi3zCESYsNsttbqRUziT`.
+  alias points to deployment `dpl_9FRaok8hK8sddmbGBL3RvkMM9fLs`.
 - `V18_BASE_URL=https://caseflow-store.vercel.app V18_ARTIFACT_ID=v18-t02-production node scripts/verify-v18-bookstore-experience.mjs`:
   passed with zero findings.
 - `CATALOG_VERIFY_BASE_URL=https://caseflow-store.vercel.app npm exec -- tsx scripts/verify-catalog-page.ts`:
   passed with 500 editions and 21 pages.
-- `PRODUCTION_RELEASE_TASK_ID=v18-t02-production PRODUCTION_RELEASE_BASE_URL=https://caseflow-store.vercel.app PRODUCTION_RELEASE_DEPLOYMENT_ID=dpl_Cqb9tNErhi3zCESYsNsttbqRUziT npm exec -- tsx scripts/verify-v12-production-release.ts`:
+- `PRODUCTION_RELEASE_TASK_ID=v18-t02-production PRODUCTION_RELEASE_BASE_URL=https://caseflow-store.vercel.app PRODUCTION_RELEASE_DEPLOYMENT_ID=dpl_9FRaok8hK8sddmbGBL3RvkMM9fLs npm exec -- tsx scripts/verify-v12-production-release.ts`:
   passed.
 - `SECURITY_QA_ARTIFACT_ID=v18-t02-production SECURITY_QA_BASE_URL=https://caseflow-store.vercel.app npm exec -- tsx scripts/verify-security-posture.ts`:
   passed with zero findings.

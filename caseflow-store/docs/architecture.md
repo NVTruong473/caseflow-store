@@ -299,7 +299,7 @@ notes, rights-analysis notes, or source-edition matching keys. See
 ## Deployment and verification
 
 - Production alias: `https://caseflow-store.vercel.app`.
-- Current production deployment ID: `dpl_Cqb9tNErhi3zCESYsNsttbqRUziT`
+- Current production deployment ID: `dpl_9FRaok8hK8sddmbGBL3RvkMM9fLs`
   (`v1.8.0`).
 - Supabase hosts PostgreSQL and Auth.
 - Production runtime variables include the public Supabase URL, public anon key,

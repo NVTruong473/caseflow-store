@@ -60,7 +60,7 @@
     pass; release notes and latest-release docs are updated; `v1.8.0` tag and
     GitHub Release exist.
   - Result: pushed `b93175b` to `origin/main`, deployed
-    `dpl_Cqb9tNErhi3zCESYsNsttbqRUziT` to
+    `dpl_9FRaok8hK8sddmbGBL3RvkMM9fLs` to
     `https://caseflow-store.vercel.app`, updated release docs, and prepared
     tag/GitHub Release publication.
   - Verification: production V18 bookstore experience verifier, production

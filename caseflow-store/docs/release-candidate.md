@@ -11,7 +11,7 @@
   `docs/v1.8.0-modern-editorial-bookstore-release-notes.md`
 - Production alias: `https://caseflow-store.vercel.app`
 - Vercel deployment:
-  `dpl_Cqb9tNErhi3zCESYsNsttbqRUziT`
+  `dpl_9FRaok8hK8sddmbGBL3RvkMM9fLs`
 
 ## Passed Local Gates
 
@@ -32,10 +32,10 @@
 
 ## Passed Production Gates
 
-- Vercel deployment `dpl_Cqb9tNErhi3zCESYsNsttbqRUziT` reached `READY` and was
+- Vercel deployment `dpl_9FRaok8hK8sddmbGBL3RvkMM9fLs` reached `READY` and was
   aliased to `https://caseflow-store.vercel.app`.
 - `vercel inspect https://caseflow-store.vercel.app`: passed; alias points to
-  deployment `dpl_Cqb9tNErhi3zCESYsNsttbqRUziT`.
+  deployment `dpl_9FRaok8hK8sddmbGBL3RvkMM9fLs`.
 - Production V18 bookstore experience verifier passed with zero findings.
 - Production catalog verifier passed with 500 editions and 21 pages.
 - Production release smoke passed with public pages, language mode, catalog

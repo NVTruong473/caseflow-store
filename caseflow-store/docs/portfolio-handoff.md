@@ -3,7 +3,7 @@
 - Latest release: `v1.8.0`
 - Production URL: `https://caseflow-store.vercel.app`
 - GitHub Release: `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.8.0`
-- Vercel deployment: `dpl_Cqb9tNErhi3zCESYsNsttbqRUziT`
+- Vercel deployment: `dpl_9FRaok8hK8sddmbGBL3RvkMM9fLs`
 - Project type: full-stack bookstore and small-business operations portfolio
 - Stack: Next.js 16, React 19, TypeScript 5, Tailwind CSS 4, Supabase
   PostgreSQL/Auth/RLS, Zod, Playwright, Vercel

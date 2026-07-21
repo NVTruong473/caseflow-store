@@ -73,7 +73,7 @@
   was performed.
 - `V18-T02` was completed on 2026-07-21 as the v1.8.0 production release:
   pushed commit `b93175b` to `origin/main`, deployed Vercel production
-  deployment `dpl_Cqb9tNErhi3zCESYsNsttbqRUziT`, verified the alias
+  deployment `dpl_9FRaok8hK8sddmbGBL3RvkMM9fLs`, verified the alias
   `https://caseflow-store.vercel.app`, passed production V18 bookstore
   experience, catalog, release smoke, security posture, QR production-safety,
   and final QA smoke gates, updated release documentation, and created the
