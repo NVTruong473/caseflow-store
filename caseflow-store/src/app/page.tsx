@@ -79,7 +79,11 @@ const homeCopy = {
     heroQuickLinksTitle: "Popular paths",
     heroSearchButton: "Search catalog",
     heroSearchLabel: "Search by title, author, or ISBN",
-    heroSearchPlaceholder: "Try Dracula, Sherlock Holmes, or 978...",
+    heroSearchPlaceholder: "Title, author, or ISBN",
+    heroSignupVoucherCta: "Register for codes",
+    heroSignupVoucherDescription:
+      "New customer accounts receive 3 welcome codes for the first orders.",
+    heroSignupVoucherTitle: "Sign up and get discount codes",
     heroShelfDescription:
       "Current front-table picks from the live catalog, with price and stock visible before opening the detail page.",
     heroShelfTitle: "Front table now",
@@ -155,7 +159,11 @@ const homeCopy = {
     heroQuickLinksTitle: "Lối vào nhanh",
     heroSearchButton: "Tìm trong catalog",
     heroSearchLabel: "Tìm theo tên sách, tác giả hoặc ISBN",
-    heroSearchPlaceholder: "Thử Dracula, Sherlock Holmes hoặc 978...",
+    heroSearchPlaceholder: "Tên sách, tác giả hoặc ISBN",
+    heroSignupVoucherCta: "Đăng ký nhận mã",
+    heroSignupVoucherDescription:
+      "Tài khoản khách hàng mới nhận 3 mã chào mừng cho các đơn đầu tiên.",
+    heroSignupVoucherTitle: "Đăng ký ngay để nhận mã giảm giá",
     heroShelfDescription:
       "Các ấn bản đang nằm trên bàn trưng bày, lấy từ catalog hiện tại với giá và tồn kho rõ trước khi mở trang chi tiết.",
     heroShelfTitle: "Bàn sách hôm nay",
@@ -431,14 +439,14 @@ export default async function Home() {
       data-homepage-total-editions={records.length}
     >
       <section
-        className="case-home-retail-hero border-b border-border"
+        className="case-home-retail-hero border-b border-primary/20"
         data-home-section="hero"
       >
         <Container className="grid gap-case-xl py-case-xl md:grid-cols-[minmax(0,0.92fr)_minmax(380px,1.08fr)] md:items-center lg:py-case-2xl">
-          <div className="flex min-w-0 flex-col gap-case-lg border-l-4 border-reading-rule pl-case-md md:pl-case-lg">
+          <div className="flex min-w-0 flex-col gap-case-lg border-l-4 border-primary pl-case-md md:pl-case-lg">
             <div className="flex flex-col gap-case-sm">
               <Badge
-                className="border-discovery bg-discovery-muted text-discovery"
+                className="border-primary bg-primary/10 text-primary"
                 variant="primary"
               >
                 {copy.sectionLabel}
@@ -453,7 +461,7 @@ export default async function Home() {
 
             <form
               action="/catalog"
-              className="case-home-search-panel grid gap-case-sm rounded-lg border border-border bg-surface p-case-sm sm:grid-cols-[minmax(0,1fr)_auto]"
+              className="case-home-search-panel grid gap-case-sm rounded-lg border border-primary/20 bg-surface p-case-sm sm:grid-cols-[minmax(0,1fr)_auto]"
               data-home-hero-search
             >
               <label className="sr-only" htmlFor="home-catalog-search">
@@ -482,7 +490,7 @@ export default async function Home() {
                 {heroQuickLinks.map((category) => (
                   <Link
                     key={category.id}
-                    className="rounded-md border border-border bg-surface px-3 py-2 text-small font-medium text-foreground transition-colors hover:border-primary hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary motion-reduce:transition-none"
+                    className="rounded-md border border-border bg-surface px-3 py-2 text-small font-medium text-foreground transition-colors hover:border-primary hover:bg-primary/5 hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary motion-reduce:transition-none"
                     data-home-hero-quick-link={category.slug}
                     href={`/catalog?category=${category.slug}`}
                   >
@@ -490,6 +498,25 @@ export default async function Home() {
                   </Link>
                 ))}
               </div>
+            </div>
+
+            <div
+              className="rounded-lg border border-primary/20 bg-surface p-case-md"
+              data-home-signup-voucher-promo
+            >
+              <p className="font-semibold text-foreground">
+                {copy.heroSignupVoucherTitle}
+              </p>
+              <p className="mt-case-xs text-small leading-6 text-text-muted">
+                {copy.heroSignupVoucherDescription}
+              </p>
+              <Link
+                href="/account"
+                className="mt-case-sm inline-flex min-h-10 items-center justify-center rounded-md border border-primary bg-primary px-3 text-small font-semibold text-surface transition-colors hover:bg-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary motion-reduce:transition-none"
+                data-home-signup-voucher-cta
+              >
+                {copy.heroSignupVoucherCta}
+              </Link>
             </div>
 
             <div className="flex flex-col gap-case-sm sm:flex-row">
@@ -502,7 +529,7 @@ export default async function Home() {
               </Link>
               <Link
                 href="/orders/track"
-                className="inline-flex min-h-11 w-full items-center justify-center rounded-md border border-border bg-surface px-4 py-2 text-body font-medium text-foreground transition-colors hover:border-primary hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary motion-reduce:transition-none sm:w-auto"
+                className="inline-flex min-h-11 w-full items-center justify-center rounded-md border border-primary/25 bg-surface px-4 py-2 text-body font-medium text-primary transition-colors hover:border-primary hover:bg-primary/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary motion-reduce:transition-none sm:w-auto"
                 data-home-cta="track-order"
               >
                 {copy.trackOrder}
@@ -532,19 +559,19 @@ export default async function Home() {
           </div>
 
           <div
-            className="case-home-retail-window min-w-0 rounded-lg border border-border p-case-md shadow-[var(--case-shadow-soft)] md:p-case-lg"
+              className="case-home-retail-window min-w-0 rounded-lg border border-primary/20 p-case-md shadow-[var(--case-shadow-soft)] md:p-case-lg"
             data-home-hero-books
           >
             <div className="flex min-w-0 flex-col gap-case-xs sm:flex-row sm:items-start sm:justify-between">
               <div className="min-w-0">
-                <p className="text-small font-semibold uppercase text-reading-rule">
+                <p className="text-small font-semibold uppercase text-primary">
                   {copy.heroShelfTitle}
                 </p>
                 <p className="mt-1 max-w-xl text-small leading-6 text-text-muted">
                   {copy.heroShelfDescription}
                 </p>
               </div>
-              <Badge className="shrink-0 border-primary bg-discovery-muted text-primary">
+              <Badge className="shrink-0 border-primary bg-primary/10 text-primary">
                 {records.length.toLocaleString(language === "vi" ? "vi-VN" : "en-US")}{" "}
                 {copy.editions}
               </Badge>
@@ -586,7 +613,7 @@ export default async function Home() {
 
         <section
           id="featured"
-          className="flex flex-col gap-case-lg"
+          className="case-retail-red-band rounded-lg border border-primary/15 p-case-md md:p-case-lg"
           data-home-section="featured"
           data-home-shelf={editorShelf?.shelf.slug ?? "editor-picks"}
         >
@@ -616,7 +643,7 @@ export default async function Home() {
 
         <section
           id="weekend-starter"
-          className="grid gap-case-lg lg:grid-cols-[minmax(0,1fr)_minmax(320px,420px)]"
+          className="grid gap-case-lg rounded-lg border border-border/80 bg-surface/70 p-case-md lg:grid-cols-[minmax(0,1fr)_minmax(320px,420px)] lg:p-case-lg"
           data-home-section="weekend-starter"
           data-home-shelf={weekendShelf?.shelf.slug ?? "weekend-starter-set"}
         >

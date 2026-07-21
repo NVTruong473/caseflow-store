@@ -1,5 +1,9 @@
 import { mapBookPromotionRowToDomain } from "@/lib/supabase/book-mappers";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
+import {
+  findCustomerSignupVoucherForCode,
+  isSignupVoucherCode,
+} from "@/lib/repositories/supabase-customer-vouchers";
 import type {
   AdminBookPromotionCreateInput,
   AdminBookPromotionUpdateInput,
@@ -11,6 +15,7 @@ export type PromotionEvaluationResult =
   | {
       success: true;
       discountTotalVnd: number;
+      isCustomerSignupVoucher: boolean;
       promotion: BookPromotion;
     }
   | {
@@ -89,10 +94,12 @@ export async function updateSupabaseAdminBookPromotion(
 
 export async function evaluateSupabaseBookPromotion({
   code,
+  customerId,
   now = new Date(),
   subtotalVnd,
 }: {
   code: string;
+  customerId?: string;
   now?: Date;
   subtotalVnd: number;
 }): Promise<PromotionEvaluationResult> {
@@ -131,9 +138,58 @@ export async function evaluateSupabaseBookPromotion({
     };
   }
 
+  if (isSignupVoucherCode(promotion.code)) {
+    if (!customerId) {
+      return {
+        success: false,
+        code: "PROMOTION_INVALID",
+        message: "Sign in with the account that received this voucher",
+      };
+    }
+
+    const voucher = await findCustomerSignupVoucherForCode({
+      code: promotion.code,
+      customerId,
+      now,
+    });
+
+    if (!voucher) {
+      return {
+        success: false,
+        code: "PROMOTION_INVALID",
+        message: "This voucher was not issued to this account",
+      };
+    }
+
+    if (voucher.status === "used") {
+      return {
+        success: false,
+        code: "PROMOTION_INVALID",
+        message: "This account voucher has already been used",
+      };
+    }
+
+    if (voucher.status === "expired") {
+      return {
+        success: false,
+        code: "PROMOTION_INVALID",
+        message: "This account voucher has expired",
+      };
+    }
+
+    if (voucher.status === "reserved") {
+      return {
+        success: false,
+        code: "PROMOTION_INVALID",
+        message: "This voucher is already reserved by another checkout attempt",
+      };
+    }
+  }
+
   return {
     success: true,
     discountTotalVnd: calculatePromotionDiscount(promotion, subtotalVnd),
+    isCustomerSignupVoucher: isSignupVoucherCode(promotion.code),
     promotion,
   };
 }

@@ -46,6 +46,7 @@ import type {
   PaymentMethod,
   ShippingAddress,
   ShippingMethod,
+  CustomerSignupVoucher,
 } from "@/types/domain";
 
 type ApiErrorBody = {
@@ -213,7 +214,17 @@ const checkoutCopy = {
     placeOrder: "Place order",
     promotionCode: "Promotion code",
     promotionDiscount: "Promotion discount",
-    promotionHint: "Optional",
+    promotionHint:
+      "Use one account welcome code per order, or enter another active store code.",
+    promotionVoucherApplied: "Applied",
+    promotionVoucherApply: "Use this code",
+    promotionVoucherDescription:
+      "Your account includes welcome codes from registration. Only one code can be applied to this order.",
+    promotionVoucherExpired: "Expired",
+    promotionVoucherReserved: "Reserved",
+    promotionVoucherTitle: "Available account codes",
+    promotionVoucherUsed: "Used",
+    promotionVoucherValidUntil: "Valid until",
     policyLinksTitle: "Store policies",
     profileComplete:
       "Customer profile is complete. Checkout details are prefilled from your account where available.",
@@ -344,7 +355,17 @@ const checkoutCopy = {
     placeOrder: "Đặt đơn",
     promotionCode: "Mã khuyến mãi",
     promotionDiscount: "Giảm giá",
-    promotionHint: "Không bắt buộc",
+    promotionHint:
+      "Mỗi đơn dùng một mã chào mừng của tài khoản, hoặc nhập mã cửa hàng còn hiệu lực.",
+    promotionVoucherApplied: "Đã áp dụng",
+    promotionVoucherApply: "Dùng mã này",
+    promotionVoucherDescription:
+      "Tài khoản của bạn có mã chào mừng từ lúc đăng ký. Mỗi đơn chỉ áp dụng một mã.",
+    promotionVoucherExpired: "Hết hạn",
+    promotionVoucherReserved: "Đang giữ",
+    promotionVoucherTitle: "Mã tài khoản có thể dùng",
+    promotionVoucherUsed: "Đã dùng",
+    promotionVoucherValidUntil: "Hạn dùng",
     policyLinksTitle: "Chính sách cửa hàng",
     profileComplete:
       "Hồ sơ khách hàng đã đủ. Thông tin thanh toán được điền từ tài khoản nếu có.",
@@ -391,11 +412,13 @@ export function CheckoutPage({
   customerAuthState,
   language,
   qrDemoPaymentsEnabled,
+  signupVouchers,
 }: {
   currencyRules: CurrencyDisplayRules;
   customerAuthState: CustomerAuthState;
   language: Language;
   qrDemoPaymentsEnabled: boolean;
+  signupVouchers: CustomerSignupVoucher[];
 }) {
   const copy = checkoutCopy[language];
   const { clearCart, hasLoadedStorage, items, openCart, totalQuantity } =
@@ -408,6 +431,14 @@ export function CheckoutPage({
   const [paymentMethod, setPaymentMethod] =
     React.useState<PaymentMethod>("cod");
   const [promotionCode, setPromotionCode] = React.useState("");
+  const estimatedPromotionDiscountVnd =
+    reviewState.status === "success"
+      ? getSelectedSignupVoucherDiscountVnd({
+          promotionCode,
+          subtotalVnd: reviewState.data.subtotal,
+          vouchers: signupVouchers,
+        })
+      : 0;
 
   React.useEffect(() => {
     if (!hasLoadedStorage) {
@@ -504,6 +535,7 @@ export function CheckoutPage({
               items={items}
               language={language}
               paymentMethod={paymentMethod}
+              estimatedPromotionDiscountVnd={estimatedPromotionDiscountVnd}
               promotionCode={promotionCode}
               qrDemoPaymentsEnabled={qrDemoPaymentsEnabled}
               reviewState={reviewState}
@@ -511,6 +543,7 @@ export function CheckoutPage({
               setPromotionCode={setPromotionCode}
               setShippingMethod={setShippingMethod}
               shippingMethod={shippingMethod}
+              signupVouchers={signupVouchers}
             />
             <CheckoutCartReview
               clearCart={clearCart}
@@ -519,6 +552,7 @@ export function CheckoutPage({
               language={language}
               openCart={openCart}
               paymentMethod={paymentMethod}
+              estimatedPromotionDiscountVnd={estimatedPromotionDiscountVnd}
               reviewState={reviewState}
               shippingMethod={shippingMethod}
               totalQuantity={totalQuantity}
@@ -740,6 +774,7 @@ function CheckoutDetailsForm({
   items,
   language,
   paymentMethod,
+  estimatedPromotionDiscountVnd,
   promotionCode,
   qrDemoPaymentsEnabled,
   reviewState,
@@ -747,6 +782,7 @@ function CheckoutDetailsForm({
   setPromotionCode,
   setShippingMethod,
   shippingMethod,
+  signupVouchers,
 }: {
   clearCart: () => void;
   copy: (typeof checkoutCopy)[Language];
@@ -755,6 +791,7 @@ function CheckoutDetailsForm({
   items: CartItem[];
   language: Language;
   paymentMethod: PaymentMethod;
+  estimatedPromotionDiscountVnd: number;
   promotionCode: string;
   qrDemoPaymentsEnabled: boolean;
   reviewState: CartReviewState;
@@ -762,6 +799,7 @@ function CheckoutDetailsForm({
   setPromotionCode: (promotionCode: string) => void;
   setShippingMethod: (shippingMethod: ShippingMethod) => void;
   shippingMethod: ShippingMethod;
+  signupVouchers: CustomerSignupVoucher[];
 }) {
   const router = useRouter();
   const initialValues = React.useMemo(
@@ -1037,7 +1075,18 @@ function CheckoutDetailsForm({
         </CheckoutStep>
 
         <CheckoutStep title={copy.promotionCode}>
+          <CheckoutVoucherChooser
+            copy={copy}
+            language={language}
+            promotionCode={promotionCode}
+            setPromotionCode={(code) => {
+              setPromotionCode(code);
+              setSubmitState({ status: "idle" });
+            }}
+            vouchers={signupVouchers}
+          />
           <Input
+            id="checkout-promotion-code"
             label={copy.promotionCode}
             value={promotionCode}
             onChange={(event) => {
@@ -1059,6 +1108,7 @@ function CheckoutDetailsForm({
               copy={copy}
               currencyRules={currencyRules}
               data={reviewState.data}
+              discountTotalVnd={estimatedPromotionDiscountVnd}
               language={language}
               paymentMethod={paymentMethod}
               shippingMethod={shippingMethod}
@@ -1144,6 +1194,86 @@ function CheckoutStep({
       </div>
       {children}
     </section>
+  );
+}
+
+function CheckoutVoucherChooser({
+  copy,
+  language,
+  promotionCode,
+  setPromotionCode,
+  vouchers,
+}: {
+  copy: (typeof checkoutCopy)[Language];
+  language: Language;
+  promotionCode: string;
+  setPromotionCode: (code: string) => void;
+  vouchers: CustomerSignupVoucher[];
+}) {
+  if (vouchers.length === 0) {
+    return null;
+  }
+
+  return (
+    <div
+      className="case-retail-red-band rounded-lg border border-primary/20 p-case-md"
+      data-checkout-signup-vouchers
+    >
+      <div className="flex min-w-0 flex-col gap-case-xs">
+        <Badge variant="primary">{copy.promotionVoucherTitle}</Badge>
+        <p className="text-small leading-6 text-text-muted">
+          {copy.promotionVoucherDescription}
+        </p>
+      </div>
+      <div className="mt-case-md grid gap-case-sm md:grid-cols-3">
+        {vouchers.map((voucher) => {
+          const isAvailable = voucher.status === "available";
+          const isSelected = promotionCode.trim().toUpperCase() === voucher.code;
+
+          return (
+            <div
+              key={voucher.id}
+              className="flex min-w-0 flex-col gap-case-sm rounded-md border border-border bg-surface p-case-sm"
+              data-checkout-signup-voucher={voucher.code}
+              data-checkout-signup-voucher-status={voucher.status}
+            >
+              <div className="min-w-0">
+                <p className="font-semibold text-foreground">{voucher.code}</p>
+                <p className="mt-1 text-small leading-6 text-text-muted">
+                  {voucher.name[language]}
+                </p>
+                <p className="mt-1 text-small font-semibold text-primary">
+                  {getVoucherDiscountLabel(voucher, language)}
+                </p>
+                <p className="mt-1 text-small text-text-muted">
+                  {copy.promotionVoucherValidUntil}:{" "}
+                  {formatCheckoutVoucherDate(voucher.expiresAt, language)}
+                </p>
+              </div>
+              {isAvailable ? (
+                <Button
+                  type="button"
+                  variant={isSelected ? "primary" : "secondary"}
+                  onClick={() => setPromotionCode(voucher.code)}
+                  data-checkout-apply-signup-voucher={voucher.code}
+                >
+                  {isSelected
+                    ? copy.promotionVoucherApplied
+                    : copy.promotionVoucherApply}
+                </Button>
+              ) : (
+                <Badge
+                  className="self-start"
+                  variant={getCheckoutVoucherBadgeVariant(voucher.status)}
+                >
+                  {getCheckoutVoucherStatusLabel(voucher.status, copy)}
+                </Badge>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
 }
 
@@ -1403,6 +1533,7 @@ function CheckoutCartReview({
   language,
   openCart,
   paymentMethod,
+  estimatedPromotionDiscountVnd,
   reviewState,
   shippingMethod,
   totalQuantity,
@@ -1413,6 +1544,7 @@ function CheckoutCartReview({
   language: Language;
   openCart: () => void;
   paymentMethod: PaymentMethod;
+  estimatedPromotionDiscountVnd: number;
   reviewState: CartReviewState;
   shippingMethod: ShippingMethod;
   totalQuantity: number;
@@ -1547,6 +1679,7 @@ function CheckoutCartReview({
             copy={copy}
             currencyRules={currencyRules}
             data={reviewState.data}
+            discountTotalVnd={estimatedPromotionDiscountVnd}
             language={language}
             paymentMethod={paymentMethod}
             shippingMethod={shippingMethod}
@@ -1561,6 +1694,7 @@ function CheckoutOrderSummary({
   copy,
   currencyRules,
   data,
+  discountTotalVnd,
   language,
   paymentMethod,
   shippingMethod,
@@ -1568,6 +1702,7 @@ function CheckoutOrderSummary({
   copy: (typeof checkoutCopy)[Language];
   currencyRules: CurrencyDisplayRules;
   data: CartValidationData;
+  discountTotalVnd: number;
   language: Language;
   paymentMethod: PaymentMethod;
   shippingMethod: ShippingMethod;
@@ -1599,6 +1734,7 @@ function CheckoutOrderSummary({
         copy={copy}
         currencyRules={currencyRules}
         data={data}
+        discountTotalVnd={discountTotalVnd}
         language={language}
         paymentMethod={paymentMethod}
         shippingMethod={shippingMethod}
@@ -1616,6 +1752,7 @@ function CheckoutTotalsBreakdown({
   copy,
   currencyRules,
   data,
+  discountTotalVnd,
   language,
   paymentMethod,
   shippingMethod,
@@ -1624,6 +1761,7 @@ function CheckoutTotalsBreakdown({
   copy: (typeof checkoutCopy)[Language];
   currencyRules: CurrencyDisplayRules;
   data: CartValidationData;
+  discountTotalVnd?: number;
   language: Language;
   paymentMethod: PaymentMethod;
   shippingMethod: ShippingMethod;
@@ -1634,6 +1772,7 @@ function CheckoutTotalsBreakdown({
   const itemCount = getValidatedItemCount(data);
   const totals = calculateBookCheckoutTotals({
     currencyRules,
+    discountTotalVnd,
     includeDisplayEstimate: language === "en",
     paymentMethod,
     shippingMethod,
@@ -1757,6 +1896,68 @@ function formatDisplayTimestamp(value: string) {
     timeZoneName: "short",
     year: "numeric",
   }).format(date);
+}
+
+function getVoucherDiscountLabel(
+  voucher: CustomerSignupVoucher,
+  language: Language,
+) {
+  if (voucher.discountType === "fixed-vnd") {
+    return formatVnd(voucher.amountVnd ?? 0);
+  }
+
+  return language === "vi"
+    ? `Giảm ${((voucher.percentageBasisPoints ?? 0) / 100).toLocaleString("vi-VN")}%`
+    : `${((voucher.percentageBasisPoints ?? 0) / 100).toLocaleString("en-US")}% off`;
+}
+
+function getSelectedSignupVoucherDiscountVnd({
+  promotionCode,
+  subtotalVnd,
+  vouchers,
+}: {
+  promotionCode: string;
+  subtotalVnd: number;
+  vouchers: CustomerSignupVoucher[];
+}) {
+  const normalizedCode = promotionCode.trim().toUpperCase();
+  const voucher = vouchers.find(
+    (item) => item.code === normalizedCode && item.status === "available",
+  );
+
+  if (!voucher || subtotalVnd <= 0) {
+    return 0;
+  }
+
+  if (voucher.discountType === "fixed-vnd") {
+    return Math.min(voucher.amountVnd ?? 0, subtotalVnd);
+  }
+
+  return Math.min(
+    Math.round((subtotalVnd * (voucher.percentageBasisPoints ?? 0)) / 10_000),
+    subtotalVnd,
+  );
+}
+
+function getCheckoutVoucherStatusLabel(
+  status: CustomerSignupVoucher["status"],
+  copy: (typeof checkoutCopy)[Language],
+) {
+  if (status === "used") return copy.promotionVoucherUsed;
+  if (status === "expired") return copy.promotionVoucherExpired;
+  return copy.promotionVoucherReserved;
+}
+
+function getCheckoutVoucherBadgeVariant(status: CustomerSignupVoucher["status"]) {
+  if (status === "reserved") return "warning";
+  if (status === "used") return "neutral";
+  return "error";
+}
+
+function formatCheckoutVoucherDate(value: string, language: Language) {
+  return new Intl.DateTimeFormat(language === "vi" ? "vi-VN" : "en-US", {
+    dateStyle: "medium",
+  }).format(new Date(value));
 }
 
 function getFormatLabel(format: BookFormat, language: Language) {

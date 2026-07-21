@@ -1,5 +1,6 @@
 import { apiError, apiSuccess } from "@/lib/api/response";
 import { ensureCustomerProfileForAuthUser } from "@/lib/auth/customer";
+import { ensureCustomerSignupVouchers } from "@/lib/repositories/supabase-customer-vouchers";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { customerSessionRequestSchema } from "@/lib/validation/auth";
 
@@ -61,6 +62,18 @@ export async function POST(request: Request) {
         {
           code: "CUSTOMER_PROFILE_UNAVAILABLE",
           message: profileResult.message,
+        },
+        503,
+      );
+    }
+
+    try {
+      await ensureCustomerSignupVouchers(profileResult.user.id);
+    } catch {
+      return apiError(
+        {
+          code: "PROMOTION_WRITE_FAILED",
+          message: "Customer account was created but welcome vouchers could not be issued",
         },
         503,
       );

@@ -964,6 +964,82 @@ export type Database = {
         };
         Relationships: [];
       };
+      customer_promotion_vouchers: {
+        Row: {
+          id: string;
+          customer_id: string;
+          promotion_id: string;
+          code: string;
+          source: "signup";
+          issued_at: string;
+          activated_at: string;
+          expires_at: string;
+          reserved_at: string | null;
+          reservation_token: string | null;
+          reservation_expires_at: string | null;
+          used_at: string | null;
+          used_order_id: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          customer_id: string;
+          promotion_id: string;
+          code: string;
+          source?: "signup";
+          issued_at?: string;
+          activated_at?: string;
+          expires_at: string;
+          reserved_at?: string | null;
+          reservation_token?: string | null;
+          reservation_expires_at?: string | null;
+          used_at?: string | null;
+          used_order_id?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          customer_id?: string;
+          promotion_id?: string;
+          code?: string;
+          source?: "signup";
+          issued_at?: string;
+          activated_at?: string;
+          expires_at?: string;
+          reserved_at?: string | null;
+          reservation_token?: string | null;
+          reservation_expires_at?: string | null;
+          used_at?: string | null;
+          used_order_id?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "customer_promotion_vouchers_customer_id_fkey";
+            columns: ["customer_id"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "customer_promotion_vouchers_promotion_id_fkey";
+            columns: ["promotion_id"];
+            isOneToOne: false;
+            referencedRelation: "book_promotions";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "customer_promotion_vouchers_used_order_id_fkey";
+            columns: ["used_order_id"];
+            isOneToOne: false;
+            referencedRelation: "orders";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
       orders: {
         Row: {
           id: string;

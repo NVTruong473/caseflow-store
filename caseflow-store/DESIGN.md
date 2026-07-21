@@ -6,21 +6,21 @@ project: CaseFlow Store
 purpose: Keep UI decisions stable across AI coding sessions
 tokens:
   colors:
-    background: "#FBFAF7"
-    surface: "#FFFDF8"
-    surfaceMuted: "#EEF2EB"
+    background: "#F6F1E9"
+    surface: "#FFFAF2"
+    surfaceMuted: "#F0E8DC"
     text: "#1F1B16"
-    textMuted: "#6F665C"
-    border: "#D8D2C7"
-    primary: "#176B5B"
-    primaryHover: "#0F5146"
-    accent: "#B7791F"
+    textMuted: "#675F56"
+    border: "#DDD0BF"
+    primary: "#C92127"
+    primaryHover: "#9F171D"
+    accent: "#D86F17"
     editorial: "#8F2440"
     editorialMuted: "#F8E6EC"
     discovery: "#176B5B"
     discoveryMuted: "#E4F2ED"
-    offer: "#B7791F"
-    offerMuted: "#FFF3D6"
+    offer: "#C66A05"
+    offerMuted: "#FFF1D6"
     translation: "#B04436"
     translationMuted: "#FBE6DF"
     academic: "#2F5D8C"
@@ -33,8 +33,8 @@ tokens:
     adminMuted: "#E7EDF3"
     operations: "#364152"
     operationsMuted: "#E8EDF2"
-    paper: "#FBFAF7"
-    paperDeep: "#EADCC6"
+    paper: "#F8F1E6"
+    paperDeep: "#E8D7BD"
     ink: "#1F1B16"
     success: "#247857"
     warning: "#A16207"
@@ -70,7 +70,7 @@ CaseFlow Books should feel like a practical specialist bookstore and small-busin
 - Clean, commerce-focused, and book-led.
 - Mobile-first with a strong desktop layout.
 - Book covers, edition metadata, and merchandising shelves are the main visual signal.
-- Use a balanced bookstore palette: warm paper/ink foundations, moss/teal for discovery, wine for editorial emphasis, amber for offers, and navy for admin trust surfaces.
+- Use a balanced bookstore palette: warm paper/ink foundations, retail red for primary commerce actions, teal for trust/discovery surfaces, wine for editorial emphasis, amber for offers, and navy for admin trust surfaces.
 - For v1.4 merchandising variety, use role-based accents rather than recoloring one repeated card: clay red for translation pairs, ink blue for academic/classic detail, muted teal for trust and service surfaces, olive for new-arrival/reading-path surfaces, amber only for real offers, and graphite/navy for operations.
 - Avoid overly decorative gradients, floating blobs, oversized hero cards, or animation-heavy UI.
 - Use restrained polish: consistent spacing, clear hierarchy, good focus states, stable layouts, and visible cover density.
@@ -91,7 +91,7 @@ CaseFlow Books should feel like a practical specialist bookstore and small-busin
 
 ### Buttons
 
-- Primary action: moss/teal background, white text.
+- Primary action: retail red background, white text.
 - Secondary action: white background, border.
 - Destructive action: error color.
 - Every button must have hover, focus, disabled, and loading states when relevant.

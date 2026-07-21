@@ -21,6 +21,7 @@ evidence, and portfolio notes.
   mode.
 - Account-gated checkout with simulated COD, bank transfer, wallet/provider
   choices, and development-only QR demo payment flows.
+- Account-bound signup welcome vouchers with one-code-per-order enforcement.
 - Customer order history, eligible order cancellation, and guarded public
   tracking.
 - Admin/staff dashboard, order operations, catalog, inventory, promotions,
@@ -67,20 +68,20 @@ runtime.
 
 ## Latest release evidence
 
-- Release tag: `v1.8.0`
+- Release tag: `v1.10.0`
 - GitHub Release:
-  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.8.0`
+  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.10.0`
 - Production alias: `https://caseflow-store.vercel.app`
-- Vercel deployment ID: `dpl_9FRaok8hK8sddmbGBL3RvkMM9fLs`
+- Vercel deployment ID: recorded in the GitHub Release and `.agent` artifacts
+  after `SIGNUPVOUCHER-T02` production deploy.
 - Local gates: TypeScript, ESLint, production build, full Playwright `20/20`,
-  V18 bookstore experience verifier, 500-edition catalog verifier, QR
-  production-safety verifier, security posture verifier, final QA smoke,
-  dependency audit at high threshold, and `git diff --check` passed.
-- Production smoke: V18 bookstore experience verifier, 500-edition catalog
-  verifier, release smoke, security posture, final QA smoke, and QR
-  production-safety lock passed.
+  signup voucher verifier, QR production-safety verifier, security posture
+  verifier, final QA smoke, and `git diff --check` passed.
+- Production smoke: signup voucher verifier, release smoke, security posture,
+  final QA smoke, and QR production-safety lock are required before publishing
+  the final `v1.10.0` GitHub Release.
 - Release notes:
-  [`docs/v1.8.0-modern-editorial-bookstore-release-notes.md`](docs/v1.8.0-modern-editorial-bookstore-release-notes.md)
+  [`docs/v1.10.0-account-bound-signup-voucher-release-notes.md`](docs/v1.10.0-account-bound-signup-voucher-release-notes.md)
 - Known boundaries: simulated payments, QR demo locked from production
   settlement, no real SMS/OTP, no real shipping carrier integration, and no
   commercial book-cover hotlinking.

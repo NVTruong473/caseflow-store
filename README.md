@@ -7,17 +7,17 @@ the `v1.3` visual merchandising polish, the `v1.3.1` compact-card hotfix,
 the `v1.4` real-commerce visual merchandising release, the `v1.5.0` QR
 demo payment release, the `v1.6.0` retail catalog scale release, the
 `v1.7.0` UI humanization release, and the `v1.8.0` modern editorial bookstore
-release into a Vietnam-first, bilingual e-commerce application for book
-discovery, account-gated checkout, customer order history/cancellation, order
-tracking, and admin/staff operations. The latest release keeps the
-500-edition catalog while adding search-first navigation, live category
-discovery, cover provenance evidence, restrained motion, and production-tested
-bookstore UX polish.
+release, the `v1.9.0` real-cover commerce polish, and the `v1.10.0`
+account-bound signup voucher release into a Vietnam-first, bilingual
+e-commerce application for book discovery, account-gated checkout, customer
+order history/cancellation, order tracking, and admin/staff operations. The
+latest release keeps the 500-edition catalog while adding real-cover retail
+polish and account-bound welcome vouchers for customer conversion.
 
 [Open the production deployment](https://caseflow-store.vercel.app)
 
 Latest release:
-[`v1.8.0`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.8.0)
+[`v1.10.0`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.10.0)
 
 > Payments are simulated. The app does not collect card numbers, CVV, card
 > expiry, real bank credentials, or real MoMo/ZaloPay/VNPay credentials. QR
@@ -79,6 +79,8 @@ Latest release:
   assumptions.
 - Use a local cart that stores only edition IDs and quantities.
 - Require customer login and a checkout-ready profile before order submission.
+- Grant activated customer accounts 3 welcome voucher codes and enforce one
+  owned code per order.
 - Complete simulated COD, bank transfer, wallet/provider-style checkout flows,
   plus development-only QR demo payment verification.
 - View customer order history, cancel eligible orders, and use guarded public
@@ -137,13 +139,14 @@ Latest release:
 
 | Gate | Result |
 |---|---|
-| Release tag | `v1.8.0` |
-| GitHub Release | [`CaseFlow Books v1.8.0 - Modern Editorial Bookstore`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.8.0) |
+| Release tag | `v1.10.0` |
+| GitHub Release | [`CaseFlow Books v1.10.0 - Account-Bound Signup Vouchers`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.10.0) |
 | Production URL | `https://caseflow-store.vercel.app` |
-| Vercel deployment | `READY`, deployment `dpl_9FRaok8hK8sddmbGBL3RvkMM9fLs` |
+| Vercel deployment | `READY`, deployment recorded in the GitHub Release after `SIGNUPVOUCHER-T02` |
 | TypeScript | `npx tsc --noEmit --pretty false` passed |
 | ESLint | `npm run lint` passed |
 | Production build | 51 App Router routes plus proxy generated |
+| Signup voucher QA | 3 account codes granted, homepage/account CTAs visible, checkout applies `WELCOME30K`, persisted 30,000 VND discount, reuse rejected, cross-account use rejected, multi-code request rejected, used voucher relation verified |
 | Modern bookstore QA | Search-first header, live category menu, mobile search/category links, cover provenance manifest, object-contain covers, product-card motion, back-to-top, no-overflow screenshots, and reduced-motion guard passed |
 | QR demo payment QA | Local QR flow, VietQR CRC, mock webhook HMAC, idempotency, production-safety lock, and UI regression checks passed |
 | Production QA | V18 bookstore verifier, release smoke, 500-edition catalog verifier, security posture, final QA smoke, and QR production-safety lock passed |
@@ -168,6 +171,8 @@ Release evidence is recorded in
 [`caseflow-store/docs/v1.6.0-retail-catalog-scale-release-notes.md`](caseflow-store/docs/v1.6.0-retail-catalog-scale-release-notes.md),
 [`caseflow-store/docs/v1.7.0-ui-humanization-release-notes.md`](caseflow-store/docs/v1.7.0-ui-humanization-release-notes.md),
 [`caseflow-store/docs/v1.8.0-modern-editorial-bookstore-release-notes.md`](caseflow-store/docs/v1.8.0-modern-editorial-bookstore-release-notes.md),
+[`caseflow-store/docs/v1.9.0-real-cover-commerce-polish-release-notes.md`](caseflow-store/docs/v1.9.0-real-cover-commerce-polish-release-notes.md),
+[`caseflow-store/docs/v1.10.0-account-bound-signup-voucher-release-notes.md`](caseflow-store/docs/v1.10.0-account-bound-signup-voucher-release-notes.md),
 and `.agent/step-results.md`.
 
 ## Portfolio handoff

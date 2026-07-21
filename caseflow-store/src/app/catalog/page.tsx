@@ -326,10 +326,10 @@ export default async function CatalogPage({ searchParams }: CatalogPageProps) {
           </span>
         </nav>
 
-        <section className="grid gap-case-lg border-l-4 border-discovery bg-transparent py-case-md pl-case-md lg:grid-cols-[minmax(0,1fr)_280px]">
+        <section className="case-retail-red-band grid gap-case-lg rounded-lg border border-primary/15 border-l-4 border-l-primary p-case-md lg:grid-cols-[minmax(0,1fr)_280px] lg:p-case-lg">
           <div className="flex min-w-0 flex-col gap-case-sm">
             <Badge
-              className="border-discovery bg-discovery-muted text-discovery"
+                className="border-primary bg-primary/10 text-primary"
               variant="primary"
             >
               {copy.eyebrow}
@@ -346,7 +346,7 @@ export default async function CatalogPage({ searchParams }: CatalogPageProps) {
           </div>
 
           <dl className="grid gap-case-sm sm:grid-cols-2 lg:grid-cols-1">
-            <div className="border-l border-border bg-transparent px-3 py-2">
+            <div className="border-l border-primary/25 bg-surface/60 px-3 py-2">
               <dt className="text-small text-text-muted">
                 {copy.totalEditions}
               </dt>
@@ -354,7 +354,7 @@ export default async function CatalogPage({ searchParams }: CatalogPageProps) {
                 {totalEditions}
               </dd>
             </div>
-            <div className="border-l border-border bg-transparent px-3 py-2">
+            <div className="border-l border-primary/25 bg-surface/60 px-3 py-2">
               <dt className="text-small text-text-muted">{copy.activeView}</dt>
               <dd className="mt-1 text-heading-3 font-semibold text-foreground">
                 {copy.pageOf(currentPage, totalPages)}
@@ -407,13 +407,13 @@ export default async function CatalogPage({ searchParams }: CatalogPageProps) {
         />
 
         <section id="catalog-results" className="flex flex-col gap-case-lg">
-          <div className="flex min-w-0 flex-col gap-case-md rounded-lg border border-border bg-surface p-case-md">
+          <div className="case-retail-ledger flex min-w-0 flex-col gap-case-md rounded-lg border border-primary/15 p-case-md shadow-[var(--case-shadow-soft)]">
             <div className="flex min-w-0 flex-col gap-case-sm sm:flex-row sm:items-center sm:justify-between">
               <h2 className="text-heading-2 font-semibold text-foreground">
                 {copy.breadcrumbCatalog}
               </h2>
               <p
-                className="inline-flex w-fit max-w-full items-center rounded-md border border-border bg-paper px-3 py-1 text-small leading-6 text-text-muted sm:shrink-0 sm:whitespace-nowrap sm:text-right"
+                className="inline-flex w-fit max-w-full items-center rounded-md border border-primary/20 bg-surface px-3 py-1 text-small font-medium leading-6 text-primary sm:shrink-0 sm:whitespace-nowrap sm:text-right"
                 data-catalog-result-count
               >
                 {copy.resultCount(rangeStart, rangeEnd, resultTotal)}
@@ -541,7 +541,7 @@ function CatalogFilterForm({
 }) {
   return (
     <section
-      className="rounded-lg border border-discovery/20 bg-surface p-case-lg shadow-[var(--case-shadow-soft)]"
+      className="case-retail-ledger rounded-lg border border-primary/15 p-case-lg shadow-[var(--case-shadow-soft)]"
       data-catalog-filter-panel
     >
       <div className="flex max-w-3xl flex-col gap-case-sm">

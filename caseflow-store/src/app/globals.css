@@ -1,21 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fbfaf7;
+  --background: #f6f1e9;
   --foreground: #1f1b16;
-  --surface: #fffdf8;
-  --surface-muted: #eef2eb;
-  --text-muted: #6f665c;
-  --border: #d8d2c7;
-  --primary: #176b5b;
-  --primary-hover: #0f5146;
-  --accent: #b7791f;
+  --surface: #fffaf2;
+  --surface-muted: #f0e8dc;
+  --text-muted: #675f56;
+  --border: #ddd0bf;
+  --primary: #c92127;
+  --primary-hover: #9f171d;
+  --accent: #d86f17;
   --editorial: #8f2440;
   --editorial-muted: #f8e6ec;
   --discovery: #176b5b;
   --discovery-muted: #e4f2ed;
-  --offer: #b7791f;
-  --offer-muted: #fff3d6;
+  --offer: #c66a05;
+  --offer-muted: #fff1d6;
   --translation: #b04436;
   --translation-muted: #fbe6df;
   --academic: #2f5d8c;
@@ -28,20 +28,20 @@
   --admin-muted: #e7edf3;
   --operations: #364152;
   --operations-muted: #e8edf2;
-  --reading-table: #f5efe3;
-  --reading-rule: #7a4f24;
-  --paper: #fbfaf7;
-  --paper-deep: #eadcc6;
+  --reading-table: #efe2cc;
+  --reading-rule: #c92127;
+  --paper: #f8f1e6;
+  --paper-deep: #e8d7bd;
   --ink: #1f1b16;
   --success: #247857;
   --warning: #a16207;
   --error: #b42318;
-  --focus-ring: #176b5b;
+  --focus-ring: #c92127;
   --case-radius-sm: 4px;
   --case-radius-md: 6px;
   --case-radius-lg: 8px;
-  --case-shadow-soft: 0 18px 45px rgb(31 27 22 / 0.08);
-  --case-shadow-cover: 0 16px 35px rgb(31 27 22 / 0.18);
+  --case-shadow-soft: 0 18px 45px rgb(63 38 22 / 0.1);
+  --case-shadow-cover: 0 18px 32px rgb(38 24 18 / 0.24);
   --case-duration-instant: 100ms;
   --case-duration-fast: 160ms;
   --case-duration-normal: 240ms;
@@ -130,7 +130,10 @@ html {
 }
 
 body {
-  background: var(--background);
+  background:
+    linear-gradient(180deg, rgb(255 250 242 / 0.72), transparent 360px),
+    radial-gradient(circle at top left, rgb(201 33 39 / 0.045), transparent 280px),
+    var(--background);
   color: var(--foreground);
   font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   font-size: var(--case-text-body);
@@ -170,29 +173,30 @@ body {
 
 .case-home-retail-hero {
   background:
+    linear-gradient(90deg, rgb(201 33 39 / 0.06), transparent 26%),
     linear-gradient(
       110deg,
-      var(--background) 0%,
-      var(--reading-table) 48%,
-      var(--surface) 100%
+      #fff9ef 0%,
+      var(--reading-table) 52%,
+      #fffaf2 100%
     );
 }
 
 .case-home-search-panel {
-  box-shadow: 0 12px 32px rgb(31 27 22 / 0.07);
+  box-shadow: 0 14px 34px rgb(70 38 22 / 0.1);
 }
 
 .case-home-retail-window {
   position: relative;
   overflow: hidden;
   background:
-    linear-gradient(180deg, rgb(255 253 248 / 0.96), rgb(245 239 227 / 0.9)),
+    linear-gradient(180deg, rgb(255 250 242 / 0.98), rgb(239 226 204 / 0.9)),
     repeating-linear-gradient(
       90deg,
       transparent 0,
-      transparent 74px,
-      rgb(216 210 199 / 0.52) 75px,
-      transparent 76px
+      transparent 86px,
+      rgb(124 77 36 / 0.14) 87px,
+      transparent 88px
     );
 }
 
@@ -205,7 +209,7 @@ body {
   background: linear-gradient(
     90deg,
     transparent,
-    rgb(122 79 36 / 0.24),
+    rgb(201 33 39 / 0.22),
     transparent
   );
 }
@@ -213,6 +217,31 @@ body {
 .case-home-retail-window > * {
   position: relative;
   z-index: 1;
+}
+
+.case-retail-red-band {
+  background:
+    linear-gradient(90deg, rgb(201 33 39 / 0.12), transparent 46%),
+    linear-gradient(180deg, #fffaf2, #f4eadc);
+}
+
+.case-retail-ledger {
+  background:
+    linear-gradient(180deg, rgb(255 250 242 / 0.98), rgb(248 241 230 / 0.94)),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0,
+      transparent 31px,
+      rgb(221 208 191 / 0.38) 32px
+    );
+}
+
+.case-book-cover-object {
+  background:
+    linear-gradient(180deg, rgb(255 250 242 / 0.94), rgb(232 215 189 / 0.86));
+  box-shadow:
+    0 1px 0 rgb(255 255 255 / 0.9) inset,
+    var(--case-shadow-cover);
 }
 
 @keyframes case-soft-reveal {

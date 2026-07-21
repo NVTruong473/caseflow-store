@@ -9,7 +9,8 @@ the `v1.4.0` real-commerce visual merchandising release, the `v1.4.1`
 stable closeout patch, the `v1.4.2` agent-inspired security QA hardening
 patch, the `v1.5.0` QR demo payment release, the `v1.6.0` retail catalog
 scale release, the `v1.7.0` UI humanization release, and the `v1.8.0`
-modern editorial bookstore release. The system is
+modern editorial bookstore release, the `v1.9.0` real-cover commerce polish,
+and the `v1.10.0` account-bound signup voucher release. The system is
 intentionally a Next.js modular monolith: it demonstrates a realistic
 specialist e-commerce workflow without claiming marketplace scale, real payment
 settlement, or enterprise operations.
@@ -124,10 +125,12 @@ order status. It remains browser-local rather than cross-device.
 ```text
 Customer session
   -> profile readiness check
+  -> account welcome voucher read/grant for eligible customer
   -> checkout cart validation
   -> payment/shipping method selection
-  -> server-owned subtotal, promotion, VAT, shipping, payment fee, total
+  -> server-owned subtotal, account-bound promotion, VAT, shipping, payment fee, total
   -> create_book_order_with_items RPC
+  -> confirm voucher redemption only after order row exists
   -> order snapshot and confirmation state
 ```
 
@@ -136,6 +139,28 @@ to submit the order. The server ignores browser-supplied totals and reloads
 trusted edition records before creating the order. Existing simulated payment
 states represent pending COD, bank transfer, or provider confirmation; no
 external payment credential is collected or submitted.
+
+### Customer signup vouchers
+
+```text
+New or eligible signed-in customer
+  -> server ensures the 3 fixed welcome campaigns exist
+  -> service-role repository grants account-bound voucher rows
+  -> account and checkout pages render available voucher codes
+  -> customer can choose one code for the current order
+  -> /api/orders verifies ownership, expiry, and single-code input
+  -> voucher is reserved during order creation
+  -> voucher is marked used only after the order is created successfully
+```
+
+Signup vouchers are intentionally separate from general store promotions. The
+browser can display and prefill a code, but it cannot decide ownership,
+availability, expiry, discount amount, or final totals. `WELCOME30K`,
+`READMORE20K`, and `FREESHIP25K` are granted per customer account and remain
+valid for 30 days from activation. Only one promotion code is accepted per
+order request; malformed multi-code requests fail validation before totals are
+calculated. Failed order creation releases the voucher reservation so a server
+error does not burn a customer code.
 
 ### QR demo payment session
 
@@ -220,6 +245,9 @@ project history:
   status, QR payload, payment reference, expiry, paid timestamp, and order
   relation.
 - `book_promotions` stores simple fixed-VND or percentage promotion codes.
+- `customer_promotion_vouchers` stores account-bound signup voucher grants,
+  expiry, short-lived checkout reservation tokens, used timestamps, and the
+  redeemed order relation.
 - `book_inventory_adjustments` records operational stock adjustments.
 - Monetary values are stored as integer VND amounts. USD display is an
   estimate, not a source-of-truth value.
@@ -258,6 +286,9 @@ Additional controls:
   `NEXT_PUBLIC_*`.
 - Server code recalculates price, promotion, VAT, shipping, payment fee, and
   total values.
+- Customer signup voucher rows are not exposed through public RLS. Server-side
+  repositories verify customer ownership, expiry, reservation state, and one
+  code per order before applying any discount.
 - Runtime responses include security headers for CSP, HSTS, frame blocking,
   content-type sniffing protection, referrer policy, permissions policy, and
   cross-origin isolation controls where compatible with the current Next.js

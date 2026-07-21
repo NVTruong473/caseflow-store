@@ -79,21 +79,21 @@ export async function SiteHeader({ language }: { language: Language }) {
   const catalogLinks = getHeaderCatalogLinks(categories, language);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur">
-      <div className="hidden border-b border-border/70 bg-surface-muted/70 md:block">
-        <Container className="flex min-h-9 items-center justify-between gap-case-md text-small text-text-muted">
+    <header className="sticky top-0 z-40 border-b border-border bg-surface/96 shadow-[0_8px_24px_rgb(63_38_22_/_0.06)] backdrop-blur">
+      <div className="hidden border-b border-primary-hover/30 bg-primary text-surface md:block">
+        <Container className="flex min-h-9 items-center justify-between gap-case-md text-small">
           <p>{copy.support}</p>
           <nav
             aria-label={language === "vi" ? "Liên kết hỗ trợ nhanh" : "Quick support links"}
             className="flex items-center gap-case-md"
           >
-            <Link className="hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" href="/orders/track">
+            <Link className="hover:text-white/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-surface" href="/orders/track">
               {copy.trackOrder}
             </Link>
-            <Link className="hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" href="/shipping">
+            <Link className="hover:text-white/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-surface" href="/shipping">
               {copy.shipping}
             </Link>
-            <Link className="hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" href="/contact">
+            <Link className="hover:text-white/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-surface" href="/contact">
               {copy.contact}
             </Link>
           </nav>
@@ -122,7 +122,7 @@ export async function SiteHeader({ language }: { language: Language }) {
 
         <form
           action="/catalog"
-          className="hidden min-w-0 items-center rounded-lg border border-border bg-surface p-1 transition-colors focus-within:border-primary md:flex"
+          className="hidden min-w-0 items-center rounded-lg border border-primary/25 bg-background p-1 shadow-[0_10px_24px_rgb(63_38_22_/_0.08)] transition-colors focus-within:border-primary md:flex"
           role="search"
           data-storefront-search
         >
@@ -172,9 +172,9 @@ export async function SiteHeader({ language }: { language: Language }) {
         />
       </Container>
 
-      <Container className="hidden min-h-11 items-center gap-case-lg border-t border-border/70 py-1 xl:flex">
+      <Container className="hidden min-h-11 items-center gap-case-lg border-t border-border/70 bg-surface/80 py-1 xl:flex">
         <details className="group relative">
-          <summary className="inline-flex min-h-9 cursor-pointer list-none items-center rounded-md border border-border bg-surface px-3 py-2 text-small font-semibold text-foreground transition-colors hover:border-primary hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary [&::-webkit-details-marker]:hidden">
+          <summary className="inline-flex min-h-9 cursor-pointer list-none items-center rounded-md border border-primary/30 bg-primary/5 px-3 py-2 text-small font-semibold text-primary transition-colors hover:border-primary hover:bg-primary hover:text-surface focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary [&::-webkit-details-marker]:hidden">
             {copy.categoriesMenu}
           </summary>
           <div className="absolute left-0 top-[calc(100%+8px)] z-50 w-[760px] rounded-lg border border-border bg-surface p-case-lg shadow-[var(--case-shadow-soft)]">

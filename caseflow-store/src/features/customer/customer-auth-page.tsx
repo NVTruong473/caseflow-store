@@ -4,11 +4,13 @@ import Link from "next/link";
 import * as React from "react";
 
 import { Badge, Button, Container, ErrorMessage, Input } from "@/components/ui";
+import { formatVnd } from "@/lib/format/currency";
 import type {
   CustomerAuthIdentity,
   CustomerAuthState,
 } from "@/lib/auth/customer";
 import type { Language } from "@/lib/i18n/language";
+import type { CustomerSignupVoucher } from "@/types/domain";
 
 import { CustomerProfileForm } from "./customer-profile-form";
 
@@ -58,7 +60,7 @@ const customerAuthCopy = {
     confirmPasswordError: "Passwords must match.",
     createAccount: "Create account",
     createAccountIntro:
-      "Create a CaseFlow Books account before checkout. Email confirmation may be requested before sign-in.",
+      "Create a CaseFlow Books account before checkout and receive 3 welcome discount codes for your first orders.",
     creatingAccount: "Creating account",
     email: "Email address",
     emailError: "Enter a valid email address.",
@@ -88,9 +90,21 @@ const customerAuthCopy = {
     signUpTab: "Create account",
     submitFailed: "Customer authentication failed.",
     title: "Your CaseFlow Books account",
+    registerForCodes: "Register for welcome codes",
     verificationRequired:
       "Account created. Check your email if confirmation is requested, then return to sign in.",
     viewAdmin: "Open admin workspace",
+    voucherAvailable: "Ready to use",
+    voucherExpired: "Expired",
+    voucherPanelDescription:
+      "Choose one welcome code per order. Codes are account-bound and stay valid for 30 days after activation.",
+    voucherPanelTitle: "Your welcome discount codes",
+    voucherPromoDescription:
+      "Create a customer account to receive 3 account-bound discount codes. Use one code per checkout and track every order from your profile.",
+    voucherPromoTitle: "Register now to receive discount codes",
+    voucherReserved: "Reserved",
+    voucherUsed: "Used",
+    voucherValidUntil: "Valid until",
   },
   vi: {
     accountBadge: "Tài khoản khách hàng",
@@ -103,7 +117,7 @@ const customerAuthCopy = {
     confirmPasswordError: "Mật khẩu nhập lại chưa khớp.",
     createAccount: "Tạo tài khoản",
     createAccountIntro:
-      "Tạo tài khoản CaseFlow Books trước khi thanh toán. Email có thể cần được xác nhận trước khi đăng nhập.",
+      "Tạo tài khoản CaseFlow Books trước khi thanh toán và nhận 3 mã giảm giá chào mừng cho các đơn đầu tiên.",
     creatingAccount: "Đang tạo tài khoản",
     email: "Địa chỉ email",
     emailError: "Nhập địa chỉ email hợp lệ.",
@@ -133,9 +147,21 @@ const customerAuthCopy = {
     signUpTab: "Tạo tài khoản",
     submitFailed: "Xác thực khách hàng thất bại.",
     title: "Tài khoản CaseFlow Books của bạn",
+    registerForCodes: "Đăng ký nhận mã",
     verificationRequired:
       "Đã tạo tài khoản. Hãy kiểm tra email nếu hệ thống yêu cầu xác nhận, sau đó quay lại đăng nhập.",
     viewAdmin: "Mở khu vực quản trị",
+    voucherAvailable: "Có thể dùng",
+    voucherExpired: "Hết hạn",
+    voucherPanelDescription:
+      "Mỗi đơn chỉ dùng một mã chào mừng. Mã gắn với tài khoản và có hiệu lực 30 ngày sau khi kích hoạt.",
+    voucherPanelTitle: "Mã giảm giá chào mừng của bạn",
+    voucherPromoDescription:
+      "Tạo tài khoản khách hàng để nhận 3 mã giảm giá riêng cho tài khoản. Mỗi lần thanh toán dùng một mã và theo dõi đơn ngay trong hồ sơ.",
+    voucherPromoTitle: "Đăng ký ngay để nhận mã giảm giá",
+    voucherReserved: "Đang giữ",
+    voucherUsed: "Đã dùng",
+    voucherValidUntil: "Hạn dùng",
   },
 } as const;
 
@@ -143,10 +169,12 @@ export function CustomerAuthPage({
   authState,
   language,
   nextPath,
+  signupVouchers,
 }: {
   authState: CustomerAuthState;
   language: Language;
   nextPath: string | null;
+  signupVouchers: CustomerSignupVoucher[];
 }) {
   const copy = customerAuthCopy[language];
   const [mode, setMode] = React.useState<AuthMode>("sign-in");
@@ -302,6 +330,33 @@ export function CustomerAuthPage({
               {copy.noPhoneVerification}
             </p>
           </div>
+
+          {authState.status !== "authenticated" ? (
+            <div
+              className="case-retail-red-band rounded-lg border border-primary/20 p-case-lg"
+              data-customer-signup-voucher-promo
+            >
+              <Badge variant="primary">{copy.registerForCodes}</Badge>
+              <h2 className="mt-case-sm text-heading-3 font-semibold text-foreground">
+                {copy.voucherPromoTitle}
+              </h2>
+              <p className="mt-case-sm text-small leading-6 text-text-muted">
+                {copy.voucherPromoDescription}
+              </p>
+              <Button
+                className="mt-case-md"
+                type="button"
+                onClick={() => {
+                  setMode("sign-up");
+                  setSubmitState({ status: "idle" });
+                  setFieldErrors({});
+                }}
+                data-customer-signup-voucher-cta
+              >
+                {copy.registerForCodes}
+              </Button>
+            </div>
+          ) : null}
         </section>
 
         {authState.status === "authenticated" ? (
@@ -311,6 +366,7 @@ export function CustomerAuthPage({
             language={language}
             nextPath={nextPath}
             onLogout={handleLogout}
+            signupVouchers={signupVouchers}
             submitState={submitState}
             user={authState.user}
           />
@@ -474,6 +530,7 @@ function SignedInPanel({
   language,
   nextPath,
   onLogout,
+  signupVouchers,
   submitState,
   user,
 }: {
@@ -482,6 +539,7 @@ function SignedInPanel({
   language: Language;
   nextPath: string | null;
   onLogout: () => void;
+  signupVouchers: CustomerSignupVoucher[];
   submitState: SubmitState;
   user: CustomerAuthIdentity;
 }) {
@@ -524,6 +582,14 @@ function SignedInPanel({
         >
           {copy.emailNotVerified}
         </p>
+      ) : null}
+
+      {currentUser.role === "customer" ? (
+        <SignupVoucherPanel
+          copy={copy}
+          language={language}
+          vouchers={signupVouchers}
+        />
       ) : null}
 
       <SubmitFeedback submitState={submitState} />
@@ -612,4 +678,99 @@ function AccountMetric({ label, value }: { label: string; value: string }) {
       </dd>
     </div>
   );
+}
+
+function SignupVoucherPanel({
+  copy,
+  language,
+  vouchers,
+}: {
+  copy: (typeof customerAuthCopy)[Language];
+  language: Language;
+  vouchers: CustomerSignupVoucher[];
+}) {
+  if (vouchers.length === 0) {
+    return null;
+  }
+
+  return (
+    <section
+      className="mt-case-lg rounded-lg border border-primary/20 bg-surface p-case-md"
+      data-customer-signup-vouchers
+    >
+      <div className="flex min-w-0 flex-col gap-case-xs">
+        <Badge variant="primary">{copy.registerForCodes}</Badge>
+        <h3 className="text-heading-3 font-semibold text-foreground">
+          {copy.voucherPanelTitle}
+        </h3>
+        <p className="text-small leading-6 text-text-muted">
+          {copy.voucherPanelDescription}
+        </p>
+      </div>
+      <div className="mt-case-md grid gap-case-sm">
+        {vouchers.map((voucher) => (
+          <div
+            key={voucher.id}
+            className="grid min-w-0 gap-case-sm rounded-md border border-border bg-background p-case-sm sm:grid-cols-[minmax(0,1fr)_auto]"
+            data-customer-signup-voucher={voucher.code}
+            data-customer-signup-voucher-status={voucher.status}
+          >
+            <div className="min-w-0">
+              <p className="font-semibold text-foreground">{voucher.code}</p>
+              <p className="mt-1 text-small leading-6 text-text-muted">
+                {voucher.name[language]} ·{" "}
+                {getVoucherDiscountLabel(voucher, language)}
+              </p>
+              <p className="mt-1 text-small text-text-muted">
+                {copy.voucherValidUntil}:{" "}
+                {formatVoucherDate(voucher.expiresAt, language)}
+              </p>
+            </div>
+            <Badge
+              className="self-start justify-self-start sm:justify-self-end"
+              variant={getVoucherBadgeVariant(voucher.status)}
+            >
+              {getVoucherStatusLabel(voucher.status, copy)}
+            </Badge>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function getVoucherDiscountLabel(
+  voucher: CustomerSignupVoucher,
+  language: Language,
+) {
+  if (voucher.discountType === "fixed-vnd") {
+    return formatVnd(voucher.amountVnd ?? 0);
+  }
+
+  return language === "vi"
+    ? `Giảm ${((voucher.percentageBasisPoints ?? 0) / 100).toLocaleString("vi-VN")}%`
+    : `${((voucher.percentageBasisPoints ?? 0) / 100).toLocaleString("en-US")}% off`;
+}
+
+function getVoucherStatusLabel(
+  status: CustomerSignupVoucher["status"],
+  copy: (typeof customerAuthCopy)[Language],
+) {
+  if (status === "available") return copy.voucherAvailable;
+  if (status === "used") return copy.voucherUsed;
+  if (status === "expired") return copy.voucherExpired;
+  return copy.voucherReserved;
+}
+
+function getVoucherBadgeVariant(status: CustomerSignupVoucher["status"]) {
+  if (status === "available") return "success";
+  if (status === "reserved") return "warning";
+  if (status === "used") return "neutral";
+  return "error";
+}
+
+function formatVoucherDate(value: string, language: Language) {
+  return new Intl.DateTimeFormat(language === "vi" ? "vi-VN" : "en-US", {
+    dateStyle: "medium",
+  }).format(new Date(value));
 }

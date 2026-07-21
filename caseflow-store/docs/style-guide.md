@@ -1,6 +1,6 @@
 # CaseFlow Books Style Guide
 
-- Task: `UIH-T01`, extended by `V18-T01`
+- Task: `UIH-T01`, extended by `V18-T01` and the `V20` real-cover retail polish pass
 - Status: implemented guidance for the UI humanization and modern editorial bookstore pass
 - Product: CaseFlow Books
 
@@ -15,11 +15,16 @@ Target audience:
 - Hiring reviewers evaluating a realistic full-stack e-commerce portfolio.
 - Small-business operators reviewing catalog, stock, order, and promotion workflows.
 
-Signature visual idea: the reading table and spine rail. Book covers, spine-like side rules, edition ledgers, and shelf rows should create the brand character. Do not use generic glowing orbs, AI gradients, floating blobs, or fake metrics as identity.
+Signature visual idea: the reading table and spine rail. Book covers, spine-like side rules, edition ledgers, retail-red service bands, and shelf rows should create the brand character. Do not use generic glowing orbs, AI gradients, floating blobs, or fake metrics as identity.
 
 V18 extension: discovery should feel search-first and inventory-aware. Header
 search, category access, cover provenance, and restrained product motion are now
 part of the core storefront identity.
+
+V20 extension: real Gutenberg covers introduce stronger, less predictable cover
+colors. The storefront now uses a warmer paper base plus a restrained retail red
+action system, taking cues from Vietnamese bookstore commerce patterns while
+keeping the reading-table and ledger motif intact.
 
 Hierarchy strategy:
 
@@ -39,15 +44,15 @@ Intentional asymmetry:
 
 | Token | Value | Role | Use | Avoid | Contrast Notes |
 |---|---:|---|---|---|---|
-| `--background` | `#FBFAF7` | Page paper | Body background and quiet sections | Do not put low-contrast muted text on it below small size | Good with `--foreground` |
-| `--surface` | `#FFFDF8` | Elevated paper | Forms, product cards, purchase panels | Do not nest surface cards inside other cards | Good with `--foreground` |
-| `--surface-muted` | `#EEF2EB` | Quiet muted surface | Secondary nav hover, low-emphasis panels | Do not use for dense text blocks without enough contrast | Good with `--foreground` |
+| `--background` | `#F6F1E9` | Warm retail paper | Body background and quiet sections | Do not put low-contrast muted text on it below small size | Good with `--foreground` |
+| `--surface` | `#FFFAF2` | Elevated paper | Forms, product cards, purchase panels | Do not nest surface cards inside other cards | Good with `--foreground` |
+| `--surface-muted` | `#F0E8DC` | Quiet muted surface | Secondary nav hover, low-emphasis panels | Do not use for dense text blocks without enough contrast | Good with `--foreground` |
 | `--foreground` | `#1F1B16` | Primary text | Headings, labels, prices | Do not use as decorative fill everywhere | Strong contrast |
-| `--text-muted` | `#6F665C` | Secondary text | Body descriptions, captions, metadata | Do not use for critical errors or small low-contrast text on tinted backgrounds | Check small text on tinted surfaces |
-| `--border` | `#D8D2C7` | Default rule | Separators and low-emphasis borders | Do not wrap every section in it | Works as quiet structure |
-| `--primary` | `#176B5B` | Primary action/discovery | Main CTA, focus ring, active links | Do not recolor every badge primary | White text passes |
-| `--primary-hover` | `#0F5146` | Primary hover | Button hover and strong active states | Do not use for muted backgrounds | White text passes |
-| `--accent` | `#B7791F` | Offer/accent | Discounts and sale notes | Do not use for unrelated decoration | Use with dark text on pale offer surfaces |
+| `--text-muted` | `#675F56` | Secondary text | Body descriptions, captions, metadata | Do not use for critical errors or small low-contrast text on tinted backgrounds | Check small text on tinted surfaces |
+| `--border` | `#DDD0BF` | Default rule | Separators and low-emphasis borders | Do not wrap every section in it | Works as quiet structure |
+| `--primary` | `#C92127` | Retail action and brand anchor | Main CTA, focus ring, active links, top service bar, high-value commerce sections | Do not turn every badge or paragraph accent red | White text passes |
+| `--primary-hover` | `#9F171D` | Primary hover | Button hover and strong active states | Do not use for muted backgrounds | White text passes |
+| `--accent` | `#D86F17` | Offer/accent | Discounts and sale notes | Do not use for unrelated decoration | Use with dark text on pale offer surfaces |
 | `--editorial` | `#8F2440` | Editorial shelf | Curated picks and reading notes | Do not overuse as alert color | Pair with `--editorial-muted` |
 | `--translation` | `#B04436` | Translation pairs | EN/VI comparison and language switching context | Do not use for errors | Pair with `--translation-muted` |
 | `--academic` | `#2F5D8C` | Classic/reference | Academic or classic literature shelves | Do not use as default link color | Pair with `--academic-muted` |
@@ -57,7 +62,7 @@ Intentional asymmetry:
 | `--success` | `#247857` | Success | Success badges and paid states | Do not rely on color only | Pair with text |
 | `--warning` | `#A16207` | Warning | Low stock and pending states | Do not use for offers unless it is a real promotion | Pair with label |
 | `--error` | `#B42318` | Error | Validation and destructive actions | Do not use for marketing emphasis | Pair with clear error text |
-| `--focus-ring` | `#176B5B` | Focus | Keyboard focus outline | Never remove without replacement | Must remain visible |
+| `--focus-ring` | `#C92127` | Focus | Keyboard focus outline | Never remove without replacement | Must remain visible |
 
 ## 3. Typography
 
@@ -147,7 +152,7 @@ Mobile navigation:
 
 Buttons:
 
-- Primary: moss fill, white text.
+- Primary: retail red fill, white text.
 - Secondary: paper fill, quiet border.
 - Ghost: no border unless needed for hit-area recognition.
 - Active state may shift by `1px`; disable under reduced motion.
@@ -191,6 +196,20 @@ Forms and inputs:
 - Visible labels are required.
 - Error text sits near the field.
 - Invalid state cannot rely on color alone.
+
+Signup voucher surfaces:
+
+- Homepage and anonymous account pages may promote the 3-code welcome offer,
+  but the copy must stay factual: no fake scarcity, fake countdown, fake user
+  counts, or unverifiable claims.
+- Signed-in account pages should show active voucher codes, value, expiry, and
+  status in a compact ledger-style panel.
+- Checkout should let customers apply one account voucher with a clear button,
+  then keep the editable promotion-code input visible for transparency.
+- Voucher state badges should fit their text, not stretch to fill a whole
+  product/form card.
+- The UI can estimate the discount for feedback, but final promotion and total
+  values must be server-owned.
 
 Footer:
 

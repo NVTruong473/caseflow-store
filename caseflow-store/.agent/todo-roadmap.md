@@ -10,12 +10,52 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: post-`v1.9.0` production release verification
-- Current gate: `V19-T04` production deploy, Supabase cover apply, smoke, and
-  QA complete
-- Current task: no active implementation task
+- Mode: `SIGNUPVOUCHER-T02` production release
+- Current gate: shipping account-bound signup vouchers as `v1.10.0`
+- Current task: `SIGNUPVOUCHER-T02 - Ship Account-Bound Signup Voucher Release v1.10.0`
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-21
+
+## Phase SIGNUPVOUCHER - Account-Bound Signup Conversion Offer
+
+- [x] `SIGNUPVOUCHER-T01` Add Account-Bound Signup Vouchers. - 2026-07-21
+  - Objective: grant 3 pre-created discount codes to each activated customer
+    account, show the valid codes where customers can find them, and enforce
+    one owned code per order.
+  - Result: added `WELCOME30K`, `READMORE20K`, and `FREESHIP25K` as fixed-VND
+    welcome campaigns; added `customer_promotion_vouchers` with 30-day
+    expiry, reservation tokens, used-order relation, service-role-only access,
+    and account ownership checks; account and checkout pages now show active
+    codes; homepage/account pages promote registration without fake scarcity.
+  - Verification: `npm exec -- tsc --noEmit --pretty false`, `npm run lint`,
+    `npm run build`, `npm run test:e2e` (`20/20`), and `npm exec -- tsx
+    scripts/verify-signup-vouchers.ts` passed. The verifier created test
+    customers, granted the 3 codes, applied `WELCOME30K`, confirmed the
+    persisted 30,000 VND discount, rejected reuse, rejected cross-account use,
+    rejected multi-code request shape, confirmed the voucher was marked used,
+    and checked voucher surfaces for horizontal overflow.
+  - Residual: `npm audit --audit-level=high` returned non-zero because the
+    known moderate Next/PostCSS advisory remains; no high/critical advisory was
+    reported, and `npm audit fix --force` was not run because it proposes a
+    breaking Next.js downgrade.
+  - Guardrail: final discount totals remain server-owned; failed order
+    creation releases the voucher reservation; no fake urgency, real email/SMS
+    integration, real marketing provider, or production deploy/tag/release was
+    added.
+
+- [/] `SIGNUPVOUCHER-T02` Ship Account-Bound Signup Voucher Release v1.10.0. -
+  2026-07-21
+  - Objective: commit the accepted local signup-voucher and retail-UI patch,
+    push `main`, deploy production, run production signup-voucher/security/QR
+    smoke checks, then create the `v1.10.0` tag and GitHub Release.
+  - Acceptance criteria: release docs point to `v1.10.0`; local lint,
+    typecheck, build, E2E, signup-voucher verifier, and `git diff --check`
+    pass; production deploy reaches `READY`; production signup-voucher
+    verifier, production smoke, security posture, QR production-safety, and
+    final QA pass; `origin/main`, tag `v1.10.0`, and GitHub Release are
+    verified.
+  - Guardrail: no real payment, SMS/email marketing provider, fake scarcity,
+    force-push, history rewrite, or production mock-payment enablement.
 
 ## Phase V19 - Real Cover Commerce Polish
 

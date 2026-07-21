@@ -12747,6 +12747,152 @@ verification, and clean worktree verification complete.
 
 ---
 
+## SIGNUPVOUCHER-T01 - Account-Bound Signup Vouchers
+
+- Date: 2026-07-21
+- Status: completed locally
+- Phase: post-`v1.9.0` conversion patch
+- Release: not deployed or tagged
+
+### Objective
+
+Grant each activated customer account 3 pre-created discount codes, make valid
+codes easy to find on customer-facing surfaces, and enforce that a customer can
+use only one owned signup voucher per order.
+
+### Actual Result
+
+- Added Supabase migration `0010_customer_signup_vouchers.sql`.
+- Upserted the fixed welcome campaigns `WELCOME30K`, `READMORE20K`, and
+  `FREESHIP25K` into `book_promotions`.
+- Added `customer_promotion_vouchers` for account-bound voucher grants,
+  30-day expiry from activation, reservation tokens, used timestamps, and
+  redeemed-order relation.
+- Added server repositories to grant/list/read/reserve/confirm/release signup
+  vouchers without trusting browser totals or ownership.
+- Updated customer signup/account paths to ensure and display the 3 welcome
+  vouchers.
+- Updated checkout to show available account codes, prefill one selected code,
+  estimate the discount in the visible summary, and leave final validation to
+  `/api/orders`.
+- Updated order creation to reserve a voucher during checkout, confirm it only
+  after order creation succeeds, release it on order failure, reject reuse,
+  reject cross-account use, and reject malformed multi-code requests.
+- Added homepage and anonymous account CTAs for registration without fake
+  scarcity or unverifiable claims.
+- Added `scripts/verify-signup-vouchers.ts` with database, API, and browser
+  checks.
+
+### Evidence
+
+- `supabase/migrations/0010_customer_signup_vouchers.sql`
+- `src/lib/repositories/supabase-customer-vouchers.ts`
+- `scripts/verify-signup-vouchers.ts`
+- `.agent/artifacts/signup-vouchers/signup-vouchers-check.json`
+- `.agent/artifacts/signup-vouchers/home-signup-voucher-cta.png`
+- `.agent/artifacts/signup-vouchers/account-signup-voucher-promo.png`
+- `.agent/artifacts/signup-vouchers/account-signup-vouchers.png`
+- `.agent/artifacts/signup-vouchers/checkout-signup-vouchers.png`
+
+### Verification
+
+- Supabase migration apply: passed.
+- `npm exec -- tsc --noEmit --pretty false`: passed.
+- `npm exec -- tsx scripts/verify-signup-vouchers.ts`: passed with all checks
+  true:
+  - 3 account codes granted.
+  - Home/account marketing CTAs visible.
+  - Account voucher panel shows 3 codes.
+  - Checkout shows and applies `WELCOME30K`.
+  - Order persists the 30,000 VND discount.
+  - Reusing the same voucher is rejected.
+  - Another account cannot use the voucher.
+  - Multi-code request shape is rejected.
+  - Voucher row is marked used with the order relation.
+  - Signup voucher surfaces do not horizontally overflow.
+- `npm run lint`: passed.
+- `npm run build`: passed with 51 App Router routes plus proxy.
+- `npm run test:e2e`: passed `20/20`.
+- `npm audit --audit-level=high`: returned non-zero because the known moderate
+  Next/PostCSS advisory remains; no high or critical advisory was reported.
+  `npm audit fix --force` was not run because it proposes a breaking Next.js
+  downgrade.
+
+### Guardrails Preserved
+
+- The browser does not own discount eligibility, amount, totals, or voucher
+  ownership.
+- Only one promotion code is accepted per order request.
+- A failed order does not burn a reserved signup voucher.
+- No real email/SMS/marketing automation provider, fake scarcity timer,
+  fake customer count, production deploy, tag, or release was added.
+
+## UAT-MANUAL-T01 + V20 Real-Cover Retail UI Polish - 2026-07-21
+
+### Goal
+
+Run production manual-order UAT with a customer account, verify QR demo controls
+are safely locked in production, then improve the storefront UI so varied real
+book covers feel cohesive instead of visually disconnected.
+
+### Actual Result
+
+- Created a production UAT customer account and completed a real customer flow:
+  sign in, open a product, add to cart, checkout, inspect account order history,
+  verify public tracking, cancel the order, and confirm the cancelled state.
+- Verified production QR/demo payment safety: `/api/payments` returns
+  `403 PAYMENT_DISABLED`, the dev simulate endpoint returns
+  `404 PAYMENT_DISABLED`, and the production checkout UI does not expose QR
+  simulation controls.
+- Kept the UAT password out of repository artifacts; the artifact records the
+  email, order code, and pass/fail results only.
+- Added `docs/v20-commerce-visual-qa-rules.md` with a strict tester rubric,
+  reference principles, render template, baseline findings, and patch direction.
+- Updated the customer-facing design system from quiet green/paper to a warmer
+  paper plus restrained retail-red commerce anchor, inspired by bookstore retail
+  density and Project Gutenberg cover-led presentation.
+- Updated homepage, header, catalog, product detail, and book cover framing so
+  real cover colors sit inside consistent shelf/ledger surfaces.
+- Shortened hero search placeholder copy so mobile no longer looks clipped.
+- Updated `DESIGN.md` and `docs/style-guide.md` so documentation matches the
+  implemented palette and component rules.
+
+### Evidence
+
+- `.agent/artifacts/uat-manual-t01/uat-manual-production-report.json`
+- `.agent/artifacts/uat-manual-t01/01-account-signed-in.png`
+- `.agent/artifacts/uat-manual-t01/05-checkout-success.png`
+- `.agent/artifacts/uat-manual-t01/07-qr-production-locked.png`
+- `.agent/artifacts/uat-manual-t01/09-account-order-cancelled.png`
+- `.agent/artifacts/ui-v20-render-check/ui-v20-render-check.json`
+- `.agent/artifacts/ui-v20-render-check/home-desktop.png`
+- `.agent/artifacts/ui-v20-render-check/home-mobile.png`
+- `.agent/artifacts/ui-v20-render-check/catalog-desktop.png`
+- `.agent/artifacts/ui-v20-render-check/catalog-mobile.png`
+- `.agent/artifacts/ui-v20-render-check/detail-desktop.png`
+- `.agent/artifacts/ui-v20-render-check/detail-mobile.png`
+- `docs/v20-commerce-visual-qa-rules.md`
+
+### Verification
+
+- Production UAT Playwright flow: passed with all assertions true.
+- UI render oracle on local app: passed with `ok: true`, no horizontal overflow,
+  no console errors, no visible clipped text, `--primary` equal to `#c92127`,
+  30 local Gutenberg book images on homepage, 24 in catalog, and 15 on product
+  detail.
+- `npm run lint`: passed.
+- `npm exec -- tsc --noEmit --pretty false`: passed.
+- `npm run build`: passed; Next.js generated 51 App Router routes plus proxy.
+- `git diff --check`: passed.
+
+### Guardrails Preserved
+
+- No business logic, authentication boundary, order state transition, payment
+  provider, schema, external image hotlinking, new dependency, production QR
+  simulate control, or secret handling change was introduced.
+
+---
+
 ## V19-T01..T04 - Real Cover Commerce Polish
 
 - Date: 2026-07-21
@@ -13501,3 +13647,55 @@ expanding product scope.
 
 No active implementation task after remote push, tag, GitHub Release
 verification, and clean worktree verification complete.
+
+---
+
+## SIGNUPVOUCHER-T01 - Latest Local Verification Addendum
+
+- Date: 2026-07-21
+- Status: completed locally
+- Release: not deployed or tagged
+
+### Result
+
+The account-bound signup voucher patch is implemented and locally verified.
+New activated customer accounts receive the three fixed welcome codes
+`WELCOME30K`, `READMORE20K`, and `FREESHIP25K`. Account and checkout surfaces
+show valid codes in visible customer-facing panels, and the homepage/account
+copy invites registration without fake scarcity or unverifiable claims.
+
+Server-side order creation enforces customer ownership, voucher expiry,
+single-code input, reservation during order creation, redemption only after
+successful order creation, and reservation release on order failure.
+
+### Evidence
+
+- `supabase/migrations/0010_customer_signup_vouchers.sql`
+- `src/lib/repositories/supabase-customer-vouchers.ts`
+- `scripts/verify-signup-vouchers.ts`
+- `.agent/artifacts/signup-vouchers/signup-vouchers-check.json`
+- `.agent/artifacts/signup-vouchers/home-signup-voucher-cta.png`
+- `.agent/artifacts/signup-vouchers/account-signup-vouchers.png`
+- `.agent/artifacts/signup-vouchers/checkout-signup-vouchers.png`
+
+### Verification
+
+- Supabase migration apply: passed.
+- `npm exec -- tsc --noEmit --pretty false`: passed.
+- `npm exec -- tsx scripts/verify-signup-vouchers.ts`: passed.
+- `npm run lint`: passed.
+- `npm run build`: passed with 51 App Router routes plus proxy.
+- `npm run test:e2e`: passed `20/20`.
+- `git diff --check`: passed.
+- `npm audit --audit-level=high`: returned non-zero because the known moderate
+  Next/PostCSS advisory remains; no high or critical advisory was reported.
+  `npm audit fix --force` was not run because it proposes a breaking Next.js
+  downgrade.
+
+### Guardrails
+
+- Browser state does not own voucher eligibility, ownership, amount, or final
+  order totals.
+- Only one promotion code is accepted per order.
+- No real marketing automation, SMS/email provider, fake scarcity timer,
+  production deployment, tag, or release was added.

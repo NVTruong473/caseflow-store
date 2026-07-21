@@ -77,7 +77,7 @@ export function BookCoverFrame({
       data-v18-cover-fallback={hasVerifiedCover ? "false" : "true"}
       data-v13-cover-source={record.coverAsset?.source ?? "missing"}
     >
-      <div className="relative aspect-[2/3] overflow-hidden rounded-sm border border-border bg-paper-deep p-1 shadow-[var(--case-shadow-cover)]">
+      <div className="case-book-cover-object relative aspect-[2/3] overflow-hidden rounded-sm border border-border p-1">
         <Image
           alt={getBookCoverAlt(record, language)}
           className={cn("object-contain", imageClassName)}

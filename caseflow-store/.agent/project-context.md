@@ -12,11 +12,10 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: post-`v1.9.0` production release verification.
-- Current gate: `V19-T04` production deploy, Supabase cover apply, smoke, and
-  QA complete. GitHub Release publication is pending only if explicitly
-  requested or if the GitHub connector is available in a later turn.
-- Current task: no active implementation task.
+- Current mode: `SIGNUPVOUCHER-T02` production release.
+- Current gate: shipping account-bound signup vouchers as `v1.10.0`.
+- Current task:
+  `SIGNUPVOUCHER-T02 - Ship Account-Bound Signup Voucher Release v1.10.0`.
 
 ## Confirmed Facts
 
@@ -91,6 +90,14 @@
   checks. Fahasa automation remained blocked by anti-bot challenge responses;
   official Vietnamese covers require reviewed direct image URLs or licensed
   assets later.
+- `SIGNUPVOUCHER-T01` was completed locally on 2026-07-21 as a
+  post-`v1.9.0` conversion patch: added account-bound signup vouchers,
+  Supabase migration `0010_customer_signup_vouchers.sql`, server-side
+  voucher grant/list/reserve/confirm/release repositories, checkout and
+  account voucher UI, homepage registration CTA, and an end-to-end verifier.
+  Local verification passed typecheck, lint, production build, and
+  `scripts/verify-signup-vouchers.ts`. Production deploy/tag/release has not
+  been performed for this patch.
 - Implementation was confirmed by the user on 2026-07-14.
 - Implementation was unblocked by installing the official Node.js LTS binary after Homebrew failed.
 - The Next.js app has been initialized in `caseflow-store`.

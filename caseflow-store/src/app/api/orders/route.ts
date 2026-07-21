@@ -4,12 +4,22 @@ import { calculateBookCheckoutTotals } from "@/lib/checkout/book-totals";
 import { getCurrencyDisplayRules } from "@/lib/format/currency-display.server";
 import { getRequestLanguage } from "@/lib/i18n/server";
 import { validateSupabaseBookCart } from "@/lib/repositories/supabase-books";
+import {
+  confirmCustomerSignupVoucherReservation,
+  isSignupVoucherCode,
+  releaseCustomerSignupVoucherReservation,
+  reserveCustomerSignupVoucher,
+} from "@/lib/repositories/supabase-customer-vouchers";
 import { createSupabaseBookOrder } from "@/lib/repositories/supabase-orders";
 import { evaluateSupabaseBookPromotion } from "@/lib/repositories/supabase-promotions";
 import { createBookOrderRequestSchema } from "@/lib/validation/orders";
 
 export async function POST(request: Request) {
   let body: unknown;
+  let reservedSignupVoucher: {
+    customerId: string;
+    reservationToken: string;
+  } | null = null;
 
   try {
     body = await request.json();
@@ -118,6 +128,7 @@ export async function POST(request: Request) {
     const promotionEvaluation = promotionCode
       ? await evaluateSupabaseBookPromotion({
           code: promotionCode,
+          customerId: customerAuthState.user.id,
           subtotalVnd: cartValidation.data.subtotal,
         })
       : null;
@@ -130,6 +141,43 @@ export async function POST(request: Request) {
         },
         400,
       );
+    }
+
+    if (
+      promotionEvaluation?.success &&
+      promotionEvaluation.isCustomerSignupVoucher
+    ) {
+      const code = promotionEvaluation.promotion.code;
+
+      if (!isSignupVoucherCode(code)) {
+        return apiError(
+          {
+            code: "PROMOTION_INVALID",
+            message: "Invalid account voucher configuration",
+          },
+          400,
+        );
+      }
+
+      const reservation = await reserveCustomerSignupVoucher({
+        code,
+        customerId: customerAuthState.user.id,
+      });
+
+      if (!reservation.success) {
+        return apiError(
+          {
+            code: reservation.code,
+            message: reservation.message,
+          },
+          400,
+        );
+      }
+
+      reservedSignupVoucher = {
+        customerId: customerAuthState.user.id,
+        reservationToken: reservation.reservationToken,
+      };
     }
 
     const totals = calculateBookCheckoutTotals({
@@ -157,8 +205,25 @@ export async function POST(request: Request) {
       })),
     });
 
+    if (reservedSignupVoucher) {
+      await confirmCustomerSignupVoucherReservation({
+        customerId: reservedSignupVoucher.customerId,
+        orderId: result.order.id,
+        reservationToken: reservedSignupVoucher.reservationToken,
+      });
+      reservedSignupVoucher = null;
+    }
+
     return apiSuccess(result, { status: 201 });
   } catch {
+    if (reservedSignupVoucher) {
+      try {
+        await releaseCustomerSignupVoucherReservation(reservedSignupVoucher);
+      } catch {
+        // A failed order must not intentionally burn a customer signup voucher.
+      }
+    }
+
     return apiError(
       {
         code: "ORDER_CREATE_FAILED",

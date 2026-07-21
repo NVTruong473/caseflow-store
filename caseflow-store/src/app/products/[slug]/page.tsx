@@ -287,12 +287,12 @@ export default async function ProductDetailPage({
         </nav>
 
         <section
-          className="grid gap-case-md lg:grid-cols-[minmax(0,360px)_minmax(0,1fr)] lg:items-start lg:gap-case-xl"
+          className="grid gap-case-md lg:grid-cols-[minmax(0,380px)_minmax(0,1fr)] lg:items-start lg:gap-case-xl"
           data-book-detail={record.edition.slug}
         >
           <div className="flex min-w-0 flex-col gap-case-md lg:sticky lg:top-case-xl">
             <div
-              className="mx-auto w-full max-w-[220px] rounded-lg border border-discovery/20 bg-surface p-case-md shadow-[var(--case-shadow-soft)] sm:max-w-[280px] lg:max-w-none"
+              className="case-retail-ledger mx-auto w-full max-w-[220px] rounded-lg border border-primary/15 p-case-md shadow-[var(--case-shadow-soft)] sm:max-w-[280px] lg:max-w-none"
               data-book-detail-image
             >
               <BookCoverFrame
@@ -314,7 +314,7 @@ export default async function ProductDetailPage({
                 {record.categories.map((category) => (
                   <Badge
                     key={category.id}
-                    className="border-discovery bg-discovery-muted text-discovery"
+                    className="border-primary bg-primary/10 text-primary"
                     variant="primary"
                   >
                     {pickLocalizedText(category.labels, language)}
@@ -347,7 +347,7 @@ export default async function ProductDetailPage({
 
             <div className="grid gap-case-md xl:grid-cols-[minmax(0,1fr)_320px] xl:items-start">
               <aside className="order-first flex min-w-0 flex-col gap-case-md xl:order-last xl:sticky xl:top-case-xl">
-                <div className="rounded-lg border border-offer/30 border-l-4 border-l-offer bg-offer-muted p-case-md shadow-[var(--case-shadow-soft)] lg:p-case-lg">
+                <div className="rounded-lg border border-primary/20 border-l-4 border-l-primary bg-surface p-case-md shadow-[var(--case-shadow-soft)] lg:p-case-lg">
                   <div className="grid grid-cols-3 gap-case-sm xl:grid-cols-1 xl:gap-case-md">
                     <div className="min-w-0">
                       <p className="text-small font-medium uppercase text-text-muted">
@@ -361,7 +361,7 @@ export default async function ProductDetailPage({
                         </p>
                       ) : null}
                       <p
-                        className="mt-case-xs text-body font-semibold text-foreground sm:text-heading-3 md:text-heading-2"
+                        className="mt-case-xs text-body font-semibold text-primary sm:text-heading-3 md:text-heading-2"
                         data-book-detail-price
                       >
                         <CurrencyAmount

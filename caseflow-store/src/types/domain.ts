@@ -405,6 +405,29 @@ export type BookPromotion = {
   updatedAt: ISODateTimeString;
 };
 
+export type CustomerSignupVoucherStatus =
+  | "available"
+  | "reserved"
+  | "used"
+  | "expired";
+
+export type CustomerSignupVoucher = {
+  id: string;
+  customerId: string;
+  promotionId: string;
+  code: string;
+  name: LocalizedText;
+  discountType: "fixed-vnd" | "percentage";
+  amountVnd: MoneyAmount | null;
+  percentageBasisPoints: number | null;
+  issuedAt: ISODateTimeString;
+  activatedAt: ISODateTimeString;
+  expiresAt: ISODateTimeString;
+  usedAt: ISODateTimeString | null;
+  usedOrderId: string | null;
+  status: CustomerSignupVoucherStatus;
+};
+
 export type InventoryAdjustment = {
   id: string;
   editionId: string;

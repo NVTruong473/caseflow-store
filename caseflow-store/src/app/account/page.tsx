@@ -3,6 +3,10 @@ import type { Metadata } from "next";
 import { CustomerAuthPage } from "@/features/customer";
 import { getCustomerAuthState } from "@/lib/auth/customer";
 import { getRequestLanguage } from "@/lib/i18n/server";
+import {
+  ensureCustomerSignupVouchers,
+  listCustomerSignupVouchers,
+} from "@/lib/repositories/supabase-customer-vouchers";
 import { createPageMetadata } from "@/lib/seo/metadata";
 
 type AccountPageProps = {
@@ -35,14 +39,29 @@ export default async function AccountPage({ searchParams }: AccountPageProps) {
   const params = await searchParams;
   const authState = await getCustomerAuthState();
   const nextPath = normalizeNextPath(params?.next);
+  const signupVouchers =
+    authState.status === "authenticated" && authState.user.role === "customer"
+      ? await ensureAndListCustomerSignupVouchers(authState.user.id)
+      : [];
 
   return (
     <CustomerAuthPage
       authState={authState}
       language={language}
       nextPath={nextPath}
+      signupVouchers={signupVouchers}
     />
   );
+}
+
+async function ensureAndListCustomerSignupVouchers(customerId: string) {
+  const currentVouchers = await listCustomerSignupVouchers(customerId);
+
+  if (currentVouchers.length > 0) {
+    return currentVouchers;
+  }
+
+  return ensureCustomerSignupVouchers(customerId);
 }
 
 function normalizeNextPath(value: string | string[] | undefined) {

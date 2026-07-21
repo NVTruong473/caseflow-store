@@ -6,6 +6,10 @@ import { getCustomerAuthState } from "@/lib/auth/customer";
 import { getCurrencyDisplayRules } from "@/lib/format/currency-display.server";
 import { getRequestLanguage } from "@/lib/i18n/server";
 import { getDemoPaymentConfig } from "@/lib/payments/config";
+import {
+  ensureCustomerSignupVouchers,
+  listCustomerSignupVouchers,
+} from "@/lib/repositories/supabase-customer-vouchers";
 import { createPageMetadata } from "@/lib/seo/metadata";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -42,12 +46,27 @@ export default async function CheckoutRoute() {
     redirect("/account?next=/checkout");
   }
 
+  const signupVouchers = await ensureAndListCustomerSignupVouchers(
+    customerAuthState.user.id,
+  );
+
   return (
     <CheckoutPage
       currencyRules={currencyRules}
       customerAuthState={customerAuthState}
       language={language}
       qrDemoPaymentsEnabled={paymentConfig.allowQrDemoPayments}
+      signupVouchers={signupVouchers}
     />
   );
+}
+
+async function ensureAndListCustomerSignupVouchers(customerId: string) {
+  const currentVouchers = await listCustomerSignupVouchers(customerId);
+
+  if (currentVouchers.length > 0) {
+    return currentVouchers;
+  }
+
+  return ensureCustomerSignupVouchers(customerId);
 }
