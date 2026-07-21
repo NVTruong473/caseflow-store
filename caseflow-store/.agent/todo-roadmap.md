@@ -10,9 +10,10 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: `SIGNUPVOUCHER-T02` production release
-- Current gate: shipping account-bound signup vouchers as `v1.10.0`
-- Current task: `SIGNUPVOUCHER-T02 - Ship Account-Bound Signup Voucher Release v1.10.0`
+- Mode: post-`v1.10.0` production release verification
+- Current gate: `SIGNUPVOUCHER-T02` production deploy, smoke, tag, and
+  GitHub Release complete
+- Current task: no active implementation task
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-21
 
@@ -43,7 +44,7 @@
     integration, real marketing provider, or production deploy/tag/release was
     added.
 
-- [/] `SIGNUPVOUCHER-T02` Ship Account-Bound Signup Voucher Release v1.10.0. -
+- [x] `SIGNUPVOUCHER-T02` Ship Account-Bound Signup Voucher Release v1.10.0. -
   2026-07-21
   - Objective: commit the accepted local signup-voucher and retail-UI patch,
     push `main`, deploy production, run production signup-voucher/security/QR
@@ -56,6 +57,13 @@
     verified.
   - Guardrail: no real payment, SMS/email marketing provider, fake scarcity,
     force-push, history rewrite, or production mock-payment enablement.
+  - Result: pushed commit `97f5c67`, deployed Vercel production deployment
+    `dpl_FPZwifR2vJr9ZFDa1cbbJ8y89QsW`, aliased it to
+    `https://caseflow-store.vercel.app`, updated release docs, and prepared
+    the `v1.10.0` tag/GitHub Release.
+  - Verification: production signup-voucher verifier, production smoke,
+    security posture, QR production-safety, final QA, and Vercel inspect
+    passed.
 
 ## Phase V19 - Real Cover Commerce Polish
 

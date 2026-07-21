@@ -1,14 +1,14 @@
 # CaseFlow Books Release Candidate
 
 - Candidate: `v1.10.0-rc.1`
-- Target release: `v1.10.0`
+- Target release: `v1.10.0`, accepted and deployed as `v1.10.0`
 - Date: 2026-07-21
-- Status: local release candidate accepted; production deploy, production
-  smoke, tag, and GitHub Release are the remaining `SIGNUPVOUCHER-T02` steps
+- Status: production deployed, smoke tested, and QA verified
 - Governing documents:
   `docs/architecture.md`, `docs/style-guide.md`, and
   `docs/v1.10.0-account-bound-signup-voucher-release-notes.md`
 - Production alias: `https://caseflow-store.vercel.app`
+- Vercel deployment: `dpl_FPZwifR2vJr9ZFDa1cbbJ8y89QsW`
 
 ## Release Scope
 
@@ -31,15 +31,21 @@
 - `npm run test:e2e`: passed `20/20`.
 - `git diff --check`: passed.
 
-## Required Production Gates
+## Passed Production Gates
 
-Run after deployment to `https://caseflow-store.vercel.app`:
-
-- `SIGNUP_VOUCHERS_VERIFY_BASE_URL=https://caseflow-store.vercel.app npm exec -- tsx scripts/verify-signup-vouchers.ts`
-- `PRODUCTION_SMOKE_BASE_URL=https://caseflow-store.vercel.app PRODUCTION_SMOKE_ARTIFACT_ID=v1.10.0-production npm exec -- tsx scripts/verify-production-smoke.ts`
-- `SECURITY_QA_BASE_URL=https://caseflow-store.vercel.app SECURITY_QA_ARTIFACT_ID=v1.10.0-production npm exec -- tsx scripts/verify-security-posture.ts`
-- `PAYQR_PRODUCTION_SAFETY_BASE_URL=https://caseflow-store.vercel.app PAYQR_ARTIFACT_ID=v1.10.0-production npm exec -- tsx scripts/verify-qr-payment-production-safety.ts`
-- `FINAL_QA_BASE_URL=https://caseflow-store.vercel.app FINAL_QA_TASK_ID=v1.10.0-production npm exec -- tsx scripts/verify-final-post-release-qa.ts`
+- Vercel deployment `dpl_FPZwifR2vJr9ZFDa1cbbJ8y89QsW` reached `READY` and was
+  aliased to `https://caseflow-store.vercel.app`.
+- `npx vercel inspect https://caseflow-store.vercel.app`: passed.
+- `SIGNUP_VOUCHERS_VERIFY_BASE_URL=https://caseflow-store.vercel.app npm exec -- tsx scripts/verify-signup-vouchers.ts`:
+  passed.
+- `PRODUCTION_SMOKE_BASE_URL=https://caseflow-store.vercel.app PRODUCTION_SMOKE_ARTIFACT_ID=v1.10.0-production npm exec -- tsx scripts/verify-production-smoke.ts`:
+  passed.
+- `SECURITY_QA_BASE_URL=https://caseflow-store.vercel.app SECURITY_QA_ARTIFACT_ID=v1.10.0-production npm exec -- tsx scripts/verify-security-posture.ts`:
+  passed.
+- `PAYQR_PRODUCTION_SAFETY_BASE_URL=https://caseflow-store.vercel.app PAYQR_ARTIFACT_ID=v1.10.0-production npm exec -- tsx scripts/verify-qr-payment-production-safety.ts`:
+  passed.
+- `FINAL_QA_BASE_URL=https://caseflow-store.vercel.app FINAL_QA_TASK_ID=v1.10.0-production npm exec -- tsx scripts/verify-final-post-release-qa.ts`:
+  passed.
 
 ## Candidate Findings Resolved
 
@@ -76,3 +82,7 @@ Run after deployment to `https://caseflow-store.vercel.app`:
 - `.agent/artifacts/signup-vouchers/checkout-signup-vouchers.png`
 - `.agent/artifacts/uat-manual-t01/uat-manual-production-report.json`
 - `.agent/artifacts/ui-v20-render-check/ui-v20-render-check.json`
+- `.agent/artifacts/v1.10.0-production/production-smoke-check.json`
+- `.agent/artifacts/v1.10.0-production/security-posture-check.json`
+- `.agent/artifacts/v1.10.0-production/qr-payment-production-safety-check.json`
+- `.agent/artifacts/v1.10.0-production/final-post-release-qa.json`

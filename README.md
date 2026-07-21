@@ -142,7 +142,7 @@ Latest release:
 | Release tag | `v1.10.0` |
 | GitHub Release | [`CaseFlow Books v1.10.0 - Account-Bound Signup Vouchers`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.10.0) |
 | Production URL | `https://caseflow-store.vercel.app` |
-| Vercel deployment | `READY`, deployment recorded in the GitHub Release after `SIGNUPVOUCHER-T02` |
+| Vercel deployment | `READY`, deployment `dpl_FPZwifR2vJr9ZFDa1cbbJ8y89QsW` |
 | TypeScript | `npx tsc --noEmit --pretty false` passed |
 | ESLint | `npm run lint` passed |
 | Production build | 51 App Router routes plus proxy generated |

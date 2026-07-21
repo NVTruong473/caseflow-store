@@ -13699,3 +13699,68 @@ successful order creation, and reservation release on order failure.
 - Only one promotion code is accepted per order.
 - No real marketing automation, SMS/email provider, fake scarcity timer,
   production deployment, tag, or release was added.
+
+---
+
+## SIGNUPVOUCHER-T02 - Ship Account-Bound Signup Voucher Release v1.10.0
+
+- Date: 2026-07-21
+- Status: completed
+- Release: `v1.10.0`
+
+### Result
+
+The account-bound signup voucher and real-cover retail UI polish patch was
+committed, pushed to `origin/main`, deployed to production, smoke tested, and
+prepared for the `v1.10.0` tag/GitHub Release.
+
+### Release Facts
+
+- Runtime commit: `97f5c67`
+- Production deployment: `dpl_FPZwifR2vJr9ZFDa1cbbJ8y89QsW`
+- Production deployment URL:
+  `https://caseflow-store-c6uko6cai-nvt-ruong473.vercel.app`
+- Production alias: `https://caseflow-store.vercel.app`
+
+### Verification
+
+- `npm exec -- tsc --noEmit --pretty false`: passed.
+- `npm run lint`: passed.
+- `npm exec -- tsx scripts/verify-signup-vouchers.ts`: passed locally.
+- `npm run build`: passed with 51 App Router routes plus proxy.
+- `npm run test:e2e`: passed `20/20` after rerunning separately from build.
+- `npm audit --audit-level=high`: passed at the high threshold; the known
+  moderate Next/PostCSS advisory remains.
+- `git diff --check`: passed.
+- `git push origin main`: passed; remote `main` advanced to `97f5c67`.
+- `npx vercel --prod --yes`: passed; deployment reached `READY` and was
+  aliased.
+- `npx vercel inspect https://caseflow-store.vercel.app`: passed and reported
+  deployment `dpl_FPZwifR2vJr9ZFDa1cbbJ8y89QsW`.
+- `SIGNUP_VOUCHERS_VERIFY_BASE_URL=https://caseflow-store.vercel.app npm exec -- tsx scripts/verify-signup-vouchers.ts`:
+  passed with all checks true.
+- `PRODUCTION_SMOKE_BASE_URL=https://caseflow-store.vercel.app PRODUCTION_SMOKE_ARTIFACT_ID=v1.10.0-production npm exec -- tsx scripts/verify-production-smoke.ts`:
+  passed.
+- `SECURITY_QA_BASE_URL=https://caseflow-store.vercel.app SECURITY_QA_ARTIFACT_ID=v1.10.0-production npm exec -- tsx scripts/verify-security-posture.ts`:
+  passed with zero findings.
+- `PAYQR_PRODUCTION_SAFETY_BASE_URL=https://caseflow-store.vercel.app PAYQR_ARTIFACT_ID=v1.10.0-production npm exec -- tsx scripts/verify-qr-payment-production-safety.ts`:
+  passed; production QR runtime remains denied with status `401`.
+- `FINAL_QA_BASE_URL=https://caseflow-store.vercel.app FINAL_QA_TASK_ID=v1.10.0-production npm exec -- tsx scripts/verify-final-post-release-qa.ts`:
+  passed with zero findings.
+
+### Evidence
+
+- `docs/v1.10.0-account-bound-signup-voucher-release-notes.md`
+- `docs/release-candidate.md`
+- `.agent/artifacts/signup-vouchers/signup-vouchers-check.json`
+- `.agent/artifacts/v1.10.0-production/production-smoke-check.json`
+- `.agent/artifacts/v1.10.0-production/security-posture-check.json`
+- `.agent/artifacts/v1.10.0-production/qr-payment-production-safety-check.json`
+- `.agent/artifacts/v1.10.0-production/final-post-release-qa.json`
+- `.agent/artifacts/v1.10.0-production/final-post-release-qa.md`
+
+### Guardrails
+
+- No real payment settlement, production mock-payment enablement, SMS/email
+  marketing provider, fake scarcity timer, force-push, or release history
+  rewrite was performed.

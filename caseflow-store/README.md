@@ -72,14 +72,12 @@ runtime.
 - GitHub Release:
   `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.10.0`
 - Production alias: `https://caseflow-store.vercel.app`
-- Vercel deployment ID: recorded in the GitHub Release and `.agent` artifacts
-  after `SIGNUPVOUCHER-T02` production deploy.
+- Vercel deployment ID: `dpl_FPZwifR2vJr9ZFDa1cbbJ8y89QsW`
 - Local gates: TypeScript, ESLint, production build, full Playwright `20/20`,
   signup voucher verifier, QR production-safety verifier, security posture
   verifier, final QA smoke, and `git diff --check` passed.
 - Production smoke: signup voucher verifier, release smoke, security posture,
-  final QA smoke, and QR production-safety lock are required before publishing
-  the final `v1.10.0` GitHub Release.
+  final QA smoke, and QR production-safety lock passed.
 - Release notes:
   [`docs/v1.10.0-account-bound-signup-voucher-release-notes.md`](docs/v1.10.0-account-bound-signup-voucher-release-notes.md)
 - Known boundaries: simulated payments, QR demo locked from production

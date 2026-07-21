@@ -1,34 +1,34 @@
 {
-  "baseURL": "http://127.0.0.1:3000",
+  "baseURL": "https://caseflow-store.vercel.app",
   "checkoutFlow": {
     "inputValue": "WELCOME30K",
-    "orderCode": "CF-MRUIQ3U3-290E4A2593",
+    "orderCode": "CF-MRUJ1IP4-4CF80AB2E1",
     "responseDiscountTotalVnd": 30000,
     "summaryDiscountVisible": true,
     "voucherPanelVisible": true
   },
-  "generatedAt": "2026-07-21T10:36:17.782Z",
+  "generatedAt": "2026-07-21T10:45:18.934Z",
   "grantedCodes": [
     {
       "code": "WELCOME30K",
-      "expiresAt": "2026-08-20T10:35:35.377+00:00",
+      "expiresAt": "2026-08-20T10:44:17.202+00:00",
       "status": "available"
     },
     {
       "code": "READMORE20K",
-      "expiresAt": "2026-08-20T10:35:35.377+00:00",
+      "expiresAt": "2026-08-20T10:44:17.202+00:00",
       "status": "available"
     },
     {
       "code": "FREESHIP25K",
-      "expiresAt": "2026-08-20T10:35:35.377+00:00",
+      "expiresAt": "2026-08-20T10:44:17.202+00:00",
       "status": "available"
     }
   ],
   "ok": true,
   "order": {
     "discountTotalVnd": 30000,
-    "orderCode": "CF-MRUIQ3U3-290E4A2593",
+    "orderCode": "CF-MRUJ1IP4-4CF80AB2E1",
     "promotionCode": "WELCOME30K",
     "totalVnd": 925100
   },
