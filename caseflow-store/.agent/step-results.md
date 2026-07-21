@@ -14091,3 +14091,51 @@ made.
 - No retry loop or repeated production sign-up was run after the 429.
 - No runtime code, deploy, release tag, or release metadata change was made in
   this task.
+
+---
+
+## AUTH-SMTP-T01 - Automate Supabase Auth Custom SMTP Configuration
+
+- Date: 2026-07-21
+- Status: blocked pending real SMTP credentials and Supabase Management API token
+- Target: Supabase Auth for `caseflow-store`
+
+### Objective
+
+Make custom SMTP setup repeatable and safe so production confirmation emails no
+longer depend on Supabase's built-in low-limit sender.
+
+### Result
+
+Added a one-off operational script that loads local env values, validates the
+Supabase project ref and SMTP settings, redacts sensitive output, dry-runs by
+default, and only patches Supabase Auth when `AUTH_SMTP_APPLY=true` is set.
+
+The task is intentionally blocked before applying because the local environment
+does not contain real SMTP provider credentials or a Supabase Management API
+access token. No fake SMTP values were used, no email confirmation setting was
+weakened, and no secret was committed.
+
+### Evidence
+
+- `scripts/configure-supabase-custom-smtp.ts`
+- `docs/auth-smtp-t01-custom-smtp-automation.md`
+- `.env.example`
+
+### Verification
+
+- `npm exec -- tsx scripts/configure-supabase-custom-smtp.ts`: expected
+  non-zero dry-run; listed missing `SUPABASE_ACCESS_TOKEN`,
+  `SMTP_ADMIN_EMAIL`, `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, and `SMTP_PASS`
+  without printing secrets.
+- `npm exec -- tsc --noEmit --pretty false`: passed.
+- `npm run lint`: passed.
+- `git diff --check`: passed.
+
+### Guardrails
+
+- Do not use fake SMTP credentials.
+- Do not commit real SMTP credentials or Supabase Management API tokens.
+- Do not disable email confirmations to bypass rate limits.
+- Do not mark the post-fix real-email redirect UAT as pass until a real
+  confirmation email can be received and clicked.

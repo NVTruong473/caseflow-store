@@ -11,13 +11,28 @@
 
 - Project: CaseFlow Books
 - Mode: post-`v1.10.0` production UAT verification
-- Current gate: `AUTH-EMAIL-T02` is blocked by Supabase Auth rate limit after
-  one controlled post-fix email redirect rerun
-- Current task: `AUTH-EMAIL-T02`
+- Current gate: `AUTH-SMTP-T01` automation is ready but blocked pending real
+  Supabase Management API token and SMTP credentials
+- Current task: `AUTH-SMTP-T01`
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-21
 
 ## Phase UAT-MANUAL - Production Customer Manual Acceptance
+
+- [!] `AUTH-SMTP-T01` Automate Supabase Auth Custom SMTP Configuration. -
+  2026-07-21
+  - Objective: make custom SMTP setup repeatable and safe so Supabase Auth
+    confirmation emails do not depend on the built-in low-limit sender.
+  - Result: added `scripts/configure-supabase-custom-smtp.ts`, documented the
+    process in `docs/auth-smtp-t01-custom-smtp-automation.md`, and added
+    commented `.env.example` variables for Supabase Management API and SMTP
+    configuration.
+  - Verification: dry-run correctly blocked because
+    `SUPABASE_ACCESS_TOKEN`, `SMTP_ADMIN_EMAIL`, `SMTP_HOST`, `SMTP_PORT`,
+    `SMTP_USER`, and `SMTP_PASS` are missing; typecheck, lint, and
+    `git diff --check` passed.
+  - Blocker: real SMTP provider credentials and a Supabase Management API
+    access token are required. Do not use fake values or commit secrets.
 
 - [!] `AUTH-EMAIL-T02` Post-fix Email Redirect Rerun. - 2026-07-21
   - Objective: rerun strict real-email UAT after the redirect fix to prove a

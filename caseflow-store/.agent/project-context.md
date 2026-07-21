@@ -13,9 +13,9 @@
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
 - Current mode: post-`v1.10.0` production UAT verification.
-- Current gate: `AUTH-EMAIL-T02` is blocked by Supabase Auth rate limit after
-  one controlled post-fix email redirect rerun.
-- Current task: `AUTH-EMAIL-T02`.
+- Current gate: `AUTH-SMTP-T01` automation is ready but blocked pending real
+  Supabase Management API token and SMTP credentials.
+- Current task: `AUTH-SMTP-T01`.
 
 ## Confirmed Facts
 
@@ -153,6 +153,13 @@
   returned `429 CUSTOMER_AUTH_FAILED` before account creation, fallback stayed
   disabled, no email was sent/clicked, and the post-fix redirect UX remains
   blocked pending Supabase Auth cooldown or custom SMTP.
+- `AUTH-SMTP-T01` was prepared on 2026-07-21: added
+  `scripts/configure-supabase-custom-smtp.ts`, documented
+  `docs/auth-smtp-t01-custom-smtp-automation.md`, and added `.env.example`
+  placeholders for Supabase Management API and SMTP settings. Dry-run blocks
+  safely because `SUPABASE_ACCESS_TOKEN`, `SMTP_ADMIN_EMAIL`, `SMTP_HOST`,
+  `SMTP_PORT`, `SMTP_USER`, and `SMTP_PASS` are missing. No fake SMTP
+  configuration was applied.
 - Implementation was confirmed by the user on 2026-07-14.
 - Implementation was unblocked by installing the official Node.js LTS binary after Homebrew failed.
 - The Next.js app has been initialized in `caseflow-store`.
