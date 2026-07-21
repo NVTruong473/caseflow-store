@@ -10,7 +10,8 @@ stable closeout patch, the `v1.4.2` agent-inspired security QA hardening
 patch, the `v1.5.0` QR demo payment release, the `v1.6.0` retail catalog
 scale release, the `v1.7.0` UI humanization release, and the `v1.8.0`
 modern editorial bookstore release, the `v1.9.0` real-cover commerce polish,
-and the `v1.10.0` account-bound signup voucher release. The system is
+the `v1.10.0` account-bound signup voucher release, and the `v1.11.0`
+account password-change release. The system is
 intentionally a Next.js modular monolith: it demonstrates a realistic
 specialist e-commerce workflow without claiming marketplace scale, real payment
 settlement, or enterprise operations.

@@ -14156,10 +14156,10 @@ weakened, and no secret was committed.
 
 ---
 
-## AUTH-PASSWORD-T01 - Signed-In Account Password Change
+## AUTH-PASSWORD-T01 - Signed-In Account Password Change And v1.11.0 Release
 
-- Date: 2026-07-21
-- Status: completed locally
+- Date: 2026-07-21 to 2026-07-22
+- Status: completed and released as `v1.11.0`
 - Scope: `/account`, `PATCH /api/customer/password`, account security verifier
 
 ### Objective
@@ -14184,6 +14184,10 @@ shipping form first.
 `SMTP_SENDER_NAME=CaseFlow Books`. Real SMTP secrets remain absent, so custom
 SMTP apply-mode still blocks safely before Supabase API mutation.
 
+The feature was deployed to Vercel production deployment
+`dpl_DtUDA7pbv7ZcJYFRM5TVmsQUhThq` and aliased to
+`https://caseflow-store.vercel.app`.
+
 ### Evidence
 
 - `src/app/api/customer/password/route.ts`
@@ -14193,6 +14197,7 @@ SMTP apply-mode still blocks safely before Supabase API mutation.
 - `src/lib/api/error-codes.ts`
 - `docs/api-contract.md`
 - `docs/architecture.md`
+- `docs/v1.11.0-account-security-password-release-notes.md`
 - `scripts/verify-customer-password-change.ts`
 - `.agent/artifacts/auth-password-t01/customer-password-change-check.json`
 - `.agent/artifacts/auth-password-t01/customer-password-changed.png`
@@ -14212,11 +14217,24 @@ SMTP apply-mode still blocks safely before Supabase API mutation.
   password signs in, captured a screenshot, and cleaned up the user.
 - `npm run test:e2e`: passed `20/20`.
 - `git diff --check`: passed.
+- `npx vercel deploy --prod --yes`: passed; deployment
+  `dpl_DtUDA7pbv7ZcJYFRM5TVmsQUhThq` reached `READY` and was aliased to
+  `https://caseflow-store.vercel.app`.
+- `npx vercel inspect https://caseflow-store.vercel.app`: passed; alias points
+  to `dpl_DtUDA7pbv7ZcJYFRM5TVmsQUhThq`.
+- `PRODUCTION_SMOKE_BASE_URL=https://caseflow-store.vercel.app PRODUCTION_SMOKE_ARTIFACT_ID=auth-password-t01-production-smoke npm exec -- tsx scripts/verify-production-smoke.ts`:
+  passed.
+- `SECURITY_QA_BASE_URL=https://caseflow-store.vercel.app SECURITY_QA_ARTIFACT_ID=auth-password-t01-production-security npm exec -- tsx scripts/verify-security-posture.ts`:
+  passed.
+- `PAYQR_PRODUCTION_SAFETY_BASE_URL=https://caseflow-store.vercel.app PAYQR_ARTIFACT_ID=auth-password-t01-production-qr-safety npm exec -- tsx scripts/verify-qr-payment-production-safety.ts`:
+  passed.
+- `PASSWORD_CHANGE_BASE_URL=https://caseflow-store.vercel.app npm exec -- tsx scripts/verify-customer-password-change.ts`:
+  passed against production.
 
 ### Guardrails
 
 - No real SMTP secrets were added or committed.
 - No fake SMTP credentials were activated.
 - No admin/staff reset-password-for-other-user feature was added.
-- No production deploy, tag, release, or Supabase Auth custom SMTP mutation was
+- No release tag, GitHub Release, or Supabase Auth custom SMTP mutation was
   performed in this task.

@@ -10,7 +10,7 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: post-`v1.10.0` production UAT verification
+- Mode: post-`v1.11.0` production UAT verification
 - Current gate: `AUTH-SMTP-T01` automation is ready but blocked pending real
   Supabase Management API token and SMTP credentials
 - Current task: `AUTH-SMTP-T01`
@@ -19,19 +19,22 @@
 
 ## Phase UAT-MANUAL - Production Customer Manual Acceptance
 
-- [x] `AUTH-PASSWORD-T01` Add Signed-In Account Password Change. -
-  2026-07-21
+- [x] `AUTH-PASSWORD-T01` Add Signed-In Account Password Change And Release
+  `v1.11.0`. - 2026-07-22
   - Objective: let signed-in customer, staff, and admin accounts change their
     own password from the account page without exposing service-role reset
     controls or letting one user reset another user's password.
   - Result: added `PATCH /api/customer/password`, Zod validation, API error
     contract entry, customer account password form, and
-    `scripts/verify-customer-password-change.ts`.
+    `scripts/verify-customer-password-change.ts`. Shipped to Vercel
+    production deployment `dpl_DtUDA7pbv7ZcJYFRM5TVmsQUhThq`, aliased to
+    `https://caseflow-store.vercel.app`.
   - Verification: local `.env.local` was updated with non-secret SMTP defaults
     (`SUPABASE_PROJECT_REF`, `SMTP_PORT`, `SMTP_SENDER_NAME`) while real SMTP
     secrets remain absent; SMTP apply-mode still blocks safely. Typecheck,
     lint, production build, dedicated password-change verifier, and full E2E
-    `20/20` passed.
+    `20/20` passed. Production inspect, smoke, security, QR production-safety,
+    and production password-change verifier passed.
   - Guardrail: password change is self-service for the signed-in account only;
     no admin/staff password reset for other accounts was added.
 

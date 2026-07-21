@@ -4,7 +4,7 @@
 
 - Project name: CaseFlow Store `v1.0.0`; CaseFlow Books `v1.1.0`, `v1.2.0`,
   `v1.3.0`, `v1.3.1`, `v1.4.0`, `v1.4.1`, `v1.4.2`, `v1.5.0`, `v1.6.0`,
-  `v1.7.0`, `v1.8.0`, `v1.9.0`, and `v1.10.0` released
+  `v1.7.0`, `v1.8.0`, `v1.9.0`, `v1.10.0`, and `v1.11.0` released
 - Repository folder: `/Users/vantruong/Documents/TSNN 2`
 - Product domain: books for released `v1.1.0` and `v1.2.0`; phone
   accessories for released `v1.0.0`
@@ -163,14 +163,18 @@
   blocked before any Supabase API mutation for the same missing credentials;
   production inspect, smoke, security posture, and QR production-safety checks
   passed against `https://caseflow-store.vercel.app`.
-- `AUTH-PASSWORD-T01` was completed locally on 2026-07-21: `.env.local` was
+- `AUTH-PASSWORD-T01` was completed and released as `v1.11.0` on
+  2026-07-22: `.env.local` was
   updated with non-secret SMTP helper values (`SUPABASE_PROJECT_REF`,
   `SMTP_PORT=587`, `SMTP_SENDER_NAME=CaseFlow Books`) while real SMTP secrets
   remain absent; added a self-service signed-in password change form on
   `/account`, `PATCH /api/customer/password`, validation/API contract docs, and
   a Playwright verifier proving the old password is rejected after change and
   the new password signs in. The feature does not let admin/staff reset another
-  user's password.
+  user's password. It was then deployed to Vercel production deployment
+  `dpl_DtUDA7pbv7ZcJYFRM5TVmsQUhThq`, aliased to
+  `https://caseflow-store.vercel.app`, with production smoke, security posture,
+  QR production-safety, and production password-change verifier passing.
 - Implementation was confirmed by the user on 2026-07-14.
 - Implementation was unblocked by installing the official Node.js LTS binary after Homebrew failed.
 - The Next.js app has been initialized in `caseflow-store`.
