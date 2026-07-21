@@ -5,18 +5,19 @@ demo. The project started as the 20-day CaseFlow Store `v1.0.0` MVP and was
 upgraded through the Day 21-40 roadmap, the `v1.2` realistic catalog release,
 the `v1.3` visual merchandising polish, the `v1.3.1` compact-card hotfix,
 the `v1.4` real-commerce visual merchandising release, the `v1.5.0` QR
-demo payment release, the `v1.6.0` retail catalog scale release, and the
-`v1.7.0` UI humanization release into a Vietnam-first, bilingual e-commerce
-application for book discovery, account-gated checkout, customer order
-history/cancellation, order tracking, and admin/staff operations. The latest
-release keeps the 500-edition catalog while making the storefront feel more
-authored and bookstore-specific, and it fixes cancellation/payment dashboard
-reporting for rejected orders.
+demo payment release, the `v1.6.0` retail catalog scale release, the
+`v1.7.0` UI humanization release, and the `v1.8.0` modern editorial bookstore
+release into a Vietnam-first, bilingual e-commerce application for book
+discovery, account-gated checkout, customer order history/cancellation, order
+tracking, and admin/staff operations. The latest release keeps the
+500-edition catalog while adding search-first navigation, live category
+discovery, cover provenance evidence, restrained motion, and production-tested
+bookstore UX polish.
 
 [Open the production deployment](https://caseflow-store.vercel.app)
 
 Latest release:
-[`v1.7.0`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.7.0)
+[`v1.8.0`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.8.0)
 
 > Payments are simulated. The app does not collect card numbers, CVV, card
 > expiry, real bank credentials, or real MoMo/ZaloPay/VNPay credentials. QR
@@ -136,17 +137,16 @@ Latest release:
 
 | Gate | Result |
 |---|---|
-| Release tag | `v1.7.0` |
-| GitHub Release | [`CaseFlow Books v1.7.0 - UI Humanization`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.7.0) |
+| Release tag | `v1.8.0` |
+| GitHub Release | [`CaseFlow Books v1.8.0 - Modern Editorial Bookstore`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.8.0) |
 | Production URL | `https://caseflow-store.vercel.app` |
-| Vercel deployment | `READY`, deployment `dpl_EKSUm28mL8w4acchGxoZeeJA8iJc` |
+| Vercel deployment | `READY`, deployment `dpl_Cqb9tNErhi3zCESYsNsttbqRUziT` |
 | TypeScript | `npx tsc --noEmit --pretty false` passed |
 | ESLint | `npm run lint` passed |
 | Production build | 51 App Router routes plus proxy generated |
-| UI humanization QA | Storefront style audit, design-system guide, no-overflow screenshots, focus visibility, reduced-motion guard, and reading-path label fix passed |
-| Admin cancellation QA | Dashboard payment summaries and admin/staff cancellation normalization passed |
+| Modern bookstore QA | Search-first header, live category menu, mobile search/category links, cover provenance manifest, object-contain covers, product-card motion, back-to-top, no-overflow screenshots, and reduced-motion guard passed |
 | QR demo payment QA | Local QR flow, VietQR CRC, mock webhook HMAC, idempotency, production-safety lock, and UI regression checks passed |
-| Production QA | Release smoke, 500-edition catalog verifier, UI humanization verifier, security posture, final QA smoke, and QR production-safety lock passed |
+| Production QA | V18 bookstore verifier, release smoke, 500-edition catalog verifier, security posture, final QA smoke, and QR production-safety lock passed |
 | v1.4.2 security QA | Security headers/no-store verifier and final QA smoke passed locally and in production; external agent repos were mapped as QA references, not runtime dependencies |
 | v1.4.1 local QA | TypeScript, lint, production build, no-demo copy scan, compact-card overlap, customer order history/cancellation, admin order rejection/cancellation, cleanup, secret scan, audit-high, and `git diff --check` passed |
 | v1.4.1 production QA | Production release smoke, final QA smoke, compact-card overlap, customer order history/cancellation, and admin order rejection/cancellation passed |
@@ -167,6 +167,7 @@ Release evidence is recorded in
 [`caseflow-store/docs/v1.5.0-qr-demo-payment-release-notes.md`](caseflow-store/docs/v1.5.0-qr-demo-payment-release-notes.md),
 [`caseflow-store/docs/v1.6.0-retail-catalog-scale-release-notes.md`](caseflow-store/docs/v1.6.0-retail-catalog-scale-release-notes.md),
 [`caseflow-store/docs/v1.7.0-ui-humanization-release-notes.md`](caseflow-store/docs/v1.7.0-ui-humanization-release-notes.md),
+[`caseflow-store/docs/v1.8.0-modern-editorial-bookstore-release-notes.md`](caseflow-store/docs/v1.8.0-modern-editorial-bookstore-release-notes.md),
 and `.agent/step-results.md`.
 
 ## Portfolio handoff

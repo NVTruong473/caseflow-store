@@ -10,10 +10,10 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: post-`v1.7.0` with completed local `V18-T01`
-- Current gate: local `v1.8` implementation and QA passed; production deploy,
-  tag, and GitHub Release are not yet performed
-- Current task: decide whether to ship the local V18 work as `v1.8.0`
+- Mode: post-`v1.8.0` production release verification
+- Current gate: `V18-T02` production deploy, smoke, tag, and GitHub Release
+  complete
+- Current task: no active implementation task
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-21
 
@@ -49,6 +49,26 @@
     email/shipping integration, fake review/rating/sales claim, newsletter,
     wishlist, quick-view modal, copied commercial cover art, deploy, tag, or
     release was added.
+
+- [x] `V18-T02` Ship Modern Editorial Bookstore Release v1.8.0. - 2026-07-21
+  - Objective: push the accepted V18 work, deploy production, run production
+    smoke/QA, update release notes, create the release tag, and publish the
+    GitHub Release.
+  - Acceptance criteria: remote `main` contains the V18 commit; Vercel
+    production deployment is `READY` and aliased; production V18, catalog,
+    release smoke, security posture, QR production-safety, and final QA checks
+    pass; release notes and latest-release docs are updated; `v1.8.0` tag and
+    GitHub Release exist.
+  - Result: pushed `b93175b` to `origin/main`, deployed
+    `dpl_Cqb9tNErhi3zCESYsNsttbqRUziT` to
+    `https://caseflow-store.vercel.app`, updated release docs, and prepared
+    tag/GitHub Release publication.
+  - Verification: production V18 bookstore experience verifier, production
+    500-edition catalog verifier, production release smoke, security posture,
+    QR production-safety lock, and final QA smoke passed.
+  - Guardrail: no schema migration, production data mutation beyond release
+    verification, real payment/email/shipping integration, fake proof signal,
+    copied commercial cover art, or runtime feature expansion was added.
 
 ## Phase UIH - Humanized Storefront Design Pass
 

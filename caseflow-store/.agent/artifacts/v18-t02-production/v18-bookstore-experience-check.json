@@ -1,0 +1,31 @@
+{
+  "ok": true,
+  "baseURL": "https://caseflow-store.vercel.app",
+  "generatedAt": "2026-07-21T04:07:16.031Z",
+  "pass": {
+    "desktopSearchVisible": true,
+    "desktopCategoryMenuVisible": true,
+    "homeNoOverflow": true,
+    "searchRoutesToCatalog": true,
+    "catalogNoOverflow": true,
+    "catalogCardMotionClass": true,
+    "coverObjectContain": true,
+    "mobileSearchVisible": true,
+    "mobileCategoryLinks": true,
+    "mobileNoOverflow": true,
+    "backToTopVisible": true,
+    "detailNoOverflow": true,
+    "manifestHas500Products": true,
+    "manifestHasEntries": true,
+    "manifestNoExternalCoverUrls": true,
+    "manifestMarksSynthetic": true,
+    "motionTokensPresent": true
+  },
+  "findings": [],
+  "screenshots": {
+    "home": ".agent/artifacts/v18-t02-production/home-1440.png",
+    "catalog": ".agent/artifacts/v18-t02-production/catalog-1440.png",
+    "mobileMenu": ".agent/artifacts/v18-t02-production/mobile-menu-390.png",
+    "detail": ".agent/artifacts/v18-t02-production/detail-390.png"
+  }
+}

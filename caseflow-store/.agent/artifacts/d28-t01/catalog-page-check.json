@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-07-19T16:41:33.968Z",
-  "baseURL": "http://127.0.0.1:3000",
+  "generatedAt": "2026-07-21T04:07:04.112Z",
+  "baseURL": "https://caseflow-store.vercel.app",
   "desktop": {
     "activeFilterCount": 9,
     "firstCard": {
@@ -54,7 +54,7 @@
   "pagination": {
     "pageTwoCurrent": "2",
     "pageTwoRenderedCards": 24,
-    "pageTwoUrl": "http://127.0.0.1:3000/catalog?page=2"
+    "pageTwoUrl": "https://caseflow-store.vercel.app/catalog?page=2"
   },
   "pass": {
     "activeViewVisible": true,

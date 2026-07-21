@@ -8,7 +8,8 @@ This document describes the deployed CaseFlow Books architecture after the Day
 the `v1.4.0` real-commerce visual merchandising release, the `v1.4.1`
 stable closeout patch, the `v1.4.2` agent-inspired security QA hardening
 patch, the `v1.5.0` QR demo payment release, the `v1.6.0` retail catalog
-scale release, and the `v1.7.0` UI humanization release. The system is
+scale release, the `v1.7.0` UI humanization release, and the `v1.8.0`
+modern editorial bookstore release. The system is
 intentionally a Next.js modular monolith: it demonstrates a realistic
 specialist e-commerce workflow without claiming marketplace scale, real payment
 settlement, or enterprise operations.
@@ -298,8 +299,8 @@ notes, rights-analysis notes, or source-edition matching keys. See
 ## Deployment and verification
 
 - Production alias: `https://caseflow-store.vercel.app`.
-- Current production deployment ID: `dpl_EKSUm28mL8w4acchGxoZeeJA8iJc`
-  (`v1.7.0`).
+- Current production deployment ID: `dpl_Cqb9tNErhi3zCESYsNsttbqRUziT`
+  (`v1.8.0`).
 - Supabase hosts PostgreSQL and Auth.
 - Production runtime variables include the public Supabase URL, public anon key,
   and server-only service-role key. Canonical metadata defaults to the
@@ -349,6 +350,12 @@ notes, rights-analysis notes, or source-edition matching keys. See
   detail metadata wrapping, reading-path label overflow fixes, and admin
   dashboard/order-operation normalization so cancelled orders do not appear as
   collectable pending payments.
+- The `v1.8.0` release keeps the same architecture and adds search-first
+  desktop navigation, live category discovery, mobile search/category access,
+  cover provenance manifest checks, honest fallback-cover labeling, CSS-first
+  motion tokens, reduced-motion-aware product-card feedback, back-to-top
+  support for long pages, and production V18/release/security/QR/final QA
+  verification.
 - Dependency audit status is recorded in
   [`v1.2-release-audit.md`](v1.2-release-audit.md).
 

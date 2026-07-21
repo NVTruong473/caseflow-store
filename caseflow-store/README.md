@@ -67,22 +67,20 @@ runtime.
 
 ## Latest release evidence
 
-- Release tag: `v1.7.0`
+- Release tag: `v1.8.0`
 - GitHub Release:
-  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.7.0`
+  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.8.0`
 - Production alias: `https://caseflow-store.vercel.app`
-- Vercel deployment ID: `dpl_EKSUm28mL8w4acchGxoZeeJA8iJc`
+- Vercel deployment ID: `dpl_Cqb9tNErhi3zCESYsNsttbqRUziT`
 - Local gates: TypeScript, ESLint, production build, full Playwright `20/20`,
-  admin dashboard cancellation/payment summary verifier, admin/staff order
-  cancellation verifier, UI humanization verifier, 500-edition catalog
-  verifier, QR production-safety verifier, security posture verifier, final QA
-  smoke, release cleanup, targeted secret scan, dependency audit at high
-  threshold, and `git diff --check` passed.
-- Production smoke: 500-edition catalog verifier, UI humanization verifier,
-  release smoke, security posture, final QA smoke, and QR production-safety
-  lock passed.
+  V18 bookstore experience verifier, 500-edition catalog verifier, QR
+  production-safety verifier, security posture verifier, final QA smoke,
+  dependency audit at high threshold, and `git diff --check` passed.
+- Production smoke: V18 bookstore experience verifier, 500-edition catalog
+  verifier, release smoke, security posture, final QA smoke, and QR
+  production-safety lock passed.
 - Release notes:
-  [`docs/v1.7.0-ui-humanization-release-notes.md`](docs/v1.7.0-ui-humanization-release-notes.md)
+  [`docs/v1.8.0-modern-editorial-bookstore-release-notes.md`](docs/v1.8.0-modern-editorial-bookstore-release-notes.md)
 - Known boundaries: simulated payments, QR demo locked from production
   settlement, no real SMS/OTP, no real shipping carrier integration, and no
   commercial book-cover hotlinking.

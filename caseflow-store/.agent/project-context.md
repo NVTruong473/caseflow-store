@@ -4,7 +4,7 @@
 
 - Project name: CaseFlow Store `v1.0.0`; CaseFlow Books `v1.1.0`, `v1.2.0`,
   `v1.3.0`, `v1.3.1`, `v1.4.0`, `v1.4.1`, `v1.4.2`, `v1.5.0`, `v1.6.0`,
-  and `v1.7.0` released
+  `v1.7.0`, and `v1.8.0` released
 - Repository folder: `/Users/vantruong/Documents/TSNN 2`
 - Product domain: books for released `v1.1.0` and `v1.2.0`; phone
   accessories for released `v1.0.0`
@@ -12,12 +12,10 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: post-`v1.7.0` with completed local `V18-T01` modern editorial
-  bookstore pass.
-- Current gate: local `v1.8` implementation and QA passed; no production
-  deploy, tag, or GitHub Release has been created for this phase yet.
-- Current task: review the `V18-T01` local result and decide whether to ship it
-  as a production release.
+- Current mode: post-`v1.8.0` production release verification.
+- Current gate: `V18-T02` production deploy, smoke, tag, and GitHub Release
+  complete.
+- Current task: no active implementation task.
 
 ## Confirmed Facts
 
@@ -73,6 +71,13 @@
   `node scripts/verify-v18-bookstore-experience.mjs`, high/critical
   dependency audit, and `git diff --check`. No production deploy/tag/release
   was performed.
+- `V18-T02` was completed on 2026-07-21 as the v1.8.0 production release:
+  pushed commit `b93175b` to `origin/main`, deployed Vercel production
+  deployment `dpl_Cqb9tNErhi3zCESYsNsttbqRUziT`, verified the alias
+  `https://caseflow-store.vercel.app`, passed production V18 bookstore
+  experience, catalog, release smoke, security posture, QR production-safety,
+  and final QA smoke gates, updated release documentation, and created the
+  `v1.8.0` tag/GitHub Release.
 - Implementation was confirmed by the user on 2026-07-14.
 - Implementation was unblocked by installing the official Node.js LTS binary after Homebrew failed.
 - The Next.js app has been initialized in `caseflow-store`.
@@ -494,7 +499,7 @@ These are defaults that remain tentative until a later task or ADR freezes them:
   change under v1.3 polish.
 - Release status: `v1.3.1` remains the compact-card layout hotfix release.
   Later production releases now supersede it; the current latest production
-  release is `v1.7.0`.
+  release is `v1.8.0`.
 
 ## v1.1 Active Product Domain
 

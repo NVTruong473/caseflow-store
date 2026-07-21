@@ -4,17 +4,17 @@
 
 | Field | Value |
 |---|---|
-| Current mode | v1.7.0 production release passed |
-| Current gate | `UIH-T02` complete |
+| Current mode | v1.8.0 production release passed |
+| Current gate | `V18-T02` complete |
 | Implementation started | Yes |
 | Next implementation task | No active implementation task |
 | App initialized | Yes, in `caseflow-store` |
-| Local server verified | Yes, UIH-T02 full Playwright `20/20`, admin dashboard/order verifiers, catalog verifier, and UIH verifier passed locally |
-| Lint verified | Yes, UIH-T02 lint passed |
-| Build verified | Yes, UIH-T02 local production build generated 51 App Router routes plus proxy |
+| Local server verified | Yes, V18-T01 full Playwright `20/20`, V18 verifier, catalog verifier, lint, typecheck, build, high/critical audit, and diff check passed locally |
+| Lint verified | Yes, V18-T01 lint passed |
+| Build verified | Yes, V18-T01 local production build generated 51 App Router routes plus proxy |
 | Database connected | Yes; live catalog, orders, Auth, role checks, and admin status updates use Supabase |
-| Deployed | Yes, v1.7.0 production deployment `dpl_EKSUm28mL8w4acchGxoZeeJA8iJc` is aliased to `https://caseflow-store.vercel.app` |
-| Last updated | 2026-07-19 |
+| Deployed | Yes, v1.8.0 production deployment `dpl_Cqb9tNErhi3zCESYsNsttbqRUziT` is aliased to `https://caseflow-store.vercel.app` |
+| Last updated | 2026-07-21 |
 
 ## Result Index
 
@@ -131,6 +131,7 @@
 | SR-183 | 2026-07-19 | V14-T12 | completed | Passed the full local v1.4 quality gate with TypeScript, lint, build, Playwright 20/20, V14 visual QA, cleanup, high/critical audit, targeted secret scan, release-readiness report, and no deploy/tag/release |
 | SR-184 | 2026-07-19 | V14-T13 | completed | Deployed v1.4.0 to Vercel production, passed production smoke, refreshed release docs/evidence, fixed localized-title smoke verification, and prepared GitHub tag/release publication |
 | SR-185 | 2026-07-19 | QA-V14-FINAL-T01 | completed | Passed final post-release tester audit for v1.4.0 with production browser QA, production release smoke, Vercel/GitHub release verification, cleanup, secret scan, no-demo scan, lint, TypeScript, build, and no open P0/P1 findings |
+| SR-186 | 2026-07-21 | V18-T02 | completed | Shipped v1.8.0: pushed V18 commit, deployed Vercel production deployment dpl_Cqb9tNErhi3zCESYsNsttbqRUziT, passed production V18/catalog/release/security/QR/final QA gates, refreshed release docs/evidence, and created the release tag/GitHub Release |
 
 ---
 
@@ -12839,6 +12840,88 @@ data, and honest content boundaries.
 If the user wants this local V18 work public, the next task is a bounded
 `V18-T02`/release task: final diff review, production deploy, production smoke,
 tag, and release notes for `v1.8.0`.
+
+---
+
+## V18-T02 - Ship Modern Editorial Bookstore Release v1.8.0
+
+- Date: 2026-07-21
+- Status: completed
+- Phase: v1.8.0 production release
+- Release: `v1.8.0`
+
+### Objective
+
+Ship the accepted `V18-T01` modern editorial bookstore work to production:
+push the commit, deploy Vercel production, smoke test the production alias,
+refresh release documentation, create the annotated release tag, and publish
+the GitHub Release.
+
+### Actual Result
+
+- Pushed `b93175b` (`V18-T01 modern editorial bookstore pass`) to
+  `origin/main`.
+- Deployed Vercel production deployment
+  `dpl_Cqb9tNErhi3zCESYsNsttbqRUziT`.
+- Verified `https://caseflow-store.vercel.app` is aliased to the new
+  deployment.
+- Ran production V18, catalog, release smoke, security posture, QR
+  production-safety, and final QA checks.
+- Added `docs/v1.8.0-modern-editorial-bookstore-release-notes.md`.
+- Updated latest-release docs: root README, app README,
+  `docs/release-candidate.md`, `docs/architecture.md`,
+  `docs/portfolio-handoff.md`, `.agent/project-context.md`, and
+  `.agent/todo-roadmap.md`.
+- Created the `v1.8.0` annotated tag and GitHub Release after the production
+  gates passed.
+
+### Evidence
+
+- `docs/v1.8.0-modern-editorial-bookstore-release-notes.md`
+- `docs/release-candidate.md`
+- `.agent/artifacts/v18-t02-production/deployment.json`
+- `.agent/artifacts/v18-t02-production/v18-bookstore-experience-check.json`
+- `.agent/artifacts/v18-t02-production/production-release-smoke.json`
+- `.agent/artifacts/v18-t02-production/security-posture-check.json`
+- `.agent/artifacts/v18-t02-production/qr-payment-production-safety-check.json`
+- `.agent/artifacts/v18-t02-production/final-post-release-qa.json`
+- `.agent/artifacts/v18-t02-production/final-post-release-qa.md`
+- `.agent/artifacts/v18-t02-production/production-home-desktop-en.png`
+- `.agent/artifacts/v18-t02-production/production-catalog-mobile-vi.png`
+- `.agent/artifacts/v18-t02-production/production-detail-desktop-en.png`
+- `.agent/artifacts/v18-t02-production/production-detail-mobile-vi.png`
+- `.agent/artifacts/v18-t02-production/production-admin-boundary-mobile-en.png`
+
+### Verification
+
+- `git push origin main`: passed.
+- `npm exec -- vercel --prod --yes`: passed; deployment
+  `dpl_Cqb9tNErhi3zCESYsNsttbqRUziT` reached `READY`.
+- `npm exec -- vercel inspect https://caseflow-store.vercel.app`: passed;
+  alias points to deployment `dpl_Cqb9tNErhi3zCESYsNsttbqRUziT`.
+- `V18_BASE_URL=https://caseflow-store.vercel.app V18_ARTIFACT_ID=v18-t02-production node scripts/verify-v18-bookstore-experience.mjs`:
+  passed with zero findings.
+- `CATALOG_VERIFY_BASE_URL=https://caseflow-store.vercel.app npm exec -- tsx scripts/verify-catalog-page.ts`:
+  passed with 500 editions and 21 pages.
+- `PRODUCTION_RELEASE_TASK_ID=v18-t02-production PRODUCTION_RELEASE_BASE_URL=https://caseflow-store.vercel.app PRODUCTION_RELEASE_DEPLOYMENT_ID=dpl_Cqb9tNErhi3zCESYsNsttbqRUziT npm exec -- tsx scripts/verify-v12-production-release.ts`:
+  passed.
+- `SECURITY_QA_ARTIFACT_ID=v18-t02-production SECURITY_QA_BASE_URL=https://caseflow-store.vercel.app npm exec -- tsx scripts/verify-security-posture.ts`:
+  passed with zero findings.
+- `PAYQR_PRODUCTION_SAFETY_BASE_URL=https://caseflow-store.vercel.app PAYQR_ARTIFACT_ID=v18-t02-production npm exec -- tsx scripts/verify-qr-payment-production-safety.ts`:
+  passed with runtime denied status `401`.
+- `FINAL_QA_TASK_ID=v18-t02-production FINAL_QA_BASE_URL=https://caseflow-store.vercel.app npm exec -- tsx scripts/verify-final-post-release-qa.ts`:
+  passed with zero findings.
+
+### Guardrails Preserved
+
+- No schema migration, production catalog mutation, real payment/email/shipping
+  provider, fake review/rating/sales proof, copied commercial cover art,
+  newsletter, wishlist, quick-view modal, or external AI runtime was added.
+- QR demo payment remains locked from production settlement.
+
+### Next Task
+
+No active implementation task after `v1.8.0` release verification.
 
 ---
 

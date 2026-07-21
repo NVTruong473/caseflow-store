@@ -1,9 +1,9 @@
 # CaseFlow Books Portfolio Handoff
 
-- Latest release: `v1.7.0`
+- Latest release: `v1.8.0`
 - Production URL: `https://caseflow-store.vercel.app`
-- GitHub Release: `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.7.0`
-- Vercel deployment: `dpl_EKSUm28mL8w4acchGxoZeeJA8iJc`
+- GitHub Release: `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.8.0`
+- Vercel deployment: `dpl_Cqb9tNErhi3zCESYsNsttbqRUziT`
 - Project type: full-stack bookstore and small-business operations portfolio
 - Stack: Next.js 16, React 19, TypeScript 5, Tailwind CSS 4, Supabase
   PostgreSQL/Auth/RLS, Zod, Playwright, Vercel
@@ -28,8 +28,9 @@ handled deliberately:
 - The 500-edition catalog uses local project-created cover assets and
   self-written summaries instead of copied commercial covers or publisher
   blurbs.
-- The v1.7 storefront uses a reading-table/spine-rail motif and deliberately
-  varied section rhythm instead of generic landing-page card grids.
+- The v1.8 storefront adds search-first navigation, live category discovery,
+  cover provenance evidence, restrained motion, and long-page support on top of
+  the reading-table/spine-rail motif.
 - Cancelled/rejected orders are normalized server-side so admin/staff
   dashboards do not count stale pending payments as still collectable.
 - Release claims are backed by Playwright, production smoke, cleanup, audit,
@@ -110,12 +111,13 @@ See `docs/architecture.md` for the full architecture notes.
 
 | Evidence | Location |
 |---|---|
-| Latest release notes | `docs/v1.7.0-ui-humanization-release-notes.md` |
-| v1.7 production UI humanization | `.agent/artifacts/v17-t01-production/ui-humanization-check.json` |
-| v1.7 production release smoke | `.agent/artifacts/v17-t01-production/production-release-smoke.json` |
-| v1.7 production final QA | `.agent/artifacts/v17-t01-production/final-post-release-qa.json` |
-| v1.7 production security posture | `.agent/artifacts/v17-t01-production/security-posture-check.json` |
-| v1.7 QR production lock | `.agent/artifacts/v17-t01-production/qr-payment-production-safety-check.json` |
+| Latest release notes | `docs/v1.8.0-modern-editorial-bookstore-release-notes.md` |
+| v1.8 production bookstore UX | `.agent/artifacts/v18-t02-production/v18-bookstore-experience-check.json` |
+| v1.8 production release smoke | `.agent/artifacts/v18-t02-production/production-release-smoke.json` |
+| v1.8 production final QA | `.agent/artifacts/v18-t02-production/final-post-release-qa.json` |
+| v1.8 production security posture | `.agent/artifacts/v18-t02-production/security-posture-check.json` |
+| v1.8 QR production lock | `.agent/artifacts/v18-t02-production/qr-payment-production-safety-check.json` |
+| v1.7 release notes | `docs/v1.7.0-ui-humanization-release-notes.md` |
 | UI humanization audit | `docs/ui-humanization-audit.md` |
 | UI style guide | `docs/style-guide.md` |
 | v1.6 production catalog polish | `.agent/artifacts/v16-t01-production/catalog-retail-polish-check.json` |
