@@ -13890,3 +13890,61 @@ history.
 - No real payment transfer, real bank deep link, real delivery, production
   mock-payment enablement, deploy, tag, release rewrite, or production data
   cleanup was performed.
+
+---
+
+## AUTH-UAT-T01 - Investigate Production Sign-up Rate Limit And Rerun Customer UAT
+
+- Date: 2026-07-21
+- Status: completed
+- Production URL: `https://caseflow-store.vercel.app`
+
+### Result
+
+The open production self-service sign-up finding from `UAT-MANUAL-T01` was
+investigated and closed for the current production build.
+
+Supabase Auth documentation was reviewed for rate-limit behavior, default SMTP
+limits, and Auth 429 error semantics. The customer UAT verifier was updated so
+future runs can disable service-role fallback and use a non-test email domain.
+The no-fallback production rerun returned `201` from public customer sign-up,
+then completed the full customer path: sign-in, 3 signup vouchers, profile
+completion, add-to-cart, checkout with one voucher, production QR/payment lock,
+and account order history.
+
+### Evidence
+
+- `docs/auth-uat-t01-production-signup-rate-limit.md`
+- `.agent/artifacts/auth-uat-t01-production-nofallback/uat-manual-customer-production-check.json`
+- `.agent/artifacts/auth-uat-t01-production-nofallback/uat-manual-customer-production-report.md`
+- `.agent/artifacts/auth-uat-t01-production-nofallback/01-account-created.png`
+- `.agent/artifacts/auth-uat-t01-production-nofallback/02-profile-complete.png`
+- `.agent/artifacts/auth-uat-t01-production-nofallback/03-book-added-to-cart.png`
+- `.agent/artifacts/auth-uat-t01-production-nofallback/03b-checkout-review-before-submit.png`
+- `.agent/artifacts/auth-uat-t01-production-nofallback/04-checkout-success.png`
+- `.agent/artifacts/auth-uat-t01-production-nofallback/05-qr-boundary-orders-redirect.png`
+- `.agent/artifacts/auth-uat-t01-production-nofallback/06-order-history.png`
+
+### Verification
+
+- `UAT_MANUAL_BASE_URL=https://caseflow-store.vercel.app UAT_MANUAL_ARTIFACT_ID=auth-uat-t01-production-nofallback UAT_MANUAL_DISABLE_FALLBACK=true UAT_MANUAL_EMAIL_DOMAIN=gmail.com npm exec -- tsx scripts/verify-uat-manual-customer-production.ts`: passed.
+- `npm exec -- tsc --noEmit --pretty false`: passed.
+- `npm run lint`: passed.
+- `npm audit --audit-level=high`: passed at high threshold; the known moderate
+  Next/PostCSS advisory remains.
+- `git diff --check`: passed.
+
+### UAT Account And Order
+
+- UAT email: `caseflow-uat-manual-mruspqcg-xk4bg9@gmail.com`
+- UAT order: `CF-MRUSRE2K-007B2B5B07`
+- Password is not stored in repository artifacts.
+
+### Guardrails
+
+- No service-role fallback was used for the rerun.
+- No real payment transfer, real delivery, production mock-payment enablement,
+  deploy, release tag, release rewrite, or production data cleanup was
+  performed.
+- Remaining production-readiness concern: configure custom SMTP and abuse
+  controls before treating public email sign-up as business-grade.

@@ -10,6 +10,10 @@ loadEnvConfig(process.cwd());
 
 const ARTIFACT_ID = process.env.UAT_MANUAL_ARTIFACT_ID ?? "uat-manual-t01";
 const ARTIFACT_DIR = path.join(".agent", "artifacts", ARTIFACT_ID);
+const DISABLE_FALLBACK = process.env.UAT_MANUAL_DISABLE_FALLBACK === "true";
+const EMAIL_DOMAIN = parseEmailDomain(
+  process.env.UAT_MANUAL_EMAIL_DOMAIN ?? "example.com",
+);
 type ApiResponse<TData> = {
   data: TData | null;
   error: { code: string; message: string } | null;
@@ -50,7 +54,7 @@ async function main() {
     .toString(36)
     .slice(2, 8)}`;
   const account = {
-    email: `caseflow-uat-manual-${runId}@example.com`,
+    email: `caseflow-uat-manual-${runId}@${EMAIL_DOMAIN}`,
     fullName: "CaseFlow UAT Customer",
     password: createEphemeralPassword(runId),
     phone: "+84 912 345 678",
@@ -74,7 +78,49 @@ async function main() {
       if (registration.accountCreated) {
         await confirmCustomerIfNeeded(account.email);
       } else {
+        if (DISABLE_FALLBACK) {
+          const report = {
+            account: {
+              email: account.email,
+              fullName: account.fullName,
+            },
+            baseURL,
+            fallbackDisabled: true,
+            generatedAt: new Date().toISOString(),
+            ok: false,
+            registration,
+            target: {
+              editionId: target.edition.id,
+              priceVnd: target.edition.priceVnd,
+              slug: target.slug,
+              title: target.title,
+            },
+          };
+
+          writeJson("uat-manual-customer-production-check.json", report);
+          writeSignupBlockedReport(report);
+
+          console.log(
+            JSON.stringify(
+              {
+                ok: false,
+                reason: "self-service-signup-blocked",
+                registration,
+                report: path.join(
+                  ARTIFACT_DIR,
+                  "uat-manual-customer-production-check.json",
+                ),
+              },
+              null,
+              2,
+            ),
+          );
+          process.exitCode = 1;
+          return;
+        }
+
         await createPreRegisteredCustomer(account);
+        registration.fallbackProvisioned = true;
       }
 
       await signInCustomerThroughUi(page, account);
@@ -242,7 +288,7 @@ async function registerCustomerThroughUi(
       accountCreated: false,
       errorCode: sessionPayload?.error?.code ?? null,
       errorMessage: sessionPayload?.error?.message ?? "unknown",
-      fallbackProvisioned: true,
+      fallbackProvisioned: false,
       signedIn: false,
       status: sessionResponse.status(),
     };
@@ -761,8 +807,78 @@ function parseBaseURL(value: string) {
   return url.toString().replace(/\/$/, "");
 }
 
+function parseEmailDomain(value: string) {
+  const domain = value.trim().replace(/^@/, "").toLowerCase();
+
+  if (!/^[a-z0-9.-]+\.[a-z]{2,}$/.test(domain)) {
+    throw new Error(`Invalid UAT_MANUAL_EMAIL_DOMAIN: ${value}`);
+  }
+
+  return domain;
+}
+
 function createEphemeralPassword(seed: string) {
   return `CaseFlowUAT-${seed}-9aA!`;
+}
+
+function writeSignupBlockedReport(report: {
+  account: { email: string; fullName: string };
+  baseURL: string;
+  fallbackDisabled: boolean;
+  generatedAt: string;
+  ok: boolean;
+  registration: {
+    accountCreated: boolean;
+    errorCode: string | null;
+    errorMessage: string | null;
+    fallbackProvisioned: boolean;
+    signedIn: boolean;
+    status: number;
+  };
+  target: { editionId: string; priceVnd: number; slug: string; title: string };
+}) {
+  const markdown = `# UAT-MANUAL-T01 Production Customer Order Test
+
+- Generated at: ${report.generatedAt}
+- Base URL: ${report.baseURL}
+- Result: BLOCKED - self-service sign-up did not create a customer account
+- Fallback disabled: ${report.fallbackDisabled ? "yes" : "no"}
+
+## Customer Account Attempt
+
+- Email: \`${report.account.email}\`
+- Name: ${report.account.fullName}
+- Password: not stored in repository artifacts.
+
+## Registration Response
+
+- HTTP status: ${report.registration.status}
+- Error code: ${report.registration.errorCode ?? "n/a"}
+- Error message: ${report.registration.errorMessage ?? "n/a"}
+- Account created: ${report.registration.accountCreated ? "yes" : "no"}
+- Signed in: ${report.registration.signedIn ? "yes" : "no"}
+
+## Result
+
+The no-fallback customer UAT stopped before profile completion, cart,
+checkout, QR boundary, and order history because the public production sign-up
+flow did not create a customer account.
+
+## Target Book Reserved For Test
+
+- Book: ${report.target.title} (\`${report.target.slug}\`)
+- Edition ID: \`${report.target.editionId}\`
+- Price: ${report.target.priceVnd} VND
+
+## Evidence
+
+- \`.agent/artifacts/${ARTIFACT_ID}/uat-manual-customer-production-check.json\`
+`;
+
+  fs.writeFileSync(
+    path.join(ARTIFACT_DIR, "uat-manual-customer-production-report.md"),
+    markdown,
+  );
 }
 
 void main();

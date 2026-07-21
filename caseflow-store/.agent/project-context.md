@@ -13,8 +13,8 @@
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
 - Current mode: post-`v1.10.0` production UAT verification.
-- Current gate: `UAT-MANUAL-T01` executed with one open sign-up rate-limit
-  finding.
+- Current gate: `AUTH-UAT-T01` closed the open production sign-up rate-limit
+  finding by rerunning customer UAT with service-role fallback disabled.
 - Current task: no active implementation task.
 
 ## Confirmed Facts
@@ -117,6 +117,16 @@
   order history passed. Self-service sign-up was blocked by Supabase Auth
   rate-limit `429 CUSTOMER_AUTH_FAILED`, so the UAT account was provisioned by
   service-role as a controlled fallback and the finding remains open.
+- `AUTH-UAT-T01` was completed on 2026-07-21: Supabase Auth rate-limit docs
+  were reviewed, the production customer UAT verifier gained a no-fallback
+  mode and configurable email domain, and production UAT was rerun against
+  `https://caseflow-store.vercel.app` with fallback disabled. Public sign-up
+  returned `201`, `fallbackProvisioned` stayed false, 3 signup vouchers were
+  visible, checkout with `WELCOME30K` created order
+  `CF-MRUSRE2K-007B2B5B07`, QR/payment production lock passed, and account
+  order history passed. The remaining launch concern is operational: configure
+  custom SMTP and abuse controls before treating public email registration as
+  business-grade.
 - Implementation was confirmed by the user on 2026-07-14.
 - Implementation was unblocked by installing the official Node.js LTS binary after Homebrew failed.
 - The Next.js app has been initialized in `caseflow-store`.
