@@ -10,12 +10,35 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: post-`v1.10.0` production release verification
-- Current gate: `SIGNUPVOUCHER-T02` production deploy, smoke, tag, and
-  GitHub Release complete; `POSTV110-T01` consistency audit passed
+- Mode: post-`v1.10.0` production UAT verification
+- Current gate: `UAT-MANUAL-T01` executed with one open sign-up rate-limit
+  finding; `POSTV110-T01` consistency audit passed
 - Current task: no active implementation task
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-21
+
+## Phase UAT-MANUAL - Production Customer Manual Acceptance
+
+- [!] `UAT-MANUAL-T01` Test đặt hàng thủ công bằng tài khoản khách trên
+  production. - 2026-07-21
+  - Objective: exercise production as a customer: sign-up/sign-in, welcome
+    vouchers, profile completion, product add-to-cart, checkout, QR/payment
+    boundary, and account order history.
+  - Result: customer sign-in, voucher grant/listing, profile completion,
+    product add-to-cart, checkout with `WELCOME30K`, order creation
+    `CF-MRULYDA5-0834135AE0`, server-persisted totals, production QR/payment
+    lock, and order history all passed. Self-service sign-up returned
+    `429 CUSTOMER_AUTH_FAILED`, so the UAT account was provisioned as a
+    controlled fallback.
+  - Verification: UAT artifact report and screenshots were written under
+    `.agent/artifacts/uat-manual-t01-v110-production`; typecheck, lint,
+    high-threshold dependency audit, and `git diff --check` passed.
+  - Open finding: `UAT-MANUAL-F01` investigate Supabase Auth sign-up rate
+    limiting/email confirmation behavior before claiming production
+    self-service registration is fully UAT-pass.
+  - Guardrail: no real payment transfer, real delivery, production mock-payment
+    enablement, deploy, tag, release rewrite, or schema/data cleanup was
+    performed.
 
 ## Phase POSTV110 - Final v1.10.0 Release Consistency Audit
 

@@ -1,0 +1,95 @@
+{
+  "account": {
+    "email": "caseflow-uat-manual-mrulxe4i-asgjx2@example.com",
+    "fullName": "CaseFlow UAT Customer"
+  },
+  "baseURL": "https://caseflow-store.vercel.app",
+  "checkoutState": {
+    "appliedPromotionCode": "WELCOME30K",
+    "checkoutMomoVisible": false,
+    "checkoutVnpayVisible": false,
+    "discountVisible": true,
+    "hasOverflow": false,
+    "orderCode": "CF-MRULYDA5-0834135AE0",
+    "paymentMethodText": "Bank transfer",
+    "paymentStatusText": "Awaiting bank transfer",
+    "profileReady": true,
+    "successCode": "CF-MRULYDA5-0834135AE0"
+  },
+  "generatedAt": "2026-07-21T12:06:51.513Z",
+  "ok": false,
+  "order": {
+    "code": "CF-MRULYDA5-0834135AE0",
+    "discountTotalVnd": 30000,
+    "paymentMethod": "bank-transfer",
+    "paymentStatus": "awaiting-transfer",
+    "promotionCode": "WELCOME30K",
+    "status": "pending",
+    "subtotalVnd": 159000,
+    "totalVnd": 166900
+  },
+  "orderHistory": {
+    "cancelControlVisible": true,
+    "cardVisible": true,
+    "codeText": "CF-MRULYDA5-0834135AE0",
+    "codeVisible": true,
+    "hasOverflow": false,
+    "paymentMethodText": "Bank transfer",
+    "paymentStatusText": "Awaiting bank transfer",
+    "statusText": "Pending",
+    "totalText": "166.900 ₫"
+  },
+  "pass": {
+    "accountReadyForUat": true,
+    "selfServiceSignupSucceeded": false,
+    "signedInAsCustomer": true,
+    "vouchersGranted": true,
+    "profileCompleted": true,
+    "productAddedToCart": true,
+    "checkoutAppliedOneVoucher": true,
+    "orderCreated": true,
+    "orderUsesServerPersistedTotals": true,
+    "productionQrUiLocked": true,
+    "productionPaymentApiLocked": true,
+    "orderHistoryShowsOrder": true,
+    "noHorizontalOverflow": true
+  },
+  "productState": {
+    "cartCountAfterAdd": "Cart (1)",
+    "feedbackVisible": true
+  },
+  "qrBoundary": {
+    "checkoutMomoVisible": false,
+    "checkoutVnpayVisible": false,
+    "createPaymentCode": "PAYMENT_DISABLED",
+    "createPaymentStatus": 403,
+    "paymentPageRedirectedToOrders": true,
+    "qrPageVisible": false,
+    "simulateCode": "PAYMENT_DISABLED",
+    "simulateStatus": 404
+  },
+  "target": {
+    "editionId": "00000000-0000-4000-8000-000000003027",
+    "priceVnd": 159000,
+    "slug": "a-christmas-carol-english-paperback",
+    "title": "A Christmas Carol"
+  },
+  "voucherState": {
+    "codes": [
+      "WELCOME30K",
+      "READMORE20K",
+      "FREESHIP25K"
+    ],
+    "count": 3,
+    "hasOverflow": false,
+    "panelVisible": true
+  },
+  "registration": {
+    "accountCreated": false,
+    "errorCode": "CUSTOMER_AUTH_FAILED",
+    "errorMessage": "Customer sign-up is temporarily rate-limited. Try again later.",
+    "fallbackProvisioned": true,
+    "signedIn": false,
+    "status": 429
+  }
+}

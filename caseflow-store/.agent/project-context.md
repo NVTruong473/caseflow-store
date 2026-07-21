@@ -12,9 +12,9 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: post-`v1.10.0` production release verification.
-- Current gate: `SIGNUPVOUCHER-T02` production deploy, smoke, tag, and
-  GitHub Release complete.
+- Current mode: post-`v1.10.0` production UAT verification.
+- Current gate: `UAT-MANUAL-T01` executed with one open sign-up rate-limit
+  finding.
 - Current task: no active implementation task.
 
 ## Confirmed Facts
@@ -110,6 +110,13 @@
   `https://caseflow-store.vercel.app`, production smoke, security posture, QR
   production-safety, and final QA are consistent with `v1.10.0`; stale
   top-level `.agent` snapshot text from `v1.8.0` was corrected.
+- `UAT-MANUAL-T01` was executed on production on 2026-07-21 with a customer
+  UAT account and order `CF-MRULYDA5-0834135AE0`: customer sign-in, 3
+  account-bound vouchers, profile completion, add-to-cart, one-voucher
+  checkout, server-persisted totals, production QR/payment lock, and account
+  order history passed. Self-service sign-up was blocked by Supabase Auth
+  rate-limit `429 CUSTOMER_AUTH_FAILED`, so the UAT account was provisioned by
+  service-role as a controlled fallback and the finding remains open.
 - Implementation was confirmed by the user on 2026-07-14.
 - Implementation was unblocked by installing the official Node.js LTS binary after Homebrew failed.
 - The Next.js app has been initialized in `caseflow-store`.

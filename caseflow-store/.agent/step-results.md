@@ -4,8 +4,8 @@
 
 | Field | Value |
 |---|---|
-| Current mode | post-`v1.10.0` release consistency audit passed |
-| Current gate | `POSTV110-T01` complete |
+| Current mode | post-`v1.10.0` production UAT executed |
+| Current gate | `UAT-MANUAL-T01` complete with open `UAT-MANUAL-F01` sign-up rate-limit finding |
 | Implementation started | Yes |
 | Next implementation task | No active implementation task |
 | App initialized | Yes, in `caseflow-store` |
@@ -136,6 +136,7 @@
 | SR-188 | 2026-07-21 | SIGNUPVOUCHER-T01 | completed | Added account-bound signup vouchers locally with Supabase migration, server-side grant/reserve/confirm/release logic, checkout/account UI, and focused verifier coverage |
 | SR-189 | 2026-07-21 | SIGNUPVOUCHER-T02 | completed | Shipped v1.10.0: pushed runtime and release-evidence commits, deployed Vercel deployment dpl_FPZwifR2vJr9ZFDa1cbbJ8y89QsW, passed production signup-voucher/smoke/security/QR/final QA gates, and created the tag/GitHub Release |
 | SR-190 | 2026-07-21 | POSTV110-T01 | completed | Audited v1.10.0 release consistency across local Git, origin/main, annotated tag, GitHub latest release, Vercel production alias, release docs, production smoke, security posture, QR production lock, and final QA |
+| SR-191 | 2026-07-21 | UAT-MANUAL-T01 | blocked finding | Executed production customer UAT with a controlled customer account: sign-in, vouchers, profile, add-to-cart, checkout, server totals, QR/payment production lock, and order history passed; self-service sign-up is blocked by Supabase Auth rate-limit 429 |
 
 ---
 
@@ -13827,3 +13828,65 @@ The audit corrected stale top-level `.agent` snapshot text that still described
   `.agent/artifacts/signup-vouchers` directory and would overwrite release
   evidence; the production signup-voucher verifier pass from `SIGNUPVOUCHER-T02`
   remains the release evidence for that flow.
+
+---
+
+## UAT-MANUAL-T01 - Production Customer Manual Acceptance
+
+- Date: 2026-07-21
+- Status: completed with blocked sign-up finding
+- Production URL: `https://caseflow-store.vercel.app`
+
+### Result
+
+Production customer UAT was executed with a controlled customer account.
+Self-service sign-up returned `429 CUSTOMER_AUTH_FAILED`, so a UAT customer was
+provisioned as a signed-up account fallback to finish the customer purchase
+flow without deleting or mutating release history.
+
+The post-provision customer flow passed: sign-in, 3 account-bound welcome
+vouchers, profile completion, product add-to-cart, checkout with one voucher,
+server-persisted order totals, production QR/payment lock, and customer order
+history.
+
+### Evidence
+
+- `docs/uat-manual-t01-production-customer-order.md`
+- `.agent/artifacts/uat-manual-t01-v110-production/uat-manual-customer-production-check.json`
+- `.agent/artifacts/uat-manual-t01-v110-production/uat-manual-customer-production-report.md`
+- `.agent/artifacts/uat-manual-t01-v110-production/01-account-created.png`
+- `.agent/artifacts/uat-manual-t01-v110-production/02-profile-complete.png`
+- `.agent/artifacts/uat-manual-t01-v110-production/03-book-added-to-cart.png`
+- `.agent/artifacts/uat-manual-t01-v110-production/03b-checkout-review-before-submit.png`
+- `.agent/artifacts/uat-manual-t01-v110-production/04-checkout-success.png`
+- `.agent/artifacts/uat-manual-t01-v110-production/05-qr-boundary-orders-redirect.png`
+- `.agent/artifacts/uat-manual-t01-v110-production/06-order-history.png`
+
+### Verification
+
+- `UAT_MANUAL_BASE_URL=https://caseflow-store.vercel.app UAT_MANUAL_ARTIFACT_ID=uat-manual-t01-v110-production npm exec -- tsx scripts/verify-uat-manual-customer-production.ts`:
+  completed with expected non-zero exit because `selfServiceSignupSucceeded`
+  was false; all other customer commerce checks passed.
+- `npm exec -- tsc --noEmit --pretty false`: passed.
+- `npm run lint`: passed.
+- `npm audit --audit-level=high`: passed at high threshold; the known moderate
+  PostCSS/Next advisory remains.
+- `git diff --check`: passed.
+
+### UAT Account And Order
+
+- UAT email: `caseflow-uat-manual-mrulxe4i-asgjx2@example.com`
+- UAT order: `CF-MRULYDA5-0834135AE0`
+- Password is not stored in repository artifacts.
+
+### Open Finding
+
+- `UAT-MANUAL-F01`: production self-service sign-up returned `429
+  CUSTOMER_AUTH_FAILED`. Investigate Supabase Auth rate-limit and email
+  confirmation settings before claiming registration is fully UAT-pass.
+
+### Guardrails
+
+- No real payment transfer, real bank deep link, real delivery, production
+  mock-payment enablement, deploy, tag, release rewrite, or production data
+  cleanup was performed.
