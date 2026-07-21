@@ -1,0 +1,24 @@
+{
+  "applied": null,
+  "generatedAt": "2026-07-21T06:33:35.808Z",
+  "manifestPath": "assets/book-covers/gutenberg-sources.json",
+  "mode": {
+    "apply": false,
+    "download": false,
+    "verifyLocal": true
+  },
+  "pass": {
+    "allMappedAssetsPresent": true,
+    "allMappedAssetsAreJpeg": true,
+    "allMappedAssetsHaveNoAppMetadata": true,
+    "manifestHasAllMappings": true,
+    "noRemoteStorefrontPaths": true
+  },
+  "taskId": "v19-t02",
+  "totals": {
+    "downloaded": 0,
+    "localAssets": 49,
+    "mappings": 49,
+    "oldManAndSeaFallback": "the-old-man-and-the-sea remains on existing local generated cover because no matching public-domain Gutenberg cover is mapped."
+  }
+}

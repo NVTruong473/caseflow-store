@@ -168,6 +168,53 @@ body {
   transform: translateY(0);
 }
 
+.case-home-retail-hero {
+  background:
+    linear-gradient(
+      110deg,
+      var(--background) 0%,
+      var(--reading-table) 48%,
+      var(--surface) 100%
+    );
+}
+
+.case-home-search-panel {
+  box-shadow: 0 12px 32px rgb(31 27 22 / 0.07);
+}
+
+.case-home-retail-window {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgb(255 253 248 / 0.96), rgb(245 239 227 / 0.9)),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 74px,
+      rgb(216 210 199 / 0.52) 75px,
+      transparent 76px
+    );
+}
+
+.case-home-retail-window::after {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 18px;
+  height: 12px;
+  content: "";
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(122 79 36 / 0.24),
+    transparent
+  );
+}
+
+.case-home-retail-window > * {
+  position: relative;
+  z-index: 1;
+}
+
 @keyframes case-soft-reveal {
   from {
     opacity: 0.01;

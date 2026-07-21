@@ -46,7 +46,11 @@ type CheckoutIntent = {
   type: "checkout";
 };
 
-type AssistantIntent = CatalogIntent | CheckoutIntent;
+type FallbackIntent = {
+  type: "fallback";
+};
+
+type AssistantIntent = CatalogIntent | CheckoutIntent | FallbackIntent;
 
 const assistantCopy = {
   en: {
@@ -66,6 +70,11 @@ const assistantCopy = {
     resultIntro: (count: number, description: string) =>
       `I found ${count} matching edition${count === 1 ? "" : "s"} for ${description}.`,
     send: "Send",
+    similarQuestions:
+      'Try asking: "Find Jane Eyre", "English books under 200k", or "Classic literature in Vietnamese".',
+    fallbackClassics: "Classic literature",
+    fallbackEnglish: "English under 200k",
+    fallbackVietnamese: "Vietnamese editions",
     suggestions: [
       "Find Pride and Prejudice",
       "English paperback under 200k",
@@ -96,6 +105,11 @@ const assistantCopy = {
     resultIntro: (count: number, description: string) =>
       `Tôi tìm thấy ${count} ấn bản phù hợp với ${description}.`,
     send: "Gửi",
+    similarQuestions:
+      'Bạn có thể hỏi lại theo mẫu: "Tìm Jane Eyre", "Sách tiếng Anh dưới 200k", hoặc "Văn học kinh điển tiếng Việt".',
+    fallbackClassics: "Văn học kinh điển",
+    fallbackEnglish: "Tiếng Anh dưới 200k",
+    fallbackVietnamese: "Ấn bản tiếng Việt",
     suggestions: [
       "Tìm Pride and Prejudice",
       "Sách tiếng Anh bìa mềm dưới 200k",
@@ -117,11 +131,29 @@ const categoryRules: Array<{
 }> = [
   {
     slug: "classic-literature",
-    keywords: ["classic", "classics", "literature", "kinh dien", "van hoc"],
+    keywords: [
+      "classic",
+      "classics",
+      "literature",
+      "novel",
+      "fiction",
+      "kinh dien",
+      "van hoc",
+      "tieu thuyet",
+    ],
   },
   {
     slug: "mystery-thriller",
-    keywords: ["mystery", "thriller", "crime", "trinh tham", "bi an"],
+    keywords: [
+      "mystery",
+      "thriller",
+      "crime",
+      "detective",
+      "sherlock",
+      "conan doyle",
+      "trinh tham",
+      "bi an",
+    ],
   },
   {
     slug: "fantasy-sci-fi",
@@ -163,11 +195,11 @@ const formatRules: Array<{
 }> = [
   {
     format: "paperback",
-    keywords: ["paperback", "softcover", "bia mem"],
+    keywords: ["paperback", "paper back", "softcover", "soft cover", "bia mem"],
   },
   {
     format: "hardcover",
-    keywords: ["hardcover", "hardback", "bia cung"],
+    keywords: ["hardcover", "hard cover", "hardback", "hard back", "bia cung"],
   },
   {
     format: "box-set",
@@ -443,6 +475,14 @@ async function createAssistantReply({
   const copy = assistantCopy[language];
   const intent = parseAssistantIntent(prompt, language);
 
+  if (intent.type === "fallback") {
+    return {
+      id: createMessageId("assistant"),
+      role: "assistant",
+      text: copy.noResults,
+    };
+  }
+
   if (intent.type === "checkout") {
     return {
       actions: [
@@ -471,12 +511,25 @@ async function createAssistantReply({
       return {
         actions: [
           { href: intent.catalogHref, label: copy.openCatalog, type: "link" },
-          { href: "/catalog?category=classic-literature", label: "Classics", type: "link" },
-          { href: "/catalog?language=en", label: "English", type: "link" },
+          {
+            href: "/catalog?category=classic-literature",
+            label: copy.fallbackClassics,
+            type: "link",
+          },
+          {
+            href: "/catalog?language=en&maxPriceVnd=200000",
+            label: copy.fallbackEnglish,
+            type: "link",
+          },
+          {
+            href: "/catalog?language=vi",
+            label: copy.fallbackVietnamese,
+            type: "link",
+          },
         ],
         id: createMessageId("assistant"),
         role: "assistant",
-        text: copy.noResults,
+        text: `${copy.noResults} ${copy.similarQuestions}`,
       };
     }
 
@@ -532,6 +585,10 @@ async function fetchCatalog(params: URLSearchParams) {
 function parseAssistantIntent(prompt: string, language: Language): AssistantIntent {
   const folded = foldText(prompt);
 
+  if (isOutOfScopePrompt(folded)) {
+    return { type: "fallback" };
+  }
+
   if (isCheckoutPrompt(folded)) {
     return { type: "checkout" };
   }
@@ -542,7 +599,9 @@ function parseAssistantIntent(prompt: string, language: Language): AssistantInte
   const format = detectFormat(folded);
   const priceRange = detectPriceRange(folded);
   const structured = Boolean(category || editionLanguage || format || priceRange);
-  const searchText = extractSearchText(prompt, structured);
+  const searchText = isBrowsePrompt(folded)
+    ? null
+    : extractSearchText(prompt, structured);
 
   if (category) {
     params.set("category", category);
@@ -587,17 +646,83 @@ function parseAssistantIntent(prompt: string, language: Language): AssistantInte
 }
 
 function isCheckoutPrompt(folded: string) {
-  return [
+  const directCheckoutKeywords = [
     "checkout",
-    "buy",
-    "purchase",
     "payment",
     "pay",
     "cart",
     "thanh toan",
-    "mua",
     "dat hang",
     "gio hang",
+    "tra tien",
+  ];
+
+  if (directCheckoutKeywords.some((keyword) => folded.includes(keyword))) {
+    return true;
+  }
+
+  return [
+    "how to buy",
+    "how do i buy",
+    "buy a book",
+    "buy books",
+    "purchase a book",
+    "purchase books",
+    "cach mua",
+    "lam sao de mua",
+    "huong dan mua",
+    "muon mua sach",
+    "toi muon mua sach",
+  ].some((keyword) => folded.includes(keyword));
+}
+
+function isBrowsePrompt(folded: string) {
+  return [
+    "recommend",
+    "recommendation",
+    "suggest",
+    "browse",
+    "best seller",
+    "new arrival",
+    "new book",
+    "goi y",
+    "nen doc",
+    "doc gi",
+    "sach gi",
+    "ban chay",
+    "sach moi",
+    "cuoi tuan",
+    "weekend",
+  ].some((keyword) => folded.includes(keyword));
+}
+
+function isOutOfScopePrompt(folded: string) {
+  return [
+    "admin",
+    "staff",
+    "employee",
+    "quan tri",
+    "nhan vien",
+    "mat khau",
+    "password",
+    "secret",
+    "api key",
+    "database",
+    "supabase",
+    "sql",
+    "source code",
+    "repo",
+    "github",
+    "deploy",
+    "vercel",
+    "hack",
+    "attack",
+    "bypass",
+    "exploit",
+    "xoa du lieu",
+    "sua du lieu",
+    "don hang nguoi khac",
+    "tai khoan nguoi khac",
   ].some((keyword) => folded.includes(keyword));
 }
 
@@ -609,7 +734,7 @@ function detectCategory(folded: string) {
 
 function detectEditionLanguage(folded: string): EditionLanguage | null {
   if (
-    ["english", "tieng anh", "ban goc", "original"].some((keyword) =>
+    ["english", "eng", "tieng anh", "ban goc", "original"].some((keyword) =>
       folded.includes(keyword),
     )
   ) {
@@ -617,7 +742,7 @@ function detectEditionLanguage(folded: string): EditionLanguage | null {
   }
 
   if (
-    ["vietnamese", "tieng viet", "ban dich", "dich"].some((keyword) =>
+    ["vietnamese", "viet", "tieng viet", "ban dich", "dich"].some((keyword) =>
       folded.includes(keyword),
     )
   ) {
@@ -661,6 +786,14 @@ function detectPriceRange(folded: string) {
     return { minPriceVnd: normalizePrice(minMatch[1]) };
   }
 
+  if (
+    ["cheap", "budget", "affordable", "gia re", "gia mem", "sach re"].some(
+      (keyword) => folded.includes(keyword),
+    )
+  ) {
+    return { maxPriceVnd: 150_000 };
+  }
+
   return null;
 }
 
@@ -683,7 +816,7 @@ function extractSearchText(prompt: string, hasStructuredFilters: boolean) {
   }
 
   const direct = trimmed.match(
-    /^(?:find|search for|search|look for|show me|tim|tìm|tim sach|tìm sách)\s+(.+)$/i,
+    /^(?:find|search for|search|look for|show me|buy|purchase|i want to buy|want to buy|tim|tìm|tim sach|tìm sách|mua|toi muon mua|tôi muốn mua)\s+(.+)$/i,
   );
 
   if (direct?.[1]) {

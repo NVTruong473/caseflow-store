@@ -7,6 +7,8 @@ const outputPath =
   process.env.CASEFLOW_COVER_MANIFEST_PATH ??
   "assets/book-covers/sources.json";
 const defaultCoverPath = "/images/books/placeholders/book-cover-placeholder.svg";
+const gutenbergManifestPath = "assets/book-covers/gutenberg-sources.json";
+const gutenbergSourcesByLocalPath = readGutenbergSourcesByLocalPath();
 
 const pageSize = 100;
 const records = [];
@@ -45,6 +47,7 @@ const entries = records.map((record) => {
   const source = record.coverAsset?.source ?? "missing";
   const synthetic = source === "generated" || source === "missing";
   const verified = fileExists && source !== "missing";
+  const gutenbergSource = gutenbergSourcesByLocalPath.get(coverPath);
 
   return {
     productId: record.edition?.id ?? record.id,
@@ -55,23 +58,30 @@ const entries = records.map((record) => {
     publisher: record.publisher?.name ?? null,
     edition: record.edition?.subtitle ?? record.edition?.format ?? null,
     localPath: coverPath,
-    sourceUrl: null,
+    sourceUrl: gutenbergSource?.sourceUrl ?? null,
     sourceType:
-      source === "generated"
+      source === "public-domain"
+        ? "public-domain-local"
+        : source === "generated"
         ? "project-generated"
         : source === "missing"
           ? "fallback-placeholder"
           : "project-local",
     retrievedAt: new Date().toISOString(),
     licenseOrTerms:
-      source === "generated"
+      source === "public-domain"
+        ? (gutenbergSource?.licenseOrTerms ??
+          "Public-domain local cover asset; see project content policy.")
+        : source === "generated"
         ? "Project-created portfolio/demo cover illustration; not an official publisher cover."
         : source === "missing"
           ? "Neutral local fallback placeholder; no official cover verified."
           : "Local repository asset; see project content policy.",
     verified,
     verificationNotes: verified
-      ? "Local file exists and is linked by catalog data. This does not claim official publisher artwork."
+      ? source === "public-domain"
+        ? "Local public-domain source-work cover exists and is linked by catalog data. This does not claim official Vietnamese publisher artwork."
+        : "Local file exists and is linked by catalog data. This does not claim official publisher artwork."
       : "No verified official cover asset is available; UI must show an explicit updating/fallback state.",
     synthetic,
     checksum: fileExists ? sha256(filePath) : null,
@@ -108,4 +118,19 @@ console.log(
 
 function sha256(filePath) {
   return createHash("sha256").update(readFileSync(filePath)).digest("hex");
+}
+
+function readGutenbergSourcesByLocalPath() {
+  if (!existsSync(gutenbergManifestPath)) {
+    return new Map();
+  }
+
+  const manifest = JSON.parse(readFileSync(gutenbergManifestPath, "utf8"));
+  const entries = Array.isArray(manifest.entries) ? manifest.entries : [];
+
+  return new Map(
+    entries
+      .filter((entry) => typeof entry.localPath === "string")
+      .map((entry) => [entry.localPath, entry]),
+  );
 }

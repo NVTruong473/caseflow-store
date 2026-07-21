@@ -1,0 +1,28 @@
+{
+  "baseURL": "http://127.0.0.1:3000",
+  "expectGutenbergCovers": false,
+  "findings": [],
+  "generatedAt": "2026-07-21T06:34:41.326Z",
+  "ok": true,
+  "pass": {
+    "heroSearchVisible": true,
+    "heroQuickLinksVisible": true,
+    "frontTableVisible": true,
+    "heroCardCountPreserved": true,
+    "trackOrderCtaVisible": true,
+    "desktopNoOverflow": true,
+    "desktopHeroTextReadable": true,
+    "noFakeProofCopy": true,
+    "heroSearchRoutes": true,
+    "coverImagesNotClipped": true,
+    "gutenbergCoversWhenExpected": true,
+    "mobileSearchVisible": true,
+    "mobileQuickLinksVisible": true,
+    "mobileNoOverflow": true,
+    "mobileHeroCardsVisible": true
+  },
+  "screenshots": {
+    "desktop": ".agent/artifacts/v19-t03/home-v19-desktop.png",
+    "mobile": ".agent/artifacts/v19-t03/home-v19-mobile.png"
+  }
+}

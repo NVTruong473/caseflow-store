@@ -9,8 +9,8 @@
   <text x="300" y="300" text-anchor="middle" font-family="Georgia, serif" font-size="44" fill="#111827">CaseFlow</text>
   <text x="300" y="356" text-anchor="middle" font-family="Georgia, serif" font-size="44" fill="#111827">Books</text>
   <rect x="165" y="420" width="270" height="2" fill="#b91c1c"/>
-  <text x="300" y="492" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#374151">safe placeholder cover</text>
-  <text x="300" y="538" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#6b7280">licensed or generated art pending</text>
+  <text x="300" y="492" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#374151">CaseFlow edition cover</text>
+  <text x="300" y="538" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#6b7280">final retail artwork pending</text>
   <rect x="210" y="625" width="180" height="120" rx="8" fill="#e5e7eb"/>
   <path d="M240 715h120M240 685h120M240 655h120" stroke="#9ca3af" stroke-width="10" stroke-linecap="round"/>
 </svg>

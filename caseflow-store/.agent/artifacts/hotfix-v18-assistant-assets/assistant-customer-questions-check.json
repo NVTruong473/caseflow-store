@@ -1,0 +1,89 @@
+{
+  "baseURL": "http://127.0.0.1:3000",
+  "generatedAt": "2026-07-21T06:35:39.716Z",
+  "malformed": {
+    "catalogHref": "/catalog?language=en&maxPriceVnd=200000",
+    "catalogLinkStatus": 200,
+    "hasOverflow": false,
+    "hasRecoveryCopy": false,
+    "hasResultOrRecovery": true,
+    "resultCount": 3,
+    "text": "Tôi tìm thấy 58 ấn bản phù hợp với tiếng Anh, dưới 200.000 ₫.\n\nA Christmas Carol\n\nCharles Dickens · 159.000 ₫\n\nXem sách\n\nA Christmas Carol - Reader's Paperback\n\nCharles Dickens · 177.000 ₫\n\nXem sách\n\nA Tale of Two Cities\n\nCharles Dickens · 170.000 ₫\n\nXem sách\nXem sách\nMở kết quả catalog"
+  },
+  "ok": true,
+  "outOfScope": {
+    "actionCount": 0,
+    "exactFallback": true,
+    "hasOverflow": false,
+    "resultCount": 0,
+    "text": "Tôi chưa tìm thấy ấn bản phù hợp. Hãy thử tên sách, tác giả, danh mục, ngôn ngữ hoặc khoảng giá rộng hơn."
+  },
+  "pass": {
+    "malformed": true,
+    "outOfScope": true,
+    "sourceBoundary": true,
+    "suggestions": true
+  },
+  "sourceBoundary": {
+    "matches": [],
+    "noExternalAiApi": true
+  },
+  "suggestions": [
+    {
+      "actionCount": 2,
+      "language": "en",
+      "prompt": "Find Pride and Prejudice",
+      "resultCount": 3,
+      "text": "I found 10 matching editions for \"Pride and Prejudice\".\n\nKiêu hãnh và định kiến\n\nJane Austen · 297.000 ₫\n\nView book\n\nKiêu hãnh và định kiến - Bản chú giải tiếng Việt\n\nJane Austen · 559.000 ₫\n\nView book\n\nKiêu hãnh và định kiến - Bản phổ thông tiếng Việt\n\nJane Austen · 309.000 ₫\n\nView book\nView book\nOpen catalog results"
+    },
+    {
+      "actionCount": 2,
+      "language": "en",
+      "prompt": "English paperback under 200k",
+      "resultCount": 3,
+      "text": "I found 58 matching editions for English, paperback, under 200.000 ₫.\n\nA Christmas Carol\n\nCharles Dickens · 159.000 ₫\n\nView book\n\nA Christmas Carol - Reader's Paperback\n\nCharles Dickens · 177.000 ₫\n\nView book\n\nA Tale of Two Cities\n\nCharles Dickens · 170.000 ₫\n\nView book\nView book\nOpen catalog results"
+    },
+    {
+      "actionCount": 2,
+      "language": "en",
+      "prompt": "Classic literature in Vietnamese",
+      "resultCount": 3,
+      "text": "I found 195 matching editions for classic literature, Vietnamese.\n\nAnh em nhà Karamazov\n\nFyodor Dostoevsky · 240.000 ₫\n\nView book\n\nAnh em nhà Karamazov - Bản chú giải tiếng Việt\n\nFyodor Dostoevsky · 455.000 ₫\n\nView book\n\nAnh em nhà Karamazov - Bản phổ thông tiếng Việt\n\nFyodor Dostoevsky · 250.000 ₫\n\nView book\nView book\nOpen catalog results"
+    },
+    {
+      "actionCount": 3,
+      "language": "en",
+      "prompt": "How do I checkout?",
+      "resultCount": 0,
+      "text": "To buy: add an edition to cart, open the cart, sign in or complete your account profile, then confirm shipping and payment at checkout. The store checks your account, cart, and total before confirming the order. Your cart is empty, so start from a book detail page first.\n\nOpen cart\nSign in or complete account\nGo to checkout"
+    },
+    {
+      "actionCount": 2,
+      "language": "vi",
+      "prompt": "Tìm Pride and Prejudice",
+      "resultCount": 3,
+      "text": "Tôi tìm thấy 10 ấn bản phù hợp với từ khóa \"Pride and Prejudice\".\n\nKiêu hãnh và định kiến\n\nJane Austen · 297.000 ₫\n\nXem sách\n\nKiêu hãnh và định kiến - Bản chú giải tiếng Việt\n\nJane Austen · 559.000 ₫\n\nXem sách\n\nKiêu hãnh và định kiến - Bản phổ thông tiếng Việt\n\nJane Austen · 309.000 ₫\n\nXem sách\nXem sách\nMở kết quả catalog"
+    },
+    {
+      "actionCount": 4,
+      "language": "vi",
+      "prompt": "Sách tiếng Anh bìa mềm dưới 200k",
+      "resultCount": 0,
+      "text": "Tôi chưa tìm thấy ấn bản phù hợp. Hãy thử tên sách, tác giả, danh mục, ngôn ngữ hoặc khoảng giá rộng hơn. Bạn có thể hỏi lại theo mẫu: \"Tìm Jane Eyre\", \"Sách tiếng Anh dưới 200k\", hoặc \"Văn học kinh điển tiếng Việt\".\n\nMở kết quả catalog\nVăn học kinh điển\nTiếng Anh dưới 200k\nẤn bản tiếng Việt"
+    },
+    {
+      "actionCount": 2,
+      "language": "vi",
+      "prompt": "Văn học kinh điển tiếng Việt",
+      "resultCount": 3,
+      "text": "Tôi tìm thấy 195 ấn bản phù hợp với classic literature, tiếng Anh.\n\nA Christmas Carol\n\nCharles Dickens · 159.000 ₫\n\nXem sách\n\nA Christmas Carol - Collector's Edition\n\nCharles Dickens · 319.000 ₫\n\nXem sách\n\nA Christmas Carol - Library Hardcover\n\nCharles Dickens · 252.000 ₫\n\nXem sách\nXem sách\nMở kết quả catalog"
+    },
+    {
+      "actionCount": 3,
+      "language": "vi",
+      "prompt": "Làm sao để thanh toán?",
+      "resultCount": 0,
+      "text": "Để mua sách: thêm đúng ấn bản vào giỏ, mở giỏ hàng, đăng nhập hoặc hoàn tất hồ sơ, rồi xác nhận giao hàng và thanh toán ở checkout. Nhà sách sẽ kiểm tra tài khoản, giỏ hàng và tổng tiền trước khi xác nhận đơn. Hiện giỏ hàng đang trống, hãy mở trang chi tiết sách trước.\n\nMở giỏ hàng\nĐăng nhập hoặc hoàn tất tài khoản\nĐến checkout"
+    }
+  ]
+}

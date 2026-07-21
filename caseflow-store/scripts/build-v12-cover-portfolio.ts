@@ -298,19 +298,9 @@ function renderCoverSvg(input: {
         `<text x="300" y="${titleStartY + index * lineHeight}" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="${titleFontSize}" font-weight="700" fill="${concept.textColor}">${escapeXml(line)}</text>`,
     )
     .join("\n      ");
-  const metadata = JSON.stringify({
-    assetId: id,
-    editionId: edition.id,
-    title,
-    authors: edition.authors,
-    language: edition.language,
-    source: "project-created-vector",
-  });
-
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="900" viewBox="0 0 600 900" role="img" aria-labelledby="title-${id} desc-${id}" data-cover-asset-id="${id}" data-edition-id="${edition.id}">
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="900" viewBox="0 0 600 900" role="img" aria-labelledby="title-${id} desc-${id}">
   <title id="title-${id}">${escapeXml(title)} - CaseFlow Books illustrative cover</title>
-  <desc id="desc-${id}">Project-created illustrative cover for ${escapeXml(title)} by ${escapeXml(authorLine)}.</desc>
-  <metadata><![CDATA[${metadata}]]></metadata>
+  <desc id="desc-${id}">Illustrative cover for ${escapeXml(title)} by ${escapeXml(authorLine)}.</desc>
   <rect width="600" height="900" fill="${concept.backgroundColor}"/>
   <rect x="34" y="34" width="532" height="832" rx="18" fill="${concept.accentColor}" opacity="0.15"/>
   ${renderMotif(concept)}

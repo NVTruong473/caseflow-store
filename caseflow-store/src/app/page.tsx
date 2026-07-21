@@ -73,9 +73,16 @@ const homeCopy = {
       "A hand-picked shelf for approachable entry points, current offers, and editions readers can choose with confidence.",
     featuredTitle: "Editor picks",
     heroDescription:
-      "Choose the exact edition you want to read or gift: English original, Vietnamese translation, paperback, hardcover, collector edition, or reading-group set.",
+      "A bilingual bookstore for readers who want to compare editions, see stock, and place an order without guessing what happens next.",
     heroNote:
       "Prices stay in VND at checkout. Delivery and payment choices are confirmed before the order is placed.",
+    heroQuickLinksTitle: "Popular paths",
+    heroSearchButton: "Search catalog",
+    heroSearchLabel: "Search by title, author, or ISBN",
+    heroSearchPlaceholder: "Try Dracula, Sherlock Holmes, or 978...",
+    heroShelfDescription:
+      "Current front-table picks from the live catalog, with price and stock visible before opening the detail page.",
+    heroShelfTitle: "Front table now",
     heroTitle: "CaseFlow Books",
     inTheCatalog: "in catalog",
     englishEditionsTitle: "English editions",
@@ -90,6 +97,7 @@ const homeCopy = {
       "Buying confidence comes from visible stock, VND source pricing, safe catalog content, and Vietnam-first delivery expectations.",
     shippingSignalsTitle: "Trust and shipping signals",
     stockLabel: "Stock",
+    trackOrder: "Track order",
     translatedDescription:
       "Choose the English original, the Vietnamese edition, or compare both before adding a sellable edition to cart.",
     translatedTitle: "Translated edition pairs",
@@ -141,9 +149,16 @@ const homeCopy = {
       "Tủ sách do CaseFlow chọn cho các ấn bản dễ bắt đầu, đang còn hàng và có thông tin rõ ràng.",
     featuredTitle: "Biên tập chọn",
     heroDescription:
-      "Chọn đúng ấn bản bạn muốn đọc hoặc tặng: bản gốc tiếng Anh, bản dịch tiếng Việt, bìa mềm, bìa cứng, bản sưu tầm hoặc bộ đọc nhóm.",
+      "Nhà sách song ngữ giúp bạn so sánh ấn bản, thấy tồn kho và đặt hàng mà không phải đoán bước tiếp theo.",
     heroNote:
       "Giá checkout giữ theo VND. Giao hàng và phương thức thanh toán được xác nhận trước khi đặt đơn.",
+    heroQuickLinksTitle: "Lối vào nhanh",
+    heroSearchButton: "Tìm trong catalog",
+    heroSearchLabel: "Tìm theo tên sách, tác giả hoặc ISBN",
+    heroSearchPlaceholder: "Thử Dracula, Sherlock Holmes hoặc 978...",
+    heroShelfDescription:
+      "Các ấn bản đang nằm trên bàn trưng bày, lấy từ catalog hiện tại với giá và tồn kho rõ trước khi mở trang chi tiết.",
+    heroShelfTitle: "Bàn sách hôm nay",
     heroTitle: "CaseFlow Books",
     inTheCatalog: "trong catalog",
     englishEditionsTitle: "Sách tiếng Anh",
@@ -158,6 +173,7 @@ const homeCopy = {
       "Độ tin cậy đến từ tồn kho rõ, giá gốc VND, nội dung catalog an toàn và kỳ vọng giao hàng ưu tiên Việt Nam.",
     shippingSignalsTitle: "Tín hiệu tin cậy và giao hàng",
     stockLabel: "Tồn kho",
+    trackOrder: "Tra cứu đơn",
     translatedDescription:
       "Chọn bản gốc tiếng Anh, bản tiếng Việt, hoặc so sánh cả hai trước khi thêm đúng ấn bản vào giỏ hàng.",
     translatedTitle: "Cặp ấn bản dịch",
@@ -367,6 +383,7 @@ export default async function Home() {
     HOME_LIMITS.translatedGroups,
   );
   const categoryCards = categories.slice(0, HOME_LIMITS.categoryCards);
+  const heroQuickLinks = categoryCards.slice(0, 4);
   const categorySpineItems = categoryCards.map((category, index) => ({
     description: getCategoryDescription(category, language),
     href: `/catalog?category=${category.slug}`,
@@ -414,10 +431,10 @@ export default async function Home() {
       data-homepage-total-editions={records.length}
     >
       <section
-        className="border-b border-border bg-reading-table"
+        className="case-home-retail-hero border-b border-border"
         data-home-section="hero"
       >
-        <Container className="grid gap-case-xl py-case-xl md:grid-cols-[minmax(0,0.95fr)_minmax(340px,1.05fr)] md:items-center lg:py-case-2xl">
+        <Container className="grid gap-case-xl py-case-xl md:grid-cols-[minmax(0,0.92fr)_minmax(380px,1.08fr)] md:items-center lg:py-case-2xl">
           <div className="flex min-w-0 flex-col gap-case-lg border-l-4 border-reading-rule pl-case-md md:pl-case-lg">
             <div className="flex flex-col gap-case-sm">
               <Badge
@@ -434,6 +451,47 @@ export default async function Home() {
               </p>
             </div>
 
+            <form
+              action="/catalog"
+              className="case-home-search-panel grid gap-case-sm rounded-lg border border-border bg-surface p-case-sm sm:grid-cols-[minmax(0,1fr)_auto]"
+              data-home-hero-search
+            >
+              <label className="sr-only" htmlFor="home-catalog-search">
+                {copy.heroSearchLabel}
+              </label>
+              <input
+                className="min-h-11 min-w-0 rounded-md border border-border bg-background px-3 text-body text-foreground outline-none transition-colors placeholder:text-text-muted focus:border-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary motion-reduce:transition-none"
+                id="home-catalog-search"
+                name="q"
+                placeholder={copy.heroSearchPlaceholder}
+                type="search"
+              />
+              <button
+                className="inline-flex min-h-11 items-center justify-center rounded-md border border-primary bg-primary px-4 py-2 text-body font-medium text-surface transition-colors hover:border-primary-hover hover:bg-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary motion-reduce:transition-none"
+                type="submit"
+              >
+                {copy.heroSearchButton}
+              </button>
+            </form>
+
+            <div className="flex flex-col gap-case-sm">
+              <p className="text-small font-medium text-text-muted">
+                {copy.heroQuickLinksTitle}
+              </p>
+              <div className="flex flex-wrap gap-case-xs">
+                {heroQuickLinks.map((category) => (
+                  <Link
+                    key={category.id}
+                    className="rounded-md border border-border bg-surface px-3 py-2 text-small font-medium text-foreground transition-colors hover:border-primary hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary motion-reduce:transition-none"
+                    data-home-hero-quick-link={category.slug}
+                    href={`/catalog?category=${category.slug}`}
+                  >
+                    {getCategoryLabel(category, language)}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
             <div className="flex flex-col gap-case-sm sm:flex-row">
               <Link
                 href="/catalog"
@@ -441,6 +499,13 @@ export default async function Home() {
                 data-home-cta="catalog"
               >
                 {copy.browseBooks}
+              </Link>
+              <Link
+                href="/orders/track"
+                className="inline-flex min-h-11 w-full items-center justify-center rounded-md border border-border bg-surface px-4 py-2 text-body font-medium text-foreground transition-colors hover:border-primary hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary motion-reduce:transition-none sm:w-auto"
+                data-home-cta="track-order"
+              >
+                {copy.trackOrder}
               </Link>
             </div>
 
@@ -467,11 +532,25 @@ export default async function Home() {
           </div>
 
           <div
-            className="min-w-0 rounded-lg border border-border bg-surface/85 p-case-sm shadow-[var(--case-shadow-soft)] md:p-case-md"
+            className="case-home-retail-window min-w-0 rounded-lg border border-border p-case-md shadow-[var(--case-shadow-soft)] md:p-case-lg"
             data-home-hero-books
           >
+            <div className="flex min-w-0 flex-col gap-case-xs sm:flex-row sm:items-start sm:justify-between">
+              <div className="min-w-0">
+                <p className="text-small font-semibold uppercase text-reading-rule">
+                  {copy.heroShelfTitle}
+                </p>
+                <p className="mt-1 max-w-xl text-small leading-6 text-text-muted">
+                  {copy.heroShelfDescription}
+                </p>
+              </div>
+              <Badge className="shrink-0 border-primary bg-discovery-muted text-primary">
+                {records.length.toLocaleString(language === "vi" ? "vi-VN" : "en-US")}{" "}
+                {copy.editions}
+              </Badge>
+            </div>
             <BookCoverStack
-              className="mx-auto hidden lg:block"
+              className="mx-auto mt-case-md hidden lg:block"
               language={language}
               records={heroRecords}
             />
