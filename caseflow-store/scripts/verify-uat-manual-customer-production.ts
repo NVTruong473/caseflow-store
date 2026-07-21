@@ -11,8 +11,15 @@ loadEnvConfig(process.cwd());
 const ARTIFACT_ID = process.env.UAT_MANUAL_ARTIFACT_ID ?? "uat-manual-t01";
 const ARTIFACT_DIR = path.join(".agent", "artifacts", ARTIFACT_ID);
 const DISABLE_FALLBACK = process.env.UAT_MANUAL_DISABLE_FALLBACK === "true";
+const REQUIRE_REAL_EMAIL_CONFIRMATION =
+  process.env.UAT_MANUAL_REQUIRE_REAL_EMAIL_CONFIRMATION === "true";
 const EMAIL_DOMAIN = parseEmailDomain(
   process.env.UAT_MANUAL_EMAIL_DOMAIN ?? "example.com",
+);
+const EXACT_EMAIL = parseOptionalEmail(process.env.UAT_MANUAL_EMAIL);
+const EMAIL_CONFIRMATION_WAIT_SECONDS = parsePositiveInteger(
+  process.env.UAT_MANUAL_EMAIL_CONFIRMATION_WAIT_SECONDS,
+  600,
 );
 type ApiResponse<TData> = {
   data: TData | null;
@@ -54,7 +61,7 @@ async function main() {
     .toString(36)
     .slice(2, 8)}`;
   const account = {
-    email: `caseflow-uat-manual-${runId}@${EMAIL_DOMAIN}`,
+    email: EXACT_EMAIL ?? `caseflow-uat-manual-${runId}@${EMAIL_DOMAIN}`,
     fullName: "CaseFlow UAT Customer",
     password: createEphemeralPassword(runId),
     phone: "+84 912 345 678",
@@ -76,7 +83,54 @@ async function main() {
     const registration = await registerCustomerThroughUi(page, account);
     if (!registration.signedIn) {
       if (registration.accountCreated) {
-        await confirmCustomerIfNeeded(account.email);
+        if (REQUIRE_REAL_EMAIL_CONFIRMATION) {
+          const confirmation = await waitForRealEmailConfirmation(account.email);
+
+          if (!confirmation.confirmed) {
+            const report = {
+              account: {
+                email: account.email,
+                fullName: account.fullName,
+              },
+              baseURL,
+              confirmation,
+              fallbackDisabled: DISABLE_FALLBACK,
+              generatedAt: new Date().toISOString(),
+              ok: false,
+              registration,
+              target: {
+                editionId: target.edition.id,
+                priceVnd: target.edition.priceVnd,
+                slug: target.slug,
+                title: target.title,
+              },
+            };
+
+            writeJson("uat-manual-customer-production-check.json", report);
+            writeEmailConfirmationBlockedReport(report);
+
+            console.log(
+              JSON.stringify(
+                {
+                  ok: false,
+                  reason: "real-email-confirmation-not-observed",
+                  confirmation,
+                  registration,
+                  report: path.join(
+                    ARTIFACT_DIR,
+                    "uat-manual-customer-production-check.json",
+                  ),
+                },
+                null,
+                2,
+              ),
+            );
+            process.exitCode = 1;
+            return;
+          }
+        } else {
+          await confirmCustomerIfNeeded(account.email);
+        }
       } else {
         if (DISABLE_FALLBACK) {
           const report = {
@@ -807,6 +861,20 @@ function parseBaseURL(value: string) {
   return url.toString().replace(/\/$/, "");
 }
 
+function parseOptionalEmail(value: string | undefined) {
+  if (!value) {
+    return null;
+  }
+
+  const email = value.trim().toLowerCase();
+
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+    throw new Error(`Invalid UAT_MANUAL_EMAIL: ${value}`);
+  }
+
+  return email;
+}
+
 function parseEmailDomain(value: string) {
   const domain = value.trim().replace(/^@/, "").toLowerCase();
 
@@ -817,8 +885,86 @@ function parseEmailDomain(value: string) {
   return domain;
 }
 
+function parsePositiveInteger(value: string | undefined, fallback: number) {
+  if (!value) {
+    return fallback;
+  }
+
+  const parsed = Number.parseInt(value, 10);
+
+  if (!Number.isInteger(parsed) || parsed <= 0) {
+    throw new Error(`Expected a positive integer, received: ${value}`);
+  }
+
+  return parsed;
+}
+
 function createEphemeralPassword(seed: string) {
   return `CaseFlowUAT-${seed}-9aA!`;
+}
+
+async function waitForRealEmailConfirmation(email: string) {
+  const supabase = createSupabaseAdminClient();
+  const startedAt = Date.now();
+  const deadline = startedAt + EMAIL_CONFIRMATION_WAIT_SECONDS * 1000;
+  let attempts = 0;
+  let userId: string | null = null;
+  let confirmedAt: string | null = null;
+  let lastError: string | null = null;
+
+  while (Date.now() < deadline) {
+    attempts += 1;
+    const { data: profile, error: profileError } = await supabase
+      .from("profiles")
+      .select("id")
+      .eq("email", email)
+      .maybeSingle();
+
+    if (profileError) {
+      lastError = profileError.message;
+    } else if (profile?.id) {
+      userId = profile.id;
+      const { data: authUser, error: authError } =
+        await supabase.auth.admin.getUserById(profile.id);
+
+      if (authError) {
+        lastError = authError.message;
+      } else {
+        confirmedAt = authUser.user.email_confirmed_at ?? null;
+
+        if (confirmedAt) {
+          const { error: updateError } = await supabase
+            .from("profiles")
+            .update({ email_verified_at: confirmedAt })
+            .eq("id", profile.id);
+
+          if (updateError) {
+            lastError = updateError.message;
+          }
+
+          return {
+            attempts,
+            confirmed: true,
+            confirmedAt,
+            lastError,
+            timeoutSeconds: EMAIL_CONFIRMATION_WAIT_SECONDS,
+            userId,
+          };
+        }
+      }
+    }
+
+    await new Promise((resolve) => setTimeout(resolve, 5_000));
+  }
+
+  return {
+    attempts,
+    confirmed: false,
+    confirmedAt,
+    lastError,
+    timeoutSeconds: EMAIL_CONFIRMATION_WAIT_SECONDS,
+    userId,
+  };
 }
 
 function writeSignupBlockedReport(report: {
@@ -863,6 +1009,85 @@ function writeSignupBlockedReport(report: {
 The no-fallback customer UAT stopped before profile completion, cart,
 checkout, QR boundary, and order history because the public production sign-up
 flow did not create a customer account.
+
+## Target Book Reserved For Test
+
+- Book: ${report.target.title} (\`${report.target.slug}\`)
+- Edition ID: \`${report.target.editionId}\`
+- Price: ${report.target.priceVnd} VND
+
+## Evidence
+
+- \`.agent/artifacts/${ARTIFACT_ID}/uat-manual-customer-production-check.json\`
+`;
+
+  fs.writeFileSync(
+    path.join(ARTIFACT_DIR, "uat-manual-customer-production-report.md"),
+    markdown,
+  );
+}
+
+function writeEmailConfirmationBlockedReport(report: {
+  account: { email: string; fullName: string };
+  baseURL: string;
+  confirmation: {
+    attempts: number;
+    confirmed: boolean;
+    confirmedAt: string | null;
+    lastError: string | null;
+    timeoutSeconds: number;
+    userId: string | null;
+  };
+  fallbackDisabled: boolean;
+  generatedAt: string;
+  ok: boolean;
+  registration: {
+    accountCreated: boolean;
+    errorCode: string | null;
+    errorMessage: string | null;
+    fallbackProvisioned: boolean;
+    signedIn: boolean;
+    status: number;
+  };
+  target: { editionId: string; priceVnd: number; slug: string; title: string };
+}) {
+  const markdown = `# AUTH-EMAIL-T01 Real Email Confirmation UAT
+
+- Generated at: ${report.generatedAt}
+- Base URL: ${report.baseURL}
+- Result: BLOCKED - real email confirmation was not observed before timeout
+- Service-role fallback disabled: ${report.fallbackDisabled ? "yes" : "no"}
+
+## Customer Account Attempt
+
+- Email: \`${report.account.email}\`
+- Name: ${report.account.fullName}
+- Password: not stored in repository artifacts.
+
+## Registration Response
+
+- HTTP status: ${report.registration.status}
+- Error code: ${report.registration.errorCode ?? "n/a"}
+- Error message: ${report.registration.errorMessage ?? "n/a"}
+- Account created: ${report.registration.accountCreated ? "yes" : "no"}
+- Signed in immediately: ${report.registration.signedIn ? "yes" : "no"}
+
+## Email Confirmation Wait
+
+- Confirmed: ${report.confirmation.confirmed ? "yes" : "no"}
+- Confirmed at: ${report.confirmation.confirmedAt ?? "n/a"}
+- Attempts: ${report.confirmation.attempts}
+- Timeout: ${report.confirmation.timeoutSeconds}s
+- Auth user ID observed: ${report.confirmation.userId ?? "n/a"}
+- Last error: ${report.confirmation.lastError ?? "n/a"}
+
+## Result
+
+The no-fallback customer UAT stopped before profile completion, cart,
+checkout, QR boundary, and order history because the account's real email
+confirmation was not observed. Run this task with a mailbox you control, open
+the Supabase confirmation email, click the confirmation link, and keep the
+verifier running until it continues.
 
 ## Target Book Reserved For Test
 

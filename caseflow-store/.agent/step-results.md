@@ -13948,3 +13948,56 @@ and account order history.
   performed.
 - Remaining production-readiness concern: configure custom SMTP and abuse
   controls before treating public email sign-up as business-grade.
+
+---
+
+## AUTH-EMAIL-T01 - Real Email Confirmation UAT
+
+- Date: 2026-07-21
+- Status: blocked pending controlled mailbox access
+- Production URL: `https://caseflow-store.vercel.app`
+
+### Result
+
+Preflight completed. The production customer UAT verifier now has a strict real
+email-confirmation mode. It can use an exact mailbox from `UAT_MANUAL_EMAIL`,
+disable service-role fallback, wait for Supabase Auth `email_confirmed_at`, and
+continue the customer UAT flow only after a real confirmation click is observed.
+
+### Blocker
+
+No controlled inbox or confirmation link is available in this session. The task
+cannot be honestly marked PASS until the tester can receive and click the
+Supabase confirmation email.
+
+### Evidence
+
+- `docs/auth-email-t01-real-email-confirmation-uat.md`
+- `scripts/verify-uat-manual-customer-production.ts`
+
+### Verification
+
+- `npm exec -- tsc --noEmit --pretty false`: passed.
+- `npm run lint`: passed.
+- `git diff --check`: passed.
+- Production real-email UAT: blocked, not run, because no controlled mailbox
+  or confirmation link is available.
+
+### Command To Run When Unblocked
+
+```bash
+UAT_MANUAL_BASE_URL=https://caseflow-store.vercel.app \
+UAT_MANUAL_ARTIFACT_ID=auth-email-t01-production \
+UAT_MANUAL_DISABLE_FALLBACK=true \
+UAT_MANUAL_REQUIRE_REAL_EMAIL_CONFIRMATION=true \
+UAT_MANUAL_EMAIL='your-controlled-mailbox@example.com' \
+UAT_MANUAL_EMAIL_CONFIRMATION_WAIT_SECONDS=600 \
+npm exec -- tsx scripts/verify-uat-manual-customer-production.ts
+```
+
+### Guardrails
+
+- Do not service-role-confirm the user for this task.
+- Do not mark real email confirmation PASS without mailbox evidence.
+- Avoid repeated production signup attempts in a short window because Supabase
+  Auth can rate-limit signup/email flows.
