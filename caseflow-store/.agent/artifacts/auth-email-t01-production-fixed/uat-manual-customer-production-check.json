@@ -1,0 +1,24 @@
+{
+  "account": {
+    "email": "truongskull014+caseflow-uat-fixed-202607211558@gmail.com",
+    "fullName": "CaseFlow UAT Customer"
+  },
+  "baseURL": "https://caseflow-store.vercel.app",
+  "fallbackDisabled": true,
+  "generatedAt": "2026-07-21T15:59:16.154Z",
+  "ok": false,
+  "registration": {
+    "accountCreated": false,
+    "errorCode": "CUSTOMER_AUTH_FAILED",
+    "errorMessage": "Customer sign-up is temporarily rate-limited. Try again later.",
+    "fallbackProvisioned": false,
+    "signedIn": false,
+    "status": 429
+  },
+  "target": {
+    "editionId": "00000000-0000-4000-8000-000000003027",
+    "priceVnd": 159000,
+    "slug": "a-christmas-carol-english-paperback",
+    "title": "A Christmas Carol"
+  }
+}

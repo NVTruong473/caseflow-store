@@ -13,8 +13,9 @@
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
 - Current mode: post-`v1.10.0` production UAT verification.
-- Current gate: `AUTH-EMAIL-T01` is blocked pending controlled mailbox access
-  for real email confirmation UAT.
+- Current gate: `AUTH-EMAIL-T01` is partial-pass: real Gmail confirmation and
+  checkout passed, localhost redirect bug was fixed/deployed, and the post-fix
+  email rerun is blocked by Supabase Auth rate limit.
 - Current task: `AUTH-EMAIL-T01`.
 
 ## Confirmed Facts
@@ -134,6 +135,19 @@
   QR/payment boundary, and order-history checks. The task is blocked until a
   controlled mailbox or confirmation link is available; it must not be marked
   pass through service-role confirmation.
+- `AUTH-EMAIL-T01` was rerun on 2026-07-21 with the tester-controlled Gmail
+  alias `truongskull014+caseflow-uat-202607211550@gmail.com`: public sign-up
+  returned `201`, Supabase Auth real email confirmation was observed, no
+  service-role fallback was used, and checkout/order history passed with order
+  `CF-MRUU092P-A54D8D8BB5`. The tester screenshot exposed a production UX
+  defect where the confirmation redirect landed on `localhost:3000` with an
+  expired/consumed OTP fragment. Commit `409c333` fixed signup email redirects
+  to use `NEXT_PUBLIC_SITE_URL` or forwarded public headers; Vercel Production
+  now has `NEXT_PUBLIC_SITE_URL=https://caseflow-store.vercel.app`, deployment
+  `dpl_AXPMXSQ73rvofGE4cYLT5hnF5kd5` is aliased to production, and production
+  smoke/security/QR safety checks passed. Immediate post-fix real-email rerun
+  was blocked by Supabase Auth `429`, so a fresh email-link UX revalidation
+  must wait for cooldown or custom SMTP.
 - Implementation was confirmed by the user on 2026-07-14.
 - Implementation was unblocked by installing the official Node.js LTS binary after Homebrew failed.
 - The Next.js app has been initialized in `caseflow-store`.

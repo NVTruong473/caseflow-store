@@ -11,9 +11,9 @@
 
 - Project: CaseFlow Books
 - Mode: post-`v1.10.0` production UAT verification
-- Current gate: `AUTH-EMAIL-T01` is blocked pending a controlled mailbox for
-  real email confirmation UAT; `AUTH-UAT-T01` closed the open production
-  sign-up finding
+- Current gate: `AUTH-EMAIL-T01` is partial-pass: real Gmail confirmation and
+  checkout passed, localhost redirect bug was fixed/deployed, and post-fix
+  email rerun is blocked by Supabase Auth rate limit
 - Current task: `AUTH-EMAIL-T01`
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-21
@@ -25,19 +25,22 @@
   - Objective: verify a fully real customer registration path: public sign-up,
     confirmation email delivery, mailbox click, sign-in, vouchers, checkout,
     QR/payment production boundary, and order history.
-  - Result: preflight completed and the production UAT verifier now supports
-    `UAT_MANUAL_REQUIRE_REAL_EMAIL_CONFIRMATION=true`, exact
-    `UAT_MANUAL_EMAIL`, no service-role fallback, and polling Supabase Auth for
-    `email_confirmed_at` before continuing the customer UAT flow.
-  - Blocker: no controlled mailbox or confirmation link is available in this
-    session, so the real email click cannot be honestly verified.
-  - Next step: run the verifier with a mailbox controlled by the tester, click
-    the Supabase confirmation email while the script waits, then record the
-    resulting order and screenshots under
-    `.agent/artifacts/auth-email-t01-production`.
-  - Guardrail: do not mark this task PASS using service-role confirmation, and
-    do not spam production sign-up attempts because Supabase Auth can
-    rate-limit signup/email flows.
+  - Result: real Gmail confirmation passed with
+    `truongskull014+caseflow-uat-202607211550@gmail.com`, no service-role
+    fallback, 3 vouchers, checkout, QR/payment production lock, and order
+    history for order `CF-MRUU092P-A54D8D8BB5`. The tester screenshot exposed
+    a confirmation redirect bug to `localhost:3000`; commit `409c333` fixed
+    signup email redirects, Vercel Production env `NEXT_PUBLIC_SITE_URL` was
+    added, and deployment `dpl_AXPMXSQ73rvofGE4cYLT5hnF5kd5` is live.
+  - Verification: local typecheck/lint/build/diff passed; production
+    smoke/security/QR safety checks passed after deploy.
+  - Blocker: immediate post-fix rerun with
+    `truongskull014+caseflow-uat-fixed-202607211558@gmail.com` returned
+    `429 CUSTOMER_AUTH_FAILED`, so the fixed email-link UX cannot be reverified
+    until Supabase Auth cooldown or custom SMTP is available.
+  - Guardrail: do not mark the post-fix confirmation redirect PASS using
+    service-role confirmation, and do not spam production sign-up attempts
+    because Supabase Auth can rate-limit signup/email flows.
 
 - [x] `AUTH-UAT-T01` Investigate Production Sign-up Rate Limit And Rerun
   Customer UAT. - 2026-07-21

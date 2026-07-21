@@ -14001,3 +14001,51 @@ npm exec -- tsx scripts/verify-uat-manual-customer-production.ts
 - Do not mark real email confirmation PASS without mailbox evidence.
 - Avoid repeated production signup attempts in a short window because Supabase
   Auth can rate-limit signup/email flows.
+
+### AUTH-EMAIL-T01 Live Mailbox Run And Redirect Fix Update
+
+- Tester mailbox alias: `truongskull014+caseflow-uat-202607211550@gmail.com`
+- Result: partial pass with deployed redirect fix and post-fix rerun blocked by rate limit.
+
+#### Real Email UAT Result
+
+- Public sign-up: `201`.
+- Real email confirmation: observed by Supabase Auth; no service-role fallback.
+- Customer UAT: passed through sign-in, 3 welcome vouchers, profile completion,
+  add-to-cart, checkout with `WELCOME30K`, production QR/payment lock, and
+  order history.
+- Order: `CF-MRUU092P-A54D8D8BB5`.
+- Evidence: `.agent/artifacts/auth-email-t01-production/`.
+
+#### Defect Found
+
+The tester screenshot showed the confirmation flow landing on `localhost:3000`
+with `error=access_denied`, `error_code=otp_expired`, and `Email link is invalid or has expired`.
+The account had already been confirmed, so the data path passed, but the
+customer-facing redirect target was wrong.
+
+#### Fix And Deploy
+
+- Runtime commit: `409c333 fix: use public origin for signup email redirects`.
+- Vercel Production env added: `NEXT_PUBLIC_SITE_URL=https://caseflow-store.vercel.app`.
+- Deployment: `dpl_AXPMXSQ73rvofGE4cYLT5hnF5kd5`.
+- Alias: `https://caseflow-store.vercel.app`.
+
+#### Verification
+
+- `npm exec -- tsc --noEmit --pretty false`: passed.
+- `npm run lint`: passed.
+- `npm run build`: passed.
+- `git diff --check`: passed.
+- `npx vercel inspect https://caseflow-store.vercel.app`: passed.
+- `PRODUCTION_SMOKE_BASE_URL=https://caseflow-store.vercel.app PRODUCTION_SMOKE_ARTIFACT_ID=auth-email-t01-post-fix npm exec -- tsx scripts/verify-production-smoke.ts`: passed.
+- `SECURITY_QA_BASE_URL=https://caseflow-store.vercel.app SECURITY_QA_ARTIFACT_ID=auth-email-t01-post-fix npm exec -- tsx scripts/verify-security-posture.ts`: passed.
+- `PAYQR_PRODUCTION_SAFETY_BASE_URL=https://caseflow-store.vercel.app PAYQR_ARTIFACT_ID=auth-email-t01-post-fix npm exec -- tsx scripts/verify-qr-payment-production-safety.ts`: passed.
+
+#### Post-fix Rerun
+
+- Email alias: `truongskull014+caseflow-uat-fixed-202607211558@gmail.com`.
+- Result: blocked at public sign-up with `429 CUSTOMER_AUTH_FAILED`.
+- Evidence: `.agent/artifacts/auth-email-t01-production-fixed/`.
+- Next safe action: wait for Supabase Auth cooldown or configure custom SMTP,
+  then rerun with a fresh Gmail alias. Do not keep retrying immediately.
