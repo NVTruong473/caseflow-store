@@ -13,10 +13,9 @@
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
 - Current mode: post-`v1.10.0` production UAT verification.
-- Current gate: `AUTH-EMAIL-T01` is partial-pass: real Gmail confirmation and
-  checkout passed, localhost redirect bug was fixed/deployed, and the post-fix
-  email rerun is blocked by Supabase Auth rate limit.
-- Current task: `AUTH-EMAIL-T01`.
+- Current gate: `AUTH-EMAIL-T02` is blocked by Supabase Auth rate limit after
+  one controlled post-fix email redirect rerun.
+- Current task: `AUTH-EMAIL-T02`.
 
 ## Confirmed Facts
 
@@ -148,6 +147,12 @@
   smoke/security/QR safety checks passed. Immediate post-fix real-email rerun
   was blocked by Supabase Auth `429`, so a fresh email-link UX revalidation
   must wait for cooldown or custom SMTP.
+- `AUTH-EMAIL-T02` was attempted once on 2026-07-21 against production
+  deployment `dpl_AXPMXSQ73rvofGE4cYLT5hnF5kd5` with Gmail alias
+  `truongskull014+caseflow-uat-t02-202607211605@gmail.com`; public sign-up
+  returned `429 CUSTOMER_AUTH_FAILED` before account creation, fallback stayed
+  disabled, no email was sent/clicked, and the post-fix redirect UX remains
+  blocked pending Supabase Auth cooldown or custom SMTP.
 - Implementation was confirmed by the user on 2026-07-14.
 - Implementation was unblocked by installing the official Node.js LTS binary after Homebrew failed.
 - The Next.js app has been initialized in `caseflow-store`.

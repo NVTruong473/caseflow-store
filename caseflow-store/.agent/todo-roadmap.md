@@ -11,14 +11,31 @@
 
 - Project: CaseFlow Books
 - Mode: post-`v1.10.0` production UAT verification
-- Current gate: `AUTH-EMAIL-T01` is partial-pass: real Gmail confirmation and
-  checkout passed, localhost redirect bug was fixed/deployed, and post-fix
-  email rerun is blocked by Supabase Auth rate limit
-- Current task: `AUTH-EMAIL-T01`
+- Current gate: `AUTH-EMAIL-T02` is blocked by Supabase Auth rate limit after
+  one controlled post-fix email redirect rerun
+- Current task: `AUTH-EMAIL-T02`
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-21
 
 ## Phase UAT-MANUAL - Production Customer Manual Acceptance
+
+- [!] `AUTH-EMAIL-T02` Post-fix Email Redirect Rerun. - 2026-07-21
+  - Objective: rerun strict real-email UAT after the redirect fix to prove a
+    fresh confirmation email returns to `https://caseflow-store.vercel.app`
+    instead of `localhost:3000`.
+  - Result: one controlled attempt against production deployment
+    `dpl_AXPMXSQ73rvofGE4cYLT5hnF5kd5` used
+    `truongskull014+caseflow-uat-t02-202607211605@gmail.com`; public sign-up
+    returned `429 CUSTOMER_AUTH_FAILED`, fallback stayed disabled, no account
+    was created, and no fresh confirmation email was available to click.
+  - Evidence:
+    `.agent/artifacts/auth-email-t02-production-rerun/uat-manual-customer-production-check.json`
+    and `docs/auth-email-t02-post-fix-email-redirect-rerun.md`.
+  - Blocker: Supabase Auth signup/email rate limit. Wait for cooldown or
+    configure custom SMTP/rate limits before rerunning with a fresh Gmail
+    alias.
+  - Guardrail: do not service-role-confirm this test and do not keep retrying
+    immediately while Supabase returns 429.
 
 - [!] `AUTH-EMAIL-T01` Test real customer email confirmation flow. -
   2026-07-21

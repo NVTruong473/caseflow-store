@@ -14049,3 +14049,45 @@ customer-facing redirect target was wrong.
 - Evidence: `.agent/artifacts/auth-email-t01-production-fixed/`.
 - Next safe action: wait for Supabase Auth cooldown or configure custom SMTP,
   then rerun with a fresh Gmail alias. Do not keep retrying immediately.
+
+---
+
+## AUTH-EMAIL-T02 - Post-fix Email Redirect Rerun
+
+- Date: 2026-07-21
+- Status: blocked by Supabase Auth rate limit
+- Production URL: `https://caseflow-store.vercel.app`
+- Production deployment: `dpl_AXPMXSQ73rvofGE4cYLT5hnF5kd5`
+
+### Objective
+
+Rerun strict real-email UAT after the signup email redirect fix to prove a fresh
+confirmation email returns the customer to `https://caseflow-store.vercel.app`
+instead of `localhost:3000`.
+
+### Result
+
+One controlled rerun was executed with service-role fallback disabled and exact
+Gmail alias `truongskull014+caseflow-uat-t02-202607211605@gmail.com`.
+Supabase/Auth returned `429 CUSTOMER_AUTH_FAILED` at public sign-up, before
+account creation or email delivery. No further production sign-up attempts were
+made.
+
+### Evidence
+
+- `docs/auth-email-t02-post-fix-email-redirect-rerun.md`
+- `.agent/artifacts/auth-email-t02-production-rerun/uat-manual-customer-production-check.json`
+- `.agent/artifacts/auth-email-t02-production-rerun/uat-manual-customer-production-report.md`
+
+### Verification
+
+- `npx vercel inspect https://caseflow-store.vercel.app`: passed; alias points
+  to `dpl_AXPMXSQ73rvofGE4cYLT5hnF5kd5`.
+- `UAT_MANUAL_BASE_URL=https://caseflow-store.vercel.app UAT_MANUAL_ARTIFACT_ID=auth-email-t02-production-rerun UAT_MANUAL_DISABLE_FALLBACK=true UAT_MANUAL_REQUIRE_REAL_EMAIL_CONFIRMATION=true UAT_MANUAL_EMAIL='truongskull014+caseflow-uat-t02-202607211605@gmail.com' UAT_MANUAL_EMAIL_CONFIRMATION_WAIT_SECONDS=900 npm exec -- tsx scripts/verify-uat-manual-customer-production.ts`: blocked with expected non-zero exit due to `429 CUSTOMER_AUTH_FAILED`.
+
+### Guardrails
+
+- No service-role fallback or admin confirmation was used.
+- No retry loop or repeated production sign-up was run after the 429.
+- No runtime code, deploy, release tag, or release metadata change was made in
+  this task.
