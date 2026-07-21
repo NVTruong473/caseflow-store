@@ -28,7 +28,7 @@ export async function POST(request: Request) {
   const supabase = await createSupabaseServerClient();
 
   if (parsedBody.data.intent === "sign-up") {
-    const redirectUrl = new URL("/account", request.url);
+    const redirectUrl = getCustomerEmailRedirectUrl(request);
     const { data: authData, error: authError } = await supabase.auth.signUp({
       email: parsedBody.data.email,
       password: parsedBody.data.password,
@@ -141,4 +141,51 @@ export async function DELETE() {
   }
 
   return apiSuccess({ signedOut: true });
+}
+
+function getCustomerEmailRedirectUrl(request: Request) {
+  const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  const publicOrigin =
+    getValidOrigin(configuredSiteUrl) ?? getForwardedRequestOrigin(request);
+
+  return new URL("/account", publicOrigin).toString();
+}
+
+function getForwardedRequestOrigin(request: Request) {
+  const forwardedHost = firstHeaderValue(request.headers.get("x-forwarded-host"));
+  const host = forwardedHost ?? firstHeaderValue(request.headers.get("host"));
+  const forwardedProto =
+    firstHeaderValue(request.headers.get("x-forwarded-proto")) ?? "https";
+  const forwardedOrigin = host
+    ? getValidOrigin(`${forwardedProto}://${host}`)
+    : null;
+
+  // Không dùng `request.url` làm nguồn duy nhất: trong serverless/proxy nó có
+  // thể là localhost và làm email xác nhận trỏ về máy nội bộ thay vì domain public.
+  return forwardedOrigin ?? new URL(request.url).origin;
+}
+
+function firstHeaderValue(value: string | null) {
+  return value
+    ?.split(",")
+    .map((item) => item.trim())
+    .find(Boolean);
+}
+
+function getValidOrigin(value: string | null | undefined) {
+  if (!value) {
+    return null;
+  }
+
+  try {
+    const url = new URL(value);
+
+    if (!["http:", "https:"].includes(url.protocol)) {
+      return null;
+    }
+
+    return url.origin;
+  } catch {
+    return null;
+  }
 }
