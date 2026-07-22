@@ -10,14 +10,65 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: post-`v1.11.0` production UAT verification
-- Current gate: `AUTH-SMTP-T01` automation is ready but blocked pending real
-  Supabase Management API token and SMTP credentials
-- Current task: `AUTH-SMTP-T01`
+- Mode: post-`v1.11.0` production release consistency and email operations
+  verification
+- Current gate: `AUTH-SMTP-T02` is blocked pending a real Supabase Management
+  API token and real SMTP credentials; `AUTH-EMAIL-T03` is blocked until SMTP
+  is configured and a real mailbox confirmation click can be observed
+- Current task: `AUTH-SMTP-T02` / `AUTH-EMAIL-T03`
 - Implementation day: Day 40 complete
-- Last updated: 2026-07-21
+- Last updated: 2026-07-22
 
 ## Phase UAT-MANUAL - Production Customer Manual Acceptance
+
+- [!] `AUTH-EMAIL-T03` Rerun Real Email Confirmation UAT After SMTP. -
+  2026-07-22
+  - Objective: rerun strict real-email UAT with public sign-up, delivered
+    confirmation email, mailbox click, sign-in, signup vouchers, checkout,
+    QR/payment production boundary, and order history.
+  - Result: not run to completion because the prerequisite SMTP configuration
+    is still blocked and there is no controlled mailbox click automation in
+    this environment. No service-role confirmation or already-confirmed account
+    shortcut was used.
+  - Verification: prerequisite `AUTH-SMTP-T02` apply-mode preflight failed
+    safely before mutation because real SMTP and Supabase Management API
+    credentials are missing.
+  - Blocker: configure a real SMTP provider and provide controlled mailbox
+    access/click evidence before rerunning.
+  - Guardrail: do not mark this PASS through service-role confirmation,
+    dashboard manual confirmation, or a verifier mode that skips the email
+    click.
+
+- [!] `AUTH-SMTP-T02` Configure Real Supabase Auth SMTP. - 2026-07-22
+  - Objective: apply the prepared Supabase Auth custom SMTP automation using
+    real provider credentials so email confirmation can be tested without the
+    built-in Supabase sender limits.
+  - Result: apply-mode stopped before any Supabase API mutation. `.env.local`
+    has `SUPABASE_PROJECT_REF`, `SMTP_PORT`, and `SMTP_SENDER_NAME`, but still
+    lacks `SUPABASE_ACCESS_TOKEN`, `SMTP_ADMIN_EMAIL`, `SMTP_HOST`,
+    `SMTP_USER`, and `SMTP_PASS`.
+  - Verification:
+    `AUTH_SMTP_APPLY=true npm exec -- tsx scripts/configure-supabase-custom-smtp.ts`
+    returned the expected `missing-or-invalid-smtp-config` result, and
+    `git diff --check` passed.
+  - Blocker: real Supabase Management API token and SMTP host/user/password
+    are external credentials; they cannot be safely invented or committed.
+  - Guardrail: no fake SMTP, no disabled email confirmation, and no committed
+    secret.
+
+- [x] `POSTV111-T01` Final v1.11.0 Release Consistency Audit. - 2026-07-22
+  - Objective: prove local Git, remote `main`, the `v1.11.0` tag, GitHub
+    Release metadata, Vercel production alias, and current production runtime
+    evidence all describe the same released code.
+  - Result: local `main`, `origin/main`, and the peeled `v1.11.0` tag point to
+    `8ed23eade1d5e251549119b8e2cac5fdcd01b6e0`; GitHub Release `v1.11.0` is
+    published; Vercel alias `https://caseflow-store.vercel.app` points to
+    production deployment `dpl_DtUDA7pbv7ZcJYFRM5TVmsQUhThq`.
+  - Verification: production smoke, security posture, QR production-safety,
+    and production password-change verifier were rerun and passed with
+    `postv111-t01` artifacts.
+  - Guardrail: no production deploy, tag rewrite, release rewrite, or runtime
+    source change was performed.
 
 - [x] `AUTH-PASSWORD-T01` Add Signed-In Account Password Change And Release
   `v1.11.0`. - 2026-07-22

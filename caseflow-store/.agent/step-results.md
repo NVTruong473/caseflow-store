@@ -14238,3 +14238,142 @@ The feature was deployed to Vercel production deployment
 - No admin/staff reset-password-for-other-user feature was added.
 - No release tag, GitHub Release, or Supabase Auth custom SMTP mutation was
   performed in this task.
+
+---
+
+## POSTV111-T01 - Final v1.11.0 Release Consistency Audit
+
+- Date: 2026-07-22
+- Status: completed
+- Production URL: `https://caseflow-store.vercel.app`
+- Production deployment: `dpl_DtUDA7pbv7ZcJYFRM5TVmsQUhThq`
+- Release: `v1.11.0`
+
+### Objective
+
+Verify that the local repository, remote `main`, tag, GitHub Release, Vercel
+production alias, and current production runtime all still describe the same
+`v1.11.0` release after the password-change release.
+
+### Result
+
+Local `main`, `origin/main`, and the peeled `v1.11.0` tag all point to
+`8ed23eade1d5e251549119b8e2cac5fdcd01b6e0`. GitHub Release `v1.11.0` is
+published, not draft, not prerelease. Vercel alias
+`https://caseflow-store.vercel.app` points to ready production deployment
+`dpl_DtUDA7pbv7ZcJYFRM5TVmsQUhThq`.
+
+### Evidence
+
+- `.agent/artifacts/postv111-t01-production-smoke/production-smoke-check.json`
+- `.agent/artifacts/postv111-t01-production-security/security-posture-check.json`
+- `.agent/artifacts/postv111-t01-production-qr-safety/qr-payment-production-safety-check.json`
+- `.agent/artifacts/auth-password-t01/customer-password-change-check.json`
+
+### Verification
+
+- `git ls-remote origin refs/heads/main refs/tags/v1.11.0 refs/tags/v1.11.0^{}`:
+  passed; peeled tag matches `origin/main`.
+- `gh release view v1.11.0 --json tagName,url,name,publishedAt,targetCommitish,isDraft,isPrerelease`:
+  passed; release is published.
+- `npx vercel inspect https://caseflow-store.vercel.app`: passed; alias points
+  to `dpl_DtUDA7pbv7ZcJYFRM5TVmsQUhThq`.
+- `PRODUCTION_SMOKE_BASE_URL=https://caseflow-store.vercel.app PRODUCTION_SMOKE_ARTIFACT_ID=postv111-t01-production-smoke npm exec -- tsx scripts/verify-production-smoke.ts`:
+  passed.
+- `SECURITY_QA_BASE_URL=https://caseflow-store.vercel.app SECURITY_QA_ARTIFACT_ID=postv111-t01-production-security npm exec -- tsx scripts/verify-security-posture.ts`:
+  passed.
+- `PAYQR_PRODUCTION_SAFETY_BASE_URL=https://caseflow-store.vercel.app PAYQR_ARTIFACT_ID=postv111-t01-production-qr-safety npm exec -- tsx scripts/verify-qr-payment-production-safety.ts`:
+  passed.
+- `PASSWORD_CHANGE_BASE_URL=https://caseflow-store.vercel.app npm exec -- tsx scripts/verify-customer-password-change.ts`:
+  passed.
+
+### Guardrails
+
+- No production redeploy, tag rewrite, release rewrite, schema mutation, or
+  runtime source change was performed.
+
+---
+
+## AUTH-SMTP-T02 - Configure Real Supabase Auth SMTP
+
+- Date: 2026-07-22
+- Status: blocked by missing external credentials
+- Target: Supabase Auth for `caseflow-store`
+
+### Objective
+
+Apply the prepared custom SMTP automation with real provider credentials so
+future real-email confirmation UAT can avoid the built-in Supabase sender
+limits.
+
+### Result
+
+The automation was run in apply mode and stopped before any Supabase API
+mutation. Local non-secret helper values are present, but real credentials are
+still missing.
+
+Missing required values:
+
+- `SUPABASE_ACCESS_TOKEN`
+- `SMTP_ADMIN_EMAIL`
+- `SMTP_HOST`
+- `SMTP_USER`
+- `SMTP_PASS`
+
+Present helper values:
+
+- `SUPABASE_PROJECT_REF`
+- `SMTP_PORT`
+- `SMTP_SENDER_NAME`
+
+### Verification
+
+- `AUTH_SMTP_APPLY=true npm exec -- tsx scripts/configure-supabase-custom-smtp.ts`:
+  expected non-zero blocked result with `missing-or-invalid-smtp-config`.
+- `.env.local` presence check: confirmed the helper values above are present
+  and the real secret/provider values above are absent.
+- `git diff --check`: passed.
+
+### Guardrails
+
+- No fake SMTP provider values were invented.
+- No Supabase Auth email confirmation setting was weakened.
+- No real secret was committed.
+- No Supabase API mutation was attempted after validation failed.
+
+---
+
+## AUTH-EMAIL-T03 - Rerun Real Email Confirmation UAT After SMTP
+
+- Date: 2026-07-22
+- Status: blocked by SMTP prerequisite and mailbox access
+- Production URL: `https://caseflow-store.vercel.app`
+
+### Objective
+
+Rerun the strict real-customer email confirmation UAT after SMTP configuration:
+public sign-up, delivered confirmation email, mailbox click, sign-in, welcome
+vouchers, checkout, QR/payment production boundary, and account order history.
+
+### Result
+
+The UAT was not run to completion because `AUTH-SMTP-T02` is blocked and this
+environment does not have controlled access to click a delivered confirmation
+email in the target mailbox. Marking this task pass without observing a real
+email delivery and click would hide the exact production risk this task is
+meant to test.
+
+### Verification
+
+- Prerequisite `AUTH-SMTP-T02` apply-mode preflight failed safely before
+  mutation because real SMTP and Supabase Management API credentials are
+  missing.
+- No service-role confirmation, dashboard manual confirmation, or
+  already-confirmed account shortcut was used.
+
+### Guardrails
+
+- Do not mark this PASS until a fresh public sign-up sends a real email and the
+  confirmation link is clicked to the production site.
+- Do not bypass the test by using service-role confirmation.
+- Do not keep retrying production sign-up if Supabase Auth returns rate limits.
