@@ -6,12 +6,12 @@ project: CaseFlow Store
 purpose: Keep UI decisions stable across AI coding sessions
 tokens:
   colors:
-    background: "#F6F1E9"
-    surface: "#FFFAF2"
-    surfaceMuted: "#F0E8DC"
+    background: "#F7F8F5"
+    surface: "#FFFFFF"
+    surfaceMuted: "#EEF2ED"
     text: "#1F1B16"
     textMuted: "#675F56"
-    border: "#DDD0BF"
+    border: "#DBE0D8"
     primary: "#C92127"
     primaryHover: "#9F171D"
     accent: "#D86F17"
@@ -33,8 +33,8 @@ tokens:
     adminMuted: "#E7EDF3"
     operations: "#364152"
     operationsMuted: "#E8EDF2"
-    paper: "#F8F1E6"
-    paperDeep: "#E8D7BD"
+    paper: "#F8F9F4"
+    paperDeep: "#E6EADF"
     ink: "#1F1B16"
     success: "#247857"
     warning: "#A16207"

@@ -1,0 +1,76 @@
+{
+  "ok": true,
+  "generatedAt": "2026-07-22T03:47:13.138Z",
+  "results": [
+    {
+      "name": "home-desktop",
+      "url": "/",
+      "width": 1440,
+      "height": 900,
+      "status": 200,
+      "background": "#f7f8f5",
+      "surface": "#fff",
+      "surfaceMuted": "#eef2ed",
+      "border": "#dbe0d8",
+      "paper": "#f8f9f4",
+      "bodyBackground": "rgb(247, 248, 245)",
+      "horizontalOverflow": 0
+    },
+    {
+      "name": "catalog-desktop",
+      "url": "/catalog",
+      "width": 1440,
+      "height": 900,
+      "status": 200,
+      "background": "#f7f8f5",
+      "surface": "#fff",
+      "surfaceMuted": "#eef2ed",
+      "border": "#dbe0d8",
+      "paper": "#f8f9f4",
+      "bodyBackground": "rgb(247, 248, 245)",
+      "horizontalOverflow": 0
+    },
+    {
+      "name": "detail-desktop",
+      "url": "/products/a-christmas-carol-english-collector-special",
+      "width": 1440,
+      "height": 900,
+      "status": 200,
+      "background": "#f7f8f5",
+      "surface": "#fff",
+      "surfaceMuted": "#eef2ed",
+      "border": "#dbe0d8",
+      "paper": "#f8f9f4",
+      "bodyBackground": "rgb(247, 248, 245)",
+      "horizontalOverflow": 0
+    },
+    {
+      "name": "home-mobile",
+      "url": "/",
+      "width": 375,
+      "height": 812,
+      "status": 200,
+      "background": "#f7f8f5",
+      "surface": "#fff",
+      "surfaceMuted": "#eef2ed",
+      "border": "#dbe0d8",
+      "paper": "#f8f9f4",
+      "bodyBackground": "rgb(247, 248, 245)",
+      "horizontalOverflow": 0
+    },
+    {
+      "name": "catalog-mobile",
+      "url": "/catalog",
+      "width": 375,
+      "height": 812,
+      "status": 200,
+      "background": "#f7f8f5",
+      "surface": "#fff",
+      "surfaceMuted": "#eef2ed",
+      "border": "#dbe0d8",
+      "paper": "#f8f9f4",
+      "bodyBackground": "rgb(247, 248, 245)",
+      "horizontalOverflow": 0
+    }
+  ]
+}

@@ -68,9 +68,9 @@ runtime.
 
 ## Latest release evidence
 
-- Release tag: `v1.11.1`
+- Release tag: `v1.11.2`
 - GitHub Release:
-  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.11.1`
+  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.11.2`
 - Production alias: `https://caseflow-store.vercel.app`
 - Vercel deployment ID: `dpl_Gb8aaXLz5MJhuzKwByEndNYtgT75`
 - Local gates: npm audit with zero vulnerabilities, TypeScript, ESLint,
@@ -83,6 +83,7 @@ runtime.
   posture, and QR production-safety lock passed. The `v1.11.1` deployment
   smoke/security/QR artifacts are under `.agent/artifacts/secdep-t01-*`.
 - Release notes:
+  [`docs/v1.11.2-neutral-light-ui-patch-release-notes.md`](docs/v1.11.2-neutral-light-ui-patch-release-notes.md),
   [`docs/v1.11.1-security-dependency-patch-release-notes.md`](docs/v1.11.1-security-dependency-patch-release-notes.md)
   and
   [`docs/v1.11.0-account-security-password-release-notes.md`](docs/v1.11.0-account-security-password-release-notes.md)

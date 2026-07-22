@@ -10,7 +10,7 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: stable portfolio and operations handoff after `v1.11.1`
+- Mode: stable portfolio and operations handoff after `v1.11.2`
 - Current gate: `AUTH-SMTP-T02` is blocked pending a real Supabase Management
   API token and real SMTP credentials; all appropriate non-SMTP handoff work is
   complete
@@ -19,6 +19,22 @@
 - Last updated: 2026-07-22
 
 ## Phase UAT-MANUAL - Production Customer Manual Acceptance
+
+- [x] `UI-LIGHT-T01` Neutral Light UI Color Patch. - 2026-07-22
+  - Objective: remove the yellow/orange Night Shift feeling from the current
+    bookstore UI while preserving the existing bookstore identity and commerce
+    accents.
+  - Result: changed global design tokens from warm beige paper toward neutral
+    light paper, white cards, green-gray muted surfaces, quieter borders,
+    cooler ledger/table gradients, and lighter shadows. Updated `DESIGN.md`
+    and `docs/style-guide.md` to keep future color work aligned.
+  - Verification: `npm run lint` passed; `npm run build` passed; Playwright
+    rendered homepage, catalog, product detail, homepage mobile, and catalog
+    mobile at `http://127.0.0.1:3011` with HTTP 200 and no horizontal
+    overflow. Screenshots and metrics are under
+    `.agent/artifacts/ui-light-t01/`.
+  - Guardrail: no runtime feature, schema migration, auth/payment/shipping
+    integration, or customer/admin authorization behavior changed.
 
 - [x] `SECDEP-T01` Ship Dependency Security Patch `v1.11.1`. - 2026-07-22
   - Objective: resolve the current high-severity npm audit finding without

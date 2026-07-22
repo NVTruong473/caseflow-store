@@ -4,8 +4,8 @@
 
 - Project name: CaseFlow Store `v1.0.0`; CaseFlow Books `v1.1.0`, `v1.2.0`,
   `v1.3.0`, `v1.3.1`, `v1.4.0`, `v1.4.1`, `v1.4.2`, `v1.5.0`, `v1.6.0`,
-  `v1.7.0`, `v1.8.0`, `v1.9.0`, `v1.10.0`, `v1.11.0`, and `v1.11.1`
-  released
+  `v1.7.0`, `v1.8.0`, `v1.9.0`, `v1.10.0`, `v1.11.0`, `v1.11.1`, and
+  `v1.11.2` released
 - Repository folder: `/Users/vantruong/Documents/TSNN 2`
 - Product domain: books for released `v1.1.0` and `v1.2.0`; phone
   accessories for released `v1.0.0`
@@ -13,8 +13,8 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: stable portfolio and operations handoff after the `v1.11.1`
-  dependency security patch.
+- Current mode: stable portfolio and operations handoff after the `v1.11.2`
+  neutral light UI patch.
 - Current gate: `AUTH-SMTP-T02` remains blocked pending a real Supabase
   Management API token and real SMTP credentials. All appropriate non-SMTP
   handoff work is complete.
@@ -212,6 +212,13 @@
   cleared. Vercel production deployment `dpl_Gb8aaXLz5MJhuzKwByEndNYtgT75` is
   aliased to `https://caseflow-store.vercel.app`, and production smoke,
   security posture, and QR production-safety checks passed.
+- `UI-LIGHT-T01` was completed locally on 2026-07-22 as the `v1.11.2`
+  neutral light UI patch: base colors were shifted away from yellow/orange
+  Night Shift tones toward neutral paper, white surfaces, muted green-gray
+  secondary surfaces, softer borders, and lighter shadows. Local lint/build
+  passed, and Playwright screenshots for homepage, catalog, product detail,
+  homepage mobile, and catalog mobile rendered with HTTP 200 and no horizontal
+  overflow.
 - Implementation was confirmed by the user on 2026-07-14.
 - Implementation was unblocked by installing the official Node.js LTS binary after Homebrew failed.
 - The Next.js app has been initialized in `caseflow-store`.

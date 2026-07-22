@@ -44,12 +44,12 @@ Intentional asymmetry:
 
 | Token | Value | Role | Use | Avoid | Contrast Notes |
 |---|---:|---|---|---|---|
-| `--background` | `#F6F1E9` | Warm retail paper | Body background and quiet sections | Do not put low-contrast muted text on it below small size | Good with `--foreground` |
-| `--surface` | `#FFFAF2` | Elevated paper | Forms, product cards, purchase panels | Do not nest surface cards inside other cards | Good with `--foreground` |
-| `--surface-muted` | `#F0E8DC` | Quiet muted surface | Secondary nav hover, low-emphasis panels | Do not use for dense text blocks without enough contrast | Good with `--foreground` |
+| `--background` | `#F7F8F5` | Neutral retail paper | Body background and quiet sections | Do not shift it toward yellow/orange Night Shift tones | Good with `--foreground` |
+| `--surface` | `#FFFFFF` | Elevated paper | Forms, product cards, purchase panels | Do not nest surface cards inside other cards | Good with `--foreground` |
+| `--surface-muted` | `#EEF2ED` | Quiet neutral surface | Secondary nav hover, low-emphasis panels | Do not use for dense text blocks without enough contrast | Good with `--foreground` |
 | `--foreground` | `#1F1B16` | Primary text | Headings, labels, prices | Do not use as decorative fill everywhere | Strong contrast |
 | `--text-muted` | `#675F56` | Secondary text | Body descriptions, captions, metadata | Do not use for critical errors or small low-contrast text on tinted backgrounds | Check small text on tinted surfaces |
-| `--border` | `#DDD0BF` | Default rule | Separators and low-emphasis borders | Do not wrap every section in it | Works as quiet structure |
+| `--border` | `#DBE0D8` | Default rule | Separators and low-emphasis borders | Do not wrap every section in it | Works as quiet structure |
 | `--primary` | `#C92127` | Retail action and brand anchor | Main CTA, focus ring, active links, top service bar, high-value commerce sections | Do not turn every badge or paragraph accent red | White text passes |
 | `--primary-hover` | `#9F171D` | Primary hover | Button hover and strong active states | Do not use for muted backgrounds | White text passes |
 | `--accent` | `#D86F17` | Offer/accent | Discounts and sale notes | Do not use for unrelated decoration | Use with dark text on pale offer surfaces |

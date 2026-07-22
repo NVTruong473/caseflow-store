@@ -14539,3 +14539,59 @@ Vercel production deployment `dpl_Gb8aaXLz5MJhuzKwByEndNYtgT75` is aliased to
 - No Supabase Auth setting was weakened.
 - No schema migration, production data mutation, user-facing feature, or real
   payment/shipping/email provider integration was added.
+
+---
+
+## UI-LIGHT-T01 - Neutral Light UI Color Patch
+
+- Date: 2026-07-22
+- Status: completed locally; ready for production deploy
+- Target: storefront and shared UI color foundation
+
+### Objective
+
+Reduce the yellow/orange "Night Shift" feeling in the bookstore UI while
+keeping CaseFlow Books recognizable and avoiding a full redesign.
+
+### Result
+
+The global color foundation now uses:
+
+- neutral retail paper background `#F7F8F5`;
+- white elevated surfaces `#FFFFFF`;
+- muted green-gray secondary surfaces `#EEF2ED`;
+- quieter neutral borders `#DBE0D8`;
+- cooler reading table and paper tokens;
+- lighter soft and cover shadows.
+
+Retail red CTAs, discovery/trust teal, and role-specific commerce accents were
+preserved.
+
+Updated files:
+
+- `src/app/globals.css`
+- `DESIGN.md`
+- `docs/style-guide.md`
+- `docs/v1.11.2-neutral-light-ui-patch-release-notes.md`
+
+### Verification
+
+- `npm run lint`: passed.
+- `npm run build`: passed.
+- Playwright visual render check against `http://127.0.0.1:3011`: homepage,
+  catalog, product detail, homepage mobile, and catalog mobile returned
+  HTTP 200 with `horizontalOverflow: 0`.
+- Visual artifacts:
+  - `.agent/artifacts/ui-light-t01/home-desktop.png`
+  - `.agent/artifacts/ui-light-t01/catalog-desktop.png`
+  - `.agent/artifacts/ui-light-t01/detail-desktop.png`
+  - `.agent/artifacts/ui-light-t01/home-mobile.png`
+  - `.agent/artifacts/ui-light-t01/catalog-mobile.png`
+  - `.agent/artifacts/ui-light-t01/visual-check.json`
+
+### Guardrails
+
+- No feature expansion, schema change, auth change, payment change, or shipping
+  integration was introduced.
+- The patch changes shared tokens rather than one-off page colors, so future
+  pages keep a consistent visual foundation.

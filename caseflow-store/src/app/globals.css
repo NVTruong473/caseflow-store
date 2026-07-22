@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f6f1e9;
+  --background: #f7f8f5;
   --foreground: #1f1b16;
-  --surface: #fffaf2;
-  --surface-muted: #f0e8dc;
+  --surface: #ffffff;
+  --surface-muted: #eef2ed;
   --text-muted: #675f56;
-  --border: #ddd0bf;
+  --border: #dbe0d8;
   --primary: #c92127;
   --primary-hover: #9f171d;
   --accent: #d86f17;
@@ -28,10 +28,10 @@
   --admin-muted: #e7edf3;
   --operations: #364152;
   --operations-muted: #e8edf2;
-  --reading-table: #efe2cc;
+  --reading-table: #ecefe8;
   --reading-rule: #c92127;
-  --paper: #f8f1e6;
-  --paper-deep: #e8d7bd;
+  --paper: #f8f9f4;
+  --paper-deep: #e6eadf;
   --ink: #1f1b16;
   --success: #247857;
   --warning: #a16207;
@@ -40,8 +40,8 @@
   --case-radius-sm: 4px;
   --case-radius-md: 6px;
   --case-radius-lg: 8px;
-  --case-shadow-soft: 0 18px 45px rgb(63 38 22 / 0.1);
-  --case-shadow-cover: 0 18px 32px rgb(38 24 18 / 0.24);
+  --case-shadow-soft: 0 18px 42px rgb(63 38 22 / 0.075);
+  --case-shadow-cover: 0 16px 28px rgb(38 24 18 / 0.18);
   --case-duration-instant: 100ms;
   --case-duration-fast: 160ms;
   --case-duration-normal: 240ms;
@@ -131,8 +131,8 @@ html {
 
 body {
   background:
-    linear-gradient(180deg, rgb(255 250 242 / 0.72), transparent 360px),
-    radial-gradient(circle at top left, rgb(201 33 39 / 0.045), transparent 280px),
+    linear-gradient(180deg, rgb(255 255 255 / 0.86), transparent 360px),
+    radial-gradient(circle at top left, rgb(201 33 39 / 0.025), transparent 280px),
     var(--background);
   color: var(--foreground);
   font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
@@ -176,9 +176,9 @@ body {
     linear-gradient(90deg, rgb(201 33 39 / 0.06), transparent 26%),
     linear-gradient(
       110deg,
-      #fff9ef 0%,
+      #ffffff 0%,
       var(--reading-table) 52%,
-      #fffaf2 100%
+      #ffffff 100%
     );
 }
 
@@ -190,12 +190,12 @@ body {
   position: relative;
   overflow: hidden;
   background:
-    linear-gradient(180deg, rgb(255 250 242 / 0.98), rgb(239 226 204 / 0.9)),
+    linear-gradient(180deg, rgb(255 255 255 / 0.98), rgb(236 239 232 / 0.9)),
     repeating-linear-gradient(
       90deg,
       transparent 0,
       transparent 86px,
-      rgb(124 77 36 / 0.14) 87px,
+      rgb(72 92 72 / 0.08) 87px,
       transparent 88px
     );
 }
@@ -209,7 +209,7 @@ body {
   background: linear-gradient(
     90deg,
     transparent,
-    rgb(201 33 39 / 0.22),
+    rgb(201 33 39 / 0.16),
     transparent
   );
 }
@@ -222,23 +222,23 @@ body {
 .case-retail-red-band {
   background:
     linear-gradient(90deg, rgb(201 33 39 / 0.12), transparent 46%),
-    linear-gradient(180deg, #fffaf2, #f4eadc);
+    linear-gradient(180deg, #ffffff, #f4f6f1);
 }
 
 .case-retail-ledger {
   background:
-    linear-gradient(180deg, rgb(255 250 242 / 0.98), rgb(248 241 230 / 0.94)),
+    linear-gradient(180deg, rgb(255 255 255 / 0.98), rgb(248 249 244 / 0.95)),
     repeating-linear-gradient(
       0deg,
       transparent 0,
       transparent 31px,
-      rgb(221 208 191 / 0.38) 32px
+      rgb(219 224 216 / 0.34) 32px
     );
 }
 
 .case-book-cover-object {
   background:
-    linear-gradient(180deg, rgb(255 250 242 / 0.94), rgb(232 215 189 / 0.86));
+    linear-gradient(180deg, rgb(255 255 255 / 0.94), rgb(230 234 223 / 0.82));
   box-shadow:
     0 1px 0 rgb(255 255 255 / 0.9) inset,
     var(--case-shadow-cover);
