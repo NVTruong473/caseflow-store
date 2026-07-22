@@ -87,13 +87,22 @@ export async function SiteHeader({ language }: { language: Language }) {
             aria-label={language === "vi" ? "Liên kết hỗ trợ nhanh" : "Quick support links"}
             className="flex items-center gap-case-md"
           >
-            <Link className="hover:text-white/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-surface" href="/orders/track">
+            <Link
+              className="inline-flex min-h-8 items-center rounded-sm px-2 hover:text-white/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-surface"
+              href="/orders/track"
+            >
               {copy.trackOrder}
             </Link>
-            <Link className="hover:text-white/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-surface" href="/shipping">
+            <Link
+              className="inline-flex min-h-8 items-center rounded-sm px-2 hover:text-white/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-surface"
+              href="/shipping"
+            >
               {copy.shipping}
             </Link>
-            <Link className="hover:text-white/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-surface" href="/contact">
+            <Link
+              className="inline-flex min-h-8 items-center rounded-sm px-2 hover:text-white/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-surface"
+              href="/contact"
+            >
               {copy.contact}
             </Link>
           </nav>

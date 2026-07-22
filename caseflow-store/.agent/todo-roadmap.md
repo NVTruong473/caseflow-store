@@ -10,16 +10,36 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: stable portfolio and operations handoff after `v1.11.2` final
-  consistency audit
+- Mode: stable portfolio and operations handoff after `v1.11.2`, with a
+  release-safe expert UI/accessibility polish patch prepared as `v1.11.3`
 - Current gate: `AUTH-SMTP-T02` is blocked pending a real Supabase Management
   API token and real SMTP credentials; all appropriate non-SMTP handoff work is
   complete
-- Current task: `AUTH-SMTP-T02` only if real SMTP credentials become available
+- Current task: `EXPERT-FINAL-AUDIT-T01` final expert site audit and
+  release-safe polish
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-22
 
 ## Phase UAT-MANUAL - Production Customer Manual Acceptance
+
+- [x] `EXPERT-FINAL-AUDIT-T01` Final Expert Site Audit And Release-Safe Polish. - 2026-07-22
+  - Objective: challenge the released storefront from a senior product,
+    frontend, accessibility, QA, and production-readiness perspective, then
+    make only high-confidence release-safe improvements.
+  - Result: triaged the production visual audit findings and fixed the real
+    code issues without adding new commerce/auth/payment scope. Catalog
+    filters now have explicit `id`/`htmlFor` associations, and top support-bar
+    links now have a 32px minimum hit area with preserved focus states.
+  - Verification: `npm run lint` passed; `npm exec -- tsc --noEmit --pretty
+    false` passed; `npm run build` passed; `npm run test:e2e` passed
+    `20/20`; no-demo runtime-copy gate passed; public asset metadata scan
+    passed; QR/payment secret scan passed; `npm audit --audit-level=high`
+    passed with `0` vulnerabilities; focused local Playwright render check
+    covered catalog desktop/tablet/mobile with `horizontalOverflow: 0`,
+    `unlabeledControlCount: 0`, and no undersized topbar targets.
+  - Guardrail: no schema migration, no new feature, no production payment
+    behavior, no shipping behavior, no auth boundary, and no admin/customer
+    authorization behavior changed.
 
 - [x] `POSTV112-T01` Final v1.11.2 Release Consistency Audit. - 2026-07-22
   - Objective: verify that local Git, remote `main`, the `v1.11.2` tag,

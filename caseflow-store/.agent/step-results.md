@@ -14704,3 +14704,83 @@ production runtime checks.
   change, or admin/customer authorization boundary change was introduced.
 - `AUTH-SMTP-T02` remains blocked pending real Supabase Management API and
   SMTP credentials.
+
+---
+
+## EXPERT-FINAL-AUDIT-T01 - Final Expert Site Audit And Release-Safe Polish
+
+- Date: 2026-07-22
+- Status: completed locally; ready for `v1.11.3` production ship
+- Target: catalog filter accessibility and support-link tap targets
+
+### Objective
+
+Challenge the released bookstore from a senior product, frontend,
+accessibility, QA, and production-readiness perspective, then make only
+high-confidence improvements that do not expand runtime scope after release.
+
+### Result
+
+The strongest challenge was that the site did not need another broad feature
+layer. The remaining high-value defects were small but meaningful UI quality
+signals:
+
+- catalog filter fields had visible labels, but automated accessibility
+  inspection could not always prove an explicit control association;
+- top support-bar text links were visually usable, but their measured hit area
+  was thinner than a production retail header should be.
+
+Implemented fixes:
+
+- `src/app/catalog/page.tsx`
+  - Added stable `id` values to all catalog filter controls.
+  - Updated the shared `Field` helper to render `htmlFor` explicitly.
+- `src/components/layout/site-header.tsx`
+  - Increased top support-bar links to a 32px minimum inline-flex hit area.
+  - Preserved existing focus-visible outline behavior.
+
+### Audit Triage
+
+- Raw production "broken image" findings were treated as false positives after
+  screenshot inspection showed covers rendering; the likely cause was lazy image
+  decode timing in the audit script.
+- Raw text-overflow findings against screen-reader-only text and intentional
+  horizontal quick-link strips were treated as false positives.
+- A `/contact` timeout was retested with direct timing checks and returned
+  HTTP 200 in about `757ms`, so it was not treated as a code defect.
+
+### Verification
+
+- `npm run lint`: passed.
+- `npm exec -- tsc --noEmit --pretty false`: passed.
+- `npm run build`: passed.
+- `npm run test:e2e`: passed, `20/20`.
+- `npx tsx scripts/verify-v14-no-demo-runtime-copy.ts`: passed,
+  `findings: []`.
+- `node scripts/verify-public-asset-metadata.mjs`: passed,
+  `findingCount: 0`.
+- `npm exec -- tsx scripts/verify-payqr-secret-scan.ts`: passed,
+  `findings: 0`.
+- `npm audit --audit-level=high`: passed with `found 0 vulnerabilities`.
+- Focused local Playwright render check against
+  `http://127.0.0.1:3013/catalog`: desktop, tablet, and mobile returned
+  `horizontalOverflow: 0`, `unlabeledControlCount: 0`, and no undersized
+  topbar targets.
+
+### Evidence
+
+- `.agent/artifacts/expert-final-audit-t01-local-polish-check/local-polish-check.json`
+- `.agent/artifacts/expert-final-audit-t01-local-polish-check/catalog-desktop.png`
+- `.agent/artifacts/expert-final-audit-t01-local-polish-check/catalog-tablet.png`
+- `.agent/artifacts/expert-final-audit-t01-local-polish-check/catalog-mobile.png`
+
+### Guardrails
+
+- No schema migration.
+- No new customer-facing feature.
+- No auth behavior change.
+- No payment behavior change.
+- No shipping behavior change.
+- No staff/admin/customer authorization boundary change.
+- `AUTH-SMTP-T02` remains blocked until real Supabase Management API and SMTP
+  credentials exist.

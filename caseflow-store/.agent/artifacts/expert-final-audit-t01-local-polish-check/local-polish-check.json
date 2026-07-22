@@ -1,0 +1,89 @@
+{
+  "ok": true,
+  "generatedAt": "2026-07-22T04:41:53.124Z",
+  "baseURL": "http://127.0.0.1:3013",
+  "results": [
+    {
+      "viewport": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 920
+      },
+      "metrics": {
+        "horizontalOverflow": 0,
+        "unlabeledControlCount": 0,
+        "unlabeledControls": [],
+        "topbarTargets": [
+          {
+            "text": "Track order",
+            "width": 92,
+            "height": 32
+          },
+          {
+            "text": "Shipping policy",
+            "width": 117,
+            "height": 32
+          },
+          {
+            "text": "Support",
+            "width": 69,
+            "height": 32
+          },
+          {
+            "text": "Track order",
+            "width": 101,
+            "height": 36
+          }
+        ],
+        "smallTopbarTargetCount": 0,
+        "smallTopbarTargets": []
+      }
+    },
+    {
+      "viewport": {
+        "name": "tablet",
+        "width": 768,
+        "height": 900
+      },
+      "metrics": {
+        "horizontalOverflow": 0,
+        "unlabeledControlCount": 0,
+        "unlabeledControls": [],
+        "topbarTargets": [
+          {
+            "text": "Track order",
+            "width": 92,
+            "height": 32
+          },
+          {
+            "text": "Shipping policy",
+            "width": 117,
+            "height": 32
+          },
+          {
+            "text": "Support",
+            "width": 69,
+            "height": 32
+          }
+        ],
+        "smallTopbarTargetCount": 0,
+        "smallTopbarTargets": []
+      }
+    },
+    {
+      "viewport": {
+        "name": "mobile",
+        "width": 375,
+        "height": 800
+      },
+      "metrics": {
+        "horizontalOverflow": 0,
+        "unlabeledControlCount": 0,
+        "unlabeledControls": [],
+        "topbarTargets": [],
+        "smallTopbarTargetCount": 0,
+        "smallTopbarTargets": []
+      }
+    }
+  ]
+}

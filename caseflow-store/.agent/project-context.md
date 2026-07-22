@@ -14,11 +14,13 @@
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
 - Current mode: stable portfolio and operations handoff after the `v1.11.2`
-  final release consistency audit.
+  final release consistency audit, with `EXPERT-FINAL-AUDIT-T01` prepared as a
+  release-safe `v1.11.3` UI/accessibility polish patch.
 - Current gate: `AUTH-SMTP-T02` remains blocked pending a real Supabase
   Management API token and real SMTP credentials. All appropriate non-SMTP
   handoff work is complete.
-- Current task: `AUTH-SMTP-T02` only if real SMTP credentials become available.
+- Current task: `EXPERT-FINAL-AUDIT-T01` final expert site audit and
+  release-safe polish.
 
 ## Confirmed Facts
 
@@ -234,6 +236,15 @@
   `dpl_HLbiwbbsboiPd1T1ZSV8hvJACqNb`; production smoke, security posture, QR
   production-safety, high-level dependency audit, and production pagination
   render checks passed.
+- `EXPERT-FINAL-AUDIT-T01` was completed locally on 2026-07-22 as a
+  release-safe expert audit and polish patch for `v1.11.3`: raw production
+  visual findings were triaged to separate lazy-image/screen-reader false
+  positives from real issues; catalog filter controls now expose explicit
+  `id`/`htmlFor` label associations; top support-bar links now provide a
+  32px minimum hit area while preserving focus states; lint, typecheck, build,
+  full Playwright `20/20`, no-demo runtime-copy, public asset metadata, QR
+  secret scan, high-level dependency audit, and focused catalog
+  desktop/tablet/mobile render checks all passed locally.
 - Implementation was confirmed by the user on 2026-07-14.
 - Implementation was unblocked by installing the official Node.js LTS binary after Homebrew failed.
 - The Next.js app has been initialized in `caseflow-store`.

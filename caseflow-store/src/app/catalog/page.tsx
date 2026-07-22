@@ -561,20 +561,22 @@ function CatalogFilterForm({
         className="mt-case-lg grid gap-case-md lg:grid-cols-4"
         data-catalog-filter-form
       >
-        <Field label={copy.searchLabel}>
+        <Field id="catalog-search" label={copy.searchLabel}>
           <input
             className={fieldControlClassName}
             defaultValue={filters.q ?? ""}
+            id="catalog-search"
             name="q"
             placeholder={copy.searchPlaceholder}
             type="search"
           />
         </Field>
 
-        <Field label={copy.category}>
+        <Field id="catalog-category" label={copy.category}>
           <select
             className={fieldControlClassName}
             defaultValue={filters.category ?? ""}
+            id="catalog-category"
             name="category"
           >
             <option value="">{copy.allCategories}</option>
@@ -586,10 +588,11 @@ function CatalogFilterForm({
           </select>
         </Field>
 
-        <Field label={copy.languageLabel}>
+        <Field id="catalog-language" label={copy.languageLabel}>
           <select
             className={fieldControlClassName}
             defaultValue={filters.language ?? ""}
+            id="catalog-language"
             name="language"
           >
             <option value="">{copy.allLanguages}</option>
@@ -601,10 +604,11 @@ function CatalogFilterForm({
           </select>
         </Field>
 
-        <Field label={copy.formatLabel}>
+        <Field id="catalog-format" label={copy.formatLabel}>
           <select
             className={fieldControlClassName}
             defaultValue={filters.format ?? ""}
+            id="catalog-format"
             name="format"
           >
             <option value="">{copy.allFormats}</option>
@@ -616,10 +620,11 @@ function CatalogFilterForm({
           </select>
         </Field>
 
-        <Field label={copy.authorLabel}>
+        <Field id="catalog-author" label={copy.authorLabel}>
           <select
             className={fieldControlClassName}
             defaultValue={filters.author ?? ""}
+            id="catalog-author"
             name="author"
           >
             <option value="">{copy.anyAuthor}</option>
@@ -631,10 +636,11 @@ function CatalogFilterForm({
           </select>
         </Field>
 
-        <Field label={copy.minPriceLabel}>
+        <Field id="catalog-min-price" label={copy.minPriceLabel}>
           <input
             className={fieldControlClassName}
             defaultValue={filters.minPriceVnd?.toString() ?? ""}
+            id="catalog-min-price"
             min="0"
             name="minPriceVnd"
             step="1000"
@@ -642,10 +648,11 @@ function CatalogFilterForm({
           />
         </Field>
 
-        <Field label={copy.maxPriceLabel}>
+        <Field id="catalog-max-price" label={copy.maxPriceLabel}>
           <input
             className={fieldControlClassName}
             defaultValue={filters.maxPriceVnd?.toString() ?? ""}
+            id="catalog-max-price"
             min="0"
             name="maxPriceVnd"
             step="1000"
@@ -653,10 +660,11 @@ function CatalogFilterForm({
           />
         </Field>
 
-        <Field label={copy.availabilityLabel}>
+        <Field id="catalog-availability" label={copy.availabilityLabel}>
           <select
             className={fieldControlClassName}
             defaultValue={filters.availability ?? ""}
+            id="catalog-availability"
             name="availability"
           >
             <option value="">{copy.anyAvailability}</option>
@@ -671,10 +679,11 @@ function CatalogFilterForm({
           </select>
         </Field>
 
-        <Field label={copy.curationLabel}>
+        <Field id="catalog-curation" label={copy.curationLabel}>
           <select
             className={fieldControlClassName}
             defaultValue={filters.featured ? "true" : ""}
+            id="catalog-curation"
             name="featured"
           >
             <option value="">{copy.anyCuration}</option>
@@ -682,10 +691,11 @@ function CatalogFilterForm({
           </select>
         </Field>
 
-        <Field label={copy.sortLabel}>
+        <Field id="catalog-sort" label={copy.sortLabel}>
           <select
             className={fieldControlClassName}
             defaultValue={filters.sort}
+            id="catalog-sort"
             name="sort"
           >
             {CATALOG_SORTS.map((sort) => (
@@ -796,13 +806,18 @@ function CatalogQuickLinks({
 
 function Field({
   children,
+  id,
   label,
 }: {
   children: ReactNode;
+  id: string;
   label: string;
 }) {
   return (
-    <label className="flex min-w-0 flex-col gap-case-xs text-small font-medium text-foreground">
+    <label
+      className="flex min-w-0 flex-col gap-case-xs text-small font-medium text-foreground"
+      htmlFor={id}
+    >
       {label}
       {children}
     </label>
