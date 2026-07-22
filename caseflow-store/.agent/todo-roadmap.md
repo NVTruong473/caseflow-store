@@ -3019,3 +3019,67 @@ accepted; the next task is full 100-cover portfolio production.
     - `npm run build`
     - production release smoke
     - `git diff --check`
+
+## v1.12.0 - Layered Architecture And E2E Regression Hardening
+
+- [x] `ARCH-LAYER-T01` Adopt Layered Architecture ADR. - 2026-07-22
+  - Result: ADR-0014 accepts a Controller -> Use Case -> Policy/Validation ->
+    Repository boundary for high-risk mutating APIs while preserving the
+    Next.js modular monolith.
+  - Verification: `docs/adr/0014-layered-architecture-boundary.md` exists and
+    is indexed in `docs/adr/README.md`.
+
+- [x] `ARCH-LAYER-T02` Audit API Layering Baseline. - 2026-07-22
+  - Result: `POST /api/orders` was identified as the highest-risk route because
+    it mixed HTTP parsing, auth/profile checks, cart validation, voucher
+    reservation/rollback, trusted totals, and persistence.
+  - Verification: `docs/architecture-layering-inventory.md` exists.
+
+- [x] `ARCH-LAYER-T03` Document Layering Conventions. - 2026-07-22
+  - Result: Controller, use-case, repository, DTO/API, validation, and import
+    direction conventions were documented.
+  - Verification: `docs/architecture-layering-conventions.md` exists.
+
+- [x] `ARCH-LAYER-T04` Extract Book Order Creation Use Case. - 2026-07-22
+  - Result: `POST /api/orders` now delegates orchestration to
+    `createBookOrderUseCase` and maps typed failures through the existing API
+    envelope.
+  - Verification:
+    - `npm run lint`: passed.
+    - `npm exec -- tsc --noEmit --pretty false`: passed.
+    - `npm run build`: passed.
+    - Focused Playwright checkout/API errors: passed, `4/4`.
+
+- [x] `ARCH-LAYER-T05` Add Architecture Boundary Verifier. - 2026-07-22
+  - Result: `npm run verify:architecture` checks repository/use-case import
+    direction and confirms the order route uses the order use case.
+  - Evidence:
+    - `.agent/artifacts/arch-layer-t05/layer-boundaries-check.json`
+
+- [x] `ARCH-LAYER-T06` Full Local Regression Gate. - 2026-07-22
+  - Result: local static, security, payment, asset, dependency, and full E2E
+    gates passed after the refactor.
+  - Verification:
+    - `npm run lint`: passed.
+    - `npm exec -- tsc --noEmit --pretty false`: passed.
+    - `npm run build`: passed.
+    - `npm run test:e2e`: passed, `20/20`.
+    - `NO_DEMO_ARTIFACT_ID=arch-layer-t06 npm exec -- tsx scripts/verify-v14-no-demo-runtime-copy.ts`: passed.
+    - `ASSET_METADATA_ARTIFACT_ID=arch-layer-t06 npm exec -- node scripts/verify-public-asset-metadata.mjs`: passed.
+    - `PAYQR_ARTIFACT_ID=arch-layer-t06 npm exec -- tsx scripts/verify-payqr-secret-scan.ts`: passed.
+    - `PAYQR_ARTIFACT_ID=arch-layer-t06 npm exec -- tsx scripts/verify-qr-payment-production-safety.ts`: passed.
+    - `PAYQR_ARTIFACT_ID=arch-layer-t06 npm exec -- tsx scripts/verify-qr-demo-payment-flow.ts`: passed in local dev runtime.
+    - `npm audit --audit-level=high`: passed.
+  - Evidence:
+    - `.agent/artifacts/arch-layer-t06/no-demo-runtime-copy-check.json`
+    - `.agent/artifacts/arch-layer-t06/asset-metadata-check.json`
+    - `.agent/artifacts/arch-layer-t06/secret-scan.json`
+    - `.agent/artifacts/arch-layer-t06/qr-payment-production-safety-check.json`
+    - `.agent/artifacts/arch-layer-t06/qr-demo-payment-flow-check.json`
+
+- [ ] `ARCH-LAYER-T07` Release v1.12.0.
+  - Scope:
+    - Commit and push the layered architecture release.
+    - Deploy production.
+    - Rerun production smoke/security/QR safety/Playwright checks.
+    - Create tag and GitHub Release only after production gates pass.

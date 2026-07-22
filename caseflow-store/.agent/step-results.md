@@ -14853,3 +14853,74 @@ Vercel production alias, and live production runtime checks.
 - No role authorization boundary changed.
 - Custom SMTP remains blocked pending real Supabase Management API and SMTP
   credentials.
+
+---
+
+## ARCH-LAYER-T01 to ARCH-LAYER-T06 - Layered Architecture Local Gate
+
+- Date: 2026-07-22
+- Status: completed locally; production release pending `ARCH-LAYER-T07`
+- Target release: `v1.12.0`
+
+### Objective
+
+Make the architecture easier to defend under a strict engineering review by
+extracting the highest-risk mutating API workflow into a use-case layer, adding
+boundary enforcement, and proving the refactor did not change checkout,
+payment, auth, or API behavior.
+
+### Result
+
+- Added ADR-0014: layered architecture boundary for mutating APIs.
+- Added route-layering inventory and conventions.
+- Extracted `POST /api/orders` orchestration into
+  `src/lib/use-cases/orders/create-book-order.ts`.
+- Added typed use-case result helpers in `src/lib/use-cases/result.ts`.
+- Added controller response mapping in `src/lib/api/use-case-response.ts`.
+- Reduced `src/app/api/orders/route.ts` to a thin controller that validates the
+  request DTO and delegates to `createBookOrderUseCase`.
+- Added `scripts/verify-layer-boundaries.mjs` and `npm run verify:architecture`.
+
+### Verification
+
+- `npm run lint`: passed.
+- `npm exec -- tsc --noEmit --pretty false`: passed.
+- `ARCH_LAYER_ARTIFACT_ID=arch-layer-t05 npm run verify:architecture`: passed.
+- `npm run build`: passed.
+- `npm exec -- playwright test tests/e2e/checkout.spec.ts tests/e2e/api-errors.spec.ts --workers=1`:
+  passed, `4/4`.
+- `npm run test:e2e`: passed, `20/20`.
+- `NO_DEMO_ARTIFACT_ID=arch-layer-t06 npm exec -- tsx scripts/verify-v14-no-demo-runtime-copy.ts`:
+  passed.
+- `ASSET_METADATA_ARTIFACT_ID=arch-layer-t06 npm exec -- node scripts/verify-public-asset-metadata.mjs`:
+  passed.
+- `PAYQR_ARTIFACT_ID=arch-layer-t06 npm exec -- tsx scripts/verify-payqr-secret-scan.ts`:
+  passed.
+- `PAYQR_ARTIFACT_ID=arch-layer-t06 npm exec -- tsx scripts/verify-qr-payment-production-safety.ts`:
+  passed with runtime not run locally.
+- `PAYQR_ARTIFACT_ID=arch-layer-t06 npm exec -- tsx scripts/verify-qr-demo-payment-flow.ts`:
+  passed in local dev runtime.
+- `npm audit --audit-level=high`: passed with `0` vulnerabilities.
+
+### Evidence
+
+- `.agent/artifacts/arch-layer-t05/layer-boundaries-check.json`
+- `.agent/artifacts/arch-layer-t06/no-demo-runtime-copy-check.json`
+- `.agent/artifacts/arch-layer-t06/asset-metadata-check.json`
+- `.agent/artifacts/arch-layer-t06/secret-scan.json`
+- `.agent/artifacts/arch-layer-t06/qr-payment-production-safety-check.json`
+- `.agent/artifacts/arch-layer-t06/qr-demo-payment-flow-check.json`
+- `.agent/artifacts/arch-layer-t06/qr-payment-desktop-pending-vi.png`
+- `.agent/artifacts/arch-layer-t06/qr-payment-desktop-paid-vi.png`
+- `.agent/artifacts/arch-layer-t06/qr-payment-mobile-paid-vi.png`
+
+### Guardrails
+
+- No schema migration.
+- No customer-facing feature expansion.
+- No payment behavior change.
+- No auth behavior change.
+- No staff/admin/customer authorization boundary change.
+- No public API envelope change.
+- Custom SMTP remains blocked pending real Supabase Management API and SMTP
+  credentials.

@@ -17,6 +17,7 @@ verified implementation outcome of each decision.
 | [ADR-0010](0010-qr-demo-payment-provider-boundary.md) | Accepted | Add a production-locked QR demo payment provider boundary | Governs post-`v1.4.2` QR payment sessions, demo VietQR/mock-gateway providers, webhook/idempotency handling, and production mock-payment lockout without approving real payment collection. |
 | [ADR-0011](0011-retail-catalog-scale-and-hero-polish.md) | Accepted | Scale the bookstore catalog to 500 retail editions and polish homepage hero copy | Governs the post-`v1.5.0` catalog expansion from 100 to 500 active editions, realistic VND price bands, generated source-safe covers, and customer-facing hero copy. |
 | [ADR-0012](0012-modern-editorial-bookstore-experience.md) | Accepted | Use a bounded modern editorial bookstore experience phase | Governs post-`v1.7.0` header/search/category navigation, storefront UX polish, cover-source manifest, and CSS-first motion without fake proof signals, scraped covers, or new external integrations. |
+| [ADR-0014](0014-layered-architecture-boundary.md) | Accepted | Use Controller -> Use Case -> Policy/Validation -> Repository boundaries for high-risk mutating APIs | Governs the post-`v1.11.3` architecture hardening release: order creation use-case extraction, boundary conventions, and architecture verification without changing the Next.js modular monolith. |
 
 ## Status meanings
 

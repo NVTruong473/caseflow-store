@@ -4711,3 +4711,26 @@ npm run test:e2e
 - Live order persistence, server-owned totals, Supabase admin auth, and the three-role access matrix are complete.
 - Vercel account/project permissions are not verified.
 - Exact deployment/free-tier constraints must be checked when deployment begins.
+
+## Current Architecture Direction - v1.12.0
+
+- `v1.12.0` adopts a layered architecture boundary for high-risk mutating APIs:
+  Route Handler / Controller -> Application Use Case -> Policy/Validation ->
+  Repository -> Supabase/PostgreSQL.
+- This is not a forced textbook MVC rewrite. The deployed shape remains a
+  Next.js modular monolith because that matches the app router, Vercel
+  deployment, and current Supabase integration.
+- `POST /api/orders` is the first extracted high-risk workflow. The route now
+  validates the request DTO and delegates auth/profile/contact checks, cart
+  validation, promotion evaluation, signup voucher reservation/rollback,
+  trusted total calculation, and order creation to
+  `createBookOrderUseCase`.
+- Architecture drift is now checked by `npm run verify:architecture`, which
+  blocks repository/use-case imports from UI, feature, app-route, and Next
+  route APIs and verifies that the order route uses the order use case.
+- Local v1.12 regression gates have passed: lint, TypeScript, build, focused
+  checkout/API Playwright, full Playwright `20/20`, no-demo copy, public asset
+  metadata, QR secret scan, QR production-safety source check, QR demo payment
+  flow, and high-severity dependency audit.
+- Custom SMTP remains blocked until real Supabase Management API and SMTP
+  credentials exist.

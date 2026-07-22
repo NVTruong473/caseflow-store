@@ -1,0 +1,61 @@
+{
+  "apiEdges": {
+    "invalidOrderCode": "ORDER_NOT_FOUND",
+    "invalidOrderStatus": 404,
+    "orderPaymentStatusAfterRepeat": "confirmed",
+    "simulateRepeatStatus": 200,
+    "strictAmountRejectedCode": "VALIDATION_ERROR",
+    "strictAmountRejectedStatus": 400,
+    "webhookWrongSignatureCode": "PAYMENT_INVALID_SIGNATURE",
+    "webhookWrongSignatureStatus": 401
+  },
+  "baseURL": "http://127.0.0.1:3000",
+  "crossCustomer": {
+    "code": "PAYMENT_NOT_FOUND",
+    "status": 404
+  },
+  "generatedAt": "2026-07-22T08:28:49.984Z",
+  "mobileVisual": {
+    "hasOverflow": false,
+    "qrImageVisible": true,
+    "qrPageVisible": true
+  },
+  "ok": true,
+  "pass": {
+    "apiEdges": true,
+    "crossCustomerDenied": true,
+    "mobileVisual": true,
+    "qrFlow": true,
+    "serverOwnedAmount": true,
+    "vietQrPayload": true
+  },
+  "qrFlow": {
+    "countdownVisible": true,
+    "createdOrder": true,
+    "demoNoticeVisible": true,
+    "noDesktopOverflow": true,
+    "orderCode": "CF-MRVTLNOB-B4FD89D747",
+    "orderPaymentStatus": "confirmed",
+    "orderStatus": "confirmed",
+    "orderTotal": 199900,
+    "paymentId": "pay_9af15b89355d432c8f1575d51a41fb9a",
+    "provider": "DEMO_VIETQR",
+    "qrImageVisible": true,
+    "qrPayloadContainsOrderCode": true,
+    "qrPayloadHasCrc": true,
+    "qrPayloadLength": 177,
+    "sessionAmount": 199900,
+    "simulateVisible": true,
+    "statusAfterReload": "PAID",
+    "statusAfterSimulate": "PAID"
+  },
+  "target": {
+    "editionId": "00000000-0000-4000-8000-000000003027",
+    "priceVnd": 159000,
+    "slug": "a-christmas-carol-english-paperback"
+  },
+  "testEmails": {
+    "customerA": "caseflow-payqr-a-mrvtl5dt-knlfds@example.com",
+    "customerB": "caseflow-payqr-b-mrvtl5dt-knlfds@example.com"
+  }
+}

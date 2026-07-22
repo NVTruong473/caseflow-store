@@ -12,8 +12,9 @@ scale release, the `v1.7.0` UI humanization release, and the `v1.8.0`
 modern editorial bookstore release, the `v1.9.0` real-cover commerce polish,
 the `v1.10.0` account-bound signup voucher release, the `v1.11.0`
 account password-change release, the `v1.11.1` security dependency patch, the
-`v1.11.2` neutral light UI and compact pagination patch, and the `v1.11.3`
-expert UI/accessibility polish patch.
+`v1.11.2` neutral light UI and compact pagination patch, the `v1.11.3`
+expert UI/accessibility polish patch, and the `v1.12.0` layered architecture
+hardening release.
 The system is
 intentionally a Next.js modular monolith: it demonstrates a realistic
 specialist e-commerce workflow without claiming marketplace scale, real payment
@@ -81,7 +82,9 @@ production runtime path.
 | `src/features/admin` | Dashboard, orders, catalog, inventory, promotions, customers, settings, exports |
 | `src/features/assistant` | Rule-based bookstore assistant and guided result links |
 | `src/components/ui` | Shared accessible UI primitives |
+| `src/lib/use-cases` | Application workflows for high-risk mutating actions such as order creation |
 | `src/lib/validation` | Zod schemas for public, customer, checkout, and admin inputs |
+| `src/lib/api` | Stable API response envelope, error codes, and controller result mapping |
 | `src/lib/repositories` | Supabase persistence, trusted calculations, and operational queries |
 | `src/lib/auth` | Customer/admin/staff session and role checks |
 | `src/lib/checkout` | Server-owned shipping, VAT, payment fee, promotion, and FX estimate rules |
@@ -91,7 +94,22 @@ production runtime path.
 | `tests/e2e` | Release flows and access-control verification |
 
 Database rows use `snake_case`. Repository mappers convert them to
-`camelCase` domain objects before UI or API code consumes them.
+`camelCase` domain objects before UI, use-case, or API code consumes them.
+
+High-risk mutating APIs follow the ADR-0014 layering rule:
+
+```text
+Route Handler / Controller
+  -> Application Use Case
+  -> Domain Policy / Validation
+  -> Repository
+  -> Supabase/PostgreSQL
+```
+
+This is intentionally layered architecture inside a Next.js modular monolith,
+not a forced textbook MVC rewrite. Route Handlers parse HTTP input and map
+stable API envelopes; use cases coordinate business workflows; repositories own
+persistence and row mapping.
 
 ## Core request flows
 
@@ -132,6 +150,8 @@ Customer session
   -> account welcome voucher read/grant for eligible customer
   -> checkout cart validation
   -> payment/shipping method selection
+  -> POST /api/orders thin controller validates the request DTO
+  -> createBookOrderUseCase coordinates auth, promotion, voucher, totals, and persistence
   -> server-owned subtotal, account-bound promotion, VAT, shipping, payment fee, total
   -> create_book_order_with_items RPC
   -> confirm voucher redemption only after order row exists
