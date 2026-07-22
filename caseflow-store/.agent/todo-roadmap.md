@@ -10,7 +10,8 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: stable portfolio and operations handoff after `v1.11.2`
+- Mode: stable portfolio and operations handoff after `v1.11.2` final
+  consistency audit
 - Current gate: `AUTH-SMTP-T02` is blocked pending a real Supabase Management
   API token and real SMTP credentials; all appropriate non-SMTP handoff work is
   complete
@@ -19,6 +20,25 @@
 - Last updated: 2026-07-22
 
 ## Phase UAT-MANUAL - Production Customer Manual Acceptance
+
+- [x] `POSTV112-T01` Final v1.11.2 Release Consistency Audit. - 2026-07-22
+  - Objective: verify that local Git, remote `main`, the `v1.11.2` tag,
+    GitHub Release metadata, Vercel production alias, production runtime
+    smoke/security/QR safety checks, and the production pagination render all
+    describe the same released build.
+  - Result: local `main`, `origin/main`, and the peeled `v1.11.2` tag all
+    point to commit `50f48ea8b365eb38c876c0f9ed8f3aa422aed045`; GitHub
+    Release `v1.11.2` is published; Vercel alias
+    `https://caseflow-store.vercel.app` points to ready deployment
+    `dpl_HLbiwbbsboiPd1T1ZSV8hvJACqNb`.
+  - Verification: production smoke passed; security posture passed with
+    `0` findings; QR production-safety passed with runtime `401`; high-level
+    dependency audit reported `0` vulnerabilities; production pagination
+    render passed at desktop, narrow desktop, and mobile with no horizontal
+    overflow.
+  - Guardrail: this post-release audit did not rewrite the tag/release, deploy
+    a new runtime build, add features, run migrations, or change auth/payment/
+    shipping/authorization behavior.
 
 - [x] `UI-LIGHT-T02` Compact Catalog Pagination Patch. - 2026-07-22
   - Objective: fix catalog pagination when the 500-edition catalog produces

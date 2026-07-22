@@ -14642,3 +14642,65 @@ the final page number on its own row in narrower desktop layouts.
 - No schema migration, runtime commerce feature, auth behavior, payment
   behavior, shipping behavior, or admin/customer authorization boundary was
   changed.
+
+---
+
+## POSTV112-T01 - Final v1.11.2 Release Consistency Audit
+
+- Date: 2026-07-22
+- Status: completed and documented
+- Target: post-release consistency after `v1.11.2`
+
+### Objective
+
+Verify that the `v1.11.2` release is consistent across local Git, remote Git,
+the annotated tag, GitHub Release metadata, Vercel production alias, and live
+production runtime checks.
+
+### Result
+
+- Local `main`: `50f48ea8b365eb38c876c0f9ed8f3aa422aed045`.
+- `origin/main`: `50f48ea8b365eb38c876c0f9ed8f3aa422aed045`.
+- `v1.11.2` tag object: `620c4267d2712225f456e79fdf2b2058a3995ad8`.
+- Peeled `v1.11.2` tag commit:
+  `50f48ea8b365eb38c876c0f9ed8f3aa422aed045`.
+- GitHub Release `v1.11.2` is published, not draft, and not prerelease:
+  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.11.2`.
+- Vercel production alias `https://caseflow-store.vercel.app` points to ready
+  deployment `dpl_HLbiwbbsboiPd1T1ZSV8hvJACqNb`.
+- Detailed audit document:
+  `docs/postv112-t01-final-release-consistency-audit.md`.
+
+### Verification
+
+- `git fetch origin main --tags --prune`: passed.
+- `gh release view v1.11.2 --json ...`: passed.
+- `npx vercel inspect https://caseflow-store.vercel.app`: passed.
+- `PRODUCTION_SMOKE_BASE_URL=https://caseflow-store.vercel.app PRODUCTION_SMOKE_ARTIFACT_ID=postv112-t01-production-smoke npm exec -- tsx scripts/verify-production-smoke.ts`:
+  passed.
+- `SECURITY_QA_BASE_URL=https://caseflow-store.vercel.app SECURITY_QA_ARTIFACT_ID=postv112-t01-production-security npm exec -- tsx scripts/verify-security-posture.ts`:
+  passed with `0` findings.
+- `PAYQR_PRODUCTION_SAFETY_BASE_URL=https://caseflow-store.vercel.app PAYQR_ARTIFACT_ID=postv112-t01-production-qr-safety npm exec -- tsx scripts/verify-qr-payment-production-safety.ts`:
+  passed with runtime `401`.
+- `npm audit --audit-level=high`: passed with `found 0 vulnerabilities`.
+- Production pagination Playwright render check:
+  desktop, narrow desktop, and mobile returned HTTP 200 with
+  `horizontalOverflow: 0`; desktop and narrow desktop kept visible page links
+  on one row.
+- Evidence artifacts:
+  - `.agent/artifacts/postv112-t01-production-smoke/production-smoke-check.json`
+  - `.agent/artifacts/postv112-t01-production-security/security-posture-check.json`
+  - `.agent/artifacts/postv112-t01-production-qr-safety/qr-payment-production-safety-check.json`
+  - `.agent/artifacts/postv112-t01-production-pagination/production-pagination-check.json`
+  - `.agent/artifacts/postv112-t01-production-pagination/desktop-pagination.png`
+  - `.agent/artifacts/postv112-t01-production-pagination/narrow-desktop-pagination.png`
+  - `.agent/artifacts/postv112-t01-production-pagination/mobile-pagination.png`
+
+### Guardrails
+
+- No production deploy was triggered by this audit.
+- No tag rewrite or GitHub Release rewrite was performed.
+- No schema migration, runtime feature, auth change, payment change, shipping
+  change, or admin/customer authorization boundary change was introduced.
+- `AUTH-SMTP-T02` remains blocked pending real Supabase Management API and
+  SMTP credentials.

@@ -1,0 +1,66 @@
+{
+  "ok": true,
+  "results": [
+    {
+      "viewport": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900
+      },
+      "status": 200,
+      "metrics": {
+        "navText": "Page 1 of 21Previous1 / 211234...21Next",
+        "visiblePageLinkCount": 5,
+        "visiblePageLinkTexts": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "21"
+        ],
+        "visiblePageLinkTops": [
+          430
+        ],
+        "horizontalOverflow": 0
+      }
+    },
+    {
+      "viewport": {
+        "name": "narrow-desktop",
+        "width": 900,
+        "height": 650
+      },
+      "status": 200,
+      "metrics": {
+        "navText": "Page 1 of 21Previous1 / 211234...21Next",
+        "visiblePageLinkCount": 5,
+        "visiblePageLinkTexts": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "21"
+        ],
+        "visiblePageLinkTops": [
+          305
+        ],
+        "horizontalOverflow": 0
+      }
+    },
+    {
+      "viewport": {
+        "name": "mobile",
+        "width": 375,
+        "height": 760
+      },
+      "status": 200,
+      "metrics": {
+        "navText": "Page 1 of 21Previous1 / 211234...21Next",
+        "visiblePageLinkCount": 0,
+        "visiblePageLinkTexts": [],
+        "visiblePageLinkTops": [],
+        "horizontalOverflow": 0
+      }
+    }
+  ]
+}
