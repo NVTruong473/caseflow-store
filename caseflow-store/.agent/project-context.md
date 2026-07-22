@@ -178,10 +178,12 @@
   `https://caseflow-store.vercel.app`, with production smoke, security posture,
   QR production-safety, and production password-change verifier passing.
 - `POSTV111-T01` was completed on 2026-07-22 as the final `v1.11.0` release
-  consistency audit: local `main`, `origin/main`, the peeled `v1.11.0` tag,
-  GitHub Release metadata, Vercel production alias, production smoke, security
-  posture, QR production-safety, and production password-change verifier are
-  consistent with deployed release `v1.11.0`.
+  consistency audit: at audit time local `main`, `origin/main`, the peeled
+  `v1.11.0` tag, GitHub Release metadata, Vercel production alias, production
+  smoke, security posture, QR production-safety, and production
+  password-change verifier were consistent with deployed release `v1.11.0`.
+  The subsequent post-release documentation commit advances `origin/main`
+  without rewriting the `v1.11.0` tag or release.
 - `AUTH-SMTP-T02` was attempted automatically on 2026-07-22 in apply mode and
   safely blocked before any Supabase API mutation because `.env.local` still
   lacks `SUPABASE_ACCESS_TOKEN`, `SMTP_ADMIN_EMAIL`, `SMTP_HOST`, `SMTP_USER`,

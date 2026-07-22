@@ -60,10 +60,13 @@
   - Objective: prove local Git, remote `main`, the `v1.11.0` tag, GitHub
     Release metadata, Vercel production alias, and current production runtime
     evidence all describe the same released code.
-  - Result: local `main`, `origin/main`, and the peeled `v1.11.0` tag point to
+  - Result: at audit time local `main`, `origin/main`, and the peeled
+    `v1.11.0` tag pointed to
     `8ed23eade1d5e251549119b8e2cac5fdcd01b6e0`; GitHub Release `v1.11.0` is
     published; Vercel alias `https://caseflow-store.vercel.app` points to
-    production deployment `dpl_DtUDA7pbv7ZcJYFRM5TVmsQUhThq`.
+    production deployment `dpl_DtUDA7pbv7ZcJYFRM5TVmsQUhThq`. The subsequent
+    post-release documentation commit advances `origin/main` without changing
+    the `v1.11.0` tag or release.
   - Verification: production smoke, security posture, QR production-safety,
     and production password-change verifier were rerun and passed with
     `postv111-t01` artifacts.

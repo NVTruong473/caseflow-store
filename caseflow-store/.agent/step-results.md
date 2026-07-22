@@ -14257,11 +14257,15 @@ production alias, and current production runtime all still describe the same
 
 ### Result
 
-Local `main`, `origin/main`, and the peeled `v1.11.0` tag all point to
-`8ed23eade1d5e251549119b8e2cac5fdcd01b6e0`. GitHub Release `v1.11.0` is
-published, not draft, not prerelease. Vercel alias
+At audit time, local `main`, `origin/main`, and the peeled `v1.11.0` tag all
+pointed to `8ed23eade1d5e251549119b8e2cac5fdcd01b6e0`. GitHub Release
+`v1.11.0` is published, not draft, not prerelease. Vercel alias
 `https://caseflow-store.vercel.app` points to ready production deployment
 `dpl_DtUDA7pbv7ZcJYFRM5TVmsQUhThq`.
+
+After the audit was documented and pushed, `origin/main` advanced to the
+post-release documentation commit. The `v1.11.0` tag and GitHub Release were
+not rewritten.
 
 ### Evidence
 
@@ -14273,7 +14277,8 @@ published, not draft, not prerelease. Vercel alias
 ### Verification
 
 - `git ls-remote origin refs/heads/main refs/tags/v1.11.0 refs/tags/v1.11.0^{}`:
-  passed; peeled tag matches `origin/main`.
+  passed at audit time; peeled tag matched `origin/main` before the
+  post-release documentation commit.
 - `gh release view v1.11.0 --json tagName,url,name,publishedAt,targetCommitish,isDraft,isPrerelease`:
   passed; release is published.
 - `npx vercel inspect https://caseflow-store.vercel.app`: passed; alias points

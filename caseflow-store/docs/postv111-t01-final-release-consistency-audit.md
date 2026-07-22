@@ -12,19 +12,23 @@ Release: `v1.11.0`
 
 ## Objective
 
-Confirm that the shipped `v1.11.0` release is internally consistent across
-local Git, remote `main`, the tag, GitHub Release metadata, Vercel production,
-and fresh production runtime checks.
+Confirm that the shipped `v1.11.0` release is internally consistent across the
+release commit, tag, GitHub Release metadata, Vercel production, and fresh
+production runtime checks. The audit evidence was captured before this
+post-release documentation commit was pushed.
 
 ## Findings
 
-- Local `main` is on commit `8ed23eade1d5e251549119b8e2cac5fdcd01b6e0`.
-- `origin/main` points to `8ed23eade1d5e251549119b8e2cac5fdcd01b6e0`.
+- At audit time, local `main` and `origin/main` were on release commit
+  `8ed23eade1d5e251549119b8e2cac5fdcd01b6e0`.
 - The peeled `v1.11.0` tag points to
   `8ed23eade1d5e251549119b8e2cac5fdcd01b6e0`.
 - GitHub Release `v1.11.0` is published, not draft, and not prerelease.
 - Vercel alias `https://caseflow-store.vercel.app` points to ready production
   deployment `dpl_DtUDA7pbv7ZcJYFRM5TVmsQUhThq`.
+- After the audit was documented and pushed, `origin/main` advanced to the
+  post-release documentation commit. The `v1.11.0` tag and GitHub Release were
+  intentionally left unchanged.
 
 ## Verification
 
