@@ -9,26 +9,27 @@ demo payment release, the `v1.6.0` retail catalog scale release, the
 `v1.7.0` UI humanization release, the `v1.8.0` modern editorial bookstore
 release, the `v1.9.0` real-cover commerce polish, the `v1.10.0`
 account-bound signup voucher release, the `v1.11.x` account/security polish
-series, the `v1.12.0` layered architecture hardening release, and the
-`v1.12.1` atomic order reliability patch into a
+series, the `v1.12.0` layered architecture hardening release, the
+`v1.12.1` atomic order reliability patch, and the `v1.13.0` transactional
+notification and simulated-transfer operations release into a
 Vietnam-first, bilingual e-commerce application for book discovery,
 account-gated checkout, customer order history/cancellation, order tracking,
-and admin/staff operations. The latest release keeps the 500-edition catalog
-while making the highest-risk order creation API easier to audit through a
-Controller -> Use Case -> Repository boundary.
+and admin/staff operations. The latest release keeps the 500-edition catalog,
+adds an account-scoped activity inbox and delivery outbox, and protects
+simulated-transfer decisions behind staff/admin authorization.
 
 [Open the production deployment](https://caseflow-store.vercel.app)
 
 Latest release:
-[`v1.12.1`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.12.1)
+[`v1.13.0`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.13.0)
 
 > Payments are simulated. The app does not collect card numbers, CVV, card
 > expiry, real bank credentials, or real MoMo/ZaloPay/VNPay credentials. QR
 > demo payment exists for development/sandbox verification and is locked from
 > production settlement. Phone and email fields are validated for shape and
-> checkout readiness. Supabase default email confirmation has been verified on
-> production, but no custom SMTP provider or real SMS/OTP provider is
-> integrated.
+> checkout readiness. In-app transactional notifications are enabled. External
+> email/SMS delivery and SMS OTP remain disabled until approved provider
+> credentials and sender configuration are supplied.
 
 ## Screenshots
 
@@ -47,7 +48,7 @@ Latest release:
   </tr>
   <tr>
     <td><img src="caseflow-store/docs/screenshots/catalog-desktop.png" alt="CaseFlow Books catalog filters and book grid at 1440 pixels" /></td>
-    <td><img src="caseflow-store/docs/screenshots/catalog-mobile.png" alt="CaseFlow Books catalog filters and book grid at 375 pixels" /></td>
+    <td><img src="caseflow-store/docs/screenshots/catalog-mobile.png" alt="CaseFlow Books catalog filters and book grid at 390 pixels" /></td>
   </tr>
   <tr>
     <th>Book detail desktop</th>
@@ -89,13 +90,14 @@ Latest release:
   plus development-only QR demo payment verification.
 - View customer order history, cancel eligible orders, and use guarded public
   order tracking.
+- Receive account-scoped order activity in the in-app notification inbox.
 - Use a rule-based bookstore assistant for finding books and buying guidance.
 
 ## Admin and operations scope
 
 - Separate `admin`, `staff`, and `customer` roles.
-- Admin/staff navigation for dashboard, orders, catalog, inventory, promotions,
-  customers, and settings.
+- Admin/staff navigation for dashboard, orders, notifications, catalog,
+  inventory, promotions, customers, and settings.
 - Book catalog management with server-validated product/category data.
 - Content-quality and merchandising operations for approved v1.2 shelves,
   source-review state, cover status, and bilingual reason-to-read copy.
@@ -104,6 +106,8 @@ Latest release:
 - Customer management with minimized operational customer data.
 - Order operations for order, payment, shipping status, internal notes, and
   staff/admin rejection or cancellation of risky orders.
+- Protected simulated-transfer decisions and minimized notification delivery
+  operations with admin-only provider readiness.
 - Sales and inventory dashboard plus CSV export for operational reporting.
 
 ## Technical highlights
@@ -119,14 +123,18 @@ Latest release:
   VAT, shipping, payment fee, total values, and QR payment amounts.
 - High-risk order creation now follows a Controller -> Use Case -> Repository
   boundary with an automated architecture verifier.
+- Transactional outbox, customer inbox, server-rendered templates, optional
+  external providers, idempotent dispatch, and hashed/rate-limited OTP
+  challenges.
 - Browser-supplied price, subtotal, stock, tax, fee, role, and order status are
   ignored.
 - Zod validates mutating request bodies and public/admin APIs return stable
   `{ data, error, meta }` envelopes.
 - Public SEO includes robots, sitemap, canonical metadata, and book JSON-LD for
   eligible book detail pages.
-- Playwright covers storefront, checkout, account-gated flows, access control,
-  admin operations, UI states, keyboard focus, and release edge cases.
+- Playwright covers storefront, checkout, account-gated flows, notification
+  ownership, access control, admin operations, UI states, keyboard focus, and
+  release edge cases.
 
 ## Data and content policy
 
@@ -146,18 +154,19 @@ Latest release:
 
 | Gate | Result |
 |---|---|
-| Release tag | `v1.12.1` |
-| GitHub Release | [`v1.12.1 - Atomic Order Reliability Patch`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.12.1) |
+| Release tag | `v1.13.0` |
+| GitHub Release | [`v1.13.0 - Transactional Notifications And Simulated Transfer Operations`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.13.0) |
 | Production URL | `https://caseflow-store.vercel.app` |
-| Vercel deployment | `READY`, deployment `dpl_Ar6sNH1nUraGoK25BhJt6Gn6KCrY` |
+| Vercel deployment | `READY`, deployment `dpl_9N1HSkydBBzsrM1UmtT2Lfvpo7np` |
 | TypeScript | `npx tsc --noEmit --pretty false` passed |
 | ESLint | `npm run lint` passed |
-| Production build | 52 App Router routes plus proxy generated |
+| Production build | 59 App Router routes plus proxy generated |
 | Architecture boundary | `npm run verify:architecture` passed; `POST /api/orders` delegates to `createBookOrderUseCase` |
 | Signup voucher QA | 3 account codes granted, homepage/account CTAs visible, checkout applies `WELCOME30K`, persisted 30,000 VND discount, reuse rejected, cross-account use rejected, multi-code request rejected, used voucher relation verified |
 | Modern bookstore QA | Search-first header, live category menu, mobile search/category links, cover provenance manifest, object-contain covers, product-card motion, back-to-top, no-overflow screenshots, and reduced-motion guard passed |
 | QR demo payment QA | Local QR flow, VietQR CRC, mock webhook HMAC, idempotency, production-safety lock, and UI regression checks passed |
-| Production QA | v1.12.1 production smoke, security posture, QR production-safety lock, atomic checkout retry, and full production Playwright `21/21` passed |
+| Notification QA | Provider/OTP contracts, account ownership, minimized staff/admin operations, 8/8 anonymous boundaries, migration lifecycle, and disabled external-delivery controls passed |
+| Production QA | v1.13.0 smoke, security posture, QR production-safety lock, storefront/accessibility/final QA, role matrix, and full Production Playwright `24/24` passed |
 | v1.4.2 security QA | Security headers/no-store verifier and final QA smoke passed locally and in production; external agent repos were mapped as QA references, not runtime dependencies |
 | v1.4.1 local QA | TypeScript, lint, production build, no-demo copy scan, compact-card overlap, customer order history/cancellation, admin order rejection/cancellation, cleanup, secret scan, audit-high, and `git diff --check` passed |
 | v1.4.1 production QA | Production release smoke, final QA smoke, compact-card overlap, customer order history/cancellation, and admin order rejection/cancellation passed |
@@ -183,6 +192,8 @@ Release evidence is recorded in
 [`caseflow-store/docs/v1.10.0-account-bound-signup-voucher-release-notes.md`](caseflow-store/docs/v1.10.0-account-bound-signup-voucher-release-notes.md),
 [`caseflow-store/docs/v1.12.0-layered-architecture-release-notes.md`](caseflow-store/docs/v1.12.0-layered-architecture-release-notes.md),
 [`caseflow-store/docs/v1.12.1-order-reliability-release-notes.md`](caseflow-store/docs/v1.12.1-order-reliability-release-notes.md),
+[`caseflow-store/docs/v1.13.0-transactional-notifications-release-notes.md`](caseflow-store/docs/v1.13.0-transactional-notifications-release-notes.md),
+[`caseflow-store/docs/postv130-t01-final-release-consistency-audit.md`](caseflow-store/docs/postv130-t01-final-release-consistency-audit.md),
 [`caseflow-store/docs/uat-owner-t01-production-acceptance.md`](caseflow-store/docs/uat-owner-t01-production-acceptance.md),
 [`caseflow-store/docs/postv121-t01-final-release-consistency-audit.md`](caseflow-store/docs/postv121-t01-final-release-consistency-audit.md),
 [`caseflow-store/docs/postv120-t01-final-release-consistency-audit.md`](caseflow-store/docs/postv120-t01-final-release-consistency-audit.md),

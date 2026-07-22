@@ -1,9 +1,9 @@
 # CaseFlow Books Portfolio Handoff
 
-- Latest release: `v1.12.1`
+- Latest release: `v1.13.0`
 - Production URL: `https://caseflow-store.vercel.app`
-- GitHub Release: `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.12.1`
-- Vercel deployment: `dpl_Ar6sNH1nUraGoK25BhJt6Gn6KCrY`
+- GitHub Release: `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.13.0`
+- Vercel deployment: `dpl_9N1HSkydBBzsrM1UmtT2Lfvpo7np`
 - Project type: full-stack bookstore and small-business operations portfolio
 - Stack: Next.js 16, React 19, TypeScript 5, Tailwind CSS 4, Supabase
   PostgreSQL/Auth/RLS, Zod, Playwright, Vercel
@@ -35,6 +35,12 @@ handled deliberately:
 - Account-bound signup vouchers, production email confirmation redirect, and
   signed-in password change are covered by focused production UAT/verifier
   evidence.
+- Transactional order events now feed an account-scoped in-app inbox and a
+  provider-neutral outbox; external delivery remains fail-closed until real
+  credentials are approved.
+- Staff/admin can inspect minimized delivery operations and make protected
+  simulated-transfer decisions without exposing customer contacts or provider
+  secrets.
 - Cancelled/rejected orders are normalized server-side so admin/staff
   dashboards do not count stale pending payments as still collectable.
 - The highest-risk order creation API now follows a Controller -> Use Case ->
@@ -75,8 +81,9 @@ customer account rather than sharing a reusable password.
 2. Show customer order history, tracking-safe order details, and cancellation
    of an eligible order before fulfillment.
 3. Sign in as staff/admin and show dashboard metrics, order operations,
-   catalog management, inventory adjustments, promotions, customers, settings,
-   CSV export, and rejection/cancellation of a risky order with internal notes.
+   notification operations, catalog management, inventory adjustments,
+   promotions, customers, settings, CSV export, and rejection/cancellation of
+   a risky order with internal notes.
 4. Highlight that mutating admin/customer APIs repeat server-side role checks.
 
 ## Feature Matrix
@@ -89,11 +96,11 @@ customer account rather than sharing a reusable password.
 | Currency | VND source-of-truth, English-mode approximate USD estimate |
 | Cart | Browser-local cart storing edition IDs and quantities only |
 | Checkout | Account-gated simulated COD, bank transfer, MoMo, ZaloPay, VNPay-style choices |
-| Customer | Supabase email confirmation, profile readiness, signup vouchers, order history, eligible cancellation, guarded public tracking, signed-in password change |
-| Admin/staff | Dashboard, orders, catalog, inventory, promotions, customers, settings, CSV export |
+| Customer | Supabase email confirmation, profile readiness, signup vouchers, account activity inbox, order history, eligible cancellation, guarded public tracking, signed-in password change |
+| Admin/staff | Dashboard, orders, simulated-transfer decisions, notification operations, catalog, inventory, promotions, customers, settings, CSV export |
 | Assistant | Rule-based bookstore assistant with guided result links |
 | SEO | Metadata, canonical URLs, robots, sitemap, and eligible book JSON-LD |
-| Quality | TypeScript, ESLint, production build, Playwright, production smoke, visual verifiers, cleanup and secret scans |
+| Quality | TypeScript, ESLint, 59-route production build, Playwright `24/24`, production smoke, security/role/accessibility verifiers, cleanup and secret scans |
 
 ## Architecture Summary
 
@@ -123,7 +130,12 @@ See `docs/architecture.md` for the full architecture notes.
 
 | Evidence | Location |
 |---|---|
-| Latest release notes | `docs/v1.12.1-order-reliability-release-notes.md` |
+| Latest release notes | `docs/v1.13.0-transactional-notifications-release-notes.md` |
+| v1.13.0 production consistency audit | `docs/postv130-t01-final-release-consistency-audit.md` |
+| v1.13.0 production smoke | `.agent/artifacts/notify-t09-production-smoke/production-smoke-check.json` |
+| v1.13.0 notification boundary | `.agent/artifacts/notify-t09-production-notification-safety/notification-production-safety-check.json` |
+| v1.13.0 operations role matrix | `.agent/artifacts/notify-t09-production-operations/operations-freeze-check.json` |
+| v1.13.0 final QA | `.agent/artifacts/notify-t09-production-final-qa/final-post-release-qa.json` |
 | v1.12.1 production consistency audit | `docs/postv121-t01-final-release-consistency-audit.md` |
 | v1.12.1 production smoke | `.agent/artifacts/order-reliability-t06-production-smoke/production-smoke-check.json` |
 | v1.12.1 production security posture | `.agent/artifacts/order-reliability-t06-production-security/security-posture-check.json` |

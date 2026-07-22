@@ -72,21 +72,21 @@ runtime.
 
 ## Latest release evidence
 
-- Release tag: `v1.12.1`
+- Release tag: `v1.13.0`
 - GitHub Release:
-  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.12.1`
+  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.13.0`
 - Production alias: `https://caseflow-store.vercel.app`
-- Vercel deployment ID: `dpl_Ar6sNH1nUraGoK25BhJt6Gn6KCrY`
+- Vercel deployment ID: `dpl_9N1HSkydBBzsrM1UmtT2Lfvpo7np`
 - Local gates: npm audit with zero vulnerabilities, TypeScript, ESLint,
-  production build, full Playwright `21/21`,
-  architecture boundary verifier, signup voucher verifier, password-change
-  verifier, QR production-safety verifier, security posture verifier, final QA
-  smoke, and `git diff --check` passed.
-- Production smoke: release smoke, security posture, QR production-safety
-  lock, atomic checkout retry, and full production Playwright `21/21` passed.
-  The `v1.12.1` deployment artifacts are under
-  `.agent/artifacts/order-reliability-t06-production-*`.
+  59-route production build, full Playwright `24/24`, notification and
+  architecture verifiers, QR production-safety, security posture, final QA,
+  secret scan, and cleanup passed.
+- Production smoke: release smoke, security posture, QR lock, notification
+  boundary, staff/admin operations matrix, storefront/accessibility/final QA,
+  and full Playwright `24/24` passed. Evidence is under
+  `.agent/artifacts/notify-t09-production-*`.
 - Release notes:
+  [`docs/v1.13.0-transactional-notifications-release-notes.md`](docs/v1.13.0-transactional-notifications-release-notes.md),
   [`docs/v1.12.1-order-reliability-release-notes.md`](docs/v1.12.1-order-reliability-release-notes.md),
   [`docs/v1.12.0-layered-architecture-release-notes.md`](docs/v1.12.0-layered-architecture-release-notes.md),
   [`docs/v1.11.3-expert-polish-release-notes.md`](docs/v1.11.3-expert-polish-release-notes.md),
@@ -95,6 +95,7 @@ runtime.
   and
   [`docs/v1.11.0-account-security-password-release-notes.md`](docs/v1.11.0-account-security-password-release-notes.md)
 - Operational evidence:
+  [`docs/postv130-t01-final-release-consistency-audit.md`](docs/postv130-t01-final-release-consistency-audit.md),
   [`docs/uat-owner-t01-production-acceptance.md`](docs/uat-owner-t01-production-acceptance.md),
   [`docs/postv121-t01-final-release-consistency-audit.md`](docs/postv121-t01-final-release-consistency-audit.md),
   [`docs/postv120-t01-final-release-consistency-audit.md`](docs/postv120-t01-final-release-consistency-audit.md),
@@ -103,8 +104,9 @@ runtime.
   and
   [`docs/postv111-t01-final-release-consistency-audit.md`](docs/postv111-t01-final-release-consistency-audit.md)
 - Known boundaries: simulated payments, QR demo locked from production
-  settlement, no real SMS/OTP, no custom SMTP provider yet, no real shipping
-  carrier integration, and no licensed commercial metadata feed.
+  settlement, external email/SMS/OTP disabled without approved credentials,
+  no real shipping carrier integration, and no licensed commercial metadata
+  feed.
 
 Architecture and decision records are under [`docs/`](docs/).
 The portfolio handoff packet is

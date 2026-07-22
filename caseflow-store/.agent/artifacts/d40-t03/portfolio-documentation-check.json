@@ -1,15 +1,36 @@
 {
   "claimChecks": {
-    "missingRequired": [],
+    "missingRequired": [
+      {
+        "file": "README.md",
+        "text": "100 sellable book editions"
+      },
+      {
+        "file": "README.md",
+        "text": "no real SMS/OTP"
+      },
+      {
+        "file": "README.md",
+        "text": "self-written"
+      },
+      {
+        "file": "docs/release-candidate.md",
+        "text": "v1.1.0-rc.1"
+      }
+    ],
     "staleMatches": []
   },
-  "generatedAt": "2026-07-17T08:14:22.386Z",
+  "generatedAt": "2026-07-22T19:04:32.806Z",
   "linkChecks": {
     "broken": [],
     "checked": [
       {
         "file": "README.md",
-        "target": "caseflow-store/docs/v1.1-safe-cover-asset-strategy.md"
+        "target": "caseflow-store/docs/v1.2-cover-portfolio.md"
+      },
+      {
+        "file": "README.md",
+        "target": "caseflow-store/docs/v1.2-provenance-content-quality-contracts.md"
       },
       {
         "file": "README.md",
@@ -21,7 +42,91 @@
       },
       {
         "file": "README.md",
-        "target": "caseflow-store/docs/v1.1-release-audit.md"
+        "target": "caseflow-store/docs/v1.2-release-audit.md"
+      },
+      {
+        "file": "README.md",
+        "target": "caseflow-store/docs/v1.3-final-post-release-qa-audit.md"
+      },
+      {
+        "file": "README.md",
+        "target": "caseflow-store/docs/v1.3.1-compact-card-layout-hotfix-release-notes.md"
+      },
+      {
+        "file": "README.md",
+        "target": "caseflow-store/docs/v1.4.1-stable-closeout-patch-release-notes.md"
+      },
+      {
+        "file": "README.md",
+        "target": "caseflow-store/docs/v1.4.2-agent-security-qa-report.md"
+      },
+      {
+        "file": "README.md",
+        "target": "caseflow-store/docs/v1.5.0-qr-demo-payment-release-notes.md"
+      },
+      {
+        "file": "README.md",
+        "target": "caseflow-store/docs/v1.6.0-retail-catalog-scale-release-notes.md"
+      },
+      {
+        "file": "README.md",
+        "target": "caseflow-store/docs/v1.7.0-ui-humanization-release-notes.md"
+      },
+      {
+        "file": "README.md",
+        "target": "caseflow-store/docs/v1.8.0-modern-editorial-bookstore-release-notes.md"
+      },
+      {
+        "file": "README.md",
+        "target": "caseflow-store/docs/v1.9.0-real-cover-commerce-polish-release-notes.md"
+      },
+      {
+        "file": "README.md",
+        "target": "caseflow-store/docs/v1.10.0-account-bound-signup-voucher-release-notes.md"
+      },
+      {
+        "file": "README.md",
+        "target": "caseflow-store/docs/v1.12.0-layered-architecture-release-notes.md"
+      },
+      {
+        "file": "README.md",
+        "target": "caseflow-store/docs/v1.12.1-order-reliability-release-notes.md"
+      },
+      {
+        "file": "README.md",
+        "target": "caseflow-store/docs/v1.13.0-transactional-notifications-release-notes.md"
+      },
+      {
+        "file": "README.md",
+        "target": "caseflow-store/docs/postv130-t01-final-release-consistency-audit.md"
+      },
+      {
+        "file": "README.md",
+        "target": "caseflow-store/docs/uat-owner-t01-production-acceptance.md"
+      },
+      {
+        "file": "README.md",
+        "target": "caseflow-store/docs/postv121-t01-final-release-consistency-audit.md"
+      },
+      {
+        "file": "README.md",
+        "target": "caseflow-store/docs/postv120-t01-final-release-consistency-audit.md"
+      },
+      {
+        "file": "README.md",
+        "target": "caseflow-store/docs/portfolio-handoff.md"
+      },
+      {
+        "file": "README.md",
+        "target": "caseflow-store/docs/cv-bullets.md"
+      },
+      {
+        "file": "README.md",
+        "target": "caseflow-store/docs/architecture.md"
+      },
+      {
+        "file": "README.md",
+        "target": "caseflow-store/docs/known-limitations.md"
       },
       {
         "file": "README.md",
@@ -85,19 +190,91 @@
       },
       {
         "file": "caseflow-store/README.md",
+        "target": "docs/v1.13.0-transactional-notifications-release-notes.md"
+      },
+      {
+        "file": "caseflow-store/README.md",
+        "target": "docs/v1.12.1-order-reliability-release-notes.md"
+      },
+      {
+        "file": "caseflow-store/README.md",
+        "target": "docs/v1.12.0-layered-architecture-release-notes.md"
+      },
+      {
+        "file": "caseflow-store/README.md",
+        "target": "docs/v1.11.3-expert-polish-release-notes.md"
+      },
+      {
+        "file": "caseflow-store/README.md",
+        "target": "docs/v1.11.2-neutral-light-ui-patch-release-notes.md"
+      },
+      {
+        "file": "caseflow-store/README.md",
+        "target": "docs/v1.11.1-security-dependency-patch-release-notes.md"
+      },
+      {
+        "file": "caseflow-store/README.md",
+        "target": "docs/v1.11.0-account-security-password-release-notes.md"
+      },
+      {
+        "file": "caseflow-store/README.md",
+        "target": "docs/postv130-t01-final-release-consistency-audit.md"
+      },
+      {
+        "file": "caseflow-store/README.md",
+        "target": "docs/uat-owner-t01-production-acceptance.md"
+      },
+      {
+        "file": "caseflow-store/README.md",
+        "target": "docs/postv121-t01-final-release-consistency-audit.md"
+      },
+      {
+        "file": "caseflow-store/README.md",
+        "target": "docs/postv120-t01-final-release-consistency-audit.md"
+      },
+      {
+        "file": "caseflow-store/README.md",
+        "target": "docs/postv113-t01-final-release-consistency-audit.md"
+      },
+      {
+        "file": "caseflow-store/README.md",
+        "target": "docs/auth-email-t03-real-email-confirmation-uat.md"
+      },
+      {
+        "file": "caseflow-store/README.md",
+        "target": "docs/postv111-t01-final-release-consistency-audit.md"
+      },
+      {
+        "file": "caseflow-store/README.md",
         "target": "docs/"
       },
       {
+        "file": "caseflow-store/README.md",
+        "target": "docs/portfolio-handoff.md"
+      },
+      {
+        "file": "caseflow-store/README.md",
+        "target": "docs/v1.11-final-operational-handoff.md"
+      },
+      {
         "file": "docs/architecture.md",
         "target": "domain.md"
       },
       {
         "file": "docs/architecture.md",
-        "target": "v1.1-safe-cover-asset-strategy.md"
+        "target": "v1.2-cover-portfolio.md"
       },
       {
         "file": "docs/architecture.md",
-        "target": "v1.1-release-audit.md"
+        "target": "v1.2-provenance-content-quality-contracts.md"
+      },
+      {
+        "file": "docs/architecture.md",
+        "target": "v1.2-provenance-content-quality-contracts.md"
+      },
+      {
+        "file": "docs/architecture.md",
+        "target": "v1.2-release-audit.md"
       },
       {
         "file": "docs/architecture.md",
@@ -128,16 +305,36 @@
         "target": "0006-pivot-to-caseflow-books.md"
       },
       {
+        "file": "docs/adr/README.md",
+        "target": "0007-realistic-bookstore-content-merchandising-upgrade.md"
+      },
+      {
+        "file": "docs/adr/README.md",
+        "target": "0008-visual-merchandising-brand-polish.md"
+      },
+      {
         "file": "caseflow-store/docs/architecture.md",
         "target": "domain.md"
       },
       {
         "file": "caseflow-store/docs/architecture.md",
-        "target": "v1.1-safe-cover-asset-strategy.md"
+        "target": "v1.2-cover-portfolio.md"
       },
       {
         "file": "caseflow-store/docs/architecture.md",
-        "target": "v1.1-release-audit.md"
+        "target": "v1.2-provenance-content-quality-contracts.md"
+      },
+      {
+        "file": "caseflow-store/docs/architecture.md",
+        "target": "v1.2-provenance-content-quality-contracts.md"
+      },
+      {
+        "file": "caseflow-store/docs/architecture.md",
+        "target": "adr/0016-transactional-notifications-and-simulated-transfer.md"
+      },
+      {
+        "file": "caseflow-store/docs/architecture.md",
+        "target": "v1.2-release-audit.md"
       },
       {
         "file": "caseflow-store/docs/architecture.md",
@@ -166,47 +363,87 @@
       {
         "file": "caseflow-store/docs/adr/README.md",
         "target": "0006-pivot-to-caseflow-books.md"
+      },
+      {
+        "file": "caseflow-store/docs/adr/README.md",
+        "target": "0007-realistic-bookstore-content-merchandising-upgrade.md"
+      },
+      {
+        "file": "caseflow-store/docs/adr/README.md",
+        "target": "0008-visual-merchandising-brand-polish.md"
+      },
+      {
+        "file": "caseflow-store/docs/adr/README.md",
+        "target": "0009-real-commerce-visual-merchandising-upgrade.md"
+      },
+      {
+        "file": "caseflow-store/docs/adr/README.md",
+        "target": "0010-qr-demo-payment-provider-boundary.md"
+      },
+      {
+        "file": "caseflow-store/docs/adr/README.md",
+        "target": "0011-retail-catalog-scale-and-hero-polish.md"
+      },
+      {
+        "file": "caseflow-store/docs/adr/README.md",
+        "target": "0012-modern-editorial-bookstore-experience.md"
+      },
+      {
+        "file": "caseflow-store/docs/adr/README.md",
+        "target": "0013-real-cover-and-commerce-homepage-upgrade.md"
+      },
+      {
+        "file": "caseflow-store/docs/adr/README.md",
+        "target": "0014-layered-architecture-boundary.md"
+      },
+      {
+        "file": "caseflow-store/docs/adr/README.md",
+        "target": "0015-atomic-idempotent-order-creation.md"
+      },
+      {
+        "file": "caseflow-store/docs/adr/README.md",
+        "target": "0016-transactional-notifications-and-simulated-transfer.md"
       }
     ]
   },
   "mirrorChecks": [
     {
       "left": "docs/architecture.md",
-      "leftHash": "8e93163e2d332557d68bcd497b5c745af08807b77fbd3b7b94b3920199c38759",
-      "match": true,
+      "leftHash": "74b03dd106a1e3c24325e91ff40b94ca938a85f21b7cdacd4b8ef92c77e755f4",
+      "match": false,
       "right": "caseflow-store/docs/architecture.md",
-      "rightHash": "8e93163e2d332557d68bcd497b5c745af08807b77fbd3b7b94b3920199c38759"
+      "rightHash": "5619c257e4498e1b6a3c3cabd9fe654736b075ddaced7f0b1805cd1f5d4e8774"
     },
     {
       "left": "docs/known-limitations.md",
-      "leftHash": "d70867a0cf88ec6d42095e7922601620efe28c368d7883769bec85261e8af792",
-      "match": true,
+      "leftHash": "c830274a7da35b64ae24756a2cd6114384b2410fe9f556c4eb2626e1d539e763",
+      "match": false,
       "right": "caseflow-store/docs/known-limitations.md",
-      "rightHash": "d70867a0cf88ec6d42095e7922601620efe28c368d7883769bec85261e8af792"
+      "rightHash": "ba0ece701b3171293e5faa2385cfa233a4509d2a58d25647e99feecc51d226b9"
     },
     {
       "left": "docs/cv-bullets.md",
-      "leftHash": "29f9e4f55d49249507505a17a63d3345780e610aaf134920b7652499edba55a6",
-      "match": true,
+      "leftHash": "5c06997f8d46623e0d7417ffc81d99a6756b7d7b5deeba205b27317a2f9de80d",
+      "match": false,
       "right": "caseflow-store/docs/cv-bullets.md",
-      "rightHash": "29f9e4f55d49249507505a17a63d3345780e610aaf134920b7652499edba55a6"
+      "rightHash": "97444d19e95f88234e194b23ad7fb56c435f4801164a75c2503c69a007d80d9e"
     },
     {
       "left": "docs/release-candidate.md",
-      "leftHash": "2a3bc2273b6f482210c364478b7170c3297f14d3333cb1ce05f685591bf3b70d",
-      "match": true,
+      "leftHash": "48f739e13db1950ba3c2d259505a6eb873998061dbba63c4d62accdcf08cd8b3",
+      "match": false,
       "right": "caseflow-store/docs/release-candidate.md",
-      "rightHash": "2a3bc2273b6f482210c364478b7170c3297f14d3333cb1ce05f685591bf3b70d"
+      "rightHash": "65edb6bc99300122689f310611e1f1175a31b2bd3f74b82f1ddce5461752faa6"
     },
     {
       "left": "docs/adr/README.md",
-      "leftHash": "00c9dc17c055d96038b69f0f8e3cde9603b55020d00ef9370640b7b3659f9297",
-      "match": true,
+      "leftHash": "981b1e97aadb9305670ae96c8256004981d7554a001ca250e6732ba768d4f520",
+      "match": false,
       "right": "caseflow-store/docs/adr/README.md",
-      "rightHash": "00c9dc17c055d96038b69f0f8e3cde9603b55020d00ef9370640b7b3659f9297"
+      "rightHash": "22a2284521c16aee7613b561163ebe1686763ce12d8b106621dc13e2876c20d8"
     }
   ],
-  "ok": true,
+  "ok": false,
   "screenshotChecks": [
     {
       "alphaAverage": 255,
@@ -240,8 +477,8 @@
     },
     {
       "alphaAverage": 255,
-      "colorRange": 233,
-      "height": 5931,
+      "colorRange": 240,
+      "height": 5629,
       "loaded": true,
       "width": 1440,
       "expected": {
@@ -251,42 +488,42 @@
       },
       "file": "catalog-desktop.png",
       "ok": true,
-      "sizeBytes": 550847
+      "sizeBytes": 728252
     },
     {
       "alphaAverage": 255,
-      "colorRange": 238,
-      "height": 22438,
+      "colorRange": 246,
+      "height": 10739,
       "loaded": true,
-      "width": 375,
+      "width": 390,
       "expected": {
         "file": "catalog-mobile.png",
         "minHeight": 900,
         "width": 375
       },
       "file": "catalog-mobile.png",
-      "ok": true,
-      "sizeBytes": 974803
+      "ok": false,
+      "sizeBytes": 739993
     },
     {
       "alphaAverage": 255,
       "colorRange": 238,
-      "height": 4787,
+      "height": 1715,
       "loaded": true,
-      "width": 375,
+      "width": 390,
       "expected": {
         "file": "checkout-mobile.png",
         "minHeight": 900,
         "width": 375
       },
       "file": "checkout-mobile.png",
-      "ok": true,
-      "sizeBytes": 318540
+      "ok": false,
+      "sizeBytes": 100189
     },
     {
       "alphaAverage": 255,
-      "colorRange": 233,
-      "height": 2961,
+      "colorRange": 234,
+      "height": 2669,
       "loaded": true,
       "width": 1440,
       "expected": {
@@ -296,27 +533,27 @@
       },
       "file": "product-desktop.png",
       "ok": true,
-      "sizeBytes": 322741
+      "sizeBytes": 369876
     },
     {
       "alphaAverage": 255,
-      "colorRange": 238,
-      "height": 4791,
+      "colorRange": 240,
+      "height": 4347,
       "loaded": true,
-      "width": 375,
+      "width": 390,
       "expected": {
         "file": "product-mobile.png",
         "minHeight": 900,
         "width": 375
       },
       "file": "product-mobile.png",
-      "ok": true,
-      "sizeBytes": 294977
+      "ok": false,
+      "sizeBytes": 306492
     },
     {
       "alphaAverage": 255,
-      "colorRange": 233,
-      "height": 4453,
+      "colorRange": 238,
+      "height": 4631,
       "loaded": true,
       "width": 1440,
       "expected": {
@@ -326,22 +563,22 @@
       },
       "file": "storefront-desktop.png",
       "ok": true,
-      "sizeBytes": 619858
+      "sizeBytes": 797235
     },
     {
       "alphaAverage": 255,
-      "colorRange": 238,
-      "height": 13046,
+      "colorRange": 246,
+      "height": 11806,
       "loaded": true,
-      "width": 375,
+      "width": 390,
       "expected": {
         "file": "storefront-mobile.png",
         "minHeight": 900,
         "width": 375
       },
       "file": "storefront-mobile.png",
-      "ok": true,
-      "sizeBytes": 759838
+      "ok": false,
+      "sizeBytes": 784091
     }
   ]
 }

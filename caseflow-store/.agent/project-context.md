@@ -5,7 +5,7 @@
 - Project name: CaseFlow Store `v1.0.0`; CaseFlow Books `v1.1.0`, `v1.2.0`,
   `v1.3.0`, `v1.3.1`, `v1.4.0`, `v1.4.1`, `v1.4.2`, `v1.5.0`, `v1.6.0`,
   `v1.7.0`, `v1.8.0`, `v1.9.0`, `v1.10.0`, `v1.11.0`, `v1.11.1`,
-  `v1.11.2`, `v1.11.3`, `v1.12.0`, and `v1.12.1` released
+  `v1.11.2`, `v1.11.3`, `v1.12.0`, `v1.12.1`, and `v1.13.0` released
 - Repository folder: `/Users/vantruong/Documents/TSNN 2`
 - Product domain: books for released `v1.1.0` and `v1.2.0`; phone
   accessories for released `v1.0.0`
@@ -13,12 +13,13 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: approved `v1.13` transactional notification and simulated
-  transfer implementation.
-- Current gate: `NOTIFY-T08` and the refreshed `NOTIFY-T09` local release gate
-  passed; migrations `0012` and `0013` are applied with count-preserving and
-  order-lifecycle evidence. Production deploy/reverification remains pending.
-- Current task: `NOTIFY-T09 - Apply, Deploy, Smoke Test, Document, And Release`.
+- Current mode: stable released `v1.13.0` transactional notification and
+  simulated-transfer operations.
+- Current gate: `NOTIFY-T09` passed locally and on Production with migration,
+  deployment, security, role, browser, accessibility, cleanup, tag, and release
+  evidence.
+- Current task: `UAT-MANUAL-T02 - Customer Notification And Simulated Transfer
+  Walkthrough`, pending the user's explicit confirmation.
 
 ## Confirmed Facts
 

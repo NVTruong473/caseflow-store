@@ -3,7 +3,7 @@
 ## Project Identity
 
 - Project name: CaseFlow Store `v1.0.0`; CaseFlow Books `v1.1.0` through
-  `v1.12.1` released
+  `v1.13.0` released
 - Repository folder: `/Users/vantruong/Documents/TSNN 2`
 - Product domain: books for released `v1.1.0` and `v1.2.0`; phone
   accessories for released `v1.0.0`
@@ -11,15 +11,14 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: approved `v1.13` transactional notification and simulated
-  transfer implementation.
-- Current gate: `NOTIFY-T08` and the refreshed local release gate passed;
-  migrations `0012` and `0013` are applied with count-preserving evidence.
-- Current task: `NOTIFY-T09 - Apply, Deploy, Smoke Test, Document, And Release`.
-- Latest production deployment: `dpl_Ar6sNH1nUraGoK25BhJt6Gn6KCrY`, aliased to
+- Current mode: stable released `v1.13.0` transactional notification and
+  simulated-transfer operations.
+- Current gate: `NOTIFY-T09` passed locally and on Production.
+- Current task: `UAT-MANUAL-T02`, pending explicit user confirmation.
+- Latest production deployment: `dpl_9N1HSkydBBzsrM1UmtT2Lfvpo7np`, aliased to
   `https://caseflow-store.vercel.app`.
 - Latest GitHub Release:
-  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.12.1`.
+  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.13.0`.
 - Detailed current trackers live in `caseflow-store/.agent/`.
 
 ## Confirmed Facts

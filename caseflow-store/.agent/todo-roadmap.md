@@ -10,14 +10,15 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: approved `v1.13` transactional notification and simulated transfer
-  implementation
-- Current gate: `NOTIFY-T08` passed; migrations `0012` and `0013` are applied
-  with count-preserving evidence, and the refreshed final local gate passed
-  build, `24/24` E2E, security, secret, dependency, cleanup, and final QA
-- Current task: `NOTIFY-T09 - Apply, Deploy, Smoke Test, Document, And Release`
+- Mode: stable released `v1.13.0` transactional notification and simulated
+  transfer operations
+- Current gate: `NOTIFY-T09` passed locally and on Production; migrations,
+  deployment, `24/24` E2E, security, role, responsive/accessibility, cleanup,
+  documentation, tag, and GitHub Release are verified
+- Current task: `UAT-MANUAL-T02 - Customer Notification And Simulated Transfer
+  Walkthrough`, pending the user's explicit confirmation
 - Implementation day: Day 40 complete
-- Last updated: 2026-07-22
+- Last updated: 2026-07-23
 
 ## Phase UAT-MANUAL - Production Customer Manual Acceptance
 
@@ -119,8 +120,8 @@
   - Evidence: `.agent/artifacts/notify-t08/` and
     `.agent/artifacts/notify-t08-final/`.
 
-- [/] `NOTIFY-T09` Apply, Deploy, Smoke Test, Document, And Release. - 2026-07-22
-  - Progress: applied migrations `0012` and `0013` to Supabase with unchanged
+- [x] `NOTIFY-T09` Apply, Deploy, Smoke Test, Document, And Release. - 2026-07-23
+  - Result: applied migrations `0012` and `0013` to Supabase with unchanged
     pre-existing order/item/voucher counts; the lifecycle verifier confirms
     notification history survives deliberate order cleanup.
   - Local release gate: notification contracts/runtime/customer/order/admin
@@ -131,8 +132,15 @@
   - Production configuration: external email/SMS variables are absent, so the
     fail-closed runtime remains `disabled`; in-app notifications are available
     without external-provider claims.
-  - Remaining: commit, deploy, production smoke/regression, final release
-    documentation, tag, GitHub Release, and consistency verification.
+  - Production: deployment `dpl_9N1HSkydBBzsrM1UmtT2Lfvpo7np` is `READY`
+    at `https://caseflow-store.vercel.app`; production smoke, security, QR
+    lock, notification boundary `8/8`, operations role matrix,
+    storefront/accessibility/final QA, Playwright `24/24`, and cleanup passed.
+  - Release: version/tag `v1.13.0`, release notes, final consistency audit, and
+    GitHub Release are published without provider secrets or test residue.
+  - Evidence: `.agent/artifacts/notify-t09-*`,
+    `docs/v1.13.0-transactional-notifications-release-notes.md`, and
+    `docs/postv130-t01-final-release-consistency-audit.md`.
 
 - [x] `UAT-OWNER-T01` Production Customer And Operations Acceptance. - 2026-07-22
   - Objective: execute the seven-step owner UAT against production using a

@@ -14855,8 +14855,6 @@ Vercel production alias, and live production runtime checks.
 - Custom SMTP remains blocked pending real Supabase Management API and SMTP
   credentials.
 
----
-
 ## NOTIFY-T07 - Admin/Staff Notification Operations
 
 - Date: 2026-07-22
@@ -15445,3 +15443,41 @@ GitHub Release.
 - QR demo simulate endpoint remains denied in production.
 - Custom SMTP remains blocked pending real Supabase Management API and SMTP
   credentials.
+
+---
+
+## NOTIFY-T09 - Apply, Deploy, Smoke Test, Document, And Release
+
+- Date: 2026-07-23
+- Status: completed and released
+- Release: `v1.13.0`
+
+### Result
+
+- Applied additive migrations `0012` and `0013`; preserved 13 existing orders,
+  13 order items, and 27 account vouchers.
+- Deployed runtime commit `c25a1b43f3c71fc49df904b0dc6439912e5d5d13`
+  to Vercel deployment `dpl_9N1HSkydBBzsrM1UmtT2Lfvpo7np` and aliased it to
+  `https://caseflow-store.vercel.app`.
+- Published `v1.13.0` with transactional in-app notifications, optional
+  fail-closed email/SMS providers, hashed/rate-limited OTP challenges,
+  minimized admin/staff delivery operations, and protected simulated-transfer
+  decisions.
+- Confirmed Production has no external-notification/provider variables, so
+  email/SMS/OTP delivery remains disabled without making false delivery claims.
+
+### Verification
+
+- TypeScript, lint, 59-route build, architecture, notification contracts,
+  migration/runtime/customer/order/admin verifiers: passed.
+- Local and Production Playwright: `24/24` passed.
+- Production smoke, security, QR lock, notification boundary `8/8`, operations
+  role matrix, storefront freeze, accessibility/mobile, and final QA: passed.
+- Dependency audit: 0 vulnerabilities. Secret scan: 0 findings. Cleanup: 0
+  residue.
+
+### Evidence
+
+- `.agent/artifacts/notify-t09-*`
+- `docs/v1.13.0-transactional-notifications-release-notes.md`
+- `docs/postv130-t01-final-release-consistency-audit.md`

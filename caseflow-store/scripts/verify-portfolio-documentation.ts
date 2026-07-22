@@ -6,7 +6,12 @@ import { chromium } from "@playwright/test";
 
 const appRoot = resolveAppRoot();
 const repoRoot = path.dirname(appRoot);
-const artifactDir = path.join(appRoot, ".agent", "artifacts", "d40-t03");
+const artifactDir = path.join(
+  appRoot,
+  ".agent",
+  "artifacts",
+  process.env.PORTFOLIO_DOCS_ARTIFACT_ID ?? "d40-t03",
+);
 
 const mirroredPairs = [
   ["docs/architecture.md", "caseflow-store/docs/architecture.md"],
@@ -29,24 +34,26 @@ const docsToCheck = [
   "caseflow-store/docs/cv-bullets.md",
   "caseflow-store/docs/release-candidate.md",
   "caseflow-store/docs/adr/README.md",
+  "caseflow-store/docs/v1.13.0-transactional-notifications-release-notes.md",
+  "caseflow-store/docs/postv130-t01-final-release-consistency-audit.md",
 ] as const;
 
 const expectedScreenshots = [
   { file: "admin-dashboard-desktop.png", minHeight: 900, width: 1440 },
   { file: "admin-orders-mobile.png", minHeight: 900, width: 375 },
   { file: "catalog-desktop.png", minHeight: 900, width: 1440 },
-  { file: "catalog-mobile.png", minHeight: 900, width: 375 },
-  { file: "checkout-mobile.png", minHeight: 900, width: 375 },
+  { file: "catalog-mobile.png", minHeight: 900, width: 390 },
+  { file: "checkout-mobile.png", minHeight: 900, width: 390 },
   { file: "product-desktop.png", minHeight: 900, width: 1440 },
-  { file: "product-mobile.png", minHeight: 900, width: 375 },
+  { file: "product-mobile.png", minHeight: 900, width: 390 },
   { file: "storefront-desktop.png", minHeight: 900, width: 1440 },
-  { file: "storefront-mobile.png", minHeight: 900, width: 375 },
+  { file: "storefront-mobile.png", minHeight: 900, width: 390 },
 ] as const;
 
 const requiredClaims = [
   {
     file: "README.md",
-    text: "100 sellable book editions",
+    text: "500 sellable book editions",
   },
   {
     file: "README.md",
@@ -54,15 +61,15 @@ const requiredClaims = [
   },
   {
     file: "README.md",
-    text: "no real SMS/OTP",
+    text: "In-app transactional notifications are enabled",
   },
   {
     file: "README.md",
-    text: "self-written",
+    text: "Self-written",
   },
   {
     file: "docs/known-limitations.md",
-    text: "Phone and email are not truly verified",
+    text: "External notification delivery is provider-gated",
   },
   {
     file: "docs/known-limitations.md",
@@ -73,8 +80,8 @@ const requiredClaims = [
     text: "does not collect card data",
   },
   {
-    file: "docs/release-candidate.md",
-    text: "v1.1.0-rc.1",
+    file: "caseflow-store/docs/v1.13.0-transactional-notifications-release-notes.md",
+    text: "Production has no notification provider or dispatcher variables configured",
   },
 ] as const;
 

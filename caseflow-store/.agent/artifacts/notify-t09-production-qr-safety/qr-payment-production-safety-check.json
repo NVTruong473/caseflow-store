@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-07-22T18:45:31.130Z",
+  "ok": true,
+  "findings": [],
+  "runtime": {
+    "ok": true,
+    "status": 401
+  }
+}

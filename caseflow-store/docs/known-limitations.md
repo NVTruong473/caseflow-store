@@ -1,7 +1,7 @@
 # Known Limitations
 
 This document records the intentional boundaries and accepted risks of
-CaseFlow Books through the latest `v1.12.0` layered architecture hardening
+CaseFlow Books through the latest `v1.13.0` transactional notification
 release.
 These items are not hidden production capabilities; they define where the
 portfolio release stops.
@@ -55,22 +55,27 @@ available.
 secret management, HTTPS callback validation, reconciliation, refunds,
 chargeback/failure handling, monitoring, and a separate security review.
 
-### Phone is not truly verified; email uses Supabase default confirmation
+### External notification delivery is provider-gated
 
 Customer checkout requires profile/contact fields, and those fields are
-validated for shape and completeness. CaseFlow Books does not send real SMS
-OTPs. Customer email confirmation has been verified on production through
-Supabase's default sender after fixing Supabase Auth URL Configuration, but a
-custom SMTP provider has not yet been configured.
+validated for shape and completeness. `v1.13.0` adds an in-app order activity
+inbox, provider-neutral email/SMS delivery, and hashed phone-OTP verification,
+but Production intentionally keeps external delivery disabled because no
+approved Resend/Twilio sender credentials are configured. Customer email
+confirmation remains Supabase Auth's separate flow and has been verified on
+Production through its default sender.
 
-**Current control:** checkout readiness prevents missing or malformed profile
-data. Production UAT confirmed a fresh Gmail signup link redirected to
-`https://caseflow-store.vercel.app/account` and completed checkout/order
-history without service-role confirmation.
+**Current control:** in-app delivery remains available without a vendor;
+`disabled` and `sandbox` external modes never claim successful delivery;
+incomplete live configuration fails closed. OTPs are HMAC-only, expiring,
+rate-limited, attempt-limited, and customer-owned. Production UAT confirmed a
+fresh Gmail signup link redirected to
+`https://caseflow-store.vercel.app/account`.
 
-**Next step:** add SMS verification and configure custom SMTP for Supabase Auth
-with rate limits, retry windows, abuse monitoring, deliverability monitoring,
-and recovery flows.
+**Next step:** provision approved sender domains/numbers and provider secrets,
+then run deliverability, abuse, bounce, retry, opt-out, and recovery acceptance
+tests before enabling `live` external delivery. Custom SMTP for Supabase Auth
+is still a separate operational requirement.
 
 ### Shipping, VAT, FX, and fees are estimates
 

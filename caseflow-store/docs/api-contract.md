@@ -298,11 +298,11 @@ state and prevents customers from self-confirming payment.
 
 ```json
 {
-  "decision": "confirm",
+  "action": "confirm",
   "reason": "Reference and amount matched the simulated transfer record"
 }
 ```
 
-`decision` may be `confirm` or `reject`. Rejection cancels the simulated
+`action` may be `confirm` or `reject`. Rejection cancels the simulated
 transfer path according to the order transition policy; a paid or otherwise
 terminal order cannot be moved backward.

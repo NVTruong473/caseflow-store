@@ -14,7 +14,9 @@ the `v1.10.0` account-bound signup voucher release, the `v1.11.0`
 account password-change release, the `v1.11.1` security dependency patch, the
 `v1.11.2` neutral light UI and compact pagination patch, the `v1.11.3`
 expert UI/accessibility polish patch, and the `v1.12.0` layered architecture
-hardening release, followed by the `v1.12.1` atomic order reliability patch.
+hardening release, followed by the `v1.12.1` atomic order reliability patch
+and the `v1.13.0` transactional notification and simulated-transfer operations
+release.
 The system is
 intentionally a Next.js modular monolith: it demonstrates a realistic
 specialist e-commerce workflow without claiming marketplace scale, real payment
@@ -395,8 +397,8 @@ rollout controls are recorded in
 ## Deployment and verification
 
 - Production alias: `https://caseflow-store.vercel.app`.
-- Current production deployment ID: `dpl_9FRaok8hK8sddmbGBL3RvkMM9fLs`
-  (`v1.8.0`).
+- Current production deployment ID: `dpl_9N1HSkydBBzsrM1UmtT2Lfvpo7np`
+  (`v1.13.0`).
 - Supabase hosts PostgreSQL and Auth.
 - Production runtime variables include the public Supabase URL, public anon key,
   and server-only service-role key. Canonical metadata defaults to the
@@ -452,6 +454,11 @@ rollout controls are recorded in
   motion tokens, reduced-motion-aware product-card feedback, back-to-top
   support for long pages, and production V18/release/security/QR/final QA
   verification.
+- The `v1.13.0` release adds a transactional outbox, account-scoped in-app
+  inbox, optional fail-closed Resend/Twilio providers, hashed/rate-limited SMS
+  verification challenges, protected staff/admin delivery operations, and
+  simulated-transfer decisions. Production external delivery remains disabled
+  because no approved provider credentials are configured.
 - Dependency audit status is recorded in
   [`v1.2-release-audit.md`](v1.2-release-audit.md).
 
@@ -463,7 +470,7 @@ The accepted decisions and their implementation outcomes are indexed in
 ## Evolution path
 
 The next architecture changes should respond to real product requirements.
-Likely candidates are real payment-provider integration, SMS/email
-verification, stock reservation/decrement inside checkout, shipping-carrier
-quotes, rate limiting, audit logs, managed product media, and cross-device
-carts. Each major change requires a new ADR before implementation.
+Likely candidates are real payment-provider integration, approved external
+notification-provider onboarding, stock reservation/decrement inside checkout,
+shipping-carrier quotes, rate limiting, audit logs, managed product media, and
+cross-device carts. Each major change requires a new ADR before implementation.

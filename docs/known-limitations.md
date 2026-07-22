@@ -1,37 +1,81 @@
 # Known Limitations
 
 This document records the intentional boundaries and accepted risks of
-CaseFlow Books `v1.2`. These items are not hidden production capabilities; they
-define where the portfolio release stops.
+CaseFlow Books through the latest `v1.13.0` transactional notification
+release.
+These items are not hidden production capabilities; they define where the
+portfolio release stops.
 
 ## Commerce scope
 
+### Catalog scale is edition-based
+
+`v1.6.0` expands the active catalog to 500 sellable products by adding retail
+edition variants across the existing 50 works. This improves browsing scale,
+price realism, and merchandising density, but it is not the same as curating
+250 unique works.
+
+**Current control:** generated v1.6 editions use project-created covers,
+source-safe copy, no fake ISBN values, active language parity at 250 English
+and 250 Vietnamese editions, and Supabase-backed public API totals.
+
+**Next step:** a future unique-work expansion should run a separate
+provenance/content curation pass before claiming hundreds of unique titles.
+
 ### Payments are simulated
 
-Checkout supports COD, bank transfer, MoMo, ZaloPay, and VNPay-style choices,
-but no real provider is integrated. The app does not collect card numbers, CVV,
-card expiry, bank-login data, wallet credentials, QR payment confirmations, or
-webhook callbacks.
+Checkout supports COD, bank transfer, wallet/provider-style choices, and a
+development/sandbox QR payment experience. No real provider is integrated. The
+app does not collect card numbers, CVV, card expiry, bank-login data, wallet
+credentials, real QR payment confirmations, or real provider webhooks.
 
 **Current control:** payment method choices produce pending or awaiting
 confirmation states, and server code calculates the final stored VND totals.
+QR demo sessions read `orders.total_vnd` on the backend, use demo bank
+configuration, verify mock webhook HMAC signatures, and are locked when
+`NODE_ENV=production`.
 
 **Next step:** integrate a real provider only after a new ADR covers provider
 selection, webhook verification, idempotency, reconciliation, refunds, failure
 states, and sensitive-data handling.
 
-### Phone and email are not truly verified
+### QR demo is not a production payment rail
+
+`v1.5.0` adds a realistic QR waiting page, mock gateway flow, VietQR demo
+payload, countdown, polling, and paid-state simulation for local/development
+verification. It is intentionally disabled for production settlement and should
+not be turned into live payment by only replacing the demo account number.
+
+**Current control:** production runtime denies QR demo payment creation and the
+simulate-success endpoint unless the app is running outside production with
+explicit demo flags. The QR UI marks sandbox payment as demo where it is
+available.
+
+**Next step:** use an official provider, real merchant onboarding, webhook
+secret management, HTTPS callback validation, reconciliation, refunds,
+chargeback/failure handling, monitoring, and a separate security review.
+
+### External notification delivery is provider-gated
 
 Customer checkout requires profile/contact fields, and those fields are
-validated for shape and completeness. CaseFlow Books `v1.2` does not send real
-SMS OTPs or provider-backed email verification.
+validated for shape and completeness. `v1.13.0` adds an in-app order activity
+inbox, provider-neutral email/SMS delivery, and hashed phone-OTP verification,
+but Production intentionally keeps external delivery disabled because no
+approved Resend/Twilio sender credentials are configured. Customer email
+confirmation remains Supabase Auth's separate flow and has been verified on
+Production through its default sender.
 
-**Current control:** checkout readiness prevents missing or malformed profile
-data, but documentation avoids claiming verified phone numbers or verified email
-ownership.
+**Current control:** in-app delivery remains available without a vendor;
+`disabled` and `sandbox` external modes never claim successful delivery;
+incomplete live configuration fails closed. OTPs are HMAC-only, expiring,
+rate-limited, attempt-limited, and customer-owned. Production UAT confirmed a
+fresh Gmail signup link redirected to
+`https://caseflow-store.vercel.app/account`.
 
-**Next step:** add SMS/email verification through a real provider with rate
-limits, retry windows, abuse monitoring, and recovery flows.
+**Next step:** provision approved sender domains/numbers and provider secrets,
+then run deliverability, abuse, bounce, retry, opt-out, and recovery acceptance
+tests before enabling `live` external delivery. Custom SMTP for Supabase Auth
+is still a separate operational requirement.
 
 ### Shipping, VAT, FX, and fees are estimates
 
@@ -69,6 +113,20 @@ promotion, stock, VAT, shipping, payment fee, and totals before checkout.
 merge rules, expiry rules, and abandoned-cart cleanup.
 
 ## Customer and admin scope
+
+### Customer cancellation is intentionally limited
+
+Signed-in customers can view their own order history and cancel eligible orders
+while they are still in early operational states. They cannot cancel orders
+after fulfillment or payment has moved beyond the accepted cancellation window.
+
+**Current control:** the customer cancellation API checks the authenticated
+customer, order ownership, order status, payment status, and shipping status on
+the server before setting order, payment, and shipping states to cancelled.
+
+**Next step:** add a full cancellation policy workflow with refund handling,
+stock release/reservation semantics, staff approval windows, and customer
+notifications before accepting real commercial traffic.
 
 ### Public tracking lacks production abuse protection
 
@@ -139,6 +197,21 @@ image processing, CDN caching, alt text, and takedown handling.
 
 ## Production operations
 
+### Security headers are not a complete security program
+
+The `v1.4.2` patch adds runtime security headers, CSP, no-store cache policy on
+protected/API surfaces, and a security posture verifier. These controls reduce
+common browser-side and response-handling risks, but they are not equivalent to
+a full security operations program.
+
+**Current control:** public, account, admin, checkout, and API routes are
+checked by `scripts/verify-security-posture.ts`, and final QA smoke verifies
+the app still works after the header policy.
+
+**Next step:** add rate limiting, WAF/bot controls, admin MFA, append-only
+audit logs, strict nonce-based CSP, monitoring/alerting, incident response, and
+backup-restore drills before treating the app as a real commercial system.
+
 ### Managed deployment is not a full operations program
 
 The application uses managed Vercel and Supabase services without a documented
@@ -154,7 +227,11 @@ availability.
 
 ## Accepted dependency advisory
 
-At the `v1.2` release audit, `npm audit --audit-level=moderate` reported:
+At the latest release gate, `npm audit --audit-level=high` passed. The known
+moderate advisory remains inherited through Next.js/PostCSS and is documented
+because the available automated forced fix proposes a breaking downgrade path.
+At the original `v1.2` release audit, `npm audit --audit-level=moderate`
+reported:
 
 - 0 critical
 - 0 high

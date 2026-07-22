@@ -10,13 +10,13 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: approved `v1.13` transactional notification and simulated transfer
-  implementation
-- Current gate: `NOTIFY-T08` and the refreshed local release gate passed;
-  migrations `0012` and `0013` are applied with count-preserving evidence
-- Current task: `NOTIFY-T09 - Apply, Deploy, Smoke Test, Document, And Release`
+- Mode: stable released `v1.13.0` transactional notification and simulated
+  transfer operations
+- Current gate: `NOTIFY-T09` passed locally and on Production with release
+  evidence
+- Current task: `UAT-MANUAL-T02`, pending the user's explicit confirmation
 - Implementation day: Day 40 complete
-- Last updated: 2026-07-22
+- Last updated: 2026-07-23
 
 > Detailed post-v1.3 roadmap entries are maintained in
 > `caseflow-store/.agent/todo-roadmap.md`.

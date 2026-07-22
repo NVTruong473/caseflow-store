@@ -15,6 +15,7 @@
     "verify:customer-notifications": "node scripts/verify-customer-notifications.mjs",
     "verify:order-notifications": "node scripts/verify-order-notification-integration.mjs",
     "verify:admin-notifications": "node scripts/verify-admin-notification-operations.mjs",
+    "verify:notification-production-safety": "npm exec -- tsx scripts/verify-notification-production-safety.ts",
     "verify:admin-content-query-safety": "node scripts/verify-admin-content-query-safety.mjs",
     "apply:order-reliability-migration": "node --env-file-if-exists=.env.local scripts/apply-order-reliability-migration.mjs",
     "apply:notification-migration": "node --env-file-if-exists=.env.local scripts/apply-notification-migration.mjs",
