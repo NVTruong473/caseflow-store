@@ -27,8 +27,10 @@ that simulated payment flows process real money.
   dedicated compact-card overlap verifier, a `v1.4` merchandising QA gate, a
   `v1.4.2` security-header posture verifier, `v1.5.0` QR production-safety
   gates, a `v1.6.0` 500-edition catalog verifier, production signup-voucher
-  and password-change verifiers, and a real-email confirmation UAT that caught
-  and fixed a Supabase redirect-to-localhost configuration issue.
+  and password-change verifiers, a real-email confirmation UAT that caught
+  and fixed a Supabase redirect-to-localhost configuration issue, and a
+  `v1.11.1` dependency patch that moved the audit from high-severity findings
+  to zero reported vulnerabilities without forcing a breaking downgrade.
 
 ## Alternative bullets by focus
 
@@ -85,8 +87,8 @@ that simulated payment flows process real money.
   adjustments, promotion management, customer overview, dashboard metrics, and
   CSV export.
 - Documented known non-blockers honestly: simulated payments, no real SMS/OTP,
-  no custom SMTP provider yet, no carrier shipping integration, no licensed
-  commercial metadata feed, and dependency advisories pending upstream fixes.
+  no custom SMTP provider yet, no carrier shipping integration, and no
+  licensed commercial metadata feed.
 
 ## Interview summary
 
@@ -108,7 +110,7 @@ custom SMTP remains a documented operations upgrade.
 
 | Claim | Evidence |
 |---|---|
-| Public production deployment | `https://caseflow-store.vercel.app`; latest release `v1.11.0`; `caseflow-store/docs/v1.11.0-account-security-password-release-notes.md` |
+| Public production deployment | `https://caseflow-store.vercel.app`; latest release `v1.11.1`; `caseflow-store/docs/v1.11.1-security-dependency-patch-release-notes.md` |
 | 500 active book editions and 50 works in production | `caseflow-store/.agent/artifacts/v16-t01/catalog-expansion-apply.json`; `caseflow-store/.agent/artifacts/v16-t01-production/catalog-retail-polish-check.json` |
 | 500 project-created cover assets | `docs/v1.2-cover-portfolio.md`; `caseflow-store/public/images/books/v16-covers/`; `caseflow-store/.agent/artifacts/v16-t01-production/catalog-retail-polish-check.json` |
 | Provenance and content-quality policy | `docs/domain.md`; `docs/v1.2-provenance-content-quality-contracts.md`; `docs/v1.2-release-audit.md` |

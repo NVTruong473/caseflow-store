@@ -1,9 +1,8 @@
 # CaseFlow Books Portfolio Handoff
 
-- Latest release: `v1.11.0`
+- Latest release: `v1.11.1`
 - Production URL: `https://caseflow-store.vercel.app`
-- GitHub Release: `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.11.0`
-- Vercel deployment: `dpl_DtUDA7pbv7ZcJYFRM5TVmsQUhThq`
+- GitHub Release: `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.11.1`
 - Project type: full-stack bookstore and small-business operations portfolio
 - Stack: Next.js 16, React 19, TypeScript 5, Tailwind CSS 4, Supabase
   PostgreSQL/Auth/RLS, Zod, Playwright, Vercel
@@ -119,7 +118,8 @@ See `docs/architecture.md` for the full architecture notes.
 
 | Evidence | Location |
 |---|---|
-| Latest release notes | `docs/v1.11.0-account-security-password-release-notes.md` |
+| Latest release notes | `docs/v1.11.1-security-dependency-patch-release-notes.md` |
+| v1.11 account security release notes | `docs/v1.11.0-account-security-password-release-notes.md` |
 | v1.11 release consistency audit | `docs/postv111-t01-final-release-consistency-audit.md` |
 | v1.11 production email UAT | `docs/auth-email-t03-real-email-confirmation-uat.md` |
 | v1.11 production password change | `.agent/artifacts/auth-password-t01/customer-password-change-check.json` |
@@ -159,6 +159,7 @@ Latest verified gates include:
 
 - `npx tsc --noEmit --pretty false`
 - `npm run lint`
+- `npm audit --audit-level=high`
 - `npm run build`
 - `npm run test:e2e`
 - production email confirmation UAT after Supabase Auth URL Configuration fix

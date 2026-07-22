@@ -10,7 +10,7 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: stable portfolio and operations handoff after `v1.11.0`
+- Mode: stable portfolio and operations handoff after `v1.11.1`
 - Current gate: `AUTH-SMTP-T02` is blocked pending a real Supabase Management
   API token and real SMTP credentials; all appropriate non-SMTP handoff work is
   complete
@@ -19,6 +19,24 @@
 - Last updated: 2026-07-22
 
 ## Phase UAT-MANUAL - Production Customer Manual Acceptance
+
+- [x] `SECDEP-T01` Ship Dependency Security Patch `v1.11.1`. - 2026-07-22
+  - Objective: resolve the current high-severity npm audit finding without
+    using the unsafe `npm audit fix --force` downgrade path.
+  - Result: updated `next` and `eslint-config-next` to `16.2.11`, added npm
+    overrides for `postcss@8.5.19` and `sharp@0.35.3`, regenerated
+    `package-lock.json`, and added
+    `docs/v1.11.1-security-dependency-patch-release-notes.md`.
+  - Verification: `AUTH_SMTP_APPLY=true` custom SMTP apply still blocks safely
+    before Supabase mutation because real SMTP credentials are absent;
+    `npm audit --audit-level=high` reports zero vulnerabilities;
+    `npm ls next sharp postcss eslint-config-next` confirms the patched
+    dependency tree; lint, typecheck, production build, secret scan, and full
+    Playwright `20/20` passed. The first Playwright run had transient Supabase
+    `ETIMEDOUT`/`ENOTFOUND` failures in the last two UI-state tests; rerunning
+    the affected spec passed `4/4`, and the second full run passed `20/20`.
+  - Guardrail: no runtime feature, schema migration, fake SMTP value, or
+    production data mutation was added.
 
 - [x] `OP-HANDOFF-T01` Stable Portfolio And Operations Handoff. - 2026-07-22
   - Objective: choose the next appropriate action after production email UAT:

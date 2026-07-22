@@ -1,8 +1,7 @@
 # Known Limitations
 
 This document records the intentional boundaries and accepted risks of
-CaseFlow Books through the latest `v1.11.0` account security and email UAT
-state.
+CaseFlow Books through the latest `v1.11.1` dependency security patch.
 These items are not hidden production capabilities; they define where the
 portfolio release stops.
 

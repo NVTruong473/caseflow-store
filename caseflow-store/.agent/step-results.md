@@ -14470,3 +14470,61 @@ the actual `v1.11.0` state:
   performed.
 - The project remains honest: custom SMTP is still blocked even though
   production email confirmation via Supabase default sender has passed.
+
+---
+
+## SECDEP-T01 - Dependency Security Patch v1.11.1
+
+- Date: 2026-07-22
+- Status: completed locally; ready for production deploy/tag/release
+- Target: dependency audit and production build safety
+
+### Objective
+
+Resolve the current npm audit high-severity finding without using the unsafe
+`npm audit fix --force` path, which proposed a breaking downgrade to an old
+Next.js version.
+
+### Result
+
+The dependency tree was patched narrowly:
+
+- `next`: `16.2.10` -> `16.2.11`
+- `eslint-config-next`: `16.2.10` -> `16.2.11`
+- npm overrides:
+  - `next/postcss`: `8.5.19`
+  - `next/sharp`: `0.35.3`
+
+`package-lock.json` was regenerated. Release documentation was added at
+`docs/v1.11.1-security-dependency-patch-release-notes.md`.
+
+### Verification
+
+- `.env.local` presence check: `SUPABASE_PROJECT_REF`, `SMTP_PORT`, and
+  `SMTP_SENDER_NAME` are present; `SUPABASE_ACCESS_TOKEN`,
+  `SMTP_ADMIN_EMAIL`, `SMTP_HOST`, `SMTP_USER`, and `SMTP_PASS` remain absent.
+- `AUTH_SMTP_APPLY=true npm exec -- tsx scripts/configure-supabase-custom-smtp.ts`:
+  expected blocked result with `missing-or-invalid-smtp-config`; no Supabase
+  mutation was attempted.
+- `npm audit --audit-level=high`: passed with `0` vulnerabilities.
+- `npm ls next sharp postcss eslint-config-next`: confirmed
+  `next@16.2.11`, `eslint-config-next@16.2.11`, `postcss@8.5.19`, and
+  `sharp@0.35.3`.
+- `npm run lint`: passed.
+- `npm exec -- tsc --noEmit --pretty false`: passed.
+- `npm run build`: passed.
+- First `npm run test:e2e`: `18/20` passed; the last two UI-state tests failed
+  because Supabase returned transient network/DNS errors (`ETIMEDOUT` and
+  `ENOTFOUND`), not because of UI or dependency regression.
+- Supabase reachability check: passed after the transient failure.
+- `npx playwright test tests/e2e/ui-states.spec.ts`: passed `4/4`.
+- Second full `npm run test:e2e`: passed `20/20`.
+- `npm exec -- tsx scripts/verify-payqr-secret-scan.ts`: passed with `1265`
+  checked files and `0` findings.
+
+### Guardrails
+
+- No fake SMTP provider values were added.
+- No Supabase Auth setting was weakened.
+- No schema migration, production data mutation, user-facing feature, or real
+  payment/shipping/email provider integration was added.

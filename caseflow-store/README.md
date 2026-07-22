@@ -68,12 +68,12 @@ runtime.
 
 ## Latest release evidence
 
-- Release tag: `v1.11.0`
+- Release tag: `v1.11.1`
 - GitHub Release:
-  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.11.0`
+  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.11.1`
 - Production alias: `https://caseflow-store.vercel.app`
-- Vercel deployment ID: `dpl_DtUDA7pbv7ZcJYFRM5TVmsQUhThq`
-- Local gates: TypeScript, ESLint, production build, full Playwright `20/20`,
+- Local gates: npm audit with zero vulnerabilities, TypeScript, ESLint,
+  production build, full Playwright `20/20`,
   signup voucher verifier, password-change verifier, QR production-safety
   verifier, security posture verifier, final QA smoke, and `git diff --check`
   passed.
@@ -81,6 +81,8 @@ runtime.
   Configuration fix, password-change verifier, release smoke, security
   posture, and QR production-safety lock passed.
 - Release notes:
+  [`docs/v1.11.1-security-dependency-patch-release-notes.md`](docs/v1.11.1-security-dependency-patch-release-notes.md)
+  and
   [`docs/v1.11.0-account-security-password-release-notes.md`](docs/v1.11.0-account-security-password-release-notes.md)
 - Operational evidence:
   [`docs/auth-email-t03-real-email-confirmation-uat.md`](docs/auth-email-t03-real-email-confirmation-uat.md)
