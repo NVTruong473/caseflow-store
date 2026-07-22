@@ -18,7 +18,11 @@ import type {
 
 loadEnvConfig(process.cwd());
 
-const ARTIFACT_DIR = path.join(".agent", "artifacts", "d35-t01");
+const ARTIFACT_DIR = path.join(
+  ".agent",
+  "artifacts",
+  process.env.STAFF_ROLE_ARTIFACT_ID ?? "d35-t01",
+);
 const TEST_PASSWORD = "CaseflowBooks#35Role";
 const TEST_PHONE = "+84 912 345 678";
 

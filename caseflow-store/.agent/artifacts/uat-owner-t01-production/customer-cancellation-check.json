@@ -1,0 +1,27 @@
+{
+  "baseURL": "https://caseflow-store.vercel.app",
+  "checkedAt": "2026-07-22T16:39:00.000Z",
+  "database": {
+    "discountTotalVnd": 30000,
+    "orderCode": "CF-MRWAT991-0266BA851D",
+    "orderStatus": "cancelled",
+    "paymentStatus": "cancelled",
+    "promotionCode": "WELCOME30K",
+    "shippingStatus": "cancelled",
+    "totalVnd": 166900
+  },
+  "ok": true,
+  "ui": {
+    "before": {
+      "cancelControlVisible": true,
+      "orderStatus": "pending",
+      "paymentStatus": "awaiting-transfer"
+    },
+    "after": {
+      "cancelControlVisible": false,
+      "orderStatus": "cancelled",
+      "paymentStatus": "cancelled",
+      "successMessageVisible": true
+    }
+  }
+}

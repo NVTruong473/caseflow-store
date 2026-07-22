@@ -11,14 +11,34 @@
 
 - Project: CaseFlow Books
 - Mode: stable portfolio and operations handoff after `v1.12.1`
-- Current gate: `ORDER-RELIABILITY-T06` released and production verified.
-  `AUTH-SMTP-T02` remains externally blocked.
+- Current gate: `UAT-OWNER-T01` passed production customer and operations
+  acceptance. `AUTH-SMTP-T02` and transactional order email remain
+  commercial-launch boundaries.
 - Current task: no open implementation task; `AUTH-SMTP-T02` only if real SMTP
   credentials become available
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-22
 
 ## Phase UAT-MANUAL - Production Customer Manual Acceptance
+
+- [x] `UAT-OWNER-T01` Production Customer And Operations Acceptance. - 2026-07-22
+  - Objective: execute the seven-step owner UAT against production using a
+    self-service account, real mailbox confirmation, account vouchers,
+    checkout, payment boundary, customer history/cancellation, and protected
+    operations surfaces.
+  - Result: real email confirmation and checkout passed; order
+    `CF-MRWAT991-0266BA851D` used `WELCOME30K` and was cancelled through the
+    customer UI; staff/admin boundaries, dashboard metrics, inventory risk,
+    voucher rules, smoke, security, responsive captures, and cleanup passed.
+  - Verification: lint and TypeScript passed; voucher verifier passed 10/10;
+    production smoke passed 9/9; security returned zero findings; secret scan
+    checked 1,341 files with zero findings; temporary QA matches returned to
+    zero.
+  - Evidence: `docs/uat-owner-t01-production-acceptance.md` and
+    `.agent/artifacts/uat-owner-t01-*`.
+  - Honest boundary: custom SMTP, transactional order email/SMS, real payment,
+    reconciliation/refunds, carrier integration, and live delivery tracking
+    remain outside the released product contract.
 
 - [x] `ORDER-RELIABILITY-T01` Accept Atomic Order ADR And Roadmap. - 2026-07-22
   - Objective: close the split-transaction failure mode where an order can

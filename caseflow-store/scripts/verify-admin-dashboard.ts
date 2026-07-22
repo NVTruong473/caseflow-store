@@ -21,7 +21,11 @@ import type { Json } from "../src/types/supabase";
 
 loadEnvConfig(process.cwd());
 
-const ARTIFACT_DIR = path.join(".agent", "artifacts", "d38-t01");
+const ARTIFACT_DIR = path.join(
+  ".agent",
+  "artifacts",
+  process.env.ADMIN_DASHBOARD_ARTIFACT_ID ?? "d38-t01",
+);
 const TEST_PASSWORD = "CaseflowBooks#38Dashboard";
 const QA_DATE = "2099-01-15";
 

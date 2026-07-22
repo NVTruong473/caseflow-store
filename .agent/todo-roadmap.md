@@ -11,8 +11,8 @@
 
 - Project: CaseFlow Books
 - Mode: stable portfolio and operations handoff after `v1.12.1`
-- Current gate: atomic order reliability patch released and production
-  verified; custom SMTP remains externally blocked pending real credentials
+- Current gate: `UAT-OWNER-T01` production acceptance passed; custom SMTP and
+  transactional order email remain commercial-launch boundaries
 - Current task: No active implementation task
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-22

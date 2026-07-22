@@ -12,8 +12,10 @@
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
 - Current mode: stable portfolio and operations handoff after `v1.12.1`.
-- Current gate: atomic order reliability patch released and production
-  verified; custom SMTP remains externally blocked pending real credentials.
+- Current gate: atomic order reliability patch released; owner production UAT
+  passed customer, voucher, order cancellation, role, dashboard, smoke, and
+  security checks. Custom SMTP remains externally blocked pending real
+  credentials.
 - Current task: No active implementation task.
 - Latest production deployment: `dpl_Ar6sNH1nUraGoK25BhJt6Gn6KCrY`, aliased to
   `https://caseflow-store.vercel.app`.

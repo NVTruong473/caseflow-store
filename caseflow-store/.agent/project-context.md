@@ -15,9 +15,10 @@
 - Journal entries: 30, with entries 21-30 as retrospective documentation
 - Current mode: stable portfolio and operations handoff after the `v1.12.1`
   atomic order reliability patch and final consistency audit.
-- Current gate: `AUTH-SMTP-T02` remains blocked pending a real Supabase
-  Management API token and real SMTP credentials. All appropriate non-SMTP
-  handoff work is complete.
+- Current gate: `UAT-OWNER-T01` passed real-email customer registration,
+  voucher checkout, customer cancellation, staff/admin authorization,
+  operations dashboard, smoke, and security on production. `AUTH-SMTP-T02`
+  and transactional order email remain commercial-launch boundaries.
 - Current task: no open implementation task; `AUTH-SMTP-T02` only if real SMTP
   credentials become available.
 

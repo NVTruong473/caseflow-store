@@ -14969,6 +14969,53 @@ the customer-facing commerce rules.
 
 ---
 
+## UAT-OWNER-T01 - Production Customer And Operations Acceptance
+
+- Date: 2026-07-22
+- Status: completed
+- Production: `https://caseflow-store.vercel.app`
+
+### Result
+
+- Created a customer through public production sign-up without fallback.
+- Received and clicked a fresh Supabase Auth email in the tester-controlled
+  Gmail mailbox; redirect and account confirmation succeeded on production.
+- Verified all three account vouchers, applied exactly one voucher, created a
+  server-priced bank-transfer order, viewed it in account history, and
+  cancelled it through the customer UI.
+- Verified anonymous/customer/staff/admin authorization, staff order access,
+  admin-only settings, dashboard metrics, inventory risk, empty state, and
+  cleanup.
+- Visually reviewed customer, checkout, order history, voucher, staff, desktop
+  dashboard, and mobile dashboard captures with no blocking overflow.
+
+### Verification
+
+- Strict real-email customer UAT: PASS.
+- Signup voucher production verifier: PASS, 10/10.
+- Staff/admin role verifier: PASS.
+- Admin dashboard verifier: PASS.
+- Production smoke: PASS, 9/9.
+- Security posture: PASS, zero findings.
+- Release cleanup: PASS, zero temporary QA matches after one orphaned
+  automation-only auth user was safely removed.
+- Lint and TypeScript: PASS.
+- Secret scan: PASS, 1,341 files / zero findings.
+
+### Evidence
+
+- `docs/uat-owner-t01-production-acceptance.md`
+- `.agent/artifacts/uat-owner-t01-*`
+
+### Remaining Boundaries
+
+- Custom SMTP remains unconfigured.
+- Transactional order email/SMS is not implemented.
+- Real payment, settlement/refunds, carrier integration, warehouse operations,
+  and live delivery tracking remain outside the current release.
+
+---
+
 ## ORDER-RELIABILITY-T06 - Deploy And Release v1.12.1
 
 - Date: 2026-07-22

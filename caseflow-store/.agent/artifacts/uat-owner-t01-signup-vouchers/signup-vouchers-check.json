@@ -1,0 +1,59 @@
+{
+  "baseURL": "https://caseflow-store.vercel.app",
+  "checkoutFlow": {
+    "inputValue": "WELCOME30K",
+    "orderCode": "CF-MRWB01OR-25A8E52FFE",
+    "responseDiscountTotalVnd": 30000,
+    "summaryDiscountVisible": true,
+    "voucherPanelVisible": true
+  },
+  "generatedAt": "2026-07-22T16:35:39.150Z",
+  "grantedCodes": [
+    {
+      "code": "WELCOME30K",
+      "expiresAt": "2026-08-21T16:34:42.535+00:00",
+      "status": "available"
+    },
+    {
+      "code": "READMORE20K",
+      "expiresAt": "2026-08-21T16:34:42.535+00:00",
+      "status": "available"
+    },
+    {
+      "code": "FREESHIP25K",
+      "expiresAt": "2026-08-21T16:34:42.535+00:00",
+      "status": "available"
+    }
+  ],
+  "ok": true,
+  "order": {
+    "discountTotalVnd": 30000,
+    "orderCode": "CF-MRWB01OR-25A8E52FFE",
+    "promotionCode": "WELCOME30K",
+    "totalVnd": 925100
+  },
+  "pass": {
+    "accountGrantedThreeCodes": true,
+    "accountSurfaceShowsThreeCodes": true,
+    "checkoutShowsAndAppliesVoucher": true,
+    "marketingCtaVisible": true,
+    "signupVoucherSurfacesDoNotOverflow": true,
+    "orderPersistedVoucherDiscount": true,
+    "reusedVoucherRejected": true,
+    "otherAccountCannotUseVoucher": true,
+    "onlyOneCodeAccepted": true,
+    "voucherMarkedUsed": true
+  },
+  "surfaceCheck": {
+    "accountSignupPromptVisible": true,
+    "accountVoucherCount": 3,
+    "accountVoucherPanelVisible": true,
+    "hasHorizontalOverflow": false,
+    "homeSignupPromptVisible": true
+  },
+  "target": {
+    "editionId": "b32d1b74-fdf9-4562-aec1-9822f9668b00",
+    "priceVnd": 871000,
+    "slug": "pride-and-prejudice-english-reading-group-box-set"
+  }
+}

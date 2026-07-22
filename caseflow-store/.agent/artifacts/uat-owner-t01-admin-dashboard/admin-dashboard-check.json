@@ -1,0 +1,253 @@
+{
+  "anonymousAccess": {
+    "code": "UNAUTHORIZED",
+    "data": null,
+    "status": 401
+  },
+  "baseURL": "https://caseflow-store.vercel.app",
+  "cleanup": {
+    "removedAuthors": 1,
+    "removedEditions": 1,
+    "removedOrders": 4,
+    "removedWorkAuthorLinks": 1,
+    "removedWorkCategoryLinks": 1,
+    "removedWorks": 1
+  },
+  "customerAccess": {
+    "code": "FORBIDDEN",
+    "data": null,
+    "status": 403
+  },
+  "emptyRangeUi": {
+    "emptyOrdersVisible": true,
+    "hasOverflow": false,
+    "pageReady": true,
+    "revenueZeroVisible": true
+  },
+  "generatedAt": "2026-07-22T16:38:02.960Z",
+  "ok": true,
+  "orderCodes": [
+    "CF-D38A-MRWB2M35",
+    "CF-D38B-MRWB2M35",
+    "CF-D38C-MRWB2M35",
+    "CF-D38D-MRWB2M35"
+  ],
+  "pass": {
+    "accessControl": true,
+    "apiMetrics": true,
+    "uiMetrics": true,
+    "emptyState": true,
+    "cleanup": true
+  },
+  "qaCatalog": {
+    "authorId": "c1892ab3-cb1c-41cb-907f-31f0a1ac2c41",
+    "categoryId": "00000000-0000-4000-8000-000000000100",
+    "editionId": "dc1ad2dd-9f93-401b-9253-4b5a362e3baa",
+    "title": "D38 Dashboard QA Book mrwb2m35-ou2tm2",
+    "workId": "c6ce8ce8-93d4-4eab-99cf-f097cc4d1cc4"
+  },
+  "staffApi": {
+    "code": null,
+    "data": {
+      "averageOrderValueVnd": 250000,
+      "generatedAt": "2026-07-22T16:37:53.533Z",
+      "inventorySummary": {
+        "activeEditions": 501,
+        "lowStockCount": 9,
+        "outOfStockCount": 0
+      },
+      "lowStockEditions": [
+        {
+          "id": "dc1ad2dd-9f93-401b-9253-4b5a362e3baa",
+          "inventoryStatus": "low-stock",
+          "lowStockThreshold": 5,
+          "slug": "d38-dashboard-qa-mrwb2m35-ou2tm2-paperback",
+          "stockQuantity": 2,
+          "title": "D38 Dashboard QA Book mrwb2m35-ou2tm2"
+        },
+        {
+          "id": "00000000-0000-4000-8000-000000004000",
+          "inventoryStatus": "low-stock",
+          "lowStockThreshold": 10,
+          "slug": "pride-and-prejudice-vietnamese-special-edition",
+          "stockQuantity": 8,
+          "title": "Kiêu hãnh và định kiến"
+        },
+        {
+          "id": "00000000-0000-4000-8000-000000004044",
+          "inventoryStatus": "low-stock",
+          "lowStockThreshold": 10,
+          "slug": "the-odyssey-vietnamese-paperback",
+          "stockQuantity": 8,
+          "title": "Odyssey"
+        },
+        {
+          "id": "00000000-0000-4000-8000-000000003000",
+          "inventoryStatus": "low-stock",
+          "lowStockThreshold": 10,
+          "slug": "pride-and-prejudice-english-special-edition",
+          "stockQuantity": 8,
+          "title": "Pride and Prejudice"
+        },
+        {
+          "id": "00000000-0000-4000-8000-000000003044",
+          "inventoryStatus": "low-stock",
+          "lowStockThreshold": 10,
+          "slug": "the-odyssey-english-paperback",
+          "stockQuantity": 8,
+          "title": "The Odyssey"
+        },
+        {
+          "id": "00000000-0000-4000-8000-000000004019",
+          "inventoryStatus": "low-stock",
+          "lowStockThreshold": 10,
+          "slug": "alice-in-wonderland-vietnamese-paperback",
+          "stockQuantity": 9,
+          "title": "Cuộc phiêu lưu của Alice ở xứ sở thần tiên"
+        },
+        {
+          "id": "00000000-0000-4000-8000-000000003009",
+          "inventoryStatus": "low-stock",
+          "lowStockThreshold": 10,
+          "slug": "dracula-english-paperback",
+          "stockQuantity": 9,
+          "title": "Dracula"
+        },
+        {
+          "id": "00000000-0000-4000-8000-000000004038",
+          "inventoryStatus": "low-stock",
+          "lowStockThreshold": 10,
+          "slug": "meditations-vietnamese-paperback",
+          "stockQuantity": 10,
+          "title": "Suy tưởng"
+        }
+      ],
+      "orderCount": 4,
+      "orderStatusSummary": [
+        {
+          "count": 1,
+          "status": "pending",
+          "totalVnd": 200000
+        },
+        {
+          "count": 0,
+          "status": "confirmed",
+          "totalVnd": 0
+        },
+        {
+          "count": 0,
+          "status": "shipping",
+          "totalVnd": 0
+        },
+        {
+          "count": 1,
+          "status": "completed",
+          "totalVnd": 300000
+        },
+        {
+          "count": 2,
+          "status": "cancelled",
+          "totalVnd": 1887000
+        }
+      ],
+      "paymentSummary": [
+        {
+          "count": 1,
+          "status": "pending",
+          "totalVnd": 200000
+        },
+        {
+          "count": 0,
+          "status": "awaiting-transfer",
+          "totalVnd": 0
+        },
+        {
+          "count": 0,
+          "status": "awaiting-provider-confirmation",
+          "totalVnd": 0
+        },
+        {
+          "count": 1,
+          "status": "confirmed",
+          "totalVnd": 300000
+        },
+        {
+          "count": 0,
+          "status": "expired",
+          "totalVnd": 0
+        },
+        {
+          "count": 0,
+          "status": "failed",
+          "totalVnd": 0
+        },
+        {
+          "count": 2,
+          "status": "cancelled",
+          "totalVnd": 1887000
+        }
+      ],
+      "range": {
+        "from": "2099-01-15T00:00:00.000Z",
+        "label": "custom",
+        "to": "2099-01-16T00:00:00.000Z"
+      },
+      "recentOrders": [
+        {
+          "createdAt": "2099-01-15T04:00:00+00:00",
+          "customerName": "D38 Dashboard Customer",
+          "orderCode": "CF-D38D-MRWB2M35",
+          "paymentStatus": "cancelled",
+          "shippingStatus": "cancelled",
+          "status": "cancelled",
+          "totalVnd": 888000
+        },
+        {
+          "createdAt": "2099-01-15T03:00:00+00:00",
+          "customerName": "D38 Dashboard Customer",
+          "orderCode": "CF-D38C-MRWB2M35",
+          "paymentStatus": "cancelled",
+          "shippingStatus": "cancelled",
+          "status": "cancelled",
+          "totalVnd": 999000
+        },
+        {
+          "createdAt": "2099-01-15T02:00:00+00:00",
+          "customerName": "D38 Dashboard Customer",
+          "orderCode": "CF-D38B-MRWB2M35",
+          "paymentStatus": "pending",
+          "shippingStatus": "pending",
+          "status": "pending",
+          "totalVnd": 200000
+        },
+        {
+          "createdAt": "2099-01-15T01:00:00+00:00",
+          "customerName": "D38 Dashboard Customer",
+          "orderCode": "CF-D38A-MRWB2M35",
+          "paymentStatus": "confirmed",
+          "shippingStatus": "delivered",
+          "status": "completed",
+          "totalVnd": 300000
+        }
+      ],
+      "revenueEstimateVnd": 500000,
+      "topBooks": [
+        {
+          "editionId": "dc1ad2dd-9f93-401b-9253-4b5a362e3baa",
+          "quantitySold": 3,
+          "revenueVnd": 500000,
+          "title": "D38 Dashboard QA Book mrwb2m35-ou2tm2"
+        }
+      ]
+    },
+    "status": 200
+  },
+  "staffUi": {
+    "hasOverflow": false,
+    "lowStockVisible": true,
+    "pageReady": true,
+    "recentOrderCount": 8,
+    "revenueVisible": true,
+    "topBookVisible": true
+  }
+}

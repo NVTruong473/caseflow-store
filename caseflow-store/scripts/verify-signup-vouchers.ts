@@ -13,7 +13,11 @@ import type { ShippingAddress } from "../src/types/domain";
 
 loadEnvConfig(process.cwd());
 
-const ARTIFACT_DIR = path.join(".agent", "artifacts", "signup-vouchers");
+const ARTIFACT_DIR = path.join(
+  ".agent",
+  "artifacts",
+  process.env.SIGNUP_VOUCHERS_ARTIFACT_ID ?? "signup-vouchers",
+);
 const CART_STORAGE_KEY = "caseflow-store.cart.v1";
 
 type ApiResponse<TData> = {
