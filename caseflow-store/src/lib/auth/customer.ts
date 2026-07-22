@@ -21,6 +21,8 @@ export type CustomerAuthIdentity = {
   emailVerified: boolean;
   emailVerifiedAt: string | null;
   phone: string | null;
+  phoneVerified: boolean;
+  phoneVerifiedAt: string | null;
   defaultShippingAddress: ShippingAddress | null;
   profileCompleteness: {
     isCompleteForCheckout: boolean;
@@ -40,6 +42,7 @@ type ProfileRow = {
   email_verified_at: string | null;
   full_name: string | null;
   phone: string | null;
+  phone_verified_at: string | null;
   role: UserRole;
 };
 
@@ -65,7 +68,7 @@ export async function getCustomerAuthState(): Promise<CustomerAuthState> {
   const { data: profile, error: profileError } = await supabase
     .from("profiles")
     .select(
-      "default_shipping_address,display_name,email,email_verified_at,full_name,phone,role",
+      "default_shipping_address,display_name,email,email_verified_at,full_name,phone,phone_verified_at,role",
     )
     .eq("id", user.id)
     .maybeSingle();
@@ -100,7 +103,7 @@ export async function ensureCustomerProfileForAuthUser(options: {
   const { data: currentProfile, error: readError } = await admin
     .from("profiles")
     .select(
-      "default_shipping_address,display_name,email,email_verified_at,full_name,phone,role",
+      "default_shipping_address,display_name,email,email_verified_at,full_name,phone,phone_verified_at,role",
     )
     .eq("id", options.user.id)
     .maybeSingle();
@@ -127,7 +130,7 @@ export async function ensureCustomerProfileForAuthUser(options: {
         email_verified_at: emailVerifiedAt,
       })
       .select(
-        "default_shipping_address,display_name,email,email_verified_at,full_name,phone,role",
+        "default_shipping_address,display_name,email,email_verified_at,full_name,phone,phone_verified_at,role",
       )
       .single();
 
@@ -162,7 +165,7 @@ export async function ensureCustomerProfileForAuthUser(options: {
     })
     .eq("id", options.user.id)
     .select(
-      "default_shipping_address,display_name,email,email_verified_at,full_name,phone,role",
+      "default_shipping_address,display_name,email,email_verified_at,full_name,phone,phone_verified_at,role",
     )
     .single();
 
@@ -197,7 +200,7 @@ export async function updateCustomerProfileForAuthUser(options: {
   const { data: currentProfile, error: readError } = await admin
     .from("profiles")
     .select(
-      "default_shipping_address,display_name,email,email_verified_at,full_name,phone,role",
+      "default_shipping_address,display_name,email,email_verified_at,full_name,phone,phone_verified_at,role",
     )
     .eq("id", options.user.id)
     .maybeSingle();
@@ -226,6 +229,10 @@ export async function updateCustomerProfileForAuthUser(options: {
     email,
     email_verified_at: emailVerifiedAt,
     phone: options.profile.phone,
+    phone_verified_at:
+      currentProfile?.phone?.trim() === options.profile.phone.trim()
+        ? currentProfile.phone_verified_at
+        : null,
     default_shipping_address: options.profile.defaultShippingAddress,
   };
   const query = currentProfile
@@ -240,7 +247,7 @@ export async function updateCustomerProfileForAuthUser(options: {
       });
   const { data: savedProfile, error: saveError } = await query
     .select(
-      "default_shipping_address,display_name,email,email_verified_at,full_name,phone,role",
+      "default_shipping_address,display_name,email,email_verified_at,full_name,phone,phone_verified_at,role",
     )
     .single();
 
@@ -272,6 +279,7 @@ function mapAuthIdentity(
   const emailVerifiedAt =
     profile?.email_verified_at ?? user.email_confirmed_at ?? null;
   const phone = profile?.phone?.trim() || null;
+  const phoneVerifiedAt = profile?.phone_verified_at ?? null;
   const defaultShippingAddress = parseDefaultShippingAddress(
     profile?.default_shipping_address,
   );
@@ -285,6 +293,8 @@ function mapAuthIdentity(
     emailVerified: Boolean(emailVerifiedAt),
     emailVerifiedAt,
     phone,
+    phoneVerified: Boolean(phoneVerifiedAt),
+    phoneVerifiedAt,
     defaultShippingAddress,
     profileCompleteness: getProfileCompleteness({
       defaultShippingAddress,

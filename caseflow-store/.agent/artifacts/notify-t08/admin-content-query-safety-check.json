@@ -1,0 +1,11 @@
+{
+  "checkedAt": "2026-07-22T18:33:38.283Z",
+  "checks": {
+    "boundedEditionBatches": true,
+    "directUnboundedFilterRemoved": true,
+    "historicalMissingEvidenceNormalized": true,
+    "historicalExplanationFallback": true
+  },
+  "failures": [],
+  "ok": true
+}

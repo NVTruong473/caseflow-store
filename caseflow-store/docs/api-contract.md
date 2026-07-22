@@ -233,3 +233,76 @@ return `ORDER_INVALID_TRANSITION`.
 shape: `range=7d|30d|all` or paired `from=YYYY-MM-DD&to=YYYY-MM-DD`. It returns
 server-generated `text/csv` for order operations. The CSV intentionally excludes
 customer email, phone, full shipping address, customer id, and internal notes.
+
+## Transactional Notifications
+
+All notification endpoints keep the standard `{ data, error, meta }` envelope.
+External email/SMS delivery is server-configured; no provider credential or OTP
+value is returned by these APIs.
+
+### `GET /api/customer/notifications`
+
+Requires an authenticated customer. Returns only that customer's in-app
+notifications, unread count, and whether live SMS verification is currently
+available.
+
+### `PATCH /api/customer/notifications`
+
+Marks one or more customer-owned notifications as read. IDs owned by another
+customer are ignored and cannot be used to discover that customer's data.
+
+```json
+{ "notificationIds": ["uuid"] }
+```
+
+### `POST /api/customer/phone-verification/request`
+
+Requires an authenticated customer and a valid profile phone number. This
+route is unavailable unless live SMS delivery and the server-side OTP hashing
+secret are configured. It returns challenge metadata, never the OTP.
+
+### `POST /api/customer/phone-verification/verify`
+
+Verifies a customer-owned, unexpired challenge with attempt limits and marks
+the matching profile phone as verified after success.
+
+### `GET /api/admin/notifications`
+
+Requires `notifications:read` (staff/admin). Supports `channel`, `eventType`,
+`status`, and `q` filters. Results contain operational status and opaque
+recipient labels, not email addresses, phone numbers, OTP values, raw metadata,
+provider payloads, or secrets.
+
+### `GET /api/admin/notifications/config`
+
+Requires `notifications:manage-config` (admin only). Returns a sanitized
+readiness summary; it never returns provider credentials.
+
+### `POST /api/admin/notifications/[id]/retry`
+
+Requires `notifications:retry` (staff/admin). Only failed or blocked external
+deliveries can be retried when their channel is available. In-app delivery and
+sandbox previews cannot be retried through this endpoint.
+
+### `POST /api/internal/notifications/dispatch`
+
+Server-to-server dispatcher endpoint protected by
+`NOTIFICATION_DISPATCH_SECRET`. It claims queued rows through the database RPC
+and is idempotent at the notification/event/channel level.
+
+### `POST /api/admin/orders/[id]/transfer-decision`
+
+Requires `orders:update-status` (staff/admin). Accepts an explicit simulated
+transfer decision and reason. The use case validates the current order/payment
+state and prevents customers from self-confirming payment.
+
+```json
+{
+  "decision": "confirm",
+  "reason": "Reference and amount matched the simulated transfer record"
+}
+```
+
+`decision` may be `confirm` or `reject`. Rejection cancels the simulated
+transfer path according to the order transition policy; a paid or otherwise
+terminal order cannot be moved backward.

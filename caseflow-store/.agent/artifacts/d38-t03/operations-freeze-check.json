@@ -250,7 +250,7 @@
       "path": ".agent/artifacts/d38-t02/admin-orders-csv-export-check.json"
     }
   ],
-  "baseURL": "http://127.0.0.1:3006",
+  "baseURL": "http://127.0.0.1:3013",
   "cleanupScan": {
     "operationOrdersByCode": 0,
     "operationOrdersByEmail": 0,
@@ -327,7 +327,7 @@
     "hasReviewBoundary": true,
     "hasServerAuthorization": true
   },
-  "generatedAt": "2026-07-17T06:12:10.380Z",
+  "generatedAt": "2026-07-22T18:08:26.515Z",
   "ok": true,
   "pass": {
     "adminEndpoints": true,

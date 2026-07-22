@@ -11,12 +11,11 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: stable portfolio and operations handoff after `v1.12.1`.
-- Current gate: atomic order reliability patch released; owner production UAT
-  passed customer, voucher, order cancellation, role, dashboard, smoke, and
-  security checks. Custom SMTP remains externally blocked pending real
-  credentials.
-- Current task: No active implementation task.
+- Current mode: approved `v1.13` transactional notification and simulated
+  transfer implementation.
+- Current gate: `NOTIFY-T08` and the refreshed local release gate passed;
+  migrations `0012` and `0013` are applied with count-preserving evidence.
+- Current task: `NOTIFY-T09 - Apply, Deploy, Smoke Test, Document, And Release`.
 - Latest production deployment: `dpl_Ar6sNH1nUraGoK25BhJt6Gn6KCrY`, aliased to
   `https://caseflow-store.vercel.app`.
 - Latest GitHub Release:

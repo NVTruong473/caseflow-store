@@ -296,6 +296,22 @@ export async function listSupabaseOrders(): Promise<SupabaseOrderRecord[]> {
   return adminRecords.map(({ items, order }) => ({ items, order }));
 }
 
+export async function getSupabaseAdminOrderById(
+  orderId: string,
+): Promise<SupabaseAdminOrderRecord | null> {
+  const supabase = createSupabaseAdminClient();
+  const { data, error } = await supabase
+    .from("orders")
+    .select("*,order_items(*)")
+    .eq("id", orderId)
+    .maybeSingle();
+
+  if (error) throw new Error("Failed to read admin order", { cause: error });
+  if (!data) return null;
+  const { order_items: orderItems, ...order } = data;
+  return mapSupabaseAdminOrderRecord(order, orderItems);
+}
+
 export async function listSupabaseOrdersForCustomer(
   customerId: string,
 ): Promise<SupabaseOrderRecord[]> {
@@ -570,6 +586,26 @@ export async function updateSupabaseAdminOrderOperations(
     nextOrderStatus,
     requested: requestedShippingStatus,
   });
+
+  if (
+    nextOrderStatus === "cancelled" &&
+    existingOperations.paymentStatus === "confirmed"
+  ) {
+    return invalidTransitionResult(
+      "Paid orders require a refund workflow before cancellation",
+    );
+  }
+
+  if (
+    nextOrderStatus === "cancelled" &&
+    ["shipped", "delivered", "returned"].includes(
+      existingOperations.shippingStatus,
+    )
+  ) {
+    return invalidTransitionResult(
+      "Dispatched orders require the return workflow instead of cancellation",
+    );
+  }
 
   if (
     request.status !== undefined &&

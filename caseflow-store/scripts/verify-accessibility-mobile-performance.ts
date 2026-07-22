@@ -12,7 +12,11 @@ import type { Database } from "../src/types/supabase";
 
 loadEnvConfig(process.cwd());
 
-const ARTIFACT_DIR = path.join(".agent", "artifacts", "d39-t03");
+const ARTIFACT_DIR = path.join(
+  ".agent",
+  "artifacts",
+  process.env.ACCESSIBILITY_MOBILE_ARTIFACT_ID ?? "d39-t03",
+);
 const CART_STORAGE_KEY = "caseflow-store.cart.v1";
 const TEST_PASSWORD = "CaseflowBooks#39A11y";
 const MAX_CATALOG_RENDERED_ITEMS = 24;

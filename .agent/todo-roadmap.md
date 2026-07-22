@@ -10,10 +10,11 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: stable portfolio and operations handoff after `v1.12.1`
-- Current gate: `UAT-OWNER-T01` production acceptance passed; custom SMTP and
-  transactional order email remain commercial-launch boundaries
-- Current task: No active implementation task
+- Mode: approved `v1.13` transactional notification and simulated transfer
+  implementation
+- Current gate: `NOTIFY-T08` and the refreshed local release gate passed;
+  migrations `0012` and `0013` are applied with count-preserving evidence
+- Current task: `NOTIFY-T09 - Apply, Deploy, Smoke Test, Document, And Release`
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-22
 

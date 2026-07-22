@@ -1,0 +1,342 @@
+{
+  "adminFlow": {
+    "dashboardReady": true,
+    "focusChecks": [
+      {
+        "active": true,
+        "disabled": false,
+        "focusVisible": true,
+        "height": 44,
+        "label": "admin orders nav",
+        "selector": "[data-admin-nav-item='orders']",
+        "visible": true,
+        "width": 130
+      },
+      {
+        "active": true,
+        "disabled": false,
+        "focusVisible": true,
+        "height": 40,
+        "label": "admin dashboard range",
+        "selector": "[data-admin-dashboard-range-link='30d']",
+        "visible": true,
+        "width": 111
+      },
+      {
+        "active": true,
+        "disabled": false,
+        "focusVisible": true,
+        "height": 40,
+        "label": "admin export orders",
+        "selector": "[data-admin-dashboard-export-orders]",
+        "visible": true,
+        "width": 150
+      }
+    ],
+    "ordersReady": true,
+    "overflowChecks": [
+      {
+        "exists": true,
+        "hasOverflow": false,
+        "label": "admin dashboard desktop",
+        "path": ".agent/artifacts/notify-t08/admin-dashboard-desktop-en.png",
+        "viewport": {
+          "width": 1440,
+          "height": 1100
+        }
+      },
+      {
+        "exists": true,
+        "hasOverflow": false,
+        "label": "admin orders mobile",
+        "path": ".agent/artifacts/notify-t08/admin-orders-mobile-en.png",
+        "viewport": {
+          "width": 375,
+          "height": 960
+        }
+      }
+    ],
+    "screenshots": [
+      {
+        "exists": true,
+        "hasOverflow": false,
+        "label": "admin dashboard desktop",
+        "path": ".agent/artifacts/notify-t08/admin-dashboard-desktop-en.png",
+        "viewport": {
+          "width": 1440,
+          "height": 1100
+        }
+      },
+      {
+        "exists": true,
+        "hasOverflow": false,
+        "label": "admin orders mobile",
+        "path": ".agent/artifacts/notify-t08/admin-orders-mobile-en.png",
+        "viewport": {
+          "width": 375,
+          "height": 960
+        }
+      }
+    ]
+  },
+  "baseURL": "http://127.0.0.1:3013",
+  "checkoutFlow": {
+    "checkoutReady": true,
+    "focusChecks": [
+      {
+        "active": true,
+        "disabled": false,
+        "focusVisible": true,
+        "height": 44,
+        "label": "checkout customer name",
+        "selector": "[data-checkout-customer-name]",
+        "visible": true,
+        "width": 285
+      },
+      {
+        "active": true,
+        "disabled": false,
+        "focusVisible": true,
+        "height": 136,
+        "label": "checkout payment option",
+        "selector": "[data-checkout-payment-method='bank-transfer']",
+        "visible": true,
+        "width": 289
+      },
+      {
+        "active": true,
+        "disabled": false,
+        "focusVisible": true,
+        "height": 74,
+        "label": "checkout submit",
+        "selector": "[data-checkout-submit]",
+        "visible": true,
+        "width": 99
+      }
+    ],
+    "overflowChecks": [
+      {
+        "exists": true,
+        "hasOverflow": false,
+        "label": "checkout desktop",
+        "path": ".agent/artifacts/notify-t08/checkout-desktop-en.png",
+        "viewport": {
+          "width": 1440,
+          "height": 1100
+        }
+      },
+      {
+        "exists": true,
+        "hasOverflow": false,
+        "label": "checkout mobile",
+        "path": ".agent/artifacts/notify-t08/checkout-mobile-en.png",
+        "viewport": {
+          "width": 375,
+          "height": 940
+        }
+      }
+    ],
+    "screenshots": [
+      {
+        "exists": true,
+        "hasOverflow": false,
+        "label": "checkout desktop",
+        "path": ".agent/artifacts/notify-t08/checkout-desktop-en.png",
+        "viewport": {
+          "width": 1440,
+          "height": 1100
+        }
+      },
+      {
+        "exists": true,
+        "hasOverflow": false,
+        "label": "checkout mobile",
+        "path": ".agent/artifacts/notify-t08/checkout-mobile-en.png",
+        "viewport": {
+          "width": 375,
+          "height": 940
+        }
+      }
+    ]
+  },
+  "generatedAt": "2026-07-22T18:13:12.323Z",
+  "ok": true,
+  "pass": {
+    "adminControls": true,
+    "catalogPerformance": true,
+    "checkoutControls": true,
+    "focusStates": true,
+    "noOverflow": true,
+    "screenshots": true
+  },
+  "publicFlow": {
+    "catalog": {
+      "cardCount": 24,
+      "hasPagination": true,
+      "navigationMs": 661,
+      "renderedCount": 24,
+      "resultTotal": 500,
+      "totalCount": 500
+    },
+    "focusChecks": [
+      {
+        "active": true,
+        "disabled": false,
+        "focusVisible": true,
+        "height": 36,
+        "label": "language switch",
+        "selector": "[data-language-option='vi']",
+        "visible": true,
+        "width": 66
+      },
+      {
+        "active": true,
+        "disabled": false,
+        "focusVisible": true,
+        "height": 44,
+        "label": "assistant toggle",
+        "selector": "[data-book-assistant-toggle]",
+        "visible": true,
+        "width": 148
+      },
+      {
+        "active": true,
+        "disabled": false,
+        "focusVisible": true,
+        "height": 38,
+        "label": "cart button",
+        "selector": "[data-cart-drawer-open]",
+        "visible": true,
+        "width": 78
+      }
+    ],
+    "overflowChecks": [
+      {
+        "exists": true,
+        "hasOverflow": false,
+        "label": "home desktop",
+        "path": ".agent/artifacts/notify-t08/home-desktop-en.png",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        }
+      },
+      {
+        "exists": true,
+        "hasOverflow": false,
+        "label": "catalog desktop",
+        "path": ".agent/artifacts/notify-t08/catalog-desktop-en.png",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        }
+      },
+      {
+        "exists": true,
+        "hasOverflow": false,
+        "label": "product detail desktop",
+        "path": ".agent/artifacts/notify-t08/product-detail-desktop-en.png",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        }
+      },
+      {
+        "exists": true,
+        "hasOverflow": false,
+        "label": "home mobile",
+        "path": ".agent/artifacts/notify-t08/home-mobile-en.png",
+        "viewport": {
+          "width": 375,
+          "height": 920
+        }
+      },
+      {
+        "exists": true,
+        "hasOverflow": false,
+        "label": "catalog mobile",
+        "path": ".agent/artifacts/notify-t08/catalog-mobile-en.png",
+        "viewport": {
+          "width": 375,
+          "height": 920
+        }
+      },
+      {
+        "exists": true,
+        "hasOverflow": false,
+        "label": "product detail mobile",
+        "path": ".agent/artifacts/notify-t08/product-detail-mobile-en.png",
+        "viewport": {
+          "width": 375,
+          "height": 920
+        }
+      }
+    ],
+    "screenshots": [
+      {
+        "exists": true,
+        "hasOverflow": false,
+        "label": "home desktop",
+        "path": ".agent/artifacts/notify-t08/home-desktop-en.png",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        }
+      },
+      {
+        "exists": true,
+        "hasOverflow": false,
+        "label": "catalog desktop",
+        "path": ".agent/artifacts/notify-t08/catalog-desktop-en.png",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        }
+      },
+      {
+        "exists": true,
+        "hasOverflow": false,
+        "label": "product detail desktop",
+        "path": ".agent/artifacts/notify-t08/product-detail-desktop-en.png",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        }
+      },
+      {
+        "exists": true,
+        "hasOverflow": false,
+        "label": "home mobile",
+        "path": ".agent/artifacts/notify-t08/home-mobile-en.png",
+        "viewport": {
+          "width": 375,
+          "height": 920
+        }
+      },
+      {
+        "exists": true,
+        "hasOverflow": false,
+        "label": "catalog mobile",
+        "path": ".agent/artifacts/notify-t08/catalog-mobile-en.png",
+        "viewport": {
+          "width": 375,
+          "height": 920
+        }
+      },
+      {
+        "exists": true,
+        "hasOverflow": false,
+        "label": "product detail mobile",
+        "path": ".agent/artifacts/notify-t08/product-detail-mobile-en.png",
+        "viewport": {
+          "width": 375,
+          "height": 920
+        }
+      }
+    ]
+  },
+  "target": {
+    "editionId": "00000000-0000-4000-8000-000000003027",
+    "slug": "a-christmas-carol-english-paperback"
+  }
+}

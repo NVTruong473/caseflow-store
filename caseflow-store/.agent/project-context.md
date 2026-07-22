@@ -13,14 +13,12 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: stable portfolio and operations handoff after the `v1.12.1`
-  atomic order reliability patch and final consistency audit.
-- Current gate: `UAT-OWNER-T01` passed real-email customer registration,
-  voucher checkout, customer cancellation, staff/admin authorization,
-  operations dashboard, smoke, and security on production. `AUTH-SMTP-T02`
-  and transactional order email remain commercial-launch boundaries.
-- Current task: no open implementation task; `AUTH-SMTP-T02` only if real SMTP
-  credentials become available.
+- Current mode: approved `v1.13` transactional notification and simulated
+  transfer implementation.
+- Current gate: `NOTIFY-T08` and the refreshed `NOTIFY-T09` local release gate
+  passed; migrations `0012` and `0013` are applied with count-preserving and
+  order-lifecycle evidence. Production deploy/reverification remains pending.
+- Current task: `NOTIFY-T09 - Apply, Deploy, Smoke Test, Document, And Release`.
 
 ## Confirmed Facts
 

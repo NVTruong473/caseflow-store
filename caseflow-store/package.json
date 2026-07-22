@@ -9,7 +9,15 @@
     "lint": "eslint",
     "test:e2e": "playwright test",
     "verify:architecture": "node scripts/verify-layer-boundaries.mjs",
+    "verify:notifications": "node scripts/verify-notification-contracts.mjs",
+    "verify:notification-migration": "node scripts/verify-notification-migration.mjs",
+    "verify:notification-runtime": "npm exec -- tsx scripts/verify-notification-runtime.ts",
+    "verify:customer-notifications": "node scripts/verify-customer-notifications.mjs",
+    "verify:order-notifications": "node scripts/verify-order-notification-integration.mjs",
+    "verify:admin-notifications": "node scripts/verify-admin-notification-operations.mjs",
+    "verify:admin-content-query-safety": "node scripts/verify-admin-content-query-safety.mjs",
     "apply:order-reliability-migration": "node --env-file-if-exists=.env.local scripts/apply-order-reliability-migration.mjs",
+    "apply:notification-migration": "node --env-file-if-exists=.env.local scripts/apply-notification-migration.mjs",
     "verify:order-reliability-migration": "node scripts/verify-order-reliability-migration.mjs"
   },
   "dependencies": {

@@ -11,6 +11,12 @@ import type {
   ShippingStatus,
   UserRole,
 } from "@/types/domain";
+import type {
+  NotificationChannel,
+  NotificationEvent,
+  NotificationStatus,
+  NotificationTemplate,
+} from "@/types/notifications";
 
 export type Json =
   | string
@@ -1264,6 +1270,115 @@ export type Database = {
           },
         ];
       };
+      notification_outbox: {
+        Row: {
+          id: string;
+          event_key: string;
+          event_type: NotificationEvent;
+          channel: NotificationChannel;
+          template_key: NotificationTemplate;
+          customer_id: string;
+          order_id: string | null;
+          status: NotificationStatus;
+          attempts: number;
+          next_attempt_at: string;
+          provider_message_id: string | null;
+          last_error_code: string | null;
+          rendered_preview: Json | null;
+          metadata: Json;
+          sent_at: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          event_key: string;
+          event_type: NotificationEvent;
+          channel: NotificationChannel;
+          template_key: NotificationTemplate;
+          customer_id: string;
+          order_id?: string | null;
+          status?: NotificationStatus;
+          attempts?: number;
+          next_attempt_at?: string;
+          provider_message_id?: string | null;
+          last_error_code?: string | null;
+          rendered_preview?: Json | null;
+          metadata?: Json;
+          sent_at?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          status?: NotificationStatus;
+          attempts?: number;
+          next_attempt_at?: string;
+          provider_message_id?: string | null;
+          last_error_code?: string | null;
+          rendered_preview?: Json | null;
+          metadata?: Json;
+          sent_at?: string | null;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      customer_notifications: {
+        Row: {
+          id: string;
+          customer_id: string;
+          outbox_id: string;
+          order_id: string | null;
+          event_type: NotificationEvent;
+          title: Json;
+          body: Json;
+          read_at: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          customer_id: string;
+          outbox_id: string;
+          order_id?: string | null;
+          event_type: NotificationEvent;
+          title: Json;
+          body: Json;
+          read_at?: string | null;
+          created_at?: string;
+        };
+        Update: {
+          read_at?: string | null;
+        };
+        Relationships: [];
+      };
+      phone_verification_challenges: {
+        Row: {
+          id: string;
+          customer_id: string;
+          phone: string;
+          otp_hash: string;
+          attempts: number;
+          max_attempts: number;
+          expires_at: string;
+          consumed_at: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          customer_id: string;
+          phone: string;
+          otp_hash: string;
+          attempts?: number;
+          max_attempts?: number;
+          expires_at: string;
+          consumed_at?: string | null;
+          created_at?: string;
+        };
+        Update: {
+          attempts?: number;
+          consumed_at?: string | null;
+        };
+        Relationships: [];
+      };
     };
     Views: Record<string, never>;
     Functions: {
@@ -1328,6 +1443,37 @@ export type Database = {
         Args: {
           p_payment_id: string;
           p_paid_at: string;
+        };
+        Returns: Json;
+      };
+      mark_customer_notifications_read: {
+        Args: {
+          p_notification_ids: string[];
+        };
+        Returns: number;
+      };
+      claim_notification_outbox: {
+        Args: {
+          p_limit?: number;
+        };
+        Returns: Database["public"]["Tables"]["notification_outbox"]["Row"][];
+      };
+      create_phone_verification_challenge: {
+        Args: {
+          p_challenge_id: string;
+          p_customer_id: string;
+          p_phone: string;
+          p_otp_hash: string;
+          p_expires_at: string;
+        };
+        Returns: Json;
+      };
+      verify_phone_challenge: {
+        Args: {
+          p_challenge_id: string;
+          p_customer_id: string;
+          p_otp_hash: string;
+          p_verified_at: string;
         };
         Returns: Json;
       };

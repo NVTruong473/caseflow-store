@@ -48,6 +48,9 @@ const intentionalQrDemoFiles = new Set([
   "src/app/checkout/payment/page.tsx",
   "src/features/checkout/checkout-page.tsx",
   "src/features/checkout/qr-payment-page.tsx",
+  // Operations users must see that transfer evidence is simulated; this copy
+  // is not rendered on public or customer account surfaces.
+  "src/features/admin/admin-orders-page.tsx",
 ]);
 
 const requiredQrDemoSafetyTokens = [

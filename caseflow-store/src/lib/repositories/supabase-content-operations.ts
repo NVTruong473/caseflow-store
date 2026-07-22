@@ -1,6 +1,7 @@
 import { assessContentQuality } from "@/lib/content/content-quality";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import type {
+  ContentQualityEvidence,
   ContentQualityEvidenceStatus,
   ContentQualityRequirement,
 } from "@/types/content-provenance";
@@ -28,28 +29,49 @@ export type AdminContentQualitySummary = {
 };
 
 type QualityRow = TableRow<"book_content_quality_checks">;
+const QUALITY_EDITION_BATCH_SIZE = 100;
 
 export async function listSupabaseAdminContentQualitySummaries(
   editionIds: string[] = [],
 ): Promise<Map<string, AdminContentQualitySummary>> {
   const supabase = createSupabaseAdminClient();
-  let query = supabase
-    .from("book_content_quality_checks")
-    .select("*")
-    .order("edition_id", { ascending: true })
-    .order("requirement", { ascending: true });
+  const batches =
+    editionIds.length > 0
+      ? chunkValues([...new Set(editionIds)], QUALITY_EDITION_BATCH_SIZE)
+      : [null];
+  const results = await Promise.all(
+    batches.map(async (editionBatch) => {
+      let query = supabase
+        .from("book_content_quality_checks")
+        .select("*")
+        .order("edition_id", { ascending: true })
+        .order("requirement", { ascending: true });
 
-  if (editionIds.length > 0) {
-    query = query.in("edition_id", editionIds);
+      if (editionBatch) {
+        query = query.in("edition_id", editionBatch);
+      }
+
+      const { data, error } = await query;
+
+      if (error) {
+        throw new Error("Failed to read content quality checks", { cause: error });
+      }
+
+      return data ?? [];
+    }),
+  );
+
+  return summarizeContentQualityRows(results.flat());
+}
+
+function chunkValues<T>(values: T[], size: number) {
+  const chunks: T[][] = [];
+
+  for (let index = 0; index < values.length; index += size) {
+    chunks.push(values.slice(index, index + size));
   }
 
-  const { data, error } = await query;
-
-  if (error) {
-    throw new Error("Failed to read content quality checks", { cause: error });
-  }
-
-  return summarizeContentQualityRows(data ?? []);
+  return chunks;
 }
 
 function summarizeContentQualityRows(rows: QualityRow[]) {
@@ -65,12 +87,7 @@ function summarizeContentQualityRows(rows: QualityRow[]) {
     [...rowsByEditionId.entries()].map(([editionId, editionRows]) => {
       const assessment = assessContentQuality({
         editionId,
-        evidence: editionRows.map((row) => ({
-          note: row.note,
-          provenanceRecordId: row.provenance_record_id,
-          requirement: row.requirement as ContentQualityRequirement,
-          status: row.status as ContentQualityEvidenceStatus,
-        })),
+        evidence: editionRows.map(normalizePersistedQualityEvidence),
       });
       const blockingMissing = assessment.checks.filter(
         (check) => check.level === "blocking" && check.status === "missing",
@@ -110,6 +127,24 @@ function summarizeContentQualityRows(rows: QualityRow[]) {
       ] as const;
     }),
   );
+}
+
+function normalizePersistedQualityEvidence(row: QualityRow): ContentQualityEvidence {
+  const status = row.status as ContentQualityEvidenceStatus;
+  const needsExplanation = status === "unverified" || status === "not-applicable";
+
+  return {
+    note:
+      needsExplanation && !row.note?.trim()
+        ? "Legacy catalog evidence requires review"
+        : row.note,
+    provenanceRecordId:
+      status === "missing" || status === "not-applicable"
+        ? null
+        : row.provenance_record_id,
+    requirement: row.requirement as ContentQualityRequirement,
+    status,
+  };
 }
 
 function latestUpdatedAt(rows: QualityRow[]) {

@@ -1,0 +1,8 @@
+{
+  "checkedAt": "2026-07-22T18:39:41.657Z",
+  "checkedFiles": 565,
+  "findingCount": 0,
+  "findings": [],
+  "ok": true,
+  "policy": "Public image assets must not include embedded generator/provenance metadata. Internal source/provenance manifests remain unchanged."
+}

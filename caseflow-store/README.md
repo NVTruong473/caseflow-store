@@ -9,8 +9,9 @@ evidence, and portfolio notes.
 > Payments are simulated. The app does not collect card numbers, CVV, card
 > expiry, real bank credentials, or real MoMo/ZaloPay/VNPay credentials. QR
 > demo payment is available only in development/sandbox and is locked in
-> production. Phone fields are validated for profile completeness, but no real
-> SMS/OTP provider is integrated.
+> production. The in-app notification inbox works without an external vendor.
+> Email/SMS delivery and SMS OTP are disabled in production until approved
+> provider credentials and sender configuration are supplied.
 
 ## Current scope
 
@@ -24,8 +25,11 @@ evidence, and portfolio notes.
 - Account-bound signup welcome vouchers with one-code-per-order enforcement.
 - Customer order history, eligible order cancellation, and guarded public
   tracking.
-- Admin/staff dashboard, order operations, catalog, inventory, promotions,
-  customers, settings, and CSV export.
+- Customer in-app order notifications, with optional provider-gated email/SMS
+  delivery and SMS phone verification.
+- Admin/staff dashboard, order operations, simulated-transfer decisions,
+  notification operations, catalog, inventory, promotions, customers,
+  settings, and CSV export.
 - Rule-based bookstore assistant with no external AI API.
 
 ## Run locally

@@ -1,0 +1,399 @@
+{
+  "generatedAt": "2026-07-22T18:11:31.277Z",
+  "baseURL": "http://127.0.0.1:3013",
+  "desktop": {
+    "cart": {
+      "drawerItemCount": 2,
+      "hasBookMetadata": true,
+      "hasHorizontalOverflow": false
+    },
+    "catalog": {
+      "cardCount": 24,
+      "hasHorizontalOverflow": false,
+      "resultTotal": 500
+    },
+    "detail": {
+      "hasHorizontalOverflow": false,
+      "hasPurchaseControls": true,
+      "visible": true
+    },
+    "home": {
+      "categoryCards": 0,
+      "curatedEditions": 21,
+      "hasHorizontalOverflow": false,
+      "heroVisible": true,
+      "totalEditions": 500
+    },
+    "noOverflow": true,
+    "viewport": {
+      "height": 1200,
+      "width": 1440
+    }
+  },
+  "languageSwitch": {
+    "hasHorizontalOverflow": false,
+    "switchedToVietnamese": true
+  },
+  "mobile": {
+    "cart": {
+      "drawerItemCount": 2,
+      "hasBookMetadata": true,
+      "hasHorizontalOverflow": false
+    },
+    "catalog": {
+      "cardCount": 24,
+      "hasHorizontalOverflow": false,
+      "resultTotal": 500
+    },
+    "detail": {
+      "hasHorizontalOverflow": false,
+      "hasPurchaseControls": true,
+      "visible": true
+    },
+    "home": {
+      "categoryCards": 0,
+      "curatedEditions": 21,
+      "hasHorizontalOverflow": false,
+      "heroVisible": true,
+      "totalEditions": 500
+    },
+    "noOverflow": true,
+    "viewport": {
+      "height": 1000,
+      "width": 375
+    }
+  },
+  "ok": true,
+  "pass": {
+    "cartFlowStable": true,
+    "catalogStable": true,
+    "detailStable": true,
+    "homepageStable": true,
+    "languageSwitchStable": true,
+    "noOverflow": true
+  },
+  "targets": {
+    "en": {
+      "id": "00000000-0000-4000-8000-000000003027",
+      "type": "book-edition",
+      "slug": "a-christmas-carol-english-paperback",
+      "title": "A Christmas Carol",
+      "edition": {
+        "id": "00000000-0000-4000-8000-000000003027",
+        "slug": "a-christmas-carol-english-paperback",
+        "displayTitle": "A Christmas Carol",
+        "localizedDisplayTitle": {
+          "vi": "Bài ca Giáng sinh",
+          "en": "A Christmas Carol"
+        },
+        "subtitle": null,
+        "language": "en",
+        "format": "paperback",
+        "isbn13": "9780141389479",
+        "isbn10": "0141389478",
+        "publicationYear": 2012,
+        "pageCount": null,
+        "dimensions": null,
+        "weightGrams": null,
+        "priceVnd": 159000,
+        "compareAtPriceVnd": 178000,
+        "stockQuantity": 11,
+        "lowStockThreshold": 10,
+        "inventoryStatus": "in-stock",
+        "summary": {
+          "vi": "Câu chuyện đạo đức cô đọng nơi ký ức và tưởng tượng thúc đẩy một người keo kiệt hướng tới rộng lượng và sửa sai.",
+          "en": "A compact moral tale where memory and imagination push a miser toward generosity and repair."
+        },
+        "tableOfContents": null,
+        "sampleExcerptPolicy": "No copyrighted excerpt is stored; use project-written preview guidance only.",
+        "pairId": "00000000-0000-4000-8000-000000006027",
+        "pairedEditionId": "00000000-0000-4000-8000-000000004027",
+        "reasonToRead": {
+          "vi": "Ấn bản tiếng Anh của Bài ca Giáng sinh, dành cho độc giả muốn đọc và đối chiếu tác phẩm ở cả hai ngôn ngữ trong danh mục.",
+          "en": "English edition of A Christmas Carol for readers comparing the work across both catalog languages."
+        },
+        "displayFacts": [
+          {
+            "key": "isbn",
+            "label": {
+              "vi": "ISBN",
+              "en": "ISBN"
+            },
+            "value": {
+              "vi": "9780141389479",
+              "en": "9780141389479"
+            },
+            "provenanceRecordId": "00000000-0000-4000-8000-000000011082"
+          },
+          {
+            "key": "publisher",
+            "label": {
+              "vi": "Nhà xuất bản",
+              "en": "Publisher"
+            },
+            "value": {
+              "vi": "Penguin English Library",
+              "en": "Penguin English Library"
+            },
+            "provenanceRecordId": "00000000-0000-4000-8000-000000011081"
+          },
+          {
+            "key": "publication-year",
+            "label": {
+              "vi": "Năm xuất bản",
+              "en": "Publication year"
+            },
+            "value": {
+              "vi": "2012",
+              "en": "2012"
+            },
+            "provenanceRecordId": "00000000-0000-4000-8000-000000011084"
+          }
+        ],
+        "omittedOptionalFactKeys": [
+          "translator",
+          "page-count",
+          "source-physical-format"
+        ],
+        "isFeatured": false,
+        "createdAt": "2026-07-16T00:00:00+00:00",
+        "updatedAt": "2026-07-21T06:41:10.308973+00:00"
+      },
+      "work": {
+        "id": "00000000-0000-4000-8000-000000002027",
+        "slug": "a-christmas-carol",
+        "title": "A Christmas Carol",
+        "originalTitle": null,
+        "localizedTitle": {
+          "vi": "Bài ca Giáng sinh",
+          "en": "A Christmas Carol"
+        },
+        "originalLanguage": "English",
+        "themes": [
+          "redemption",
+          "generosity",
+          "memory"
+        ],
+        "ageRating": null,
+        "publicationEra": "1843",
+        "canonicalSummary": {
+          "vi": "Câu chuyện đạo đức cô đọng nơi ký ức và tưởng tượng thúc đẩy một người keo kiệt hướng tới rộng lượng và sửa sai.",
+          "en": "A compact moral tale where memory and imagination push a miser toward generosity and repair."
+        }
+      },
+      "authors": [
+        {
+          "id": "00000000-0000-4000-8000-000000001003",
+          "slug": "charles-dickens",
+          "name": "Charles Dickens",
+          "country": "United Kingdom"
+        }
+      ],
+      "categories": [
+        {
+          "id": "00000000-0000-4000-8000-000000000101",
+          "type": "book-category",
+          "slug": "classic-literature",
+          "labels": {
+            "vi": "Van hoc kinh dien",
+            "en": "Classic literature"
+          },
+          "description": {
+            "vi": "Nhung tac pham lau ben, phu hop cho tu sach ca nhan va hoc thuat.",
+            "en": "Enduring works suited for personal libraries and study shelves."
+          },
+          "sortOrder": 1
+        },
+        {
+          "id": "00000000-0000-4000-8000-000000000100",
+          "type": "book-category",
+          "slug": "fiction",
+          "labels": {
+            "vi": "Van hoc",
+            "en": "Fiction"
+          },
+          "description": {
+            "vi": "Tieu thuyet va tac pham hu cau de doc theo chu de, tac gia va ngon ngu.",
+            "en": "Novels and fiction works browsed by theme, author, and language."
+          },
+          "sortOrder": 0
+        }
+      ],
+      "translators": [],
+      "publisher": {
+        "id": "5e5621f7-bf82-44b2-81ee-9ec438f5c36c",
+        "slug": "penguin-english-library",
+        "name": "Penguin English Library",
+        "country": null,
+        "website": null
+      },
+      "coverAsset": {
+        "id": "cb8d213f-69a0-4eb6-ba73-2775a0b18385",
+        "path": "/images/books/gutenberg-covers/a-christmas-carol.jpg",
+        "altText": {
+          "vi": "Bìa gốc cho Bài ca Giáng sinh",
+          "en": "A Christmas Carol source-work cover art"
+        },
+        "source": "public-domain"
+      }
+    },
+    "vi": {
+      "id": "00000000-0000-4000-8000-000000004030",
+      "type": "book-edition",
+      "slug": "the-brothers-karamazov-vietnamese-hardcover",
+      "title": "Anh em nhà Karamazov",
+      "edition": {
+        "id": "00000000-0000-4000-8000-000000004030",
+        "slug": "the-brothers-karamazov-vietnamese-hardcover",
+        "displayTitle": "Anh em nhà Karamazov",
+        "localizedDisplayTitle": {
+          "vi": "Anh em nhà Karamazov",
+          "en": "The Brothers Karamazov"
+        },
+        "subtitle": null,
+        "language": "vi",
+        "format": "hardcover",
+        "isbn13": "9786045588567",
+        "isbn10": "6045588568",
+        "publicationYear": 2021,
+        "pageCount": 845,
+        "dimensions": null,
+        "weightGrams": null,
+        "priceVnd": 240000,
+        "compareAtPriceVnd": 269000,
+        "stockQuantity": 42,
+        "lowStockThreshold": 10,
+        "inventoryStatus": "in-stock",
+        "summary": {
+          "vi": "Bi kịch gia đình mở rộng thành những câu hỏi về đức tin, tự do, tội lỗi và trách nhiệm trước người khác.",
+          "en": "A family tragedy expands into questions about faith, freedom, guilt, and responsibility before others."
+        },
+        "tableOfContents": null,
+        "sampleExcerptPolicy": "No copyrighted excerpt is stored; use project-written preview guidance only.",
+        "pairId": "00000000-0000-4000-8000-000000006030",
+        "pairedEditionId": "00000000-0000-4000-8000-000000003030",
+        "reasonToRead": {
+          "vi": "Ấn bản tiếng Việt của Anh em nhà Karamazov, dành cho độc giả muốn đọc và đối chiếu tác phẩm ở cả hai ngôn ngữ trong danh mục.",
+          "en": "Vietnamese edition of The Brothers Karamazov for readers comparing the work across both catalog languages."
+        },
+        "displayFacts": [
+          {
+            "key": "isbn",
+            "label": {
+              "vi": "ISBN",
+              "en": "ISBN"
+            },
+            "value": {
+              "vi": "9786045588567",
+              "en": "9786045588567"
+            },
+            "provenanceRecordId": "00000000-0000-4000-8000-000000011221"
+          },
+          {
+            "key": "publication-year",
+            "label": {
+              "vi": "Năm xuất bản",
+              "en": "Publication year"
+            },
+            "value": {
+              "vi": "2021",
+              "en": "2021"
+            },
+            "provenanceRecordId": "00000000-0000-4000-8000-000000011223"
+          },
+          {
+            "key": "page-count",
+            "label": {
+              "vi": "Số trang",
+              "en": "Page count"
+            },
+            "value": {
+              "vi": "845 trang",
+              "en": "845 pages"
+            },
+            "provenanceRecordId": "00000000-0000-4000-8000-000000011224"
+          }
+        ],
+        "omittedOptionalFactKeys": [
+          "publisher",
+          "translator",
+          "source-physical-format"
+        ],
+        "isFeatured": false,
+        "createdAt": "2026-07-16T00:00:00+00:00",
+        "updatedAt": "2026-07-21T06:41:10.716107+00:00"
+      },
+      "work": {
+        "id": "00000000-0000-4000-8000-000000002030",
+        "slug": "the-brothers-karamazov",
+        "title": "The Brothers Karamazov",
+        "originalTitle": null,
+        "localizedTitle": {
+          "vi": "Anh em nhà Karamazov",
+          "en": "The Brothers Karamazov"
+        },
+        "originalLanguage": "Russian",
+        "themes": [
+          "faith",
+          "family",
+          "guilt"
+        ],
+        "ageRating": null,
+        "publicationEra": "1880",
+        "canonicalSummary": {
+          "vi": "Bi kịch gia đình mở rộng thành những câu hỏi về đức tin, tự do, tội lỗi và trách nhiệm trước người khác.",
+          "en": "A family tragedy expands into questions about faith, freedom, guilt, and responsibility before others."
+        }
+      },
+      "authors": [
+        {
+          "id": "00000000-0000-4000-8000-000000001023",
+          "slug": "fyodor-dostoevsky",
+          "name": "Fyodor Dostoevsky",
+          "country": "Russia"
+        }
+      ],
+      "categories": [
+        {
+          "id": "00000000-0000-4000-8000-000000000101",
+          "type": "book-category",
+          "slug": "classic-literature",
+          "labels": {
+            "vi": "Van hoc kinh dien",
+            "en": "Classic literature"
+          },
+          "description": {
+            "vi": "Nhung tac pham lau ben, phu hop cho tu sach ca nhan va hoc thuat.",
+            "en": "Enduring works suited for personal libraries and study shelves."
+          },
+          "sortOrder": 1
+        },
+        {
+          "id": "00000000-0000-4000-8000-000000000100",
+          "type": "book-category",
+          "slug": "fiction",
+          "labels": {
+            "vi": "Van hoc",
+            "en": "Fiction"
+          },
+          "description": {
+            "vi": "Tieu thuyet va tac pham hu cau de doc theo chu de, tac gia va ngon ngu.",
+            "en": "Novels and fiction works browsed by theme, author, and language."
+          },
+          "sortOrder": 0
+        }
+      ],
+      "translators": [],
+      "publisher": null,
+      "coverAsset": {
+        "id": "ea64a4de-7878-45a4-94d1-d8c0b544fa06",
+        "path": "/images/books/gutenberg-covers/the-brothers-karamazov.jpg",
+        "altText": {
+          "vi": "Bìa gốc cho Anh em nhà Karamazov",
+          "en": "The Brothers Karamazov source-work cover art"
+        },
+        "source": "public-domain"
+      }
+    }
+  }
+}

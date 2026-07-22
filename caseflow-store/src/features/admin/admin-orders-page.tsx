@@ -179,6 +179,7 @@ const adminOrdersCopy = {
     authDefaultMessage: "The order list needs a verified staff or admin session.",
     authTitle: "Verify operations access",
     created: "Created",
+    confirmTransfer: "Prepare confirmation",
     customer: "Customer",
     detail: "Detail",
     email: "Email",
@@ -203,6 +204,7 @@ const adminOrdersCopy = {
     phone: "Phone",
     rejectionHint:
       "Use rejected/cancelled when the order has fraud risk, invalid contact, unavailable stock, or another operations issue.",
+    rejectTransfer: "Prepare rejection",
     paymentStatus: "Payment status",
     recentOrders: "Recent orders",
     refresh: "Refresh",
@@ -224,6 +226,9 @@ const adminOrdersCopy = {
     statusUpdated: (label: string) => `Status updated to ${label}.`,
     storefront: "Storefront",
     total: "Total",
+    transferDecision: "Simulated transfer decision",
+    transferDecisionHint:
+      "Confirm after the transfer evidence has been reviewed, or add an internal reason and reject the order. Save the prepared decision below.",
     update: "Update",
     updated: "Updated",
     updateStatus: "Update operations",
@@ -243,6 +248,7 @@ const adminOrdersCopy = {
       "Danh sách đơn hàng cần phiên staff hoặc admin đã xác thực.",
     authTitle: "Xác minh quyền vận hành",
     created: "Ngày tạo",
+    confirmTransfer: "Chuẩn bị xác nhận",
     customer: "Khách hàng",
     detail: "Chi tiết",
     email: "Email",
@@ -268,6 +274,7 @@ const adminOrdersCopy = {
     phone: "Số điện thoại",
     rejectionHint:
       "Dùng từ chối/hủy khi đơn có rủi ro, liên hệ không hợp lệ, thiếu tồn kho hoặc vấn đề vận hành khác.",
+    rejectTransfer: "Chuẩn bị từ chối",
     paymentStatus: "Trạng thái thanh toán",
     recentOrders: "Đơn hàng gần đây",
     refresh: "Làm mới",
@@ -289,6 +296,9 @@ const adminOrdersCopy = {
     statusUpdated: (label: string) => `Đã cập nhật trạng thái thành ${label}.`,
     storefront: "Cửa hàng",
     total: "Tổng",
+    transferDecision: "Quyết định chuyển khoản mô phỏng",
+    transferDecisionHint:
+      "Xác nhận sau khi đã kiểm tra chứng từ chuyển khoản, hoặc nhập lý do nội bộ rồi từ chối đơn. Lưu quyết định đã chuẩn bị ở biểu mẫu bên dưới.",
     update: "Cập nhật",
     updated: "Cập nhật",
     updateStatus: "Cập nhật vận hành",
@@ -1191,6 +1201,59 @@ function AdminOrderDetail({
         </div>
         <OrderStatusBadge language={language} status={record.order.status} />
       </div>
+
+      {record.order.paymentMethod === "bank-transfer" &&
+      record.operations.paymentStatus === "awaiting-transfer" ? (
+        <section
+          className="mt-case-lg border-y border-operations/25 bg-surface-muted px-case-sm py-case-md"
+          aria-labelledby={`transfer-decision-${record.order.id}`}
+          data-admin-transfer-decision
+        >
+          <h3
+            id={`transfer-decision-${record.order.id}`}
+            className="text-small font-semibold text-foreground"
+          >
+            {copy.transferDecision}
+          </h3>
+          <p className="mt-1 text-small leading-6 text-text-muted">
+            {copy.transferDecisionHint}
+          </p>
+          <div className="mt-case-sm flex flex-wrap gap-case-sm">
+            <Button
+              type="button"
+              size="sm"
+              disabled={isSubmitting}
+              onClick={() =>
+                onOperationsDraftChange((current) => ({
+                  ...current,
+                  orderStatus:
+                    current.orderStatus === "pending"
+                      ? "confirmed"
+                      : current.orderStatus,
+                  paymentStatus: "confirmed",
+                }))
+              }
+              data-admin-transfer-confirm-prepare
+            >
+              {copy.confirmTransfer}
+            </Button>
+            <Button
+              type="button"
+              size="sm"
+              variant="secondary"
+              disabled={isSubmitting}
+              onClick={() =>
+                onOperationsDraftChange((current) =>
+                  normalizeOperationsDraftForOrderStatus(current, "cancelled"),
+                )
+              }
+              data-admin-transfer-reject-prepare
+            >
+              {copy.rejectTransfer}
+            </Button>
+          </div>
+        </section>
+      ) : null}
 
       <form
         className="mt-case-lg grid gap-case-md rounded-md border border-admin/20 bg-surface p-case-md"

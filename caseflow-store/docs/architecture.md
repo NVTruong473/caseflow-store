@@ -359,6 +359,39 @@ Public serialization uses an allowlist and never exposes internal reviewer
 notes, rights-analysis notes, or source-edition matching keys. See
 [`v1.2-provenance-content-quality-contracts.md`](v1.2-provenance-content-quality-contracts.md).
 
+## v1.13 transactional notification boundary
+
+Transactional communication uses the same modular-monolith boundaries as the
+rest of the application:
+
+- Route Handlers authenticate, authorize, validate, and map stable API
+  envelopes; they do not call delivery vendors directly.
+- Order and notification use cases own lifecycle transitions and append
+  notification events to the transactional outbox.
+- The notification dispatcher renders centralized Vietnamese/English
+  templates and delegates to `in-app`, email, or SMS providers.
+- The in-app inbox is the authoritative customer channel. Email and SMS are
+  optional delivery channels controlled entirely by server environment
+  configuration.
+- `disabled` mode records blocked external deliveries, while `sandbox` mode
+  records staff-visible previews without making network requests. `live` mode
+  requires explicit provider credentials and approved sender configuration.
+- Phone OTP values are generated server-side and stored only as keyed hashes;
+  verification has expiry, resend limits, attempt limits, and customer
+  ownership checks.
+- Admin/staff notification views expose operational status and opaque recipient
+  labels, not customer contact details, OTP material, provider responses, or
+  secrets.
+- Simulated transfer approval/rejection is an authenticated admin/staff order
+  operation. Customers cannot mark their own transfer as paid.
+
+Migrations `0012_transactional_notifications.sql` and
+`0013_notification_order_lifecycle.sql` add the outbox, customer inbox, phone
+challenge storage, RLS, dispatch claim RPC, and deletion-safe historical order
+references without removing existing commerce data. The accepted boundary and
+rollout controls are recorded in
+[`adr/0016-transactional-notifications-and-simulated-transfer.md`](adr/0016-transactional-notifications-and-simulated-transfer.md).
+
 ## Deployment and verification
 
 - Production alias: `https://caseflow-store.vercel.app`.

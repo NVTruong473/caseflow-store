@@ -2,6 +2,7 @@ import { getCustomerAuthState } from "@/lib/auth/customer";
 import { calculateBookCheckoutTotals } from "@/lib/checkout/book-totals";
 import { getCurrencyDisplayRules } from "@/lib/format/currency-display.server";
 import { getRequestLanguage } from "@/lib/i18n/server";
+import { dispatchCommerceNotificationsBestEffort } from "@/lib/notifications/commerce";
 import { validateSupabaseBookCart } from "@/lib/repositories/supabase-books";
 import { isSignupVoucherCode } from "@/lib/repositories/supabase-customer-vouchers";
 import {
@@ -168,6 +169,8 @@ export async function createBookOrderUseCase(
       shippingMethod: request.shippingMethod,
       totals,
     });
+
+    await dispatchCommerceNotificationsBestEffort();
 
     return {
       data,

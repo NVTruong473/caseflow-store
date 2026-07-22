@@ -14857,6 +14857,97 @@ Vercel production alias, and live production runtime checks.
 
 ---
 
+## NOTIFY-T07 - Admin/Staff Notification Operations
+
+- Date: 2026-07-22
+- Status: completed locally
+
+### Result
+
+- Added separate `notifications:read`, `notifications:retry`, and
+  admin-only `notifications:manage-config` permissions.
+- Added `/admin/notifications` with filters, responsive status views,
+  retry/loading/error/empty states, and an admin-only sanitized provider
+  readiness summary.
+- Added protected list, configuration, and retry APIs; retry mutations
+  delegate to a use case and shared dispatcher.
+- Minimized operations records to status metadata and opaque customer
+  references. Email, phone, OTP, raw metadata, provider payloads, message IDs,
+  and secrets are not returned to the operations UI.
+
+### Verification
+
+- `npm run verify:admin-notifications`: passed, `12/12`.
+- `ARCH_LAYER_ARTIFACT_ID=notify-t07 npm run verify:architecture`: passed with
+  zero findings across 195 tracked TypeScript files.
+- `NOTIFICATION_ARTIFACT_ID=notify-t07 npm run verify:notification-migration`:
+  passed, `14/14`.
+- `npx tsc --noEmit`: passed.
+- `npm run lint -- --quiet`: passed.
+- `npm run build`: compiled and generated a production `BUILD_ID`.
+- `git diff --check`: passed.
+
+### Evidence
+
+- `.agent/artifacts/notify-t07/admin-notification-operations-check.json`
+- `.agent/artifacts/notify-t07/layer-boundaries-check.json`
+- `.agent/artifacts/notify-t07/notification-migration-check.json`
+
+### Guardrails
+
+- Migration `0012` remains unapplied until the release task.
+- No external email or SMS provider was enabled.
+- No real payment, bank account, carrier, or live tracking integration was
+  introduced.
+
+---
+
+## NOTIFY-T08 - Full Local Quality Gate
+
+- Date: 2026-07-22
+- Status: completed locally
+
+### Result
+
+- Reran notification, architecture, security, production-lock, storefront,
+  operations, accessibility, and full E2E gates on the final local code.
+- Fixed operations catalog queries that exceeded Supabase URL/header limits by
+  batching 500 edition IDs in groups of 100.
+- Normalized inconsistent historical content-quality evidence at the read
+  boundary so legacy rows cannot crash the catalog operations page.
+- Hardened legacy freeze verifiers with per-run artifact IDs, the current
+  500-edition baseline, hydration-safe operations login, and deterministic
+  language-switch waiting.
+
+### Verification
+
+- `npm run test:e2e`: passed, `21/21`.
+- `npm run build`: passed, 59 routes generated.
+- `npm run lint -- --quiet`: passed.
+- `npx tsc --noEmit --pretty false`: passed.
+- All six notification verifiers plus architecture: passed.
+- Operations freeze, storefront freeze, responsive/accessibility, security
+  posture, QR production safety, and final QA: passed.
+- `npm audit --audit-level=high`: passed with zero vulnerabilities at all
+  severities.
+- Secret scan: passed across 1,408 files with zero findings.
+- Cleanup: passed with zero QA users, profiles, orders, catalog rows, or
+  promotion residue.
+
+### Evidence
+
+- `.agent/artifacts/notify-t08/`
+- `.agent/artifacts/notify-t08-final/secret-scan.json`
+- `.agent/artifacts/notify-t08-post/release-cleanup-check.json`
+
+### Guardrails
+
+- Migration `0012` remains unapplied until `NOTIFY-T09`.
+- External email and SMS remain disabled without provider credentials.
+- No production deployment, tag, or release was created in this task.
+
+---
+
 ## ORDER-RELIABILITY-T01 - Accept Atomic Order ADR And Roadmap
 
 - Date: 2026-07-22
@@ -14966,6 +15057,179 @@ the customer-facing commerce rules.
 - No pricing, payment, shipping, auth, or role-policy change.
 - No real payment integration.
 - No existing customer/UAT order cleanup.
+
+---
+
+## NOTIFY-T01 - Accept Transactional Notification ADR And Roadmap
+
+- Date: 2026-07-22
+- Status: completed
+
+### Result
+
+- Accepted ADR-0016 for an account-scoped in-app channel, provider-ready
+  email/SMS, optional phone OTP, transactional outbox, and staff-confirmed
+  simulated transfer operations.
+- Added the `v1.13` roadmap with nine gated tasks, acceptance criteria, and
+  verification requirements.
+- Fixed the ADR index omission for the already-released ADR-0013 while adding
+  ADR-0016.
+
+### Verification
+
+- `git diff --check`: PASS.
+- No runtime, database, provider, payment, or deployment change in this task.
+
+---
+
+## NOTIFY-T02 - Define Notification, OTP, And Provider Contracts
+
+- Date: 2026-07-22
+- Status: completed
+
+### Result
+
+- Added notification channel, status, event, template, provider, inbox, and
+  phone verification contracts.
+- Added strict Zod schemas for notification filters, retry/read actions, and
+  six-digit OTP requests.
+- Added server runtime configuration that defaults to external delivery
+  disabled, supports non-network sandbox delivery, and fails closed when live
+  Resend, Twilio, or OTP secrets are incomplete.
+- Documented all environment names in `.env.example` without adding a real
+  credential or public client secret.
+
+### Verification
+
+- `npm run verify:notifications`: PASS, 10/10 checks.
+- `npx tsc --noEmit --pretty false`: PASS.
+- `npm run lint`: PASS.
+- `git diff --check`: PASS.
+
+### Evidence
+
+- `.agent/artifacts/notify-t02/notification-contract-check.json`
+
+---
+
+## NOTIFY-T03 - Add Additive Supabase Notification Migration
+
+- Date: 2026-07-22
+- Status: completed, migration not yet applied
+
+### Result
+
+- Added additive `notification_outbox`, `customer_notifications`, and
+  `phone_verification_challenges` tables with constraints, indexes, RLS, and
+  least-privilege grants.
+- Added an account-scoped mark-read RPC and deterministic order status,
+  payment status, and shipping status event triggers.
+- Added a migration verifier and an apply runner guarded by
+  `NOTIFICATION_MIGRATION_APPLY=true`.
+- Preserved Vietnamese diacritics in all customer inbox messages.
+
+### Verification
+
+- `NOTIFICATION_ARTIFACT_ID=notify-t03 npm run verify:notification-migration`:
+  PASS, 12/12 checks.
+- Production read-only preflight: PASS; 13 orders, 13 items, and 27 vouchers
+  before and after; zero notification tables before application.
+- `npx tsc --noEmit --pretty false`: PASS.
+- `npm run lint`: PASS.
+- `git diff --check`: PASS.
+
+### Evidence
+
+- `.agent/artifacts/notify-t03/notification-migration-check.json`
+- `.agent/artifacts/notify-t03-preflight/notification-migration-apply-check.json`
+
+---
+
+## NOTIFY-T04 - Implement Providers And Dispatcher
+
+- Date: 2026-07-22
+- Status: completed
+
+### Result
+
+- Added localized transactional templates, an outbox repository, and a batch
+  dispatcher with exponential retry and terminal failure handling.
+- Added Resend and Twilio server adapters through a provider interface.
+- Added disabled and sandbox adapters; sandbox records staff-only preview data
+  as blocked and performs no network request.
+- Added atomic `FOR UPDATE SKIP LOCKED` claiming and a protected internal
+  dispatch route with timing-safe bearer validation.
+
+### Verification
+
+- `NOTIFICATION_ARTIFACT_ID=notify-t04 npm run verify:notification-runtime`:
+  PASS, 10/10 checks and zero sandbox network calls.
+- Notification migration verifier: PASS, 13/13.
+- Notification contract verifier: PASS, 11/11.
+- `npm run verify:architecture`: PASS, zero findings.
+- TypeScript, lint, and `git diff --check`: PASS.
+
+### Evidence
+
+- `.agent/artifacts/notify-t04/notification-runtime-check.json`
+
+---
+
+## NOTIFY-T05 - Add Customer Verification And Notification UI
+
+- Date: 2026-07-22
+- Status: completed
+
+### Result
+
+- Added an account-scoped notification read/update API and bilingual customer
+  activity feed with loading, empty, error, unread, and mark-read states.
+- Added phone verification state to the customer identity and clear-on-change
+  behavior when a saved phone number changes.
+- Added live-SMS-only OTP request/verify APIs and UI with HMAC storage, atomic
+  verification, three requests per 15 minutes, five attempts, 10-minute expiry,
+  and abort-safe inbox loading.
+
+### Verification
+
+- `NOTIFICATION_ARTIFACT_ID=notify-t05 npm run verify:customer-notifications`:
+  PASS, 12/12 checks.
+- Notification runtime, migration, and contract verifiers: PASS.
+- TypeScript and lint: PASS.
+- `npm run build`: PASS, 56 App Router routes.
+- `git diff --check`: PASS.
+
+### Evidence
+
+- `.agent/artifacts/notify-t05/customer-notification-check.json`
+
+---
+
+## NOTIFY-T06 - Integrate Order Events And Simulated Transfer Operations
+
+- Date: 2026-07-22
+- Status: completed
+
+### Result
+
+- Dispatches queued external events best-effort after order creation, customer
+  cancellation, and staff/admin order mutations without rolling back commerce.
+- Refactored customer cancellation and admin order updates through use cases.
+- Added a protected, bank-transfer-only confirm/reject decision endpoint and
+  explicit preparation controls in the order operations UI.
+- Blocked cancellation of paid orders without refunds and dispatched orders
+  without return handling.
+
+### Verification
+
+- `NOTIFICATION_ARTIFACT_ID=notify-t06 npm run verify:order-notifications`:
+  PASS, 12/12 checks.
+- `npm run verify:architecture`: PASS, zero findings.
+- TypeScript, lint, and `git diff --check`: PASS.
+
+### Evidence
+
+- `.agent/artifacts/notify-t06/order-notification-integration-check.json`
 
 ---
 

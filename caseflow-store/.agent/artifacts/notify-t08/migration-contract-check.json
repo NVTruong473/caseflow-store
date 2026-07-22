@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-07-22T17:50:36.720Z",
+  "checks": {
+    "additiveAttemptColumn": true,
+    "atomicVoucherUpdate": true,
+    "beginCommit": true,
+    "idempotentConflict": true,
+    "orderVoucherHistoryRestricted": true,
+    "positiveServerSubtotal": true,
+    "releasedRpcRetained": true,
+    "serviceRoleOnly": true,
+    "uniqueCustomerAttempt": true,
+    "versionedRpc": true,
+    "voucherEligibilityEnforced": true
+  },
+  "failures": [],
+  "migration": "supabase/migrations/0011_atomic_idempotent_book_orders.sql",
+  "ok": true
+}

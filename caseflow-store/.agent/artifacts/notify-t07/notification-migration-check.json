@@ -1,0 +1,22 @@
+{
+  "checkedAt": "2026-07-22T17:47:25.949Z",
+  "checks": {
+    "additiveOnly": true,
+    "beginCommit": true,
+    "customerInboxRls": true,
+    "concurrentClaimSafe": true,
+    "deterministicOrderTrigger": true,
+    "idempotencyConstraint": true,
+    "noDirectOtpAccess": true,
+    "noPlaintextOtpColumn": true,
+    "orderHistoryRestricted": true,
+    "otpRpcIsHashedAndRateLimited": true,
+    "outboxTable": true,
+    "readRpcIsAccountScoped": true,
+    "serviceRoleOwnsWrites": true,
+    "threeTables": true
+  },
+  "failures": [],
+  "migration": "supabase/migrations/0012_transactional_notifications.sql",
+  "ok": true
+}

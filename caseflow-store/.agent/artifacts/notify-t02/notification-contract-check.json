@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-07-22T18:33:26.298Z",
+  "checks": {
+    "channelsDefined": true,
+    "externalProviderBoundary": true,
+    "idempotentEventKey": true,
+    "liveModeFailClosed": true,
+    "noPublicSecrets": true,
+    "otpIsSixDigits": true,
+    "placeholderSecretsRejected": true,
+    "productionDefaultsDisabled": true,
+    "requiredEnvironmentDocumented": true,
+    "dispatchSecretServerOnly": true,
+    "statusesDefined": true
+  },
+  "failures": [],
+  "ok": true
+}

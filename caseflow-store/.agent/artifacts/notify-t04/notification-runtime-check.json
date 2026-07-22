@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-07-22T18:33:34.117Z",
+  "checks": {
+    "sandboxNeverCallsNetwork": true,
+    "sandboxIsHonestPreview": true,
+    "disabledFailsClosed": true,
+    "resendUsesServerAdapter": true,
+    "twilioUsesServerAdapter": true,
+    "templateIsSpecificAndLocalized": true,
+    "exponentialRetryIsDeterministic": true,
+    "dispatcherStoresSandboxAsBlocked": true,
+    "retryableFailureReturnsToQueue": true,
+    "maxAttemptsBecomeTerminal": true
+  },
+  "failures": [],
+  "networkCalls": 0,
+  "ok": true
+}

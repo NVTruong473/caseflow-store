@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-07-22T18:33:35.563Z",
+  "checks": {
+    "accountScopedInbox": true,
+    "authenticatedCustomerApis": true,
+    "inboxStatesCovered": true,
+    "markReadBounded": true,
+    "noOtpInApiResponse": true,
+    "otpHmacOnly": true,
+    "otpRateAndAttemptLimits": true,
+    "phoneChangeClearsVerification": true,
+    "phoneStatusInIdentity": true,
+    "smsCustomerControlIsLiveOnly": true,
+    "unmountSafeFetchState": true,
+    "verificationRpcIsAtomic": true
+  },
+  "failures": [],
+  "ok": true
+}

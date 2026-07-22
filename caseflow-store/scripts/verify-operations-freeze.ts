@@ -10,7 +10,11 @@ import type { ShippingAddress, UserRole } from "../src/types/domain";
 
 loadEnvConfig(process.cwd());
 
-const ARTIFACT_DIR = path.join(".agent", "artifacts", "d38-t03");
+const ARTIFACT_DIR = path.join(
+  ".agent",
+  "artifacts",
+  process.env.OPERATIONS_FREEZE_ARTIFACT_ID ?? "d38-t03",
+);
 const TEST_PASSWORD = "CaseflowBooks#38Freeze";
 const EMPTY_RANGE = "from=2099-03-01&to=2099-03-01";
 
@@ -58,6 +62,18 @@ const PROTECTED_ENDPOINTS = [
     key: "customers",
     staffStatus: 200,
     url: "/api/admin/customers",
+  },
+  {
+    adminStatus: 200,
+    key: "notifications",
+    staffStatus: 200,
+    url: "/api/admin/notifications",
+  },
+  {
+    adminStatus: 200,
+    key: "notificationConfig",
+    staffStatus: 403,
+    url: "/api/admin/notifications/config",
   },
   {
     adminStatus: 200,
@@ -292,6 +308,11 @@ async function inspectStaffPages(
       selector: "[data-admin-customers-page]",
     },
     {
+      key: "notifications",
+      path: "/admin/notifications",
+      selector: "[data-admin-notification-filters]",
+    },
+    {
       key: "settingsDenied",
       path: "/admin/settings",
       selector: "[data-admin-settings-state='denied']",
@@ -332,6 +353,11 @@ async function inspectAdminPages(
       key: "settingsAllowed",
       path: "/admin/settings",
       selector: "[data-admin-settings-state='allowed']",
+    },
+    {
+      key: "notificationConfig",
+      path: "/admin/notifications",
+      selector: "[data-notification-config-summary]",
     },
   ]);
   await page.screenshot({
@@ -712,6 +738,7 @@ async function cleanupUsers(userIds: string[]) {
 
 async function loginOperationsUser(page: Page, email: string) {
   await page.goto("/admin/login", { waitUntil: "domcontentloaded" });
+  await page.waitForLoadState("networkidle");
   await page.locator("[data-admin-login-email]").fill(email);
   await page.locator("[data-admin-login-password]").fill(TEST_PASSWORD);
   const sessionResponse = page.waitForResponse(
@@ -734,6 +761,7 @@ async function loginOperationsUser(page: Page, email: string) {
 
 async function loginCustomer(page: Page, email: string) {
   await page.goto("/account", { waitUntil: "domcontentloaded" });
+  await page.waitForLoadState("networkidle");
   await page.locator("[data-customer-auth-email]").fill(email);
   await page.locator("[data-customer-auth-password]").fill(TEST_PASSWORD);
   await page.locator("[data-customer-auth-submit]").click();

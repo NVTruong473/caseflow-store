@@ -15,6 +15,7 @@ export type AdminNavigationKey =
   | "inventory"
   | "promotions"
   | "customers"
+  | "notifications"
   | "settings";
 
 type AdminNavigationItem = {
@@ -47,6 +48,11 @@ const navigationItems: AdminNavigationItem[] = [
     requiredPermission: "orders:read",
   },
   {
+    key: "notifications",
+    href: "/admin/notifications",
+    requiredPermission: "notifications:read",
+  },
+  {
     key: "settings",
     href: "/admin/settings",
     requiredPermission: "settings:manage",
@@ -63,6 +69,7 @@ const navigationCopy = {
     inventory: "Inventory",
     promotions: "Promotions",
     customers: "Customers",
+    notifications: "Notifications",
     settings: "Settings",
   },
   vi: {
@@ -74,6 +81,7 @@ const navigationCopy = {
     inventory: "Tồn kho",
     promotions: "Khuyến mãi",
     customers: "Khách hàng",
+    notifications: "Thông báo",
     settings: "Cài đặt",
   },
 } as const;
@@ -101,7 +109,7 @@ export function AdminOperationsNavigation({
       data-admin-operations-navigation
       data-admin-navigation-role={role}
     >
-      <ul className="grid gap-case-xs sm:grid-cols-2 lg:grid-cols-7">
+      <ul className="grid gap-case-xs sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-8">
         {visibleItems.map((item) => (
           <li key={item.key}>
             <Link

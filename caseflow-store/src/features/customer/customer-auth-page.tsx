@@ -10,10 +10,12 @@ import type {
   CustomerAuthState,
 } from "@/lib/auth/customer";
 import type { Language } from "@/lib/i18n/language";
+import { cn } from "@/lib/utils/cn";
 import type { CustomerSignupVoucher } from "@/types/domain";
 
 import { CustomerPasswordForm } from "./customer-password-form";
 import { CustomerProfileForm } from "./customer-profile-form";
+import { CustomerNotificationCenter } from "./customer-notification-center";
 
 type ApiErrorBody = {
   code: string;
@@ -303,7 +305,14 @@ export function CustomerAuthPage({
 
   return (
     <main className="bg-background py-case-2xl text-foreground" data-customer-auth-page>
-      <Container className="grid gap-case-xl lg:grid-cols-[minmax(0,1fr)_460px] lg:items-start">
+      <Container
+        className={cn(
+          "grid gap-case-xl lg:items-start",
+          authState.status === "authenticated"
+            ? "lg:grid-cols-[minmax(280px,0.65fr)_minmax(0,1.35fr)] xl:grid-cols-[minmax(300px,0.55fr)_minmax(0,1.45fr)]"
+            : "lg:grid-cols-[minmax(0,1fr)_460px]",
+        )}
+      >
         <section className="flex min-w-0 flex-col gap-case-lg">
           <Link
             href="/"
@@ -590,6 +599,14 @@ function SignedInPanel({
           copy={copy}
           language={language}
           vouchers={signupVouchers}
+        />
+      ) : null}
+
+      {currentUser.role === "customer" ? (
+        <CustomerNotificationCenter
+          key={currentUser.phone ?? "no-phone"}
+          language={language}
+          user={currentUser}
         />
       ) : null}
 

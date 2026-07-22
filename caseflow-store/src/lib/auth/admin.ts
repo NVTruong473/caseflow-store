@@ -8,6 +8,9 @@ export type AdminPermission =
   | "merchandising:manage"
   | "orders:read"
   | "orders:update-status"
+  | "notifications:read"
+  | "notifications:retry"
+  | "notifications:manage-config"
   | "promotions:manage"
   | "settings:manage";
 
@@ -35,6 +38,9 @@ const permissionsByRole: Record<AdminWorkspaceRole, AdminPermission[]> = {
     "merchandising:manage",
     "orders:read",
     "orders:update-status",
+    "notifications:read",
+    "notifications:retry",
+    "notifications:manage-config",
     "promotions:manage",
     "settings:manage",
   ],
@@ -44,6 +50,8 @@ const permissionsByRole: Record<AdminWorkspaceRole, AdminPermission[]> = {
     "merchandising:manage",
     "orders:read",
     "orders:update-status",
+    "notifications:read",
+    "notifications:retry",
   ],
 };
 

@@ -5,7 +5,14 @@ import { chromium, type Browser, type Page } from "@playwright/test";
 
 import { LANGUAGE_COOKIE, type Language } from "../src/lib/i18n/language";
 
-const ARTIFACT_DIR = path.join(".agent", "artifacts", "d30-t02");
+const ARTIFACT_DIR = path.join(
+  ".agent",
+  "artifacts",
+  process.env.STOREFRONT_FREEZE_ARTIFACT_ID ?? "d30-t02",
+);
+const EXPECTED_ACTIVE_EDITION_TOTAL = Number(
+  process.env.EXPECTED_ACTIVE_EDITION_TOTAL ?? "500",
+);
 
 type ApiResponse<TData> = {
   data: TData | null;
@@ -57,8 +64,8 @@ async function main() {
         desktop.catalog.cardCount >= 20 && mobile.catalog.cardCount >= 20,
       detailStable: desktop.detail.visible && mobile.detail.visible,
       homepageStable:
-        desktop.home.totalEditions === 100 &&
-        mobile.home.totalEditions === 100 &&
+        desktop.home.totalEditions === EXPECTED_ACTIVE_EDITION_TOTAL &&
+        mobile.home.totalEditions === EXPECTED_ACTIVE_EDITION_TOTAL &&
         desktop.home.curatedEditions < desktop.home.totalEditions &&
         mobile.home.curatedEditions < mobile.home.totalEditions,
       languageSwitchStable: languageSwitch.switchedToVietnamese,
@@ -280,8 +287,19 @@ async function inspectLanguageSwitch(browser: Browser, baseURL: string) {
   const page = await context.newPage();
 
   await page.goto("/", { waitUntil: "domcontentloaded" });
+  const preferenceResponse = page.waitForResponse(
+    (response) =>
+      response.url().includes("/api/preferences/language") &&
+      response.request().method() === "POST",
+  );
   await clickVisibleLanguageOption(page, "vi");
-  await page.waitForLoadState("networkidle");
+  const response = await preferenceResponse;
+
+  if (!response.ok()) {
+    throw new Error(`Language preference failed with ${response.status()}`);
+  }
+
+  await page.locator("[data-language-option='vi'][aria-pressed='true']").first().waitFor();
   await page.locator("[data-home-section='hero']").waitFor();
 
   const bodyText = await page.locator("body").innerText();

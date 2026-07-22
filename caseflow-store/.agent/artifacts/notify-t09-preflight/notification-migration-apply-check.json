@@ -1,0 +1,33 @@
+{
+  "after": {
+    "customerInboxRlsReady": false,
+    "notificationTableCount": 0,
+    "orderCount": 13,
+    "orderItemCount": 13,
+    "orderTriggerReady": false,
+    "readRpcReady": false,
+    "voucherCount": 27
+  },
+  "applyRequested": false,
+  "before": {
+    "customerInboxRlsReady": false,
+    "notificationTableCount": 0,
+    "orderCount": 13,
+    "orderItemCount": 13,
+    "orderTriggerReady": false,
+    "readRpcReady": false,
+    "voucherCount": 27
+  },
+  "checkedAt": "2026-07-22T18:16:52.464Z",
+  "checks": {
+    "commerceCountsPreserved": true,
+    "customerInboxRlsReady": false,
+    "notificationTablesReady": false,
+    "orderTriggerReady": false,
+    "readRpcReady": false
+  },
+  "connectionMode": "session-pooler",
+  "migration": "supabase/migrations/0012_transactional_notifications.sql",
+  "migrationSha256": "0851cad99aeec593c0b4ecb1ef4c1d5caa45670fe5a704e6cf704307ac6bf2fc",
+  "ok": true
+}

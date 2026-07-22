@@ -1,9 +1,10 @@
 import { apiError, apiSuccess } from "@/lib/api/response";
 import { getCustomerAuthState } from "@/lib/auth/customer";
 import {
-  cancelSupabaseOrderForCustomer,
   getSupabaseOrderForCustomer,
 } from "@/lib/repositories/supabase-orders";
+import { cancelCustomerOrderUseCase } from "@/lib/use-cases/orders/cancel-customer-order";
+import { apiFromUseCaseResult } from "@/lib/api/use-case-response";
 import { orderCodeSchema } from "@/lib/validation/domain";
 import { customerOrderActionRequestSchema } from "@/lib/validation/orders";
 
@@ -106,47 +107,7 @@ export async function PATCH(
     );
   }
 
-  try {
-    const authState = await getCustomerAuthState();
-
-    if (authState.status === "anonymous") {
-      return apiError(
-        { code: "UNAUTHORIZED", message: "Customer authentication required" },
-        401,
-      );
-    }
-
-    if (authState.status === "error") {
-      return apiError(
-        { code: "CUSTOMER_PROFILE_UNAVAILABLE", message: authState.message },
-        503,
-      );
-    }
-
-    if (authState.user.role !== "customer") {
-      return apiError(
-        { code: "FORBIDDEN", message: "Customer role required" },
-        403,
-      );
-    }
-
-    const result = await cancelSupabaseOrderForCustomer(
-      authState.user.id,
-      parsedOrderCode.data,
-    );
-
-    if (!result.success) {
-      return apiError(
-        { code: result.code, message: result.message },
-        result.status,
-      );
-    }
-
-    return apiSuccess(result.record);
-  } catch {
-    return apiError(
-      { code: "ORDER_UPDATE_FAILED", message: "Customer order could not be updated" },
-      500,
-    );
-  }
+  return apiFromUseCaseResult(
+    await cancelCustomerOrderUseCase(parsedOrderCode.data),
+  );
 }

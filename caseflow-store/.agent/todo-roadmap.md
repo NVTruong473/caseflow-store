@@ -10,16 +10,129 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: stable portfolio and operations handoff after `v1.12.1`
-- Current gate: `UAT-OWNER-T01` passed production customer and operations
-  acceptance. `AUTH-SMTP-T02` and transactional order email remain
-  commercial-launch boundaries.
-- Current task: no open implementation task; `AUTH-SMTP-T02` only if real SMTP
-  credentials become available
+- Mode: approved `v1.13` transactional notification and simulated transfer
+  implementation
+- Current gate: `NOTIFY-T08` passed; migrations `0012` and `0013` are applied
+  with count-preserving evidence, and the refreshed final local gate passed
+  build, `24/24` E2E, security, secret, dependency, cleanup, and final QA
+- Current task: `NOTIFY-T09 - Apply, Deploy, Smoke Test, Document, And Release`
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-22
 
 ## Phase UAT-MANUAL - Production Customer Manual Acceptance
+
+- [x] `NOTIFY-T01` Accept Transactional Notification ADR And Roadmap. - 2026-07-22
+  - Objective: define durable notification, optional phone verification, and
+    simulated transfer boundaries before changing runtime or schema.
+  - Result: accepted ADR-0016 and the `v1.13` roadmap with in-app fallback,
+    sandbox/live provider isolation, transactional outbox, production locks,
+    and honest external-service prerequisites.
+  - Verification: ADR index, roadmap acceptance criteria, rollback/production
+    guardrails, and `git diff --check` passed.
+
+- [x] `NOTIFY-T02` Define Notification, OTP, And Provider Contracts. - 2026-07-22
+  - Result: added typed notification channels, events, templates, statuses,
+    provider interfaces, customer inbox/OTP DTOs, Zod schemas, and server-only
+    runtime configuration with `disabled`, `sandbox`, and `live` modes.
+  - Guardrail: the default mode is disabled; incomplete live Resend/Twilio/OTP
+    configuration fails closed, placeholder secrets are rejected, and no new
+    secret uses a `NEXT_PUBLIC_*` name.
+  - Verification: `npm run verify:notifications`, TypeScript, lint, and
+    `git diff --check` passed.
+  - Evidence: `.agent/artifacts/notify-t02/notification-contract-check.json`.
+
+- [x] `NOTIFY-T03` Add Additive Supabase Notification Migration. - 2026-07-22
+  - Result: added outbox, account-scoped inbox, hashed OTP challenge tables,
+    idempotent event/channel keys, RLS/grants, account-scoped mark-read RPC, and
+    deterministic order/payment/shipping event triggers.
+  - Guardrail: migration is not applied in T03; its runner requires the
+    explicit `NOTIFICATION_MIGRATION_APPLY=true` arming flag.
+  - Verification: static migration contract passed 12/12; production read-only
+    preflight preserved 13 orders, 13 order items, and 27 vouchers; TypeScript,
+    lint, and `git diff --check` passed.
+  - Evidence: `.agent/artifacts/notify-t03/notification-migration-check.json`
+    and `.agent/artifacts/notify-t03-preflight/notification-migration-apply-check.json`.
+
+- [x] `NOTIFY-T04` Implement Providers And Dispatcher. - 2026-07-22
+  - Result: added localized templates, Supabase outbox repository, atomic claim
+    RPC, Resend/Twilio adapters, honest sandbox/disabled providers, protected
+    internal dispatcher route, retry/backoff, and terminal failure handling.
+  - Guardrail: sandbox performs zero network requests and is recorded as a
+    blocked preview rather than a delivered message; dispatcher authorization
+    uses a server-only timing-safe bearer secret.
+  - Verification: runtime verifier passed 10/10, migration verifier passed
+    13/13, contracts passed 11/11, architecture verifier passed with zero
+    findings, TypeScript/lint/diff check passed.
+  - Evidence: `.agent/artifacts/notify-t04/notification-runtime-check.json`.
+
+- [x] `NOTIFY-T05` Add Customer Verification And Notification UI. - 2026-07-22
+  - Result: added account-scoped inbox/read API, customer activity feed,
+    verified email/phone identity state, phone-change invalidation, and
+    live-SMS-only OTP request/verify APIs and UI.
+  - Guardrail: OTP is HMAC-only, never returned by APIs or stored raw; request
+    rate is limited to 3/15 minutes, attempts to 5, and customer controls remain
+    absent when a live SMS provider is unavailable.
+  - Verification: customer notification verifier passed 12/12; migration,
+    provider runtime, contract, TypeScript, lint, production build (56 routes),
+    and `git diff --check` passed.
+  - Evidence: `.agent/artifacts/notify-t05/customer-notification-check.json`.
+
+- [x] `NOTIFY-T06` Integrate Order Events And Simulated Transfer Operations. - 2026-07-22
+  - Result: integrated best-effort dispatch after order creation, customer
+    cancellation, and staff/admin updates; refactored customer/admin mutation
+    controllers through use cases; added protected confirm/reject transfer
+    decisions and explicit admin preparation controls.
+  - Guardrail: customers cannot self-confirm payment; only awaiting bank
+    transfers can use the decision endpoint; paid orders cannot be cancelled
+    without a refund workflow and dispatched orders use return handling.
+  - Verification: integration verifier passed 12/12, architecture verifier
+    passed with zero findings, TypeScript/lint/diff check passed.
+  - Evidence: `.agent/artifacts/notify-t06/order-notification-integration-check.json`.
+
+- [x] `NOTIFY-T07` Add Admin/Staff Notification Operations. - 2026-07-22
+  - Result: added explicit notification permissions, an operations navigation
+    surface, protected list/config/retry APIs, responsive delivery status UI,
+    and a retry use case that reuses the shared dispatcher.
+  - Guardrail: staff can inspect and retry eligible failures but cannot inspect
+    provider readiness; public operation records omit contact details, OTP,
+    metadata, provider payloads, and secrets; in-app, disabled-provider, and
+    sandbox-preview deliveries cannot be retried.
+  - Verification: focused verifier passed 12/12; architecture verifier found
+    zero violations; migration contract, TypeScript, lint, production build,
+    and `git diff --check` passed.
+  - Evidence:
+    `.agent/artifacts/notify-t07/admin-notification-operations-check.json`.
+
+- [x] `NOTIFY-T08` Run Full Local Quality Gate. - 2026-07-22
+  - Result: reran all notification contracts and the full existing regression
+    suite; fixed an operations catalog failure caused by a 500-ID Supabase URL
+    and normalized inconsistent historical content-quality evidence without
+    mutating production data.
+  - QA hardening: freeze verifiers now support per-run artifact directories,
+    language switching waits for its actual API/DOM state, and the storefront
+    baseline correctly expects 500 active editions.
+  - Verification: focused notification gates, architecture, no-demo scope,
+    dependency tree, `npm audit` (0 vulnerabilities), secret scan (0 findings),
+    asset metadata, lint, TypeScript, production build (59 routes), Playwright
+    `21/21`, operations freeze, storefront freeze, responsive/accessibility,
+    final QA, and cleanup (0 residue) passed.
+  - Evidence: `.agent/artifacts/notify-t08/` and
+    `.agent/artifacts/notify-t08-final/`.
+
+- [/] `NOTIFY-T09` Apply, Deploy, Smoke Test, Document, And Release. - 2026-07-22
+  - Progress: applied migrations `0012` and `0013` to Supabase with unchanged
+    pre-existing order/item/voucher counts; the lifecycle verifier confirms
+    notification history survives deliberate order cleanup.
+  - Local release gate: notification contracts/runtime/customer/order/admin
+    verifiers, expanded operations role matrix, architecture, TypeScript,
+    lint, 59-route production build, full Playwright `24/24`, dependency audit
+    (0 vulnerabilities), secret scan (0 findings), no-demo/QR production lock,
+    security posture, final QA, and cleanup (0 residue) passed.
+  - Production configuration: external email/SMS variables are absent, so the
+    fail-closed runtime remains `disabled`; in-app notifications are available
+    without external-provider claims.
+  - Remaining: commit, deploy, production smoke/regression, final release
+    documentation, tag, GitHub Release, and consistency verification.
 
 - [x] `UAT-OWNER-T01` Production Customer And Operations Acceptance. - 2026-07-22
   - Objective: execute the seven-step owner UAT against production using a

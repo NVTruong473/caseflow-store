@@ -98,6 +98,22 @@ export const customerOrderActionRequestSchema = z
   })
   .strict();
 
+export const simulatedTransferDecisionRequestSchema = z
+  .object({
+    action: z.enum(["confirm", "reject"]),
+    reason: z.string().trim().max(500).optional(),
+  })
+  .strict()
+  .superRefine((input, context) => {
+    if (input.action === "reject" && (!input.reason || input.reason.length < 5)) {
+      context.addIssue({
+        code: "custom",
+        message: "A rejection reason of at least 5 characters is required",
+        path: ["reason"],
+      });
+    }
+  });
+
 export type CreateOrderRequest = z.infer<typeof createOrderRequestSchema>;
 export type CreateBookOrderRequest = z.infer<
   typeof createBookOrderRequestSchema
@@ -107,6 +123,9 @@ export type PublicOrderTrackingLookupRequest = z.infer<
 >;
 export type CustomerOrderActionRequest = z.infer<
   typeof customerOrderActionRequestSchema
+>;
+export type SimulatedTransferDecisionRequest = z.infer<
+  typeof simulatedTransferDecisionRequestSchema
 >;
 export type AdminOrderFilters = z.infer<typeof adminOrderFiltersSchema>;
 export type UpdateAdminOrderOperationsRequest = z.infer<
