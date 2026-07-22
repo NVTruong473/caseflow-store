@@ -1,0 +1,36 @@
+{
+  "after": {
+    "attemptColumnExists": true,
+    "attemptIndexExists": true,
+    "orderCount": 12,
+    "orderItemCount": 12,
+    "orderVoucherHistoryRestricted": true,
+    "releasedRpcExists": true,
+    "versionedRpcExists": true,
+    "voucherCount": 24
+  },
+  "applyRequested": false,
+  "before": {
+    "attemptColumnExists": true,
+    "attemptIndexExists": true,
+    "orderCount": 12,
+    "orderItemCount": 12,
+    "orderVoucherHistoryRestricted": true,
+    "releasedRpcExists": true,
+    "versionedRpcExists": true,
+    "voucherCount": 24
+  },
+  "checkedAt": "2026-07-22T12:14:22.270Z",
+  "checks": {
+    "additiveOnlyCountsPreserved": true,
+    "attemptColumnReady": true,
+    "attemptIndexReady": true,
+    "orderVoucherHistoryRestricted": true,
+    "releasedRpcRetained": true,
+    "versionedRpcReady": true
+  },
+  "connectionMode": "session-pooler",
+  "migration": "supabase/migrations/0011_atomic_idempotent_book_orders.sql",
+  "migrationSha256": "f061b04c6a02f656200634b0e694edad877c50f1a928c6c7ea93eef941280173",
+  "ok": true
+}

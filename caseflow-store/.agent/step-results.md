@@ -14969,6 +14969,44 @@ the customer-facing commerce rules.
 
 ---
 
+## ORDER-RELIABILITY-T06 - Deploy And Release v1.12.1
+
+- Date: 2026-07-22
+- Status: completed and released
+- Runtime commit: `109d0403b698fa22bde163f64d4bd804da22fc95`
+
+### Result
+
+- Pushed runtime commit to `origin/main`.
+- Deployed Vercel production `dpl_Ar6sNH1nUraGoK25BhJt6Gn6KCrY` and aliased
+  `https://caseflow-store.vercel.app`.
+- Created and pushed annotated tag `v1.12.1`.
+- Published GitHub Release `v1.12.1 - Atomic Order Reliability Patch`.
+
+### Verification
+
+- Vercel inspect: READY and aliased.
+- Production smoke: passed.
+- Production security posture: passed with zero findings.
+- Production QR mock lock: passed with runtime `401`.
+- Full production Playwright: passed `21/21`, including concurrent checkout
+  retry and voucher atomicity.
+- Post-test database check: 12 orders, 12 items, 24 vouchers; required schema
+  boundaries present.
+- Remote annotated tag peels to runtime commit; GitHub Release is published,
+  not draft, and not prerelease.
+
+### Evidence
+
+- `docs/postv121-t01-final-release-consistency-audit.md`
+- `.agent/artifacts/order-reliability-t06-production-smoke/`
+- `.agent/artifacts/order-reliability-t06-production-security/`
+- `.agent/artifacts/order-reliability-t06-production-qr-safety/`
+- `.agent/artifacts/order-reliability-t06-production-db/`
+- `.agent/artifacts/order-reliability-t06-post-release-secret/`
+
+---
+
 ## ARCH-LAYER-T01 to ARCH-LAYER-T06 - Layered Architecture Local Gate
 
 - Date: 2026-07-22

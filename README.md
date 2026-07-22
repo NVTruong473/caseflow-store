@@ -9,7 +9,8 @@ demo payment release, the `v1.6.0` retail catalog scale release, the
 `v1.7.0` UI humanization release, the `v1.8.0` modern editorial bookstore
 release, the `v1.9.0` real-cover commerce polish, the `v1.10.0`
 account-bound signup voucher release, the `v1.11.x` account/security polish
-series, and the `v1.12.0` layered architecture hardening release into a
+series, the `v1.12.0` layered architecture hardening release, and the
+`v1.12.1` atomic order reliability patch into a
 Vietnam-first, bilingual e-commerce application for book discovery,
 account-gated checkout, customer order history/cancellation, order tracking,
 and admin/staff operations. The latest release keeps the 500-edition catalog
@@ -19,7 +20,7 @@ Controller -> Use Case -> Repository boundary.
 [Open the production deployment](https://caseflow-store.vercel.app)
 
 Latest release:
-[`v1.12.0`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.12.0)
+[`v1.12.1`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.12.1)
 
 > Payments are simulated. The app does not collect card numbers, CVV, card
 > expiry, real bank credentials, or real MoMo/ZaloPay/VNPay credentials. QR
@@ -145,10 +146,10 @@ Latest release:
 
 | Gate | Result |
 |---|---|
-| Release tag | `v1.12.0` |
-| GitHub Release | [`v1.12.0 - Layered Architecture And E2E Regression Hardening`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.12.0) |
+| Release tag | `v1.12.1` |
+| GitHub Release | [`v1.12.1 - Atomic Order Reliability Patch`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.12.1) |
 | Production URL | `https://caseflow-store.vercel.app` |
-| Vercel deployment | `READY`, deployment `dpl_8MCASvEYjndhtQJuvbPJeqkFF1gA` |
+| Vercel deployment | `READY`, deployment `dpl_Ar6sNH1nUraGoK25BhJt6Gn6KCrY` |
 | TypeScript | `npx tsc --noEmit --pretty false` passed |
 | ESLint | `npm run lint` passed |
 | Production build | 52 App Router routes plus proxy generated |
@@ -156,7 +157,7 @@ Latest release:
 | Signup voucher QA | 3 account codes granted, homepage/account CTAs visible, checkout applies `WELCOME30K`, persisted 30,000 VND discount, reuse rejected, cross-account use rejected, multi-code request rejected, used voucher relation verified |
 | Modern bookstore QA | Search-first header, live category menu, mobile search/category links, cover provenance manifest, object-contain covers, product-card motion, back-to-top, no-overflow screenshots, and reduced-motion guard passed |
 | QR demo payment QA | Local QR flow, VietQR CRC, mock webhook HMAC, idempotency, production-safety lock, and UI regression checks passed |
-| Production QA | v1.12 production smoke, security posture, QR production-safety lock, and full production Playwright `20/20` passed |
+| Production QA | v1.12.1 production smoke, security posture, QR production-safety lock, atomic checkout retry, and full production Playwright `21/21` passed |
 | v1.4.2 security QA | Security headers/no-store verifier and final QA smoke passed locally and in production; external agent repos were mapped as QA references, not runtime dependencies |
 | v1.4.1 local QA | TypeScript, lint, production build, no-demo copy scan, compact-card overlap, customer order history/cancellation, admin order rejection/cancellation, cleanup, secret scan, audit-high, and `git diff --check` passed |
 | v1.4.1 production QA | Production release smoke, final QA smoke, compact-card overlap, customer order history/cancellation, and admin order rejection/cancellation passed |
@@ -181,6 +182,8 @@ Release evidence is recorded in
 [`caseflow-store/docs/v1.9.0-real-cover-commerce-polish-release-notes.md`](caseflow-store/docs/v1.9.0-real-cover-commerce-polish-release-notes.md),
 [`caseflow-store/docs/v1.10.0-account-bound-signup-voucher-release-notes.md`](caseflow-store/docs/v1.10.0-account-bound-signup-voucher-release-notes.md),
 [`caseflow-store/docs/v1.12.0-layered-architecture-release-notes.md`](caseflow-store/docs/v1.12.0-layered-architecture-release-notes.md),
+[`caseflow-store/docs/v1.12.1-order-reliability-release-notes.md`](caseflow-store/docs/v1.12.1-order-reliability-release-notes.md),
+[`caseflow-store/docs/postv121-t01-final-release-consistency-audit.md`](caseflow-store/docs/postv121-t01-final-release-consistency-audit.md),
 [`caseflow-store/docs/postv120-t01-final-release-consistency-audit.md`](caseflow-store/docs/postv120-t01-final-release-consistency-audit.md),
 and `.agent/step-results.md`.
 

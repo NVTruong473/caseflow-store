@@ -5,7 +5,7 @@
 - Project name: CaseFlow Store `v1.0.0`; CaseFlow Books `v1.1.0`, `v1.2.0`,
   `v1.3.0`, `v1.3.1`, `v1.4.0`, `v1.4.1`, `v1.4.2`, `v1.5.0`, `v1.6.0`,
   `v1.7.0`, `v1.8.0`, `v1.9.0`, `v1.10.0`, `v1.11.0`, `v1.11.1`,
-  `v1.11.2`, `v1.11.3`, and `v1.12.0` released
+  `v1.11.2`, `v1.11.3`, `v1.12.0`, and `v1.12.1` released
 - Repository folder: `/Users/vantruong/Documents/TSNN 2`
 - Product domain: books for released `v1.1.0` and `v1.2.0`; phone
   accessories for released `v1.0.0`
@@ -13,8 +13,8 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: stable portfolio and operations handoff after the `v1.12.0`
-  layered architecture release and final consistency audit.
+- Current mode: stable portfolio and operations handoff after the `v1.12.1`
+  atomic order reliability patch and final consistency audit.
 - Current gate: `AUTH-SMTP-T02` remains blocked pending a real Supabase
   Management API token and real SMTP credentials. All appropriate non-SMTP
   handoff work is complete.

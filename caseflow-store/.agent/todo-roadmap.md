@@ -10,11 +10,11 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: bounded post-release order reliability patch after `v1.12.0`
-- Current gate: `ORDER-RELIABILITY-T05` passed; additive production migration
-  is applied and all local gates are green. `AUTH-SMTP-T02` remains externally
-  blocked.
-- Current task: `ORDER-RELIABILITY-T06 - Deploy And Release v1.12.1`
+- Mode: stable portfolio and operations handoff after `v1.12.1`
+- Current gate: `ORDER-RELIABILITY-T06` released and production verified.
+  `AUTH-SMTP-T02` remains externally blocked.
+- Current task: no open implementation task; `AUTH-SMTP-T02` only if real SMTP
+  credentials become available
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-22
 
@@ -77,6 +77,18 @@
     12 orders, 12 items, and 24 vouchers after QA cleanup.
   - Guardrail: removed only records using dedicated automated-test email
     prefixes; no customer/UAT order was deleted.
+
+- [x] `ORDER-RELIABILITY-T06` Deploy And Release v1.12.1. - 2026-07-22
+  - Objective: deploy the verified atomic checkout runtime and prove release
+    consistency before publishing the patch.
+  - Result: runtime commit `109d040` deployed as Vercel
+    `dpl_Ar6sNH1nUraGoK25BhJt6Gn6KCrY`, aliased to production, tagged
+    `v1.12.1`, and published as a non-draft GitHub Release.
+  - Verification: production smoke, security posture, QR production lock,
+    full Playwright `21/21`, database cleanup check, remote tag, and GitHub
+    Release metadata passed.
+  - Evidence: `docs/postv121-t01-final-release-consistency-audit.md` and
+    `.agent/artifacts/order-reliability-t06-production-*`.
 
 - [x] `POSTV113-T01` Final v1.11.3 Release Consistency Audit. - 2026-07-22
   - Objective: verify that local Git, remote `main`, the `v1.11.3` tag,

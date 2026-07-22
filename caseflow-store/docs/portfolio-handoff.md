@@ -1,9 +1,9 @@
 # CaseFlow Books Portfolio Handoff
 
-- Latest release: `v1.12.0`
+- Latest release: `v1.12.1`
 - Production URL: `https://caseflow-store.vercel.app`
-- GitHub Release: `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.12.0`
-- Vercel deployment: `dpl_8MCASvEYjndhtQJuvbPJeqkFF1gA`
+- GitHub Release: `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.12.1`
+- Vercel deployment: `dpl_Ar6sNH1nUraGoK25BhJt6Gn6KCrY`
 - Project type: full-stack bookstore and small-business operations portfolio
 - Stack: Next.js 16, React 19, TypeScript 5, Tailwind CSS 4, Supabase
   PostgreSQL/Auth/RLS, Zod, Playwright, Vercel
@@ -123,7 +123,12 @@ See `docs/architecture.md` for the full architecture notes.
 
 | Evidence | Location |
 |---|---|
-| Latest release notes | `docs/v1.12.0-layered-architecture-release-notes.md` |
+| Latest release notes | `docs/v1.12.1-order-reliability-release-notes.md` |
+| v1.12.1 production consistency audit | `docs/postv121-t01-final-release-consistency-audit.md` |
+| v1.12.1 production smoke | `.agent/artifacts/order-reliability-t06-production-smoke/production-smoke-check.json` |
+| v1.12.1 production security posture | `.agent/artifacts/order-reliability-t06-production-security/security-posture-check.json` |
+| v1.12.1 QR production lock | `.agent/artifacts/order-reliability-t06-production-qr-safety/qr-payment-production-safety-check.json` |
+| v1.12.1 post-release secret scan | `.agent/artifacts/order-reliability-t06-post-release-secret/secret-scan.json` |
 | v1.12.0 production consistency audit | `docs/postv120-t01-final-release-consistency-audit.md` |
 | v1.12.0 architecture boundary verifier | `.agent/artifacts/arch-layer-t05/layer-boundaries-check.json` |
 | v1.12.0 production smoke | `.agent/artifacts/arch-layer-t07-production-smoke/production-smoke-check.json` |

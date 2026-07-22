@@ -68,20 +68,22 @@ runtime.
 
 ## Latest release evidence
 
-- Release tag: `v1.12.0`
+- Release tag: `v1.12.1`
 - GitHub Release:
-  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.12.0`
+  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.12.1`
 - Production alias: `https://caseflow-store.vercel.app`
-- Vercel deployment ID: `dpl_8MCASvEYjndhtQJuvbPJeqkFF1gA`
+- Vercel deployment ID: `dpl_Ar6sNH1nUraGoK25BhJt6Gn6KCrY`
 - Local gates: npm audit with zero vulnerabilities, TypeScript, ESLint,
-  production build, full Playwright `20/20`,
+  production build, full Playwright `21/21`,
   architecture boundary verifier, signup voucher verifier, password-change
   verifier, QR production-safety verifier, security posture verifier, final QA
   smoke, and `git diff --check` passed.
 - Production smoke: release smoke, security posture, QR production-safety
-  lock, and full production Playwright `20/20` passed. The `v1.12.0`
-  deployment artifacts are under `.agent/artifacts/arch-layer-t07-production-*`.
+  lock, atomic checkout retry, and full production Playwright `21/21` passed.
+  The `v1.12.1` deployment artifacts are under
+  `.agent/artifacts/order-reliability-t06-production-*`.
 - Release notes:
+  [`docs/v1.12.1-order-reliability-release-notes.md`](docs/v1.12.1-order-reliability-release-notes.md),
   [`docs/v1.12.0-layered-architecture-release-notes.md`](docs/v1.12.0-layered-architecture-release-notes.md),
   [`docs/v1.11.3-expert-polish-release-notes.md`](docs/v1.11.3-expert-polish-release-notes.md),
   [`docs/v1.11.2-neutral-light-ui-patch-release-notes.md`](docs/v1.11.2-neutral-light-ui-patch-release-notes.md),
@@ -89,6 +91,7 @@ runtime.
   and
   [`docs/v1.11.0-account-security-password-release-notes.md`](docs/v1.11.0-account-security-password-release-notes.md)
 - Operational evidence:
+  [`docs/postv121-t01-final-release-consistency-audit.md`](docs/postv121-t01-final-release-consistency-audit.md),
   [`docs/postv120-t01-final-release-consistency-audit.md`](docs/postv120-t01-final-release-consistency-audit.md),
   [`docs/postv113-t01-final-release-consistency-audit.md`](docs/postv113-t01-final-release-consistency-audit.md),
   [`docs/auth-email-t03-real-email-confirmation-uat.md`](docs/auth-email-t03-real-email-confirmation-uat.md)

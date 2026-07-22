@@ -3,7 +3,7 @@
 ## Project Identity
 
 - Project name: CaseFlow Store `v1.0.0`; CaseFlow Books `v1.1.0` through
-  `v1.12.0` released
+  `v1.12.1` released
 - Repository folder: `/Users/vantruong/Documents/TSNN 2`
 - Product domain: books for released `v1.1.0` and `v1.2.0`; phone
   accessories for released `v1.0.0`
@@ -11,14 +11,14 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: bounded order reliability patch after `v1.12.0`.
-- Current gate: ADR-0015 and the `v1.12.1` atomic order roadmap are accepted;
-  custom SMTP remains externally blocked pending real credentials.
-- Current task: `ORDER-RELIABILITY-T02 - Add Checkout Attempt Contract And Atomic RPC`.
-- Latest production deployment: `dpl_8MCASvEYjndhtQJuvbPJeqkFF1gA`, aliased to
+- Current mode: stable portfolio and operations handoff after `v1.12.1`.
+- Current gate: atomic order reliability patch released and production
+  verified; custom SMTP remains externally blocked pending real credentials.
+- Current task: No active implementation task.
+- Latest production deployment: `dpl_Ar6sNH1nUraGoK25BhJt6Gn6KCrY`, aliased to
   `https://caseflow-store.vercel.app`.
 - Latest GitHub Release:
-  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.12.0`.
+  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.12.1`.
 - Detailed current trackers live in `caseflow-store/.agent/`.
 
 ## Confirmed Facts
