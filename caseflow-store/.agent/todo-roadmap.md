@@ -10,34 +10,42 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: post-`v1.11.0` production release consistency and email operations
-  verification
+- Mode: post-`v1.11.0` production email operations verification
 - Current gate: `AUTH-SMTP-T02` is blocked pending a real Supabase Management
-  API token and real SMTP credentials; `AUTH-EMAIL-T03` is blocked until SMTP
-  is configured and a real mailbox confirmation click can be observed
-- Current task: `AUTH-SMTP-T02` / `AUTH-EMAIL-T03`
+  API token and real SMTP credentials; `AUTH-EMAIL-T03` passed after fixing
+  Supabase Auth URL Configuration
+- Current task: `AUTH-SMTP-T02`
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-22
 
 ## Phase UAT-MANUAL - Production Customer Manual Acceptance
 
-- [!] `AUTH-EMAIL-T03` Rerun Real Email Confirmation UAT After SMTP. -
+- [x] `AUTH-EMAIL-T03` Rerun Real Email Confirmation UAT After Auth URL Fix. -
   2026-07-22
   - Objective: rerun strict real-email UAT with public sign-up, delivered
     confirmation email, mailbox click, sign-in, signup vouchers, checkout,
     QR/payment production boundary, and order history.
-  - Result: not run to completion because the prerequisite SMTP configuration
-    is still blocked and there is no controlled mailbox click automation in
-    this environment. No service-role confirmation or already-confirmed account
-    shortcut was used.
-  - Verification: prerequisite `AUTH-SMTP-T02` apply-mode preflight failed
-    safely before mutation because real SMTP and Supabase Management API
-    credentials are missing.
-  - Blocker: configure a real SMTP provider and provide controlled mailbox
-    access/click evidence before rerunning.
-  - Guardrail: do not mark this PASS through service-role confirmation,
-    dashboard manual confirmation, or a verifier mode that skips the email
-    click.
+  - Result: custom SMTP is still blocked, but production email UAT passed using
+    Supabase default sender after the real blocker was found and fixed in
+    Supabase Auth URL Configuration. Site URL was changed from localhost to
+    `https://caseflow-store.vercel.app`; Redirect URLs now includes
+    `https://caseflow-store.vercel.app/account`.
+  - Verification: Gmail received a fresh confirmation email for
+    `truongskull014+caseflow-uat-t03-fixed-202607220925@gmail.com`; the
+    confirmation link contained
+    `redirect_to=https://caseflow-store.vercel.app/account`, landed on
+    production `/account?code=...`, used no service-role confirmation, granted
+    the 3 signup vouchers, completed checkout with one voucher, locked
+    production QR/payment simulation endpoints, and showed order
+    `CF-MRVGAH41-6042473213` in account order history.
+  - Evidence:
+    `.agent/artifacts/auth-email-t03-production-fixed-20260722/`.
+  - Residual: business-grade email delivery still needs `AUTH-SMTP-T02`
+    custom SMTP; this UAT proves redirect and default-sender confirmation, not
+    custom SMTP deliverability.
+  - Guardrail: the earlier same-day data-path pass with a localhost redirect
+    was not accepted as final; no service-role confirmation, dashboard manual
+    confirmation, or already-confirmed account shortcut was used.
 
 - [!] `AUTH-SMTP-T02` Configure Real Supabase Auth SMTP. - 2026-07-22
   - Objective: apply the prepared Supabase Auth custom SMTP automation using

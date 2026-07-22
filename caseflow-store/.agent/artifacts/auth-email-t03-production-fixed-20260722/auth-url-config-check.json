@@ -1,0 +1,39 @@
+{
+  "generatedAt": "2026-07-22T02:16:30.000Z",
+  "ok": true,
+  "supabaseProjectRef": "fcsuldrerhbynwotcvyn",
+  "productionUrl": "https://caseflow-store.vercel.app",
+  "supabaseAuthUrlConfiguration": {
+    "siteUrl": "https://caseflow-store.vercel.app",
+    "redirectUrls": [
+      "https://caseflow-store.vercel.app/account"
+    ],
+    "changedThroughDashboard": true
+  },
+  "preFixObservation": {
+    "email": "truongskull014+caseflow-uat-t03-202607220920@gmail.com",
+    "result": "Data path completed, but the confirmation email link still exposed a localhost redirect target before Supabase Auth URL Configuration was corrected.",
+    "observedRedirectTarget": "http://localhost:3000",
+    "acceptedAsFinalPass": false
+  },
+  "postFixObservation": {
+    "email": "truongskull014+caseflow-uat-t03-fixed-202607220925@gmail.com",
+    "confirmationLinkRedirectTarget": "https://caseflow-store.vercel.app/account",
+    "browserLandingUrlPrefix": "https://caseflow-store.vercel.app/account?code=",
+    "orderCode": "CF-MRVGAH41-6042473213",
+    "acceptedAsFinalPass": true
+  },
+  "guardrails": {
+    "serviceRoleConfirmationUsed": false,
+    "dashboardManualConfirmationUsed": false,
+    "customSmtpConfigured": false,
+    "customSmtpBlocker": [
+      "SUPABASE_ACCESS_TOKEN",
+      "SMTP_ADMIN_EMAIL",
+      "SMTP_HOST",
+      "SMTP_USER",
+      "SMTP_PASS"
+    ],
+    "verificationTokensStored": false
+  }
+}

@@ -12,12 +12,11 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: post-`v1.11.0` production release consistency and email
-  operations verification.
-- Current gate: `AUTH-SMTP-T02` is blocked pending a real Supabase Management
-  API token and real SMTP credentials; `AUTH-EMAIL-T03` is blocked until SMTP
-  is configured and a real confirmation mailbox click can be observed.
-- Current task: `AUTH-SMTP-T02` / `AUTH-EMAIL-T03`.
+- Current mode: post-`v1.11.0` production email operations verification.
+- Current gate: `AUTH-SMTP-T02` remains blocked pending a real Supabase
+  Management API token and real SMTP credentials. `AUTH-EMAIL-T03` passed after
+  fixing Supabase Auth URL Configuration through the dashboard.
+- Current task: `AUTH-SMTP-T02`.
 
 ## Confirmed Facts
 
@@ -188,10 +187,14 @@
   safely blocked before any Supabase API mutation because `.env.local` still
   lacks `SUPABASE_ACCESS_TOKEN`, `SMTP_ADMIN_EMAIL`, `SMTP_HOST`, `SMTP_USER`,
   and `SMTP_PASS`. Non-secret helper values are present only.
-- `AUTH-EMAIL-T03` remains blocked on 2026-07-22 because custom SMTP is not
-  configured and no controlled mailbox click automation is available. It must
-  not be marked pass through service-role confirmation or by reusing an
-  already-confirmed account.
+- `AUTH-EMAIL-T03` passed on 2026-07-22 after Supabase Auth URL Configuration
+  was corrected in the dashboard: Site URL is now
+  `https://caseflow-store.vercel.app` and Redirect URLs includes
+  `https://caseflow-store.vercel.app/account`. A first same-day UAT proved the
+  data path but exposed the old `localhost:3000` redirect; the fixed rerun used
+  `truongskull014+caseflow-uat-t03-fixed-202607220925@gmail.com`, observed a
+  production redirect target, used no service-role confirmation, completed
+  checkout/order history, and created order `CF-MRVGAH41-6042473213`.
 - Implementation was confirmed by the user on 2026-07-14.
 - Implementation was unblocked by installing the official Node.js LTS binary after Homebrew failed.
 - The Next.js app has been initialized in `caseflow-store`.

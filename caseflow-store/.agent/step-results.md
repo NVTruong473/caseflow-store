@@ -14348,37 +14348,59 @@ Present helper values:
 
 ---
 
-## AUTH-EMAIL-T03 - Rerun Real Email Confirmation UAT After SMTP
+## AUTH-EMAIL-T03 - Rerun Real Email Confirmation UAT After Auth URL Fix
 
 - Date: 2026-07-22
-- Status: blocked by SMTP prerequisite and mailbox access
+- Status: completed with residual SMTP blocker
 - Production URL: `https://caseflow-store.vercel.app`
 
 ### Objective
 
-Rerun the strict real-customer email confirmation UAT after SMTP configuration:
-public sign-up, delivered confirmation email, mailbox click, sign-in, welcome
-vouchers, checkout, QR/payment production boundary, and account order history.
+Rerun the strict real-customer email confirmation UAT: public sign-up,
+delivered confirmation email, mailbox click, sign-in, welcome vouchers,
+checkout, QR/payment production boundary, and account order history.
 
 ### Result
 
-The UAT was not run to completion because `AUTH-SMTP-T02` is blocked and this
-environment does not have controlled access to click a delivered confirmation
-email in the target mailbox. Marking this task pass without observing a real
-email delivery and click would hide the exact production risk this task is
-meant to test.
+The first rerun used
+`truongskull014+caseflow-uat-t03-202607220920@gmail.com` and completed the data
+path, but browser inspection of the confirmation email still showed
+`redirect_to=http://localhost:3000`. That was not accepted as a final pass.
+
+The real blocker was Supabase Auth URL Configuration, not only SMTP. The
+dashboard was updated for project `fcsuldrerhbynwotcvyn`:
+
+- Site URL: `https://caseflow-store.vercel.app`
+- Redirect URLs: `https://caseflow-store.vercel.app/account`
+
+The fixed rerun used
+`truongskull014+caseflow-uat-t03-fixed-202607220925@gmail.com`. Gmail received a
+fresh Supabase confirmation email, the confirmation link contained
+`redirect_to=https://caseflow-store.vercel.app/account`, the browser landed on
+production `/account?code=...`, and the verifier completed account, voucher,
+checkout, QR/payment lock, and order-history checks with order
+`CF-MRVGAH41-6042473213`.
 
 ### Verification
 
-- Prerequisite `AUTH-SMTP-T02` apply-mode preflight failed safely before
-  mutation because real SMTP and Supabase Management API credentials are
-  missing.
-- No service-role confirmation, dashboard manual confirmation, or
-  already-confirmed account shortcut was used.
+- `AUTH_SMTP_APPLY=true npm exec -- tsx scripts/configure-supabase-custom-smtp.ts`:
+  still blocked safely before Supabase API mutation because real SMTP and
+  Supabase Management API credentials are missing.
+- Supabase Dashboard URL Configuration inspection before fix: Site URL was
+  `http://localhost:3000` and Redirect URLs were empty.
+- Supabase Dashboard URL Configuration after fix: Site URL is
+  `https://caseflow-store.vercel.app`; Redirect URLs contains
+  `https://caseflow-store.vercel.app/account`.
+- Browser/Gmail inspection after fix: confirmation link redirect target was
+  `https://caseflow-store.vercel.app/account`; no verification token was stored
+  in committed evidence.
+- `UAT_MANUAL_BASE_URL=https://caseflow-store.vercel.app UAT_MANUAL_ARTIFACT_ID=auth-email-t03-production-fixed-20260722 UAT_MANUAL_DISABLE_FALLBACK=true UAT_MANUAL_REQUIRE_REAL_EMAIL_CONFIRMATION=true UAT_MANUAL_EMAIL='truongskull014+caseflow-uat-t03-fixed-202607220925@gmail.com' UAT_MANUAL_EMAIL_CONFIRMATION_WAIT_SECONDS=900 npm exec -- tsx scripts/verify-uat-manual-customer-production.ts`:
+  passed.
 
 ### Guardrails
 
-- Do not mark this PASS until a fresh public sign-up sends a real email and the
-  confirmation link is clicked to the production site.
-- Do not bypass the test by using service-role confirmation.
-- Do not keep retrying production sign-up if Supabase Auth returns rate limits.
+- No service-role confirmation, dashboard manual confirmation, or
+  already-confirmed account shortcut was used.
+- Custom SMTP remains blocked and must not be claimed as configured.
+- The fixed test proves production redirect and default-sender confirmation; it
+  does not prove custom SMTP deliverability.

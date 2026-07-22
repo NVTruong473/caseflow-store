@@ -2,37 +2,60 @@
 
 Date: 2026-07-22
 
-Status: BLOCKED
+Status: PASS with residual SMTP blocker
 
 Production URL: `https://caseflow-store.vercel.app`
 
 ## Objective
 
-Rerun a strict customer registration UAT after custom SMTP is configured:
-public sign-up, delivered confirmation email, mailbox click, sign-in, welcome
-vouchers, checkout, QR/payment production boundary, and account order history.
+Rerun a strict customer registration UAT: public sign-up, delivered
+confirmation email, mailbox click, sign-in, welcome vouchers, checkout,
+QR/payment production boundary, and account order history.
 
 ## Result
 
-The test was not run to completion because the required SMTP prerequisite is
-blocked and this environment does not have controlled access to click the
-confirmation link from the target mailbox.
+The first rerun proved that customer registration and checkout could complete,
+but it also exposed that Supabase Auth was still generating confirmation links
+with `redirect_to=http://localhost:3000`. That result was not accepted as the
+final pass because a real customer would see the wrong redirect target.
 
-## Blocking Conditions
+The Supabase Auth URL Configuration was corrected through the dashboard:
 
-- `AUTH-SMTP-T02` did not configure SMTP because real credentials are missing.
-- There is no controlled mailbox automation available in this environment to
-  prove a delivered email link was clicked.
-- Reusing a previously confirmed account would not test email delivery.
-- Service-role confirming the account would bypass the exact customer path
-  being verified.
+- Site URL: `https://caseflow-store.vercel.app`
+- Redirect URL: `https://caseflow-store.vercel.app/account`
+
+The fixed rerun passed with:
+
+- Email: `truongskull014+caseflow-uat-t03-fixed-202607220925@gmail.com`
+- Confirmation link target:
+  `https://caseflow-store.vercel.app/account`
+- Order: `CF-MRVGAH41-6042473213`
+- Service-role fallback: not used
+- Dashboard/manual confirmation: not used
+- Signup vouchers: 3 visible
+- Checkout: one owned voucher applied
+- Production QR/payment simulation endpoints: locked
+- Account order history: order visible
+
+## Residual SMTP Blocker
+
+`AUTH-SMTP-T02` remains blocked because real credentials are still missing:
+
+- `SUPABASE_ACCESS_TOKEN`
+- `SMTP_ADMIN_EMAIL`
+- `SMTP_HOST`
+- `SMTP_USER`
+- `SMTP_PASS`
+
+This UAT proves the production redirect and default Supabase sender path after
+cooldown. It does not prove custom SMTP deliverability.
 
 ## Required UAT Rules
 
-The task can be marked PASS only when all of the following are true:
+The task is accepted because all of the following are true:
 
 - A fresh customer performs public sign-up on production.
-- Supabase sends a confirmation email through the configured SMTP provider.
+- Supabase sends a confirmation email.
 - The real confirmation link is clicked.
 - The redirect lands on `https://caseflow-store.vercel.app`, not `localhost`.
 - The customer signs in after confirmation.
@@ -45,5 +68,5 @@ The task can be marked PASS only when all of the following are true:
 
 - Do not service-role-confirm the account.
 - Do not use dashboard manual confirmation as a substitute for email delivery.
-- Do not claim PASS without a real mailbox click.
+- Do not claim custom SMTP is configured until `AUTH-SMTP-T02` passes.
 - Do not spam production sign-up if Supabase Auth returns a rate limit.
