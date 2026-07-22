@@ -10,11 +10,15 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: v1.3.0 released; final post-release QA passed
-- Current gate: `QA-FINAL-T01` complete; no P0/P1 tester findings
+- Mode: stable portfolio and operations handoff after `v1.12.0`
+- Current gate: `v1.12.0` layered architecture release complete; custom SMTP
+  remains externally blocked pending real credentials
 - Current task: No active implementation task
 - Implementation day: Day 40 complete
-- Last updated: 2026-07-18
+- Last updated: 2026-07-22
+
+> Detailed post-v1.3 roadmap entries are maintained in
+> `caseflow-store/.agent/todo-roadmap.md`.
 
 ## Pre-Implementation Checklist
 

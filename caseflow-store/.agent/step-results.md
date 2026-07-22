@@ -4,17 +4,17 @@
 
 | Field | Value |
 |---|---|
-| Current mode | post-`v1.10.0` production UAT executed |
-| Current gate | `UAT-MANUAL-T01` complete with open `UAT-MANUAL-F01` sign-up rate-limit finding |
+| Current mode | stable portfolio and operations handoff after `v1.12.0` |
+| Current gate | `v1.12.0` layered architecture release complete; custom SMTP remains externally blocked |
 | Implementation started | Yes |
 | Next implementation task | No active implementation task |
 | App initialized | Yes, in `caseflow-store` |
-| Local server verified | Yes, v1.10.0 local typecheck, lint, build, E2E, and signup-voucher verifier passed during `SIGNUPVOUCHER-T02`; `POSTV110-T01` is production consistency verification only |
-| Lint verified | Yes, v1.10.0 lint passed during `SIGNUPVOUCHER-T02`; no runtime source change in `POSTV110-T01` |
-| Build verified | Yes, v1.10.0 production build generated 51 App Router routes plus proxy during `SIGNUPVOUCHER-T02`; no runtime source change in `POSTV110-T01` |
+| Local server verified | Yes, v1.12.0 local lint, TypeScript, build, full E2E, architecture verifier, payment/security/asset gates, and QR demo flow passed |
+| Lint verified | Yes, v1.12.0 lint passed |
+| Build verified | Yes, v1.12.0 production build generated 52 App Router routes plus proxy locally and on Vercel |
 | Database connected | Yes; live catalog, orders, Auth, role checks, and admin status updates use Supabase |
-| Deployed | Yes, v1.10.0 production deployment `dpl_FPZwifR2vJr9ZFDa1cbbJ8y89QsW` is aliased to `https://caseflow-store.vercel.app` |
-| Last updated | 2026-07-21 |
+| Deployed | Yes, v1.12.0 production deployment `dpl_8MCASvEYjndhtQJuvbPJeqkFF1gA` is aliased to `https://caseflow-store.vercel.app` |
+| Last updated | 2026-07-22 |
 
 ## Result Index
 
@@ -137,6 +137,7 @@
 | SR-189 | 2026-07-21 | SIGNUPVOUCHER-T02 | completed | Shipped v1.10.0: pushed runtime and release-evidence commits, deployed Vercel deployment dpl_FPZwifR2vJr9ZFDa1cbbJ8y89QsW, passed production signup-voucher/smoke/security/QR/final QA gates, and created the tag/GitHub Release |
 | SR-190 | 2026-07-21 | POSTV110-T01 | completed | Audited v1.10.0 release consistency across local Git, origin/main, annotated tag, GitHub latest release, Vercel production alias, release docs, production smoke, security posture, QR production lock, and final QA |
 | SR-191 | 2026-07-21 | UAT-MANUAL-T01 | blocked finding | Executed production customer UAT with a controlled customer account: sign-in, vouchers, profile, add-to-cart, checkout, server totals, QR/payment production lock, and order history passed; self-service sign-up is blocked by Supabase Auth rate-limit 429 |
+| SR-192 | 2026-07-22 | ARCH-LAYER-T01..T07 | completed | Shipped v1.12.0 layered architecture hardening: extracted order creation into a use case, added architecture boundary verifier, passed local/production E2E and security gates, deployed Vercel `dpl_8MCASvEYjndhtQJuvbPJeqkFF1gA`, and published the tag/GitHub Release |
 
 ---
 
@@ -14922,5 +14923,64 @@ payment, auth, or API behavior.
 - No auth behavior change.
 - No staff/admin/customer authorization boundary change.
 - No public API envelope change.
+- Custom SMTP remains blocked pending real Supabase Management API and SMTP
+  credentials.
+
+---
+
+## ARCH-LAYER-T07 - Release v1.12.0
+
+- Date: 2026-07-22
+- Status: completed and released
+- Release: `v1.12.0`
+
+### Objective
+
+Ship the layered architecture hardening runtime after local regression gates
+passed, verify the deployed production app, then create the official tag and
+GitHub Release.
+
+### Release Facts
+
+- Runtime commit: `4fd632b1a6b9f515bc47b766aeedc0b601f3917e`
+- Production deployment: `dpl_8MCASvEYjndhtQJuvbPJeqkFF1gA`
+- Production URL: `https://caseflow-store.vercel.app`
+- Tag: `v1.12.0`
+- GitHub Release:
+  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.12.0`
+- Post-release audit:
+  `docs/postv120-t01-final-release-consistency-audit.md`
+
+### Verification
+
+- `npx vercel inspect https://caseflow-store.vercel.app`: passed.
+- `PRODUCTION_SMOKE_BASE_URL=https://caseflow-store.vercel.app PRODUCTION_SMOKE_ARTIFACT_ID=arch-layer-t07-production-smoke npm exec -- tsx scripts/verify-production-smoke.ts`:
+  passed.
+- `SECURITY_QA_BASE_URL=https://caseflow-store.vercel.app SECURITY_QA_ARTIFACT_ID=arch-layer-t07-production-security npm exec -- tsx scripts/verify-security-posture.ts`:
+  passed.
+- `PAYQR_PRODUCTION_SAFETY_BASE_URL=https://caseflow-store.vercel.app PAYQR_ARTIFACT_ID=arch-layer-t07-production-qr-safety npm exec -- tsx scripts/verify-qr-payment-production-safety.ts`:
+  passed with runtime `401`.
+- `PLAYWRIGHT_BASE_URL=https://caseflow-store.vercel.app npm run test:e2e`:
+  passed, `20/20`.
+- `gh release view v1.12.0 --json tagName,isDraft,isPrerelease,url,createdAt,publishedAt,targetCommitish`:
+  passed; release is published, not draft, not prerelease.
+- `git ls-remote --tags origin v1.12.0`: passed.
+- `git rev-list -n 1 v1.12.0`: resolved to the runtime commit.
+
+### Evidence
+
+- `.agent/artifacts/arch-layer-t07-production-smoke/production-smoke-check.json`
+- `.agent/artifacts/arch-layer-t07-production-security/security-posture-check.json`
+- `.agent/artifacts/arch-layer-t07-production-qr-safety/qr-payment-production-safety-check.json`
+
+### Guardrails
+
+- No schema migration was run.
+- No customer-facing feature was added.
+- No payment behavior changed.
+- No auth behavior changed.
+- No staff/admin/customer authorization boundary changed.
+- No public API envelope changed.
+- QR demo simulate endpoint remains denied in production.
 - Custom SMTP remains blocked pending real Supabase Management API and SMTP
   credentials.

@@ -4,17 +4,17 @@
 
 | Field | Value |
 |---|---|
-| Current mode | v1.3.0 released; final post-release QA passed |
-| Current gate | `QA-FINAL-T01` complete; no P0/P1 tester findings |
+| Current mode | stable portfolio and operations handoff after `v1.12.0` |
+| Current gate | `v1.12.0` layered architecture release complete; custom SMTP remains externally blocked |
 | Implementation started | Yes |
 | Next implementation task | No active implementation task |
 | App initialized | Yes, in `caseflow-store` |
-| Local server verified | Yes, QA-FINAL-T01 full Playwright `20/20` passed on a production-style local server at `http://127.0.0.1:3002` |
-| Lint verified | Yes, QA-FINAL-T01 lint passed |
-| Build verified | Yes, QA-FINAL-T01 production build generated 42 App Router routes plus proxy |
+| Local server verified | Yes, v1.12.0 local lint, TypeScript, build, full E2E, architecture verifier, security/payment/asset gates, and QR demo flow passed |
+| Lint verified | Yes, v1.12.0 lint passed |
+| Build verified | Yes, v1.12.0 production build generated 52 App Router routes plus proxy locally and on Vercel |
 | Database connected | Yes; live catalog, orders, Auth, role checks, and admin status updates use Supabase |
-| Deployed | Yes, v1.3 production deployment `dpl_6in3zn6CsXKtj3mR2xjGVh4X3q59` is aliased to `https://caseflow-store.vercel.app` |
-| Last updated | 2026-07-18 |
+| Deployed | Yes, v1.12.0 production deployment `dpl_8MCASvEYjndhtQJuvbPJeqkFF1gA` is aliased to `https://caseflow-store.vercel.app` |
+| Last updated | 2026-07-22 |
 
 ## Result Index
 
@@ -23,6 +23,7 @@
 | SR-001 | 2026-07-14 | DOC-001 | completed | Created project guidance, context management, architecture, risk, ADR, design, and skill docs |
 | SR-002 | 2026-07-14 | DOC-006 | completed | Reviewed remaining gaps and recorded mitigation before implementation |
 | SR-003 | 2026-07-14 | D01-T01 | blocked | User confirmed implementation start, but environment preflight found `node`, `npm`, and `npx` missing from shell PATH; user-approved Homebrew Node install failed before Node was installed |
+| SR-192 | 2026-07-22 | ARCH-LAYER-T01..T07 | completed | See `caseflow-store/.agent/step-results.md`: shipped v1.12.0 layered architecture hardening, deployed Vercel `dpl_8MCASvEYjndhtQJuvbPJeqkFF1gA`, passed local/production E2E and security gates, and published the tag/GitHub Release |
 | SR-004 | 2026-07-14 | D01-T01..D01-T04 | completed | Installed official Node LTS binary, initialized Next.js app, verified dev server, lint, build, and Git status |
 | SR-005 | 2026-07-14 | D02-T01 | completed | Copied project management docs into the nested app and reconciled the app-level AGENTS.md |
 | SR-006 | 2026-07-14 | D02-T02 | completed | Created planned source, Supabase, and test folders with `.gitkeep` placeholders |

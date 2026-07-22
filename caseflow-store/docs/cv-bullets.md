@@ -1,7 +1,7 @@
 # Verified CV Bullets
 
 These bullets are grounded in repository files, command output, deployment
-evidence, and production smoke checks through the `v1.11.0` release. They
+evidence, and production smoke checks through the `v1.12.0` release. They
 intentionally avoid unmeasured
 performance claims, inflated scale claims, revenue claims, and the implication
 that simulated payment flows process real money.
@@ -30,7 +30,9 @@ that simulated payment flows process real money.
   and password-change verifiers, a real-email confirmation UAT that caught
   and fixed a Supabase redirect-to-localhost configuration issue, and a
   `v1.11.1` dependency patch that moved the audit from high-severity findings
-  to zero reported vulnerabilities without forcing a breaking downgrade.
+  to zero reported vulnerabilities without forcing a breaking downgrade, plus
+  a `v1.12.0` use-case extraction and architecture boundary verifier for the
+  highest-risk order creation API.
 
 ## Alternative bullets by focus
 
@@ -110,7 +112,8 @@ custom SMTP remains a documented operations upgrade.
 
 | Claim | Evidence |
 |---|---|
-| Public production deployment | `https://caseflow-store.vercel.app`; latest release `v1.11.3`; `caseflow-store/docs/v1.11.3-expert-polish-release-notes.md` |
+| Public production deployment | `https://caseflow-store.vercel.app`; latest release `v1.12.0`; `caseflow-store/docs/v1.12.0-layered-architecture-release-notes.md` |
+| Layered order creation architecture | `caseflow-store/docs/adr/0014-layered-architecture-boundary.md`; `caseflow-store/src/lib/use-cases/orders/create-book-order.ts`; `caseflow-store/.agent/artifacts/arch-layer-t05/layer-boundaries-check.json` |
 | 500 active book editions and 50 works in production | `caseflow-store/.agent/artifacts/v16-t01/catalog-expansion-apply.json`; `caseflow-store/.agent/artifacts/v16-t01-production/catalog-retail-polish-check.json` |
 | 500 project-created cover assets | `docs/v1.2-cover-portfolio.md`; `caseflow-store/public/images/books/v16-covers/`; `caseflow-store/.agent/artifacts/v16-t01-production/catalog-retail-polish-check.json` |
 | Provenance and content-quality policy | `docs/domain.md`; `docs/v1.2-provenance-content-quality-contracts.md`; `docs/v1.2-release-audit.md` |

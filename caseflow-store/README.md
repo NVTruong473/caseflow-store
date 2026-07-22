@@ -68,27 +68,28 @@ runtime.
 
 ## Latest release evidence
 
-- Release tag: `v1.11.3`
+- Release tag: `v1.12.0`
 - GitHub Release:
-  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.11.3`
+  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.12.0`
 - Production alias: `https://caseflow-store.vercel.app`
-- Vercel deployment ID: `dpl_5iq8hNMbtsiiMUBkN39Uog9MQjXV`
+- Vercel deployment ID: `dpl_8MCASvEYjndhtQJuvbPJeqkFF1gA`
 - Local gates: npm audit with zero vulnerabilities, TypeScript, ESLint,
   production build, full Playwright `20/20`,
-  signup voucher verifier, password-change verifier, QR production-safety
-  verifier, security posture verifier, final QA smoke, and `git diff --check`
-  passed.
+  architecture boundary verifier, signup voucher verifier, password-change
+  verifier, QR production-safety verifier, security posture verifier, final QA
+  smoke, and `git diff --check` passed.
 - Production smoke: release smoke, security posture, QR production-safety
-  lock, production render audit, and full production Playwright `20/20` passed.
-  The `v1.11.3` deployment artifacts are under
-  `.agent/artifacts/expert-final-audit-t01-production-*`.
+  lock, and full production Playwright `20/20` passed. The `v1.12.0`
+  deployment artifacts are under `.agent/artifacts/arch-layer-t07-production-*`.
 - Release notes:
+  [`docs/v1.12.0-layered-architecture-release-notes.md`](docs/v1.12.0-layered-architecture-release-notes.md),
   [`docs/v1.11.3-expert-polish-release-notes.md`](docs/v1.11.3-expert-polish-release-notes.md),
   [`docs/v1.11.2-neutral-light-ui-patch-release-notes.md`](docs/v1.11.2-neutral-light-ui-patch-release-notes.md),
   [`docs/v1.11.1-security-dependency-patch-release-notes.md`](docs/v1.11.1-security-dependency-patch-release-notes.md)
   and
   [`docs/v1.11.0-account-security-password-release-notes.md`](docs/v1.11.0-account-security-password-release-notes.md)
 - Operational evidence:
+  [`docs/postv120-t01-final-release-consistency-audit.md`](docs/postv120-t01-final-release-consistency-audit.md),
   [`docs/postv113-t01-final-release-consistency-audit.md`](docs/postv113-t01-final-release-consistency-audit.md),
   [`docs/auth-email-t03-real-email-confirmation-uat.md`](docs/auth-email-t03-real-email-confirmation-uat.md)
   and
@@ -100,5 +101,5 @@ runtime.
 Architecture and decision records are under [`docs/`](docs/).
 The portfolio handoff packet is
 [`docs/portfolio-handoff.md`](docs/portfolio-handoff.md).
-The latest operational closeout packet is
+The latest operational handoff packet is
 [`docs/v1.11-final-operational-handoff.md`](docs/v1.11-final-operational-handoff.md).

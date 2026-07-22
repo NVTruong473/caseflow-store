@@ -1,9 +1,9 @@
 # CaseFlow Books Portfolio Handoff
 
-- Latest release: `v1.11.3`
+- Latest release: `v1.12.0`
 - Production URL: `https://caseflow-store.vercel.app`
-- GitHub Release: `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.11.3`
-- Vercel deployment: `dpl_5iq8hNMbtsiiMUBkN39Uog9MQjXV`
+- GitHub Release: `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.12.0`
+- Vercel deployment: `dpl_8MCASvEYjndhtQJuvbPJeqkFF1gA`
 - Project type: full-stack bookstore and small-business operations portfolio
 - Stack: Next.js 16, React 19, TypeScript 5, Tailwind CSS 4, Supabase
   PostgreSQL/Auth/RLS, Zod, Playwright, Vercel
@@ -37,6 +37,8 @@ handled deliberately:
   evidence.
 - Cancelled/rejected orders are normalized server-side so admin/staff
   dashboards do not count stale pending payments as still collectable.
+- The highest-risk order creation API now follows a Controller -> Use Case ->
+  Repository boundary, with an architecture verifier guarding import direction.
 - Release claims are backed by Playwright, production smoke, cleanup, audit,
   and screenshot evidence.
 
@@ -108,7 +110,9 @@ Core boundaries:
 - `src/features/checkout`: account-gated checkout and totals display.
 - `src/features/customer`: account, profile readiness, history, tracking.
 - `src/features/admin`: dashboard and operational admin/staff surfaces.
+- `src/lib/use-cases`: application workflows for high-risk mutating APIs.
 - `src/lib/repositories`: Supabase persistence and trusted calculations.
+- `src/lib/api`: stable response envelope and controller/use-case mapping.
 - `src/lib/validation`: Zod schemas for public/customer/admin inputs.
 - `supabase/migrations`: bookstore schema, RLS, grants, RPCs, and v1.2
   merchandising tables.
@@ -119,7 +123,12 @@ See `docs/architecture.md` for the full architecture notes.
 
 | Evidence | Location |
 |---|---|
-| Latest release notes | `docs/v1.11.3-expert-polish-release-notes.md` |
+| Latest release notes | `docs/v1.12.0-layered-architecture-release-notes.md` |
+| v1.12.0 production consistency audit | `docs/postv120-t01-final-release-consistency-audit.md` |
+| v1.12.0 architecture boundary verifier | `.agent/artifacts/arch-layer-t05/layer-boundaries-check.json` |
+| v1.12.0 production smoke | `.agent/artifacts/arch-layer-t07-production-smoke/production-smoke-check.json` |
+| v1.12.0 production security posture | `.agent/artifacts/arch-layer-t07-production-security/security-posture-check.json` |
+| v1.12.0 QR production lock | `.agent/artifacts/arch-layer-t07-production-qr-safety/qr-payment-production-safety-check.json` |
 | v1.11.3 production consistency audit | `docs/postv113-t01-final-release-consistency-audit.md` |
 | v1.11.1 dependency security patch | `docs/v1.11.1-security-dependency-patch-release-notes.md` |
 | v1.11.1 production smoke | `.agent/artifacts/secdep-t01-production-smoke/production-smoke-check.json` |
@@ -253,5 +262,5 @@ Only continue if the goal moves beyond portfolio polish:
 - Add operational audit logs and inventory reservation/decrement semantics.
 - Add licensed metadata/media pipeline if the bookstore becomes commercial.
 
-For the latest operational closeout packet, see
+For the latest operational handoff packet, see
 `docs/v1.11-final-operational-handoff.md`.

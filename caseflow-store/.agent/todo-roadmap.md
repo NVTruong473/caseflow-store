@@ -10,7 +10,7 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: stable portfolio and operations handoff after `v1.11.3`
+- Mode: stable portfolio and operations handoff after `v1.12.0`
 - Current gate: `AUTH-SMTP-T02` is blocked pending a real Supabase Management
   API token and real SMTP credentials; all appropriate non-SMTP handoff work is
   complete
@@ -3077,9 +3077,20 @@ accepted; the next task is full 100-cover portfolio production.
     - `.agent/artifacts/arch-layer-t06/qr-payment-production-safety-check.json`
     - `.agent/artifacts/arch-layer-t06/qr-demo-payment-flow-check.json`
 
-- [ ] `ARCH-LAYER-T07` Release v1.12.0.
-  - Scope:
-    - Commit and push the layered architecture release.
-    - Deploy production.
-    - Rerun production smoke/security/QR safety/Playwright checks.
-    - Create tag and GitHub Release only after production gates pass.
+- [x] `ARCH-LAYER-T07` Release v1.12.0. - 2026-07-22
+  - Result: pushed runtime commit
+    `4fd632b1a6b9f515bc47b766aeedc0b601f3917e`, deployed Vercel production
+    deployment `dpl_8MCASvEYjndhtQJuvbPJeqkFF1gA`, created annotated tag
+    `v1.12.0`, and published GitHub Release
+    `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.12.0`.
+  - Production verification:
+    - `npx vercel inspect https://caseflow-store.vercel.app`: passed.
+    - `PRODUCTION_SMOKE_BASE_URL=https://caseflow-store.vercel.app PRODUCTION_SMOKE_ARTIFACT_ID=arch-layer-t07-production-smoke npm exec -- tsx scripts/verify-production-smoke.ts`: passed.
+    - `SECURITY_QA_BASE_URL=https://caseflow-store.vercel.app SECURITY_QA_ARTIFACT_ID=arch-layer-t07-production-security npm exec -- tsx scripts/verify-security-posture.ts`: passed.
+    - `PAYQR_PRODUCTION_SAFETY_BASE_URL=https://caseflow-store.vercel.app PAYQR_ARTIFACT_ID=arch-layer-t07-production-qr-safety npm exec -- tsx scripts/verify-qr-payment-production-safety.ts`: passed with runtime `401`.
+    - `PLAYWRIGHT_BASE_URL=https://caseflow-store.vercel.app npm run test:e2e`: passed, `20/20`.
+  - Evidence:
+    - `.agent/artifacts/arch-layer-t07-production-smoke/production-smoke-check.json`
+    - `.agent/artifacts/arch-layer-t07-production-security/security-posture-check.json`
+    - `.agent/artifacts/arch-layer-t07-production-qr-safety/qr-payment-production-safety-check.json`
+    - `docs/postv120-t01-final-release-consistency-audit.md`

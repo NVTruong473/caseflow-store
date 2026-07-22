@@ -6,24 +6,27 @@ upgraded through the Day 21-40 roadmap, the `v1.2` realistic catalog release,
 the `v1.3` visual merchandising polish, the `v1.3.1` compact-card hotfix,
 the `v1.4` real-commerce visual merchandising release, the `v1.5.0` QR
 demo payment release, the `v1.6.0` retail catalog scale release, the
-`v1.7.0` UI humanization release, and the `v1.8.0` modern editorial bookstore
-release, the `v1.9.0` real-cover commerce polish, and the `v1.10.0`
-account-bound signup voucher release into a Vietnam-first, bilingual
-e-commerce application for book discovery, account-gated checkout, customer
-order history/cancellation, order tracking, and admin/staff operations. The
-latest release keeps the 500-edition catalog while adding real-cover retail
-polish and account-bound welcome vouchers for customer conversion.
+`v1.7.0` UI humanization release, the `v1.8.0` modern editorial bookstore
+release, the `v1.9.0` real-cover commerce polish, the `v1.10.0`
+account-bound signup voucher release, the `v1.11.x` account/security polish
+series, and the `v1.12.0` layered architecture hardening release into a
+Vietnam-first, bilingual e-commerce application for book discovery,
+account-gated checkout, customer order history/cancellation, order tracking,
+and admin/staff operations. The latest release keeps the 500-edition catalog
+while making the highest-risk order creation API easier to audit through a
+Controller -> Use Case -> Repository boundary.
 
 [Open the production deployment](https://caseflow-store.vercel.app)
 
 Latest release:
-[`v1.10.0`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.10.0)
+[`v1.12.0`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.12.0)
 
 > Payments are simulated. The app does not collect card numbers, CVV, card
 > expiry, real bank credentials, or real MoMo/ZaloPay/VNPay credentials. QR
 > demo payment exists for development/sandbox verification and is locked from
 > production settlement. Phone and email fields are validated for shape and
-> checkout readiness, but no real SMS/OTP or email-verification provider is
+> checkout readiness. Supabase default email confirmation has been verified on
+> production, but no custom SMTP provider or real SMS/OTP provider is
 > integrated.
 
 ## Screenshots
@@ -67,8 +70,8 @@ Latest release:
 
 - Browse a seeded catalog of 500 sellable book editions across 50 works, with
   250 English and 250 Vietnamese products.
-- Use 500 edition-specific, project-created SVG cover illustrations with
-  provenance and content-quality checks.
+- Use reviewed local source-work covers where available plus project-created
+  fallback covers with provenance and content-quality checks.
 - Filter and sort by category, author, language, format, price, stock state,
   publication era, and search text.
 - Compare English originals and Vietnamese editions where the dataset includes
@@ -113,6 +116,8 @@ Latest release:
   orders, order items, and QR payment sessions.
 - Server reloads trusted book records and recalculates subtotal, promotion,
   VAT, shipping, payment fee, total values, and QR payment amounts.
+- High-risk order creation now follows a Controller -> Use Case -> Repository
+  boundary with an automated architecture verifier.
 - Browser-supplied price, subtotal, stock, tax, fee, role, and order status are
   ignored.
 - Zod validates mutating request bodies and public/admin APIs return stable
@@ -126,10 +131,11 @@ Latest release:
 
 - The catalog uses factual classic/public-domain-style book metadata where
   practical.
-- self-written summaries and merchandising copy are created inside the project
+- Self-written summaries and merchandising copy are created inside the project
   instead of copied from publisher blurbs or reviews.
-- The active catalog uses 500 local project-created SVG covers. The generic
-  placeholder remains only as a fallback/admin quality state.
+- The active catalog uses reviewed local source-work covers where practical and
+  project-created fallback covers. The generic placeholder remains only as a
+  fallback/admin quality state.
 - Source and rights assumptions are documented in
   [`caseflow-store/docs/v1.2-cover-portfolio.md`](caseflow-store/docs/v1.2-cover-portfolio.md),
   [`caseflow-store/docs/v1.2-provenance-content-quality-contracts.md`](caseflow-store/docs/v1.2-provenance-content-quality-contracts.md),
@@ -139,17 +145,18 @@ Latest release:
 
 | Gate | Result |
 |---|---|
-| Release tag | `v1.10.0` |
-| GitHub Release | [`CaseFlow Books v1.10.0 - Account-Bound Signup Vouchers`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.10.0) |
+| Release tag | `v1.12.0` |
+| GitHub Release | [`v1.12.0 - Layered Architecture And E2E Regression Hardening`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.12.0) |
 | Production URL | `https://caseflow-store.vercel.app` |
-| Vercel deployment | `READY`, deployment `dpl_FPZwifR2vJr9ZFDa1cbbJ8y89QsW` |
+| Vercel deployment | `READY`, deployment `dpl_8MCASvEYjndhtQJuvbPJeqkFF1gA` |
 | TypeScript | `npx tsc --noEmit --pretty false` passed |
 | ESLint | `npm run lint` passed |
-| Production build | 51 App Router routes plus proxy generated |
+| Production build | 52 App Router routes plus proxy generated |
+| Architecture boundary | `npm run verify:architecture` passed; `POST /api/orders` delegates to `createBookOrderUseCase` |
 | Signup voucher QA | 3 account codes granted, homepage/account CTAs visible, checkout applies `WELCOME30K`, persisted 30,000 VND discount, reuse rejected, cross-account use rejected, multi-code request rejected, used voucher relation verified |
 | Modern bookstore QA | Search-first header, live category menu, mobile search/category links, cover provenance manifest, object-contain covers, product-card motion, back-to-top, no-overflow screenshots, and reduced-motion guard passed |
 | QR demo payment QA | Local QR flow, VietQR CRC, mock webhook HMAC, idempotency, production-safety lock, and UI regression checks passed |
-| Production QA | V18 bookstore verifier, release smoke, 500-edition catalog verifier, security posture, final QA smoke, and QR production-safety lock passed |
+| Production QA | v1.12 production smoke, security posture, QR production-safety lock, and full production Playwright `20/20` passed |
 | v1.4.2 security QA | Security headers/no-store verifier and final QA smoke passed locally and in production; external agent repos were mapped as QA references, not runtime dependencies |
 | v1.4.1 local QA | TypeScript, lint, production build, no-demo copy scan, compact-card overlap, customer order history/cancellation, admin order rejection/cancellation, cleanup, secret scan, audit-high, and `git diff --check` passed |
 | v1.4.1 production QA | Production release smoke, final QA smoke, compact-card overlap, customer order history/cancellation, and admin order rejection/cancellation passed |
@@ -173,6 +180,8 @@ Release evidence is recorded in
 [`caseflow-store/docs/v1.8.0-modern-editorial-bookstore-release-notes.md`](caseflow-store/docs/v1.8.0-modern-editorial-bookstore-release-notes.md),
 [`caseflow-store/docs/v1.9.0-real-cover-commerce-polish-release-notes.md`](caseflow-store/docs/v1.9.0-real-cover-commerce-polish-release-notes.md),
 [`caseflow-store/docs/v1.10.0-account-bound-signup-voucher-release-notes.md`](caseflow-store/docs/v1.10.0-account-bound-signup-voucher-release-notes.md),
+[`caseflow-store/docs/v1.12.0-layered-architecture-release-notes.md`](caseflow-store/docs/v1.12.0-layered-architecture-release-notes.md),
+[`caseflow-store/docs/postv120-t01-final-release-consistency-audit.md`](caseflow-store/docs/postv120-t01-final-release-consistency-audit.md),
 and `.agent/step-results.md`.
 
 ## Portfolio handoff

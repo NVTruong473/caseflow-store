@@ -1,8 +1,8 @@
 # Known Limitations
 
 This document records the intentional boundaries and accepted risks of
-CaseFlow Books through the latest `v1.11.3` expert UI/accessibility polish
-patch.
+CaseFlow Books through the latest `v1.12.0` layered architecture hardening
+release.
 These items are not hidden production capabilities; they define where the
 portfolio release stops.
 

@@ -2,8 +2,8 @@
 
 ## Project Identity
 
-- Project name: CaseFlow Store `v1.0.0`; CaseFlow Books `v1.1.0`, `v1.2.0`,
-  and `v1.3.0` released
+- Project name: CaseFlow Store `v1.0.0`; CaseFlow Books `v1.1.0` through
+  `v1.12.0` released
 - Repository folder: `/Users/vantruong/Documents/TSNN 2`
 - Product domain: books for released `v1.1.0` and `v1.2.0`; phone
   accessories for released `v1.0.0`
@@ -11,9 +11,15 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: v1.3.0 released; final post-release QA passed.
-- Current gate: `QA-FINAL-T01` complete; no P0/P1 tester findings.
+- Current mode: stable portfolio and operations handoff after `v1.12.0`.
+- Current gate: `v1.12.0` layered architecture release complete; custom SMTP
+  remains externally blocked pending real credentials.
 - Current task: No active implementation task.
+- Latest production deployment: `dpl_8MCASvEYjndhtQJuvbPJeqkFF1gA`, aliased to
+  `https://caseflow-store.vercel.app`.
+- Latest GitHub Release:
+  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.12.0`.
+- Detailed current trackers live in `caseflow-store/.agent/`.
 
 ## Confirmed Facts
 
