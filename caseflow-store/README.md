@@ -72,6 +72,7 @@ runtime.
 - GitHub Release:
   `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.11.1`
 - Production alias: `https://caseflow-store.vercel.app`
+- Vercel deployment ID: `dpl_Gb8aaXLz5MJhuzKwByEndNYtgT75`
 - Local gates: npm audit with zero vulnerabilities, TypeScript, ESLint,
   production build, full Playwright `20/20`,
   signup voucher verifier, password-change verifier, QR production-safety
@@ -79,7 +80,8 @@ runtime.
   passed.
 - Production smoke: email confirmation UAT after Supabase Auth URL
   Configuration fix, password-change verifier, release smoke, security
-  posture, and QR production-safety lock passed.
+  posture, and QR production-safety lock passed. The `v1.11.1` deployment
+  smoke/security/QR artifacts are under `.agent/artifacts/secdep-t01-*`.
 - Release notes:
   [`docs/v1.11.1-security-dependency-patch-release-notes.md`](docs/v1.11.1-security-dependency-patch-release-notes.md)
   and

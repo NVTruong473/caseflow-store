@@ -203,13 +203,15 @@
   was added, README/release evidence/CV bullets/known limitations now describe
   the actual `v1.11.0` production state, and SMTP remains the only explicit
   operations blocker.
-- `SECDEP-T01` was completed locally on 2026-07-22 as the `v1.11.1`
+- `SECDEP-T01` was completed and released on 2026-07-22 as the `v1.11.1`
   dependency security patch: `next` and `eslint-config-next` were updated to
   `16.2.11`, npm overrides pin the Next dependency tree to
   `postcss@8.5.19` and `sharp@0.35.3`, `npm audit --audit-level=high` reports
   zero vulnerabilities, lint/typecheck/build passed, and full local Playwright
   passed `20/20` after a transient Supabase network/DNS failure was rerun and
-  cleared.
+  cleared. Vercel production deployment `dpl_Gb8aaXLz5MJhuzKwByEndNYtgT75` is
+  aliased to `https://caseflow-store.vercel.app`, and production smoke,
+  security posture, and QR production-safety checks passed.
 - Implementation was confirmed by the user on 2026-07-14.
 - Implementation was unblocked by installing the official Node.js LTS binary after Homebrew failed.
 - The Next.js app has been initialized in `caseflow-store`.

@@ -35,6 +35,9 @@
     Playwright `20/20` passed. The first Playwright run had transient Supabase
     `ETIMEDOUT`/`ENOTFOUND` failures in the last two UI-state tests; rerunning
     the affected spec passed `4/4`, and the second full run passed `20/20`.
+    Vercel deployment `dpl_Gb8aaXLz5MJhuzKwByEndNYtgT75` is aliased to
+    `https://caseflow-store.vercel.app`; production smoke, security posture,
+    and QR production-safety checks passed.
   - Guardrail: no runtime feature, schema migration, fake SMTP value, or
     production data mutation was added.
 

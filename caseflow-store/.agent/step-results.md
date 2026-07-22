@@ -14476,7 +14476,7 @@ the actual `v1.11.0` state:
 ## SECDEP-T01 - Dependency Security Patch v1.11.1
 
 - Date: 2026-07-22
-- Status: completed locally; ready for production deploy/tag/release
+- Status: completed and deployed to production
 - Target: dependency audit and production build safety
 
 ### Objective
@@ -14497,6 +14497,9 @@ The dependency tree was patched narrowly:
 
 `package-lock.json` was regenerated. Release documentation was added at
 `docs/v1.11.1-security-dependency-patch-release-notes.md`.
+
+Vercel production deployment `dpl_Gb8aaXLz5MJhuzKwByEndNYtgT75` is aliased to
+`https://caseflow-store.vercel.app`.
 
 ### Verification
 
@@ -14519,8 +14522,16 @@ The dependency tree was patched narrowly:
 - Supabase reachability check: passed after the transient failure.
 - `npx playwright test tests/e2e/ui-states.spec.ts`: passed `4/4`.
 - Second full `npm run test:e2e`: passed `20/20`.
-- `npm exec -- tsx scripts/verify-payqr-secret-scan.ts`: passed with `1265`
+- `npm exec -- tsx scripts/verify-payqr-secret-scan.ts`: passed with `1268`
   checked files and `0` findings.
+- `npx vercel inspect https://caseflow-store.vercel.app`: passed; production
+  alias points to `dpl_Gb8aaXLz5MJhuzKwByEndNYtgT75`.
+- `PRODUCTION_SMOKE_BASE_URL=https://caseflow-store.vercel.app PRODUCTION_SMOKE_ARTIFACT_ID=secdep-t01-production-smoke npm exec -- tsx scripts/verify-production-smoke.ts`:
+  passed.
+- `SECURITY_QA_BASE_URL=https://caseflow-store.vercel.app SECURITY_QA_ARTIFACT_ID=secdep-t01-production-security npm exec -- tsx scripts/verify-security-posture.ts`:
+  passed.
+- `PAYQR_PRODUCTION_SAFETY_BASE_URL=https://caseflow-store.vercel.app PAYQR_ARTIFACT_ID=secdep-t01-production-qr-safety npm exec -- tsx scripts/verify-qr-payment-production-safety.ts`:
+  passed.
 
 ### Guardrails
 

@@ -3,6 +3,7 @@
 - Latest release: `v1.11.1`
 - Production URL: `https://caseflow-store.vercel.app`
 - GitHub Release: `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.11.1`
+- Vercel deployment: `dpl_Gb8aaXLz5MJhuzKwByEndNYtgT75`
 - Project type: full-stack bookstore and small-business operations portfolio
 - Stack: Next.js 16, React 19, TypeScript 5, Tailwind CSS 4, Supabase
   PostgreSQL/Auth/RLS, Zod, Playwright, Vercel
@@ -119,6 +120,9 @@ See `docs/architecture.md` for the full architecture notes.
 | Evidence | Location |
 |---|---|
 | Latest release notes | `docs/v1.11.1-security-dependency-patch-release-notes.md` |
+| v1.11.1 production smoke | `.agent/artifacts/secdep-t01-production-smoke/production-smoke-check.json` |
+| v1.11.1 production security posture | `.agent/artifacts/secdep-t01-production-security/security-posture-check.json` |
+| v1.11.1 QR production lock | `.agent/artifacts/secdep-t01-production-qr-safety/qr-payment-production-safety-check.json` |
 | v1.11 account security release notes | `docs/v1.11.0-account-security-password-release-notes.md` |
 | v1.11 release consistency audit | `docs/postv111-t01-final-release-consistency-audit.md` |
 | v1.11 production email UAT | `docs/auth-email-t03-real-email-confirmation-uat.md` |
