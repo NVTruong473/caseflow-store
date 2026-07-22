@@ -20,6 +20,21 @@
 
 ## Phase UAT-MANUAL - Production Customer Manual Acceptance
 
+- [x] `UI-LIGHT-T02` Compact Catalog Pagination Patch. - 2026-07-22
+  - Objective: fix catalog pagination when the 500-edition catalog produces
+    21 pages, so page numbers no longer wrap awkwardly or leave a lone number
+    on the next row.
+  - Result: replaced full page-number rendering with compact pagination that
+    preserves first/last pages, nearby pages, and ellipsis on tablet/desktop;
+    mobile now uses a compact current-page control with previous/next actions.
+  - Verification: `npm run lint` passed; `npm run build` passed; Playwright
+    rendered catalog pagination at desktop, narrow desktop, and mobile
+    viewports with HTTP 200 and `horizontalOverflow: 0`. Desktop/narrow
+    desktop showed the compact `1 2 3 4 ... 21` pattern on one row; mobile
+    showed `Previous | 1 / 21 | Next`.
+  - Guardrail: no schema migration, runtime commerce feature, auth, payment,
+    shipping, or admin authorization behavior changed.
+
 - [x] `UI-LIGHT-T01` Neutral Light UI Color Patch. - 2026-07-22
   - Objective: remove the yellow/orange Night Shift feeling from the current
     bookstore UI while preserving the existing bookstore identity and commerce

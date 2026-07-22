@@ -79,6 +79,9 @@ type CatalogQuickLinkTone =
   | "offer"
   | "translation"
   | "trust";
+type CatalogPaginationItem =
+  | { page: number; type: "page" }
+  | { key: string; type: "ellipsis" };
 type CatalogCardTone =
   | "academic"
   | "editorial"
@@ -990,51 +993,129 @@ function CatalogPagination({
   filters: CatalogFilterState;
   totalPages: number;
 }) {
+  const paginationItems = getCatalogPaginationItems(currentPage, totalPages);
+
   return (
     <nav
       aria-label={copy.pageOf(currentPage, totalPages)}
-      className="flex flex-col gap-case-sm rounded-lg border border-border bg-surface p-case-md sm:flex-row sm:items-center sm:justify-between"
+      className="flex min-w-0 flex-col gap-case-sm rounded-lg border border-border bg-surface p-case-md"
       data-catalog-pagination
     >
-      <PaginationLink
-        disabled={currentPage <= 1}
-        href={getCatalogPageHref(currentPage - 1, filters)}
-      >
-        {copy.previous}
-      </PaginationLink>
+      <div className="flex min-w-0 flex-col gap-case-sm sm:flex-row sm:items-center sm:justify-between">
+        <p className="text-small font-medium text-text-muted">
+          {copy.pageOf(currentPage, totalPages)}
+        </p>
 
-      <div className="flex flex-wrap justify-center gap-case-xs">
-        {Array.from({ length: totalPages }, (_, index) => index + 1).map(
-          (page) => {
-            const isCurrent = page === currentPage;
+        <div
+          className="flex max-w-full items-center gap-case-xs"
+          data-catalog-page-list
+        >
+          <PaginationLink
+            disabled={currentPage <= 1}
+            href={getCatalogPageHref(currentPage - 1, filters)}
+          >
+            {copy.previous}
+          </PaginationLink>
 
-            return (
-              <Link
-                key={page}
-                aria-current={isCurrent ? "page" : undefined}
-                className={
-                  isCurrent
-                    ? "inline-flex min-h-10 min-w-10 items-center justify-center rounded-md border border-primary bg-primary px-3 text-small font-semibold text-surface"
-                    : "inline-flex min-h-10 min-w-10 items-center justify-center rounded-md border border-border bg-background px-3 text-small font-medium text-foreground hover:border-primary hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-                }
-                data-catalog-page-link={page}
-                href={getCatalogPageHref(page, filters)}
-              >
-                {page}
-              </Link>
-            );
-          },
-        )}
+          <span className="inline-flex min-h-10 items-center justify-center rounded-md border border-border bg-background px-3 text-small font-semibold text-foreground sm:hidden">
+            {currentPage} / {totalPages}
+          </span>
+
+          <div className="hidden shrink-0 items-center gap-case-xs sm:flex">
+            {paginationItems.map((item) => {
+              if (item.type === "ellipsis") {
+                return (
+                  <span
+                    key={item.key}
+                    aria-hidden="true"
+                    className="inline-flex min-h-10 min-w-8 items-center justify-center px-1 text-small font-semibold text-text-muted"
+                  >
+                    ...
+                  </span>
+                );
+              }
+
+              const isCurrent = item.page === currentPage;
+
+              return (
+                <Link
+                  key={item.page}
+                  aria-current={isCurrent ? "page" : undefined}
+                  aria-label={copy.page(item.page)}
+                  className={
+                    isCurrent
+                      ? "inline-flex min-h-10 min-w-10 items-center justify-center rounded-md border border-primary bg-primary px-3 text-small font-semibold text-surface focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                      : "inline-flex min-h-10 min-w-10 items-center justify-center rounded-md border border-border bg-background px-3 text-small font-medium text-foreground hover:border-primary hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                  }
+                  data-catalog-page-link={item.page}
+                  href={getCatalogPageHref(item.page, filters)}
+                >
+                  {item.page}
+                </Link>
+              );
+            })}
+          </div>
+
+          <PaginationLink
+            disabled={currentPage >= totalPages}
+            href={getCatalogPageHref(currentPage + 1, filters)}
+          >
+            {copy.next}
+          </PaginationLink>
+        </div>
       </div>
-
-      <PaginationLink
-        disabled={currentPage >= totalPages}
-        href={getCatalogPageHref(currentPage + 1, filters)}
-      >
-        {copy.next}
-      </PaginationLink>
     </nav>
   );
+}
+
+function getCatalogPaginationItems(
+  currentPage: number,
+  totalPages: number,
+): CatalogPaginationItem[] {
+  if (totalPages <= 7) {
+    return Array.from({ length: totalPages }, (_, index) => ({
+      page: index + 1,
+      type: "page" as const,
+    }));
+  }
+
+  const visiblePages = new Set<number>([
+    1,
+    totalPages,
+    currentPage - 1,
+    currentPage,
+    currentPage + 1,
+  ]);
+
+  if (currentPage <= 3) {
+    [2, 3, 4].forEach((page) => visiblePages.add(page));
+  }
+
+  if (currentPage >= totalPages - 2) {
+    [totalPages - 3, totalPages - 2, totalPages - 1].forEach((page) =>
+      visiblePages.add(page),
+    );
+  }
+
+  const sortedPages = Array.from(visiblePages)
+    .filter((page) => page >= 1 && page <= totalPages)
+    .sort((first, second) => first - second);
+
+  return sortedPages.flatMap((page, index) => {
+    const previousPage = sortedPages[index - 1];
+    const items: CatalogPaginationItem[] = [];
+
+    if (previousPage && page - previousPage > 1) {
+      items.push({
+        key: `ellipsis-${previousPage}-${page}`,
+        type: "ellipsis",
+      });
+    }
+
+    items.push({ page, type: "page" });
+
+    return items;
+  });
 }
 
 function PaginationLink({

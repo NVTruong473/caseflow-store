@@ -1,0 +1,212 @@
+[
+  {
+    "viewport": {
+      "name": "desktop",
+      "width": 1440,
+      "height": 900
+    },
+    "metrics": {
+      "navText": "Page 1 of 21Previous1 / 211234...21Next",
+      "visiblePageLinkCount": 5,
+      "allPageLinkTexts": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "21"
+      ],
+      "visiblePageLinkTexts": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "21"
+      ],
+      "visiblePageLinkTops": [
+        430
+      ],
+      "visiblePageLinks": [
+        {
+          "text": "1",
+          "top": 430,
+          "left": 925,
+          "width": 40,
+          "display": "flex"
+        },
+        {
+          "text": "2",
+          "top": 430,
+          "left": 969,
+          "width": 40,
+          "display": "flex"
+        },
+        {
+          "text": "3",
+          "top": 430,
+          "left": 1013,
+          "width": 40,
+          "display": "flex"
+        },
+        {
+          "text": "4",
+          "top": 430,
+          "left": 1057,
+          "width": 40,
+          "display": "flex"
+        },
+        {
+          "text": "21",
+          "top": 430,
+          "left": 1137,
+          "width": 40,
+          "display": "flex"
+        }
+      ],
+      "horizontalOverflow": 0,
+      "navWidth": 1088,
+      "pageListClientWidth": 418,
+      "pageListScrollWidth": 418,
+      "pageListWidth": 418
+    }
+  },
+  {
+    "viewport": {
+      "name": "narrow-desktop",
+      "width": 900,
+      "height": 650
+    },
+    "metrics": {
+      "navText": "Page 1 of 21Previous1 / 211234...21Next",
+      "visiblePageLinkCount": 5,
+      "allPageLinkTexts": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "21"
+      ],
+      "visiblePageLinkTexts": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "21"
+      ],
+      "visiblePageLinkTops": [
+        305
+      ],
+      "visiblePageLinks": [
+        {
+          "text": "1",
+          "top": 305,
+          "left": 537,
+          "width": 40,
+          "display": "flex"
+        },
+        {
+          "text": "2",
+          "top": 305,
+          "left": 581,
+          "width": 40,
+          "display": "flex"
+        },
+        {
+          "text": "3",
+          "top": 305,
+          "left": 625,
+          "width": 40,
+          "display": "flex"
+        },
+        {
+          "text": "4",
+          "top": 305,
+          "left": 669,
+          "width": 40,
+          "display": "flex"
+        },
+        {
+          "text": "21",
+          "top": 305,
+          "left": 749,
+          "width": 40,
+          "display": "flex"
+        }
+      ],
+      "horizontalOverflow": 0,
+      "navWidth": 852,
+      "pageListClientWidth": 418,
+      "pageListScrollWidth": 418,
+      "pageListWidth": 418
+    }
+  },
+  {
+    "viewport": {
+      "name": "mobile",
+      "width": 375,
+      "height": 760
+    },
+    "metrics": {
+      "navText": "Page 1 of 21Previous1 / 211234...21Next",
+      "visiblePageLinkCount": 5,
+      "allPageLinkTexts": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "21"
+      ],
+      "visiblePageLinkTexts": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "21"
+      ],
+      "visiblePageLinkTops": [
+        0
+      ],
+      "visiblePageLinks": [
+        {
+          "text": "1",
+          "top": 0,
+          "left": 0,
+          "width": 0,
+          "display": "inline-flex"
+        },
+        {
+          "text": "2",
+          "top": 0,
+          "left": 0,
+          "width": 0,
+          "display": "inline-flex"
+        },
+        {
+          "text": "3",
+          "top": 0,
+          "left": 0,
+          "width": 0,
+          "display": "inline-flex"
+        },
+        {
+          "text": "4",
+          "top": 0,
+          "left": 0,
+          "width": 0,
+          "display": "inline-flex"
+        },
+        {
+          "text": "21",
+          "top": 0,
+          "left": 0,
+          "width": 0,
+          "display": "inline-flex"
+        }
+      ],
+      "horizontalOverflow": 0,
+      "navWidth": 343,
+      "pageListClientWidth": 309,
+      "pageListScrollWidth": 309,
+      "pageListWidth": 309
+    }
+  }
+]

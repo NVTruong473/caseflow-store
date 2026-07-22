@@ -14595,3 +14595,50 @@ Updated files:
   integration was introduced.
 - The patch changes shared tokens rather than one-off page colors, so future
   pages keep a consistent visual foundation.
+
+---
+
+## UI-LIGHT-T02 - Compact Catalog Pagination Patch
+
+- Date: 2026-07-22
+- Status: completed locally; ready for production deploy
+- Target: catalog pagination layout
+
+### Objective
+
+Fix the catalog pagination presentation after the 500-edition catalog created
+21 pages. Rendering every page number made the control wrap awkwardly, leaving
+the final page number on its own row in narrower desktop layouts.
+
+### Result
+
+`src/app/catalog/page.tsx` now uses compact pagination:
+
+- desktop/tablet keep page `1`, the last page, pages near the current page,
+  and ellipsis gaps;
+- page 1 of a 21-page catalog renders as `1 2 3 4 ... 21`;
+- mobile renders a stable `Previous | 1 / 21 | Next` control instead of a
+  horizontally clipped list of page numbers.
+
+### Verification
+
+- `npm run lint`: passed.
+- `npm run build`: passed.
+- Local Playwright render check against `http://127.0.0.1:3012/catalog`
+  covered:
+  - desktop `1440x900`;
+  - narrow desktop `900x650`;
+  - mobile `375x760`.
+- All checked viewports returned HTTP 200 with `horizontalOverflow: 0`.
+- Desktop and narrow desktop rendered the visible page links on one visual row.
+- Visual artifacts:
+  - `.agent/artifacts/ui-light-t02-pagination-local-final/desktop-pagination.png`
+  - `.agent/artifacts/ui-light-t02-pagination-local-final/narrow-desktop-pagination.png`
+  - `.agent/artifacts/ui-light-t02-pagination-local-final/mobile-pagination.png`
+  - `.agent/artifacts/ui-light-t02-pagination-local-final/pagination-check.json`
+
+### Guardrails
+
+- No schema migration, runtime commerce feature, auth behavior, payment
+  behavior, shipping behavior, or admin/customer authorization boundary was
+  changed.
