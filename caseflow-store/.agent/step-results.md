@@ -14727,8 +14727,9 @@ signals:
 
 - catalog filter fields had visible labels, but automated accessibility
   inspection could not always prove an explicit control association;
-- top support-bar text links were visually usable, but their measured hit area
-  was thinner than a production retail header should be.
+- persistent support text links were visually usable, but topbar/footer target
+  measurement showed that some links were thinner than production retail
+  navigation should be.
 
 Implemented fixes:
 
@@ -14738,6 +14739,9 @@ Implemented fixes:
 - `src/components/layout/site-header.tsx`
   - Increased top support-bar links to a 32px minimum inline-flex hit area.
   - Preserved existing focus-visible outline behavior.
+- `src/components/layout/site-footer.tsx`
+  - Increased footer navigation links to a 32px minimum inline-flex hit area.
+  - Preserved text-link styling so the footer does not become visually heavy.
 
 ### Audit Triage
 
@@ -14773,6 +14777,7 @@ Implemented fixes:
 - `.agent/artifacts/expert-final-audit-t01-local-polish-check/catalog-desktop.png`
 - `.agent/artifacts/expert-final-audit-t01-local-polish-check/catalog-tablet.png`
 - `.agent/artifacts/expert-final-audit-t01-local-polish-check/catalog-mobile.png`
+- `.agent/artifacts/expert-final-audit-t01-production-polish-check/production-polish-check.json`
 
 ### Guardrails
 

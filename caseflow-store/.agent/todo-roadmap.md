@@ -28,8 +28,9 @@
     make only high-confidence release-safe improvements.
   - Result: triaged the production visual audit findings and fixed the real
     code issues without adding new commerce/auth/payment scope. Catalog
-    filters now have explicit `id`/`htmlFor` associations, and top support-bar
-    links now have a 32px minimum hit area with preserved focus states.
+    filters now have explicit `id`/`htmlFor` associations, and persistent
+    topbar/footer support links now have a 32px minimum hit area with
+    preserved focus states.
   - Verification: `npm run lint` passed; `npm exec -- tsc --noEmit --pretty
     false` passed; `npm run build` passed; `npm run test:e2e` passed
     `20/20`; no-demo runtime-copy gate passed; public asset metadata scan

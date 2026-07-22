@@ -34,6 +34,7 @@ careful users can detect:
 |---|---|---|
 | Catalog filters | Visible labels existed, but the controls did not expose explicit `id`/`htmlFor` associations. | Fixed. |
 | Top support bar | Header support links were readable, but their measured target height was thinner than expected. | Fixed. |
+| Footer navigation | Production render audit showed footer support links were also only about 17px tall. | Fixed. |
 | Product images | Raw audit reported broken images, but screenshots showed covers rendering. Lazy image decode timing was the likely cause. | No code change. |
 | Text overflow | Raw audit flagged screen-reader-only text and intentional horizontal quick-link strips. | No code change. |
 | `/contact` timing | One audit run timed out; direct route timing immediately after returned HTTP 200 in about `757ms`. | No code change. |
@@ -46,6 +47,11 @@ careful users can detect:
 - `src/components/layout/site-header.tsx`
   - Increased top support links to `inline-flex` controls with `min-h-8`.
   - Kept existing focus-visible outline behavior.
+- `src/components/layout/site-footer.tsx`
+  - Increased footer navigation links to `inline-flex` controls with
+    `min-h-8`.
+  - Preserved text-link styling instead of turning the footer into heavy
+    button groups.
 
 ## Verification
 
@@ -59,7 +65,7 @@ careful users can detect:
 | Public asset metadata | PASS | `findingCount: 0` |
 | QR/payment secret scan | PASS | `findings: 0` |
 | Dependency audit | PASS | `npm audit --audit-level=high`, `found 0 vulnerabilities` |
-| Focused local visual/accessibility check | PASS | Catalog desktop/tablet/mobile had `horizontalOverflow: 0`, `unlabeledControlCount: 0`, and no undersized topbar targets. |
+| Focused local visual/accessibility check | PASS | Catalog desktop/tablet/mobile had `horizontalOverflow: 0`, `unlabeledControlCount: 0`, and no undersized topbar/footer targets after the footer fix. |
 
 Evidence is stored under
 `.agent/artifacts/expert-final-audit-t01-local-polish-check/`.

@@ -79,7 +79,7 @@ export function SiteFooter({ language }: { language: Language }) {
                   <li key={`${link.href}-${link.label}`}>
                     <Link
                       href={link.href}
-                      className="text-small text-text-muted hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                      className="-ml-2 inline-flex min-h-8 items-center rounded-sm px-2 text-small text-text-muted hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                     >
                       {link.label}
                     </Link>

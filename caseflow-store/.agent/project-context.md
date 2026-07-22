@@ -240,11 +240,11 @@
   release-safe expert audit and polish patch for `v1.11.3`: raw production
   visual findings were triaged to separate lazy-image/screen-reader false
   positives from real issues; catalog filter controls now expose explicit
-  `id`/`htmlFor` label associations; top support-bar links now provide a
-  32px minimum hit area while preserving focus states; lint, typecheck, build,
-  full Playwright `20/20`, no-demo runtime-copy, public asset metadata, QR
-  secret scan, high-level dependency audit, and focused catalog
-  desktop/tablet/mobile render checks all passed locally.
+  `id`/`htmlFor` label associations; persistent topbar/footer support links
+  now provide a 32px minimum hit area while preserving focus states; lint,
+  typecheck, build, full Playwright `20/20`, no-demo runtime-copy, public
+  asset metadata, QR secret scan, high-level dependency audit, and focused
+  catalog desktop/tablet/mobile render checks all passed locally.
 - Implementation was confirmed by the user on 2026-07-14.
 - Implementation was unblocked by installing the official Node.js LTS binary after Homebrew failed.
 - The Next.js app has been initialized in `caseflow-store`.
