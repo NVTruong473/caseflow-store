@@ -1,0 +1,100 @@
+{
+  "ok": true,
+  "generatedAt": "2026-07-22T05:10:20.023Z",
+  "baseURL": "https://caseflow-store.vercel.app",
+  "results": [
+    {
+      "viewport": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 920
+      },
+      "metrics": {
+        "horizontalOverflow": 0,
+        "unlabeledControlCount": 0,
+        "unlabeledControls": [],
+        "persistentLinks": [
+          {
+            "text": "Contact support",
+            "width": 123,
+            "height": 32
+          },
+          {
+            "text": "Shipping policy",
+            "width": 117,
+            "height": 32
+          },
+          {
+            "text": "Track order",
+            "width": 92,
+            "height": 32
+          }
+        ],
+        "smallPersistentLinkCount": 0,
+        "smallPersistentLinks": []
+      }
+    },
+    {
+      "viewport": {
+        "name": "tablet",
+        "width": 768,
+        "height": 900
+      },
+      "metrics": {
+        "horizontalOverflow": 0,
+        "unlabeledControlCount": 0,
+        "unlabeledControls": [],
+        "persistentLinks": [
+          {
+            "text": "Contact support",
+            "width": 123,
+            "height": 32
+          },
+          {
+            "text": "Shipping policy",
+            "width": 117,
+            "height": 32
+          },
+          {
+            "text": "Track order",
+            "width": 92,
+            "height": 32
+          }
+        ],
+        "smallPersistentLinkCount": 0,
+        "smallPersistentLinks": []
+      }
+    },
+    {
+      "viewport": {
+        "name": "mobile",
+        "width": 375,
+        "height": 800
+      },
+      "metrics": {
+        "horizontalOverflow": 0,
+        "unlabeledControlCount": 0,
+        "unlabeledControls": [],
+        "persistentLinks": [
+          {
+            "text": "Contact support",
+            "width": 123,
+            "height": 32
+          },
+          {
+            "text": "Shipping policy",
+            "width": 117,
+            "height": 32
+          },
+          {
+            "text": "Track order",
+            "width": 92,
+            "height": 32
+          }
+        ],
+        "smallPersistentLinkCount": 0,
+        "smallPersistentLinks": []
+      }
+    }
+  ]
+}

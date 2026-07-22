@@ -14789,3 +14789,67 @@ Implemented fixes:
 - No staff/admin/customer authorization boundary change.
 - `AUTH-SMTP-T02` remains blocked until real Supabase Management API and SMTP
   credentials exist.
+
+---
+
+## POSTV113-T01 - Final v1.11.3 Release Consistency Audit
+
+- Date: 2026-07-22
+- Status: completed and documented
+- Target: post-release consistency after `v1.11.3`
+
+### Objective
+
+Verify that the `v1.11.3` expert UI/accessibility polish release is consistent
+across local Git, remote Git, the annotated tag, GitHub Release metadata,
+Vercel production alias, and live production runtime checks.
+
+### Result
+
+- Local `main`: `6d4914212e59bd37beab22d4848eaa76f05eb95f`.
+- `origin/main`: `6d4914212e59bd37beab22d4848eaa76f05eb95f`.
+- Peeled `v1.11.3` tag commit:
+  `6d4914212e59bd37beab22d4848eaa76f05eb95f`.
+- GitHub Release `v1.11.3` is published, not draft, and not prerelease:
+  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.11.3`.
+- Vercel production alias `https://caseflow-store.vercel.app` points to ready
+  deployment `dpl_5iq8hNMbtsiiMUBkN39Uog9MQjXV`.
+- Detailed audit document:
+  `docs/postv113-t01-final-release-consistency-audit.md`.
+
+### Verification
+
+- `gh release view v1.11.3 --json ...`: passed.
+- `git fetch origin main --tags --prune`: passed.
+- `npx vercel inspect https://caseflow-store.vercel.app`: passed.
+- `PRODUCTION_SMOKE_BASE_URL=https://caseflow-store.vercel.app PRODUCTION_SMOKE_ARTIFACT_ID=expert-final-audit-t01-production-smoke npm exec -- tsx scripts/verify-production-smoke.ts`:
+  passed.
+- `SECURITY_QA_BASE_URL=https://caseflow-store.vercel.app SECURITY_QA_ARTIFACT_ID=expert-final-audit-t01-production-security npm exec -- tsx scripts/verify-security-posture.ts`:
+  passed with `0` findings.
+- `PAYQR_PRODUCTION_SAFETY_BASE_URL=https://caseflow-store.vercel.app PAYQR_ARTIFACT_ID=expert-final-audit-t01-production-qr-safety npm exec -- tsx scripts/verify-qr-payment-production-safety.ts`:
+  passed with runtime `401`.
+- Production catalog render audit:
+  desktop, tablet, and mobile returned `horizontalOverflow: 0`,
+  `unlabeledControlCount: 0`, and `smallPersistentLinkCount: 0`.
+- `PLAYWRIGHT_BASE_URL=https://caseflow-store.vercel.app npm run test:e2e`:
+  passed `20/20` on rerun. The first production E2E attempt had one transient
+  `/api/products` timeout; direct API timing returned HTTP 200 and targeted
+  admin-access rerun passed `3/3`.
+- Evidence artifacts:
+  - `.agent/artifacts/expert-final-audit-t01-production-smoke/production-smoke-check.json`
+  - `.agent/artifacts/expert-final-audit-t01-production-security/security-posture-check.json`
+  - `.agent/artifacts/expert-final-audit-t01-production-qr-safety/qr-payment-production-safety-check.json`
+  - `.agent/artifacts/expert-final-audit-t01-production-polish-check/production-polish-check.json`
+  - `.agent/artifacts/expert-final-audit-t01-production-polish-check/catalog-desktop.png`
+  - `.agent/artifacts/expert-final-audit-t01-production-polish-check/catalog-tablet.png`
+  - `.agent/artifacts/expert-final-audit-t01-production-polish-check/catalog-mobile.png`
+
+### Guardrails
+
+- No production data migration was run.
+- No auth behavior change was introduced.
+- No payment behavior change was introduced.
+- No shipping behavior change was introduced.
+- No role authorization boundary changed.
+- Custom SMTP remains blocked pending real Supabase Management API and SMTP
+  credentials.

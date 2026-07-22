@@ -110,7 +110,7 @@ custom SMTP remains a documented operations upgrade.
 
 | Claim | Evidence |
 |---|---|
-| Public production deployment | `https://caseflow-store.vercel.app`; latest release `v1.11.2`; `caseflow-store/docs/v1.11.2-neutral-light-ui-patch-release-notes.md` |
+| Public production deployment | `https://caseflow-store.vercel.app`; latest release `v1.11.3`; `caseflow-store/docs/v1.11.3-expert-polish-release-notes.md` |
 | 500 active book editions and 50 works in production | `caseflow-store/.agent/artifacts/v16-t01/catalog-expansion-apply.json`; `caseflow-store/.agent/artifacts/v16-t01-production/catalog-retail-polish-check.json` |
 | 500 project-created cover assets | `docs/v1.2-cover-portfolio.md`; `caseflow-store/public/images/books/v16-covers/`; `caseflow-store/.agent/artifacts/v16-t01-production/catalog-retail-polish-check.json` |
 | Provenance and content-quality policy | `docs/domain.md`; `docs/v1.2-provenance-content-quality-contracts.md`; `docs/v1.2-release-audit.md` |

@@ -68,26 +68,28 @@ runtime.
 
 ## Latest release evidence
 
-- Release tag: `v1.11.2`
+- Release tag: `v1.11.3`
 - GitHub Release:
-  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.11.2`
+  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.11.3`
 - Production alias: `https://caseflow-store.vercel.app`
-- Vercel deployment ID: `dpl_Gb8aaXLz5MJhuzKwByEndNYtgT75`
+- Vercel deployment ID: `dpl_5iq8hNMbtsiiMUBkN39Uog9MQjXV`
 - Local gates: npm audit with zero vulnerabilities, TypeScript, ESLint,
   production build, full Playwright `20/20`,
   signup voucher verifier, password-change verifier, QR production-safety
   verifier, security posture verifier, final QA smoke, and `git diff --check`
   passed.
-- Production smoke: email confirmation UAT after Supabase Auth URL
-  Configuration fix, password-change verifier, release smoke, security
-  posture, and QR production-safety lock passed. The `v1.11.1` deployment
-  smoke/security/QR artifacts are under `.agent/artifacts/secdep-t01-*`.
+- Production smoke: release smoke, security posture, QR production-safety
+  lock, production render audit, and full production Playwright `20/20` passed.
+  The `v1.11.3` deployment artifacts are under
+  `.agent/artifacts/expert-final-audit-t01-production-*`.
 - Release notes:
+  [`docs/v1.11.3-expert-polish-release-notes.md`](docs/v1.11.3-expert-polish-release-notes.md),
   [`docs/v1.11.2-neutral-light-ui-patch-release-notes.md`](docs/v1.11.2-neutral-light-ui-patch-release-notes.md),
   [`docs/v1.11.1-security-dependency-patch-release-notes.md`](docs/v1.11.1-security-dependency-patch-release-notes.md)
   and
   [`docs/v1.11.0-account-security-password-release-notes.md`](docs/v1.11.0-account-security-password-release-notes.md)
 - Operational evidence:
+  [`docs/postv113-t01-final-release-consistency-audit.md`](docs/postv113-t01-final-release-consistency-audit.md),
   [`docs/auth-email-t03-real-email-confirmation-uat.md`](docs/auth-email-t03-real-email-confirmation-uat.md)
   and
   [`docs/postv111-t01-final-release-consistency-audit.md`](docs/postv111-t01-final-release-consistency-audit.md)

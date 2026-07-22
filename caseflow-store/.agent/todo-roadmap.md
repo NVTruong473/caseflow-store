@@ -10,17 +10,33 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: stable portfolio and operations handoff after `v1.11.2`, with a
-  release-safe expert UI/accessibility polish patch prepared as `v1.11.3`
+- Mode: stable portfolio and operations handoff after `v1.11.3`
 - Current gate: `AUTH-SMTP-T02` is blocked pending a real Supabase Management
   API token and real SMTP credentials; all appropriate non-SMTP handoff work is
   complete
-- Current task: `EXPERT-FINAL-AUDIT-T01` final expert site audit and
-  release-safe polish
+- Current task: `AUTH-SMTP-T02` only if real SMTP credentials become available
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-22
 
 ## Phase UAT-MANUAL - Production Customer Manual Acceptance
+
+- [x] `POSTV113-T01` Final v1.11.3 Release Consistency Audit. - 2026-07-22
+  - Objective: verify that local Git, remote `main`, the `v1.11.3` tag,
+    GitHub Release metadata, Vercel production alias, production runtime
+    smoke/security/QR safety checks, production render audit, and production
+    Playwright describe the same released build.
+  - Result: local `main`, `origin/main`, and the peeled `v1.11.3` tag all
+    point to commit `6d4914212e59bd37beab22d4848eaa76f05eb95f`; GitHub
+    Release `v1.11.3` is published; Vercel alias
+    `https://caseflow-store.vercel.app` points to ready deployment
+    `dpl_5iq8hNMbtsiiMUBkN39Uog9MQjXV`.
+  - Verification: production smoke passed; security posture passed with
+    `0` findings; QR production-safety passed with runtime `401`; production
+    render audit passed at desktop/tablet/mobile with no overflow, unlabeled
+    controls, or undersized persistent links; production Playwright passed
+    `20/20` on rerun.
+  - Guardrail: no schema migration, runtime commerce feature, auth, payment,
+    shipping, or authorization behavior changed.
 
 - [x] `EXPERT-FINAL-AUDIT-T01` Final Expert Site Audit And Release-Safe Polish. - 2026-07-22
   - Objective: challenge the released storefront from a senior product,

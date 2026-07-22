@@ -1,9 +1,9 @@
 # CaseFlow Books Portfolio Handoff
 
-- Latest release: `v1.11.2`
+- Latest release: `v1.11.3`
 - Production URL: `https://caseflow-store.vercel.app`
-- GitHub Release: `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.11.2`
-- Vercel deployment: `dpl_Gb8aaXLz5MJhuzKwByEndNYtgT75`
+- GitHub Release: `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.11.3`
+- Vercel deployment: `dpl_5iq8hNMbtsiiMUBkN39Uog9MQjXV`
 - Project type: full-stack bookstore and small-business operations portfolio
 - Stack: Next.js 16, React 19, TypeScript 5, Tailwind CSS 4, Supabase
   PostgreSQL/Auth/RLS, Zod, Playwright, Vercel
@@ -119,7 +119,8 @@ See `docs/architecture.md` for the full architecture notes.
 
 | Evidence | Location |
 |---|---|
-| Latest release notes | `docs/v1.11.2-neutral-light-ui-patch-release-notes.md` |
+| Latest release notes | `docs/v1.11.3-expert-polish-release-notes.md` |
+| v1.11.3 production consistency audit | `docs/postv113-t01-final-release-consistency-audit.md` |
 | v1.11.1 dependency security patch | `docs/v1.11.1-security-dependency-patch-release-notes.md` |
 | v1.11.1 production smoke | `.agent/artifacts/secdep-t01-production-smoke/production-smoke-check.json` |
 | v1.11.1 production security posture | `.agent/artifacts/secdep-t01-production-security/security-posture-check.json` |

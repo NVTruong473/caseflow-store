@@ -4,8 +4,8 @@
 
 - Project name: CaseFlow Store `v1.0.0`; CaseFlow Books `v1.1.0`, `v1.2.0`,
   `v1.3.0`, `v1.3.1`, `v1.4.0`, `v1.4.1`, `v1.4.2`, `v1.5.0`, `v1.6.0`,
-  `v1.7.0`, `v1.8.0`, `v1.9.0`, `v1.10.0`, `v1.11.0`, `v1.11.1`, and
-  `v1.11.2` released
+  `v1.7.0`, `v1.8.0`, `v1.9.0`, `v1.10.0`, `v1.11.0`, `v1.11.1`,
+  `v1.11.2`, and `v1.11.3` released
 - Repository folder: `/Users/vantruong/Documents/TSNN 2`
 - Product domain: books for released `v1.1.0` and `v1.2.0`; phone
   accessories for released `v1.0.0`
@@ -13,14 +13,12 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: stable portfolio and operations handoff after the `v1.11.2`
-  final release consistency audit, with `EXPERT-FINAL-AUDIT-T01` prepared as a
-  release-safe `v1.11.3` UI/accessibility polish patch.
+- Current mode: stable portfolio and operations handoff after the `v1.11.3`
+  final release consistency audit.
 - Current gate: `AUTH-SMTP-T02` remains blocked pending a real Supabase
   Management API token and real SMTP credentials. All appropriate non-SMTP
   handoff work is complete.
-- Current task: `EXPERT-FINAL-AUDIT-T01` final expert site audit and
-  release-safe polish.
+- Current task: `AUTH-SMTP-T02` only if real SMTP credentials become available.
 
 ## Confirmed Facts
 
@@ -245,6 +243,16 @@
   typecheck, build, full Playwright `20/20`, no-demo runtime-copy, public
   asset metadata, QR secret scan, high-level dependency audit, and focused
   catalog desktop/tablet/mobile render checks all passed locally.
+- `POSTV113-T01` was completed on 2026-07-22 as the final `v1.11.3` release
+  consistency audit: local `main`, `origin/main`, and the peeled `v1.11.3`
+  tag all point to `6d4914212e59bd37beab22d4848eaa76f05eb95f`; GitHub Release
+  `v1.11.3` is published; Vercel production alias
+  `https://caseflow-store.vercel.app` points to ready deployment
+  `dpl_5iq8hNMbtsiiMUBkN39Uog9MQjXV`; production smoke, security posture, QR
+  production-safety, production render audit, and production Playwright
+  `20/20` passed. A first production E2E attempt had one transient
+  `/api/products` timeout, but direct API timing, targeted admin-access rerun,
+  and the full rerun all passed.
 - Implementation was confirmed by the user on 2026-07-14.
 - Implementation was unblocked by installing the official Node.js LTS binary after Homebrew failed.
 - The Next.js app has been initialized in `caseflow-store`.

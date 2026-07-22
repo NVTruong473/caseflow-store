@@ -11,8 +11,9 @@ patch, the `v1.5.0` QR demo payment release, the `v1.6.0` retail catalog
 scale release, the `v1.7.0` UI humanization release, and the `v1.8.0`
 modern editorial bookstore release, the `v1.9.0` real-cover commerce polish,
 the `v1.10.0` account-bound signup voucher release, the `v1.11.0`
-account password-change release, the `v1.11.1` security dependency patch, and
-the `v1.11.2` neutral light UI and compact pagination patch.
+account password-change release, the `v1.11.1` security dependency patch, the
+`v1.11.2` neutral light UI and compact pagination patch, and the `v1.11.3`
+expert UI/accessibility polish patch.
 The system is
 intentionally a Next.js modular monolith: it demonstrates a realistic
 specialist e-commerce workflow without claiming marketplace scale, real payment
