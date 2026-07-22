@@ -10,15 +10,33 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: post-`v1.11.0` production email operations verification
+- Mode: stable portfolio and operations handoff after `v1.11.0`
 - Current gate: `AUTH-SMTP-T02` is blocked pending a real Supabase Management
-  API token and real SMTP credentials; `AUTH-EMAIL-T03` passed after fixing
-  Supabase Auth URL Configuration
-- Current task: `AUTH-SMTP-T02`
+  API token and real SMTP credentials; all appropriate non-SMTP handoff work is
+  complete
+- Current task: `AUTH-SMTP-T02` only if real SMTP credentials become available
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-22
 
 ## Phase UAT-MANUAL - Production Customer Manual Acceptance
+
+- [x] `OP-HANDOFF-T01` Stable Portfolio And Operations Handoff. - 2026-07-22
+  - Objective: choose the next appropriate action after production email UAT:
+    either configure custom SMTP if real credentials exist, or close the stable
+    handoff if they do not.
+  - Result: `.env.local` still lacks `SUPABASE_ACCESS_TOKEN`,
+    `SMTP_ADMIN_EMAIL`, `SMTP_HOST`, `SMTP_USER`, and `SMTP_PASS`, so custom
+    SMTP remains blocked. Updated stale docs that still referenced `v1.6`,
+    `v1.8`, or `v1.10`, and added
+    `docs/v1.11-final-operational-handoff.md`.
+  - Verification: production alias inspected as ready deployment
+    `dpl_DtUDA7pbv7ZcJYFRM5TVmsQUhThq`; handoff docs now point to `v1.11.0`,
+    production email UAT, password-change evidence, signup vouchers, QR
+    production lock, and the remaining SMTP blocker. Production smoke,
+    security posture, QR production-safety, secret scan, stale-latest-release
+    scan, and `git diff --check` passed.
+  - Guardrail: no new runtime feature, deploy, release tag, fake SMTP value, or
+    secret commit was added.
 
 - [x] `AUTH-EMAIL-T03` Rerun Real Email Confirmation UAT After Auth URL Fix. -
   2026-07-22

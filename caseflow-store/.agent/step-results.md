@@ -14404,3 +14404,69 @@ checkout, QR/payment lock, and order-history checks with order
 - Custom SMTP remains blocked and must not be claimed as configured.
 - The fixed test proves production redirect and default-sender confirmation; it
   does not prove custom SMTP deliverability.
+
+---
+
+## OP-HANDOFF-T01 - Stable Portfolio And Operations Handoff
+
+- Date: 2026-07-22
+- Status: completed
+- Production URL: `https://caseflow-store.vercel.app`
+- Production deployment: `dpl_DtUDA7pbv7ZcJYFRM5TVmsQUhThq`
+
+### Objective
+
+Choose and execute the most appropriate next action after production email UAT.
+If real SMTP credentials exist, continue `AUTH-SMTP-T02`; if not, close the
+stable operations/portfolio handoff so the project no longer contains stale
+release claims.
+
+### Result
+
+The local environment still lacks the real SMTP/Supabase Management API values
+required by `AUTH-SMTP-T02`:
+
+- `SUPABASE_ACCESS_TOKEN`
+- `SMTP_ADMIN_EMAIL`
+- `SMTP_HOST`
+- `SMTP_USER`
+- `SMTP_PASS`
+
+Therefore the best current action is documentation closeout, not more runtime
+feature work. The handoff packet was updated so portfolio-facing files reflect
+the actual `v1.11.0` state:
+
+- `README.md`
+- `docs/portfolio-handoff.md`
+- `docs/v1.11-final-operational-handoff.md`
+- `docs/cv-bullets.md`
+- `docs/known-limitations.md`
+
+### Verification
+
+- `.env.local` presence check confirmed only non-secret SMTP helper values are
+  present.
+- `npx vercel inspect https://caseflow-store.vercel.app`: passed; production
+  alias points to ready deployment `dpl_DtUDA7pbv7ZcJYFRM5TVmsQUhThq`.
+- Stale portfolio references to `v1.6`, `v1.8`, and `v1.10` were updated where
+  they described latest status.
+- `PRODUCTION_SMOKE_BASE_URL=https://caseflow-store.vercel.app PRODUCTION_SMOKE_ARTIFACT_ID=op-handoff-t01-production-smoke npm exec -- tsx scripts/verify-production-smoke.ts`:
+  passed.
+- `SECURITY_QA_BASE_URL=https://caseflow-store.vercel.app SECURITY_QA_ARTIFACT_ID=op-handoff-t01-production-security npm exec -- tsx scripts/verify-security-posture.ts`:
+  passed.
+- `PAYQR_PRODUCTION_SAFETY_BASE_URL=https://caseflow-store.vercel.app PAYQR_ARTIFACT_ID=op-handoff-t01-production-qr-safety npm exec -- tsx scripts/verify-qr-payment-production-safety.ts`:
+  passed.
+- `npm exec -- tsx scripts/verify-payqr-secret-scan.ts`: passed with
+  `1261` checked files and `0` findings.
+- Latest-release stale reference scan: passed with no matches for stale
+  `v1.6`, `v1.8`, or `v1.10` latest-status wording.
+- `git diff --check`: passed.
+
+### Guardrails
+
+- No fake SMTP values were added.
+- No secret was committed.
+- No production deploy, tag, release rewrite, or runtime source change was
+  performed.
+- The project remains honest: custom SMTP is still blocked even though
+  production email confirmation via Supabase default sender has passed.

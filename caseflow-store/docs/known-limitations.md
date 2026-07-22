@@ -1,7 +1,8 @@
 # Known Limitations
 
 This document records the intentional boundaries and accepted risks of
-CaseFlow Books through the latest `v1.6.0` retail catalog scale release.
+CaseFlow Books through the latest `v1.11.0` account security and email UAT
+state.
 These items are not hidden production capabilities; they define where the
 portfolio release stops.
 
@@ -54,18 +55,22 @@ available.
 secret management, HTTPS callback validation, reconciliation, refunds,
 chargeback/failure handling, monitoring, and a separate security review.
 
-### Phone and email are not truly verified
+### Phone is not truly verified; email uses Supabase default confirmation
 
 Customer checkout requires profile/contact fields, and those fields are
 validated for shape and completeness. CaseFlow Books does not send real SMS
-OTPs or provider-backed email verification.
+OTPs. Customer email confirmation has been verified on production through
+Supabase's default sender after fixing Supabase Auth URL Configuration, but a
+custom SMTP provider has not yet been configured.
 
 **Current control:** checkout readiness prevents missing or malformed profile
-data, but documentation avoids claiming verified phone numbers or verified email
-ownership.
+data. Production UAT confirmed a fresh Gmail signup link redirected to
+`https://caseflow-store.vercel.app/account` and completed checkout/order
+history without service-role confirmation.
 
-**Next step:** add SMS/email verification through a real provider with rate
-limits, retry windows, abuse monitoring, and recovery flows.
+**Next step:** add SMS verification and configure custom SMTP for Supabase Auth
+with rate limits, retry windows, abuse monitoring, deliverability monitoring,
+and recovery flows.
 
 ### Shipping, VAT, FX, and fees are estimates
 

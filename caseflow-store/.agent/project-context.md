@@ -12,11 +12,11 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: post-`v1.11.0` production email operations verification.
+- Current mode: stable portfolio and operations handoff after `v1.11.0`.
 - Current gate: `AUTH-SMTP-T02` remains blocked pending a real Supabase
-  Management API token and real SMTP credentials. `AUTH-EMAIL-T03` passed after
-  fixing Supabase Auth URL Configuration through the dashboard.
-- Current task: `AUTH-SMTP-T02`.
+  Management API token and real SMTP credentials. All appropriate non-SMTP
+  handoff work is complete.
+- Current task: `AUTH-SMTP-T02` only if real SMTP credentials become available.
 
 ## Confirmed Facts
 
@@ -195,6 +195,12 @@
   `truongskull014+caseflow-uat-t03-fixed-202607220925@gmail.com`, observed a
   production redirect target, used no service-role confirmation, completed
   checkout/order history, and created order `CF-MRVGAH41-6042473213`.
+- `OP-HANDOFF-T01` was completed on 2026-07-22 as the stable operations and
+  portfolio handoff after `v1.11.0`: stale portfolio/docs references from
+  `v1.6`, `v1.8`, and `v1.10` were updated, `docs/v1.11-final-operational-handoff.md`
+  was added, README/release evidence/CV bullets/known limitations now describe
+  the actual `v1.11.0` production state, and SMTP remains the only explicit
+  operations blocker.
 - Implementation was confirmed by the user on 2026-07-14.
 - Implementation was unblocked by installing the official Node.js LTS binary after Homebrew failed.
 - The Next.js app has been initialized in `caseflow-store`.

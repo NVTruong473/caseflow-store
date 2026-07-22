@@ -68,22 +68,30 @@ runtime.
 
 ## Latest release evidence
 
-- Release tag: `v1.10.0`
+- Release tag: `v1.11.0`
 - GitHub Release:
-  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.10.0`
+  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.11.0`
 - Production alias: `https://caseflow-store.vercel.app`
-- Vercel deployment ID: `dpl_FPZwifR2vJr9ZFDa1cbbJ8y89QsW`
+- Vercel deployment ID: `dpl_DtUDA7pbv7ZcJYFRM5TVmsQUhThq`
 - Local gates: TypeScript, ESLint, production build, full Playwright `20/20`,
-  signup voucher verifier, QR production-safety verifier, security posture
-  verifier, final QA smoke, and `git diff --check` passed.
-- Production smoke: signup voucher verifier, release smoke, security posture,
-  final QA smoke, and QR production-safety lock passed.
+  signup voucher verifier, password-change verifier, QR production-safety
+  verifier, security posture verifier, final QA smoke, and `git diff --check`
+  passed.
+- Production smoke: email confirmation UAT after Supabase Auth URL
+  Configuration fix, password-change verifier, release smoke, security
+  posture, and QR production-safety lock passed.
 - Release notes:
-  [`docs/v1.10.0-account-bound-signup-voucher-release-notes.md`](docs/v1.10.0-account-bound-signup-voucher-release-notes.md)
+  [`docs/v1.11.0-account-security-password-release-notes.md`](docs/v1.11.0-account-security-password-release-notes.md)
+- Operational evidence:
+  [`docs/auth-email-t03-real-email-confirmation-uat.md`](docs/auth-email-t03-real-email-confirmation-uat.md)
+  and
+  [`docs/postv111-t01-final-release-consistency-audit.md`](docs/postv111-t01-final-release-consistency-audit.md)
 - Known boundaries: simulated payments, QR demo locked from production
-  settlement, no real SMS/OTP, no real shipping carrier integration, and no
-  commercial book-cover hotlinking.
+  settlement, no real SMS/OTP, no custom SMTP provider yet, no real shipping
+  carrier integration, and no licensed commercial metadata feed.
 
 Architecture and decision records are under [`docs/`](docs/).
 The portfolio handoff packet is
 [`docs/portfolio-handoff.md`](docs/portfolio-handoff.md).
+The latest operational closeout packet is
+[`docs/v1.11-final-operational-handoff.md`](docs/v1.11-final-operational-handoff.md).

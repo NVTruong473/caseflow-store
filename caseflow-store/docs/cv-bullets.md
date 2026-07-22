@@ -1,7 +1,7 @@
 # Verified CV Bullets
 
 These bullets are grounded in repository files, command output, deployment
-evidence, and production smoke checks through the `v1.6.0` release. They
+evidence, and production smoke checks through the `v1.11.0` release. They
 intentionally avoid unmeasured
 performance claims, inflated scale claims, revenue claims, and the implication
 that simulated payment flows process real money.
@@ -10,9 +10,10 @@ that simulated payment flows process real money.
 
 - Built and deployed CaseFlow Books, a full-stack bilingual bookstore with
   Next.js 16, TypeScript, Supabase PostgreSQL/Auth, and Vercel, covering a
-  500-edition catalog, project-created cover portfolio, book-specific filters,
-  local cart, account-gated checkout, customer order history and cancellation,
-  guarded tracking, and admin/staff operations.
+  500-edition catalog, real source-work covers plus project-created fallbacks,
+  book-specific filters, local cart, account-gated checkout, signup vouchers,
+  customer order history and cancellation, guarded tracking, signed-in password
+  change, and admin/staff operations.
 - Implemented server-authoritative commerce logic with Zod validation,
   Supabase row mappers, RLS-backed access control, role-based admin/staff
   permissions, server-reloaded book records, order ownership checks, promotion
@@ -25,7 +26,9 @@ that simulated payment flows process real money.
   documented dependency audit findings, a post-release visual hotfix with a
   dedicated compact-card overlap verifier, a `v1.4` merchandising QA gate, a
   `v1.4.2` security-header posture verifier, `v1.5.0` QR production-safety
-  gates, and a `v1.6.0` 500-edition catalog verifier.
+  gates, a `v1.6.0` 500-edition catalog verifier, production signup-voucher
+  and password-change verifiers, and a real-email confirmation UAT that caught
+  and fixed a Supabase redirect-to-localhost configuration issue.
 
 ## Alternative bullets by focus
 
@@ -40,6 +43,9 @@ that simulated payment flows process real money.
   checks, and merchandising shelves.
 - Built Vietnamese and English UI modes with VND as the authoritative currency
   and approximate USD display for English-mode users.
+- Added account-bound welcome vouchers, real Supabase email confirmation,
+  profile readiness, and self-service password change without letting staff or
+  admin reset another user's password.
 
 ### Security and data integrity
 
@@ -66,6 +72,10 @@ that simulated payment flows process real money.
   unauthorized, forbidden, keyboard-focus, mobile, admin operation, catalog
   content-quality, and production smoke paths before accepting the `v1.2`
   release candidate.
+- Verified production customer sign-up with a real Gmail confirmation link,
+  corrected Supabase Auth URL Configuration from localhost to the production
+  account route, and reran checkout/order-history UAT without service-role
+  confirmation.
 
 ### Operations and reporting
 
@@ -75,9 +85,8 @@ that simulated payment flows process real money.
   adjustments, promotion management, customer overview, dashboard metrics, and
   CSV export.
 - Documented known non-blockers honestly: simulated payments, no real SMS/OTP,
-  no carrier shipping integration, no commercial cover hotlinking, no
-  commercial metadata feed, and moderate transitive dependency advisories
-  pending upstream fixes.
+  no custom SMTP provider yet, no carrier shipping integration, no licensed
+  commercial metadata feed, and dependency advisories pending upstream fixes.
 
 ## Interview summary
 
@@ -90,14 +99,16 @@ evidence over a large feature list with weak implementation depth.
 
 The payment flows are simulated. The project persists orders and operational
 state, but it does not collect card data, process real MoMo/ZaloPay/VNPay/bank
-payments, send SMS OTPs, integrate shipping carriers, use licensed commercial
-cover images, or claim real commercial revenue.
+payments, send SMS OTPs, integrate shipping carriers, use a licensed
+commercial metadata feed, or claim real commercial revenue. Supabase default
+email confirmation passed on production after the Auth URL configuration fix;
+custom SMTP remains a documented operations upgrade.
 
 ## Evidence ledger
 
 | Claim | Evidence |
 |---|---|
-| Public production deployment | `https://caseflow-store.vercel.app`; latest release `v1.6.0`; `caseflow-store/docs/v1.6.0-retail-catalog-scale-release-notes.md` |
+| Public production deployment | `https://caseflow-store.vercel.app`; latest release `v1.11.0`; `caseflow-store/docs/v1.11.0-account-security-password-release-notes.md` |
 | 500 active book editions and 50 works in production | `caseflow-store/.agent/artifacts/v16-t01/catalog-expansion-apply.json`; `caseflow-store/.agent/artifacts/v16-t01-production/catalog-retail-polish-check.json` |
 | 500 project-created cover assets | `docs/v1.2-cover-portfolio.md`; `caseflow-store/public/images/books/v16-covers/`; `caseflow-store/.agent/artifacts/v16-t01-production/catalog-retail-polish-check.json` |
 | Provenance and content-quality policy | `docs/domain.md`; `docs/v1.2-provenance-content-quality-contracts.md`; `docs/v1.2-release-audit.md` |
@@ -113,3 +124,6 @@ cover images, or claim real commercial revenue.
 | Security hardening | `caseflow-store/next.config.ts`; `caseflow-store/scripts/verify-security-posture.ts`; `caseflow-store/docs/v1.4.2-agent-security-qa-report.md`; `caseflow-store/.agent/artifacts/secqa-t01/security-posture-check.json` |
 | Accessibility/mobile/performance pass | `caseflow-store/.agent/artifacts/d39-t03/accessibility-mobile-performance-check.json`; `caseflow-store/docs/screenshots/` |
 | Known release boundaries | `docs/known-limitations.md`; `docs/v1.2-release-audit.md` |
+| Account-bound signup vouchers | `docs/v1.10.0-account-bound-signup-voucher-release-notes.md`; `.agent/artifacts/signupvoucher-t02-production/signup-vouchers-check.json` |
+| Real-email confirmation UAT | `docs/auth-email-t03-real-email-confirmation-uat.md`; `.agent/artifacts/auth-email-t03-production-fixed-20260722/uat-manual-customer-production-check.json` |
+| Signed-in password change | `docs/v1.11.0-account-security-password-release-notes.md`; `.agent/artifacts/auth-password-t01/customer-password-change-check.json` |

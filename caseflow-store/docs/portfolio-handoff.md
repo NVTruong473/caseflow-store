@@ -1,9 +1,9 @@
 # CaseFlow Books Portfolio Handoff
 
-- Latest release: `v1.8.0`
+- Latest release: `v1.11.0`
 - Production URL: `https://caseflow-store.vercel.app`
-- GitHub Release: `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.8.0`
-- Vercel deployment: `dpl_9FRaok8hK8sddmbGBL3RvkMM9fLs`
+- GitHub Release: `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.11.0`
+- Vercel deployment: `dpl_DtUDA7pbv7ZcJYFRM5TVmsQUhThq`
 - Project type: full-stack bookstore and small-business operations portfolio
 - Stack: Next.js 16, React 19, TypeScript 5, Tailwind CSS 4, Supabase
   PostgreSQL/Auth/RLS, Zod, Playwright, Vercel
@@ -25,12 +25,16 @@ handled deliberately:
   promotion, VAT, shipping, payment fee, and final VND totals.
 - Customer/admin/staff access boundaries are checked server-side, not only by
   hiding UI.
-- The 500-edition catalog uses local project-created cover assets and
-  self-written summaries instead of copied commercial covers or publisher
-  blurbs.
-- The v1.8 storefront adds search-first navigation, live category discovery,
-  cover provenance evidence, restrained motion, and long-page support on top of
-  the reading-table/spine-rail motif.
+- The 500-edition catalog uses local Project Gutenberg source-work covers where
+  reviewed, local project-created fallback covers, and self-written summaries
+  instead of copied publisher blurbs.
+- The v1.8/v1.9 storefront adds search-first navigation, live category
+  discovery, cover provenance evidence, restrained motion, real-cover
+  merchandising, and long-page support on top of the reading-table/spine-rail
+  motif.
+- Account-bound signup vouchers, production email confirmation redirect, and
+  signed-in password change are covered by focused production UAT/verifier
+  evidence.
 - Cancelled/rejected orders are normalized server-side so admin/staff
   dashboards do not count stale pending payments as still collectable.
 - Release claims are backed by Playwright, production smoke, cleanup, audit,
@@ -54,11 +58,15 @@ handled deliberately:
 7. Open order tracking with invalid data to show the guarded public lookup
    behavior without exposing customer data.
 8. Open admin routes while signed out to show protected access boundaries.
+9. Mention that public sign-up and email confirmation were verified on
+   production after Supabase Auth URL Configuration was corrected to the
+   production domain.
 
 ### Private demo, with test credentials
 
 Use private Supabase test identities only in a controlled environment. Do not
-commit or share passwords.
+commit or share passwords. When presenting the project publicly, create a fresh
+customer account rather than sharing a reusable password.
 
 1. Sign in as a customer, complete profile readiness, and walk through a
    simulated COD/bank/wallet checkout path.
@@ -74,12 +82,12 @@ commit or share passwords.
 | Area | Implemented |
 |---|---|
 | Storefront | Homepage merchandising, catalog, filters, sorting, book detail, edition comparison, related books |
-| Catalog content | 50 works, 500 sellable editions, 250 English/250 Vietnamese products, local SVG cover portfolio |
+| Catalog content | 50 works, 500 sellable editions, 250 English/250 Vietnamese products, local source-work covers plus generated fallback cover portfolio |
 | Localization | Vietnamese and English UI modes |
 | Currency | VND source-of-truth, English-mode approximate USD estimate |
 | Cart | Browser-local cart storing edition IDs and quantities only |
 | Checkout | Account-gated simulated COD, bank transfer, MoMo, ZaloPay, VNPay-style choices |
-| Customer | Profile readiness, order history, eligible cancellation, guarded public tracking |
+| Customer | Supabase email confirmation, profile readiness, signup vouchers, order history, eligible cancellation, guarded public tracking, signed-in password change |
 | Admin/staff | Dashboard, orders, catalog, inventory, promotions, customers, settings, CSV export |
 | Assistant | Rule-based bookstore assistant with guided result links |
 | SEO | Metadata, canonical URLs, robots, sitemap, and eligible book JSON-LD |
@@ -111,7 +119,12 @@ See `docs/architecture.md` for the full architecture notes.
 
 | Evidence | Location |
 |---|---|
-| Latest release notes | `docs/v1.8.0-modern-editorial-bookstore-release-notes.md` |
+| Latest release notes | `docs/v1.11.0-account-security-password-release-notes.md` |
+| v1.11 release consistency audit | `docs/postv111-t01-final-release-consistency-audit.md` |
+| v1.11 production email UAT | `docs/auth-email-t03-real-email-confirmation-uat.md` |
+| v1.11 production password change | `.agent/artifacts/auth-password-t01/customer-password-change-check.json` |
+| v1.10 signup voucher release | `docs/v1.10.0-account-bound-signup-voucher-release-notes.md` |
+| v1.9 real cover release | `docs/v1.9.0-real-cover-commerce-polish-release-notes.md` |
 | v1.8 production bookstore UX | `.agent/artifacts/v18-t02-production/v18-bookstore-experience-check.json` |
 | v1.8 production release smoke | `.agent/artifacts/v18-t02-production/production-release-smoke.json` |
 | v1.8 production final QA | `.agent/artifacts/v18-t02-production/final-post-release-qa.json` |
@@ -148,6 +161,9 @@ Latest verified gates include:
 - `npm run lint`
 - `npm run build`
 - `npm run test:e2e`
+- production email confirmation UAT after Supabase Auth URL Configuration fix
+- production password-change verifier
+- account-bound signup voucher verifier
 - admin dashboard cancellation/payment summary verifier
 - admin/staff cancellation normalization verifier
 - UI humanization verifier
@@ -168,15 +184,16 @@ Latest verified gates include:
 Short version:
 
 > I built and deployed a bilingual bookstore with a 500-edition catalog,
-> account-gated checkout, server-owned totals, customer order history and
+> account-gated checkout, signup vouchers, email-confirmed accounts,
+> self-service password change, server-owned totals, customer order history and
 > cancellation, guarded tracking, and admin/staff operations. The interesting
 > part is the integrity boundary:
 > cart state is local and untrusted, prices and totals are recalculated on the
 > server, role checks are repeated server-side, and every release claim has
 > evidence from TypeScript, lint, build, Playwright, production smoke, cleanup,
-> and visual verification. The v1.7 pass also tightened the visual system so
-> the site reads like a specialist bookstore rather than a generic AI-generated
-> landing page.
+> real-email UAT, QR production-safety checks, and visual verification. The
+> later storefront passes also tightened the visual system so the site reads
+> like a specialist bookstore rather than a generic AI-generated landing page.
 
 What to emphasize:
 
@@ -189,6 +206,9 @@ What to emphasize:
 - QA discipline: release gates, screenshots, production smoke, cleanup,
   the `v1.3.1` hotfix verifier added after a real visual defect was found, and
   the `v1.4` real-commerce visual merchandising gate.
+- Operational honesty: the production email redirect bug was found through UAT,
+  corrected in Supabase Auth URL Configuration, and rerun without service-role
+  confirmation.
 - Product design discipline: v1.7 introduced an audit-backed style guide,
   product-specific visual motif, reduced generic card repetition, and
   regression checks for overflow and focus behavior.
@@ -198,7 +218,10 @@ What to emphasize:
 Do not claim these as production capabilities:
 
 - Real payment processing.
-- Real SMS OTP or provider-backed email verification.
+- Real SMS OTP.
+- Custom SMTP deliverability. Supabase default email confirmation passed on
+  production, but `AUTH-SMTP-T02` remains blocked pending a real SMTP provider
+  and Supabase Management API token.
 - Live shipping carrier quotes, tax filing, bank FX, or reconciliation.
 - Licensed commercial cover artwork or publisher metadata feed.
 - Marketplace scale, seller onboarding, real revenue, or load-tested SLOs.
@@ -214,9 +237,14 @@ Only continue if the goal moves beyond portfolio polish:
 
 - Add real observability: error tracking, request metrics, alerts, and an
   incident runbook.
+- Configure custom SMTP for Supabase Auth and rerun the strict email
+  confirmation UAT through that provider.
 - Add real provider integration through a new ADR: payment webhooks,
   idempotency, reconciliation, refunds, and failure states.
-- Add production-grade identity hardening: MFA, real email/SMS verification,
-  rate limits, and account recovery.
+- Add production-grade identity hardening: MFA, real SMS verification, rate
+  limits, abuse controls, and account recovery.
 - Add operational audit logs and inventory reservation/decrement semantics.
 - Add licensed metadata/media pipeline if the bookstore becomes commercial.
+
+For the latest operational closeout packet, see
+`docs/v1.11-final-operational-handoff.md`.
