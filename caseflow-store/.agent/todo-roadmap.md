@@ -10,15 +10,73 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: stable portfolio and operations handoff after `v1.12.0`
-- Current gate: `AUTH-SMTP-T02` is blocked pending a real Supabase Management
-  API token and real SMTP credentials; all appropriate non-SMTP handoff work is
-  complete
-- Current task: `AUTH-SMTP-T02` only if real SMTP credentials become available
+- Mode: bounded post-release order reliability patch after `v1.12.0`
+- Current gate: `ORDER-RELIABILITY-T05` passed; additive production migration
+  is applied and all local gates are green. `AUTH-SMTP-T02` remains externally
+  blocked.
+- Current task: `ORDER-RELIABILITY-T06 - Deploy And Release v1.12.1`
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-22
 
 ## Phase UAT-MANUAL - Production Customer Manual Acceptance
+
+- [x] `ORDER-RELIABILITY-T01` Accept Atomic Order ADR And Roadmap. - 2026-07-22
+  - Objective: close the split-transaction failure mode where an order can
+    commit before signup voucher confirmation, causing a false `500`, duplicate
+    retry, or reusable discount.
+  - Result: accepted ADR-0015 and a bounded `v1.12.1` roadmap for a
+    database-enforced checkout attempt key plus atomic order/items/voucher RPC.
+  - Verification: ADR is indexed; roadmap defines acceptance criteria,
+    compatibility, rollback, local QA, production QA, and release gates.
+  - Guardrail: no runtime, schema, price, payment, shipping, auth, or role
+    behavior changed in this planning task.
+
+- [x] `ORDER-RELIABILITY-T02` Add Checkout Attempt Contract And Atomic RPC. - 2026-07-22
+  - Objective: define the database concurrency boundary before changing the
+    deployed checkout runtime.
+  - Result: added validated checkout attempt UUID contracts, nullable order
+    storage, a customer-scoped partial unique index, and versioned RPC `v2`
+    that creates order/items and consumes an eligible account voucher in one
+    transaction while returning the existing order for retries.
+  - Verification: migration contract verifier passed all checks; TypeScript and
+    `git diff --check` passed.
+  - Guardrail: migration remains unapplied at T02; the released RPC is retained.
+
+- [x] `ORDER-RELIABILITY-T03` Integrate Controller, Use Case, Repository, And UI. - 2026-07-22
+  - Objective: route checkout through the atomic RPC without changing the API
+    response envelope or commerce calculations.
+  - Result: browser retries reuse a session-scoped UUID, repository calls RPC
+    `v2`, use case recovers existing attempts before promotion evaluation, and
+    split voucher reserve/confirm writes were removed from order creation.
+  - Verification: lint, TypeScript, migration verifier, architecture verifier,
+    and `git diff --check` passed.
+  - Guardrail: no production migration or deployment yet; price, payment,
+    shipping, auth, and role policies are unchanged.
+
+- [x] `ORDER-RELIABILITY-T04` Add Retry And Atomicity Regression Coverage. - 2026-07-22
+  - Objective: prove concurrent retries cannot duplicate a voucher-discounted
+    order or redeem one account voucher twice.
+  - Result: added a Playwright regression that submits the same attempt
+    concurrently and again later; all retries return one order, one row exists,
+    voucher links once, and a different attempt cannot reuse it.
+  - Verification: dedicated test passed; post-test database counts returned to
+    baseline after cleanup.
+  - Finding fixed: a concurrent request can cross the promotion-read window, so
+    the use case now rechecks the attempt before returning a promotion error.
+
+- [x] `ORDER-RELIABILITY-T05` Apply Migration And Run Full Local Gate. - 2026-07-22
+  - Objective: apply the additive database boundary safely and prove the final
+    runtime does not regress checkout, vouchers, QR, security, or UI flows.
+  - Result: migration applied through the Supabase session pooler; old/new RPCs
+    coexist, customer/attempt uniqueness is active, voucher/order history uses
+    `ON DELETE RESTRICT`, and stale QA-only order rows were removed.
+  - Verification: build passed with 52 routes; full Playwright passed `21/21`;
+    signup voucher verifier and QR demo verifier passed; lint, TypeScript,
+    architecture, migration contract, secret scan, asset metadata, no-demo,
+    QR safety, dependency audit, and diff checks passed. Final database state is
+    12 orders, 12 items, and 24 vouchers after QA cleanup.
+  - Guardrail: removed only records using dedicated automated-test email
+    prefixes; no customer/UAT order was deleted.
 
 - [x] `POSTV113-T01` Final v1.11.3 Release Consistency Audit. - 2026-07-22
   - Objective: verify that local Git, remote `main`, the `v1.11.3` tag,

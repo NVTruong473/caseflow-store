@@ -64,7 +64,6 @@ async function main() {
   };
   const testPassword = createEphemeralPassword(runId);
   const createdUserIds = new Set<string>();
-  const createdOrderCodes = new Set<string>();
   const browser = await chromium.launch();
 
   try {
@@ -90,7 +89,6 @@ async function main() {
       password: testPassword,
       target,
     });
-    createdOrderCodes.add(checkoutFlow.orderCode);
 
     const reuseAttempt = await postOrderWithVoucher(browser, baseURL, {
       customer: primaryCustomer,
@@ -109,6 +107,7 @@ async function main() {
       baseURL,
       {
         body: {
+          checkoutAttemptId: crypto.randomUUID(),
           customerEmail: primaryCustomer.email,
           customerName: primaryCustomer.fullName,
           customerPhone: "+84 912 345 678",
@@ -202,7 +201,6 @@ async function main() {
     }
   } finally {
     await browser.close();
-    await cleanupOrders([...createdOrderCodes]);
     await cleanupUsers([...createdUserIds]);
   }
 }
@@ -397,6 +395,7 @@ async function postOrderWithVoucher(
     await loginCustomer(page, options.customer.email, options.password);
 
     const result = await postRawOrder(page, {
+      checkoutAttemptId: crypto.randomUUID(),
       customerEmail: options.customer.email,
       customerName: options.customer.fullName,
       customerPhone: "+84 912 345 678",
@@ -571,22 +570,33 @@ async function readVoucherRows(customerId: string) {
   return data ?? [];
 }
 
-async function cleanupOrders(orderCodes: string[]) {
-  const admin = createSupabaseAdminClient();
-
-  for (const orderCode of orderCodes) {
-    await admin.from("orders").delete().eq("order_code", orderCode);
-  }
-}
-
 async function cleanupUsers(userIds: string[]) {
   const admin = createSupabaseAdminClient();
 
   for (const userId of userIds) {
-    await admin.from("orders").delete().eq("customer_id", userId);
-    await admin.from("customer_promotion_vouchers").delete().eq("customer_id", userId);
-    await admin.from("profiles").delete().eq("id", userId);
-    await admin.auth.admin.deleteUser(userId);
+    const { error: voucherError } = await admin
+      .from("customer_promotion_vouchers")
+      .delete()
+      .eq("customer_id", userId);
+
+    if (voucherError) {
+      throw new Error(`Could not delete test vouchers: ${voucherError.message}`);
+    }
+
+    const { error: orderError } = await admin
+      .from("orders")
+      .delete()
+      .eq("customer_id", userId);
+
+    if (orderError) {
+      throw new Error(`Could not delete test orders: ${orderError.message}`);
+    }
+
+    const { error } = await admin.auth.admin.deleteUser(userId);
+
+    if (error) {
+      throw new Error(`Could not delete test auth user: ${error.message}`);
+    }
   }
 }
 

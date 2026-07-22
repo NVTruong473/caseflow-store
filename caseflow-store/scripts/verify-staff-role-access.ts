@@ -57,6 +57,7 @@ type AdminOrderRecord = {
 };
 
 type BookCheckoutPayload = {
+  checkoutAttemptId: string;
   customerName: string;
   customerEmail: string;
   customerPhone: string;
@@ -611,6 +612,7 @@ function createValidPayload({
   target: BookCatalogItem;
 }): BookCheckoutPayload {
   return {
+    checkoutAttemptId: crypto.randomUUID(),
     customerEmail,
     customerName,
     customerPhone: TEST_PHONE,

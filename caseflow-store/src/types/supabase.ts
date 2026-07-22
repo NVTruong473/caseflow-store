@@ -1042,6 +1042,7 @@ export type Database = {
       };
       orders: {
         Row: {
+          checkout_attempt_id: string | null;
           id: string;
           order_code: string;
           customer_name: string;
@@ -1071,6 +1072,7 @@ export type Database = {
           updated_at: string;
         };
         Insert: {
+          checkout_attempt_id?: string | null;
           id?: string;
           order_code: string;
           customer_name: string;
@@ -1099,6 +1101,7 @@ export type Database = {
           updated_at?: string;
         };
         Update: {
+          checkout_attempt_id?: string | null;
           id?: string;
           order_code?: string;
           customer_name?: string;
@@ -1278,6 +1281,29 @@ export type Database = {
       };
       create_book_order_with_items: {
         Args: {
+          p_order_code: string;
+          p_customer_id: string;
+          p_customer_name: string;
+          p_customer_email: string;
+          p_customer_phone: string;
+          p_shipping_address: Json;
+          p_shipping_method: string;
+          p_payment_method: string;
+          p_discount_total_vnd: number;
+          p_shipping_fee_vnd: number;
+          p_tax_total_vnd: number;
+          p_payment_fee_vnd: number;
+          p_tax_estimates: Json;
+          p_fee_estimates: Json;
+          p_display_estimate: Json | null;
+          p_promotion_code: string | null;
+          p_items: Json;
+        };
+        Returns: Json;
+      };
+      create_book_order_with_items_v2: {
+        Args: {
+          p_checkout_attempt_id: string;
           p_order_code: string;
           p_customer_id: string;
           p_customer_name: string;

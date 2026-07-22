@@ -14857,6 +14857,118 @@ Vercel production alias, and live production runtime checks.
 
 ---
 
+## ORDER-RELIABILITY-T01 - Accept Atomic Order ADR And Roadmap
+
+- Date: 2026-07-22
+- Status: completed
+- Target release: `v1.12.1`
+
+### Objective
+
+Fix the verified checkout consistency gap where order persistence and signup
+voucher redemption are separate writes, and make retries safe without changing
+the customer-facing commerce rules.
+
+### Result
+
+- Added ADR-0015 for atomic and idempotent order creation.
+- Added the bounded `v1.12.1` roadmap with six evidence-gated tasks.
+- Chose a customer-scoped checkout attempt UUID plus a versioned transactional
+  RPC; retained the released RPC for deployment compatibility.
+
+### Verification
+
+- ADR is present and indexed.
+- Roadmap contains acceptance criteria and verification for migration,
+  integration, regression, production, and release work.
+
+### Guardrails
+
+- No runtime or database change in T01.
+- No public API envelope change.
+- No price, payment, shipping, auth, or role-policy change.
+
+---
+
+## ORDER-RELIABILITY-T02 And T03 - Atomic Contract And Runtime Integration
+
+- Date: 2026-07-22
+- Status: completed locally; database apply deferred to T05
+- Target release: `v1.12.1`
+
+### Result
+
+- Added additive migration `0011_atomic_idempotent_book_orders.sql`.
+- Added `checkoutAttemptId` request/database contracts.
+- Added the customer-scoped unique attempt boundary and versioned atomic RPC.
+- Added session-scoped browser attempt storage and retry reuse.
+- Integrated repository and order use case with existing-attempt recovery.
+- Removed split voucher reserve/confirm calls from order creation; the new RPC
+  consumes an eligible account voucher in the order transaction.
+- Updated checkout verification payload builders to include attempt IDs.
+
+### Verification
+
+- `npm run verify:order-reliability-migration`: passed.
+- `npm run verify:architecture`: passed.
+- `npm exec -- tsc --noEmit --pretty false`: passed.
+- `npm run lint`: passed.
+- `git diff --check`: passed.
+
+### Guardrails
+
+- Migration not applied and runtime not deployed at this point.
+- Released RPC retained for rollout compatibility.
+- Stable API response envelope and existing commerce rules preserved.
+
+---
+
+## ORDER-RELIABILITY-T04 And T05 - Concurrency Regression And Full Local Gate
+
+- Date: 2026-07-22
+- Status: completed
+- Target release: `v1.12.1`
+
+### Result
+
+- Applied migration `0011` through the Supabase session pooler after direct
+  IPv6 database connectivity timed out.
+- Preserved all rows during migration and retained the released RPC.
+- Fixed the historical voucher/order foreign-key mismatch by aligning it with
+  the existing used-voucher constraint through `ON DELETE RESTRICT`.
+- Added concurrent and later-retry E2E coverage for one checkout attempt.
+- Added a second existing-attempt read for the promotion race window.
+- Corrected voucher and QR verifier cleanup order and removed 7 stale rows
+  owned by automated-test email prefixes; no customer/UAT order was removed.
+
+### Verification
+
+- Atomic retry Playwright: passed.
+- Production build: passed, 52 routes.
+- Full Playwright: passed, `21/21`.
+- Signup voucher verifier: passed all 10 assertions and cleaned up.
+- QR demo verifier: passed all 6 groups and cleaned up.
+- Lint, TypeScript, architecture, migration contract, no-demo copy, public
+  asset metadata, secret scan, QR production safety source gate, dependency
+  audit, and diff check: passed.
+- Final database check: 12 orders, 12 items, 24 vouchers; old/new RPC, attempt
+  column/index, and restrictive history FK present.
+
+### Evidence
+
+- `.agent/artifacts/order-reliability-t04-post-test/`
+- `.agent/artifacts/order-reliability-t05-fk-fix/`
+- `.agent/artifacts/order-reliability-t05-final-db/`
+- `.agent/artifacts/order-reliability-t05/`
+
+### Guardrails
+
+- No pricing, payment, shipping, auth, or role-policy change.
+- No real payment integration.
+- No existing customer/UAT order cleanup.
+
+---
+
 ## ARCH-LAYER-T01 to ARCH-LAYER-T06 - Layered Architecture Local Gate
 
 - Date: 2026-07-22

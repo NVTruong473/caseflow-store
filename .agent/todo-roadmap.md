@@ -10,10 +10,10 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: stable portfolio and operations handoff after `v1.12.0`
-- Current gate: `v1.12.0` layered architecture release complete; custom SMTP
+- Mode: bounded post-release order reliability patch after `v1.12.0`
+- Current gate: ADR-0015 and the `v1.12.1` roadmap are accepted; custom SMTP
   remains externally blocked pending real credentials
-- Current task: No active implementation task
+- Current task: `ORDER-RELIABILITY-T02 - Add Checkout Attempt Contract And Atomic RPC`
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-22
 

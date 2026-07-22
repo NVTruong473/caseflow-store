@@ -13,6 +13,8 @@ export const CART_STORAGE_VERSION = 1;
 export const CART_STORAGE_KEY = "caseflow-store.cart.v1";
 export const CHECKOUT_SUCCESS_STORAGE_KEY =
   "caseflow-store.checkout.success.v1";
+export const CHECKOUT_ATTEMPT_STORAGE_KEY =
+  "caseflow-books.checkout-attempt.v1";
 
 export type TestBook = {
   slug: string;
@@ -119,9 +121,18 @@ export async function createTemporaryCustomer(): Promise<TestCustomer> {
 }
 
 export async function deleteTemporaryCustomer(customer: TestCustomer) {
+  const service = createTestServiceClient();
+  const { error: voucherError } = await service
+    .from("customer_promotion_vouchers")
+    .delete()
+    .eq("customer_id", customer.id);
+
+  if (voucherError) {
+    throw voucherError;
+  }
+
   await deleteOrdersByCustomerEmail(customer.email);
 
-  const service = createTestServiceClient();
   const { error } = await service.auth.admin.deleteUser(customer.id);
 
   if (error) {
@@ -240,11 +251,13 @@ export async function seedCart(
 export async function clearClientOrderState(page: Page) {
   await page.goto("/");
   await page.evaluate(
-    ({ cartKey, successKey }) => {
+    ({ attemptKey, cartKey, successKey }) => {
       window.localStorage.removeItem(cartKey);
+      window.sessionStorage.removeItem(attemptKey);
       window.sessionStorage.removeItem(successKey);
     },
     {
+      attemptKey: CHECKOUT_ATTEMPT_STORAGE_KEY,
       cartKey: CART_STORAGE_KEY,
       successKey: CHECKOUT_SUCCESS_STORAGE_KEY,
     },
@@ -272,8 +285,10 @@ export function createOrderPayload(
   customer: TestCustomer,
   book: TestBook,
   quantity = 1,
+  checkoutAttemptId = crypto.randomUUID(),
 ) {
   return {
+    checkoutAttemptId,
     customerEmail: customer.email,
     customerName: "CaseFlow Customer QA",
     customerPhone: "+84 912 345 678",

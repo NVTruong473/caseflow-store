@@ -3,14 +3,11 @@ import { calculateBookCheckoutTotals } from "@/lib/checkout/book-totals";
 import { getCurrencyDisplayRules } from "@/lib/format/currency-display.server";
 import { getRequestLanguage } from "@/lib/i18n/server";
 import { validateSupabaseBookCart } from "@/lib/repositories/supabase-books";
-import {
-  confirmCustomerSignupVoucherReservation,
-  isSignupVoucherCode,
-  releaseCustomerSignupVoucherReservation,
-  reserveCustomerSignupVoucher,
-} from "@/lib/repositories/supabase-customer-vouchers";
+import { isSignupVoucherCode } from "@/lib/repositories/supabase-customer-vouchers";
 import {
   createSupabaseBookOrder,
+  getSupabaseOrderForCheckoutAttempt,
+  SignupVoucherConsumptionError,
   type SupabaseOrderRecord,
 } from "@/lib/repositories/supabase-orders";
 import { evaluateSupabaseBookPromotion } from "@/lib/repositories/supabase-promotions";
@@ -20,16 +17,9 @@ import {
 } from "@/lib/use-cases/result";
 import type { CreateBookOrderRequest } from "@/lib/validation/orders";
 
-type ReservedSignupVoucher = {
-  customerId: string;
-  reservationToken: string;
-};
-
 export async function createBookOrderUseCase(
   request: CreateBookOrderRequest,
 ): Promise<UseCaseResult<SupabaseOrderRecord>> {
-  let reservedSignupVoucher: ReservedSignupVoucher | null = null;
-
   try {
     const customerAuthState = await getCustomerAuthState();
 
@@ -55,6 +45,18 @@ export async function createBookOrderUseCase(
         "Customer role is required before checkout",
         403,
       );
+    }
+
+    const existingOrder = await getSupabaseOrderForCheckoutAttempt(
+      customerAuthState.user.id,
+      request.checkoutAttemptId,
+    );
+
+    if (existingOrder) {
+      return {
+        data: existingOrder,
+        success: true,
+      };
     }
 
     if (!customerAuthState.user.profileCompleteness.isCompleteForCheckout) {
@@ -104,6 +106,21 @@ export async function createBookOrderUseCase(
       : null;
 
     if (promotionEvaluation && !promotionEvaluation.success) {
+      // Một request cùng attempt ID có thể vừa commit giữa lần đọc đầu tiên và
+      // lúc kiểm tra voucher. Trả lại order đó thay vì báo voucher đã dùng.
+      const concurrentlyCreatedOrder =
+        await getSupabaseOrderForCheckoutAttempt(
+          customerAuthState.user.id,
+          request.checkoutAttemptId,
+        );
+
+      if (concurrentlyCreatedOrder) {
+        return {
+          data: concurrentlyCreatedOrder,
+          success: true,
+        };
+      }
+
       return createUseCaseFailure(
         promotionEvaluation.code,
         promotionEvaluation.message,
@@ -124,24 +141,6 @@ export async function createBookOrderUseCase(
           400,
         );
       }
-
-      const reservation = await reserveCustomerSignupVoucher({
-        code,
-        customerId: customerAuthState.user.id,
-      });
-
-      if (!reservation.success) {
-        return createUseCaseFailure(
-          reservation.code,
-          reservation.message,
-          400,
-        );
-      }
-
-      reservedSignupVoucher = {
-        customerId: customerAuthState.user.id,
-        reservationToken: reservation.reservationToken,
-      };
     }
 
     const totals = calculateBookCheckoutTotals({
@@ -154,6 +153,7 @@ export async function createBookOrderUseCase(
     });
 
     const data = await createSupabaseBookOrder({
+      checkoutAttemptId: request.checkoutAttemptId,
       customerId: customerAuthState.user.id,
       customerName,
       customerEmail,
@@ -169,26 +169,17 @@ export async function createBookOrderUseCase(
       totals,
     });
 
-    if (reservedSignupVoucher) {
-      await confirmCustomerSignupVoucherReservation({
-        customerId: reservedSignupVoucher.customerId,
-        orderId: data.order.id,
-        reservationToken: reservedSignupVoucher.reservationToken,
-      });
-      reservedSignupVoucher = null;
-    }
-
     return {
       data,
       success: true,
     };
-  } catch {
-    if (reservedSignupVoucher) {
-      try {
-        await releaseCustomerSignupVoucherReservation(reservedSignupVoucher);
-      } catch {
-        // A failed order must not intentionally burn a customer signup voucher.
-      }
+  } catch (error) {
+    if (error instanceof SignupVoucherConsumptionError) {
+      return createUseCaseFailure(
+        "PROMOTION_INVALID",
+        "This account voucher is expired, reserved, or already used.",
+        400,
+      );
     }
 
     return createUseCaseFailure(

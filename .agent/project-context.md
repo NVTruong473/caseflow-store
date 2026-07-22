@@ -11,10 +11,10 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: stable portfolio and operations handoff after `v1.12.0`.
-- Current gate: `v1.12.0` layered architecture release complete; custom SMTP
-  remains externally blocked pending real credentials.
-- Current task: No active implementation task.
+- Current mode: bounded order reliability patch after `v1.12.0`.
+- Current gate: ADR-0015 and the `v1.12.1` atomic order roadmap are accepted;
+  custom SMTP remains externally blocked pending real credentials.
+- Current task: `ORDER-RELIABILITY-T02 - Add Checkout Attempt Contract And Atomic RPC`.
 - Latest production deployment: `dpl_8MCASvEYjndhtQJuvbPJeqkFF1gA`, aliased to
   `https://caseflow-store.vercel.app`.
 - Latest GitHub Release:

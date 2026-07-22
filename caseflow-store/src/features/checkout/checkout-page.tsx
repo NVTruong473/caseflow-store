@@ -18,6 +18,10 @@ import {
   createCheckoutSuccessSnapshot,
   writeCheckoutSuccessSnapshot,
 } from "@/features/checkout/checkout-success-storage";
+import {
+  clearCheckoutAttemptId,
+  getOrCreateCheckoutAttemptId,
+} from "@/features/checkout/checkout-attempt-storage";
 import type { CustomerAuthState } from "@/lib/auth/customer";
 import { calculateBookCheckoutTotals } from "@/lib/checkout/book-totals";
 import { formatUsd, formatVnd } from "@/lib/format/currency";
@@ -819,6 +823,7 @@ function CheckoutDetailsForm({
   const [submitState, setSubmitState] = React.useState<CheckoutSubmitState>({
     status: "idle",
   });
+  const checkoutAttemptIdRef = React.useRef<string | null>(null);
   const isSubmitting = submitState.status === "submitting";
   const isCartReadyForOrder = reviewState.status === "success";
 
@@ -889,6 +894,10 @@ function CheckoutDetailsForm({
 
     setSubmitState({ status: "submitting" });
     const normalizedPromotionCode = promotionCode.trim().toUpperCase();
+    const checkoutAttemptId =
+      checkoutAttemptIdRef.current ??
+      getOrCreateCheckoutAttemptId(window.sessionStorage);
+    checkoutAttemptIdRef.current = checkoutAttemptId;
 
     try {
       const response = await fetch("/api/orders", {
@@ -898,6 +907,7 @@ function CheckoutDetailsForm({
         },
         body: JSON.stringify({
           ...normalizedValues,
+          checkoutAttemptId,
           paymentMethod,
           promotionCode: normalizedPromotionCode || undefined,
           shippingAddress,
@@ -920,6 +930,8 @@ function CheckoutDetailsForm({
         window.sessionStorage,
         createCheckoutSuccessSnapshot(payload.data),
       );
+      clearCheckoutAttemptId(window.sessionStorage, checkoutAttemptId);
+      checkoutAttemptIdRef.current = null;
       clearCart();
 
       if (

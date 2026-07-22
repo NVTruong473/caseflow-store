@@ -14,7 +14,7 @@ the `v1.10.0` account-bound signup voucher release, the `v1.11.0`
 account password-change release, the `v1.11.1` security dependency patch, the
 `v1.11.2` neutral light UI and compact pagination patch, the `v1.11.3`
 expert UI/accessibility polish patch, and the `v1.12.0` layered architecture
-hardening release.
+hardening release, followed by the `v1.12.1` atomic order reliability patch.
 The system is
 intentionally a Next.js modular monolith: it demonstrates a realistic
 specialist e-commerce workflow without claiming marketplace scale, real payment
@@ -146,15 +146,17 @@ order status. It remains browser-local rather than cross-device.
 
 ```text
 Customer session
+  -> browser reuses one checkoutAttemptId across retries
   -> profile readiness check
   -> account welcome voucher read/grant for eligible customer
   -> checkout cart validation
   -> payment/shipping method selection
   -> POST /api/orders thin controller validates the request DTO
-  -> createBookOrderUseCase coordinates auth, promotion, voucher, totals, and persistence
+  -> createBookOrderUseCase recovers an existing customer/attempt order
+  -> use case coordinates auth, promotion, voucher eligibility, totals, and persistence
   -> server-owned subtotal, account-bound promotion, VAT, shipping, payment fee, total
-  -> create_book_order_with_items RPC
-  -> confirm voucher redemption only after order row exists
+  -> create_book_order_with_items_v2 RPC
+  -> order, items, and optional account voucher commit in one transaction
   -> order snapshot and confirmation state
 ```
 
@@ -183,8 +185,9 @@ availability, expiry, discount amount, or final totals. `WELCOME30K`,
 `READMORE20K`, and `FREESHIP25K` are granted per customer account and remain
 valid for 30 days from activation. Only one promotion code is accepted per
 order request; malformed multi-code requests fail validation before totals are
-calculated. Failed order creation releases the voucher reservation so a server
-error does not burn a customer code.
+calculated. The database consumes an eligible account voucher in the same
+transaction as the order. A failed transaction leaves both unchanged, while a
+repeated customer/attempt pair returns the existing order.
 
 ### QR demo payment session
 

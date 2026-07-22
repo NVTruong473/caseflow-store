@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "eslint",
     "test:e2e": "playwright test",
-    "verify:architecture": "node scripts/verify-layer-boundaries.mjs"
+    "verify:architecture": "node scripts/verify-layer-boundaries.mjs",
+    "apply:order-reliability-migration": "node --env-file-if-exists=.env.local scripts/apply-order-reliability-migration.mjs",
+    "verify:order-reliability-migration": "node scripts/verify-order-reliability-migration.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.3",

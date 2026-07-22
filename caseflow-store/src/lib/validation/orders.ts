@@ -5,6 +5,7 @@ import {
   customerEmailSchema,
   customerNameSchema,
   customerPhoneSchema,
+  idSchema,
   orderCodeSchema,
   orderStatusSchema,
   paymentStatusSchema,
@@ -55,6 +56,7 @@ export const updateAdminOrderOperationsRequestSchema = z
   );
 
 export const createBookOrderRequestSchema = z.object({
+  checkoutAttemptId: idSchema,
   customerName: customerNameSchema,
   customerEmail: customerEmailSchema,
   customerPhone: customerPhoneSchema,

@@ -50,6 +50,7 @@ import type { Json, TableRow, TableUpdate } from "@/types/supabase";
 const jsonSchema = z.custom<Json>();
 
 const orderRowSchema = z.object({
+  checkout_attempt_id: idSchema.nullable(),
   id: idSchema,
   order_code: orderCodeSchema,
   customer_name: customerNameSchema,
@@ -157,6 +158,7 @@ const createBookOrderLineSchema = z.object({
 
 const createSupabaseBookOrderInputSchema = z
   .object({
+    checkoutAttemptId: idSchema,
     customerId: idSchema,
     customerName: customerNameSchema,
     customerEmail: customerEmailSchema,
@@ -330,6 +332,38 @@ export async function getSupabaseOrderForCustomer(
 
   if (error) {
     throw new Error("Failed to read customer order", { cause: error });
+  }
+
+  if (!data) {
+    return null;
+  }
+
+  const { order_items: orderItems, ...order } = data;
+
+  return {
+    order: mapOrderRowToDomain(order),
+    items: orderItems
+      .toSorted((first, second) => first.id.localeCompare(second.id))
+      .map(mapOrderItemRowToDomain),
+  };
+}
+
+export async function getSupabaseOrderForCheckoutAttempt(
+  customerId: string,
+  checkoutAttemptId: string,
+): Promise<SupabaseOrderRecord | null> {
+  const parsedCustomerId = idSchema.parse(customerId);
+  const parsedAttemptId = idSchema.parse(checkoutAttemptId);
+  const supabase = createSupabaseAdminClient();
+  const { data, error } = await supabase
+    .from("orders")
+    .select("*,order_items(*)")
+    .eq("customer_id", parsedCustomerId)
+    .eq("checkout_attempt_id", parsedAttemptId)
+    .maybeSingle();
+
+  if (error) {
+    throw new Error("Failed to read checkout attempt", { cause: error });
   }
 
   if (!data) {
@@ -659,7 +693,8 @@ export async function createSupabaseBookOrder(
 ): Promise<SupabaseOrderRecord> {
   const input = createSupabaseBookOrderInputSchema.parse(rawInput);
   const supabase = createSupabaseAdminClient();
-  const { data, error } = await supabase.rpc("create_book_order_with_items", {
+  const { data, error } = await supabase.rpc("create_book_order_with_items_v2", {
+    p_checkout_attempt_id: input.checkoutAttemptId,
     p_order_code: createOrderCode(),
     p_customer_id: input.customerId,
     p_customer_name: input.customerName,
@@ -683,6 +718,14 @@ export async function createSupabaseBookOrder(
   });
 
   if (error) {
+    if (
+      error.message.includes(
+        "Signup voucher is invalid, expired, reserved, or used",
+      )
+    ) {
+      throw new SignupVoucherConsumptionError();
+    }
+
     throw new Error("Failed to create book order transaction", {
       cause: error,
     });
@@ -694,6 +737,13 @@ export async function createSupabaseBookOrder(
     order: mapOrderRowToDomain(result.order),
     items: result.items.map(mapOrderItemRowToDomain),
   };
+}
+
+export class SignupVoucherConsumptionError extends Error {
+  constructor() {
+    super("Signup voucher could not be consumed");
+    this.name = "SignupVoucherConsumptionError";
+  }
 }
 
 function createOrderCode() {

@@ -559,6 +559,17 @@ async function cleanupUsers(userIds: string[]) {
       }
     }
 
+    const { error: voucherError } = await admin
+      .from("customer_promotion_vouchers")
+      .delete()
+      .eq("customer_id", userId);
+
+    if (voucherError) {
+      console.warn(
+        `Could not delete test vouchers for ${userId}: ${voucherError.message}`,
+      );
+    }
+
     const { error: orderError } = await admin
       .from("orders")
       .delete()
