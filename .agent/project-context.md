@@ -3,7 +3,7 @@
 ## Project Identity
 
 - Project name: CaseFlow Store `v1.0.0`; CaseFlow Books `v1.1.0` through
-  `v1.13.0` released
+  `v1.13.1` released
 - Repository folder: `/Users/vantruong/Documents/TSNN 2`
 - Product domain: books for released `v1.1.0` and `v1.2.0`; phone
   accessories for released `v1.0.0`
@@ -11,17 +11,15 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: stable released `v1.13.0` transactional notification and
-  simulated-transfer operations.
-- Current gate: `UAT-OPS-T01` passed locally and on the current Production
-  candidate with full cleanup; the release follow-up candidate also passed
-  local Playwright `24/24` after moving external outbox work after the order
-  response.
-- Current task: `RELEASE-V1131-T01 - Verify And Release Patch v1.13.1`.
-- Latest production deployment: `dpl_6DjptcafKsNspyLe2XAs5rZbYJ8t`, aliased to
+- Current mode: stable released `v1.13.1` order-response reliability patch.
+- Current gate: `RELEASE-V1131-T01` passed locally and on Production with
+  complete browser, operations, security, accessibility, SEO, and cleanup
+  evidence.
+- Current task: none; stable closeout.
+- Latest production deployment: `dpl_Hn3BEdLERPQDVXnSxC3QFDYFzL6d`, aliased to
   `https://caseflow-store.vercel.app`.
 - Latest GitHub Release:
-  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.13.0`.
+  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.13.1`.
 - Detailed current trackers live in `caseflow-store/.agent/`.
 
 ## Confirmed Facts

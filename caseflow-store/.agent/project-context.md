@@ -5,7 +5,8 @@
 - Project name: CaseFlow Store `v1.0.0`; CaseFlow Books `v1.1.0`, `v1.2.0`,
   `v1.3.0`, `v1.3.1`, `v1.4.0`, `v1.4.1`, `v1.4.2`, `v1.5.0`, `v1.6.0`,
   `v1.7.0`, `v1.8.0`, `v1.9.0`, `v1.10.0`, `v1.11.0`, `v1.11.1`,
-  `v1.11.2`, `v1.11.3`, `v1.12.0`, `v1.12.1`, and `v1.13.0` released
+  `v1.11.2`, `v1.11.3`, `v1.12.0`, `v1.12.1`, `v1.13.0`, and `v1.13.1`
+  released
 - Repository folder: `/Users/vantruong/Documents/TSNN 2`
 - Product domain: books for released `v1.1.0` and `v1.2.0`; phone
   accessories for released `v1.0.0`
@@ -13,14 +14,23 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: stable released `v1.13.0` transactional notification and
-  simulated-transfer operations.
-- Current gate: `UAT-OPS-T01` passed locally and on production deployment
-  `dpl_6DjptcafKsNspyLe2XAs5rZbYJ8t` with role, decision, notification,
-  idempotency, visual, and cleanup evidence.
-- Current task: `RELEASE-V1131-T01 - Verify And Release Patch v1.13.1`.
+- Current mode: stable released `v1.13.1` order-response reliability patch.
+- Current gate: `RELEASE-V1131-T01` passed locally and on Production with
+  `24/24` browser regression, role/transfer UAT, security, responsive,
+  accessibility, SEO, dependency, secret, no-demo, and cleanup evidence.
+- Current task: none; stable closeout.
 
 ## Confirmed Facts
+
+- `v1.13.1` runs on Production deployment
+  `dpl_Hn3BEdLERPQDVXnSxC3QFDYFzL6d` at
+  `https://caseflow-store.vercel.app`. Pending-order copy is accurate,
+  external notification outbox work no longer blocks order responses, and
+  public catalog/merchandising reads no longer inherit customer auth cookies.
+  Local and Production Playwright passed `24/24`; Production transfer UAT,
+  role boundaries, security, QR lock, notification safety, accessibility,
+  final QA, SEO, dependency, secret/no-demo, asset metadata, and cleanup gates
+  passed. Real settlement and external email/SMS delivery remain disabled.
 
 - `UAT-MANUAL-T02` passed on 2026-07-23 against Production using the confirmed
   `CaseFlow UAT Customer` account. Order `CF-MRXNH8NZ-71D438191D` verified

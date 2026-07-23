@@ -15616,3 +15616,48 @@ GitHub Release.
 - `docs/uat-ops-t01-production-transfer-acceptance.md`
 - `.agent/artifacts/uat-ops-t01-local/`
 - `.agent/artifacts/uat-ops-t01-production/`
+
+---
+
+## RELEASE-V1131-T01 - Verify And Release Patch v1.13.1
+
+- Date: 2026-07-24
+- Status: completed
+- Runtime commit: `f1edfb6a73614d2a158bee33813965bfc8eba378`
+- Production deployment: `dpl_Hn3BEdLERPQDVXnSxC3QFDYFzL6d`
+
+### Result
+
+- Corrected pending-order and account-notification copy is live in both
+  supported languages.
+- External notification outbox work runs after the committed order response;
+  public catalog and merchandising reads no longer inherit customer auth
+  cookies.
+- Local and Production Playwright passed `24/24`.
+- Production transfer UAT passed role, decision, idempotency, customer-history,
+  notification, visual, cleanup, and stock-restoration checks.
+- Production smoke, security, notification safety, QR lock, accessibility,
+  final QA, SEO, dependency, secret, no-demo, asset metadata, and cleanup gates
+  passed.
+
+### Evidence
+
+- `docs/v1.13.1-order-response-reliability-patch-release-notes.md`
+- `docs/postv131-t01-final-release-consistency-audit.md`
+- `.agent/artifacts/release-v1131-final-production-uat/`
+- `.agent/artifacts/release-v1131-final-production-smoke/`
+- `.agent/artifacts/release-v1131-final-production-security/`
+- `.agent/artifacts/release-v1131-final-production-qr-safety/`
+- `.agent/artifacts/release-v1131-final-production-notification-safety/`
+- `.agent/artifacts/release-v1131-final-a11y/`
+- `.agent/artifacts/release-v1131-final-qa/`
+- `.agent/artifacts/release-v1131-final-seo/`
+- `.agent/artifacts/release-v1131-final-assets/`
+- `.agent/artifacts/release-v1131-final-cleanup/`
+
+### Guardrails
+
+- No real payment, bank account, carrier, warehouse, SMTP, or SMS provider was
+  enabled.
+- External email/SMS delivery and Production mock-payment success remain
+  disabled.

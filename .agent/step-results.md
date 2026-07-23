@@ -11373,3 +11373,22 @@ QA audit evidence.
 - Finding: one non-blocking success-heading copy mismatch is documented.
 - Detailed evidence:
   `caseflow-store/docs/uat-manual-t02-production-notification-transfer.md`.
+
+---
+
+## RELEASE-V1131-T01 - Verify And Release Patch v1.13.1
+
+- Date: 2026-07-24
+- Status: completed
+- Runtime commit: `f1edfb6a73614d2a158bee33813965bfc8eba378`
+- Production deployment: `dpl_Hn3BEdLERPQDVXnSxC3QFDYFzL6d`
+- Result: local and Production Playwright passed `24/24`; staff/admin
+  simulated-transfer UAT passed with full cleanup and stock restoration; all
+  final smoke, security, QR lock, notification boundary, accessibility, SEO,
+  dependency, secret, no-demo, asset, final QA, and cleanup gates passed.
+- Release notes:
+  `caseflow-store/docs/v1.13.1-order-response-reliability-patch-release-notes.md`.
+- Consistency audit:
+  `caseflow-store/docs/postv131-t01-final-release-consistency-audit.md`.
+- Guardrail: no real payment, external email/SMS delivery, carrier, or
+  warehouse integration was enabled.

@@ -5,7 +5,11 @@ import { chromium, type Browser } from "@playwright/test";
 
 import { LANGUAGE_COOKIE, type Language } from "../src/lib/i18n/language";
 
-const ARTIFACT_DIR = path.join(".agent", "artifacts", "d39-t02");
+const ARTIFACT_DIR = path.join(
+  ".agent",
+  "artifacts",
+  process.env.SEO_METADATA_ARTIFACT_ID ?? "d39-t02",
+);
 const CANONICAL_ORIGIN = "https://caseflow-store.vercel.app";
 const EXPECTED_ORIGIN = normalizeOrigin(
   process.env.SEO_EXPECTED_ORIGIN ?? CANONICAL_ORIGIN,
@@ -69,9 +73,11 @@ async function main() {
         metadata.detail.canonical === `${EXPECTED_ORIGIN}/products/${target.slug}`,
       homeMetadata:
         metadata.homeEn.title.includes("Bilingual bookstore") &&
-        metadata.homeEn.description.includes("Vietnam-first") &&
+        metadata.homeEn.description.includes("bilingual bookstore") &&
+        metadata.homeEn.description.includes("Vietnam") &&
         metadata.homeVi.title.includes("Nhà sách") &&
-        metadata.homeVi.description.includes("nhà sách"),
+        metadata.homeVi.description.includes("nhà sách song ngữ") &&
+        metadata.homeVi.description.includes("Việt Nam"),
       robots:
         robots.status === 200 &&
         robots.body.includes("Disallow: /admin") &&

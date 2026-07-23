@@ -1,0 +1,272 @@
+{
+  "baseURL": "https://caseflow-store.vercel.app",
+  "expectedOrigin": "https://caseflow-store.vercel.app",
+  "generatedAt": "2026-07-23T17:38:30.037Z",
+  "metadata": {
+    "account": {
+      "canonical": "https://caseflow-store.vercel.app/account",
+      "description": "Sign in or create a CaseFlow Books account to complete your profile, shipping address, and order access.",
+      "ogTitle": "Customer account - CaseFlow Books",
+      "robots": "noindex, nofollow",
+      "title": "Customer account - CaseFlow Books"
+    },
+    "catalog": {
+      "canonical": "https://caseflow-store.vercel.app/catalog",
+      "description": "Browse CaseFlow Books by title, author, category, language, format, VND price, and stock state.",
+      "ogTitle": "Book catalog - CaseFlow Books",
+      "robots": "",
+      "title": "Book catalog - CaseFlow Books"
+    },
+    "detail": {
+      "canonical": "https://caseflow-store.vercel.app/products/pride-and-prejudice-vietnamese-special-edition",
+      "description": "A sharp social novel about judgment, family pressure, and the cost of confusing first impressions with truth.",
+      "ogTitle": "Pride and Prejudice - CaseFlow Books",
+      "robots": "",
+      "title": "Pride and Prejudice - CaseFlow Books"
+    },
+    "homeEn": {
+      "canonical": "https://caseflow-store.vercel.app",
+      "description": "CaseFlow Books is a bilingual bookstore for readers in Vietnam, with English/Vietnamese editions, clear VND pricing, and account order tracking.",
+      "ogTitle": "CaseFlow Books - Bilingual bookstore",
+      "robots": "",
+      "title": "CaseFlow Books - Bilingual bookstore"
+    },
+    "homeVi": {
+      "canonical": "https://caseflow-store.vercel.app",
+      "description": "CaseFlow Books là nhà sách song ngữ ưu tiên độc giả Việt Nam, có catalog ấn bản Anh/Việt, giá VND rõ ràng và theo dõi đơn trong tài khoản.",
+      "ogTitle": "CaseFlow Books - Nhà sách song ngữ",
+      "robots": "",
+      "title": "CaseFlow Books - Nhà sách song ngữ"
+    },
+    "tracking": {
+      "canonical": "https://caseflow-store.vercel.app/orders/track",
+      "description": "Track a CaseFlow Books order with an order code and matching email or phone contact.",
+      "ogTitle": "Track order - CaseFlow Books",
+      "robots": "",
+      "title": "Track order - CaseFlow Books"
+    }
+  },
+  "ok": true,
+  "pass": {
+    "accountNoindex": true,
+    "catalogMetadata": true,
+    "detailMetadata": true,
+    "homeMetadata": true,
+    "robots": true,
+    "sitemap": true,
+    "structuredData": true,
+    "trackingMetadata": true
+  },
+  "robots": {
+    "body": "User-Agent: *\nAllow: /\nAllow: /catalog\nAllow: /contact\nAllow: /orders/track\nAllow: /payment\nAllow: /privacy\nAllow: /products/\nAllow: /returns\nAllow: /shipping\nAllow: /terms\nDisallow: /account\nDisallow: /admin\nDisallow: /api\nDisallow: /catalog-state-preview\nDisallow: /checkout\nDisallow: /ui-preview\n\nSitemap: https://caseflow-store.vercel.app/sitemap.xml\n",
+    "status": 200
+  },
+  "sitemap": {
+    "includesAdmin": false,
+    "includesApi": false,
+    "includesCatalog": true,
+    "includesCheckout": false,
+    "includesHome": true,
+    "includesTargetBook": true,
+    "includesTracking": true,
+    "status": 200
+  },
+  "structuredData": {
+    "name": "Pride and Prejudice",
+    "offerUrl": "https://caseflow-store.vercel.app/products/pride-and-prejudice-vietnamese-special-edition",
+    "priceCurrency": "VND",
+    "type": "Book"
+  },
+  "target": {
+    "id": "00000000-0000-4000-8000-000000004000",
+    "type": "book-edition",
+    "slug": "pride-and-prejudice-vietnamese-special-edition",
+    "title": "Kiêu hãnh và định kiến",
+    "edition": {
+      "id": "00000000-0000-4000-8000-000000004000",
+      "slug": "pride-and-prejudice-vietnamese-special-edition",
+      "displayTitle": "Kiêu hãnh và định kiến",
+      "localizedDisplayTitle": {
+        "vi": "Kiêu hãnh và định kiến",
+        "en": "Pride and Prejudice"
+      },
+      "subtitle": "Pride and prejudice",
+      "language": "vi",
+      "format": "special-edition",
+      "isbn13": null,
+      "isbn10": null,
+      "publicationYear": 2010,
+      "pageCount": 455,
+      "dimensions": null,
+      "weightGrams": null,
+      "priceVnd": 297000,
+      "compareAtPriceVnd": null,
+      "stockQuantity": 8,
+      "lowStockThreshold": 10,
+      "inventoryStatus": "low-stock",
+      "summary": {
+        "vi": "Một tiểu thuyết xã hội sắc sảo về phán đoán, áp lực gia đình và cái giá của việc nhầm ấn tượng ban đầu với sự thật.",
+        "en": "A sharp social novel about judgment, family pressure, and the cost of confusing first impressions with truth."
+      },
+      "tableOfContents": null,
+      "sampleExcerptPolicy": "No copyrighted excerpt is stored; use project-written preview guidance only.",
+      "pairId": "00000000-0000-4000-8000-000000006000",
+      "pairedEditionId": "00000000-0000-4000-8000-000000003000",
+      "reasonToRead": {
+        "vi": "Ấn bản tiếng Việt của Kiêu hãnh và định kiến, dành cho độc giả muốn đọc và đối chiếu tác phẩm ở cả hai ngôn ngữ trong danh mục.",
+        "en": "Vietnamese edition of Pride and Prejudice for readers comparing the work across both catalog languages."
+      },
+      "displayFacts": [
+        {
+          "key": "publisher",
+          "label": {
+            "vi": "Nhà xuất bản",
+            "en": "Publisher"
+          },
+          "value": {
+            "vi": "NXB Hội nhà văn",
+            "en": "NXB Hội nhà văn"
+          },
+          "provenanceRecordId": "00000000-0000-4000-8000-000000010023"
+        },
+        {
+          "key": "translator",
+          "label": {
+            "vi": "Dịch giả",
+            "en": "Translator"
+          },
+          "value": {
+            "vi": "Diệp Minh Tâm",
+            "en": "Diệp Minh Tâm"
+          },
+          "provenanceRecordId": "00000000-0000-4000-8000-000000010026"
+        },
+        {
+          "key": "publication-year",
+          "label": {
+            "vi": "Năm xuất bản",
+            "en": "Publication year"
+          },
+          "value": {
+            "vi": "2010",
+            "en": "2010"
+          },
+          "provenanceRecordId": "00000000-0000-4000-8000-000000010024"
+        },
+        {
+          "key": "page-count",
+          "label": {
+            "vi": "Số trang",
+            "en": "Page count"
+          },
+          "value": {
+            "vi": "455 trang",
+            "en": "455 pages"
+          },
+          "provenanceRecordId": "00000000-0000-4000-8000-000000010025"
+        },
+        {
+          "key": "source-physical-format",
+          "label": {
+            "vi": "Định dạng nguồn",
+            "en": "Source format"
+          },
+          "value": {
+            "vi": "Paperback",
+            "en": "Paperback"
+          },
+          "provenanceRecordId": "00000000-0000-4000-8000-000000010022"
+        }
+      ],
+      "omittedOptionalFactKeys": [
+        "isbn"
+      ],
+      "isFeatured": false,
+      "createdAt": "2026-07-16T00:00:00+00:00",
+      "updatedAt": "2026-07-21T06:41:06.934627+00:00"
+    },
+    "work": {
+      "id": "00000000-0000-4000-8000-000000002000",
+      "slug": "pride-and-prejudice",
+      "title": "Pride and Prejudice",
+      "originalTitle": null,
+      "localizedTitle": {
+        "vi": "Kiêu hãnh và định kiến",
+        "en": "Pride and Prejudice"
+      },
+      "originalLanguage": "English",
+      "themes": [
+        "family",
+        "manners",
+        "marriage"
+      ],
+      "ageRating": null,
+      "publicationEra": "1813",
+      "canonicalSummary": {
+        "vi": "Một tiểu thuyết xã hội sắc sảo về phán đoán, áp lực gia đình và cái giá của việc nhầm ấn tượng ban đầu với sự thật.",
+        "en": "A sharp social novel about judgment, family pressure, and the cost of confusing first impressions with truth."
+      }
+    },
+    "authors": [
+      {
+        "id": "00000000-0000-4000-8000-000000001000",
+        "slug": "jane-austen",
+        "name": "Jane Austen",
+        "country": "United Kingdom"
+      }
+    ],
+    "categories": [
+      {
+        "id": "00000000-0000-4000-8000-000000000101",
+        "type": "book-category",
+        "slug": "classic-literature",
+        "labels": {
+          "vi": "Van hoc kinh dien",
+          "en": "Classic literature"
+        },
+        "description": {
+          "vi": "Nhung tac pham lau ben, phu hop cho tu sach ca nhan va hoc thuat.",
+          "en": "Enduring works suited for personal libraries and study shelves."
+        },
+        "sortOrder": 1
+      },
+      {
+        "id": "00000000-0000-4000-8000-000000000104",
+        "type": "book-category",
+        "slug": "romance",
+        "labels": {
+          "vi": "Lang man",
+          "en": "Romance"
+        },
+        "description": {
+          "vi": "Nhung cau chuyen ve tinh cam, hon nhan, lua chon va truong thanh.",
+          "en": "Stories of affection, marriage, choice, and personal growth."
+        },
+        "sortOrder": 4
+      }
+    ],
+    "translators": [
+      {
+        "id": "91dc00e9-31ab-4f59-8e44-6ce9829b5048",
+        "slug": "diep-minh-tam",
+        "name": "Diệp Minh Tâm"
+      }
+    ],
+    "publisher": {
+      "id": "62a7afd2-5b29-4d1f-863e-2b063363d15c",
+      "slug": "nxb-hoi-nha-van",
+      "name": "NXB Hội nhà văn",
+      "country": null,
+      "website": null
+    },
+    "coverAsset": {
+      "id": "6cde6f7d-0990-403b-bc44-9e12a589ecce",
+      "path": "/images/books/gutenberg-covers/pride-and-prejudice.jpg",
+      "altText": {
+        "vi": "Bìa gốc cho Kiêu hãnh và định kiến",
+        "en": "Pride and Prejudice source-work cover art"
+      },
+      "source": "public-domain"
+    }
+  }
+}

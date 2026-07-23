@@ -25,6 +25,10 @@ const ARTIFACT_DIR = path.join(
   "artifacts",
   process.env.UAT_OPS_ARTIFACT_ID ?? "uat-ops-t01",
 );
+const IS_EXTERNAL_TARGET = !new URL(BASE_URL).hostname.match(
+  /^(localhost|127\.0\.0\.1)$/,
+);
+const BROWSER_TIMEOUT = IS_EXTERNAL_TARGET ? 90_000 : 30_000;
 const TEST_PASSWORD = "CaseflowBooks#UatOps23";
 const TEST_PHONE = "+84 912 345 678";
 const REJECTION_REASON =
@@ -412,7 +416,7 @@ async function inspectCustomerOutcome(
     },
   ]);
 
-  await page.goto("/account/orders", { waitUntil: "domcontentloaded" });
+  await navigateForUat(page, "/account/orders");
   await page
     .locator(`[data-customer-order-card="${confirmed.order.orderCode}"]`)
     .waitFor();
@@ -424,7 +428,7 @@ async function inspectCustomerOutcome(
     path: path.join(ARTIFACT_DIR, "customer-transfer-outcomes-en.png"),
   });
 
-  await page.goto("/account", { waitUntil: "domcontentloaded" });
+  await navigateForUat(page, "/account");
   await page.locator("[data-customer-notification-inbox]").waitFor();
   await page
     .locator("[data-customer-notification='payment.confirmed']")
@@ -449,7 +453,7 @@ async function inspectCustomerOutcome(
 }
 
 async function openOrderDetail(page: Page, orderId: string) {
-  await page.goto("/admin/orders", { waitUntil: "domcontentloaded" });
+  await navigateForUat(page, "/admin/orders");
   await page.locator("[data-admin-orders-page]").waitFor();
   await page.locator(`[data-admin-order-row="${orderId}"]`).waitFor();
   await page.locator(`[data-admin-order-view="${orderId}"]`).first().click();
@@ -547,18 +551,24 @@ async function createCustomerOrder(
   customer: TestUser,
   target: CatalogItem,
 ) {
-  const response = await page.request.post("/api/orders", {
-    data: {
-      checkoutAttemptId: crypto.randomUUID(),
-      customerEmail: customer.email,
-      customerName: customer.fullName,
-      customerPhone: TEST_PHONE,
-      items: [{ productId: target.edition.id, quantity: 1 }],
-      paymentMethod: "bank-transfer",
-      shippingAddress: createShippingAddress(customer.fullName),
-      shippingMethod: "standard",
-    },
-  });
+  const requestData = {
+    checkoutAttemptId: crypto.randomUUID(),
+    customerEmail: customer.email,
+    customerName: customer.fullName,
+    customerPhone: TEST_PHONE,
+    items: [{ productId: target.edition.id, quantity: 1 }],
+    paymentMethod: "bank-transfer",
+    shippingAddress: createShippingAddress(customer.fullName),
+    shippingMethod: "standard",
+  };
+  const response = await retryIdempotentNetworkOperation(
+    () =>
+      page.request.post("/api/orders", {
+        data: requestData,
+        timeout: BROWSER_TIMEOUT,
+      }),
+    `create order for ${target.edition.id}`,
+  );
   const payload = (await response.json()) as ApiResponse<CreatedOrder>;
 
   assert(
@@ -591,22 +601,32 @@ async function findTargetEditions() {
 }
 
 async function loginCustomer(page: Page, email: string) {
-  await page.goto("/account", { waitUntil: "domcontentloaded" });
-  const response = await page.request.post("/api/customer/session", {
-    data: { email, intent: "sign-in", password: TEST_PASSWORD },
-  });
+  await navigateForUat(page, "/account");
+  const response = await retryIdempotentNetworkOperation(
+    () =>
+      page.request.post("/api/customer/session", {
+        data: { email, intent: "sign-in", password: TEST_PASSWORD },
+        timeout: BROWSER_TIMEOUT,
+      }),
+    "customer sign-in",
+  );
   assert(response.ok(), `Customer sign-in failed: ${response.status()}`);
-  await page.goto("/account", { waitUntil: "domcontentloaded" });
+  await navigateForUat(page, "/account");
   await page.locator("[data-customer-account-panel]").waitFor();
 }
 
 async function loginOperationsUser(page: Page, email: string) {
-  await page.goto("/admin/login", { waitUntil: "domcontentloaded" });
-  const response = await page.request.post("/api/admin/session", {
-    data: { email, password: TEST_PASSWORD },
-  });
+  await navigateForUat(page, "/admin/login");
+  const response = await retryIdempotentNetworkOperation(
+    () =>
+      page.request.post("/api/admin/session", {
+        data: { email, password: TEST_PASSWORD },
+        timeout: BROWSER_TIMEOUT,
+      }),
+    "operations sign-in",
+  );
   assert(response.ok(), `Operations sign-in failed: ${response.status()}`);
-  await page.goto("/admin", { waitUntil: "domcontentloaded" });
+  await navigateForUat(page, "/admin");
   await page.locator("[data-admin-shell-page='dashboard']").waitFor();
 }
 
@@ -717,6 +737,8 @@ async function createLanguageContext(browser: Browser) {
     baseURL: BASE_URL,
     viewport: { height: 1000, width: 1440 },
   });
+  context.setDefaultTimeout(BROWSER_TIMEOUT);
+  context.setDefaultNavigationTimeout(BROWSER_TIMEOUT);
   const url = new URL(BASE_URL);
   await context.addCookies([
     {
@@ -730,6 +752,38 @@ async function createLanguageContext(browser: Browser) {
     },
   ]);
   return context;
+}
+
+async function navigateForUat(page: Page, pathname: string) {
+  return retryIdempotentNetworkOperation(
+    () =>
+      page.goto(pathname, {
+        timeout: BROWSER_TIMEOUT,
+        waitUntil: "domcontentloaded",
+      }),
+    `navigate to ${pathname}`,
+  );
+}
+
+async function retryIdempotentNetworkOperation<TResult>(
+  operation: () => Promise<TResult>,
+  label: string,
+) {
+  let lastError: unknown;
+
+  for (let attempt = 1; attempt <= 3; attempt += 1) {
+    try {
+      return await operation();
+    } catch (error) {
+      lastError = error;
+
+      if (attempt < 3) {
+        await new Promise((resolve) => setTimeout(resolve, attempt * 1_000));
+      }
+    }
+  }
+
+  throw new Error(`${label} failed after 3 attempts`, { cause: lastError });
 }
 
 function createShippingAddress(recipientName: string): ShippingAddress {

@@ -10,13 +10,11 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: stable released `v1.13.0` transactional notification and simulated
-  transfer operations
-- Current gate: `UAT-OPS-T01` passed locally and on production deployment
-  `dpl_6DjptcafKsNspyLe2XAs5rZbYJ8t`
-- Current task: `RELEASE-V1131-T01 - Verify And Release Patch v1.13.1`
+- Mode: stable released `v1.13.1` order-response reliability patch
+- Current gate: `RELEASE-V1131-T01` passed locally and on Production
+- Current task: none; stable closeout
 - Implementation day: Day 40 complete
-- Last updated: 2026-07-23
+- Last updated: 2026-07-24
 
 > Detailed post-v1.3 roadmap entries are maintained in
 > `caseflow-store/.agent/todo-roadmap.md`.

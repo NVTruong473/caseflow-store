@@ -1,0 +1,56 @@
+{
+  "baseURL": "https://caseflow-store.vercel.app/",
+  "generatedAt": "2026-07-23T17:32:53.135Z",
+  "ok": true,
+  "routeResults": [
+    {
+      "findings": [],
+      "label": "public-home",
+      "ok": true,
+      "path": "/",
+      "status": 200
+    },
+    {
+      "findings": [],
+      "label": "public-catalog",
+      "ok": true,
+      "path": "/catalog",
+      "status": 200
+    },
+    {
+      "findings": [],
+      "label": "account",
+      "ok": true,
+      "path": "/account",
+      "status": 200
+    },
+    {
+      "findings": [],
+      "label": "admin-login",
+      "ok": true,
+      "path": "/admin/login",
+      "status": 200
+    },
+    {
+      "findings": [],
+      "label": "checkout",
+      "ok": true,
+      "path": "/checkout",
+      "status": 307
+    },
+    {
+      "findings": [],
+      "label": "products-api",
+      "ok": true,
+      "path": "/api/products?limit=1&offset=0",
+      "status": 200
+    },
+    {
+      "findings": [],
+      "label": "admin-api-boundary",
+      "ok": true,
+      "path": "/api/admin/orders",
+      "status": 401
+    }
+  ]
+}

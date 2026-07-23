@@ -1,0 +1,64 @@
+{
+  "baseURL": "https://caseflow-store.vercel.app",
+  "customer": {
+    "confirmedOrderVisible": true,
+    "notificationCount": 8,
+    "rejectedOrderVisible": true
+  },
+  "generatedAt": "2026-07-23T17:25:59.218Z",
+  "ok": true,
+  "orders": {
+    "confirmed": {
+      "code": "CF-MRXS7CGX-22803802F4",
+      "id": "1cc5147c-b877-4a24-aea5-5a3f01b7de40",
+      "totalVnd": 199900
+    },
+    "rejected": {
+      "code": "CF-MRXS7FEL-EDAA90AD4F",
+      "id": "142d514c-5905-49b8-89e3-4acf93ec4225",
+      "totalVnd": 375900
+    }
+  },
+  "persisted": {
+    "confirmed": {
+      "id": "1cc5147c-b877-4a24-aea5-5a3f01b7de40",
+      "status": "confirmed",
+      "payment_status": "confirmed",
+      "internal_notes": ""
+    },
+    "rejected": {
+      "id": "142d514c-5905-49b8-89e3-4acf93ec4225",
+      "status": "cancelled",
+      "payment_status": "cancelled",
+      "internal_notes": "UAT risk review: transfer reference could not be reconciled."
+    }
+  },
+  "roleBoundary": {
+    "customerDecisionStatus": 403,
+    "staffSettingsStatus": 403,
+    "adminSettingsStatus": 200
+  },
+  "transferDecisions": {
+    "admin": {
+      "duplicateStatus": 200,
+      "invalidReverseStatus": 409,
+      "settingsStatus": 200,
+      "uiUpdateStatus": 200
+    },
+    "staff": {
+      "duplicateStatus": 200,
+      "invalidReverseStatus": 409,
+      "settingsStatus": 403,
+      "uiUpdateStatus": 200
+    }
+  },
+  "cleanup": {
+    "deletedOrders": true,
+    "deletedUsers": 3,
+    "stockRestored": [
+      "00000000-0000-4000-8000-000000003027",
+      "2a64d757-4805-4b51-8fa7-bc4c3edd89c5"
+    ],
+    "stockRestoreSkipped": []
+  }
+}
