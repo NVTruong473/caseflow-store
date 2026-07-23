@@ -11,8 +11,8 @@
 
 - Project: CaseFlow Books
 - Mode: `v1.14` sellable demo productization
-- Current gate: `PRODUCTIZE-T05` productization verifier accepted
-- Current task: `PRODUCTIZE-T06 - Full QA And Release`
+- Current gate: `PRODUCTIZE-T06` v1.14.0 release accepted
+- Current task: none; stable sellable-demo reference baseline
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-24
 

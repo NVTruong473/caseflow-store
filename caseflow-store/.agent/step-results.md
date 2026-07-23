@@ -15798,3 +15798,38 @@ GitHub Release.
 - `.agent/artifacts/productize-t05/sellable-demo-productization-check.json`
 - `.agent/artifacts/productize-t02-default-config/storefront-config-check.json`
 - `.agent/artifacts/productize-t02-custom-config/storefront-config-check.json`
+
+---
+
+## PRODUCTIZE-T06 - Full QA And Release
+
+- Date: 2026-07-24
+- Status: completed
+
+### Result
+
+- Tightened the runtime brand scan, centralized 18 additional metadata/copy/
+  operations references, and removed the duplicate catalog relational read.
+- Held the release after local catalog timing exceeded the environment-specific
+  threshold; the Vercel candidate passed at `3,179 ms`.
+- Deployed runtime commit `fb0a07f` as Vercel production deployment
+  `dpl_6cLwah2gUno1dbar97VQKFSopirM`.
+- Pushed annotated tag `v1.14.0` and published GitHub Release `358904780`.
+
+### Verification
+
+- TypeScript, lint, 59-route build, architecture, notification,
+  productization, default/buyer override, no-demo, secret, asset metadata,
+  dependency audit, QR/notification production-safety, and cleanup: passed.
+- Local Playwright: passed `24/24`.
+- Production Playwright: passed `24/24`.
+- Production smoke, security, catalog filter behavior, accessibility/
+  performance, SEO, and final QA: passed.
+- Remote `main`, peeled tag, GitHub latest release, Vercel alias, and release
+  documentation: consistent.
+
+### Evidence
+
+- `docs/v1.14.0-sellable-demo-productization-release-notes.md`
+- `docs/postv140-t01-final-release-consistency-audit.md`
+- `.agent/artifacts/productize-t06-production-*`

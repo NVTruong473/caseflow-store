@@ -11,8 +11,8 @@
 
 - Project: CaseFlow Books
 - Mode: `v1.14` sellable demo productization
-- Current gate: `PRODUCTIZE-T05` productization verifier accepted
-- Current task: `PRODUCTIZE-T06 - Full QA And Release`
+- Current gate: `PRODUCTIZE-T06` v1.14.0 release accepted
+- Current task: none; stable sellable-demo reference baseline
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-24
 
@@ -96,7 +96,29 @@
     - `.agent/artifacts/productize-t02-default-config/storefront-config-check.json`
     - `.agent/artifacts/productize-t02-custom-config/storefront-config-check.json`
 
-- [/] `PRODUCTIZE-T06` Full QA And Release. - 2026-07-24
+- [x] `PRODUCTIZE-T06` Full QA And Release. - 2026-07-24
+  - Result: removed a second set of 18 source-brand couplings exposed by the
+    stricter runtime scan and reused the first catalog snapshot instead of
+    repeating the full relational read in one request.
+  - Result: local catalog timing exceeded the dev-only 8-second threshold, so
+    release was held until the Vercel candidate passed at `3,179 ms`.
+  - Result: deployed runtime commit `fb0a07f` to Vercel production deployment
+    `dpl_6cLwah2gUno1dbar97VQKFSopirM`, pushed annotated tag `v1.14.0`, and
+    published GitHub Release `358904780`.
+  - Verification:
+    - TypeScript, lint, 59-route build, architecture, notification,
+      productization, default/buyer-override, no-demo, secret, asset metadata,
+      dependency, QR production-safety, and cleanup gates passed.
+    - local and Production Playwright passed `24/24`.
+    - Production smoke, security posture, notification boundary, catalog
+      filters, accessibility/performance, SEO, and final QA passed.
+    - at release publication, remote `main` and the peeled tag resolved to
+      `7d791b6819f25fdfe9be8c19b055a5849a9c67bd`; the post-release audit is
+      documentation-only and does not move the tag or deployed runtime.
+  - Evidence:
+    - `docs/v1.14.0-sellable-demo-productization-release-notes.md`
+    - `docs/postv140-t01-final-release-consistency-audit.md`
+    - `.agent/artifacts/productize-t06-production-*`
 
 - [x] `COPYFIX-T01` Correct Pending Order And Notification Copy. - 2026-07-23
   - Scope: correct the checkout success heading for a newly recorded pending

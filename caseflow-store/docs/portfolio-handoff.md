@@ -131,6 +131,7 @@ See `docs/architecture.md` for the full architecture notes.
 | Evidence | Location |
 |---|---|
 | Latest release notes | `docs/v1.14.0-sellable-demo-productization-release-notes.md` |
+| v1.14.0 release consistency audit | `docs/postv140-t01-final-release-consistency-audit.md` |
 | v1.14.0 productization gate | `.agent/artifacts/productize-t05/sellable-demo-productization-check.json` |
 | v1.14.0 production smoke | `.agent/artifacts/productize-t06-production-smoke/production-smoke-check.json` |
 | v1.14.0 production accessibility/performance | `.agent/artifacts/productize-t06-production-a11y/accessibility-mobile-performance-check.json` |

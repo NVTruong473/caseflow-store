@@ -5,8 +5,8 @@
 - Project name: CaseFlow Store `v1.0.0`; CaseFlow Books `v1.1.0`, `v1.2.0`,
   `v1.3.0`, `v1.3.1`, `v1.4.0`, `v1.4.1`, `v1.4.2`, `v1.5.0`, `v1.6.0`,
   `v1.7.0`, `v1.8.0`, `v1.9.0`, `v1.10.0`, `v1.11.0`, `v1.11.1`,
-  `v1.11.2`, `v1.11.3`, `v1.12.0`, `v1.12.1`, `v1.13.0`, and `v1.13.1`
-  released
+  `v1.11.2`, `v1.11.3`, `v1.12.0`, `v1.12.1`, `v1.13.0`, `v1.13.1`, and
+  `v1.14.0` released
 - Repository folder: `/Users/vantruong/Documents/TSNN 2`
 - Product domain: books for released `v1.1.0` and `v1.2.0`; phone
   accessories for released `v1.0.0`
@@ -14,9 +14,9 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: `v1.14` sellable demo productization.
-- Current gate: `PRODUCTIZE-T05` productization verifier accepted.
-- Current task: `PRODUCTIZE-T06 - Full QA And Release`.
+- Current mode: stable `v1.14.0` sellable-demo reference baseline.
+- Current gate: `PRODUCTIZE-T06` release accepted.
+- Current task: none.
 
 ## Confirmed Facts
 
@@ -45,6 +45,12 @@
   run reported zero findings, and default plus buyer-override configuration
   checks passed. A repeated replacement edge case that could duplicate the
   reference brand was fixed and covered by the configuration gate.
+- `PRODUCTIZE-T06` released `v1.14.0`: runtime commit `fb0a07f` is deployed on
+  Vercel production deployment `dpl_6cLwah2gUno1dbar97VQKFSopirM`; local and
+  Production Playwright passed `24/24`; all productization, build, security,
+  QR/notification production boundary, catalog, accessibility/performance,
+  SEO, final QA, dependency, secret, asset, and cleanup gates passed. GitHub
+  Release `358904780` is published, non-draft, and non-prerelease.
 
 - `v1.13.1` runs on Production deployment
   `dpl_Hn3BEdLERPQDVXnSxC3QFDYFzL6d` at

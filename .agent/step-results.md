@@ -11444,3 +11444,16 @@ QA audit evidence.
   and fixed the repeated brand-replacement edge case.
 - Verification: productization, default/buyer-override configuration,
   TypeScript, and lint checks passed.
+
+---
+
+## PRODUCTIZE-T06 - Full QA And Release
+
+- Date: 2026-07-24
+- Status: completed
+- Result: released `v1.14.0` on Vercel deployment
+  `dpl_6cLwah2gUno1dbar97VQKFSopirM`, published GitHub Release `358904780`,
+  and verified remote/tag/deployment consistency.
+- Verification: local and Production Playwright `24/24`; productization,
+  build, security, QR/notification lock, catalog, accessibility/performance,
+  SEO, final QA, dependency, secret, asset, and cleanup gates passed.
