@@ -42,7 +42,7 @@ const checkoutSuccessCopy = {
     status: "Status",
     successDescription:
       "Your order has been recorded. Keep the order code for support and fulfillment updates.",
-    successTitle: "Order confirmed",
+    successTitle: "Order received",
     viewCheckout: "View checkout",
   },
   vi: {
@@ -68,7 +68,7 @@ const checkoutSuccessCopy = {
     status: "Trạng thái",
     successDescription:
       "Đơn hàng đã được ghi nhận. Hãy giữ mã đơn để được hỗ trợ và cập nhật xử lý.",
-    successTitle: "Đơn hàng đã được xác nhận",
+    successTitle: "Đơn hàng đã được ghi nhận",
     viewCheckout: "Xem thanh toán",
   },
 } as const;

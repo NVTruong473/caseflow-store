@@ -13,9 +13,9 @@
 - Journal entries: 30, with entries 21-30 as retrospective documentation
 - Current mode: stable released `v1.13.0` transactional notification and
   simulated-transfer operations.
-- Current gate: `NOTIFY-T09` passed locally and on Production.
-- Current task: no active implementation task; `UAT-MANUAL-T02` passed on
-  Production with one non-blocking copy finding.
+- Current gate: `COPYFIX-T01` passed all local code, browser, architecture,
+  notification, security, dependency, and cleanup gates.
+- Current task: `UAT-OPS-T01 - Staff And Admin Simulated Transfer Acceptance`.
 - Latest production deployment: `dpl_9N1HSkydBBzsrM1UmtT2Lfvpo7np`, aliased to
   `https://caseflow-store.vercel.app`.
 - Latest GitHub Release:

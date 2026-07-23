@@ -70,6 +70,10 @@ payment state, permissions, and subsequent notifications are correct, so this
 does not block the UAT. The copy should be changed to `Don hang da duoc ghi nhan`
 / `Order received` in a separately scoped patch and then reverified on Production.
 
+Resolution status: fixed locally by `COPYFIX-T01` on 2026-07-23. The focused
+bilingual browser regression and full local `24/24` Playwright suite passed.
+Production confirmation remains part of the patch release gate.
+
 ### Informational - External notification providers remain disabled
 
 Production intentionally has no live email/SMS provider configuration. In-app

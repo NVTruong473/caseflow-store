@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-07-23T15:34:04.917Z",
+  "checks": {
+    "adminControllerDelegatesToUseCase": true,
+    "bestEffortAfterAllMutations": true,
+    "customerCancellationDelegatesToUseCase": true,
+    "customerCannotSelfConfirm": true,
+    "eventCoverage": true,
+    "paidCancellationBlocked": true,
+    "shippedCancellationBlocked": true,
+    "transferDecisionIsProtected": true,
+    "transferDecisionIsMethodScoped": true,
+    "transferDecisionUiIsExplicit": true,
+    "transferRejectNeedsReason": true,
+    "triggerIsIdempotent": true
+  },
+  "failures": [],
+  "ok": true
+}

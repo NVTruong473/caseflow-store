@@ -55,6 +55,9 @@ test("checkout happy path creates a simulated book order and clears the cart", a
     await expect(page.locator("[data-checkout-success-status]")).toHaveText(
       "pending",
     );
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+      "Order received",
+    );
     await expect(page.locator("[data-checkout-success-items]"))
       .toContainText(book.title);
     await expect(page.locator("[data-cart-count]").first())
@@ -76,6 +79,14 @@ test("checkout happy path creates a simulated book order and clears the cart", a
       version: 2,
     });
     expect(storageState.orderCode).toMatch(/^CF-/);
+
+    await clickElement(page, "[data-language-option='vi']:visible");
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+      "Đơn hàng đã được ghi nhận",
+    );
+    await expect(page.locator("[data-checkout-success-status]")).toHaveText(
+      "pending",
+    );
 
     await page.screenshot({
       fullPage: true,

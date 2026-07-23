@@ -114,7 +114,16 @@ test.describe.serial("transactional notification boundaries", () => {
     await expect(
       page.locator("[data-customer-notification='payment.awaiting-transfer']"),
     ).toBeVisible();
+    await expect(
+      page.locator("[data-customer-notification-inbox] h3"),
+    ).toHaveText("Account notifications");
     await expect(page.locator("[data-customer-phone-request-code]")).toHaveCount(0);
+
+    await page.locator("[data-language-option='vi']:visible").click();
+    await expect(
+      page.locator("[data-customer-notification-inbox] h3"),
+    ).toHaveText("Thông báo tài khoản");
+
     await page.screenshot({
       fullPage: true,
       path: ".agent/artifacts/notify-t09-integration/customer-notification-account.png",

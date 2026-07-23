@@ -15,12 +15,54 @@
 - Current gate: `NOTIFY-T09` passed locally and on Production; migrations,
   deployment, `24/24` E2E, security, role, responsive/accessibility, cleanup,
   documentation, tag, and GitHub Release are verified
-- Current task: no active implementation task; `UAT-MANUAL-T02` passed with
-  one non-blocking copy finding
+- Current task: `UAT-OPS-T01 - Staff And Admin Simulated Transfer Acceptance`
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-23
 
 ## Phase UAT-MANUAL - Production Customer Manual Acceptance
+
+- [x] `COPYFIX-T01` Correct Pending Order And Notification Copy. - 2026-07-23
+  - Scope: correct the checkout success heading for a newly recorded pending
+    order and rename the account inbox so it is not confused with profile
+    editing.
+  - Acceptance criteria:
+    - English success copy says `Order received`, not `Order confirmed`.
+    - Vietnamese success copy says `Don hang da duoc ghi nhan`, not the
+      confirmed-order wording.
+    - Account inbox is named `Account notifications` /
+      `Thong bao tai khoan`.
+    - A focused browser regression verifies both languages while preserving
+      the displayed `pending` lifecycle.
+    - Lint, TypeScript, focused Playwright, build, and `git diff --check` pass.
+  - Guardrails: no schema, API, role, price, payment, shipping, notification
+    event, or provider configuration change.
+  - Result: pending-order success copy now says `Order received` /
+    `Don hang da duoc ghi nhan`; the customer inbox now says
+    `Account notifications` / `Thong bao tai khoan`.
+  - Verification:
+    - `npm run lint`: passed.
+    - `npm exec -- tsc --noEmit --pretty false`: passed.
+    - `npm run build`: passed with 59 routes.
+    - Focused Playwright checkout/notification regression: passed `5/5`.
+    - Full local Playwright: passed `24/24`.
+    - Architecture, notification, no-demo, payment secret, production-safety,
+      release-cleanup, and dependency gates: passed.
+  - Evidence: `.agent/artifacts/copyfix-t01/`.
+
+- [/] `UAT-OPS-T01` Staff And Admin Simulated Transfer Acceptance. - 2026-07-23
+  - Scope: verify the released staff/admin role boundaries and both simulated
+    transfer decisions against a deployed candidate before tagging a patch.
+  - Acceptance criteria:
+    - A customer creates separate simulated bank-transfer orders using
+      server-calculated totals.
+    - Staff can confirm one awaiting transfer and cannot access admin-only
+      settings.
+    - Admin can reject another awaiting transfer with a recorded reason.
+    - Customer history and notifications reflect confirmed/rejected outcomes.
+    - Duplicate decisions are idempotent and invalid transitions are rejected.
+    - Temporary identities and orders are removed after verification.
+  - Guardrails: no real bank account, real payment, external email/SMS claim,
+    schema mutation, or authorization widening.
 
 - [x] `NOTIFY-T01` Accept Transactional Notification ADR And Roadmap. - 2026-07-22
   - Objective: define durable notification, optional phone verification, and

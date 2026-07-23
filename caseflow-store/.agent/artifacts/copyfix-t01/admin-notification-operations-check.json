@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-07-23T15:34:05.148Z",
+  "checks": {
+    "adminConfigIsAdminOnly": true,
+    "listRequiresNotificationRead": true,
+    "noSensitiveRecipientData": true,
+    "responsiveOperationsView": true,
+    "retryDelegatesToUseCase": true,
+    "retryIsPermissionScoped": true,
+    "retryIsStateAndProviderGuarded": true,
+    "retryResponseIsMinimized": true,
+    "sanitizedConfigSummary": true,
+    "staffCanInspectAndRetry": true,
+    "navigationIncludesOperationsSurface": true,
+    "uiDoesNotRenderSensitiveFields": true
+  },
+  "failures": [],
+  "ok": true
+}

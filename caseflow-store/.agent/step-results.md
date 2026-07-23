@@ -15528,3 +15528,51 @@ GitHub Release.
 - `.agent/artifacts/uat-manual-t02/`
 - `.agent/artifacts/uat-manual-t02-production-smoke/`
 - `.agent/artifacts/uat-manual-t02-notification-safety/`
+
+---
+
+## COPYFIX-T01 - Correct Pending Order And Notification Copy
+
+- Date: 2026-07-23
+- Status: completed locally; Production verification is deferred to the patch
+  release gate
+
+### Result
+
+- Replaced the premature checkout headings `Order confirmed` /
+  `Don hang da duoc xac nhan` with `Order received` /
+  `Don hang da duoc ghi nhan`.
+- Renamed the account inbox from `Account updates` /
+  `Cap nhat tai khoan` to `Account notifications` /
+  `Thong bao tai khoan`.
+- Added bilingual browser assertions that keep the displayed order lifecycle
+  at `pending`.
+- No schema, API, role, price, payment, shipping, notification event, or
+  provider configuration changed.
+
+### Verification
+
+- `npm run lint`: passed.
+- `npm exec -- tsc --noEmit --pretty false`: passed.
+- `npm run build`: passed with 59 routes.
+- Focused Playwright checkout/notification regression: passed `5/5`.
+- Full local Playwright: passed `24/24`.
+- Architecture and notification contracts: passed.
+- Customer/order/admin notification verifiers: passed.
+- No-demo, payment secret scan, payment production-safety, dependency audit,
+  and release-cleanup gates: passed with zero findings.
+- `git diff --check`: passed.
+
+### Evidence
+
+- `.agent/artifacts/copyfix-t01/checkout-success-vi.png`
+- `.agent/artifacts/copyfix-t01/customer-notifications-vi.png`
+- `.agent/artifacts/copyfix-t01/layer-boundaries-check.json`
+- `.agent/artifacts/copyfix-t01/notification-contract-check.json`
+- `.agent/artifacts/copyfix-t01/customer-notification-check.json`
+- `.agent/artifacts/copyfix-t01/order-notification-integration-check.json`
+- `.agent/artifacts/copyfix-t01/admin-notification-operations-check.json`
+- `.agent/artifacts/copyfix-t01/no-demo-runtime-copy-check.json`
+- `.agent/artifacts/copyfix-t01/secret-scan.json`
+- `.agent/artifacts/copyfix-t01/qr-payment-production-safety-check.json`
+- `.agent/artifacts/copyfix-t01/release-cleanup-check.json`

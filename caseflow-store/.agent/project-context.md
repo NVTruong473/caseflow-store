@@ -15,11 +15,9 @@
 - Journal entries: 30, with entries 21-30 as retrospective documentation
 - Current mode: stable released `v1.13.0` transactional notification and
   simulated-transfer operations.
-- Current gate: `NOTIFY-T09` passed locally and on Production with migration,
-  deployment, security, role, browser, accessibility, cleanup, tag, and release
-  evidence.
-- Current task: no active implementation task; `UAT-MANUAL-T02` passed on
-  Production with one non-blocking checkout-success copy finding.
+- Current gate: `COPYFIX-T01` passed the local code, browser, architecture,
+  notification, security, dependency, and cleanup gates.
+- Current task: `UAT-OPS-T01 - Staff And Admin Simulated Transfer Acceptance`.
 
 ## Confirmed Facts
 
@@ -30,6 +28,11 @@
   notifications. The order was left cancelled; no real payment or external
   email/SMS delivery was claimed. The only finding is low-severity success-page
   copy that says confirmed while the displayed order state is pending.
+- `COPYFIX-T01` resolves that finding locally: newly created pending orders say
+  `Order received` / `Don hang da duoc ghi nhan`, and the customer inbox says
+  `Account notifications` / `Thong bao tai khoan`. Full local Playwright
+  passed `24/24`; Production verification remains part of the patch release
+  gate.
 
 - The released `v1.0.0` is a small MVP, not a large e-commerce platform.
 - The accepted `v1.1` direction is still not a marketplace, but it expands the project into a focused bookstore plus small-business operations demo.

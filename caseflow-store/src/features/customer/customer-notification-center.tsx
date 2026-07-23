@@ -22,7 +22,7 @@ const copyByLanguage = {
   en: {
     code: "6-digit code",
     empty: "Order and account updates will appear here.",
-    inbox: "Account updates",
+    inbox: "Account notifications",
     inboxError: "Account updates are temporarily unavailable.",
     loading: "Loading account updates",
     markRead: "Mark all as read",
@@ -45,7 +45,7 @@ const copyByLanguage = {
   vi: {
     code: "Mã gồm 6 chữ số",
     empty: "Cập nhật về đơn hàng và tài khoản sẽ xuất hiện tại đây.",
-    inbox: "Cập nhật tài khoản",
+    inbox: "Thông báo tài khoản",
     inboxError: "Tạm thời chưa tải được cập nhật tài khoản.",
     loading: "Đang tải cập nhật tài khoản",
     markRead: "Đánh dấu tất cả đã đọc",
