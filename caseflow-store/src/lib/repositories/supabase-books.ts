@@ -143,6 +143,14 @@ export async function listSupabaseBookCatalog(
 ): Promise<SupabaseBookCatalogRecord[]> {
   const rows = await readBookCatalogRows(query, options);
   const records = buildBookCatalogRecords(rows);
+
+  return selectBookCatalogRecords(records, query);
+}
+
+export function selectBookCatalogRecords(
+  records: SupabaseBookCatalogRecord[],
+  query: SupabaseBookCatalogQuery = {},
+): SupabaseBookCatalogRecord[] {
   const filteredRecords = records.filter((record) =>
     recordMatchesQuery(record, query),
   );

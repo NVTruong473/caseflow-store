@@ -1,5 +1,6 @@
 import type { User } from "@supabase/supabase-js";
 
+import { storefrontConfig } from "@/config/storefront";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { bookShippingAddressSchema } from "@/lib/validation/domain";
@@ -275,7 +276,7 @@ function mapAuthIdentity(
     fullName ||
     profile?.display_name?.trim() ||
     email ||
-    "CaseFlow Books customer";
+    `${storefrontConfig.name} customer`;
   const emailVerifiedAt =
     profile?.email_verified_at ?? user.email_confirmed_at ?? null;
   const phone = profile?.phone?.trim() || null;

@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { Container } from "@/components/ui";
+import { storefrontConfig } from "@/config/storefront";
 import { getRequestLanguage } from "@/lib/i18n/server";
 
 const notFoundCopy = {
@@ -10,7 +11,7 @@ const notFoundCopy = {
     goHome: "Go home",
     title: "This book edition is not available.",
     description:
-      "The edition may have moved, been removed, or is no longer part of the current CaseFlow Books catalog.",
+      `The edition may have moved, been removed, or is no longer part of the current ${storefrontConfig.name} catalog.`,
   },
   vi: {
     browseBooks: "Duyệt sách",
@@ -18,7 +19,7 @@ const notFoundCopy = {
     goHome: "Về trang chủ",
     title: "Ấn bản sách này hiện không khả dụng.",
     description:
-      "Ấn bản có thể đã được chuyển, bị xóa hoặc không còn thuộc danh mục hiện tại của CaseFlow Books.",
+      `Ấn bản có thể đã được chuyển, bị xóa hoặc không còn thuộc danh mục hiện tại của ${storefrontConfig.name}.`,
   },
 } as const;
 

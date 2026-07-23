@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import * as React from "react";
 
+import { storefrontConfig } from "@/config/storefront";
 import { useCart } from "@/features/cart";
 import { formatVnd } from "@/lib/format/currency";
 import type { Language } from "@/lib/i18n/language";
@@ -81,7 +82,7 @@ const assistantCopy = {
       "Classic literature in Vietnamese",
       "How do I checkout?",
     ],
-    title: "CaseFlow Books assistant",
+    title: `${storefrontConfig.name} assistant`,
     viewBook: "View book",
     welcome:
       "Ask for a title, author, category, language, format, price range, or buying steps. I will guide you through the current bookstore catalog.",
@@ -116,7 +117,7 @@ const assistantCopy = {
       "Văn học kinh điển tiếng Việt",
       "Làm sao để thanh toán?",
     ],
-    title: "Trợ lý CaseFlow Books",
+    title: `Trợ lý ${storefrontConfig.name}`,
     viewBook: "Xem sách",
     welcome:
       "Bạn có thể hỏi theo tên sách, tác giả, danh mục, ngôn ngữ, định dạng, khoảng giá hoặc các bước mua hàng. Tôi sẽ hướng dẫn theo catalog hiện có của nhà sách.",

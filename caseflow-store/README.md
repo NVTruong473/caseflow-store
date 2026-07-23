@@ -72,11 +72,11 @@ runtime.
 
 ## Latest release evidence
 
-- Release tag: `v1.13.0`
+- Release tag: `v1.13.1`
 - GitHub Release:
-  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.13.0`
+  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.13.1`
 - Production alias: `https://caseflow-store.vercel.app`
-- Vercel deployment ID: `dpl_9N1HSkydBBzsrM1UmtT2Lfvpo7np`
+- Vercel deployment ID: `dpl_Hn3BEdLERPQDVXnSxC3QFDYFzL6d`
 - Local gates: npm audit with zero vulnerabilities, TypeScript, ESLint,
   59-route production build, full Playwright `24/24`, notification and
   architecture verifiers, QR production-safety, security posture, final QA,
@@ -84,9 +84,9 @@ runtime.
 - Production smoke: release smoke, security posture, QR lock, notification
   boundary, staff/admin operations matrix, storefront/accessibility/final QA,
   and full Playwright `24/24` passed. Evidence is under
-  `.agent/artifacts/notify-t09-production-*`.
+  `.agent/artifacts/release-v1131-final-*`.
 - Release notes:
-  [`docs/v1.13.0-transactional-notifications-release-notes.md`](docs/v1.13.0-transactional-notifications-release-notes.md),
+  [`docs/v1.13.1-order-response-reliability-patch-release-notes.md`](docs/v1.13.1-order-response-reliability-patch-release-notes.md),
   [`docs/v1.12.1-order-reliability-release-notes.md`](docs/v1.12.1-order-reliability-release-notes.md),
   [`docs/v1.12.0-layered-architecture-release-notes.md`](docs/v1.12.0-layered-architecture-release-notes.md),
   [`docs/v1.11.3-expert-polish-release-notes.md`](docs/v1.11.3-expert-polish-release-notes.md),
@@ -95,7 +95,7 @@ runtime.
   and
   [`docs/v1.11.0-account-security-password-release-notes.md`](docs/v1.11.0-account-security-password-release-notes.md)
 - Operational evidence:
-  [`docs/postv130-t01-final-release-consistency-audit.md`](docs/postv130-t01-final-release-consistency-audit.md),
+  [`docs/postv131-t01-final-release-consistency-audit.md`](docs/postv131-t01-final-release-consistency-audit.md),
   [`docs/uat-owner-t01-production-acceptance.md`](docs/uat-owner-t01-production-acceptance.md),
   [`docs/postv121-t01-final-release-consistency-audit.md`](docs/postv121-t01-final-release-consistency-audit.md),
   [`docs/postv120-t01-final-release-consistency-audit.md`](docs/postv120-t01-final-release-consistency-audit.md),
@@ -113,3 +113,7 @@ The portfolio handoff packet is
 [`docs/portfolio-handoff.md`](docs/portfolio-handoff.md).
 The latest operational handoff packet is
 [`docs/v1.11-final-operational-handoff.md`](docs/v1.11-final-operational-handoff.md).
+Buyer productization starts with
+[`docs/buyer-discovery-questionnaire.md`](docs/buyer-discovery-questionnaire.md)
+and
+[`docs/commercial-handoff-boundaries.md`](docs/commercial-handoff-boundaries.md).

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 
+import { storefrontConfig } from "@/config/storefront";
 import {
   toAdminInventoryAdjustmentApiItem,
   toAdminInventoryEditionApiItem,
@@ -14,8 +15,8 @@ import {
 } from "@/lib/repositories/supabase-books";
 
 export const metadata: Metadata = {
-  title: "Inventory operations | CaseFlow Books",
-  description: "Inventory operations shell for CaseFlow Books.",
+  title: `Inventory operations | ${storefrontConfig.name}`,
+  description: `Inventory operations shell for ${storefrontConfig.name}.`,
 };
 
 export default async function AdminInventoryRoute() {

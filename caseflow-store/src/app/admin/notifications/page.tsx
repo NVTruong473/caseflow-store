@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 
+import { storefrontConfig } from "@/config/storefront";
 import { AdminNotificationsPage } from "@/features/admin";
 import { requireAdminPermission } from "@/lib/auth/admin";
 import { getRequestLanguage } from "@/lib/i18n/server";
@@ -8,8 +9,8 @@ import { getNotificationConfigurationSummary } from "@/lib/notifications/config"
 import { listAdminNotificationOperations } from "@/lib/notifications/repository";
 
 export const metadata: Metadata = {
-  title: "Notification operations | CaseFlow Books",
-  description: "Transactional notification delivery operations for CaseFlow Books.",
+  title: `Notification operations | ${storefrontConfig.name}`,
+  description: `Transactional notification delivery operations for ${storefrontConfig.name}.`,
 };
 
 export default async function AdminNotificationsRoute() {

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { Badge, Container } from "@/components/ui";
+import { storefrontConfig } from "@/config/storefront";
 import {
   BookCatalogEmptyState,
   BookCatalogErrorState,
@@ -11,7 +12,7 @@ import type { Language } from "@/lib/i18n/language";
 import { getRequestLanguage } from "@/lib/i18n/server";
 
 export const metadata: Metadata = {
-  title: "Catalog State Preview - CaseFlow Books",
+  title: `Catalog State Preview - ${storefrontConfig.name}`,
   robots: {
     index: false,
     follow: false,
@@ -31,7 +32,7 @@ const previewStates = ["empty", "loading", "error"] as const;
 const previewCopy = {
   en: {
     description:
-      "Visual QA surface for CaseFlow Books catalog loading, empty, and error states.",
+      `Visual QA surface for ${storefrontConfig.name} catalog loading, empty, and error states.`,
     eyebrow: "Catalog state preview",
     title: "Book catalog states",
     states: {
@@ -42,7 +43,7 @@ const previewCopy = {
   },
   vi: {
     description:
-      "Màn hình kiểm tra giao diện cho trạng thái tải, rỗng và lỗi của catalog CaseFlow Books.",
+      `Màn hình kiểm tra giao diện cho trạng thái tải, rỗng và lỗi của catalog ${storefrontConfig.name}.`,
     eyebrow: "Preview trạng thái catalog",
     title: "Trạng thái catalog sách",
     states: {

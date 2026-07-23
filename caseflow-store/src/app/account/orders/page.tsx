@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 
+import { storefrontConfig } from "@/config/storefront";
 import { CustomerOrdersPage } from "@/features/customer";
 import { getCustomerAuthState } from "@/lib/auth/customer";
 import { getRequestLanguage } from "@/lib/i18n/server";
@@ -13,8 +14,8 @@ export async function generateMetadata(): Promise<Metadata> {
   return createPageMetadata({
     description:
       language === "vi"
-        ? "Xem lịch sử đơn hàng CaseFlow Books của tài khoản khách hàng đã đăng nhập."
-        : "View CaseFlow Books order history for the signed-in customer account.",
+        ? `Xem lịch sử đơn hàng ${storefrontConfig.name} của tài khoản khách hàng đã đăng nhập.`
+        : `View ${storefrontConfig.name} order history for the signed-in customer account.`,
     language,
     path: "/account/orders",
     robots: {
@@ -23,8 +24,8 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     title:
       language === "vi"
-        ? "Lịch sử đơn hàng - CaseFlow Books"
-        : "Order history - CaseFlow Books",
+        ? `Lịch sử đơn hàng - ${storefrontConfig.name}`
+        : `Order history - ${storefrontConfig.name}`,
   });
 }
 

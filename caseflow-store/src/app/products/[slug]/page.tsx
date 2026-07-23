@@ -7,6 +7,7 @@ import {
   CurrencyEstimateDisclosure,
 } from "@/components/currency/currency-amount";
 import { Badge, Container } from "@/components/ui";
+import { storefrontConfig } from "@/config/storefront";
 import { BookCoverFrame } from "@/features/books/cover-merchandising";
 import { BookEditionPurchaseControls } from "@/features/books/book-edition-purchase-controls";
 import { formatVnd } from "@/lib/format/currency";
@@ -178,12 +179,12 @@ export async function generateMetadata({
     return {
       title:
         language === "vi"
-          ? "Không tìm thấy ấn bản - CaseFlow Books"
-          : "Book edition not found - CaseFlow Books",
+          ? `Không tìm thấy ấn bản - ${storefrontConfig.name}`
+          : `Book edition not found - ${storefrontConfig.name}`,
     };
   }
 
-  const title = `${getEditionTitle(record, language)} - CaseFlow Books`;
+  const title = `${getEditionTitle(record, language)} - ${storefrontConfig.name}`;
   const description = truncateDescription(
     pickLocalizedText(record.edition.summary, language),
   );

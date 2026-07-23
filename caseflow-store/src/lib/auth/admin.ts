@@ -1,3 +1,4 @@
+import { storefrontConfig } from "@/config/storefront";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import type { UserRole } from "@/types/domain";
 
@@ -117,7 +118,8 @@ export async function requireAdminPermission(
     user: {
       id: user.id,
       email: user.email ?? "",
-      displayName: profile.display_name?.trim() || getRoleFallbackName(profile.role),
+      displayName:
+        profile.display_name?.trim() || getAdminRoleFallbackName(profile.role),
       permissions,
       role: profile.role,
     },
@@ -134,6 +136,8 @@ export function getAdminPermissions(role: AdminWorkspaceRole) {
   return permissionsByRole[role];
 }
 
-function getRoleFallbackName(role: AdminWorkspaceRole) {
-  return role === "admin" ? "CaseFlow Admin" : "CaseFlow Staff";
+export function getAdminRoleFallbackName(role: AdminWorkspaceRole) {
+  return role === "admin"
+    ? `${storefrontConfig.name} Admin`
+    : `${storefrontConfig.name} Staff`;
 }

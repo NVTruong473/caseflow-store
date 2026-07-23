@@ -1,0 +1,41 @@
+{
+  "config": {
+    "canonicalUrl": "https://caseflow-store.vercel.app",
+    "copyrightYear": 2026,
+    "legalDisplayName": "CaseFlow Books",
+    "name": "CaseFlow Books",
+    "shortMark": "CB",
+    "supportEmail": null,
+    "supportHours": {
+      "en": "Mon-Sat, 09:00-18:00 ICT",
+      "vi": "Thứ 2-Thứ 7, 09:00-18:00 ICT"
+    },
+    "supportPhone": null,
+    "tagline": {
+      "en": "Bilingual bookstore",
+      "vi": "Nhà sách song ngữ"
+    }
+  },
+  "findings": [],
+  "generatedAt": "2026-07-23T18:23:49.760Z",
+  "ok": true,
+  "runtimeChecks": {
+    "brandReplacement": true,
+    "canonicalUrl": true,
+    "legalDisplayName": true,
+    "name": true,
+    "shortMark": true,
+    "supportEmail": true,
+    "supportHours": true,
+    "supportPhone": true,
+    "taglines": true
+  },
+  "sourceChecks": {
+    "envContract": true,
+    "footerUsesConfig": true,
+    "headerUsesConfig": true,
+    "noInventedContact": true,
+    "paymentUsesConfig": true,
+    "seoUsesConfig": true
+  }
+}

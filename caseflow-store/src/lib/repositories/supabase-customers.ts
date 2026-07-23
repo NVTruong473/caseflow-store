@@ -1,3 +1,4 @@
+import { storefrontConfig } from "@/config/storefront";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { bookShippingAddressSchema } from "@/lib/validation/domain";
 import type {
@@ -122,7 +123,7 @@ function mapCustomerProfile(
     fullName ||
     profile.display_name?.trim() ||
     email ||
-    "CaseFlow Books customer";
+    `${storefrontConfig.name} customer`;
   const phone = profile.phone?.trim() || null;
   const defaultShippingAddress = parseShippingAddress(
     profile.default_shipping_address,

@@ -1,3 +1,4 @@
+import { storefrontConfig } from "@/config/storefront";
 import {
   calculateCurrencyDisplayEstimate,
   type CurrencyDisplayRules,
@@ -120,7 +121,7 @@ function calculateBasisPointAmount(amountVnd: number, basisPoints: number) {
 function createInterimSourceNote(checkedAt: string): SourceNote {
   return {
     checkedAt,
-    label: "CaseFlow Books checkout totals configuration",
+    label: `${storefrontConfig.name} checkout totals configuration`,
     license: null,
     url: null,
   };

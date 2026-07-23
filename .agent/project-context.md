@@ -11,11 +11,9 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: stable released `v1.13.1` order-response reliability patch.
-- Current gate: `RELEASE-V1131-T01` passed locally and on Production with
-  complete browser, operations, security, accessibility, SEO, and cleanup
-  evidence.
-- Current task: none; stable closeout.
+- Current mode: `v1.14` sellable demo productization.
+- Current gate: `PRODUCTIZE-T05` productization verifier accepted.
+- Current task: `PRODUCTIZE-T06 - Full QA And Release`.
 - Latest production deployment: `dpl_Hn3BEdLERPQDVXnSxC3QFDYFzL6d`, aliased to
   `https://caseflow-store.vercel.app`.
 - Latest GitHub Release:

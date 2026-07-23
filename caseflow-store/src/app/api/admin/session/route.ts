@@ -1,5 +1,6 @@
 import { apiError, apiSuccess } from "@/lib/api/response";
 import {
+  getAdminRoleFallbackName,
   getAdminPermissions,
   isAdminWorkspaceRole,
 } from "@/lib/auth/admin";
@@ -67,7 +68,7 @@ export async function POST(request: Request) {
     email: authData.user.email ?? "",
     displayName:
       profile.display_name?.trim() ||
-      (profile.role === "admin" ? "CaseFlow Admin" : "CaseFlow Staff"),
+      getAdminRoleFallbackName(profile.role),
     permissions: getAdminPermissions(profile.role),
     role: profile.role,
   });

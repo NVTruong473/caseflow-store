@@ -1,0 +1,50 @@
+{
+  "boundaryChecks": {
+    "buyerAccounts": true,
+    "catalogRollback": true,
+    "noTurnkeyClaim": true,
+    "providerGate": true,
+    "runbookIncident": true
+  },
+  "brandCouplingFindings": [],
+  "configUsageChecks": {
+    ".env.example": true,
+    "src/app/layout.tsx": true,
+    "src/app/page.tsx": true,
+    "src/components/layout/site-footer.tsx": true,
+    "src/components/layout/site-header.tsx": true,
+    "src/features/assistant/bookstore-assistant.tsx": true,
+    "src/features/customer/customer-auth-page.tsx": true,
+    "src/features/customer/customer-profile-form.tsx": true,
+    "src/lib/notifications/providers.ts": true,
+    "src/lib/notifications/templates.ts": true,
+    "src/lib/payments/config.ts": true,
+    "src/lib/policies/bookstore-policies.ts": true,
+    "src/lib/seo/metadata.ts": true
+  },
+  "expectedDeployment": "dpl_Hn3BEdLERPQDVXnSxC3QFDYFzL6d",
+  "expectedRelease": "v1.13.1",
+  "findings": [],
+  "generatedAt": "2026-07-23T18:48:59.424Z",
+  "inventedContactFindings": [],
+  "ok": true,
+  "releaseChecks": {
+    "appDeployment": true,
+    "appRelease": true,
+    "rootDeployment": true,
+    "rootRelease": true
+  },
+  "requiredDocumentChecks": {
+    "docs/adr/0017-sellable-demo-productization.md": true,
+    "docs/v1.14-sellable-demo-productization-roadmap.md": true,
+    "docs/sellable-demo-readiness-audit.md": true,
+    "docs/buyer-discovery-questionnaire.md": true,
+    "docs/storefront-customization-guide.md": true,
+    "docs/catalog-replacement-handoff.md": true,
+    "docs/buyer-demo-script.md": true,
+    "docs/reference-deployment-runbook.md": true,
+    "docs/commercial-handoff-boundaries.md": true,
+    "docs/known-limitations.md": true,
+    "docs/architecture.md": true
+  }
+}

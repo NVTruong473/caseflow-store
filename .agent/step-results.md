@@ -11392,3 +11392,55 @@ QA audit evidence.
   `caseflow-store/docs/postv131-t01-final-release-consistency-audit.md`.
 - Guardrail: no real payment, external email/SMS delivery, carrier, or
   warehouse integration was enabled.
+
+---
+
+## PRODUCTIZE-T01 - Accept ADR And Audit Baseline
+
+- Date: 2026-07-24
+- Status: completed
+- Result: accepted ADR-0017 and the v1.14 sellable-demo roadmap; baseline
+  audit prioritizes centralized identity, optional real contact configuration,
+  current release evidence, buyer/catalog handoff, and automated
+  productization checks without enabling real providers.
+
+---
+
+## PRODUCTIZE-T02 - Centralize Public Store Configuration
+
+- Date: 2026-07-24
+- Status: completed
+- Result: centralized public store identity and optional contact values,
+  removed invented support contacts, and passed default/custom configuration,
+  TypeScript, lint, 59-route build, and focused storefront E2E checks.
+
+---
+
+## PRODUCTIZE-T03 - Create Buyer Customization And Data Handoff
+
+- Date: 2026-07-24
+- Status: completed
+- Result: added buyer discovery, storefront customization, and catalog
+  replacement contracts with explicit ownership, provider, migration,
+  snapshot, backup, reconciliation, rollback, and acceptance gates.
+
+---
+
+## PRODUCTIZE-T04 - Create Demo, Operations, And Commercial Handoff Pack
+
+- Date: 2026-07-24
+- Status: completed
+- Result: added buyer demo, deployment/incident/rollback runbook, commercial
+  boundaries, and synchronized current README/handoff evidence to `v1.13.1`.
+
+---
+
+## PRODUCTIZE-T05 - Add Productization Verifier And Fix Findings
+
+- Date: 2026-07-24
+- Status: completed
+- Result: added a deterministic productization gate, centralized all 16
+  remaining runtime brand references, removed zero-value coupling findings,
+  and fixed the repeated brand-replacement edge case.
+- Verification: productization, default/buyer-override configuration,
+  TypeScript, and lint checks passed.

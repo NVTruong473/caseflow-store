@@ -14,13 +14,37 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: stable released `v1.13.1` order-response reliability patch.
-- Current gate: `RELEASE-V1131-T01` passed locally and on Production with
-  `24/24` browser regression, role/transfer UAT, security, responsive,
-  accessibility, SEO, dependency, secret, no-demo, and cleanup evidence.
-- Current task: none; stable closeout.
+- Current mode: `v1.14` sellable demo productization.
+- Current gate: `PRODUCTIZE-T05` productization verifier accepted.
+- Current task: `PRODUCTIZE-T06 - Full QA And Release`.
 
 ## Confirmed Facts
+
+- The user approved automatic bounded productization on 2026-07-24 for a
+  source-code website demonstrated or sold to a future buyer. ADR-0017 rejects
+  real providers, custom-domain automation, multi-tenancy, a theme builder,
+  and fabricated business identity before a buyer exists. The accepted v1.14
+  scope centralizes public configuration, removes invented support contacts,
+  creates buyer/catalog handoff material, and adds a productization verifier.
+- `PRODUCTIZE-T02` centralized build-time store identity, canonical URL,
+  bilingual taglines, support hours, optional real contact channels, legal
+  display, and merchant fallback. Invented hotline/mailbox values are removed
+  by default. Default and buyer-override checks, TypeScript, lint, a 59-route
+  build, and focused storefront E2E passed.
+- `PRODUCTIZE-T03` added a buyer discovery questionnaire, storefront
+  customization guide, and catalog replacement handoff. The catalog contract
+  requires source mapping, provenance, backups, dry-run, non-destructive
+  deactivation, order snapshot protection, reconciliation, rollback, and buyer
+  acceptance rather than promising a generic importer.
+- `PRODUCTIZE-T04` added the buyer demo script, reference deployment/incident/
+  rollback runbook, and commercial boundary checklist. Root/app README,
+  portfolio handoff, and operational handoff now reference verified `v1.13.1`
+  release and deployment evidence.
+- `PRODUCTIZE-T05` added a deterministic productization verifier. Its first run
+  found 16 remaining runtime brand couplings; all were centralized, the final
+  run reported zero findings, and default plus buyer-override configuration
+  checks passed. A repeated replacement edge case that could duplicate the
+  reference brand was fixed and covered by the configuration gate.
 
 - `v1.13.1` runs on Production deployment
   `dpl_Hn3BEdLERPQDVXnSxC3QFDYFzL6d` at

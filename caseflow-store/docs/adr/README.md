@@ -21,6 +21,7 @@ verified implementation outcome of each decision.
 | [ADR-0014](0014-layered-architecture-boundary.md) | Accepted | Use Controller -> Use Case -> Policy/Validation -> Repository boundaries for high-risk mutating APIs | Governs the post-`v1.11.3` architecture hardening release: order creation use-case extraction, boundary conventions, and architecture verification without changing the Next.js modular monolith. |
 | [ADR-0015](0015-atomic-idempotent-order-creation.md) | Accepted | Make order creation atomic and idempotent per checkout attempt | Governs the `v1.12.1` reliability patch: database-enforced retry safety and atomic signup-voucher redemption without changing pricing, payment, shipping, or the API envelope. |
 | [ADR-0016](0016-transactional-notifications-and-simulated-transfer.md) | Accepted | Add transactional notification outbox and staff-confirmed simulated transfer operations | Governs the `v1.13` notification release: account-scoped in-app updates, provider-ready email/SMS, optional OTP verification, durable retries, and production-safe simulated transfer without real settlement. |
+| [ADR-0017](0017-sellable-demo-productization.md) | Accepted | Productize the single-store reference app for buyer demonstration and handoff | Governs `v1.14`: centralized public identity, optional support contacts, buyer customization/data handoff, productization verification, and honest separation from buyer-specific real integrations. |
 
 ## Status meanings
 

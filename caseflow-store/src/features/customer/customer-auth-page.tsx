@@ -4,6 +4,7 @@ import Link from "next/link";
 import * as React from "react";
 
 import { Badge, Button, Container, ErrorMessage, Input } from "@/components/ui";
+import { storefrontConfig } from "@/config/storefront";
 import { formatVnd } from "@/lib/format/currency";
 import type {
   CustomerAuthIdentity,
@@ -62,8 +63,7 @@ const customerAuthCopy = {
     confirmPassword: "Confirm password",
     confirmPasswordError: "Passwords must match.",
     createAccount: "Create account",
-    createAccountIntro:
-      "Create a CaseFlow Books account before checkout and receive 3 welcome discount codes for your first orders.",
+    createAccountIntro: `Create a ${storefrontConfig.name} account before checkout and receive 3 welcome discount codes for your first orders.`,
     creatingAccount: "Creating account",
     email: "Email address",
     emailError: "Enter a valid email address.",
@@ -92,7 +92,7 @@ const customerAuthCopy = {
     signInTab: "Sign in",
     signUpTab: "Create account",
     submitFailed: "Customer authentication failed.",
-    title: "Your CaseFlow Books account",
+    title: `Your ${storefrontConfig.name} account`,
     registerForCodes: "Register for welcome codes",
     verificationRequired:
       "Account created. Check your email if confirmation is requested, then return to sign in.",
@@ -119,8 +119,7 @@ const customerAuthCopy = {
     confirmPassword: "Nhập lại mật khẩu",
     confirmPasswordError: "Mật khẩu nhập lại chưa khớp.",
     createAccount: "Tạo tài khoản",
-    createAccountIntro:
-      "Tạo tài khoản CaseFlow Books trước khi thanh toán và nhận 3 mã giảm giá chào mừng cho các đơn đầu tiên.",
+    createAccountIntro: `Tạo tài khoản ${storefrontConfig.name} trước khi thanh toán và nhận 3 mã giảm giá chào mừng cho các đơn đầu tiên.`,
     creatingAccount: "Đang tạo tài khoản",
     email: "Địa chỉ email",
     emailError: "Nhập địa chỉ email hợp lệ.",
@@ -149,7 +148,7 @@ const customerAuthCopy = {
     signInTab: "Đăng nhập",
     signUpTab: "Tạo tài khoản",
     submitFailed: "Xác thực khách hàng thất bại.",
-    title: "Tài khoản CaseFlow Books của bạn",
+    title: `Tài khoản ${storefrontConfig.name} của bạn`,
     registerForCodes: "Đăng ký nhận mã",
     verificationRequired:
       "Đã tạo tài khoản. Hãy kiểm tra email nếu hệ thống yêu cầu xác nhận, sau đó quay lại đăng nhập.",

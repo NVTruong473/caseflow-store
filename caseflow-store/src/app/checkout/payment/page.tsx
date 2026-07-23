@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 
+import { storefrontConfig } from "@/config/storefront";
 import { QrPaymentPage } from "@/features/checkout/qr-payment-page";
 import { getCustomerAuthState } from "@/lib/auth/customer";
 import { getRequestLanguage } from "@/lib/i18n/server";
@@ -18,8 +19,8 @@ export async function generateMetadata(): Promise<Metadata> {
   return createPageMetadata({
     description:
       language === "vi"
-        ? "Kiểm tra phiên thanh toán đơn hàng CaseFlow Books."
-        : "Review a CaseFlow Books order payment session.",
+        ? `Kiểm tra phiên thanh toán đơn hàng ${storefrontConfig.name}.`
+        : `Review a ${storefrontConfig.name} order payment session.`,
     language,
     path: "/checkout/payment",
     robots: {
@@ -28,8 +29,8 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     title:
       language === "vi"
-        ? "Thanh toán QR - CaseFlow Books"
-        : "QR payment - CaseFlow Books",
+        ? `Thanh toán QR - ${storefrontConfig.name}`
+        : `QR payment - ${storefrontConfig.name}`,
   });
 }
 

@@ -15661,3 +15661,140 @@ GitHub Release.
   enabled.
 - External email/SMS delivery and Production mock-payment success remain
   disabled.
+
+---
+
+## PRODUCTIZE-T01 - Accept ADR And Audit Baseline
+
+- Date: 2026-07-24
+- Status: completed
+
+### Result
+
+- Accepted ADR-0017 and the bounded `v1.14` sellable-demo roadmap.
+- Audited buyer readiness and identified centralized configuration, honest
+  support identity, current release evidence, buyer discovery, catalog
+  migration, and automated verification as the highest-value work.
+- Explicitly rejected multi-tenancy, a no-code theme builder, invented business
+  details, and real providers without a named buyer.
+
+### Evidence
+
+- `docs/adr/0017-sellable-demo-productization.md`
+- `docs/v1.14-sellable-demo-productization-roadmap.md`
+- `docs/sellable-demo-readiness-audit.md`
+
+### Verification
+
+- ADR index updated.
+- Scope and acceptance criteria documented before runtime changes.
+
+---
+
+## PRODUCTIZE-T02 - Centralize Public Store Configuration
+
+- Date: 2026-07-24
+- Status: completed
+
+### Result
+
+- Added typed build-time public store configuration and documented its
+  environment contract.
+- Connected critical customer, SEO, policy, notification, and payment-fallback
+  identity surfaces to the shared values.
+- Removed the invented hotline and support mailboxes. Optional phone/email are
+  omitted until a deployment owner provides monitored real channels.
+
+### Verification
+
+- Default configuration verifier: passed with zero findings.
+- Buyer override configuration verifier: passed with zero findings.
+- `npm run lint`: passed.
+- `npm exec -- tsc --noEmit --pretty false`: passed.
+- `npm run build`: passed with 59 routes.
+- Focused storefront Playwright: passed `1/1`.
+
+### Evidence
+
+- `.agent/artifacts/productize-t02-default-config/storefront-config-check.json`
+- `.agent/artifacts/productize-t02-custom-config/storefront-config-check.json`
+
+---
+
+## PRODUCTIZE-T03 - Create Buyer Customization And Data Handoff
+
+- Date: 2026-07-24
+- Status: completed
+
+### Result
+
+- Added the buyer discovery questionnaire covering identity, catalog,
+  customers, fulfillment, payment, providers, hosting, operations, and
+  acceptance.
+- Added the storefront configuration/brand-asset guide with public/server
+  environment boundaries.
+- Added a catalog replacement contract that preserves historical order
+  snapshots and requires mapping, provenance, backup, dry-run, reconciliation,
+  rollback, and buyer sign-off.
+
+### Verification
+
+- All repository paths and reference scripts named by the guides exist.
+- `git diff --check` passed.
+
+---
+
+## PRODUCTIZE-T04 - Create Demo, Operations, And Commercial Handoff Pack
+
+- Date: 2026-07-24
+- Status: completed
+
+### Result
+
+- Added a buyer-facing demo script that demonstrates product/engineering value
+  without claiming real settlement, fulfillment, traffic, revenue, or legal
+  readiness.
+- Added a deployment, backup, incident, credential-rotation, cleanup, and
+  rollback runbook for the reference environment.
+- Added a commercial boundary checklist separating included source from buyer
+  inputs, integrations, third-party accounts/costs, and acceptance.
+- Updated current README and handoff documents from stale `v1.13.0` evidence to
+  verified `v1.13.1`.
+
+### Verification
+
+- Required handoff documents exist and are non-empty.
+- No stale current-release/deployment claim remains in the active README and
+  handoff documents.
+- `git diff --check` passed.
+
+---
+
+## PRODUCTIZE-T05 - Add Productization Verifier And Fix Findings
+
+- Date: 2026-07-24
+- Status: completed
+
+### Result
+
+- Added a deterministic gate covering required buyer/handoff documents,
+  centralized identity usage, invented support contacts, release evidence,
+  catalog rollback, provider boundaries, and non-turnkey claims.
+- The first run found 16 remaining hard-coded runtime brand references. All
+  were connected to `storefrontConfig`; the final gate reported zero findings.
+- Fixed a repeated replacement edge case that could duplicate the reference
+  brand and added a regression assertion for default and buyer overrides.
+
+### Verification
+
+- `npm run verify:productization`: passed.
+- Default `npm run verify:productization-config`: passed.
+- Buyer-override `npm run verify:productization-config`: passed.
+- `npm run lint`: passed.
+- `npm exec -- tsc --noEmit --pretty false`: passed.
+
+### Evidence
+
+- `.agent/artifacts/productize-t05/sellable-demo-productization-check.json`
+- `.agent/artifacts/productize-t02-default-config/storefront-config-check.json`
+- `.agent/artifacts/productize-t02-custom-config/storefront-config-check.json`

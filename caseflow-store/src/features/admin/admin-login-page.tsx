@@ -4,6 +4,7 @@ import Link from "next/link";
 import * as React from "react";
 
 import { Badge, Button, Container, ErrorMessage, Input } from "@/components/ui";
+import { storefrontConfig } from "@/config/storefront";
 import type { Language } from "@/lib/i18n/language";
 
 type ApiErrorBody = {
@@ -52,7 +53,7 @@ const adminLoginCopy = {
     scope: "Scope",
     scopeValue: "Orders and operations",
     signIn: "Sign in",
-    signInDescription: "Use a CaseFlow admin or staff account.",
+    signInDescription: `Use a ${storefrontConfig.name} admin or staff account.`,
     signInIntro: "Sign in to review orders and update fulfillment status.",
     signingIn: "Signing in",
     signedOut: "Signed out",
@@ -76,7 +77,7 @@ const adminLoginCopy = {
     scope: "Phạm vi",
     scopeValue: "Đơn hàng và vận hành",
     signIn: "Đăng nhập",
-    signInDescription: "Dùng tài khoản admin hoặc staff của CaseFlow.",
+    signInDescription: `Dùng tài khoản admin hoặc staff của ${storefrontConfig.name}.`,
     signInIntro: "Đăng nhập để xem đơn hàng và cập nhật trạng thái xử lý.",
     signingIn: "Đang đăng nhập",
     signedOut: "Đã đăng xuất",

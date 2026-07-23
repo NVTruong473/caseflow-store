@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 
+import { storefrontConfig } from "@/config/storefront";
 import { AdminPromotionsPage } from "@/features/admin";
 import { requireAdminPermission } from "@/lib/auth/admin";
 import { getRequestLanguage } from "@/lib/i18n/server";
@@ -8,8 +9,8 @@ import { listSupabaseAdminBookPromotions } from "@/lib/repositories/supabase-pro
 import { toAdminPromotionApiItem } from "@/lib/api/admin-promotions";
 
 export const metadata: Metadata = {
-  title: "Promotion operations | CaseFlow Books",
-  description: "Promotion operations shell for CaseFlow Books.",
+  title: `Promotion operations | ${storefrontConfig.name}`,
+  description: `Promotion operations shell for ${storefrontConfig.name}.`,
 };
 
 export default async function AdminPromotionsRoute() {

@@ -1,3 +1,7 @@
+import {
+  storefrontConfig,
+  withStorefrontBrand,
+} from "@/config/storefront";
 import type { Language } from "@/lib/i18n/language";
 
 export type BookstorePolicySlug =
@@ -45,7 +49,7 @@ export type BookstorePolicy = {
   tone: BookstorePolicyTone;
 };
 
-export const bookstorePolicies: BookstorePolicy[] = [
+const referenceBookstorePolicies: BookstorePolicy[] = [
   {
     path: "/contact",
     slug: "contact",
@@ -483,6 +487,39 @@ export const bookstorePolicies: BookstorePolicy[] = [
     },
   },
 ];
+
+export const bookstorePolicies: BookstorePolicy[] =
+  referenceBookstorePolicies.map((policy) => ({
+    ...policy,
+    copy: {
+      en: localizePolicy(policy.copy.en, "en"),
+      vi: localizePolicy(policy.copy.vi, "vi"),
+    },
+  }));
+
+function localizePolicy(copy: LocalizedPolicy, language: Language) {
+  return {
+    ...copy,
+    contactRows: copy.contactRows?.map((row, index) => ({
+      label: withStorefrontBrand(row.label),
+      value:
+        index === 0
+          ? storefrontConfig.supportHours[language]
+          : withStorefrontBrand(row.value),
+    })),
+    cta: copy.cta
+      ? { ...copy.cta, label: withStorefrontBrand(copy.cta.label) }
+      : undefined,
+    highlights: copy.highlights.map(withStorefrontBrand),
+    lead: withStorefrontBrand(copy.lead),
+    sections: copy.sections.map((section) => ({
+      body: withStorefrontBrand(section.body),
+      title: withStorefrontBrand(section.title),
+    })),
+    summary: withStorefrontBrand(copy.summary),
+    title: withStorefrontBrand(copy.title),
+  } satisfies LocalizedPolicy;
+}
 
 const policiesBySlug = new Map(
   bookstorePolicies.map((policy) => [policy.slug, policy]),

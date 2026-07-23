@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 
+import { storefrontConfig } from "@/config/storefront";
 import { AdminDashboardPage } from "@/features/admin";
 import { requireAdminPermission } from "@/lib/auth/admin";
 import { getRequestLanguage } from "@/lib/i18n/server";
@@ -8,8 +9,8 @@ import { getSupabaseAdminDashboard } from "@/lib/repositories/supabase-dashboard
 import { adminDashboardQuerySchema } from "@/lib/validation/dashboard";
 
 export const metadata: Metadata = {
-  title: "Operations dashboard | CaseFlow Books",
-  description: "Sales and inventory dashboard for CaseFlow Books.",
+  title: `Operations dashboard | ${storefrontConfig.name}`,
+  description: `Sales and inventory dashboard for ${storefrontConfig.name}.`,
 };
 
 type AdminDashboardRouteProps = {

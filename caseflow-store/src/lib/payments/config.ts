@@ -1,6 +1,7 @@
+import { storefrontConfig } from "@/config/storefront";
 import type { DemoPaymentProvider } from "@/lib/validation/payments";
 
-export const CASEFLOW_MERCHANT_NAME = "CaseFlow Books";
+export const CASEFLOW_MERCHANT_NAME = storefrontConfig.name;
 
 export type DemoPaymentConfig = {
   accountName: string;
@@ -76,7 +77,7 @@ export function getPaymentProviderOptions(): PaymentProviderOption[] {
   return [
     {
       description:
-        "Quet QR noi bo CaseFlow de kiem tra trang thai thanh toan tu dong trong sandbox.",
+        `Quet QR noi bo ${storefrontConfig.name} de kiem tra trang thai thanh toan tu dong trong sandbox.`,
       label: "Cong thanh toan QR gia lap",
       provider: "MOCK_GATEWAY",
     },

@@ -6,6 +6,7 @@ import {
   toAdminBookEditionApiItem,
   toAdminBookWorkOptions,
 } from "@/lib/api/admin-book-catalog";
+import { storefrontConfig } from "@/config/storefront";
 import { toAdminMerchandisingShelfApiItems } from "@/lib/api/admin-merchandising";
 import { AdminCatalogPage } from "@/features/admin";
 import { requireAdminPermission } from "@/lib/auth/admin";
@@ -19,8 +20,8 @@ import {
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 
 export const metadata: Metadata = {
-  title: "Catalog operations | CaseFlow Books",
-  description: "Catalog operations shell for CaseFlow Books.",
+  title: `Catalog operations | ${storefrontConfig.name}`,
+  description: `Catalog operations shell for ${storefrontConfig.name}.`,
 };
 
 export default async function AdminCatalogRoute() {

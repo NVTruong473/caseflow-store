@@ -1,9 +1,9 @@
 # CaseFlow Books Portfolio Handoff
 
-- Latest release: `v1.13.0`
+- Latest release: `v1.13.1`
 - Production URL: `https://caseflow-store.vercel.app`
-- GitHub Release: `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.13.0`
-- Vercel deployment: `dpl_9N1HSkydBBzsrM1UmtT2Lfvpo7np`
+- GitHub Release: `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.13.1`
+- Vercel deployment: `dpl_Hn3BEdLERPQDVXnSxC3QFDYFzL6d`
 - Project type: full-stack bookstore and small-business operations portfolio
 - Stack: Next.js 16, React 19, TypeScript 5, Tailwind CSS 4, Supabase
   PostgreSQL/Auth/RLS, Zod, Playwright, Vercel
@@ -130,12 +130,12 @@ See `docs/architecture.md` for the full architecture notes.
 
 | Evidence | Location |
 |---|---|
-| Latest release notes | `docs/v1.13.0-transactional-notifications-release-notes.md` |
-| v1.13.0 production consistency audit | `docs/postv130-t01-final-release-consistency-audit.md` |
-| v1.13.0 production smoke | `.agent/artifacts/notify-t09-production-smoke/production-smoke-check.json` |
-| v1.13.0 notification boundary | `.agent/artifacts/notify-t09-production-notification-safety/notification-production-safety-check.json` |
-| v1.13.0 operations role matrix | `.agent/artifacts/notify-t09-production-operations/operations-freeze-check.json` |
-| v1.13.0 final QA | `.agent/artifacts/notify-t09-production-final-qa/final-post-release-qa.json` |
+| Latest release notes | `docs/v1.13.1-order-response-reliability-patch-release-notes.md` |
+| v1.13.1 production consistency audit | `docs/postv131-t01-final-release-consistency-audit.md` |
+| v1.13.1 production smoke | `.agent/artifacts/release-v1131-final-production-smoke/production-smoke-check.json` |
+| v1.13.1 notification boundary | `.agent/artifacts/release-v1131-final-production-notification-safety/notification-production-safety-check.json` |
+| v1.13.1 operations UAT | `.agent/artifacts/release-v1131-final-production-uat/operations-transfer-uat-check.json` |
+| v1.13.1 final QA | `.agent/artifacts/release-v1131-final-qa/final-post-release-qa.json` |
 | v1.12.1 production consistency audit | `docs/postv121-t01-final-release-consistency-audit.md` |
 | v1.12.1 production smoke | `.agent/artifacts/order-reliability-t06-production-smoke/production-smoke-check.json` |
 | v1.12.1 production security posture | `.agent/artifacts/order-reliability-t06-production-security/security-posture-check.json` |

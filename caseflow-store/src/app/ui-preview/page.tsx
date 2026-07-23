@@ -14,9 +14,10 @@ import {
   Input,
   Skeleton,
 } from "@/components/ui";
+import { storefrontConfig } from "@/config/storefront";
 
 export const metadata: Metadata = {
-  title: "UI Preview - CaseFlow Books",
+  title: `UI Preview - ${storefrontConfig.name}`,
   robots: {
     index: false,
     follow: false,
@@ -40,8 +41,8 @@ export default function UiPreviewPage() {
           <div className="flex max-w-3xl flex-col gap-case-sm">
             <h1 className="text-heading-1 font-semibold">UI primitives</h1>
             <p className="text-body leading-7 text-text-muted">
-              Visual QA surface for the shared CaseFlow Books components before
-              building the storefront layout.
+              Visual QA surface for the shared {storefrontConfig.name} components
+              before building the storefront layout.
             </p>
           </div>
         </header>

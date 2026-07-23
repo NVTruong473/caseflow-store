@@ -5,6 +5,7 @@ import Link from "next/link";
 import * as React from "react";
 
 import { Badge, Button, Container, ErrorMessage, Skeleton } from "@/components/ui";
+import { storefrontConfig } from "@/config/storefront";
 import { formatVnd } from "@/lib/format/currency";
 import type { Language } from "@/lib/i18n/language";
 import type { PaymentSession } from "@/lib/payments/types";
@@ -56,7 +57,7 @@ const qrPaymentCopy = {
     providerMock: "Simulated QR gateway",
     providerTitle: "Payment method",
     providerVietQr: "VietQR Demo",
-    qrAlt: "Demo QR code for CaseFlow Books order payment",
+    qrAlt: `Demo QR code for ${storefrontConfig.name} order payment`,
     qrFailed: "QR image could not be generated.",
     qrNotice: "QR DEMO - NO REAL PAYMENT VALUE",
     refresh: "Refresh status",
@@ -93,7 +94,7 @@ const qrPaymentCopy = {
     providerMock: "Cổng thanh toán QR giả lập",
     providerTitle: "Phương thức thanh toán",
     providerVietQr: "VietQR Demo",
-    qrAlt: "Mã QR demo cho thanh toán đơn CaseFlow Books",
+    qrAlt: `Mã QR demo cho thanh toán đơn ${storefrontConfig.name}`,
     qrFailed: "Không thể tạo hình ảnh QR.",
     qrNotice: "QR DEMO - KHÔNG CÓ GIÁ TRỊ THANH TOÁN THẬT",
     refresh: "Cập nhật trạng thái",

@@ -10,15 +10,93 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: stable released `v1.13.1` order-response reliability patch
-- Current gate: `RELEASE-V1131-T01` passed locally and on Production;
-  deployment, `24/24` local and Production E2E, operations UAT, security,
-  responsive/accessibility, SEO, cleanup, and release evidence are verified
-- Current task: none; stable closeout
+- Mode: `v1.14` sellable demo productization
+- Current gate: `PRODUCTIZE-T05` productization verifier accepted
+- Current task: `PRODUCTIZE-T06 - Full QA And Release`
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-24
 
 ## Phase UAT-MANUAL - Production Customer Manual Acceptance
+
+## Phase PRODUCTIZE - Sellable Demo Productization
+
+- [x] `PRODUCTIZE-T01` Accept ADR And Audit Baseline. - 2026-07-24
+  - Result: accepted ADR-0017 and the bounded v1.14 roadmap.
+  - Result: baseline audit found hard-coded identity, invented support
+    contacts, stale release references, and missing buyer/data handoff gates.
+  - Guardrail: no real provider, custom domain, multi-tenant, theme builder, or
+    fabricated business identity scope.
+  - Evidence:
+    - `docs/adr/0017-sellable-demo-productization.md`
+    - `docs/v1.14-sellable-demo-productization-roadmap.md`
+    - `docs/sellable-demo-readiness-audit.md`
+
+- [x] `PRODUCTIZE-T02` Centralize Public Store Configuration. - 2026-07-24
+  - Acceptance criteria:
+    - Typed public identity and optional contact configuration.
+    - Header/footer/metadata/SEO/domain/payment fallback use shared values.
+    - No invented contact is rendered by default.
+    - TypeScript, lint, build, configuration and focused browser checks pass.
+  - Result: added typed build-time identity, canonical URL, bilingual tagline,
+    support hours, optional contact, legal display, and short-mark values.
+  - Result: removed invented footer phone/email defaults and connected header,
+    footer, root metadata, SEO, policies, notifications, QR alt text, customer
+    copy, homepage, and payment merchant fallback to shared configuration.
+  - Verification:
+    - default and buyer-override configuration checks passed.
+    - TypeScript and lint passed.
+    - production build passed with 59 routes.
+    - focused storefront Playwright passed `1/1`.
+  - Evidence:
+    - `.agent/artifacts/productize-t02-default-config/`
+    - `.agent/artifacts/productize-t02-custom-config/`
+
+- [x] `PRODUCTIZE-T03` Create Buyer Customization And Data Handoff. - 2026-07-24
+  - Result: documented buyer discovery, public configuration, brand asset/
+    design-token ownership, provider gates, and a non-destructive catalog
+    migration contract.
+  - Result: catalog handoff protects order snapshots, requires explicit source
+    mapping, dry-run, backup, reconciliation, rollback, provenance, and buyer
+    acceptance.
+  - Verification: referenced repository paths/scripts exist and
+    `git diff --check` passed.
+  - Evidence:
+    - `docs/buyer-discovery-questionnaire.md`
+    - `docs/storefront-customization-guide.md`
+    - `docs/catalog-replacement-handoff.md`
+
+- [x] `PRODUCTIZE-T04` Create Demo, Operations, And Commercial Handoff Pack. - 2026-07-24
+  - Result: added a truthful buyer demo script, reference deployment/incident/
+    rollback runbook, and commercial handoff boundary checklist.
+  - Result: synchronized root/app README, portfolio handoff, and operational
+    handoff to verified `v1.13.1` release/deployment evidence.
+  - Guardrail: source sale does not promise a turnkey legal business, real
+    providers, licensed buyer content, migration from unknown data, or
+    third-party service costs.
+  - Evidence:
+    - `docs/buyer-demo-script.md`
+    - `docs/reference-deployment-runbook.md`
+    - `docs/commercial-handoff-boundaries.md`
+
+- [x] `PRODUCTIZE-T05` Add Productization Verifier And Fix Findings. - 2026-07-24
+  - Result: added a deterministic productization gate for required handoff
+    documents, centralized configuration usage, invented contacts, release
+    evidence, and commercial/provider/catalog boundaries.
+  - Result: the first run found 16 remaining runtime brand couplings; all were
+    moved to shared configuration and the final run reported zero findings.
+  - Result: fixed a repeated brand-replacement edge case and added a regression
+    assertion for both default and buyer-override identities.
+  - Verification:
+    - `npm run verify:productization`: passed.
+    - default and buyer-override `npm run verify:productization-config`: passed.
+    - `npm run lint`: passed.
+    - `npm exec -- tsc --noEmit --pretty false`: passed.
+  - Evidence:
+    - `.agent/artifacts/productize-t05/sellable-demo-productization-check.json`
+    - `.agent/artifacts/productize-t02-default-config/storefront-config-check.json`
+    - `.agent/artifacts/productize-t02-custom-config/storefront-config-check.json`
+
+- [/] `PRODUCTIZE-T06` Full QA And Release. - 2026-07-24
 
 - [x] `COPYFIX-T01` Correct Pending Order And Notification Copy. - 2026-07-23
   - Scope: correct the checkout success heading for a newly recorded pending

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
 import { SiteFooter, SiteHeader } from "@/components/layout";
+import { storefrontConfig } from "@/config/storefront";
 import { getRequestLanguage } from "@/lib/i18n/server";
 import { getSiteUrl } from "@/lib/seo/metadata";
 
@@ -15,22 +16,19 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: getSiteUrl(),
-  title: "CaseFlow Books",
-  description:
-    "Vietnam-first bilingual bookstore with edition-aware catalog discovery.",
+  title: storefrontConfig.name,
+  description: `${storefrontConfig.tagline.en} with edition-aware catalog discovery.`,
   openGraph: {
-    description:
-      "Vietnam-first bilingual bookstore with edition-aware catalog discovery.",
-    siteName: "CaseFlow Books",
-    title: "CaseFlow Books",
+    description: `${storefrontConfig.tagline.en} with edition-aware catalog discovery.`,
+    siteName: storefrontConfig.name,
+    title: storefrontConfig.name,
     type: "website",
     url: "/",
   },
   twitter: {
     card: "summary",
-    description:
-      "Vietnam-first bilingual bookstore with edition-aware catalog discovery.",
-    title: "CaseFlow Books",
+    description: `${storefrontConfig.tagline.en} with edition-aware catalog discovery.`,
+    title: storefrontConfig.name,
   },
 };
 

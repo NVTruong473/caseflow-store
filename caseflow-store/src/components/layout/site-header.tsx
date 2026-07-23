@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { Container } from "@/components/ui";
+import { storefrontConfig } from "@/config/storefront";
 import { CartSummaryButton } from "@/features/cart";
 import { getCustomerAuthState, type CustomerAuthState } from "@/lib/auth/customer";
 import { pickLocalizedText, type Language } from "@/lib/i18n/language";
@@ -28,15 +29,14 @@ const headerCopy = {
     categoriesMenuDescription:
       "Browse the live catalog by reading category, language, format, and current availability.",
     contact: "Support",
-    homeLabel: "CaseFlow Books home",
+    homeLabel: `${storefrontConfig.name} home`,
     mainNavigation: "Main navigation",
     searchLabel: "Search books",
     searchPlaceholder: "Search by title, author, or ISBN",
     searchSubmit: "Search",
     shipping: "Shipping policy",
     signedOut: "Signed out",
-    subtitle: "Bilingual bookstore",
-    support: "Support Mon-Sat, 09:00-18:00 ICT",
+    subtitle: storefrontConfig.tagline.en,
     switcher: "Language",
     switchToEnglish: "Switch to English",
     switchToVietnamese: "Switch to Vietnamese",
@@ -52,15 +52,14 @@ const headerCopy = {
     categoriesMenuDescription:
       "Duyệt catalog thật theo danh mục đọc, ngôn ngữ, định dạng và tình trạng còn hàng.",
     contact: "Hỗ trợ",
-    homeLabel: "Trang chủ CaseFlow Books",
+    homeLabel: `Trang chủ ${storefrontConfig.name}`,
     mainNavigation: "Điều hướng chính",
     searchLabel: "Tìm sách",
     searchPlaceholder: "Tìm theo tên sách, tác giả hoặc ISBN",
     searchSubmit: "Tìm",
     shipping: "Chính sách giao hàng",
     signedOut: "Chưa đăng nhập",
-    subtitle: "Nhà sách song ngữ",
-    support: "Hỗ trợ Thứ 2-Thứ 7, 09:00-18:00 ICT",
+    subtitle: storefrontConfig.tagline.vi,
     switcher: "Ngôn ngữ",
     switchToEnglish: "Chuyển sang tiếng Anh",
     switchToVietnamese: "Chuyển sang tiếng Việt",
@@ -82,7 +81,7 @@ export async function SiteHeader({ language }: { language: Language }) {
     <header className="sticky top-0 z-40 border-b border-border bg-surface/96 shadow-[0_8px_24px_rgb(63_38_22_/_0.06)] backdrop-blur">
       <div className="hidden border-b border-primary-hover/30 bg-primary text-surface md:block">
         <Container className="flex min-h-9 items-center justify-between gap-case-md text-small">
-          <p>{copy.support}</p>
+          <p>{storefrontConfig.supportHours[language]}</p>
           <nav
             aria-label={language === "vi" ? "Liên kết hỗ trợ nhanh" : "Quick support links"}
             className="flex items-center gap-case-md"
@@ -117,11 +116,11 @@ export async function SiteHeader({ language }: { language: Language }) {
           data-site-header-brand
         >
           <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-primary text-small font-semibold text-surface shadow-[var(--case-shadow-cover)] transition-colors group-hover:bg-primary-hover">
-            CB
+            {storefrontConfig.shortMark}
           </span>
           <span className="flex min-w-0 flex-col leading-tight">
             <span className="whitespace-nowrap text-body font-semibold text-foreground">
-              CaseFlow Books
+              {storefrontConfig.name}
             </span>
             <span className="hidden text-small text-text-muted sm:block">
               {copy.subtitle}

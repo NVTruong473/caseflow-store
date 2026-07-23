@@ -5,6 +5,7 @@ import type {
   NotificationProvider,
   NotificationProviderResult,
 } from "@/types/notifications";
+import { storefrontConfig } from "@/config/storefront";
 
 type FetchLike = typeof fetch;
 
@@ -123,7 +124,7 @@ function createTwilioProvider(
       }
 
       const body = new URLSearchParams({
-        Body: `CaseFlow Books: ${request.content.body}`,
+        Body: `${storefrontConfig.name}: ${request.content.body}`,
         To: phone,
       });
 

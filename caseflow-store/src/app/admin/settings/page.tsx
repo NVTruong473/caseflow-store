@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 
+import { storefrontConfig } from "@/config/storefront";
 import { AdminShellPage } from "@/features/admin";
 import { requireAdminPermission } from "@/lib/auth/admin";
 import { getRequestLanguage } from "@/lib/i18n/server";
 
 export const metadata: Metadata = {
-  title: "Operations settings | CaseFlow Books",
-  description: "Admin-only settings shell for CaseFlow Books operations.",
+  title: `Operations settings | ${storefrontConfig.name}`,
+  description: `Admin-only settings shell for ${storefrontConfig.name} operations.`,
 };
 
 const settingsCopy = {

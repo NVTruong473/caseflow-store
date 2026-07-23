@@ -1,18 +1,13 @@
 import type { Metadata } from "next";
 
+import {
+  storefrontConfig,
+  withStorefrontBrand,
+} from "@/config/storefront";
 import type { Language } from "@/lib/i18n/language";
 
-const DEFAULT_SITE_URL = "https://caseflow-store.vercel.app";
-const SITE_NAME = "CaseFlow Books";
-
 export function getSiteUrl() {
-  const configuredUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
-
-  try {
-    return new URL(configuredUrl || DEFAULT_SITE_URL);
-  } catch {
-    return new URL(DEFAULT_SITE_URL);
-  }
+  return new URL(storefrontConfig.canonicalUrl);
 }
 
 export function absoluteUrl(pathname = "/") {
@@ -37,10 +32,13 @@ export function createPageMetadata({
   title: string;
 }): Metadata {
   const url = absoluteUrl(path);
-  const normalizedDescription = truncateDescription(description);
+  const brandedTitle = withStorefrontBrand(title);
+  const normalizedDescription = truncateDescription(
+    withStorefrontBrand(description),
+  );
   const image = imagePath
     ? {
-        alt: imageAlt ?? title,
+        alt: withStorefrontBrand(imageAlt ?? brandedTitle),
         url: absoluteUrl(imagePath),
       }
     : null;
@@ -53,19 +51,19 @@ export function createPageMetadata({
     openGraph: {
       description: normalizedDescription,
       locale: language === "vi" ? "vi_VN" : "en_US",
-      siteName: SITE_NAME,
-      title,
+      siteName: storefrontConfig.name,
+      title: brandedTitle,
       type: "website",
       url,
       ...(image ? { images: [image] } : {}),
     },
     robots,
-    title,
+    title: brandedTitle,
     twitter: {
       card: image ? "summary_large_image" : "summary",
       description: normalizedDescription,
       ...(image ? { images: [image.url] } : {}),
-      title,
+      title: brandedTitle,
     },
   };
 }

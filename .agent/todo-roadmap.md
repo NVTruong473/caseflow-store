@@ -10,9 +10,9 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: stable released `v1.13.1` order-response reliability patch
-- Current gate: `RELEASE-V1131-T01` passed locally and on Production
-- Current task: none; stable closeout
+- Mode: `v1.14` sellable demo productization
+- Current gate: `PRODUCTIZE-T05` productization verifier accepted
+- Current task: `PRODUCTIZE-T06 - Full QA And Release`
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-24
 

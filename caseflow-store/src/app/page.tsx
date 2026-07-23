@@ -9,6 +9,7 @@ import {
   CardTitle,
   Container,
 } from "@/components/ui";
+import { storefrontConfig } from "@/config/storefront";
 import {
   CurrencyAmount,
 } from "@/components/currency/currency-amount";
@@ -87,7 +88,7 @@ const homeCopy = {
     heroShelfDescription:
       "Current front-table picks from the live catalog, with price and stock visible before opening the detail page.",
     heroShelfTitle: "Front table now",
-    heroTitle: "CaseFlow Books",
+    heroTitle: storefrontConfig.name,
     inTheCatalog: "in catalog",
     englishEditionsTitle: "English editions",
     languageShelvesDescription:
@@ -150,7 +151,7 @@ const homeCopy = {
     editionChoiceTitle: "Bản tiếng Anh và bản tiếng Việt",
     editions: "Ấn bản",
     featuredDescription:
-      "Tủ sách do CaseFlow chọn cho các ấn bản dễ bắt đầu, đang còn hàng và có thông tin rõ ràng.",
+      `Tủ sách do ${storefrontConfig.name} chọn cho các ấn bản dễ bắt đầu, đang còn hàng và có thông tin rõ ràng.`,
     featuredTitle: "Biên tập chọn",
     heroDescription:
       "Nhà sách song ngữ giúp bạn so sánh ấn bản, thấy tồn kho và đặt hàng mà không phải đoán bước tiếp theo.",
@@ -167,7 +168,7 @@ const homeCopy = {
     heroShelfDescription:
       "Các ấn bản đang nằm trên bàn trưng bày, lấy từ catalog hiện tại với giá và tồn kho rõ trước khi mở trang chi tiết.",
     heroShelfTitle: "Bàn sách hôm nay",
-    heroTitle: "CaseFlow Books",
+    heroTitle: storefrontConfig.name,
     inTheCatalog: "trong catalog",
     englishEditionsTitle: "Sách tiếng Anh",
     languageShelvesDescription:
@@ -225,14 +226,14 @@ export async function generateMetadata(): Promise<Metadata> {
   return createPageMetadata({
     description:
       language === "vi"
-        ? "CaseFlow Books là nhà sách song ngữ ưu tiên độc giả Việt Nam, có catalog ấn bản Anh/Việt, giá VND rõ ràng và theo dõi đơn trong tài khoản."
-        : "CaseFlow Books is a bilingual bookstore for readers in Vietnam, with English/Vietnamese editions, clear VND pricing, and account order tracking.",
+        ? `${storefrontConfig.name} là nhà sách song ngữ ưu tiên độc giả Việt Nam, có catalog ấn bản Anh/Việt, giá VND rõ ràng và theo dõi đơn trong tài khoản.`
+        : `${storefrontConfig.name} is a bilingual bookstore for readers in Vietnam, with English/Vietnamese editions, clear VND pricing, and account order tracking.`,
     language,
     path: "/",
     title:
       language === "vi"
-        ? "CaseFlow Books - Nhà sách song ngữ"
-        : "CaseFlow Books - Bilingual bookstore",
+        ? `${storefrontConfig.name} - Nhà sách song ngữ`
+        : `${storefrontConfig.name} - Bilingual bookstore`,
   });
 }
 

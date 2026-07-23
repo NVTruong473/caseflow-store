@@ -3,6 +3,7 @@
 import * as React from "react";
 
 import { Badge, Button, ErrorMessage, Input } from "@/components/ui";
+import { storefrontConfig } from "@/config/storefront";
 import type { CustomerAuthIdentity } from "@/lib/auth/customer";
 import type { Language } from "@/lib/i18n/language";
 import {
@@ -50,8 +51,7 @@ const customerProfileCopy = {
     district: "District",
     districtError: "Enter the district.",
     email: "Email",
-    emailHint:
-      "Email is tied to your CaseFlow Books account and cannot be changed in this form.",
+    emailHint: `Email is tied to your ${storefrontConfig.name} account and cannot be changed in this form.`,
     fullName: "Full name",
     fullNameError: "Enter your full name.",
     optional: "Optional",
@@ -80,8 +80,7 @@ const customerProfileCopy = {
     district: "Quận/huyện",
     districtError: "Nhập quận/huyện.",
     email: "Email",
-    emailHint:
-      "Email gắn với tài khoản CaseFlow Books và không đổi tại biểu mẫu này.",
+    emailHint: `Email gắn với tài khoản ${storefrontConfig.name} và không đổi tại biểu mẫu này.`,
     fullName: "Họ và tên",
     fullNameError: "Nhập họ và tên.",
     optional: "Không bắt buộc",

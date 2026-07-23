@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { Container } from "@/components/ui";
+import { storefrontConfig } from "@/config/storefront";
 import type { Language } from "@/lib/i18n/language";
 
 import { getFooterNavigation } from "./navigation";
@@ -10,28 +11,24 @@ const footerCopy = {
     description:
       "A focused bookstore storefront for bilingual discovery, edition choice, and small-business catalog operations.",
     supportChannels: [
-      "Hotline: 1900 636 879",
-      "Email: support@caseflowbooks.vn",
       "Order lookup with order code and matching contact",
       "Account profile for delivery details",
     ],
+    email: "Email",
+    phone: "Hotline",
     supportHeading: "Support window",
-    supportWindow: "Mon-Sat, 09:00-18:00 ICT",
-    copyright: "© 2026 CaseFlow Books. All rights reserved.",
     note: "Payment choices are confirmed during checkout, with COD and bank transfer prioritized for Vietnam orders.",
   },
   vi: {
     description:
       "Nhà sách trực tuyến tập trung vào khám phá song ngữ, lựa chọn ấn bản và vận hành danh mục cho doanh nghiệp nhỏ.",
     supportChannels: [
-      "Hotline: 1900 636 879",
-      "Email: hotro@caseflowbooks.vn",
       "Tra cứu đơn bằng mã đơn và liên hệ trùng khớp",
       "Hồ sơ tài khoản cho thông tin giao hàng",
     ],
+    email: "Email",
+    phone: "Hotline",
     supportHeading: "Khung giờ hỗ trợ",
-    supportWindow: "Thứ 2-Thứ 7, 09:00-18:00 ICT",
-    copyright: "© 2026 CaseFlow Books. Bảo lưu mọi quyền.",
     note: "Các lựa chọn thanh toán được xác nhận ở bước thanh toán, ưu tiên COD và chuyển khoản cho đơn tại Việt Nam.",
   },
 } as const;
@@ -39,6 +36,15 @@ const footerCopy = {
 export function SiteFooter({ language }: { language: Language }) {
   const copy = footerCopy[language];
   const footerNavigation = getFooterNavigation(language);
+  const supportChannels = [
+    ...(storefrontConfig.supportPhone
+      ? [`${copy.phone}: ${storefrontConfig.supportPhone}`]
+      : []),
+    ...(storefrontConfig.supportEmail
+      ? [`${copy.email}: ${storefrontConfig.supportEmail}`]
+      : []),
+    ...copy.supportChannels,
+  ];
 
   return (
     <footer className="border-t border-border bg-surface" data-site-footer>
@@ -48,7 +54,7 @@ export function SiteFooter({ language }: { language: Language }) {
             href="/"
             className="w-fit rounded-md text-heading-3 font-semibold text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
           >
-            CaseFlow Books
+            {storefrontConfig.name}
           </Link>
           <p className="text-small leading-6 text-text-muted">
             {copy.description}
@@ -58,10 +64,10 @@ export function SiteFooter({ language }: { language: Language }) {
               {copy.supportHeading}
             </p>
             <p className="mt-case-xs text-small text-text-muted">
-              {copy.supportWindow}
+              {storefrontConfig.supportHours[language]}
             </p>
             <ul className="mt-case-sm grid gap-case-xs text-small leading-6 text-text-muted">
-              {copy.supportChannels.map((channel) => (
+              {supportChannels.map((channel) => (
                 <li key={channel}>{channel}</li>
               ))}
             </ul>
@@ -93,7 +99,8 @@ export function SiteFooter({ language }: { language: Language }) {
       <Container className="grid gap-case-xs border-t border-border py-case-md md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
         <p className="text-small text-text-muted">{copy.note}</p>
         <p className="text-small text-text-muted md:text-right">
-          {copy.copyright}
+          © {storefrontConfig.copyrightYear} {storefrontConfig.legalDisplayName}.{" "}
+          {language === "vi" ? "Bảo lưu mọi quyền." : "All rights reserved."}
         </p>
       </Container>
     </footer>

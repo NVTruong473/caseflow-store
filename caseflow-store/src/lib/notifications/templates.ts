@@ -3,6 +3,7 @@ import type {
   NotificationEvent,
   NotificationLocale,
 } from "@/types/notifications";
+import { storefrontConfig } from "@/config/storefront";
 
 type TemplateCopy = Record<
   NotificationLocale,
@@ -12,13 +13,13 @@ type TemplateCopy = Record<
 const ORDER_TEMPLATES: Record<NotificationEvent, TemplateCopy> = {
   "order.created": {
     vi: {
-      body: (code) => `CaseFlow Books đã tiếp nhận đơn ${code}.`,
-      subject: "CaseFlow Books đã tiếp nhận đơn hàng",
+      body: (code) => `${storefrontConfig.name} đã tiếp nhận đơn ${code}.`,
+      subject: `${storefrontConfig.name} đã tiếp nhận đơn hàng`,
       title: "Đơn hàng đã được tiếp nhận",
     },
     en: {
-      body: (code) => `CaseFlow Books has received order ${code}.`,
-      subject: "CaseFlow Books received your order",
+      body: (code) => `${storefrontConfig.name} has received order ${code}.`,
+      subject: `${storefrontConfig.name} received your order`,
       title: "Order received",
     },
   },
@@ -115,12 +116,12 @@ const ORDER_TEMPLATES: Record<NotificationEvent, TemplateCopy> = {
   "phone.verification-requested": {
     vi: {
       body: () => "Mã xác nhận số điện thoại có hiệu lực trong 10 phút.",
-      subject: "Xác nhận số điện thoại CaseFlow Books",
+      subject: `Xác nhận số điện thoại ${storefrontConfig.name}`,
       title: "Xác nhận số điện thoại",
     },
     en: {
       body: () => "Your phone verification code is valid for 10 minutes.",
-      subject: "Verify your CaseFlow Books phone number",
+      subject: `Verify your ${storefrontConfig.name} phone number`,
       title: "Verify phone number",
     },
   },

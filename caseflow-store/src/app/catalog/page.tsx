@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 
 import { Badge, Button, Card, Container } from "@/components/ui";
 import { CurrencyAmount } from "@/components/currency/currency-amount";
+import { storefrontConfig } from "@/config/storefront";
 import { BookCoverFrame } from "@/features/books/cover-merchandising";
 import { BookCatalogEmptyState } from "@/features/books/catalog-states";
 import { formatVnd } from "@/lib/format/currency";
@@ -19,6 +20,7 @@ import { cn } from "@/lib/utils/cn";
 import {
   listSupabaseBookCategories,
   listSupabaseBookCatalog,
+  selectBookCatalogRecords,
   type BookCatalogAvailability,
   type SupabaseBookCatalogRecord,
 } from "@/lib/repositories/supabase-books";
@@ -100,14 +102,14 @@ export async function generateMetadata(): Promise<Metadata> {
   return createPageMetadata({
     description:
       language === "vi"
-        ? "Duyệt catalog CaseFlow Books theo tên sách, tác giả, danh mục, ngôn ngữ, định dạng, giá VND và tình trạng tồn kho."
-        : "Browse CaseFlow Books by title, author, category, language, format, VND price, and stock state.",
+        ? `Duyệt catalog ${storefrontConfig.name} theo tên sách, tác giả, danh mục, ngôn ngữ, định dạng, giá VND và tình trạng tồn kho.`
+        : `Browse ${storefrontConfig.name} by title, author, category, language, format, VND price, and stock state.`,
     language,
     path: "/catalog",
     title:
       language === "vi"
-        ? "Catalog sách - CaseFlow Books"
-        : "Book catalog - CaseFlow Books",
+        ? `Catalog sách - ${storefrontConfig.name}`
+        : `Book catalog - ${storefrontConfig.name}`,
   });
 }
 
@@ -267,7 +269,7 @@ export default async function CatalogPage({ searchParams }: CatalogPageProps) {
   );
   const authorOptions = getAuthorOptions(allRecords);
   const filters = parseCatalogFilters(params, categories, authorOptions);
-  const filteredRecords = await listSupabaseBookCatalog({
+  const filteredRecords = selectBookCatalogRecords(allRecords, {
     author: filters.author,
     availability: filters.availability,
     category: filters.category,
@@ -1763,12 +1765,12 @@ function getSaleStateLabel({
   standardListing: string;
 }) {
   if (language === "vi") {
-    if (hasOffer) return "Ưu đãi theo giá CaseFlow";
+    if (hasOffer) return `Ưu đãi của ${storefrontConfig.name}`;
     if (hasEditorialShelf) return "Kệ biên tập";
     return standardListing;
   }
 
-  if (hasOffer) return "CaseFlow offer";
+  if (hasOffer) return `${storefrontConfig.name} offer`;
   if (hasEditorialShelf) return "Editorial shelf";
   return standardListing;
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { storefrontConfig } from "@/config/storefront";
 import { BookstorePolicyPage } from "@/features/policies/bookstore-policy-page";
 import { getRequestLanguage } from "@/lib/i18n/server";
 import { getBookstorePolicy } from "@/lib/policies/bookstore-policies";
@@ -15,7 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
     description: copy.summary,
     language,
     path: policy.path,
-    title: `${copy.title} - CaseFlow Books`,
+    title: `${copy.title} - ${storefrontConfig.name}`,
   });
 }
 

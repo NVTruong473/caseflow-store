@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 
+import { storefrontConfig } from "@/config/storefront";
 import { CheckoutPage } from "@/features/checkout";
 import { getCustomerAuthState } from "@/lib/auth/customer";
 import { getCurrencyDisplayRules } from "@/lib/format/currency-display.server";
@@ -18,8 +19,8 @@ export async function generateMetadata(): Promise<Metadata> {
   return createPageMetadata({
     description:
       language === "vi"
-        ? "Thanh toán CaseFlow Books yêu cầu đăng nhập, hồ sơ khách hàng đầy đủ, địa chỉ giao hàng và tổng tiền được cửa hàng tính lại."
-        : "CaseFlow Books checkout requires sign-in, a complete customer profile, shipping details, and store-recalculated totals.",
+        ? `Thanh toán ${storefrontConfig.name} yêu cầu đăng nhập, hồ sơ khách hàng đầy đủ, địa chỉ giao hàng và tổng tiền được cửa hàng tính lại.`
+        : `${storefrontConfig.name} checkout requires sign-in, a complete customer profile, shipping details, and store-recalculated totals.`,
     language,
     path: "/checkout",
     robots: {
@@ -28,8 +29,8 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     title:
       language === "vi"
-        ? "Thanh toán - CaseFlow Books"
-        : "Checkout - CaseFlow Books",
+        ? `Thanh toán - ${storefrontConfig.name}`
+        : `Checkout - ${storefrontConfig.name}`,
   });
 }
 

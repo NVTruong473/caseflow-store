@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { storefrontConfig } from "@/config/storefront";
 import { CustomerAuthPage } from "@/features/customer";
 import { getCustomerAuthState } from "@/lib/auth/customer";
 import { getRequestLanguage } from "@/lib/i18n/server";
@@ -19,8 +20,8 @@ export async function generateMetadata(): Promise<Metadata> {
   return createPageMetadata({
     description:
       language === "vi"
-        ? "Đăng nhập hoặc tạo tài khoản CaseFlow Books để hoàn tất hồ sơ, địa chỉ giao hàng và xem đơn hàng."
-        : "Sign in or create a CaseFlow Books account to complete your profile, shipping address, and order access.",
+        ? `Đăng nhập hoặc tạo tài khoản ${storefrontConfig.name} để hoàn tất hồ sơ, địa chỉ giao hàng và xem đơn hàng.`
+        : `Sign in or create a ${storefrontConfig.name} account to complete your profile, shipping address, and order access.`,
     language,
     path: "/account",
     robots: {
@@ -29,8 +30,8 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     title:
       language === "vi"
-        ? "Tài khoản - CaseFlow Books"
-        : "Customer account - CaseFlow Books",
+        ? `Tài khoản - ${storefrontConfig.name}`
+        : `Customer account - ${storefrontConfig.name}`,
   });
 }
 

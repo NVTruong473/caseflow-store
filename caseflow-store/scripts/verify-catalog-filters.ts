@@ -5,7 +5,15 @@ import { chromium, type Browser, type Page } from "@playwright/test";
 
 import { LANGUAGE_COOKIE, type Language } from "../src/lib/i18n/language";
 
-const ARTIFACT_DIR = path.join(".agent", "artifacts", "d28-t02");
+const ARTIFACT_DIR = path.join(
+  ".agent",
+  "artifacts",
+  process.env.CATALOG_FILTER_ARTIFACT_ID ?? "d28-t02",
+);
+const EXPECTED_ACTIVE_EDITION_TOTAL = Number.parseInt(
+  process.env.EXPECTED_ACTIVE_EDITION_TOTAL ?? "500",
+  10,
+);
 const COMBINED_FILTERS = {
   availability: "available",
   category: "classic-literature",
@@ -35,7 +43,8 @@ async function main() {
         combined.uiResultTotal === combined.apiMeta.total &&
         combined.uiRenderedCards === combined.apiMeta.count,
       clearFiltersWorks:
-        combined.clearResultTotal === 100 && combined.clearRenderedCards === 24,
+        combined.clearResultTotal === EXPECTED_ACTIVE_EDITION_TOTAL &&
+        combined.clearRenderedCards === 24,
       combinedFiltersApplied:
         combined.urlIncludes.every(Boolean) &&
         combined.activeChipText.includes("Classic literature") &&
@@ -45,7 +54,7 @@ async function main() {
       invalidParamsDoNotCrash:
         invalid.headingVisible &&
         invalid.renderedCards === 24 &&
-        invalid.resultTotal === 100,
+        invalid.resultTotal === EXPECTED_ACTIVE_EDITION_TOTAL,
       noOverflow:
         !combined.hasHorizontalOverflow &&
         !authorSort.hasHorizontalOverflow &&
