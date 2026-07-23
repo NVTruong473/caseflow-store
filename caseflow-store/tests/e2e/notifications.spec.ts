@@ -90,15 +90,25 @@ test.describe.serial("transactional notification boundaries", () => {
     expect(outboxError).toBeNull();
     expect(outbox).toHaveLength(6);
     expect(outbox?.filter((item) => item.channel === "in-app")).toHaveLength(2);
-    expect(
-      outbox
-        ?.filter((item) => item.channel !== "in-app")
-        .every(
-          (item) =>
-            item.status === "blocked" &&
-            item.last_error_code === "EXTERNAL_DELIVERY_DISABLED",
-        ),
-    ).toBe(true);
+    await expect
+      .poll(async () => {
+        const { data, error } = await service
+          .from("notification_outbox")
+          .select("channel,status,last_error_code")
+          .eq("order_id", orderId)
+          .neq("channel", "in-app");
+
+        if (error) throw error;
+        return (
+          data.length === 4 &&
+          data.every(
+            (item) =>
+              item.status === "blocked" &&
+              item.last_error_code === "EXTERNAL_DELIVERY_DISABLED",
+          )
+        );
+      })
+      .toBe(true);
 
     const markReadResponse = await page.request.patch(
       "/api/customer/notifications",

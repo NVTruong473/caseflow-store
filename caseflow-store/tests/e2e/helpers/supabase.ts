@@ -237,7 +237,7 @@ export async function seedCart(
       version: CART_STORAGE_VERSION,
     },
   );
-  await page.goto("/");
+  await page.goto("/", { waitUntil: "domcontentloaded" });
   await expect
     .poll(() =>
       page.evaluate(

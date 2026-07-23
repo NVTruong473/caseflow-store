@@ -13,10 +13,12 @@
 - Journal entries: 30, with entries 21-30 as retrospective documentation
 - Current mode: stable released `v1.13.0` transactional notification and
   simulated-transfer operations.
-- Current gate: `COPYFIX-T01` passed all local code, browser, architecture,
-  notification, security, dependency, and cleanup gates.
-- Current task: `UAT-OPS-T01 - Staff And Admin Simulated Transfer Acceptance`.
-- Latest production deployment: `dpl_9N1HSkydBBzsrM1UmtT2Lfvpo7np`, aliased to
+- Current gate: `UAT-OPS-T01` passed locally and on the current Production
+  candidate with full cleanup; the release follow-up candidate also passed
+  local Playwright `24/24` after moving external outbox work after the order
+  response.
+- Current task: `RELEASE-V1131-T01 - Verify And Release Patch v1.13.1`.
+- Latest production deployment: `dpl_6DjptcafKsNspyLe2XAs5rZbYJ8t`, aliased to
   `https://caseflow-store.vercel.app`.
 - Latest GitHub Release:
   `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.13.0`.

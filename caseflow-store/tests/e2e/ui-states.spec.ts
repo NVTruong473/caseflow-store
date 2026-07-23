@@ -60,7 +60,7 @@ test("cart, checkout, and book fallback states are visible", async ({
       customer.email,
       customer.password,
     );
-    await page.goto("/checkout");
+    await page.goto("/checkout", { waitUntil: "domcontentloaded" });
     await expect(page.locator("[data-checkout-empty]")).toBeVisible();
     await expectNoHorizontalOverflow(page);
 
@@ -99,7 +99,7 @@ test("checkout validation error and order success states are visible", async ({
         quantity: 99,
       },
     ]);
-    await page.goto("/checkout");
+    await page.goto("/checkout", { waitUntil: "domcontentloaded" });
     await expect(
       page.locator("[data-checkout-validation-error='OUT_OF_STOCK']"),
     ).toBeVisible();
@@ -108,7 +108,7 @@ test("checkout validation error and order success states are visible", async ({
 
     const createdPayload = await createOrderThroughApi(page, customer, book);
     const createdOrder = createdPayload.data!.order;
-    await page.goto("/");
+    await page.goto("/", { waitUntil: "domcontentloaded" });
     await page.evaluate(
       ({ bookTitle, key, lineTotal, orderCode, status, subtotal }) => {
         window.sessionStorage.setItem(
@@ -159,7 +159,7 @@ test("admin auth, loading, error, empty, and success states are visible", async 
 }) => {
   await page.setViewportSize({ width: 768, height: 900 });
 
-  await page.goto("/admin/orders");
+  await page.goto("/admin/orders", { waitUntil: "domcontentloaded" });
   await expect(page).toHaveURL(/\/admin\/login\?reason=unauthorized/);
   await expect(page.locator("[data-admin-login-page]")).toBeVisible();
   await expectNoHorizontalOverflow(page);
@@ -181,7 +181,7 @@ test("admin auth, loading, error, empty, and success states are visible", async 
       }),
     });
   });
-  await page.goto("/admin/orders");
+  await page.goto("/admin/orders", { waitUntil: "domcontentloaded" });
   await expect(page.locator("[data-admin-orders-loading]")).toHaveCount(1);
   await expectNoHorizontalOverflow(page);
   releaseAdminOrders();

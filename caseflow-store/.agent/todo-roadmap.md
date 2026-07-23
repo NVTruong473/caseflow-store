@@ -15,7 +15,7 @@
 - Current gate: `NOTIFY-T09` passed locally and on Production; migrations,
   deployment, `24/24` E2E, security, role, responsive/accessibility, cleanup,
   documentation, tag, and GitHub Release are verified
-- Current task: `UAT-OPS-T01 - Staff And Admin Simulated Transfer Acceptance`
+- Current task: `RELEASE-V1131-T01 - Verify And Release Patch v1.13.1`
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-23
 
@@ -49,7 +49,7 @@
       release-cleanup, and dependency gates: passed.
   - Evidence: `.agent/artifacts/copyfix-t01/`.
 
-- [/] `UAT-OPS-T01` Staff And Admin Simulated Transfer Acceptance. - 2026-07-23
+- [x] `UAT-OPS-T01` Staff And Admin Simulated Transfer Acceptance. - 2026-07-23
   - Scope: verify the released staff/admin role boundaries and both simulated
     transfer decisions against a deployed candidate before tagging a patch.
   - Acceptance criteria:
@@ -63,6 +63,45 @@
     - Temporary identities and orders are removed after verification.
   - Guardrails: no real bank account, real payment, external email/SMS claim,
     schema mutation, or authorization widening.
+  - Result: passed locally and on production deployment
+    `dpl_6DjptcafKsNspyLe2XAs5rZbYJ8t`; staff confirmed one transfer, admin
+    rejected one transfer with a persisted reason, customer history and eight
+    lifecycle notifications matched, and all temporary data was removed.
+  - Verification:
+    - Customer decision boundary: `403`.
+    - Staff settings boundary: `403`; confirmation and duplicate: `200`;
+      invalid reverse decision: `409`.
+    - Admin settings: `200`; rejection and duplicate: `200`; invalid reverse
+      decision: `409`.
+    - Temporary users/orders: removed; touched stock: restored.
+  - Evidence:
+    - `docs/uat-ops-t01-production-transfer-acceptance.md`
+    - `.agent/artifacts/uat-ops-t01-local/`
+    - `.agent/artifacts/uat-ops-t01-production/`
+
+- [/] `RELEASE-V1131-T01` Verify And Release Patch v1.13.1. - 2026-07-23
+  - Scope: rerun production smoke, security, QR/notification boundaries, full
+    browser regression, cleanup, and remote checks before creating the
+    annotated patch tag and GitHub Release.
+  - Acceptance criteria:
+    - Deployment is Ready and aliases resolve to the candidate.
+    - Production smoke, security, notification boundary, QR production lock,
+      and full Playwright pass.
+    - Production browser regression proves the corrected bilingual copy.
+    - Release notes identify the copy fix and operations UAT without claiming
+      real payment or external email/SMS delivery.
+    - Tag and GitHub Release are created only after all final gates pass.
+  - Interim finding: the first Production browser gate exposed order responses
+    waiting on a 25-record external notification dispatch batch. In-app events
+    were already committed, but disabled email/SMS processing could delay
+    checkout beyond 30 seconds.
+  - Fix: schedule external outbox dispatch with Next.js `after()` so the
+    committed order response is not blocked; keep eventual assertions that all
+    disabled external records become `blocked` with
+    `EXTERNAL_DELIVERY_DISABLED`.
+  - Local verification after fix: lint, TypeScript, 59-route build,
+    architecture/notification/security/dependency/cleanup gates, and full
+    Playwright `24/24` passed.
 
 - [x] `NOTIFY-T01` Accept Transactional Notification ADR And Roadmap. - 2026-07-22
   - Objective: define durable notification, optional phone verification, and

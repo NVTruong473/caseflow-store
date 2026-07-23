@@ -12,6 +12,7 @@ const defaultBaseUrl = `http://127.0.0.1:${defaultPort}`;
 const baseURL = externalBaseURL
   ? parseHttpUrl(externalBaseURL, "PLAYWRIGHT_BASE_URL")
   : defaultBaseUrl;
+const isExternalTarget = Boolean(externalBaseURL);
 
 export default defineConfig({
   testDir: "./tests/e2e",
@@ -20,7 +21,10 @@ export default defineConfig({
   fullyParallel: false,
   forbidOnly: isCI,
   retries: isCI ? 2 : 0,
-  timeout: 60_000,
+  expect: {
+    timeout: isExternalTarget ? 20_000 : 5_000,
+  },
+  timeout: isExternalTarget ? 120_000 : 60_000,
   workers: 1,
   reporter: [
     ["list"],
@@ -28,8 +32,8 @@ export default defineConfig({
   ],
   use: {
     baseURL,
-    actionTimeout: 10_000,
-    navigationTimeout: 20_000,
+    actionTimeout: isExternalTarget ? 30_000 : 10_000,
+    navigationTimeout: isExternalTarget ? 60_000 : 20_000,
     screenshot: "only-on-failure",
     trace: "on-first-retry",
     video: "retain-on-failure",

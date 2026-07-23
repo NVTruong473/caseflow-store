@@ -15,9 +15,10 @@
 - Journal entries: 30, with entries 21-30 as retrospective documentation
 - Current mode: stable released `v1.13.0` transactional notification and
   simulated-transfer operations.
-- Current gate: `COPYFIX-T01` passed the local code, browser, architecture,
-  notification, security, dependency, and cleanup gates.
-- Current task: `UAT-OPS-T01 - Staff And Admin Simulated Transfer Acceptance`.
+- Current gate: `UAT-OPS-T01` passed locally and on production deployment
+  `dpl_6DjptcafKsNspyLe2XAs5rZbYJ8t` with role, decision, notification,
+  idempotency, visual, and cleanup evidence.
+- Current task: `RELEASE-V1131-T01 - Verify And Release Patch v1.13.1`.
 
 ## Confirmed Facts
 
@@ -33,6 +34,17 @@
   `Account notifications` / `Thong bao tai khoan`. Full local Playwright
   passed `24/24`; Production verification remains part of the patch release
   gate.
+- `UAT-OPS-T01` passed on the `v1.13.1` candidate deployment: customer
+  transfer-decision access returned `403`; staff confirmed one order but
+  received `403` for settings; admin rejected another order with a stored
+  reason; duplicate decisions returned `200`, reverse decisions returned
+  `409`, customer history/notifications matched, and cleanup restored both
+  touched edition stock values.
+- The first `RELEASE-V1131-T01` Production browser run exposed synchronous
+  external outbox processing as an order-response latency risk. The follow-up
+  candidate schedules that best-effort work with Next.js `after()` while
+  preserving transactional in-app events and eventual disabled-provider
+  assertions. The revised candidate passed local Playwright `24/24`.
 
 - The released `v1.0.0` is a small MVP, not a large e-commerce platform.
 - The accepted `v1.1` direction is still not a marketplace, but it expands the project into a focused bookstore plus small-business operations demo.

@@ -15576,3 +15576,43 @@ GitHub Release.
 - `.agent/artifacts/copyfix-t01/secret-scan.json`
 - `.agent/artifacts/copyfix-t01/qr-payment-production-safety-check.json`
 - `.agent/artifacts/copyfix-t01/release-cleanup-check.json`
+
+---
+
+## UAT-OPS-T01 - Staff And Admin Simulated Transfer Acceptance
+
+- Date: 2026-07-23
+- Status: completed
+- Candidate commit: `432a972`
+- Production deployment: `dpl_6DjptcafKsNspyLe2XAs5rZbYJ8t`
+
+### Result
+
+- Created two temporary customer-owned simulated bank-transfer orders with
+  server-calculated totals.
+- Staff confirmed one transfer from the operations UI and remained blocked
+  from admin-only settings.
+- Admin rejected the second transfer from the operations UI with a persisted
+  risk-review reason.
+- Customer history showed the confirmed and cancelled outcomes; the inbox
+  showed eight lifecycle notifications including payment confirmation,
+  payment rejection, and order cancellation.
+- Repeated same decisions remained idempotent; reverse decisions were rejected.
+
+### Verification
+
+- Customer transfer decision: `403`.
+- Staff settings: `403`; UI confirmation: `200`; repeated confirmation: `200`;
+  reverse rejection: `409`.
+- Admin settings: `200`; UI rejection: `200`; repeated rejection: `200`;
+  reverse confirmation: `409`.
+- Visual review: passed for staff decision, admin rejection, customer history,
+  and customer notifications at 1440 x 1000.
+- Cleanup: three temporary users and two orders removed; two edition stock
+  values restored; zero skipped restoration.
+
+### Evidence
+
+- `docs/uat-ops-t01-production-transfer-acceptance.md`
+- `.agent/artifacts/uat-ops-t01-local/`
+- `.agent/artifacts/uat-ops-t01-production/`

@@ -1,0 +1,206 @@
+{
+  "baseURL": "https://caseflow-store.vercel.app",
+  "generatedAt": "2026-07-23T16:03:32.808Z",
+  "ok": true,
+  "pass": {
+    "account": true,
+    "adminUnauthorized": true,
+    "catalogPage": true,
+    "detailPage": true,
+    "home": true,
+    "productsApi": true,
+    "robots": true,
+    "sitemap": true,
+    "tracking": true
+  },
+  "status": {
+    "account": 200,
+    "adminUnauthorized": 401,
+    "catalogPage": 200,
+    "detailPage": 200,
+    "home": 200,
+    "productsApi": 200,
+    "robots": 200,
+    "sitemap": 200,
+    "tracking": 200
+  },
+  "target": {
+    "id": "2a64d757-4805-4b51-8fa7-bc4c3edd89c5",
+    "type": "book-edition",
+    "slug": "a-christmas-carol-english-collector-special",
+    "title": "A Christmas Carol - Collector's Edition",
+    "edition": {
+      "id": "2a64d757-4805-4b51-8fa7-bc4c3edd89c5",
+      "slug": "a-christmas-carol-english-collector-special",
+      "displayTitle": "A Christmas Carol - Collector's Edition",
+      "localizedDisplayTitle": {
+        "vi": "Bài ca Giáng sinh - Bản sưu tầm tiếng Anh",
+        "en": "A Christmas Carol - Collector's Edition"
+      },
+      "subtitle": "Collector's Edition",
+      "language": "en",
+      "format": "special-edition",
+      "isbn13": null,
+      "isbn10": null,
+      "publicationYear": 2026,
+      "pageCount": 278,
+      "dimensions": {
+        "widthMm": 138,
+        "heightMm": 205,
+        "thicknessMm": 38
+      },
+      "weightGrams": 740,
+      "priceVnd": 319000,
+      "compareAtPriceVnd": null,
+      "stockQuantity": 14,
+      "lowStockThreshold": 6,
+      "inventoryStatus": "in-stock",
+      "summary": {
+        "vi": "Câu chuyện đạo đức cô đọng nơi ký ức và tưởng tượng thúc đẩy một người keo kiệt hướng tới rộng lượng và sửa sai. Ấn bản bản sưu tầm tiếng anh được chuẩn bị cho nhu cầu mua sách thực tế: giá VND rõ ràng, tình trạng kho cụ thể và định dạng phù hợp để đọc, tặng hoặc dùng trong nhóm đọc.",
+        "en": "A compact moral tale where memory and imagination push a miser toward generosity and repair. This collector's edition is prepared for practical bookstore purchase: clear VND pricing, visible availability, and a format suited to reading, gifting, or group reading."
+      },
+      "tableOfContents": null,
+      "sampleExcerptPolicy": "No copyrighted excerpt is stored; product copy is written by CaseFlow Books.",
+      "pairId": "7a514c31-dd69-4cc2-9738-52efb5b22cd6",
+      "pairedEditionId": "bc6d0364-9dfb-42c1-8920-8b0417d05db4",
+      "reasonToRead": {
+        "vi": "Bản sưu tầm tiếng Anh phù hợp cho người đọc muốn chọn đúng định dạng, giá VND rõ ràng và số lượng còn hàng trước khi đặt.",
+        "en": "A practical collector's edition for readers who want a clear VND price, available stock, and a format suited to repeat reading."
+      },
+      "displayFacts": [
+        {
+          "key": "edition-family",
+          "label": {
+            "vi": "Dòng ấn bản",
+            "en": "Edition family"
+          },
+          "value": {
+            "vi": "Bản sưu tầm tiếng Anh",
+            "en": "Collector's Edition"
+          },
+          "provenanceRecordId": "v16-0dcf9261-e936-403d-84dc-b0bd3fb1a080"
+        },
+        {
+          "key": "format",
+          "label": {
+            "vi": "Định dạng",
+            "en": "Format"
+          },
+          "value": {
+            "vi": "Ấn bản đặc biệt",
+            "en": "Special edition"
+          },
+          "provenanceRecordId": "v16-0dcf9261-e936-403d-84dc-b0bd3fb1a080"
+        },
+        {
+          "key": "retail-price",
+          "label": {
+            "vi": "Giá bán",
+            "en": "Retail price"
+          },
+          "value": {
+            "vi": "Giá VND dùng cho quy trình đặt sách",
+            "en": "VND price set for bookstore checkout"
+          },
+          "provenanceRecordId": "v16-0dcf9261-e936-403d-84dc-b0bd3fb1a080"
+        },
+        {
+          "key": "availability",
+          "label": {
+            "vi": "Tình trạng",
+            "en": "Availability"
+          },
+          "value": {
+            "vi": "Còn hàng",
+            "en": "In stock"
+          },
+          "provenanceRecordId": "v16-0dcf9261-e936-403d-84dc-b0bd3fb1a080"
+        }
+      ],
+      "omittedOptionalFactKeys": [
+        "isbn-13",
+        "isbn-10"
+      ],
+      "isFeatured": false,
+      "createdAt": "2026-07-19T15:00:00+00:00",
+      "updatedAt": "2026-07-21T06:41:10.308973+00:00"
+    },
+    "work": {
+      "id": "00000000-0000-4000-8000-000000002027",
+      "slug": "a-christmas-carol",
+      "title": "A Christmas Carol",
+      "originalTitle": null,
+      "localizedTitle": {
+        "vi": "Bài ca Giáng sinh",
+        "en": "A Christmas Carol"
+      },
+      "originalLanguage": "English",
+      "themes": [
+        "redemption",
+        "generosity",
+        "memory"
+      ],
+      "ageRating": null,
+      "publicationEra": "1843",
+      "canonicalSummary": {
+        "vi": "Câu chuyện đạo đức cô đọng nơi ký ức và tưởng tượng thúc đẩy một người keo kiệt hướng tới rộng lượng và sửa sai.",
+        "en": "A compact moral tale where memory and imagination push a miser toward generosity and repair."
+      }
+    },
+    "authors": [
+      {
+        "id": "00000000-0000-4000-8000-000000001003",
+        "slug": "charles-dickens",
+        "name": "Charles Dickens",
+        "country": "United Kingdom"
+      }
+    ],
+    "categories": [
+      {
+        "id": "00000000-0000-4000-8000-000000000101",
+        "type": "book-category",
+        "slug": "classic-literature",
+        "labels": {
+          "vi": "Van hoc kinh dien",
+          "en": "Classic literature"
+        },
+        "description": {
+          "vi": "Nhung tac pham lau ben, phu hop cho tu sach ca nhan va hoc thuat.",
+          "en": "Enduring works suited for personal libraries and study shelves."
+        },
+        "sortOrder": 1
+      },
+      {
+        "id": "00000000-0000-4000-8000-000000000100",
+        "type": "book-category",
+        "slug": "fiction",
+        "labels": {
+          "vi": "Van hoc",
+          "en": "Fiction"
+        },
+        "description": {
+          "vi": "Tieu thuyet va tac pham hu cau de doc theo chu de, tac gia va ngon ngu.",
+          "en": "Novels and fiction works browsed by theme, author, and language."
+        },
+        "sortOrder": 0
+      }
+    ],
+    "translators": [],
+    "publisher": {
+      "id": "5e5621f7-bf82-44b2-81ee-9ec438f5c36c",
+      "slug": "penguin-english-library",
+      "name": "Penguin English Library",
+      "country": null,
+      "website": null
+    },
+    "coverAsset": {
+      "id": "cb8d213f-69a0-4eb6-ba73-2775a0b18385",
+      "path": "/images/books/gutenberg-covers/a-christmas-carol.jpg",
+      "altText": {
+        "vi": "Bìa gốc cho Bài ca Giáng sinh",
+        "en": "A Christmas Carol source-work cover art"
+      },
+      "source": "public-domain"
+    }
+  }
+}

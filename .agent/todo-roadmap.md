@@ -12,9 +12,9 @@
 - Project: CaseFlow Books
 - Mode: stable released `v1.13.0` transactional notification and simulated
   transfer operations
-- Current gate: `COPYFIX-T01` passed all local code, browser, architecture,
-  notification, security, dependency, and cleanup gates
-- Current task: `UAT-OPS-T01 - Staff And Admin Simulated Transfer Acceptance`
+- Current gate: `UAT-OPS-T01` passed locally and on production deployment
+  `dpl_6DjptcafKsNspyLe2XAs5rZbYJ8t`
+- Current task: `RELEASE-V1131-T01 - Verify And Release Patch v1.13.1`
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-23
 
