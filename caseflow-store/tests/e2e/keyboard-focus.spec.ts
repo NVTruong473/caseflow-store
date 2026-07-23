@@ -22,7 +22,7 @@ test("mobile navigation, language switch, assistant, and cart keep keyboard focu
   await page.setViewportSize({ width: 375, height: 812 });
   const book = await findAvailableBook(page.request);
   await seedCart(page, [{ productId: book.edition.id, quantity: 1 }]);
-  await page.goto("/");
+  await page.goto("/", { waitUntil: "domcontentloaded" });
 
   const menuButton = page.locator("[aria-controls='mobile-navigation']");
   await tabUntilFocused(page, menuButton, "mobile menu button", 20);
@@ -74,7 +74,9 @@ test("book detail and checkout controls are reachable by keyboard", async ({
     const book = await findAvailableBook(page.request);
 
     await page.setViewportSize({ width: 1024, height: 900 });
-    await page.goto(`/products/${book.slug}`);
+    await page.goto(`/products/${book.slug}`, {
+      waitUntil: "domcontentloaded",
+    });
 
     const quantityInput = page.locator("[data-book-quantity-input]");
     await tabUntilFocused(page, quantityInput, "book quantity input", 40);
@@ -88,7 +90,7 @@ test("book detail and checkout controls are reachable by keyboard", async ({
       .toBeVisible();
 
     await seedCart(page, [{ productId: book.edition.id, quantity: 1 }]);
-    await page.goto("/checkout");
+    await page.goto("/checkout", { waitUntil: "domcontentloaded" });
     await expect(page.locator("[data-checkout-form-shell]")).toBeVisible();
 
     const nameInput = page.locator("[data-checkout-customer-name]");
@@ -113,14 +115,14 @@ test("admin login and dashboard controls keep visible keyboard focus", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 768, height: 900 });
-  await page.goto("/admin/login");
+  await page.goto("/admin/login", { waitUntil: "domcontentloaded" });
 
   const emailInput = page.locator("[data-admin-login-email]");
   await tabUntilFocused(page, emailInput, "admin email input", 20);
   await expectActiveFocus(page, "admin email input");
 
   await loginAsAdmin(page);
-  await page.goto("/admin");
+  await page.goto("/admin", { waitUntil: "domcontentloaded" });
   await expect(page.locator("[data-admin-dashboard-page]")).toBeVisible();
 
   const ordersNav = page.locator("[data-admin-nav-item='orders']");

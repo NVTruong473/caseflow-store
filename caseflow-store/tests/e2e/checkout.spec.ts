@@ -7,6 +7,7 @@ import {
   createTemporaryCustomer,
   deleteTemporaryCustomer,
   findAvailableBook,
+  NETWORK_OPERATION_TIMEOUT,
   seedCart,
 } from "./helpers/supabase";
 
@@ -31,7 +32,7 @@ test("checkout happy path creates a simulated book order and clears the cart", a
     const book = await findAvailableBook(page.request);
     await seedCart(page, [{ productId: book.edition.id, quantity: 1 }]);
 
-    await page.goto("/checkout");
+    await page.goto("/checkout", { waitUntil: "domcontentloaded" });
     await expect(page.locator("[data-checkout-form-shell]")).toBeVisible();
     await expect(page.locator("[data-checkout-line-item]").first())
       .toContainText(book.title);
@@ -43,6 +44,7 @@ test("checkout happy path creates a simulated book order and clears the cart", a
       (response) =>
         new URL(response.url()).pathname === "/api/orders" &&
         response.request().method() === "POST",
+      { timeout: NETWORK_OPERATION_TIMEOUT },
     );
     await clickElement(page, "[data-checkout-submit]");
     const orderResponse = await orderResponsePromise;
@@ -101,7 +103,9 @@ test("checkout happy path creates a simulated book order and clears the cart", a
 test("checkout success page shows a direct-link fallback without session data", async ({
   page,
 }) => {
-  await page.goto("/checkout/success?orderCode=CF-SKELETON");
+  await page.goto("/checkout/success?orderCode=CF-SKELETON", {
+    waitUntil: "domcontentloaded",
+  });
 
   await expect(page.locator("[data-checkout-success-missing]")).toBeVisible();
   await expect(page.locator("[data-checkout-success-code]")).toHaveText(

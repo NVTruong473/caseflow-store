@@ -20,11 +20,11 @@ export default defineConfig({
   globalSetup: "./tests/e2e/global-setup.ts",
   fullyParallel: false,
   forbidOnly: isCI,
-  retries: isCI ? 2 : 0,
+  retries: isExternalTarget ? 1 : isCI ? 2 : 0,
   expect: {
-    timeout: isExternalTarget ? 20_000 : 5_000,
+    timeout: isExternalTarget ? 60_000 : 5_000,
   },
-  timeout: isExternalTarget ? 120_000 : 60_000,
+  timeout: isExternalTarget ? 240_000 : 60_000,
   workers: 1,
   reporter: [
     ["list"],
@@ -32,8 +32,8 @@ export default defineConfig({
   ],
   use: {
     baseURL,
-    actionTimeout: isExternalTarget ? 30_000 : 10_000,
-    navigationTimeout: isExternalTarget ? 60_000 : 20_000,
+    actionTimeout: isExternalTarget ? 60_000 : 10_000,
+    navigationTimeout: isExternalTarget ? 90_000 : 20_000,
     screenshot: "only-on-failure",
     trace: "on-first-retry",
     video: "retain-on-failure",

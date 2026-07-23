@@ -10,6 +10,7 @@ import {
   findAvailableBook,
   getAdminCredentials,
   loginAsAdmin,
+  NETWORK_OPERATION_TIMEOUT,
   selectFieldOption,
 } from "./helpers/supabase";
 
@@ -29,14 +30,16 @@ test.describe.serial("Supabase admin access matrix", () => {
   test("anonymous users can read catalog but cannot read admin data", async ({
     page,
   }) => {
-    const catalogResponse = await page.request.get("/api/products");
+    const catalogResponse = await page.request.get("/api/products", {
+      timeout: NETWORK_OPERATION_TIMEOUT,
+    });
     expect(catalogResponse.status()).toBe(200);
 
     const adminResponse = await page.request.get("/api/admin/orders");
     expect(adminResponse.status()).toBe(401);
     expect((await adminResponse.json()).error.code).toBe("UNAUTHORIZED");
 
-    await page.goto("/admin/orders");
+    await page.goto("/admin/orders", { waitUntil: "domcontentloaded" });
     await expect(page).toHaveURL(/\/admin\/login\?reason=unauthorized/);
 
     const directClient = createTestPublicClient();
@@ -69,7 +72,7 @@ test.describe.serial("Supabase admin access matrix", () => {
     expect(adminResponse.status()).toBe(403);
     expect((await adminResponse.json()).error.code).toBe("FORBIDDEN");
 
-    await page.goto("/admin/orders");
+    await page.goto("/admin/orders", { waitUntil: "domcontentloaded" });
     await expect(page).toHaveURL(/\/admin\/login\?reason=forbidden/);
     await expect(page.locator("[data-admin-login-page]")).toBeVisible();
     await page.screenshot({

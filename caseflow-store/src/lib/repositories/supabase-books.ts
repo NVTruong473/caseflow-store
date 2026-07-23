@@ -11,7 +11,7 @@ import {
   mapBookWorkRowToDomain,
 } from "@/lib/supabase/book-mappers";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
-import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { createSupabasePublicDataClient } from "@/lib/supabase/public";
 import type { CartValidationRequest } from "@/lib/validation/cart";
 import type {
   AdminBookEditionCreateInput,
@@ -716,7 +716,9 @@ function deriveInventoryStatus({
 async function getSupabaseBookClient(
   options: SupabaseBookRepositoryOptions,
 ): Promise<SupabaseClient<Database>> {
-  return options.client ?? createSupabaseServerClient();
+  // Public catalog reads must not inherit a customer's auth cookie.
+  // Customer and order repositories remain session-aware.
+  return options.client ?? createSupabasePublicDataClient();
 }
 
 async function readBookCatalogRows(

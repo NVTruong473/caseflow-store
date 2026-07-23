@@ -30,20 +30,22 @@ test("customer completes homepage to checkout success flow through the UI", asyn
     );
     const book = await findAvailableBook(page.request);
 
-    await page.goto("/");
+    await page.goto("/", { waitUntil: "domcontentloaded" });
     await expect(page.getByRole("heading", { level: 1 })).toContainText(
       "CaseFlow Books",
     );
     await expect(page.locator("[data-cart-count]").first())
       .toHaveAttribute("data-cart-count", "0");
 
-    await page.goto("/catalog");
+    await page.goto("/catalog", { waitUntil: "domcontentloaded" });
     await expect(page.locator("[data-catalog-page]"))
       .toHaveAttribute("data-catalog-total-count", "500");
     await expect(page.locator(`[data-catalog-card="${book.slug}"]`).first())
       .toContainText(book.title);
 
-    await page.goto(`/products/${book.slug}`);
+    await page.goto(`/products/${book.slug}`, {
+      waitUntil: "domcontentloaded",
+    });
     await expect(page.locator(`[data-book-detail="${book.slug}"]`))
       .toBeVisible();
     await expect(page.locator("[data-book-detail-price]")).toBeVisible();
@@ -55,6 +57,7 @@ test("customer completes homepage to checkout success flow through the UI", asyn
     await expect(page.locator("[data-cart-count]").first())
       .toHaveAttribute("data-cart-count", "1");
     await clickFirstVisible(page, "[data-cart-drawer-open]");
+    await expect(page.locator("[data-cart-drawer]")).toBeVisible();
     const cartLine = page.locator(`[data-cart-drawer-item="${book.edition.id}"]`);
     await expect(cartLine).toContainText(book.title);
     await clickElement(page, "[data-cart-drawer-checkout]");

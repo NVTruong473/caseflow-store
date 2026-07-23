@@ -15,6 +15,9 @@ export const CHECKOUT_SUCCESS_STORAGE_KEY =
   "caseflow-store.checkout.success.v1";
 export const CHECKOUT_ATTEMPT_STORAGE_KEY =
   "caseflow-books.checkout-attempt.v1";
+export const NETWORK_OPERATION_TIMEOUT = process.env.PLAYWRIGHT_BASE_URL
+  ? 90_000
+  : 30_000;
 
 export type TestBook = {
   slug: string;
@@ -189,6 +192,7 @@ export async function findAvailableBook(
 ) {
   const response = await request.get(
     "/api/products?availability=available&language=en&limit=100&sort=title-asc",
+    { timeout: NETWORK_OPERATION_TIMEOUT },
   );
   expect(response.status()).toBe(200);
 
@@ -249,7 +253,7 @@ export async function seedCart(
 }
 
 export async function clearClientOrderState(page: Page) {
-  await page.goto("/");
+  await page.goto("/", { waitUntil: "domcontentloaded" });
   await page.evaluate(
     ({ attemptKey, cartKey, successKey }) => {
       window.localStorage.removeItem(cartKey);
@@ -272,6 +276,7 @@ export async function createOrderThroughApi(
 ) {
   const response = await page.request.post("/api/orders", {
     data: createOrderPayload(customer, book, quantity),
+    timeout: NETWORK_OPERATION_TIMEOUT,
   });
 
   expect(response.status()).toBe(201);

@@ -29,7 +29,7 @@ test("checkout blocks empty and malformed customer details before order API", as
     const book = await findAvailableBook(page.request);
     await seedCart(page, [{ productId: book.edition.id, quantity: 1 }]);
 
-    await page.goto("/checkout");
+    await page.goto("/checkout", { waitUntil: "domcontentloaded" });
     await expect(page.locator("[data-checkout-form-shell]")).toBeVisible();
     await expect(page.locator("[data-checkout-customer-name]"))
       .toHaveAttribute("readonly", "");

@@ -6,7 +6,7 @@ import type {
   SupabaseBookRepositoryOptions,
 } from "@/lib/repositories/supabase-books";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
-import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { createSupabasePublicDataClient } from "@/lib/supabase/public";
 import { merchandisingShelfSchema } from "@/lib/validation/merchandising";
 import type { Database, TableRow, TableUpdate } from "@/types/supabase";
 import type {
@@ -205,7 +205,7 @@ function toMerchandisingCatalogEdition(
 async function getSupabaseMerchandisingClient(
   options: SupabaseBookRepositoryOptions,
 ): Promise<SupabaseClient<Database>> {
-  return options.client ?? createSupabaseServerClient();
+  return options.client ?? createSupabasePublicDataClient();
 }
 
 function throwIfSupabaseError(label: string, error: unknown) {
