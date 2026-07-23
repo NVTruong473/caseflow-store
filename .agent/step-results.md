@@ -11356,3 +11356,20 @@ next work.
 No active implementation task. The practical next step is to push the local
 commits and tags if the user wants the Git remote to preserve `v1.3.0` and the
 QA audit evidence.
+
+---
+
+## UAT-MANUAL-T02 - Production Customer Notification And Transfer Walkthrough
+
+- Date: 2026-07-23
+- Status: completed
+- Result: Production customer order `CF-MRXNH8NZ-71D438191D` passed checkout,
+  simulated-transfer state, in-app notification, account-history, mark-read,
+  and customer-cancellation acceptance checks.
+- Verification: Production smoke passed `9/9`; protected notification and
+  operations routes passed `8/8`; notification contracts had zero failures.
+- Cleanup: the UAT order and payment ended as `cancelled`; no real payment,
+  email, or SMS was used.
+- Finding: one non-blocking success-heading copy mismatch is documented.
+- Detailed evidence:
+  `caseflow-store/docs/uat-manual-t02-production-notification-transfer.md`.

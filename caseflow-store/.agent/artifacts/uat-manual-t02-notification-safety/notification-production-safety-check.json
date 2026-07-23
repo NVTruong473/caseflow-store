@@ -1,0 +1,63 @@
+{
+  "baseURL": "https://caseflow-store.vercel.app/",
+  "generatedAt": "2026-07-23T15:17:28.260Z",
+  "ok": true,
+  "results": [
+    {
+      "code": "UNAUTHORIZED",
+      "label": "customer inbox",
+      "ok": true,
+      "path": "/api/customer/notifications",
+      "status": 401
+    },
+    {
+      "code": "UNAUTHORIZED",
+      "label": "phone verification request",
+      "ok": true,
+      "path": "/api/customer/phone-verification/request",
+      "status": 401
+    },
+    {
+      "code": "UNAUTHORIZED",
+      "label": "phone verification completion",
+      "ok": true,
+      "path": "/api/customer/phone-verification/verify",
+      "status": 401
+    },
+    {
+      "code": "UNAUTHORIZED",
+      "label": "admin notification list",
+      "ok": true,
+      "path": "/api/admin/notifications",
+      "status": 401
+    },
+    {
+      "code": "UNAUTHORIZED",
+      "label": "admin notification config",
+      "ok": true,
+      "path": "/api/admin/notifications/config",
+      "status": 401
+    },
+    {
+      "code": "UNAUTHORIZED",
+      "label": "notification retry",
+      "ok": true,
+      "path": "/api/admin/notifications/00000000-0000-4000-8000-000000000001/retry",
+      "status": 401
+    },
+    {
+      "code": "UNAUTHORIZED",
+      "label": "simulated transfer decision",
+      "ok": true,
+      "path": "/api/admin/orders/00000000-0000-4000-8000-000000000001/transfer-decision",
+      "status": 401
+    },
+    {
+      "code": "UNAUTHORIZED",
+      "label": "internal dispatcher",
+      "ok": true,
+      "path": "/api/internal/notifications/dispatch",
+      "status": 401
+    }
+  ]
+}

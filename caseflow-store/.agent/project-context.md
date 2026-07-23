@@ -18,10 +18,18 @@
 - Current gate: `NOTIFY-T09` passed locally and on Production with migration,
   deployment, security, role, browser, accessibility, cleanup, tag, and release
   evidence.
-- Current task: `UAT-MANUAL-T02 - Customer Notification And Simulated Transfer
-  Walkthrough`, pending the user's explicit confirmation.
+- Current task: no active implementation task; `UAT-MANUAL-T02` passed on
+  Production with one non-blocking checkout-success copy finding.
 
 ## Confirmed Facts
+
+- `UAT-MANUAL-T02` passed on 2026-07-23 against Production using the confirmed
+  `CaseFlow UAT Customer` account. Order `CF-MRXNH8NZ-71D438191D` verified
+  server totals, separate order/payment states, in-app notifications,
+  mark-all-read, account history, customer cancellation, and post-cancellation
+  notifications. The order was left cancelled; no real payment or external
+  email/SMS delivery was claimed. The only finding is low-severity success-page
+  copy that says confirmed while the displayed order state is pending.
 
 - The released `v1.0.0` is a small MVP, not a large e-commerce platform.
 - The accepted `v1.1` direction is still not a marketplace, but it expands the project into a focused bookstore plus small-business operations demo.

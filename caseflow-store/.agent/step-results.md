@@ -15481,3 +15481,50 @@ GitHub Release.
 - `.agent/artifacts/notify-t09-*`
 - `docs/v1.13.0-transactional-notifications-release-notes.md`
 - `docs/postv130-t01-final-release-consistency-audit.md`
+
+---
+
+## UAT-MANUAL-T02 - Customer Notification And Simulated Transfer Walkthrough
+
+- Date: 2026-07-23
+- Status: completed
+- Environment: Production `https://caseflow-store.vercel.app`
+
+### Result
+
+- Created order `CF-MRXNH8NZ-71D438191D` with one in-stock edition and verified
+  the server-calculated `199.900 VND` total.
+- Verified separate `pending` order and `awaiting-transfer` payment states.
+- Verified order-created and transfer-pending in-app notifications, unread
+  state, and mark-all-read behavior.
+- Verified the new order appeared in authenticated history without requiring
+  the customer to remember or enter its order code.
+- Verified customer cancellation normalized both order and payment to
+  `cancelled`, removed the cancel action, and emitted two follow-up
+  notifications.
+- Verified the Production customer UI exposed no real QR/bank destination and
+  no self-confirm/simulate payment control.
+- Retained the cancelled UAT order as truthful account-history evidence.
+
+### Verification
+
+- Production smoke: passed `9/9`.
+- Production notification/operations boundary: passed `8/8`, all anonymous
+  requests returned `401 UNAUTHORIZED`.
+- Notification contracts: passed with zero failures.
+- Manual screenshots: reviewed with no clipping, overflow, or overlapping
+  transaction controls on the tested desktop viewport.
+
+### Finding
+
+- Low severity: checkout success copy says `Don hang da duoc xac nhan` /
+  `Order confirmed` while the page correctly displays the lifecycle as
+  `pending`. Runtime state and authorization are correct; patch the wording in
+  a separately scoped task.
+
+### Evidence
+
+- `docs/uat-manual-t02-production-notification-transfer.md`
+- `.agent/artifacts/uat-manual-t02/`
+- `.agent/artifacts/uat-manual-t02-production-smoke/`
+- `.agent/artifacts/uat-manual-t02-notification-safety/`

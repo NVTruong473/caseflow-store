@@ -14,7 +14,8 @@
 - Current mode: stable released `v1.13.0` transactional notification and
   simulated-transfer operations.
 - Current gate: `NOTIFY-T09` passed locally and on Production.
-- Current task: `UAT-MANUAL-T02`, pending explicit user confirmation.
+- Current task: no active implementation task; `UAT-MANUAL-T02` passed on
+  Production with one non-blocking copy finding.
 - Latest production deployment: `dpl_9N1HSkydBBzsrM1UmtT2Lfvpo7np`, aliased to
   `https://caseflow-store.vercel.app`.
 - Latest GitHub Release:

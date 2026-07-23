@@ -15,8 +15,8 @@
 - Current gate: `NOTIFY-T09` passed locally and on Production; migrations,
   deployment, `24/24` E2E, security, role, responsive/accessibility, cleanup,
   documentation, tag, and GitHub Release are verified
-- Current task: `UAT-MANUAL-T02 - Customer Notification And Simulated Transfer
-  Walkthrough`, pending the user's explicit confirmation
+- Current task: no active implementation task; `UAT-MANUAL-T02` passed with
+  one non-blocking copy finding
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-23
 
@@ -141,6 +141,25 @@
   - Evidence: `.agent/artifacts/notify-t09-*`,
     `docs/v1.13.0-transactional-notifications-release-notes.md`, and
     `docs/postv130-t01-final-release-consistency-audit.md`.
+
+- [x] `UAT-MANUAL-T02` Customer Notification And Simulated Transfer
+  Walkthrough. - 2026-07-23
+  - Result: created order `CF-MRXNH8NZ-71D438191D` as the confirmed customer
+    account, verified the server-calculated `199.900 VND` total, separate
+    `pending` / `awaiting-transfer` states, two initial in-app notifications,
+    mark-all-read, account order history, customer-only cancellation, and two
+    cancellation notifications.
+  - Cleanup: the UAT order was cancelled through the customer UI; order and
+    payment both ended as `cancelled`, and no duplicate cancel action remained.
+  - Production boundary: no real QR/bank destination or customer self-confirm
+    control was exposed; anonymous notification/operations checks passed `8/8`
+    with `401 UNAUTHORIZED`.
+  - Verification: Production smoke passed `9/9`; notification contracts passed
+    with zero failures.
+  - Finding: the success heading says the order is confirmed while the displayed
+    lifecycle remains `pending`; this is recorded as a non-blocking copy patch.
+  - Evidence: `docs/uat-manual-t02-production-notification-transfer.md` and
+    `.agent/artifacts/uat-manual-t02*`.
 
 - [x] `UAT-OWNER-T01` Production Customer And Operations Acceptance. - 2026-07-22
   - Objective: execute the seven-step owner UAT against production using a
