@@ -1,9 +1,9 @@
 # CaseFlow Books Portfolio Handoff
 
-- Latest release: `v1.13.1`
+- Latest release: `v1.14.0`
 - Production URL: `https://caseflow-store.vercel.app`
-- GitHub Release: `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.13.1`
-- Vercel deployment: `dpl_Hn3BEdLERPQDVXnSxC3QFDYFzL6d`
+- GitHub Release: `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.14.0`
+- Vercel deployment: `dpl_6cLwah2gUno1dbar97VQKFSopirM`
 - Project type: full-stack bookstore and small-business operations portfolio
 - Stack: Next.js 16, React 19, TypeScript 5, Tailwind CSS 4, Supabase
   PostgreSQL/Auth/RLS, Zod, Playwright, Vercel
@@ -130,7 +130,12 @@ See `docs/architecture.md` for the full architecture notes.
 
 | Evidence | Location |
 |---|---|
-| Latest release notes | `docs/v1.13.1-order-response-reliability-patch-release-notes.md` |
+| Latest release notes | `docs/v1.14.0-sellable-demo-productization-release-notes.md` |
+| v1.14.0 productization gate | `.agent/artifacts/productize-t05/sellable-demo-productization-check.json` |
+| v1.14.0 production smoke | `.agent/artifacts/productize-t06-production-smoke/production-smoke-check.json` |
+| v1.14.0 production accessibility/performance | `.agent/artifacts/productize-t06-production-a11y/accessibility-mobile-performance-check.json` |
+| v1.14.0 production final QA | `.agent/artifacts/productize-t06-production-final-qa/final-post-release-qa.json` |
+| v1.14.0 production cleanup | `.agent/artifacts/productize-t06-production-cleanup/release-cleanup-check.json` |
 | v1.13.1 production consistency audit | `docs/postv131-t01-final-release-consistency-audit.md` |
 | v1.13.1 production smoke | `.agent/artifacts/release-v1131-final-production-smoke/production-smoke-check.json` |
 | v1.13.1 notification boundary | `.agent/artifacts/release-v1131-final-production-notification-safety/notification-production-safety-check.json` |

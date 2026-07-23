@@ -22,10 +22,10 @@
     "src/lib/policies/bookstore-policies.ts": true,
     "src/lib/seo/metadata.ts": true
   },
-  "expectedDeployment": "dpl_Hn3BEdLERPQDVXnSxC3QFDYFzL6d",
-  "expectedRelease": "v1.13.1",
+  "expectedDeployment": "dpl_6cLwah2gUno1dbar97VQKFSopirM",
+  "expectedRelease": "v1.14.0",
   "findings": [],
-  "generatedAt": "2026-07-23T18:48:59.424Z",
+  "generatedAt": "2026-07-23T19:20:29.403Z",
   "inventedContactFindings": [],
   "ok": true,
   "releaseChecks": {

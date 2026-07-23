@@ -62,6 +62,12 @@ not enough to declare the theme complete.
 - Policy structure is in `src/lib/policies/bookstore-policies.ts`.
 - Bilingual UI copy remains source-controlled and reviewed.
 
+Changing environment variables does not rewrite Supabase catalog,
+merchandising, provenance, or historical order content. A buyer migration must
+replace or approve every reference-brand phrase in active data as part of the
+catalog handoff; do not present an environment-only rename as a finished
+rebrand.
+
 Buyer-specific terms, privacy text, delivery promises, returns, tax statements,
 and support commitments require buyer/legal approval. The reference policies
 describe application behavior; they are not legal advice.

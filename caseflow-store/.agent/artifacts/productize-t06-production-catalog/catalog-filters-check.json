@@ -1,0 +1,76 @@
+{
+  "generatedAt": "2026-07-23T19:10:01.987Z",
+  "authorSort": {
+    "authors": [
+      "Adam Smith",
+      "Adam Smith",
+      "Adam Smith",
+      "Adam Smith",
+      "Adam Smith",
+      "Adam Smith",
+      "Adam Smith",
+      "Adam Smith",
+      "Adam Smith",
+      "Adam Smith",
+      "Aesop",
+      "Aesop",
+      "Aesop",
+      "Aesop",
+      "Aesop",
+      "Aesop",
+      "Aesop",
+      "Aesop",
+      "Aesop",
+      "Aesop",
+      "Alexandre Dumas",
+      "Alexandre Dumas",
+      "Alexandre Dumas",
+      "Alexandre Dumas"
+    ],
+    "authorsAscending": true,
+    "hasHorizontalOverflow": false
+  },
+  "baseURL": "https://caseflow-store.vercel.app",
+  "combined": {
+    "activeChipText": "Current selection\n\n\"Dickens\"\nClassic literature\nEnglish\nPaperback\nAll authors\nAvailable\nEditor picks only\nPrice low-high\nPage 1",
+    "apiMeta": {
+      "resource": "book-editions",
+      "count": 4,
+      "total": 4,
+      "limit": 24,
+      "offset": 0,
+      "hasMore": false
+    },
+    "clearRenderedCards": 24,
+    "clearResultTotal": 500,
+    "hasHorizontalOverflow": false,
+    "pricesAscending": true,
+    "uiRenderedCards": 4,
+    "uiResultTotal": 4,
+    "urlIncludes": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  "invalid": {
+    "hasHorizontalOverflow": false,
+    "headingVisible": true,
+    "renderedCards": 24,
+    "resultTotal": 500
+  },
+  "ok": true,
+  "pass": {
+    "apiAndUiCountsAgree": true,
+    "clearFiltersWorks": true,
+    "combinedFiltersApplied": true,
+    "invalidParamsDoNotCrash": true,
+    "noOverflow": true,
+    "priceSortAscending": true,
+    "sortAuthorAscending": true
+  }
+}

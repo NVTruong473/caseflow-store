@@ -5,10 +5,10 @@ const artifactId =
   process.env.PRODUCTIZE_ARTIFACT_ID ?? "productize-t05";
 const artifactDir = path.join(".agent", "artifacts", artifactId);
 const expectedRelease =
-  process.env.PRODUCTIZE_EXPECT_RELEASE ?? "v1.13.1";
+  process.env.PRODUCTIZE_EXPECT_RELEASE ?? "v1.14.0";
 const expectedDeployment =
   process.env.PRODUCTIZE_EXPECT_DEPLOYMENT ??
-  "dpl_Hn3BEdLERPQDVXnSxC3QFDYFzL6d";
+  "dpl_6cLwah2gUno1dbar97VQKFSopirM";
 const requiredDocs = [
   "docs/adr/0017-sellable-demo-productization.md",
   "docs/v1.14-sellable-demo-productization-roadmap.md",

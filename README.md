@@ -11,8 +11,9 @@ release, the `v1.9.0` real-cover commerce polish, the `v1.10.0`
 account-bound signup voucher release, the `v1.11.x` account/security polish
 series, the `v1.12.0` layered architecture hardening release, the
 `v1.12.1` atomic order reliability patch, the `v1.13.0` transactional
-notification release, and the `v1.13.1` order-response reliability patch into a
-Vietnam-first, bilingual e-commerce application for book discovery,
+notification release, the `v1.13.1` order-response reliability patch, and the
+`v1.14.0` sellable-demo productization release into a Vietnam-first,
+bilingual e-commerce application for book discovery,
 account-gated checkout, customer order history/cancellation, order tracking,
 and admin/staff operations. The latest release keeps the 500-edition catalog,
 adds an account-scoped activity inbox and delivery outbox, and protects
@@ -21,7 +22,7 @@ simulated-transfer decisions behind staff/admin authorization.
 [Open the production deployment](https://caseflow-store.vercel.app)
 
 Latest release:
-[`v1.13.1`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.13.1)
+[`v1.14.0`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.14.0)
 
 > Payments are simulated. The app does not collect card numbers, CVV, card
 > expiry, real bank credentials, or real MoMo/ZaloPay/VNPay credentials. QR
@@ -154,10 +155,10 @@ Latest release:
 
 | Gate | Result |
 |---|---|
-| Release tag | `v1.13.1` |
-| GitHub Release | [`v1.13.1 - Order Response Reliability Patch`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.13.1) |
+| Release tag | `v1.14.0` |
+| GitHub Release | [`v1.14.0 - Sellable Demo Productization`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.14.0) |
 | Production URL | `https://caseflow-store.vercel.app` |
-| Vercel deployment | `READY`, deployment `dpl_Hn3BEdLERPQDVXnSxC3QFDYFzL6d` |
+| Vercel deployment | `READY`, deployment `dpl_6cLwah2gUno1dbar97VQKFSopirM` |
 | TypeScript | `npx tsc --noEmit --pretty false` passed |
 | ESLint | `npm run lint` passed |
 | Production build | 59 App Router routes plus proxy generated |
@@ -166,7 +167,8 @@ Latest release:
 | Modern bookstore QA | Search-first header, live category menu, mobile search/category links, cover provenance manifest, object-contain covers, product-card motion, back-to-top, no-overflow screenshots, and reduced-motion guard passed |
 | QR demo payment QA | Local QR flow, VietQR CRC, mock webhook HMAC, idempotency, production-safety lock, and UI regression checks passed |
 | Notification QA | Provider/OTP contracts, account ownership, minimized staff/admin operations, 8/8 anonymous boundaries, migration lifecycle, and disabled external-delivery controls passed |
-| Production QA | v1.13.1 smoke, security posture, QR production-safety lock, storefront/accessibility/final QA, role matrix, transfer UAT, and full Production Playwright `24/24` passed |
+| Productization QA | Shared store configuration, zero invented contacts, zero runtime source brand-coupling findings, buyer override, catalog handoff, and commercial/provider boundary gates passed |
+| Production QA | v1.14.0 smoke, security posture, QR production-safety lock, notification boundary, catalog filters, SEO, storefront/accessibility/final QA, cleanup, and full Production Playwright `24/24` passed |
 | v1.4.2 security QA | Security headers/no-store verifier and final QA smoke passed locally and in production; external agent repos were mapped as QA references, not runtime dependencies |
 | v1.4.1 local QA | TypeScript, lint, production build, no-demo copy scan, compact-card overlap, customer order history/cancellation, admin order rejection/cancellation, cleanup, secret scan, audit-high, and `git diff --check` passed |
 | v1.4.1 production QA | Production release smoke, final QA smoke, compact-card overlap, customer order history/cancellation, and admin order rejection/cancellation passed |
@@ -193,6 +195,7 @@ Release evidence is recorded in
 [`caseflow-store/docs/v1.12.0-layered-architecture-release-notes.md`](caseflow-store/docs/v1.12.0-layered-architecture-release-notes.md),
 [`caseflow-store/docs/v1.12.1-order-reliability-release-notes.md`](caseflow-store/docs/v1.12.1-order-reliability-release-notes.md),
 [`caseflow-store/docs/v1.13.1-order-response-reliability-patch-release-notes.md`](caseflow-store/docs/v1.13.1-order-response-reliability-patch-release-notes.md),
+[`caseflow-store/docs/v1.14.0-sellable-demo-productization-release-notes.md`](caseflow-store/docs/v1.14.0-sellable-demo-productization-release-notes.md),
 [`caseflow-store/docs/postv130-t01-final-release-consistency-audit.md`](caseflow-store/docs/postv130-t01-final-release-consistency-audit.md),
 [`caseflow-store/docs/uat-owner-t01-production-acceptance.md`](caseflow-store/docs/uat-owner-t01-production-acceptance.md),
 [`caseflow-store/docs/postv121-t01-final-release-consistency-audit.md`](caseflow-store/docs/postv121-t01-final-release-consistency-audit.md),
