@@ -1,0 +1,140 @@
+{
+  "version": 1,
+  "templateName": "caseflow-commerce-template",
+  "sourceRelease": "v1.14.0",
+  "sourcePaths": [
+    "eslint.config.mjs",
+    "next.config.ts",
+    "package-lock.json",
+    "package.json",
+    "playwright.config.ts",
+    "postcss.config.mjs",
+    "src",
+    "public",
+    "supabase/migrations",
+    "supabase/schema.sql",
+    "tests",
+    "scripts/verify-admin-content-query-safety.mjs",
+    "scripts/verify-layer-boundaries.mjs",
+    "scripts/verify-notification-contracts.mjs",
+    "scripts/verify-public-asset-metadata.mjs",
+    "scripts/verify-storefront-config.ts",
+    "tsconfig.json"
+  ],
+  "excludedPathPrefixes": [
+    ".agent/",
+    ".git/",
+    ".next/",
+    ".vercel/",
+    "node_modules/",
+    "playwright-report/",
+    "test-results/",
+    "public/images/books/gutenberg-covers/",
+    "public/images/books/v12-covers/",
+    "public/images/books/v12-pilot/",
+    "public/images/books/v16-covers/",
+    "src/data/books/",
+    "src/data/mock/",
+    "src/lib/repositories/mock-catalog.ts",
+    "src/lib/repositories/mock-orders.ts",
+    "supabase/seed.sql"
+  ],
+  "excludedBasenames": [
+    ".DS_Store"
+  ],
+  "overrides": [
+    {
+      "source": "template/overrides/.env.example",
+      "destination": ".env.example"
+    },
+    {
+      "source": "template/overrides/.gitignore",
+      "destination": ".gitignore"
+    },
+    {
+      "source": "template/overrides/AGENTS.md",
+      "destination": "AGENTS.md"
+    },
+    {
+      "source": "template/overrides/PRIVATE-SOURCE-NOTICE.md",
+      "destination": "PRIVATE-SOURCE-NOTICE.md"
+    },
+    {
+      "source": "template/overrides/README.md",
+      "destination": "README.md"
+    },
+    {
+      "source": "template/overrides/docs/architecture.md",
+      "destination": "docs/architecture.md"
+    },
+    {
+      "source": "template/overrides/docs/buyer-handoff-checklist.md",
+      "destination": "docs/buyer-handoff-checklist.md"
+    },
+    {
+      "source": "template/overrides/docs/setup.md",
+      "destination": "docs/setup.md"
+    }
+  ],
+  "packagePatch": {
+    "name": "commerce-starter",
+    "version": "1.0.0",
+    "private": true,
+    "license": "UNLICENSED",
+    "scripts": {
+      "dev": "next dev",
+      "build": "next build",
+      "start": "next start",
+      "lint": "eslint",
+      "test:e2e": "playwright test",
+      "verify:architecture": "node scripts/verify-layer-boundaries.mjs",
+      "verify:config": "npm exec -- tsx scripts/verify-storefront-config.ts",
+      "verify:notifications": "node scripts/verify-notification-contracts.mjs",
+      "verify:admin-query-safety": "node scripts/verify-admin-content-query-safety.mjs",
+      "verify:assets": "node scripts/verify-public-asset-metadata.mjs"
+    }
+  },
+  "textReplacements": [
+    {
+      "path": "src/config/storefront.ts",
+      "from": "export const REFERENCE_STORE_NAME = \"CaseFlow Books\";",
+      "to": "export const REFERENCE_STORE_NAME = \"Commerce Starter\";"
+    },
+    {
+      "path": "src/config/storefront.ts",
+      "from": "export const REFERENCE_SITE_URL = \"https://caseflow-store.vercel.app\";",
+      "to": "export const REFERENCE_SITE_URL = \"http://localhost:3000\";"
+    },
+    {
+      "path": "tests/e2e/storefront-flow.spec.ts",
+      "from": "\"CaseFlow Books\",",
+      "to": "process.env.NEXT_PUBLIC_STORE_NAME ?? \"Commerce Starter\","
+    }
+  ],
+  "requiredOutputPaths": [
+    ".env.example",
+    ".gitignore",
+    "AGENTS.md",
+    "PRIVATE-SOURCE-NOTICE.md",
+    "README.md",
+    "docs/architecture.md",
+    "docs/buyer-handoff-checklist.md",
+    "docs/setup.md",
+    "package.json",
+    "package-lock.json",
+    "template-export.json",
+    "template-file-manifest.json",
+    "src/app",
+    "src/config/storefront.ts",
+    "supabase/schema.sql",
+    "supabase/migrations",
+    "tests/e2e"
+  ],
+  "prohibitedContent": [
+    "caseflow-store.vercel.app",
+    "dpl_6cLwah2gUno1dbar97VQKFSopirM",
+    "fcsuldrerhbynwotcvyn",
+    "truongskull014@gmail.com",
+    "SUPABASE_DB_URL=postgresql://"
+  ]
+}

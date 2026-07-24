@@ -11457,3 +11457,24 @@ QA audit evidence.
 - Verification: local and Production Playwright `24/24`; productization,
   build, security, QR/notification lock, catalog, accessibility/performance,
   SEO, final QA, dependency, secret, asset, and cleanup gates passed.
+
+---
+
+## TEMPLATE-T01 - Accept Repository Strategy And Audit Baseline
+
+- Date: 2026-07-24
+- Status: completed
+- Result: accepted a `2 + N` repository strategy with an allowlisted,
+  fresh-history private template and no fake buyer repository.
+- Verification: ADR, roadmap, audit links, task IDs, and `git diff --check`
+  passed.
+
+---
+
+## TEMPLATE-T02 - Define Export, License, And Handoff Contracts
+
+- Date: 2026-07-24
+- Status: completed
+- Result: accepted the allowlisted export, safe configuration, private-source
+  license, and buyer handoff contracts.
+- Verification: template policy verifier, lint, and `git diff --check` passed.

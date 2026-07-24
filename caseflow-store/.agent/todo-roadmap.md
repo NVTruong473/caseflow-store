@@ -10,11 +10,32 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: `v1.14` sellable demo productization
-- Current gate: `PRODUCTIZE-T06` v1.14.0 release accepted
-- Current task: none; stable sellable-demo reference baseline
+- Mode: `v1.14` showroom plus private-template separation
+- Current gate: `TEMPLATE-T02` export/license contracts accepted
+- Current task: `TEMPLATE-T03 - Implement Deterministic Template Export`
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-24
+
+## Phase TEMPLATE - Private Template Separation
+
+- [x] `TEMPLATE-T01` Accept Repository Strategy And Audit Baseline. - 2026-07-24
+  - Result: accepted ADR-0018 and the `2 + N` showroom/template/buyer
+    repository boundary.
+  - Result: audit requires a fresh-history allowlisted export and rejects a
+    fake buyer repository.
+  - Verification: document links, task IDs, and `git diff --check` passed.
+- [x] `TEMPLATE-T02` Define Export, License, And Handoff Contracts. - 2026-07-24
+  - Result: added a machine-readable allowlist, safe environment defaults,
+    private-source notice, neutral setup/architecture, and buyer handoff gate.
+  - Verification: policy verifier passed with 17 source paths, 8 overrides,
+    and zero findings; lint and `git diff --check` passed.
+- [/] `TEMPLATE-T03` Implement Deterministic Template Export. - 2026-07-24
+- [ ] `TEMPLATE-T04` Generate And Harden The Private Template.
+- [ ] `TEMPLATE-T05` Prove Buyer Bootstrap With A Disposable Fixture.
+- [ ] `TEMPLATE-T06` Publish Private Template And Close Handoff.
+
+Roadmap and acceptance criteria:
+`docs/template-repository-roadmap.md`.
 
 ## Phase UAT-MANUAL - Production Customer Manual Acceptance
 

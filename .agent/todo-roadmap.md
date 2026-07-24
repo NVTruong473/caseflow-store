@@ -10,9 +10,9 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: `v1.14` sellable demo productization
-- Current gate: `PRODUCTIZE-T06` v1.14.0 release accepted
-- Current task: none; stable sellable-demo reference baseline
+- Mode: `v1.14` showroom plus private-template separation
+- Current gate: `TEMPLATE-T02` export/license contracts accepted
+- Current task: `TEMPLATE-T03 - Implement Deterministic Template Export`
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-24
 

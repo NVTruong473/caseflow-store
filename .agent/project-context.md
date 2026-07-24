@@ -11,9 +11,9 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: stable `v1.14.0` sellable-demo reference baseline.
-- Current gate: `PRODUCTIZE-T06` release accepted.
-- Current task: none.
+- Current mode: stable `v1.14.0` showroom plus private-template separation.
+- Current gate: `TEMPLATE-T02` export/license contracts accepted.
+- Current task: `TEMPLATE-T03 - Implement Deterministic Template Export`.
 - Latest production deployment: `dpl_6cLwah2gUno1dbar97VQKFSopirM`, aliased to
   `https://caseflow-store.vercel.app`.
 - Latest GitHub Release:

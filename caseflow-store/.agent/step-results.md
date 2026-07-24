@@ -15833,3 +15833,37 @@ GitHub Release.
 - `docs/v1.14.0-sellable-demo-productization-release-notes.md`
 - `docs/postv140-t01-final-release-consistency-audit.md`
 - `.agent/artifacts/productize-t06-production-*`
+
+---
+
+## TEMPLATE-T01 - Accept Repository Strategy And Audit Baseline
+
+- Date: 2026-07-24
+- Status: completed
+- Result: accepted ADR-0018 and the `2 + N` repository model: public showroom,
+  private fresh-history template, and one isolated buyer repository per real
+  buyer.
+- Guardrail: no buyer repository, buyer infrastructure, paid provider, or
+  fabricated business was created.
+- Verification: strategy, roadmap, audit links, task IDs, and
+  `git diff --check` passed.
+- Evidence:
+  - `docs/adr/0018-showroom-template-buyer-repository-strategy.md`
+  - `docs/template-repository-roadmap.md`
+  - `docs/template-separation-audit.md`
+
+---
+
+## TEMPLATE-T02 - Define Export, License, And Handoff Contracts
+
+- Date: 2026-07-24
+- Status: completed
+- Result: defined a machine-readable export allowlist, fail-safe environment
+  defaults, private `UNLICENSED` source boundary, neutral template
+  architecture/setup documentation, and buyer ownership/acceptance checklist.
+- Verification: `npm run verify:template-policy` passed with 17 source paths,
+  8 overrides, and zero findings; lint and `git diff --check` passed.
+- Evidence:
+  - `template/export-policy.json`
+  - `template/overrides/`
+  - `.agent/artifacts/template-t02/template-export-policy-check.json`
