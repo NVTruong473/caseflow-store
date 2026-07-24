@@ -12,7 +12,7 @@
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
 - Current mode: stable `v1.14.0` showroom plus private bookstore template.
-- Current gate: `TEMPLATE-T06` private template publication accepted.
+- Current gate: `GOVERNANCE-T01` repository governance publication accepted.
 - Current task: none; await a real buyer discovery.
 - Latest production deployment: `dpl_6cLwah2gUno1dbar97VQKFSopirM`, aliased to
   `https://caseflow-store.vercel.app`.
@@ -21,6 +21,12 @@
 - Detailed current trackers live in `caseflow-store/.agent/`.
 
 ## Confirmed Facts
+
+- `GOVERNANCE-T01` added explicit proprietary repository-root/application/
+  template terms, security reporting, and support boundaries; corrected public
+  GitHub metadata; enabled supported repository security controls; and
+  released private template `template-v1.0.1` at commit `3db1fb2`. The
+  showroom `v1.14.0` tag and Production deployment remain unchanged.
 
 - The released `v1.0.0` is a small MVP, not a large e-commerce platform.
 - The accepted `v1.1` direction is still not a marketplace, but it expands the project into a focused bookstore plus small-business operations demo.

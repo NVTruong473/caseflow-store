@@ -15937,3 +15937,26 @@ GitHub Release.
 - Evidence:
   - `docs/private-template-handoff.md`
   - `.agent/artifacts/template-t06/private-template-publication-check.json`
+
+---
+
+## GOVERNANCE-T01 - Add Repository License And GitHub Governance
+
+- Date: 2026-07-24
+- Status: completed
+- Result: published explicit proprietary source terms, private vulnerability
+  reporting guidance, and support boundaries at both the showroom repository
+  root and application package.
+- Result: updated future template exports to require those governance files
+  and released private template `template-v1.0.1` at commit `3db1fb2`,
+  annotated tag object `c41221f`, and GitHub Release `359332022`.
+- GitHub: showroom metadata now reflects CaseFlow Books and links to
+  Production; private vulnerability reporting, Dependabot security updates,
+  secret scanning, and push protection are enabled where supported.
+- Verification: export `275` files with zero findings; `274/274` manifest
+  hashes matched; npm audit zero vulnerabilities; lint, TypeScript,
+  architecture, config, notifications, admin-query safety, asset metadata,
+  and 59-route build passed.
+- Guardrail: no runtime, database, provider, buyer repository, or deployment
+  changed; showroom `v1.14.0` and Production deployment
+  `dpl_6cLwah2gUno1dbar97VQKFSopirM` remain unchanged.

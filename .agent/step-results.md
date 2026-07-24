@@ -11519,3 +11519,18 @@ QA audit evidence.
 - Status: completed
 - Result: published and verified private bookstore template
   `template-v1.0.0`; showroom Production and release remain unchanged.
+
+---
+
+## GOVERNANCE-T01 - Add Repository License And GitHub Governance
+
+- Date: 2026-07-24
+- Status: completed
+- Result: added proprietary source terms, security reporting, support
+  boundaries, accurate GitHub metadata, and supported repository security
+  controls.
+- Result: released private template `template-v1.0.1` at commit `3db1fb2`;
+  deterministic export, manifest, dependency, static quality, build, remote,
+  tag, release, visibility, and Production-stability checks passed.
+- Guardrail: showroom `v1.14.0` and Production deployment
+  `dpl_6cLwah2gUno1dbar97VQKFSopirM` remain unchanged.

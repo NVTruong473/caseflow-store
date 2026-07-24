@@ -11,13 +11,26 @@
 
 - Project: CaseFlow Books
 - Mode: stable `v1.14.0` showroom plus private bookstore template
-- Current gate: `TEMPLATE-T06` private template publication accepted
+- Current gate: `GOVERNANCE-T01` repository governance publication accepted
 - Current task: none; await a real buyer discovery
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-24
 
 > Detailed post-v1.3 roadmap entries are maintained in
 > `caseflow-store/.agent/todo-roadmap.md`.
+
+## Phase GOVERNANCE - Repository License And GitHub Governance
+
+- [x] `GOVERNANCE-T01` Add Repository License And GitHub Governance. -
+  2026-07-24
+  - Result: added proprietary root/app/template license, security, and support
+    policies; updated GitHub metadata and security settings; published private
+    template patch `template-v1.0.1`.
+  - Verification: deterministic export, manifest, dependency, lint,
+    TypeScript, architecture, configuration, notification, asset, build,
+    remote, tag, release, visibility, and Production-stability checks passed.
+  - Guardrail: no runtime, database, provider, buyer repository, or Production
+    deployment changed.
 
 ## Pre-Implementation Checklist
 

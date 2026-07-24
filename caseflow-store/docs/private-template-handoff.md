@@ -20,12 +20,15 @@ repository exists yet.
   `/Users/vantruong/Documents/caseflow-bookstore-template`
 - Private repository:
   `NVTruong473/caseflow-bookstore-template`
-- Template commit:
+- Initial root commit:
   `d75c6bcf4411f432fe9ece504f4b0ee2f67fcb24`
-- Annotated tag: `template-v1.0.0`
-- GitHub Release ID: `359304571`
-- Package: `bookstore-commerce-starter@1.0.0`, private and `UNLICENSED`
-- Source shape: 272 allowlisted files with a fresh Git history
+- Current template commit:
+  `3db1fb2689c70276cabce6da328936988ec581ea`
+- Current annotated tag: `template-v1.0.1`
+- Current GitHub Release ID: `359332022`
+- Package: `bookstore-commerce-starter@1.0.1`, private and `UNLICENSED`
+- Source shape: 275 exported files, including the generated manifest, with a
+  fresh Git history and explicit proprietary governance files
 
 The template is not deployed. A deployment without buyer-owned catalog,
 identity, policies, and infrastructure would create another misleading demo
@@ -49,7 +52,8 @@ rather than a buyer product.
 
 | Gate | Result |
 |---|---|
-| Deterministic export | Two 272-file exports, identical SHA-256 inventory, zero findings |
+| Deterministic export | 275-file governance export, zero findings |
+| Manifest integrity | 274/274 entries matched their SHA-256 values |
 | Install and dependency audit | 411 packages installed, zero vulnerabilities |
 | ESLint and TypeScript | PASS |
 | Layer boundary | 218 files, zero findings |
@@ -59,14 +63,15 @@ rather than a buyer product.
 | Public asset metadata | 6 files, zero findings |
 | Production build | 59 routes, PASS without `.env.local` |
 | Buyer fixture | Environment-only rebrand, 59-route build, zero tracked source changes |
-| Template remote | Private, `main` and peeled tag match `d75c6bc` |
+| Repository governance | Proprietary `LICENSE`, private security reporting, and support boundary published |
+| Template remote | Private, `main` and peeled `template-v1.0.1` tag match `3db1fb2` |
 
 ## Buyer Start Procedure
 
 1. Complete `docs/buyer-discovery-questionnaire.md`.
 2. Confirm the buyer is a bookstore or estimate a separate domain migration.
 3. Sign source license, scope, support, data, and acceptance terms.
-4. Create a buyer-owned private repository from `template-v1.0.0`.
+4. Create a buyer-owned private repository from `template-v1.0.1`.
 5. Create buyer-owned Supabase, deployment, domain, and provider accounts.
 6. Replace brand, catalog, covers, contacts, and policies.
 7. Apply migrations with backup/rollback and reconcile imported data.

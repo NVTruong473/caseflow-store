@@ -11,14 +11,15 @@
 
 - Project: CaseFlow Books
 - Mode: stable `v1.14.0` showroom plus private bookstore template
-- Current gate: `GOVERNANCE-T01` repository governance publication in progress
-- Current task: `GOVERNANCE-T01`
+- Current gate: `GOVERNANCE-T01` repository governance publication accepted
+- Current task: none; await a real buyer discovery
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-24
 
 ## Phase GOVERNANCE - Repository License And GitHub Governance
 
-- [/] `GOVERNANCE-T01` Add Repository License And GitHub Governance.
+- [x] `GOVERNANCE-T01` Add Repository License And GitHub Governance. -
+  2026-07-24
   - Scope: add explicit proprietary source terms, private vulnerability
     reporting guidance, support boundaries, deterministic template-export
     coverage, accurate repository metadata, and a versioned template
@@ -36,6 +37,23 @@
     - Both repository worktrees are clean and synchronized after push.
     - Existing showroom release tag and Production deployment remain
       unchanged.
+  - Result: added repository-root and application-level proprietary source
+    terms, security reporting, and support boundaries without granting an
+    open-source or commercial-use license.
+  - Result: published private template patch `template-v1.0.1` at commit
+    `3db1fb2`, annotated tag object `c41221f`, and GitHub Release `359332022`.
+  - Result: corrected the public repository description/homepage/topics,
+    enabled private vulnerability reporting, Dependabot alerts/security
+    updates, secret scanning, and push protection where GitHub supports them.
+  - Verification: deterministic export reported 275 files and zero findings;
+    all 274 manifest entries matched; npm audit reported zero vulnerabilities;
+    lint, TypeScript, architecture, configuration, notification,
+    admin-query, asset, and 59-route build gates passed.
+  - Verification: both repositories report license type `Other`; showroom is
+    public, template is private, remote heads/tags match, and both worktrees
+    are clean.
+  - Guardrail: showroom tag `v1.14.0` remains peeled to `7d791b6`; Vercel
+    Production remains Ready on `dpl_6cLwah2gUno1dbar97VQKFSopirM`.
 
 ## Phase TEMPLATE - Private Template Separation
 

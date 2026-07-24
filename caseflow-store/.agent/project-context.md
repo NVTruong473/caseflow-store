@@ -15,11 +15,21 @@
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
 - Current mode: stable `v1.14.0` showroom plus private bookstore template.
-- Current gate: `GOVERNANCE-T01` repository governance publication in
-  progress.
-- Current task: `GOVERNANCE-T01`.
+- Current gate: `GOVERNANCE-T01` repository governance publication accepted.
+- Current task: none; await a real buyer discovery.
 
 ## Confirmed Facts
+
+- `GOVERNANCE-T01` added repository-root and application-level proprietary
+  source terms, private security-reporting guidance, and support boundaries.
+  The public showroom now has accurate bookstore metadata, Production
+  homepage, topics, private vulnerability reporting, Dependabot security
+  updates, secret scanning, and push protection. Private template
+  `template-v1.0.1` was released at commit `3db1fb2` with GitHub Release
+  `359332022`; its deterministic 275-file export had zero findings and all 274
+  manifest entries matched. The custom license is reported by GitHub as
+  `Other`, not as an OSI open-source license. Showroom tag/deployment remain
+  unchanged.
 
 - `TEMPLATE-T06` published the private bookstore-first template at
   `NVTruong473/caseflow-bookstore-template`: root commit `d75c6bc`, annotated
