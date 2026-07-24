@@ -11489,3 +11489,24 @@ QA audit evidence.
   exporter.
 - Verification: two independent 272-file exports had zero findings and an
   identical SHA-256 manifest.
+
+---
+
+## TEMPLATE-T04 - Generate And Harden The Private Template
+
+- Date: 2026-07-24
+- Status: completed
+- Result: generated a fresh-history, no-remote bookstore template and removed
+  claims tied to the 500-edition showroom catalog.
+- Verification: install/audit, lint, TypeScript, architecture, config,
+  notification, query, asset, and 59-route build gates passed.
+
+---
+
+## TEMPLATE-T05 - Prove Buyer Bootstrap With A Disposable Fixture
+
+- Date: 2026-07-24
+- Status: completed
+- Result: verified environment-only buyer branding and a 59-route build from
+  an immutable template commit, without showroom infrastructure, then removed
+  the disposable fixture.

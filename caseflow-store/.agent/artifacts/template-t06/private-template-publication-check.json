@@ -1,0 +1,23 @@
+{
+  "checkedAt": "2026-07-24T12:52:54.000Z",
+  "localWorktreeClean": true,
+  "ok": true,
+  "release": {
+    "draft": false,
+    "id": 359304571,
+    "prerelease": false,
+    "tag": "template-v1.0.0"
+  },
+  "remote": {
+    "defaultBranch": "main",
+    "fullName": "NVTruong473/caseflow-bookstore-template",
+    "private": true,
+    "visibility": "private"
+  },
+  "remoteRefs": {
+    "main": "d75c6bcf4411f432fe9ece504f4b0ee2f67fcb24",
+    "peeledTag": "d75c6bcf4411f432fe9ece504f4b0ee2f67fcb24",
+    "tagObject": "b85018c51b435783d8a6b2f4d37da57907e17a0e"
+  },
+  "templateDeployed": false
+}

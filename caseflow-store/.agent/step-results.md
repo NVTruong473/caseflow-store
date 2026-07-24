@@ -15884,3 +15884,37 @@ GitHub Release.
   `8eadcb9bca6cfe663a802fb00fb5df9af27e8a5504f5352b9153517b204b547e`.
 - Evidence:
   `.agent/artifacts/template-t03/template-export-determinism-check.json`.
+
+---
+
+## TEMPLATE-T04 - Generate And Harden The Private Template
+
+- Date: 2026-07-24
+- Status: completed
+- Result: generated a 272-file bookstore-first template with a new Git root
+  commit, no remote, no third-party downloaded covers, neutral public identity,
+  fail-safe providers, and no fixed showroom catalog count.
+- Verification: `npm ci`, dependency audit with zero vulnerabilities, lint,
+  TypeScript, 218-file architecture, config, notifications, query safety,
+  six-asset scan, and 59-route Production build passed without `.env.local`.
+- Boundary: Playwright remains buyer-infrastructure-gated and was not run
+  against the showroom Production project.
+- Evidence:
+  `.agent/artifacts/template-t04/template-repository-quality-check.json`.
+
+---
+
+## TEMPLATE-T05 - Prove Buyer Bootstrap With A Disposable Fixture
+
+- Date: 2026-07-24
+- Status: completed
+- Result: generated a disposable buyer fixture from immutable template commit
+  `d75c6bc`, applied a `.example.test` bookstore identity only through
+  environment values, built it, captured evidence, and removed the fixture
+  from its working location.
+- Verification: storefront config reported zero findings, the buyer-branded
+  build generated 59 routes, tracked source differences remained zero, and no
+  showroom Supabase/Vercel credential, database, or deployment was used.
+- Evidence:
+  - `.agent/artifacts/template-t05/buyer-fixture-storefront-config-check.json`
+  - `.agent/artifacts/template-t05/buyer-fixture-bootstrap-check.json`

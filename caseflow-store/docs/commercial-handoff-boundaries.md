@@ -3,6 +3,17 @@
 This document is a technical scope checklist, not legal advice or a sales
 contract.
 
+## Repository Delivery Model
+
+- The public showroom is not cloned with its full Git history.
+- A buyer starts from the private `caseflow-bookstore-template` release.
+- Each real buyer receives a separate private repository and buyer-owned
+  infrastructure.
+- No buyer repository is created before discovery and written commercial
+  scope.
+- The template is bookstore-specific. Unrelated product domains require a
+  separately estimated schema/domain/UI migration.
+
 ## Included In The Reference Product
 
 - Next.js/React/TypeScript source for the single-store reference app.

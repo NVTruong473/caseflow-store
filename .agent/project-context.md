@@ -12,8 +12,8 @@
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
 - Current mode: stable `v1.14.0` showroom plus private-template separation.
-- Current gate: `TEMPLATE-T03` deterministic export accepted.
-- Current task: `TEMPLATE-T04 - Generate And Harden The Private Template`.
+- Current gate: `TEMPLATE-T05` buyer bootstrap fixture accepted.
+- Current task: `TEMPLATE-T06 - Publish Private Template And Close Handoff`.
 - Latest production deployment: `dpl_6cLwah2gUno1dbar97VQKFSopirM`, aliased to
   `https://caseflow-store.vercel.app`.
 - Latest GitHub Release:

@@ -24,6 +24,12 @@ simulated-transfer decisions behind staff/admin authorization.
 Latest release:
 [`v1.14.0`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.14.0)
 
+The public repository remains the showroom. A fresh-history, private,
+bookstore-first buyer template is tracked through
+[`caseflow-store/docs/private-template-handoff.md`](caseflow-store/docs/private-template-handoff.md);
+no buyer repository or buyer infrastructure is created until a real buyer
+completes discovery and commercial scope.
+
 > Payments are simulated. The app does not collect card numbers, CVV, card
 > expiry, real bank credentials, or real MoMo/ZaloPay/VNPay credentials. QR
 > demo payment exists for development/sandbox verification and is locked from

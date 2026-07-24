@@ -11,8 +11,8 @@
 
 - Project: CaseFlow Books
 - Mode: `v1.14` showroom plus private-template separation
-- Current gate: `TEMPLATE-T03` deterministic export accepted
-- Current task: `TEMPLATE-T04 - Generate And Harden The Private Template`
+- Current gate: `TEMPLATE-T05` buyer bootstrap fixture accepted
+- Current task: `TEMPLATE-T06 - Publish Private Template And Close Handoff`
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-24
 
@@ -36,9 +36,24 @@
   - Verification: two independent 272-file exports produced identical
     manifests with SHA-256 `8eadcb9bca6cfe663a802fb00fb5df9af27e8a5504f5352b9153517b204b547e`
     and zero findings.
-- [/] `TEMPLATE-T04` Generate And Harden The Private Template. - 2026-07-24
-- [ ] `TEMPLATE-T05` Prove Buyer Bootstrap With A Disposable Fixture.
-- [ ] `TEMPLATE-T06` Publish Private Template And Close Handoff.
+- [x] `TEMPLATE-T04` Generate And Harden The Private Template. - 2026-07-24
+  - Result: generated `/Users/vantruong/Documents/caseflow-bookstore-template`
+    as a fresh-history, no-remote, bookstore-first private source tree.
+  - Result: removed hard-coded 500-edition claims and added a static-only
+    sitemap fallback before buyer Supabase configuration.
+  - Verification: `npm ci`, zero-vulnerability audit, lint, TypeScript,
+    218-file architecture, config, notification, query, asset, and 59-route
+    build gates passed.
+  - Boundary: Playwright is retained but deferred until a buyer-isolated
+    Supabase project exists; showroom Production was not reused.
+- [x] `TEMPLATE-T05` Prove Buyer Bootstrap With A Disposable Fixture. - 2026-07-24
+  - Result: created a disposable fixture from template commit `d75c6bc`,
+    applied a `.example.test` buyer identity through environment values only,
+    and removed the fixture after evidence capture.
+  - Verification: config checks had zero findings, buyer-branded build
+    generated 59 routes, tracked source differences remained zero, and no
+    showroom credential/database/deployment was used.
+- [/] `TEMPLATE-T06` Publish Private Template And Close Handoff. - 2026-07-24
 
 Roadmap and acceptance criteria:
 `docs/template-repository-roadmap.md`.

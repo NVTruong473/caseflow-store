@@ -120,3 +120,6 @@ Buyer productization starts with
 [`docs/buyer-discovery-questionnaire.md`](docs/buyer-discovery-questionnaire.md)
 and
 [`docs/commercial-handoff-boundaries.md`](docs/commercial-handoff-boundaries.md).
+The private bookstore-template delivery model and verified source baseline are
+documented in
+[`docs/private-template-handoff.md`](docs/private-template-handoff.md).

@@ -1,0 +1,28 @@
+{
+  "build": {
+    "ok": true,
+    "routes": 59
+  },
+  "checkedAt": "2026-07-24T12:48:29.000Z",
+  "configuration": {
+    "canonicalUrl": "https://minh-chau.example.test",
+    "findings": 0,
+    "name": "Minh Chau Books",
+    "ok": true,
+    "shortMark": "MC",
+    "supportValuesRedacted": true
+  },
+  "fixture": {
+    "deletedFromWorkingLocation": true,
+    "persistentBuyerRepositoryCreated": false,
+    "sourceDifferencesAfterVerification": 0
+  },
+  "ok": true,
+  "productionAccess": {
+    "externalServiceCreated": false,
+    "showroomCredentialsUsed": false,
+    "showroomDatabaseUsed": false,
+    "showroomDeploymentUsed": false
+  },
+  "templateCommit": "d75c6bcf4411f432fe9ece504f4b0ee2f67fcb24"
+}

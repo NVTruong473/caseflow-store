@@ -137,6 +137,8 @@ See `docs/architecture.md` for the full architecture notes.
 | v1.14.0 production accessibility/performance | `.agent/artifacts/productize-t06-production-a11y/accessibility-mobile-performance-check.json` |
 | v1.14.0 production final QA | `.agent/artifacts/productize-t06-production-final-qa/final-post-release-qa.json` |
 | v1.14.0 production cleanup | `.agent/artifacts/productize-t06-production-cleanup/release-cleanup-check.json` |
+| Private bookstore template handoff | `docs/private-template-handoff.md` |
+| Template publication verification | `.agent/artifacts/template-t06/private-template-publication-check.json` |
 | v1.13.1 production consistency audit | `docs/postv131-t01-final-release-consistency-audit.md` |
 | v1.13.1 production smoke | `.agent/artifacts/release-v1131-final-production-smoke/production-smoke-check.json` |
 | v1.13.1 notification boundary | `.agent/artifacts/release-v1131-final-production-notification-safety/notification-production-safety-check.json` |

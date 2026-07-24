@@ -11,8 +11,8 @@
 
 - Project: CaseFlow Books
 - Mode: `v1.14` showroom plus private-template separation
-- Current gate: `TEMPLATE-T03` deterministic export accepted
-- Current task: `TEMPLATE-T04 - Generate And Harden The Private Template`
+- Current gate: `TEMPLATE-T05` buyer bootstrap fixture accepted
+- Current task: `TEMPLATE-T06 - Publish Private Template And Close Handoff`
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-24
 

@@ -1,0 +1,41 @@
+{
+  "config": {
+    "canonicalUrl": "https://minh-chau.example.test",
+    "copyrightYear": 2026,
+    "legalDisplayName": "Minh Chau Books",
+    "name": "Minh Chau Books",
+    "shortMark": "MC",
+    "supportEmail": "[configured]",
+    "supportHours": {
+      "en": "Mon-Sat, 09:00-18:00 ICT",
+      "vi": "Thứ 2-Thứ 7, 09:00-18:00 ICT"
+    },
+    "supportPhone": "[configured]",
+    "tagline": {
+      "en": "Independent bilingual bookstore",
+      "vi": "Nha sach song ngu doc lap"
+    }
+  },
+  "findings": [],
+  "generatedAt": "2026-07-24T12:47:23.601Z",
+  "ok": true,
+  "runtimeChecks": {
+    "brandReplacement": true,
+    "canonicalUrl": true,
+    "legalDisplayName": true,
+    "name": true,
+    "shortMark": true,
+    "supportEmail": true,
+    "supportHours": true,
+    "supportPhone": true,
+    "taglines": true
+  },
+  "sourceChecks": {
+    "envContract": true,
+    "footerUsesConfig": true,
+    "headerUsesConfig": true,
+    "noInventedContact": true,
+    "paymentUsesConfig": true,
+    "seoUsesConfig": true
+  }
+}

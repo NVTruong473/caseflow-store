@@ -1,0 +1,37 @@
+{
+  "architecture": {
+    "checkedFiles": 218,
+    "findings": 0,
+    "ok": true
+  },
+  "assetScan": {
+    "checkedFiles": 6,
+    "findings": 0,
+    "ok": true
+  },
+  "build": {
+    "ok": true,
+    "routes": 59
+  },
+  "checkedAt": "2026-07-24T12:44:39.000Z",
+  "dependencyAudit": {
+    "installedPackages": 411,
+    "vulnerabilities": 0
+  },
+  "e2e": {
+    "reason": "Requires a buyer-isolated Supabase project; the showroom project is prohibited.",
+    "status": "DEFERRED"
+  },
+  "lint": "PASS",
+  "notificationContracts": "PASS",
+  "output": "/Users/vantruong/Documents/caseflow-bookstore-template",
+  "package": "bookstore-commerce-starter@1.0.0",
+  "querySafety": "PASS",
+  "repository": {
+    "commit": "d75c6bcf4411f432fe9ece504f4b0ee2f67fcb24",
+    "freshHistory": true,
+    "remoteCount": 0
+  },
+  "storefrontConfig": "PASS",
+  "typecheck": "PASS"
+}
