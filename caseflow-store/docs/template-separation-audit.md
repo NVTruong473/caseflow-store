@@ -7,6 +7,8 @@ Task: `TEMPLATE-T01`
 
 The released showroom is suitable as a reference implementation but must not be
 cloned wholesale for a buyer. A fresh-history, allowlisted export is required.
+The domain is bookstore-specific; changing to fashion, electronics, or another
+product model is engineering work, not a data-only rebrand.
 
 ## Critical Findings
 

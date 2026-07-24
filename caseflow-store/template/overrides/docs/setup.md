@@ -37,6 +37,10 @@ npm run dev
 - buyer-owned staff/admin accounts and role assignments;
 - delivery, payment, tax, notification, and operational decisions.
 
+The included import/schema contract is bookstore-specific. Treating an
+unrelated retail catalog as a row-only import is unsupported; define and test a
+new domain migration first.
+
 Provider variables being present is not sufficient evidence for Production
 readiness. Real providers require contracts, credential controls, webhook
 verification, reconciliation, failure handling, and buyer UAT.

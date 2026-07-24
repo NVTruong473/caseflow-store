@@ -19,8 +19,8 @@ const findings = [];
 
 check(policy.version === 1, "Policy version must be 1.");
 check(
-  policy.templateName === "caseflow-commerce-template",
-  "Template name must be caseflow-commerce-template.",
+  policy.templateName === "caseflow-bookstore-template",
+  "Template name must be caseflow-bookstore-template.",
 );
 checkStringArray(policy.sourcePaths, "sourcePaths");
 checkStringArray(policy.excludedPathPrefixes, "excludedPathPrefixes");
@@ -52,8 +52,8 @@ for (const required of requiredExclusions) {
 }
 
 check(
-  policy.packagePatch?.name === "commerce-starter",
-  "Package name patch must be commerce-starter.",
+  policy.packagePatch?.name === "bookstore-commerce-starter",
+  "Package name patch must be bookstore-commerce-starter.",
 );
 check(policy.packagePatch?.private === true, "Template package must be private.");
 check(

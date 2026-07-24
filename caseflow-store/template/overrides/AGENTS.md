@@ -2,9 +2,10 @@
 
 ## Product Boundary
 
-This repository is a configurable single-store commerce template. It is not a
-multi-tenant SaaS, marketplace, payment processor, logistics platform, or
-legally launch-ready business.
+This repository is a bookstore-first, configurable single-store commerce
+template. It is not a generic arbitrary-product schema, multi-tenant SaaS,
+marketplace, payment processor, logistics platform, or legally launch-ready
+business. A non-book product domain requires an explicit model migration.
 
 ## Security
 

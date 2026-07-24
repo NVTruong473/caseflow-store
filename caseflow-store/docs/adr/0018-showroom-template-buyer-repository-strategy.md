@@ -23,14 +23,16 @@ Use a `2 + N` repository model:
 
 1. The existing `caseflow-store` repository remains the public showroom and
    engineering reference.
-2. A private `caseflow-commerce-template` repository is generated from an
+2. A private `caseflow-bookstore-template` repository is generated from an
    explicit allowlist and starts with a new Git history.
 3. A private buyer repository is created from a tested template release only
    after buyer discovery and a signed commercial agreement.
 
-The template remains a configurable single-store Next.js modular monolith. It
-is not a multi-tenant SaaS, a reseller control plane, or a hosted shared
-database.
+The template remains a bookstore-first, configurable single-store Next.js
+modular monolith. It is not a generic arbitrary-product schema, multi-tenant
+SaaS, reseller control plane, or hosted shared database. A buyer outside the
+book domain requires a separately estimated domain-model migration rather than
+only a catalog import.
 
 ## Template Export Contract
 

@@ -1,8 +1,9 @@
-# Commerce Starter
+# Bookstore Commerce Starter
 
-Private single-store e-commerce source template derived from a tested reference
-implementation. It includes storefront, catalog, account, checkout, promotion,
-order, notification, and admin workflows in one Next.js modular monolith.
+Private bookstore-first, single-store e-commerce source template derived from a
+tested reference implementation. It includes storefront, book/edition catalog,
+account, checkout, promotion, order, notification, and admin workflows in one
+Next.js modular monolith.
 
 ## Honest Boundary
 
@@ -10,6 +11,10 @@ This source is not a turnkey operating business. It contains no buyer catalog,
 licensed commercial media, legal identity, live payment settlement, approved
 email/SMS sender, carrier account, warehouse integration, tax invoice service,
 domain, or service-level commitment.
+
+Its domain model includes books, editions, authors, translations, ISBN, and
+book merchandising. A buyer selling unrelated product types needs a separately
+estimated domain/schema/UI migration; replacing rows alone is not sufficient.
 
 ## Before Running
 

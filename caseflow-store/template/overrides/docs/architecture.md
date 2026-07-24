@@ -1,9 +1,11 @@
-# Commerce Starter Architecture
+# Bookstore Commerce Starter Architecture
 
 ## Shape
 
 The application is a Next.js modular monolith deployed as one web application.
 Supabase provides PostgreSQL, authentication, and row-level security.
+The current domain is bookstore-specific and models works, editions, authors,
+translations, ISBN, inventory, and book merchandising.
 
 ```text
 Browser

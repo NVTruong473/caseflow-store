@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "templateName": "caseflow-commerce-template",
+  "templateName": "caseflow-bookstore-template",
   "sourceRelease": "v1.14.0",
   "sourcePaths": [
     "eslint.config.mjs",
@@ -81,7 +81,7 @@
     }
   ],
   "packagePatch": {
-    "name": "commerce-starter",
+    "name": "bookstore-commerce-starter",
     "version": "1.0.0",
     "private": true,
     "license": "UNLICENSED",
@@ -102,7 +102,7 @@
     {
       "path": "src/config/storefront.ts",
       "from": "export const REFERENCE_STORE_NAME = \"CaseFlow Books\";",
-      "to": "export const REFERENCE_STORE_NAME = \"Commerce Starter\";"
+      "to": "export const REFERENCE_STORE_NAME = \"Bookstore Starter\";"
     },
     {
       "path": "src/config/storefront.ts",
@@ -112,7 +112,22 @@
     {
       "path": "tests/e2e/storefront-flow.spec.ts",
       "from": "\"CaseFlow Books\",",
-      "to": "process.env.NEXT_PUBLIC_STORE_NAME ?? \"Commerce Starter\","
+      "to": "process.env.NEXT_PUBLIC_STORE_NAME ?? \"Bookstore Starter\","
+    },
+    {
+      "path": "src/app/page.tsx",
+      "from": "allBooksNote: \"500 sellable editions in the catalog\",",
+      "to": "allBooksNote: \"Catalog totals are loaded from the store database\","
+    },
+    {
+      "path": "src/app/page.tsx",
+      "from": "allBooksNote: \"500 ấn bản có thể bán trong catalog\",",
+      "to": "allBooksNote: \"Tổng số ấn bản được lấy từ cơ sở dữ liệu cửa hàng\","
+    },
+    {
+      "path": "tests/e2e/storefront-flow.spec.ts",
+      "from": ".toHaveAttribute(\"data-catalog-total-count\", \"500\");",
+      "to": ".toHaveAttribute(\"data-catalog-total-count\", /^\\d+$/);"
     }
   ],
   "requiredOutputPaths": [
@@ -136,6 +151,8 @@
   ],
   "prohibitedContent": [
     "caseflow-store.vercel.app",
+    "500 sellable editions in the catalog",
+    "500 ấn bản có thể bán trong catalog",
     "dpl_6cLwah2gUno1dbar97VQKFSopirM",
     "fcsuldrerhbynwotcvyn",
     "truongskull014@gmail.com",

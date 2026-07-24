@@ -4,10 +4,11 @@ Date: 2026-07-24
 
 ## Objective
 
-Create a private, reproducible commerce template from the verified CaseFlow
-Books showroom without transferring Production identity, secrets, QA history,
-or buyer-inappropriate catalog media. Prove that a future buyer instance can be
-created and verified without inventing a buyer or enabling real providers.
+Create a private, reproducible bookstore-commerce template from the verified
+CaseFlow Books showroom without transferring Production identity, secrets, QA
+history, or buyer-inappropriate catalog media. Prove that a future bookstore
+buyer instance can be created and verified without inventing a buyer or
+enabling real providers.
 
 ## Tasks
 
