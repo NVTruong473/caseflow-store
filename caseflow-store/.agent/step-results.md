@@ -15881,6 +15881,6 @@ GitHub Release.
 - Verification: the dirty-worktree guard failed closed as expected; two clean
   exports each contained 272 files, reported zero findings, and produced the
   identical manifest SHA-256
-  `607b8bfb02a3dbb03bfa355f0f11dacc804865e14bd06eb27e3d4d1a25d503f7`.
+  `8eadcb9bca6cfe663a802fb00fb5df9af27e8a5504f5352b9153517b204b547e`.
 - Evidence:
   `.agent/artifacts/template-t03/template-export-determinism-check.json`.

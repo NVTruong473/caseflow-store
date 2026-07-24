@@ -34,7 +34,7 @@
     package/config transforms, output inventory hashes, and fail-closed
     path/content/secret checks.
   - Verification: two independent 272-file exports produced identical
-    manifests with SHA-256 `607b8bfb02a3dbb03bfa355f0f11dacc804865e14bd06eb27e3d4d1a25d503f7`
+    manifests with SHA-256 `8eadcb9bca6cfe663a802fb00fb5df9af27e8a5504f5352b9153517b204b547e`
     and zero findings.
 - [/] `TEMPLATE-T04` Generate And Harden The Private Template. - 2026-07-24
 - [ ] `TEMPLATE-T05` Prove Buyer Bootstrap With A Disposable Fixture.
