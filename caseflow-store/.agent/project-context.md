@@ -14,11 +14,17 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: stable `v1.14.0` showroom plus private-template separation.
-- Current gate: `TEMPLATE-T05` buyer bootstrap fixture accepted.
-- Current task: `TEMPLATE-T06 - Publish Private Template And Close Handoff`.
+- Current mode: stable `v1.14.0` showroom plus private bookstore template.
+- Current gate: `TEMPLATE-T06` private template publication accepted.
+- Current task: none; await a real buyer discovery.
 
 ## Confirmed Facts
+
+- `TEMPLATE-T06` published the private bookstore-first template at
+  `NVTruong473/caseflow-bookstore-template`: root commit `d75c6bc`, annotated
+  tag `template-v1.0.0`, GitHub Release `359304571`, private visibility, and no
+  deployment. The showroom tag/deployment remain unchanged. No buyer
+  repository exists.
 
 - The user approved automatic bounded productization on 2026-07-24 for a
   source-code website demonstrated or sold to a future buyer. ADR-0017 rejects

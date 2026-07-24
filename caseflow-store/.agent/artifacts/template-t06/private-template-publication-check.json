@@ -19,5 +19,11 @@
     "peeledTag": "d75c6bcf4411f432fe9ece504f4b0ee2f67fcb24",
     "tagObject": "b85018c51b435783d8a6b2f4d37da57907e17a0e"
   },
+  "showroom": {
+    "main": "b41cfb5bdbdfa8d9cf48bab4bbf80376281cd0a4",
+    "productionDeployment": "dpl_6cLwah2gUno1dbar97VQKFSopirM",
+    "productionReady": true,
+    "releaseTagUnchanged": "7d791b6819f25fdfe9be8c19b055a5849a9c67bd"
+  },
   "templateDeployed": false
 }

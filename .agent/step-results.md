@@ -11510,3 +11510,12 @@ QA audit evidence.
 - Result: verified environment-only buyer branding and a 59-route build from
   an immutable template commit, without showroom infrastructure, then removed
   the disposable fixture.
+
+---
+
+## TEMPLATE-T06 - Publish Private Template And Close Handoff
+
+- Date: 2026-07-24
+- Status: completed
+- Result: published and verified private bookstore template
+  `template-v1.0.0`; showroom Production and release remain unchanged.

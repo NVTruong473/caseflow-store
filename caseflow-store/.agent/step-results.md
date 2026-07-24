@@ -15918,3 +15918,22 @@ GitHub Release.
 - Evidence:
   - `.agent/artifacts/template-t05/buyer-fixture-storefront-config-check.json`
   - `.agent/artifacts/template-t05/buyer-fixture-bootstrap-check.json`
+
+---
+
+## TEMPLATE-T06 - Publish Private Template And Close Handoff
+
+- Date: 2026-07-24
+- Status: completed
+- Result: created and verified private repository
+  `NVTruong473/caseflow-bookstore-template`, pushed root commit `d75c6bc`,
+  annotated tag `template-v1.0.0`, and GitHub Release `359304571`.
+- Verification: remote main/tag hashes match, GitHub visibility is private,
+  both worktrees are clean, showroom tag `v1.14.0` is unchanged, and Vercel
+  alias remains on Ready Production deployment
+  `dpl_6cLwah2gUno1dbar97VQKFSopirM`.
+- Guardrail: no buyer repository, buyer infrastructure, real provider, or
+  template deployment was created.
+- Evidence:
+  - `docs/private-template-handoff.md`
+  - `.agent/artifacts/template-t06/private-template-publication-check.json`

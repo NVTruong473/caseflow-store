@@ -10,9 +10,9 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: `v1.14` showroom plus private-template separation
-- Current gate: `TEMPLATE-T05` buyer bootstrap fixture accepted
-- Current task: `TEMPLATE-T06 - Publish Private Template And Close Handoff`
+- Mode: stable `v1.14.0` showroom plus private bookstore template
+- Current gate: `TEMPLATE-T06` private template publication accepted
+- Current task: none; await a real buyer discovery
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-24
 
@@ -53,7 +53,17 @@
   - Verification: config checks had zero findings, buyer-branded build
     generated 59 routes, tracked source differences remained zero, and no
     showroom credential/database/deployment was used.
-- [/] `TEMPLATE-T06` Publish Private Template And Close Handoff. - 2026-07-24
+- [x] `TEMPLATE-T06` Publish Private Template And Close Handoff. - 2026-07-24
+  - Result: created private repository
+    `NVTruong473/caseflow-bookstore-template`, pushed `main`, annotated tag
+    `template-v1.0.0`, and GitHub Release `359304571`.
+  - Verification: GitHub reports private visibility; remote `main` and peeled
+    tag equal `d75c6bc`; both worktrees are clean.
+  - Verification: showroom `v1.14.0` tag remains at `7d791b6` and the public
+    alias remains on Ready Production deployment
+    `dpl_6cLwah2gUno1dbar97VQKFSopirM`.
+  - Guardrail: no buyer repository, buyer infrastructure, real provider, or
+    template deployment was created.
 
 Roadmap and acceptance criteria:
 `docs/template-repository-roadmap.md`.

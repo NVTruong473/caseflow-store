@@ -10,9 +10,9 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: `v1.14` showroom plus private-template separation
-- Current gate: `TEMPLATE-T05` buyer bootstrap fixture accepted
-- Current task: `TEMPLATE-T06 - Publish Private Template And Close Handoff`
+- Mode: stable `v1.14.0` showroom plus private bookstore template
+- Current gate: `TEMPLATE-T06` private template publication accepted
+- Current task: none; await a real buyer discovery
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-24
 
