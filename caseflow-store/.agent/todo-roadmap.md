@@ -11,10 +11,31 @@
 
 - Project: CaseFlow Books
 - Mode: stable `v1.14.0` showroom plus private bookstore template
-- Current gate: `TEMPLATE-T06` private template publication accepted
-- Current task: none; await a real buyer discovery
+- Current gate: `GOVERNANCE-T01` repository governance publication in progress
+- Current task: `GOVERNANCE-T01`
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-24
+
+## Phase GOVERNANCE - Repository License And GitHub Governance
+
+- [/] `GOVERNANCE-T01` Add Repository License And GitHub Governance.
+  - Scope: add explicit proprietary source terms, private vulnerability
+    reporting guidance, support boundaries, deterministic template-export
+    coverage, accurate repository metadata, and a versioned template
+    governance patch.
+  - Acceptance criteria:
+    - Showroom and private template contain `LICENSE`, `SECURITY.md`, and
+      `SUPPORT.md`.
+    - Package metadata remains private and `UNLICENSED`; no open-source or
+      commercial-use grant is implied.
+    - Future template exports require and verify the governance files.
+    - Showroom metadata describes the bookstore rather than the retired phone
+      accessory scope and links to Production.
+    - Private vulnerability reporting and dependency security updates are
+      enabled where GitHub supports them.
+    - Both repository worktrees are clean and synchronized after push.
+    - Existing showroom release tag and Production deployment remain
+      unchanged.
 
 ## Phase TEMPLATE - Private Template Separation
 

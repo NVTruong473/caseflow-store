@@ -108,6 +108,52 @@ check(
   "Private-source notice must require a written agreement.",
 );
 
+const license = await readFile(
+  path.join(root, "template", "overrides", "LICENSE"),
+  "utf8",
+);
+for (const boundary of [
+  "All rights reserved",
+  "No copyright license",
+  "written agreement",
+  "third-party",
+]) {
+  check(
+    license.includes(boundary),
+    `Template proprietary license boundary missing: ${boundary}`,
+  );
+}
+
+const securityPolicy = await readFile(
+  path.join(root, "template", "overrides", "SECURITY.md"),
+  "utf8",
+);
+for (const boundary of [
+  "privately",
+  "private GitHub Security Advisory",
+  "public showroom database",
+]) {
+  check(
+    securityPolicy.includes(boundary),
+    `Template security boundary missing: ${boundary}`,
+  );
+}
+
+const supportPolicy = await readFile(
+  path.join(root, "template", "overrides", "SUPPORT.md"),
+  "utf8",
+);
+for (const boundary of [
+  "Repository access does not include",
+  "written agreement",
+  "service-level",
+]) {
+  check(
+    supportPolicy.includes(boundary),
+    `Template support boundary missing: ${boundary}`,
+  );
+}
+
 const handoff = await readFile(
   path.join(
     root,

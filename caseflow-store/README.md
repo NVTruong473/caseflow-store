@@ -123,3 +123,14 @@ and
 The private bookstore-template delivery model and verified source baseline are
 documented in
 [`docs/private-template-handoff.md`](docs/private-template-handoff.md).
+
+## Source License And Support
+
+This public repository is a showroom and engineering reference. Its source
+code is proprietary and is not released under an open-source license. Public
+repository access does not grant permission to deploy, redistribute, resell,
+or create commercial derivatives. See [`LICENSE`](LICENSE).
+
+Report suspected vulnerabilities privately according to
+[`SECURITY.md`](SECURITY.md). Public defect reports and commercial support
+boundaries are described in [`SUPPORT.md`](SUPPORT.md).

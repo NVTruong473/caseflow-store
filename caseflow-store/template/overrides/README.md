@@ -19,11 +19,12 @@ estimated domain/schema/UI migration; replacing rows alone is not sufficient.
 ## Before Running
 
 1. Read `PRIVATE-SOURCE-NOTICE.md`.
-2. Complete buyer discovery and ownership decisions.
-3. Create a buyer-owned private repository and isolated Supabase project.
-4. Follow `docs/setup.md`.
-5. Replace brand, catalog, support, policy, and provider configuration.
-6. Complete `docs/buyer-handoff-checklist.md`.
+2. Read `LICENSE`, `SECURITY.md`, and `SUPPORT.md`.
+3. Complete buyer discovery and ownership decisions.
+4. Create a buyer-owned private repository and isolated Supabase project.
+5. Follow `docs/setup.md`.
+6. Replace brand, catalog, support, policy, and provider configuration.
+7. Complete `docs/buyer-handoff-checklist.md`.
 
 ## Quality Commands
 
@@ -37,3 +38,10 @@ npm run build
 
 The Playwright suite requires a buyer-isolated test Supabase project. Never run
 it with the public showroom database or credentials.
+
+## License And Support
+
+The package is `UNLICENSED` and the source is proprietary. Repository access
+does not grant deployment, redistribution, resale, or sublicensing rights.
+Commercial use requires a separate written agreement. See `LICENSE`,
+`PRIVATE-SOURCE-NOTICE.md`, `SECURITY.md`, and `SUPPORT.md`.

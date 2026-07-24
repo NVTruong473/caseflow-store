@@ -56,12 +56,24 @@
       "destination": "AGENTS.md"
     },
     {
+      "source": "template/overrides/LICENSE",
+      "destination": "LICENSE"
+    },
+    {
       "source": "template/overrides/PRIVATE-SOURCE-NOTICE.md",
       "destination": "PRIVATE-SOURCE-NOTICE.md"
     },
     {
       "source": "template/overrides/README.md",
       "destination": "README.md"
+    },
+    {
+      "source": "template/overrides/SECURITY.md",
+      "destination": "SECURITY.md"
+    },
+    {
+      "source": "template/overrides/SUPPORT.md",
+      "destination": "SUPPORT.md"
     },
     {
       "source": "template/overrides/src/app/sitemap.ts",
@@ -82,7 +94,7 @@
   ],
   "packagePatch": {
     "name": "bookstore-commerce-starter",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "private": true,
     "license": "UNLICENSED",
     "scripts": {
@@ -134,8 +146,11 @@
     ".env.example",
     ".gitignore",
     "AGENTS.md",
+    "LICENSE",
     "PRIVATE-SOURCE-NOTICE.md",
     "README.md",
+    "SECURITY.md",
+    "SUPPORT.md",
     "docs/architecture.md",
     "docs/buyer-handoff-checklist.md",
     "docs/setup.md",

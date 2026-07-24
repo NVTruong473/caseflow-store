@@ -15,8 +15,9 @@
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
 - Current mode: stable `v1.14.0` showroom plus private bookstore template.
-- Current gate: `TEMPLATE-T06` private template publication accepted.
-- Current task: none; await a real buyer discovery.
+- Current gate: `GOVERNANCE-T01` repository governance publication in
+  progress.
+- Current task: `GOVERNANCE-T01`.
 
 ## Confirmed Facts
 

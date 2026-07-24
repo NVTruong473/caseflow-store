@@ -1,9 +1,9 @@
 {
-  "checkedAt": "2026-07-24T12:53:20.675Z",
+  "checkedAt": "2026-07-24T13:35:51.011Z",
   "findingCount": 0,
   "findings": [],
   "ok": true,
   "policyPath": "template/export-policy.json",
   "sourcePathCount": 17,
-  "overrideCount": 9
+  "overrideCount": 12
 }
