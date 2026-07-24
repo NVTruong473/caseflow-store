@@ -15867,3 +15867,20 @@ GitHub Release.
   - `template/export-policy.json`
   - `template/overrides/`
   - `.agent/artifacts/template-t02/template-export-policy-check.json`
+
+---
+
+## TEMPLATE-T03 - Implement Deterministic Template Export
+
+- Date: 2026-07-24
+- Status: completed
+- Result: implemented an allowlisted, clean-worktree exporter that creates a
+  fresh source tree, applies reviewed package/config overrides, writes a
+  SHA-256 file inventory, and fails on prohibited paths, Production identity,
+  or secret-like values.
+- Verification: the dirty-worktree guard failed closed as expected; two clean
+  exports each contained 272 files, reported zero findings, and produced the
+  identical manifest SHA-256
+  `607b8bfb02a3dbb03bfa355f0f11dacc804865e14bd06eb27e3d4d1a25d503f7`.
+- Evidence:
+  `.agent/artifacts/template-t03/template-export-determinism-check.json`.

@@ -11478,3 +11478,14 @@ QA audit evidence.
 - Result: accepted the allowlisted export, safe configuration, private-source
   license, and buyer handoff contracts.
 - Verification: template policy verifier, lint, and `git diff --check` passed.
+
+---
+
+## TEMPLATE-T03 - Implement Deterministic Template Export
+
+- Date: 2026-07-24
+- Status: completed
+- Result: implemented and verified a deterministic, fail-closed template
+  exporter.
+- Verification: two independent 272-file exports had zero findings and an
+  identical SHA-256 manifest.

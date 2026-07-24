@@ -1,0 +1,11 @@
+{
+  "checkedAt": "2026-07-24T12:31:57.000Z",
+  "fileCount": 272,
+  "findingCount": 0,
+  "manifestSha256": "607b8bfb02a3dbb03bfa355f0f11dacc804865e14bd06eb27e3d4d1a25d503f7",
+  "ok": true,
+  "outputSize": "2.4M",
+  "sourceCommit": "b8a8f568f2824f940e410a62e2d585677a2c4251",
+  "sourceRelease": "v1.14.0",
+  "verifiedExports": 2
+}

@@ -11,8 +11,8 @@
 
 - Project: CaseFlow Books
 - Mode: `v1.14` showroom plus private-template separation
-- Current gate: `TEMPLATE-T02` export/license contracts accepted
-- Current task: `TEMPLATE-T03 - Implement Deterministic Template Export`
+- Current gate: `TEMPLATE-T03` deterministic export accepted
+- Current task: `TEMPLATE-T04 - Generate And Harden The Private Template`
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-24
 
@@ -29,8 +29,14 @@
     private-source notice, neutral setup/architecture, and buyer handoff gate.
   - Verification: policy verifier passed with 17 source paths, 8 overrides,
     and zero findings; lint and `git diff --check` passed.
-- [/] `TEMPLATE-T03` Implement Deterministic Template Export. - 2026-07-24
-- [ ] `TEMPLATE-T04` Generate And Harden The Private Template.
+- [x] `TEMPLATE-T03` Implement Deterministic Template Export. - 2026-07-24
+  - Result: implemented a clean-worktree, allowlisted exporter with controlled
+    package/config transforms, output inventory hashes, and fail-closed
+    path/content/secret checks.
+  - Verification: two independent 272-file exports produced identical
+    manifests with SHA-256 `607b8bfb02a3dbb03bfa355f0f11dacc804865e14bd06eb27e3d4d1a25d503f7`
+    and zero findings.
+- [/] `TEMPLATE-T04` Generate And Harden The Private Template. - 2026-07-24
 - [ ] `TEMPLATE-T05` Prove Buyer Bootstrap With A Disposable Fixture.
 - [ ] `TEMPLATE-T06` Publish Private Template And Close Handoff.
 
