@@ -56,7 +56,6 @@ await writeJson(path.join(output, "template-export.json"), {
   templateName: policy.templateName,
 });
 
-const verification = await verifyOutput();
 const inventory = await createInventory();
 await writeJson(path.join(output, "template-file-manifest.json"), {
   fileCount: inventory.length,
@@ -65,6 +64,7 @@ await writeJson(path.join(output, "template-file-manifest.json"), {
   sourceRelease: policy.sourceRelease,
   templateName: policy.templateName,
 });
+const verification = await verifyOutput();
 
 const result = {
   fileCount: inventory.length + 1,
