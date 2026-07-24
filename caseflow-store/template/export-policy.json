@@ -64,6 +64,10 @@
       "destination": "README.md"
     },
     {
+      "source": "template/overrides/src/app/sitemap.ts",
+      "destination": "src/app/sitemap.ts"
+    },
+    {
       "source": "template/overrides/docs/architecture.md",
       "destination": "docs/architecture.md"
     },
