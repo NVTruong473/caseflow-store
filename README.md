@@ -30,6 +30,17 @@ bookstore-first buyer template is tracked through
 no buyer repository or buyer infrastructure is created until a real buyer
 completes discovery and commercial scope.
 
+## Source License And Support
+
+This public repository is a showroom and engineering reference. Its source
+code is proprietary and is not released under an open-source license. Public
+repository access does not grant permission to deploy, redistribute, resell,
+or create commercial derivatives. See [`LICENSE`](LICENSE).
+
+Report suspected vulnerabilities privately according to
+[`SECURITY.md`](SECURITY.md). Public defect reports and commercial support
+boundaries are described in [`SUPPORT.md`](SUPPORT.md).
+
 > Payments are simulated. The app does not collect card numbers, CVV, card
 > expiry, real bank credentials, or real MoMo/ZaloPay/VNPay credentials. QR
 > demo payment exists for development/sandbox verification and is locked from
