@@ -216,6 +216,27 @@ payloads are generated server-side from configured demo bank data, the
 merchant/store name, the order code, and the trusted stored VND total. The
 frontend does not receive webhook secrets and cannot decide the payable amount.
 
+### Isolated checkout QR experience
+
+The public checkout also exposes a separate QR experience that is not a payment
+provider and does not reuse the persisted demo-payment APIs:
+
+```text
+Signed-in customer with cart
+  -> /api/cart/validate returns the current catalog-backed cart
+  -> customer selects QR experience instead of official order placement
+  -> browser calculates the same displayed estimate from validated cart data
+  -> browser generates an internal caseflow-experience:// QR payload
+  -> local component state moves from pending to completed
+  -> reload discards the experience
+```
+
+This mode calls neither `/api/orders` nor `/api/payments`, cannot invoke the
+simulate-success endpoint, and cannot mutate an order, payment, stock, voucher,
+notification, customer history, or admin metric. It uses a clearly non-real
+account number and an internal URI that cannot open a bank or wallet app. The
+Production locks for the persisted providers remain unchanged. See ADR-0019.
+
 ### Customer order history, cancellation, and public tracking
 
 ```text

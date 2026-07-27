@@ -142,7 +142,7 @@ test("checkout validation error and order success states are visible", async ({
       /^CF-/,
     );
     await expect(page.locator("[data-checkout-success-status]")).toHaveText(
-      "pending",
+      "Pending",
     );
     await expectNoHorizontalOverflow(page);
     await page.screenshot({

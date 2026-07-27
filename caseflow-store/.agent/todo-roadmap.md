@@ -10,11 +10,55 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: stable `v1.14.0` showroom plus private bookstore template
-- Current gate: `GOVERNANCE-T01` repository governance publication accepted
-- Current task: none; await a real buyer discovery
+- Mode: `v1.15.0` checkout-mode release candidate plus private bookstore template
+- Current gate: `CHECKOUT-MODE-T01` local acceptance passed
+- Current task: `CHECKOUT-MODE-T02` release the verified checkout candidate
 - Implementation day: Day 40 complete
-- Last updated: 2026-07-24
+- Last updated: 2026-07-27
+
+## Phase CHECKOUT-MODE - Official Checkout And Isolated QR Experience
+
+- [x] `CHECKOUT-MODE-T01` Add Official And QR Experience Modes. - 2026-07-27
+  - Result: official checkout remains the default persisted order workflow;
+    the separate QR experience uses validated cart data, an internal QR
+    payload, local-only completion, and no business-data mutation.
+  - Result: checkout-success rows now localize order status and contain long
+    order/payment values at desktop and mobile widths.
+  - Safety: the experience contains no order/payment API call, no mock
+    simulate-success call, no bank deep link, and no persisted state.
+  - Verification: lint, TypeScript, 59-route build, 224-file architecture
+    boundary, QR source/Production lock, responsive visual review, affected
+    Playwright `9/9`, full Playwright `26/26`, no-demo copy, secret scan, and
+    runtime dependency audit with zero vulnerabilities passed.
+  - Residual: the full development dependency audit reports a high-severity
+    `brace-expansion` advisory in the ESLint/Next plugin chain. The force fix
+    is incompatible with the current lint stack; runtime dependencies are not
+    affected.
+  - Evidence:
+    - `docs/adr/0019-isolated-checkout-qr-experience.md`
+    - `docs/checkout-qr-experience.md`
+    - `.agent/artifacts/checkout-mode-t01-experience-desktop-vi.png`
+    - `.agent/artifacts/checkout-mode-t01-experience-mobile-vi.png`
+    - `.agent/artifacts/checkout-mode-t01-success-desktop-vi.png`
+    - `.agent/artifacts/checkout-mode-t01-success-mobile-vi.png`
+    - `.agent/artifacts/checkout-mode-t01/qr-payment-production-safety-check.json`
+    - `.agent/artifacts/checkout-mode-t01/no-demo-runtime-copy-check.json`
+    - `.agent/artifacts/checkout-mode-t01/secret-scan.json`
+    - `.agent/artifacts/checkout-mode-t01-production/qr-payment-production-safety-check.json`
+
+- [/] `CHECKOUT-MODE-T02` Release And Verify v1.15.0. - 2026-07-27
+  - Scope: commit and push the accepted candidate, deploy Production, rerun
+    affected Production checkout tests and payment-safety lock, record the
+    deployment, then tag and publish accurate release notes.
+  - Acceptance criteria:
+    - Production exposes both checkout modes without changing official order
+      behavior.
+    - QR experience creates no order/payment request and survives responsive
+      inspection without overflow.
+    - Checkout-success labels remain contained for long values.
+    - Production mock simulate-success remains denied.
+    - GitHub main, annotated tag, release notes, and Vercel alias identify the
+      same accepted source.
 
 ## Phase GOVERNANCE - Repository License And GitHub Governance
 

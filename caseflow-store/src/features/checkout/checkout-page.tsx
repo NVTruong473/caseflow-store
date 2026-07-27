@@ -22,6 +22,13 @@ import {
   clearCheckoutAttemptId,
   getOrCreateCheckoutAttemptId,
 } from "@/features/checkout/checkout-attempt-storage";
+import {
+  CheckoutExperiencePanel,
+} from "@/features/checkout/checkout-experience-panel";
+import {
+  CheckoutModeSelector,
+  type CheckoutMode,
+} from "@/features/checkout/checkout-mode-selector";
 import type { CustomerAuthState } from "@/lib/auth/customer";
 import { calculateBookCheckoutTotals } from "@/lib/checkout/book-totals";
 import { formatUsd, formatVnd } from "@/lib/format/currency";
@@ -434,6 +441,8 @@ export function CheckoutPage({
     React.useState<ShippingMethod>("standard");
   const [paymentMethod, setPaymentMethod] =
     React.useState<PaymentMethod>("cod");
+  const [checkoutMode, setCheckoutMode] =
+    React.useState<CheckoutMode>("official");
   const [promotionCode, setPromotionCode] = React.useState("");
   const estimatedPromotionDiscountVnd =
     reviewState.status === "success"
@@ -525,12 +534,38 @@ export function CheckoutPage({
           <CheckoutAssuranceStrip copy={copy} />
         </div>
 
+        <CheckoutModeSelector
+          language={language}
+          mode={checkoutMode}
+          onModeChange={setCheckoutMode}
+        />
+
         {!hasLoadedStorage ? (
           <CheckoutLoadingState />
         ) : isCartEmpty ? (
           <CheckoutEmptyState copy={copy} />
+        ) : checkoutMode === "experience" ? (
+          <CheckoutExperiencePanel
+            cartData={
+              reviewState.status === "success" ? reviewState.data : null
+            }
+            currencyRules={currencyRules}
+            language={language}
+            validationError={
+              reviewState.status === "error" ? reviewState.message : null
+            }
+            validationPending={
+              reviewState.status === "idle" || reviewState.status === "loading"
+            }
+          />
         ) : (
-          <div className="grid gap-case-xl lg:grid-cols-[minmax(0,1fr)_420px] lg:items-start">
+          <div
+            aria-labelledby="checkout-official-tab"
+            className="grid gap-case-xl lg:grid-cols-[minmax(0,1fr)_420px] lg:items-start"
+            id="checkout-official-panel"
+            role="tabpanel"
+            tabIndex={0}
+          >
             <CheckoutDetailsForm
               clearCart={clearCart}
               copy={copy}

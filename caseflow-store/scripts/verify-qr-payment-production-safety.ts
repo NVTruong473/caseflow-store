@@ -58,6 +58,23 @@ const sourceChecks: Array<{
       "QR DEMO - KHÔNG CÓ GIÁ TRỊ THANH TOÁN THẬT",
     ],
   },
+  {
+    check: "isolated-checkout-experience",
+    file: "src/features/checkout/checkout-experience-panel.tsx",
+    required: [
+      "caseflow-experience://transfer",
+      'data-experience-persists-payment="false"',
+    ],
+  },
+  {
+    check: "isolated-checkout-experience-copy",
+    file: "src/features/checkout/checkout-experience-copy.ts",
+    required: [
+      "không tạo đơn hàng",
+      "Hoàn tất trải nghiệm",
+      "KHÔNG PHẢI MÃ THANH TOÁN",
+    ],
+  },
 ];
 
 async function main() {
@@ -83,6 +100,7 @@ async function main() {
 
   findings.push(...scanForUnsafeClientSecrets());
   findings.push(...scanForRealBankDeepLinks());
+  findings.push(...inspectCheckoutExperienceIsolation());
 
   const runtime = await inspectRuntimeIfConfigured();
   const report = {
@@ -112,6 +130,31 @@ async function main() {
   if (!report.ok) {
     process.exitCode = 1;
   }
+}
+
+function inspectCheckoutExperienceIsolation(): Finding[] {
+  const findings: Finding[] = [];
+  const relativePath =
+    "src/features/checkout/checkout-experience-panel.tsx";
+  const content = fs.readFileSync(path.join(process.cwd(), relativePath), "utf8");
+  const prohibitedTokens = [
+    "/api/orders",
+    "/api/payments",
+    "simulate-success",
+    "buildVietQrPayload",
+    "fetch(",
+  ];
+
+  for (const token of prohibitedTokens) {
+    if (content.includes(token)) {
+      findings.push({
+        check: "isolated-checkout-experience",
+        message: `${relativePath} must not contain ${token}`,
+      });
+    }
+  }
+
+  return findings;
 }
 
 function scanForUnsafeClientSecrets(): Finding[] {

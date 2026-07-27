@@ -10,7 +10,12 @@ import {
 } from "@/features/checkout/checkout-success-storage";
 import { formatVnd } from "@/lib/format/currency";
 import type { Language } from "@/lib/i18n/language";
-import type { PaymentMethod, PaymentStatus } from "@/types/domain";
+import { cn } from "@/lib/utils/cn";
+import type {
+  OrderStatus,
+  PaymentMethod,
+  PaymentStatus,
+} from "@/types/domain";
 
 type SuccessPageState =
   | { status: "loading" }
@@ -164,56 +169,36 @@ function CheckoutSuccessDetails({
           </p>
         </div>
 
-        <dl className="mt-case-xl divide-y divide-border border-y border-border bg-surface">
-          <div className="flex flex-col gap-case-xs py-case-md sm:flex-row sm:items-center sm:justify-between">
-            <dt className="text-small text-text-muted">{copy.orderCode}</dt>
-            <dd
-              className="break-words font-semibold text-foreground"
-              data-checkout-success-code
-            >
-              {snapshot.orderCode}
-            </dd>
-          </div>
-          <div className="flex flex-col gap-case-xs py-case-md sm:flex-row sm:items-center sm:justify-between">
-            <dt className="text-small text-text-muted">{copy.status}</dt>
-            <dd
-              className="font-semibold capitalize text-foreground"
-              data-checkout-success-status
-            >
-              {snapshot.status}
-            </dd>
-          </div>
-          <div className="flex flex-col gap-case-xs py-case-md sm:flex-row sm:items-center sm:justify-between">
-            <dt className="text-small text-text-muted">
-              {copy.paymentMethod}
-            </dt>
-            <dd
-              className="font-semibold text-foreground"
-              data-checkout-success-payment-method
-            >
-              {getPaymentMethodLabel(snapshot.paymentMethod, language)}
-            </dd>
-          </div>
-          <div className="flex flex-col gap-case-xs py-case-md sm:flex-row sm:items-center sm:justify-between">
-            <dt className="text-small text-text-muted">
-              {copy.paymentStatus}
-            </dt>
-            <dd
-              className="font-semibold text-foreground"
-              data-checkout-success-payment-status
-            >
-              {getPaymentStatusLabel(snapshot.paymentStatus, language)}
-            </dd>
-          </div>
-          <div className="flex flex-col gap-case-xs py-case-md sm:flex-row sm:items-center sm:justify-between">
-            <dt className="text-small text-text-muted">{copy.orderTotal}</dt>
-            <dd
-              className="text-heading-3 font-semibold text-foreground"
-              data-checkout-success-total
-            >
-              {formatVnd(snapshot.subtotal)}
-            </dd>
-          </div>
+        <dl
+          className="mt-case-xl divide-y divide-border border-y border-border bg-surface"
+          data-checkout-success-summary
+        >
+          <CheckoutSuccessDetailRow
+            dataAttribute="data-checkout-success-code"
+            label={copy.orderCode}
+            value={snapshot.orderCode}
+          />
+          <CheckoutSuccessDetailRow
+            dataAttribute="data-checkout-success-status"
+            label={copy.status}
+            value={getOrderStatusLabel(snapshot.status, language)}
+          />
+          <CheckoutSuccessDetailRow
+            dataAttribute="data-checkout-success-payment-method"
+            label={copy.paymentMethod}
+            value={getPaymentMethodLabel(snapshot.paymentMethod, language)}
+          />
+          <CheckoutSuccessDetailRow
+            dataAttribute="data-checkout-success-payment-status"
+            label={copy.paymentStatus}
+            value={getPaymentStatusLabel(snapshot.paymentStatus, language)}
+          />
+          <CheckoutSuccessDetailRow
+            dataAttribute="data-checkout-success-total"
+            emphasize
+            label={copy.orderTotal}
+            value={formatVnd(snapshot.subtotal)}
+          />
         </dl>
 
         <div className="mt-case-xl">
@@ -271,6 +256,33 @@ function CheckoutSuccessDetails({
         </div>
       </aside>
     </section>
+  );
+}
+
+function CheckoutSuccessDetailRow({
+  dataAttribute,
+  emphasize = false,
+  label,
+  value,
+}: {
+  dataAttribute: string;
+  emphasize?: boolean;
+  label: string;
+  value: string;
+}) {
+  return (
+    <div className="grid min-w-0 gap-case-xs px-case-md py-case-md sm:grid-cols-[minmax(140px,0.8fr)_minmax(0,1.2fr)] sm:items-center">
+      <dt className="min-w-0 text-small text-text-muted">{label}</dt>
+      <dd
+        className={cn(
+          "min-w-0 [overflow-wrap:anywhere] font-semibold text-foreground sm:text-right",
+          emphasize && "text-heading-3",
+        )}
+        {...{ [dataAttribute]: "" }}
+      >
+        {value}
+      </dd>
+    </div>
   );
 }
 
@@ -345,6 +357,27 @@ function getPaymentMethodLabel(method: PaymentMethod, language: Language) {
   };
 
   return labels[language][method];
+}
+
+function getOrderStatusLabel(status: OrderStatus, language: Language) {
+  const labels: Record<Language, Record<OrderStatus, string>> = {
+    en: {
+      cancelled: "Cancelled",
+      completed: "Completed",
+      confirmed: "Confirmed",
+      pending: "Pending",
+      shipping: "Shipping",
+    },
+    vi: {
+      cancelled: "Đã hủy",
+      completed: "Hoàn tất",
+      confirmed: "Đã xác nhận",
+      pending: "Đang chờ",
+      shipping: "Đang giao",
+    },
+  };
+
+  return labels[language][status];
 }
 
 function getPaymentStatusLabel(status: PaymentStatus, language: Language) {

@@ -71,7 +71,7 @@ test("customer completes homepage to checkout success flow through the UI", asyn
     await expect(page).toHaveURL(/\/checkout\/success\?orderCode=CF-/);
     await expect(page.locator("[data-checkout-success-code]")).toHaveText(/^CF-/);
     await expect(page.locator("[data-checkout-success-status]")).toHaveText(
-      "pending",
+      "Pending",
     );
     await expect(page.locator("[data-checkout-success-items]"))
       .toContainText(book.title);

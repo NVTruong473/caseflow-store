@@ -6,7 +6,7 @@
   `v1.3.0`, `v1.3.1`, `v1.4.0`, `v1.4.1`, `v1.4.2`, `v1.5.0`, `v1.6.0`,
   `v1.7.0`, `v1.8.0`, `v1.9.0`, `v1.10.0`, `v1.11.0`, `v1.11.1`,
   `v1.11.2`, `v1.11.3`, `v1.12.0`, `v1.12.1`, `v1.13.0`, `v1.13.1`, and
-  `v1.14.0` released
+  `v1.14.0` released; `v1.15.0` release candidate locally accepted
 - Repository folder: `/Users/vantruong/Documents/TSNN 2`
 - Product domain: books for released `v1.1.0` and `v1.2.0`; phone
   accessories for released `v1.0.0`
@@ -14,11 +14,25 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: stable `v1.14.0` showroom plus private bookstore template.
-- Current gate: `GOVERNANCE-T01` repository governance publication accepted.
-- Current task: none; await a real buyer discovery.
+- Current mode: `v1.15.0` checkout-mode release candidate plus private bookstore
+  template.
+- Current gate: `CHECKOUT-MODE-T01` local acceptance passed.
+- Current task: `CHECKOUT-MODE-T02` release and verify the candidate.
 
 ## Confirmed Facts
+
+- `CHECKOUT-MODE-T01` added an explicit official/experience checkout split.
+  Official checkout keeps the persisted account, shipping, voucher, payment,
+  inventory, and order-history flow. The QR experience uses only validated cart
+  data and local state, calls no order/payment/simulate API, uses an internal
+  URI and non-real account number, and cannot alter business records. The
+  checkout-success summary now localizes order status and contains long values.
+  Lint, TypeScript, 59-route build, architecture verification, QR
+  Production-lock checks, responsive visual review, affected Playwright `9/9`,
+  full Playwright `26/26`, no-demo copy, secret scan, and runtime audit with
+  zero vulnerabilities passed. A dev-only `brace-expansion` advisory remains
+  in the ESLint/Next plugin chain because the available force fix breaks the
+  compatible lint stack.
 
 - `GOVERNANCE-T01` added repository-root and application-level proprietary
   source terms, private security-reporting guidance, and support boundaries.

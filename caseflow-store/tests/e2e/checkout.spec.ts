@@ -12,7 +12,7 @@ import {
 } from "./helpers/supabase";
 
 const CHECKOUT_SUCCESS_SCREENSHOT =
-  ".agent/artifacts/d40-t01-checkout-success.png";
+  ".agent/artifacts/checkout-mode-t01-official-success-desktop-vi.png";
 
 test("checkout happy path creates a simulated book order and clears the cart", async ({
   baseURL,
@@ -55,7 +55,7 @@ test("checkout happy path creates a simulated book order and clears the cart", a
       /^CF-/,
     );
     await expect(page.locator("[data-checkout-success-status]")).toHaveText(
-      "pending",
+      "Pending",
     );
     await expect(page.getByRole("heading", { level: 1 })).toHaveText(
       "Order received",
@@ -87,8 +87,9 @@ test("checkout happy path creates a simulated book order and clears the cart", a
       "Đơn hàng đã được ghi nhận",
     );
     await expect(page.locator("[data-checkout-success-status]")).toHaveText(
-      "pending",
+      "Đang chờ",
     );
+    await expectSuccessSummaryToFit(page);
 
     await page.screenshot({
       fullPage: true,
@@ -98,6 +99,150 @@ test("checkout happy path creates a simulated book order and clears the cart", a
   } finally {
     await deleteTemporaryCustomer(customer);
   }
+});
+
+test("checkout separates order placement from the isolated QR experience", async ({
+  baseURL,
+  context,
+  page,
+}) => {
+  expect(baseURL).toBeTruthy();
+  const customer = await createTemporaryCustomer();
+  const businessMutationRequests: string[] = [];
+
+  page.on("request", (request) => {
+    const pathname = new URL(request.url()).pathname;
+
+    if (
+      request.method() === "POST" &&
+      (pathname === "/api/orders" ||
+        pathname === "/api/payments" ||
+        pathname.includes("/api/dev/payments/"))
+    ) {
+      businessMutationRequests.push(pathname);
+    }
+  });
+
+  try {
+    await addSupabaseSessionCookies(
+      context,
+      baseURL!,
+      customer.email,
+      customer.password,
+    );
+    const book = await findAvailableBook(page.request);
+    await seedCart(page, [{ productId: book.edition.id, quantity: 1 }]);
+
+    await page.goto("/checkout", { waitUntil: "domcontentloaded" });
+    await expect(page.locator("[data-checkout-form-shell]")).toBeVisible();
+    await clickElement(page, "[data-language-option='vi']:visible");
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+      "Thanh toán",
+    );
+    await expect(page.locator("[data-checkout-mode='official']"))
+      .toHaveAttribute("aria-selected", "true");
+    await page.locator("[data-checkout-mode='official']").press("ArrowRight");
+    await expect(page.locator("[data-checkout-mode='experience']"))
+      .toBeFocused();
+    await expect(page.locator("[data-checkout-mode='experience']"))
+      .toHaveAttribute("aria-selected", "true");
+
+    await expect(page.locator("[data-checkout-experience]")).toBeVisible();
+    await expect(page.locator("[data-checkout-experience-create]")).toBeEnabled();
+    await clickElement(page, "[data-checkout-experience-create]");
+
+    await expect(page.locator("[data-checkout-experience-qr]")).toBeVisible();
+    await expect(page.locator("[data-checkout-experience-status='pending']"))
+      .toBeVisible();
+    await expect(page.locator("[data-checkout-experience-countdown]"))
+      .toBeVisible();
+    await expect(page.locator("[data-checkout-experience-amount]"))
+      .toContainText("₫");
+
+    await clickElement(page, "[data-checkout-experience-simulate]");
+    await expect(page.locator("[data-checkout-experience-status='paid']"))
+      .toBeVisible();
+    expect(businessMutationRequests).toEqual([]);
+    await expect(page.locator("[data-cart-count]").first())
+      .toHaveAttribute("data-cart-count", "1");
+
+    await expectNoHorizontalOverflow(page);
+    await page.screenshot({
+      fullPage: true,
+      path: ".agent/artifacts/checkout-mode-t01-experience-desktop-vi.png",
+    });
+
+    await page.setViewportSize({ width: 375, height: 812 });
+    await expectNoHorizontalOverflow(page);
+    await page.screenshot({
+      fullPage: true,
+      path: ".agent/artifacts/checkout-mode-t01-experience-mobile-vi.png",
+    });
+
+    await clickElement(page, "[data-checkout-mode='official']");
+    await expect(page.locator("[data-checkout-form-shell]")).toBeVisible();
+    await expect(page.locator("[data-checkout-mode='official']"))
+      .toHaveAttribute("aria-selected", "true");
+  } finally {
+    await deleteTemporaryCustomer(customer);
+  }
+});
+
+test("checkout success summary contains long localized payment values", async ({
+  page,
+}) => {
+  const orderCode = "CF-LAYOUT-CHECK-1234567890";
+
+  await page.goto("/", { waitUntil: "domcontentloaded" });
+  await clickElement(page, "[data-language-option='vi']:visible");
+  await page.evaluate(
+    ({ key, orderCodeValue }) => {
+      window.sessionStorage.setItem(
+        key,
+        JSON.stringify({
+          createdAt: new Date().toISOString(),
+          itemCount: 1,
+          items: [
+            {
+              lineTotal: 172_400,
+              productName: "A Christmas Carol",
+              quantity: 1,
+            },
+          ],
+          orderCode: orderCodeValue,
+          paymentMethod: "bank-transfer",
+          paymentStatus: "awaiting-transfer",
+          status: "pending",
+          subtotal: 172_400,
+          version: 2,
+        }),
+      );
+    },
+    { key: CHECKOUT_SUCCESS_STORAGE_KEY, orderCodeValue: orderCode },
+  );
+
+  await page.goto(`/checkout/success?orderCode=${orderCode}`, {
+    waitUntil: "domcontentloaded",
+  });
+  await clickElement(page, "[data-language-option='vi']:visible");
+
+  await expect(page.locator("[data-checkout-success-payment-method]"))
+    .toHaveText("Chuyển khoản");
+  await expect(page.locator("[data-checkout-success-payment-status]"))
+    .toHaveText("Đang chờ chuyển khoản");
+  await expectSuccessSummaryToFit(page);
+  await expectNoHorizontalOverflow(page);
+  await page.screenshot({
+    fullPage: true,
+    path: ".agent/artifacts/checkout-mode-t01-success-desktop-vi.png",
+  });
+
+  await page.setViewportSize({ width: 375, height: 812 });
+  await expectNoHorizontalOverflow(page);
+  await page.screenshot({
+    fullPage: true,
+    path: ".agent/artifacts/checkout-mode-t01-success-mobile-vi.png",
+  });
 });
 
 test("checkout success page shows a direct-link fallback without session data", async ({
@@ -131,4 +276,39 @@ async function expectNoPaymentCardInputs(page: Page) {
   expect(inputDescriptors.join(" ")).not.toMatch(
     /\b(card|cvv|cvc|expiry|expiration)\b/i,
   );
+}
+
+async function expectSuccessSummaryToFit(page: Page) {
+  const result = await page
+    .locator("[data-checkout-success-summary]")
+    .evaluate((summary) => {
+      const summaryRect = summary.getBoundingClientRect();
+      const values = Array.from(summary.querySelectorAll("dd"));
+
+      return values.map((value) => {
+        const valueRect = value.getBoundingClientRect();
+        const style = window.getComputedStyle(value);
+
+        return {
+          inside:
+            valueRect.left >= summaryRect.left - 1 &&
+            valueRect.right <= summaryRect.right + 1,
+          noLineThrough: style.textDecorationLine !== "line-through",
+          noOverflow: value.scrollWidth <= value.clientWidth + 1,
+        };
+      });
+    });
+
+  expect(result.length).toBeGreaterThan(0);
+  expect(result.every((entry) => entry.inside)).toBe(true);
+  expect(result.every((entry) => entry.noLineThrough)).toBe(true);
+  expect(result.every((entry) => entry.noOverflow)).toBe(true);
+}
+
+async function expectNoHorizontalOverflow(page: Page) {
+  const hasOverflow = await page.evaluate(
+    () => document.documentElement.scrollWidth > window.innerWidth + 1,
+  );
+
+  expect(hasOverflow).toBe(false);
 }

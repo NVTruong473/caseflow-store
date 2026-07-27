@@ -15960,3 +15960,53 @@ GitHub Release.
 - Guardrail: no runtime, database, provider, buyer repository, or deployment
   changed; showroom `v1.14.0` and Production deployment
   `dpl_6cLwah2gUno1dbar97VQKFSopirM` remain unchanged.
+
+---
+
+## CHECKOUT-MODE-T01 - Add Official And QR Experience Modes
+
+- Date: 2026-07-27
+- Status: completed
+- Result: split checkout into an official order path and an isolated QR
+  experience. Official checkout remains the default and preserves all existing
+  order, voucher, inventory, payment-method, and history behavior.
+- Result: QR experience uses the server-validated cart estimate, an internal
+  `caseflow-experience://` payload, a non-real account number, a server-derived
+  countdown start, and local pending/completed state. It cannot create an
+  order, payment, stock change, voucher use, notification, sale, or admin
+  metric.
+- Result: rebuilt checkout-success details as a responsive grid and localized
+  order statuses so long codes and payment labels no longer clip at the right
+  edge.
+- Verification:
+  - `npm run lint`: passed.
+  - `npx tsc --noEmit --pretty false`: passed.
+  - `npm run build`: passed, 59 routes plus proxy.
+  - `npm run verify:architecture`: passed, 224 files and zero findings.
+  - affected Playwright: passed, `9/9`.
+  - full local Playwright: passed, `26/26`.
+  - local QR production-safety source gate: passed, zero findings.
+  - existing Production QR lock: passed, simulate route denied with HTTP 401.
+  - no-demo runtime copy gate: passed, 133 files and zero findings.
+  - secret scan: passed, 1,543 files and zero findings.
+  - runtime dependency audit: passed, zero vulnerabilities.
+  - desktop and 375px mobile screenshot review: passed.
+- Evidence:
+  - `docs/adr/0019-isolated-checkout-qr-experience.md`
+  - `docs/checkout-qr-experience.md`
+  - `.agent/artifacts/checkout-mode-t01-experience-desktop-vi.png`
+  - `.agent/artifacts/checkout-mode-t01-experience-mobile-vi.png`
+  - `.agent/artifacts/checkout-mode-t01-success-desktop-vi.png`
+  - `.agent/artifacts/checkout-mode-t01-success-mobile-vi.png`
+  - `.agent/artifacts/checkout-mode-t01/qr-payment-production-safety-check.json`
+  - `.agent/artifacts/checkout-mode-t01/no-demo-runtime-copy-check.json`
+  - `.agent/artifacts/checkout-mode-t01/secret-scan.json`
+  - `.agent/artifacts/checkout-mode-t01-production/qr-payment-production-safety-check.json`
+- Residual: the full development dependency audit reports a high-severity
+  `brace-expansion` advisory in the ESLint/Next plugin chain. The compatible
+  lint stack passes, runtime dependencies report zero vulnerabilities, and the
+  available force fix was rejected after ESLint 10 proved incompatible with
+  the pinned React plugin.
+- Boundary: no schema, secret, real payment provider, real bank account, stock,
+  order, customer-history, notification, analytics, or Production deployment
+  changed in this task.
