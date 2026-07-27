@@ -72,21 +72,20 @@ runtime.
 
 ## Latest release evidence
 
-- Release tag: `v1.14.0`
+- Release tag: `v1.15.0`
 - GitHub Release:
-  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.14.0`
+  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.15.0`
 - Production alias: `https://caseflow-store.vercel.app`
-- Vercel deployment ID: `dpl_6cLwah2gUno1dbar97VQKFSopirM`
-- Local gates: npm audit with zero vulnerabilities, TypeScript, ESLint,
-  59-route production build, full Playwright `24/24`, notification and
-  architecture verifiers, productization/default/buyer-override gates, QR
-  production-safety, security posture, final QA, secret scan, and cleanup
-  passed.
-- Production smoke: release smoke, security posture, QR lock, notification
-  boundary, catalog filters, SEO, storefront/accessibility/final QA, cleanup,
-  and full Playwright `24/24` passed. Evidence is under
-  `.agent/artifacts/productize-t06-production-*`.
+- Vercel deployment ID: `dpl_Deq7FXB7AC9npqoNCoY3ebJpNJU6`
+- Local gates: runtime dependency audit with zero vulnerabilities, TypeScript,
+  ESLint, 59-route production build, architecture boundary, no-demo/secret/QR
+  safety gates, full Playwright `26/26`, and final focused checkout Playwright
+  `4/4` passed.
+- Production smoke: release smoke, security posture, QR lock, focused checkout
+  Playwright `4/4`, and desktop/mobile visual review passed. Evidence is under
+  `.agent/artifacts/checkout-mode-t02-production*`.
 - Release notes:
+  [`docs/v1.15.0-checkout-qr-experience-release-notes.md`](docs/v1.15.0-checkout-qr-experience-release-notes.md),
   [`docs/v1.14.0-sellable-demo-productization-release-notes.md`](docs/v1.14.0-sellable-demo-productization-release-notes.md),
   [`docs/v1.13.1-order-response-reliability-patch-release-notes.md`](docs/v1.13.1-order-response-reliability-patch-release-notes.md),
   [`docs/v1.12.1-order-reliability-release-notes.md`](docs/v1.12.1-order-reliability-release-notes.md),

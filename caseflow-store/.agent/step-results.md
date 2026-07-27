@@ -16010,3 +16010,29 @@ GitHub Release.
 - Boundary: no schema, secret, real payment provider, real bank account, stock,
   order, customer-history, notification, analytics, or Production deployment
   changed in this task.
+
+---
+
+## CHECKOUT-MODE-T02 - Release And Verify v1.15.0
+
+- Date: 2026-07-27
+- Status: completed
+- Result: pushed runtime commit `fdfb591` and deployed Vercel Production
+  deployment `dpl_Deq7FXB7AC9npqoNCoY3ebJpNJU6` to
+  `https://caseflow-store.vercel.app`.
+- Verification:
+  - Vercel inspect: Ready and canonical alias present.
+  - Production smoke: passed all public, account, catalog, detail, tracking,
+    API, robots, sitemap, and admin-boundary checks.
+  - Production security posture: passed with zero findings.
+  - Production mock-payment lock: passed, HTTP `401`.
+  - Production checkout Playwright: passed, `4/4`.
+  - Production desktop/mobile screenshot review: passed.
+- Evidence:
+  - `docs/v1.15.0-checkout-qr-experience-release-notes.md`
+  - `.agent/artifacts/checkout-mode-t02-production-smoke/production-smoke-check.json`
+  - `.agent/artifacts/checkout-mode-t02-production-security/security-posture-check.json`
+  - `.agent/artifacts/checkout-mode-t02-production-qr-safety/qr-payment-production-safety-check.json`
+  - `.agent/artifacts/checkout-mode-t02-production/`
+- Boundary: no real payment settlement, bank account, wallet, external webhook,
+  schema migration, or buyer infrastructure was added.

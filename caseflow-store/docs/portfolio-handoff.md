@@ -1,9 +1,9 @@
 # CaseFlow Books Portfolio Handoff
 
-- Latest release: `v1.14.0`
+- Latest release: `v1.15.0`
 - Production URL: `https://caseflow-store.vercel.app`
-- GitHub Release: `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.14.0`
-- Vercel deployment: `dpl_6cLwah2gUno1dbar97VQKFSopirM`
+- GitHub Release: `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.15.0`
+- Vercel deployment: `dpl_Deq7FXB7AC9npqoNCoY3ebJpNJU6`
 - Project type: full-stack bookstore and small-business operations portfolio
 - Stack: Next.js 16, React 19, TypeScript 5, Tailwind CSS 4, Supabase
   PostgreSQL/Auth/RLS, Zod, Playwright, Vercel
@@ -130,7 +130,9 @@ See `docs/architecture.md` for the full architecture notes.
 
 | Evidence | Location |
 |---|---|
-| Latest release notes | `docs/v1.14.0-sellable-demo-productization-release-notes.md` |
+| Latest release notes | `docs/v1.15.0-checkout-qr-experience-release-notes.md` |
+| v1.15.0 production checkout UAT | `.agent/artifacts/checkout-mode-t02-production/` |
+| v1.15.0 production smoke/security/QR lock | `.agent/artifacts/checkout-mode-t02-production-smoke/`; `.agent/artifacts/checkout-mode-t02-production-security/`; `.agent/artifacts/checkout-mode-t02-production-qr-safety/` |
 | v1.14.0 release consistency audit | `docs/postv140-t01-final-release-consistency-audit.md` |
 | v1.14.0 productization gate | `.agent/artifacts/productize-t05/sellable-demo-productization-check.json` |
 | v1.14.0 production smoke | `.agent/artifacts/productize-t06-production-smoke/production-smoke-check.json` |

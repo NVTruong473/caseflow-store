@@ -10,9 +10,9 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: `v1.15.0` checkout-mode release candidate plus private bookstore template
-- Current gate: `CHECKOUT-MODE-T01` local acceptance passed
-- Current task: `CHECKOUT-MODE-T02` release the verified checkout candidate
+- Mode: stable `v1.15.0` showroom plus private bookstore template
+- Current gate: `CHECKOUT-MODE-T02` production release accepted
+- Current task: none; await a real buyer discovery
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-27
 
@@ -46,7 +46,7 @@
     - `.agent/artifacts/checkout-mode-t01/secret-scan.json`
     - `.agent/artifacts/checkout-mode-t01-production/qr-payment-production-safety-check.json`
 
-- [/] `CHECKOUT-MODE-T02` Release And Verify v1.15.0. - 2026-07-27
+- [x] `CHECKOUT-MODE-T02` Release And Verify v1.15.0. - 2026-07-27
   - Scope: commit and push the accepted candidate, deploy Production, rerun
     affected Production checkout tests and payment-safety lock, record the
     deployment, then tag and publish accurate release notes.
@@ -59,6 +59,18 @@
     - Production mock simulate-success remains denied.
     - GitHub main, annotated tag, release notes, and Vercel alias identify the
       same accepted source.
+  - Result: pushed runtime commit `fdfb591`, deployed Ready Production
+    deployment `dpl_Deq7FXB7AC9npqoNCoY3ebJpNJU6`, and verified the canonical
+    alias.
+  - Verification: Production smoke, security posture, mock-payment lock with
+    HTTP `401`, focused checkout Playwright `4/4`, and desktop/mobile visual
+    review passed.
+  - Evidence:
+    - `docs/v1.15.0-checkout-qr-experience-release-notes.md`
+    - `.agent/artifacts/checkout-mode-t02-production-smoke/production-smoke-check.json`
+    - `.agent/artifacts/checkout-mode-t02-production-security/security-posture-check.json`
+    - `.agent/artifacts/checkout-mode-t02-production-qr-safety/qr-payment-production-safety-check.json`
+    - `.agent/artifacts/checkout-mode-t02-production/`
 
 ## Phase GOVERNANCE - Repository License And GitHub Governance
 
