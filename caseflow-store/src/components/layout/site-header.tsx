@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Container } from "@/components/ui";
 import { storefrontConfig } from "@/config/storefront";
 import { CartSummaryButton } from "@/features/cart";
-import { getCustomerAuthState, type CustomerAuthState } from "@/lib/auth/customer";
+import type { CustomerAuthState } from "@/lib/auth/customer";
 import { pickLocalizedText, type Language } from "@/lib/i18n/language";
 import { listSupabaseBookCategories } from "@/lib/repositories/supabase-books";
 import type { BookCategory } from "@/types/domain";
@@ -67,13 +67,18 @@ const headerCopy = {
   },
 } as const;
 
-export async function SiteHeader({ language }: { language: Language }) {
+export async function SiteHeader({
+  authState,
+  language,
+}: {
+  authState: CustomerAuthState;
+  language: Language;
+}) {
   const copy = headerCopy[language];
   const navigation = getSiteNavigation(language);
-  const [authState, categories] = await Promise.all([
-    getCustomerAuthState(),
-    listSupabaseBookCategories().catch(() => [] as BookCategory[]),
-  ]);
+  const categories = await listSupabaseBookCategories().catch(
+    () => [] as BookCategory[],
+  );
   const accountSummary = getAccountSummary(authState, language);
   const catalogLinks = getHeaderCatalogLinks(categories, language);
 
@@ -160,7 +165,17 @@ export async function SiteHeader({ language }: { language: Language }) {
             data-customer-auth-state={accountSummary.state}
             aria-label={accountSummary.ariaLabel}
           >
-            <span className="truncate">{accountSummary.label}</span>
+            <span
+              className="truncate"
+              data-customer-auth-name={
+                accountSummary.state === "signed-in" ? accountSummary.label : undefined
+              }
+              title={
+                accountSummary.state === "signed-in" ? accountSummary.label : undefined
+              }
+            >
+              {accountSummary.label}
+            </span>
           </Link>
           <LanguageSwitcher
             language={language}
@@ -244,11 +259,14 @@ function getAccountSummary(authState: CustomerAuthState, language: Language) {
   const copy = headerCopy[language];
 
   if (authState.status === "authenticated") {
+    const displayName =
+      authState.user.fullName?.trim() || authState.user.displayName;
+
     return {
-      ariaLabel: `${copy.accountSignedIn}: ${authState.user.displayName}`,
-      description: authState.user.email,
+      ariaLabel: `${copy.accountSignedIn}: ${displayName}`,
+      description: displayName,
       href: "/account",
-      label: copy.accountSignedIn,
+      label: displayName,
       state: "signed-in",
     };
   }

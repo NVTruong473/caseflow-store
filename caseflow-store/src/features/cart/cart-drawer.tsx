@@ -5,6 +5,10 @@ import Link from "next/link";
 import * as React from "react";
 
 import { Badge, Button, ErrorMessage, Skeleton } from "@/components/ui";
+import {
+  CustomerGuidanceButton,
+  useCustomerGuidance,
+} from "@/features/guidance";
 import { formatVnd } from "@/lib/format/currency";
 import {
   getEditionLanguageLabel,
@@ -145,6 +149,7 @@ export function CartDrawer({ language }: { language: Language }) {
     totalQuantity,
     updateItemQuantity,
   } = useCart();
+  const { openTourOnce } = useCustomerGuidance();
   const copy = cartDrawerCopy[language];
   const closeButtonRef = React.useRef<HTMLButtonElement>(null);
   const panelRef = React.useRef<HTMLElement>(null);
@@ -193,6 +198,12 @@ export function CartDrawer({ language }: { language: Language }) {
       focusAfterCartDrawerClose(previousActiveElementRef.current);
     };
   }, [isCartOpen]);
+
+  React.useEffect(() => {
+    if (isCartOpen) {
+      openTourOnce("cart");
+    }
+  }, [isCartOpen, openTourOnce]);
 
   React.useEffect(() => {
     if (!isCartOpen) {
@@ -314,16 +325,19 @@ export function CartDrawer({ language }: { language: Language }) {
             </h2>
           </div>
 
-          <Button
-            ref={closeButtonRef}
-            type="button"
-            variant="secondary"
-            size="sm"
-            onClick={closeCart}
-            data-cart-drawer-close
-          >
-            {copy.close}
-          </Button>
+          <div className="flex shrink-0 flex-wrap justify-end gap-case-xs">
+            <CustomerGuidanceButton language={language} tourId="cart" />
+            <Button
+              ref={closeButtonRef}
+              type="button"
+              variant="secondary"
+              size="sm"
+              onClick={closeCart}
+              data-cart-drawer-close
+            >
+              {copy.close}
+            </Button>
+          </div>
         </div>
 
         {items.length === 0 ? (

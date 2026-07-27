@@ -8,6 +8,10 @@ import {
 } from "@playwright/test";
 
 import type { Database } from "@/types/supabase";
+import {
+  CUSTOMER_GUIDANCE_STORAGE_PREFIX,
+  customerGuidanceTourIds,
+} from "@/features/guidance/customer-guidance-content";
 
 export const CART_STORAGE_VERSION = 1;
 export const CART_STORAGE_KEY = "caseflow-store.cart.v1";
@@ -148,6 +152,7 @@ export async function addSupabaseSessionCookies(
   baseURL: string,
   email: string,
   password: string,
+  options: { suppressGuidance?: boolean } = {},
 ) {
   let cookies: CapturedCookie[] = [];
   const supabase = createServerClient<Database>(
@@ -175,10 +180,28 @@ export async function addSupabaseSessionCookies(
       },
     },
   );
-  const { error } = await supabase.auth.signInWithPassword({ email, password });
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
 
   if (error) {
     throw error;
+  }
+
+  if (options.suppressGuidance !== false && data.user) {
+    await context.addInitScript(
+      ({ completedTourIds, storageKey }) => {
+        window.localStorage.setItem(
+          storageKey,
+          JSON.stringify({ completedTourIds, version: 1 }),
+        );
+      },
+      {
+        completedTourIds: customerGuidanceTourIds,
+        storageKey: `${CUSTOMER_GUIDANCE_STORAGE_PREFIX}:${data.user.id}`,
+      },
+    );
   }
 
   await context.addCookies(

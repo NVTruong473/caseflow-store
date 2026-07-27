@@ -31,17 +31,22 @@ export const customerSessionRequestSchema = z.discriminatedUnion("intent", [
   customerSignUpRequestSchema,
 ]);
 
-export const customerPasswordChangeRequestSchema = z
+const confirmedNewPasswordSchema = z
   .object({
-    currentPassword: authPasswordSchema,
     newPassword: authPasswordSchema,
     confirmPassword: authPasswordSchema,
   })
-  .strict()
   .refine((value) => value.newPassword === value.confirmPassword, {
     message: "New password confirmation must match.",
     path: ["confirmPassword"],
+  });
+
+export const operationsPasswordChangeRequestSchema = confirmedNewPasswordSchema
+  .safeExtend({
+    currentPassword: authPasswordSchema,
+    operationsSecret: z.string().min(6).max(200),
   })
+  .strict()
   .refine((value) => value.currentPassword !== value.newPassword, {
     message: "New password must be different from the current password.",
     path: ["newPassword"],

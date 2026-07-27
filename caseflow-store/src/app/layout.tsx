@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 
 import { SiteFooter, SiteHeader } from "@/components/layout";
 import { storefrontConfig } from "@/config/storefront";
+import { getCustomerAuthState } from "@/lib/auth/customer";
 import { getRequestLanguage } from "@/lib/i18n/server";
 import { getSiteUrl } from "@/lib/seo/metadata";
 
@@ -37,13 +38,20 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const language = await getRequestLanguage();
+  const [authState, language] = await Promise.all([
+    getCustomerAuthState(),
+    getRequestLanguage(),
+  ]);
+  const customerId =
+    authState.status === "authenticated" && authState.user.role === "customer"
+      ? authState.user.id
+      : null;
 
   return (
     <html lang={language} className={`${inter.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col bg-background text-foreground">
-        <AppProviders language={language}>
-          <SiteHeader language={language} />
+        <AppProviders customerId={customerId} language={language}>
+          <SiteHeader authState={authState} language={language} />
           <div className="flex-1">{children}</div>
           <SiteFooter language={language} />
         </AppProviders>

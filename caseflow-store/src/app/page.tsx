@@ -18,6 +18,10 @@ import {
   BookCoverStack,
 } from "@/features/books/cover-merchandising";
 import {
+  CustomerGuidanceAutoOpen,
+  CustomerGuidanceButton,
+} from "@/features/guidance";
+import {
   CategorySpineRail,
   DealStripShelf,
   EditorialFeatureShelf,
@@ -439,6 +443,7 @@ export default async function Home() {
       data-homepage-curated-editions={renderedEditionCount}
       data-homepage-total-editions={records.length}
     >
+      <CustomerGuidanceAutoOpen tourId="getting-started" />
       <section
         className="case-home-retail-hero border-b border-primary/20"
         data-home-section="hero"
@@ -535,6 +540,11 @@ export default async function Home() {
               >
                 {copy.trackOrder}
               </Link>
+              <CustomerGuidanceButton
+                className="min-h-11 w-full sm:w-auto"
+                language={language}
+                tourId="getting-started"
+              />
             </div>
 
             <dl

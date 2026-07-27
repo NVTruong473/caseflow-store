@@ -25,6 +25,11 @@ const V16_COVER_DIR = path.join(
   "books",
   "v16-covers",
 );
+const APPROVED_COVER_PREFIXES = [
+  "/images/books/v12-covers/",
+  "/images/books/v16-covers/",
+  "/images/books/gutenberg-covers/",
+];
 const OLD_HERO_COPY_PATTERN =
   /Gợi ý nhanh|Quick discovery|Hiển thị rõ|Visible stock|stock visibility|account-gated checkout|checkout theo tài khoản/i;
 
@@ -145,10 +150,18 @@ async function inspectPublicApi() {
   const v16Search = await fetchJson<CatalogItem[]>(
     "/api/products?q=reader&limit=12",
   );
-  const coverSamples = (v16Search.payload.data ?? [])
+  const coverSamples = [
+    ...(firstPage.payload.data ?? []),
+    ...(v16Search.payload.data ?? []),
+  ]
     .map((item) => item.coverAsset?.path)
     .filter((coverPath): coverPath is string =>
-      Boolean(coverPath?.startsWith("/images/books/v16-covers/")),
+      Boolean(
+        coverPath &&
+          APPROVED_COVER_PREFIXES.some((prefix) =>
+            coverPath.startsWith(prefix),
+          ),
+      ),
     )
     .slice(0, 8);
   const coverResponses = [];
@@ -170,7 +183,10 @@ async function inspectPublicApi() {
       coverSamples.length >= 4 &&
       coverResponses.every(
         (response) =>
-          response.ok && (response.contentType ?? "").includes("image/svg"),
+          response.ok &&
+          /^image\/(?:svg\+xml|jpeg|png|webp)/.test(
+            response.contentType ?? "",
+          ),
       ),
     firstPageCount: firstPage.payload.data?.length ?? 0,
     firstPageStatus: firstPage.status,

@@ -6,7 +6,7 @@
   `v1.3.0`, `v1.3.1`, `v1.4.0`, `v1.4.1`, `v1.4.2`, `v1.5.0`, `v1.6.0`,
   `v1.7.0`, `v1.8.0`, `v1.9.0`, `v1.10.0`, `v1.11.0`, `v1.11.1`,
   `v1.11.2`, `v1.11.3`, `v1.12.0`, `v1.12.1`, `v1.13.0`, `v1.13.1`, and
-  `v1.14.0` and `v1.15.0` released
+  `v1.14.0`, `v1.15.0`, and `v1.16.0` released
 - Repository folder: `/Users/vantruong/Documents/TSNN 2`
 - Product domain: books for released `v1.1.0` and `v1.2.0`; phone
   accessories for released `v1.0.0`
@@ -14,11 +14,94 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: stable `v1.15.0` showroom plus private bookstore template.
-- Current gate: `CHECKOUT-MODE-T02` production release accepted.
-- Current task: none; await a real buyer discovery.
+- Current mode: stable `v1.16.0` showroom; feature development closed.
+- Current gate: `v1.16.0` released and verified.
+- Current task: none.
 
 ## Confirmed Facts
+
+- `RELEASE-T01` released `v1.16.0`. Preview
+  `dpl_r19fSbgu8q6fUgBEJJwnsbNvMqHb` and Production
+  `dpl_9Nmny2kZdcvM2NgHNMcP4vdgjG5X` reached Ready; the canonical alias points
+  to the Production deployment. Production smoke, security posture,
+  mock-payment lock, final QA, full Playwright `34/34`, secret scan,
+  productization, live schema reconciliation, and post-test cleanup passed.
+  The tag and GitHub Release publish the verified cross-device experience,
+  guidance, auth UX, and role-aware password-assurance source. Buyer-owned
+  custom SMTP/domain identity, real payment, logistics, observability, and
+  enterprise MFA remain explicit handoff work.
+
+- `QUALITY-T01` is complete. Final source passed lint, TypeScript, the 66-route
+  Production build, full Playwright `34/34`, local final QA with zero findings,
+  architecture/migration/password/notification/productization/catalog/
+  assistant/accessibility/security/no-demo/secret/Production-lock gates, and
+  post-test cleanup with zero QA accounts or records. Live schema verification
+  confirmed RLS, 16 columns, the atomic completion RPC, no public grants, and
+  unchanged commerce counts. Runtime dependency audit reports zero
+  vulnerabilities; full audit retains nine high dev-tooling advisories in the
+  ESLint/minimatch chain because the available force fix is breaking.
+  `RELEASE-T01` is active.
+
+- `AUTH-PASS-T02` is complete. Customer password changes use a Supabase
+  single-use recovery link and a dedicated `/account/password-reset` page that
+  removes bearer tokens from the visible URL, updates the password through the
+  recovery session, and signs out afterward. The normal customer password API
+  fails closed. Admin/staff use current-password reauthentication plus the
+  server-only operations secret. A focused test rejected the initial
+  reauthentication-nonce design because hosted Supabase accepted an invalid
+  nonce on a fresh session; the recovery-link design then passed lint,
+  TypeScript, a 66-route build, static checks `9/9`, and focused Playwright
+  `3/3`. Authorized-mailbox delivery of the default reset email passed; custom
+  SMTP and branded sender/domain authentication remain buyer prerequisites.
+  `QUALITY-T01` is active.
+
+- `QR-XDEVICE-T03` is complete. Checkout now renders the server-issued HTTPS
+  fragment QR and desktop confirmation code; `/experience/transfer` is a
+  bilingual no-index phone page requiring the exact server amount and code.
+  A focused Playwright test used separate desktop/authenticated and
+  phone/anonymous contexts, confirmed no password or customer/cart PII reached
+  the phone, completed without reload, verified cancel persistence and no
+  commerce API calls, and passed 375px/1440px geometry/overflow review.
+
+- `QR-XDEVICE-T02` is complete. Migration `0014` is applied to the live
+  Supabase schema and its idempotent reapply passed with RLS, the atomic
+  completion RPC, service-role-only privileges, and unchanged commerce counts.
+  The layered create/status/complete/cancel APIs passed lint, TypeScript, the
+  63-route build, and focused Playwright API integration covering trusted
+  totals, idempotency, ownership, completion replay, five-attempt locking,
+  cancellation, and zero order/voucher mutations. `QR-XDEVICE-T03` is active.
+
+- The user approved automatic end-to-end implementation of a cross-device QR
+  checkout experience and role-aware password changes. ADR-0021 requires an
+  HTTPS fragment capability, server-owned totals, expiring isolated sessions,
+  separate desktop confirmation code, and no order/payment mutation. ADR-0022
+  requires customer mailbox possession and a server-only admin/staff
+  operations secret. The requested test secret must not be committed or
+  bundled. Default authorized-mailbox delivery has been verified; branded
+  Production delivery remains dependent on buyer-owned SMTP/domain setup.
+
+- `GUIDANCE-T01` adds bilingual, contextual first-use tours for the storefront,
+  cart, checkout, and customer order history, with explicit replay on every
+  surface. `Understood` stores only completed tour IDs and version `1` in
+  browser-local storage scoped by customer ID; no PII, order, cart, voucher,
+  or payment content is stored. Focus management, Escape, replay, 375px/1440px
+  layout, lint, TypeScript, the 59-route build, 226-file architecture gate,
+  focused Playwright `4/4`, and full Playwright `30/30` passed. The guidance
+  and `AUTH-UX-T01` changes are local and not deployed.
+
+- `CUSTOMER-RESET-T01` removed all 14 existing customer profiles/Auth users and
+  their QA commerce data from Supabase Production so previously used customer
+  emails can register again. The reset removed 19 orders, 2 payments, 33
+  account vouchers, 51 outbox records, and 17 inbox records. Exact-count and
+  role gates protected the remaining 1 admin and 1 staff; the independent
+  post-delete audit reports 0 customer users and 0 orphan Auth users.
+
+- `AUTH-UX-T01` changes direct customer sign-in to return to the storefront
+  homepage while preserving safe explicit return paths such as `/checkout`.
+  Authenticated desktop and mobile navigation now show the customer's profile
+  name instead of the generic account label. Lint, TypeScript, the 59-route
+  Production build, focused Playwright `2/2`, desktop/mobile visual review, and
+  `git diff --check` passed. The hotfix is local and not yet deployed.
 
 - `CHECKOUT-MODE-T02` pushed runtime commit `fdfb591` and deployed Ready
   Production deployment `dpl_Deq7FXB7AC9npqoNCoY3ebJpNJU6` at the canonical

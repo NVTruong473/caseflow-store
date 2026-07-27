@@ -1,0 +1,23 @@
+{
+  "checkedAt": "2026-07-27T17:10:17.522Z",
+  "checks": {
+    "additiveOnly": true,
+    "amountBounded": true,
+    "atomicCompletion": true,
+    "beginCommit": true,
+    "codeStoredHashed": true,
+    "customerCascade": true,
+    "exactStateSet": true,
+    "fiveAttemptLock": true,
+    "idempotency": true,
+    "noCommerceForeignKey": true,
+    "noPublicRpc": true,
+    "noPublicTableAccess": true,
+    "rlsEnabled": true,
+    "serviceRoleOnly": true,
+    "tokenStoredHashed": true
+  },
+  "failures": [],
+  "migration": "supabase/migrations/0014_cross_device_checkout_experience.sql",
+  "ok": true
+}

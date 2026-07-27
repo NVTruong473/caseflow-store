@@ -24,6 +24,9 @@
     "verify:admin-content-query-safety": "node scripts/verify-admin-content-query-safety.mjs",
     "apply:order-reliability-migration": "node --env-file-if-exists=.env.local scripts/apply-order-reliability-migration.mjs",
     "apply:notification-migration": "node --env-file-if-exists=.env.local scripts/apply-notification-migration.mjs",
+    "apply:cross-device-experience-migration": "node --env-file-if-exists=.env.local scripts/apply-cross-device-experience-migration.mjs",
+    "verify:cross-device-experience-migration": "node scripts/verify-cross-device-experience-migration.mjs",
+    "verify:password-assurance": "node scripts/verify-password-assurance.mjs",
     "verify:order-reliability-migration": "node scripts/verify-order-reliability-migration.mjs"
   },
   "dependencies": {

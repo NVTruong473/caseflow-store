@@ -16036,3 +16036,287 @@ GitHub Release.
   - `.agent/artifacts/checkout-mode-t02-production/`
 - Boundary: no real payment settlement, bank account, wallet, external webhook,
   schema migration, or buyer infrastructure was added.
+
+---
+
+## AUTH-UX-T01 - Customer Sign-in Return And Header Identity
+
+- Date: 2026-07-27
+- Status: completed
+- Result: direct customer sign-in returns to `/`; an explicit safe `next`
+  destination remains honored so checkout authentication still resumes the
+  intended purchase step.
+- Result: authenticated desktop and mobile navigation show the customer's
+  profile name with bounded width, truncation, accessible naming, and a title
+  fallback for long names.
+- Verification:
+  - `npm run lint -- --quiet`: passed.
+  - `npm exec -- tsc --noEmit --pretty false`: passed.
+  - `npm run build`: passed, 59 routes plus proxy.
+  - focused Playwright: passed, `2/2`.
+  - desktop and 375px mobile visual review: passed.
+  - `git diff --check`: passed.
+- Evidence:
+  - `tests/e2e/customer-auth-ux.spec.ts`
+  - `.agent/artifacts/auth-ux-t01/customer-name-desktop.png`
+  - `.agent/artifacts/auth-ux-t01/customer-name-mobile.png`
+- Boundary: no schema, role, profile, checkout, order, payment, or Production
+  deployment behavior changed.
+
+---
+
+## CUSTOMER-RESET-T01 - Remove Customer QA Accounts
+
+- Date: 2026-07-27
+- Status: completed
+- Preflight: 14 customer profiles/Auth users, 1 admin, 1 staff, 0 orphan Auth
+  users, and no customer-owned inventory adjustments.
+- Result: removed 14 customer Auth users and their dependent QA data: 19
+  orders, 19 cascaded order items, 2 payments, 33 account vouchers, 51 outbox
+  rows, and 17 customer notification rows.
+- Safety: exact expected-count arguments, disjoint role sets, protected-role
+  presence checks, a transaction for business rows, and post-Auth-deletion
+  reconciliation all passed.
+- Verification: independent post-delete dry-run found 0 customer profiles, 0
+  customer Auth users, 0 orphan users, 1 admin profile/Auth user, and 1 staff
+  profile/Auth user.
+- Evidence:
+  - `scripts/purge-customer-accounts.mjs`
+  - `.agent/artifacts/customer-reset-t01/customer-account-purge-check.json`
+- Boundary: catalog, inventory, promotions, admin, staff, environment,
+  deployment, and release metadata were not changed.
+
+---
+
+## GUIDANCE-T01 - First-use And Replayable Customer Guidance
+
+- Date: 2026-07-27
+- Status: completed
+- Result: added bilingual storefront, cart, checkout, and order-history tours
+  using one accessible portal dialog and one browser-local provider.
+- Result: authenticated customers receive each contextual tour once per
+  browser. `Understood` persists completion, while every supported surface
+  exposes an explicit replay action.
+- Accessibility: verified focus trap, initial focus, focus return, Escape,
+  semantic dialog labels, progress, previous/next controls, scroll containment,
+  and 375px/1440px layouts.
+- Data boundary: storage contains only version `1` and completed tour IDs under
+  a customer-ID-scoped key. It contains no email, phone, address, order code,
+  cart item, voucher, payment, or credential.
+- Regression: official checkout, isolated QR experience, cart, cancellation,
+  role authorization, trusted totals, notifications, and admin flows remain
+  unchanged.
+- Verification:
+  - `npm run lint -- --quiet`: passed.
+  - `npm exec -- tsc --noEmit --pretty false`: passed.
+  - `npm run build`: passed, 59 routes plus proxy.
+  - `npm run verify:architecture`: passed, 226 files and zero findings.
+  - focused Playwright: passed, `4/4`.
+  - full Playwright: passed, `30/30`.
+  - desktop and 375px mobile screenshot review: passed.
+  - `git diff --check`: passed.
+  - Production post-test customer audit: passed with 0 customers, 0 orphan
+    Auth users, 1 admin, and 1 staff.
+- Evidence:
+  - `docs/adr/0020-contextual-customer-guidance.md`
+  - `tests/e2e/customer-guidance.spec.ts`
+  - `.agent/artifacts/guidance-t01/getting-started-desktop.png`
+  - `.agent/artifacts/guidance-t01/checkout-guide-mobile.png`
+- Boundary: no database schema, role, commerce API, real payment, email/SMS
+  provider, deployment, tag, or release metadata changed.
+
+---
+
+## SECURITY-UX-PLAN-T01 - Cross-device QR And Password Assurance Contract
+
+- Date: 2026-07-27
+- Status: completed
+- Result: accepted ADR-0021 for an HTTPS fragment-capability QR experience
+  with server-owned totals, isolated TTL persistence, amount/code confirmation,
+  bounded attempts, and no commerce mutation.
+- Result: accepted ADR-0022 for customer mailbox-possession assurance and
+  server-only admin/staff operations-secret password changes. The implemented
+  mechanism is a single-use recovery link; the requested test secret is
+  explicitly excluded from source and client bundles.
+- Result: created the ordered schema/API/UI/password/quality/release roadmap
+  with rollback and honest Production email-delivery gates.
+- Verification: ADR index links, roadmap references, and `git diff --check`
+  passed.
+- Evidence:
+  - `docs/adr/0021-cross-device-qr-experience.md`
+  - `docs/adr/0022-role-aware-password-change-assurance.md`
+  - `docs/v1.16-security-experience-roadmap.md`
+- Boundary: documentation and execution contract only; no runtime, database,
+  environment, deployment, version, tag, or release change.
+
+---
+
+## QR-XDEVICE-T02 - Cross-device Experience Domain And APIs
+
+- Date: 2026-07-27
+- Status: completed
+- Result: added typed session contracts, strict Zod DTOs, an additive
+  `checkout_experience_sessions` migration, RLS, indexes, an atomic completion
+  RPC, server-only token/code derivation, repository/use-case boundaries, and
+  create/status/complete/cancel APIs.
+- Security: amount is recalculated from current catalog data; raw capability
+  tokens and confirmation codes are never persisted; five failures lock a
+  session; completion is atomic and idempotent; another authenticated customer
+  cannot cancel the owner's session.
+- Database: live schema apply and idempotent reapply passed with 16 columns,
+  RLS enabled, completion RPC available, zero anon/authenticated/public grants,
+  and unchanged commerce counts.
+- Verification:
+  - static migration verifier: passed, `15/15`.
+  - `npm run lint -- --quiet`: passed.
+  - `npm exec -- tsc --noEmit --pretty false`: passed.
+  - `npm run build`: passed, 63 routes plus proxy.
+  - focused Playwright API integration: passed, `1/1`.
+- Evidence:
+  - `supabase/migrations/0014_cross_device_checkout_experience.sql`
+  - `tests/e2e/checkout-experience-api.spec.ts`
+  - `.agent/artifacts/qr-xdevice-t02/`
+- Boundary: no order, payment, inventory, voucher, notification, analytics,
+  real bank, wallet, or settlement behavior was added.
+
+---
+
+## QR-XDEVICE-T03 - Desktop And Mobile Cross-device Experience
+
+- Date: 2026-07-27
+- Status: completed
+- Result: replaced the browser-local internal URI simulation with the
+  server-issued HTTPS fragment QR, server-time countdown, separate six-digit
+  desktop code, bounded polling, explicit terminal states, and authenticated
+  cancel/reset.
+- Result: added bilingual `/experience/transfer` as a no-index mobile-first
+  page that requires the exact amount and confirmation code and never asks for
+  account or bank credentials.
+- Privacy: the anonymous phone context received no customer email, password,
+  name, address, book title, or cart lines.
+- Verification:
+  - `npm run lint -- --quiet`: passed.
+  - `npm exec -- tsc --noEmit --pretty false`: passed.
+  - `npm run build`: passed, 64 routes plus proxy.
+  - focused two-browser-context Playwright: passed, `1/1`.
+  - QR square/size, no-index, no-password, no-PII, desktop polling, server
+    cancel, zero commerce requests, cart retention, and 375px/1440px overflow
+    assertions: passed.
+  - desktop and mobile screenshot review: passed.
+- Evidence:
+  - `tests/e2e/checkout.spec.ts`
+  - `.agent/artifacts/qr-xdevice-t03/desktop-completed-1440-vi.png`
+  - `.agent/artifacts/qr-xdevice-t03/desktop-session-mobile-375-vi.png`
+  - `.agent/artifacts/qr-xdevice-t03/phone-pending-375-vi.png`
+  - `.agent/artifacts/qr-xdevice-t03/phone-completed-375-vi.png`
+- Boundary: completion remains an isolated experience result, not an order,
+  payment, inventory event, voucher redemption, notification, or revenue.
+
+---
+
+## AUTH-PASS-T02 - Role-aware Password Change Assurance
+
+- Date: 2026-07-27
+- Status: completed
+- Result: customer changes require the Supabase single-use recovery link sent
+  only to the signed-in account email. The new no-index reset page requires a
+  recovery token pair, removes tokens from the visible URL, changes the
+  password through that recovery session, and signs out afterward.
+- Result: the normal customer password endpoint fails closed. Admin/staff
+  changes require current-password reauthentication plus a constant-time
+  server-only operations secret; the test value is absent from source and
+  client-facing configuration.
+- Critical finding: the initially implemented Supabase reauthentication nonce
+  was not unconditional. After Secure password change was enabled, a fresh
+  session still accepted an invalid nonce because Supabase exempts sessions
+  created within 24 hours. The design was rejected rather than reporting false
+  assurance.
+- Email evidence: the authorized mailbox received Supabase's default reset
+  email. The default template contains a single-use link, not a recovery OTP;
+  custom SMTP and branded templates remain external Production prerequisites.
+- Verification:
+  - `npm run lint`: passed with zero warnings.
+  - `npm exec -- tsc --noEmit`: passed.
+  - `npm run verify:password-assurance`: passed, `9/9`.
+  - `npm run build`: passed, 66 routes plus proxy.
+  - focused Playwright role matrix: passed, `3/3`.
+  - customer recovery link changed the password, removed tokens from the URL,
+    rejected the old password, and accepted the new one.
+- Evidence:
+  - `docs/adr/0022-role-aware-password-change-assurance.md`
+  - `scripts/verify-password-assurance.mjs`
+  - `tests/e2e/password-assurance.spec.ts`
+  - `.agent/artifacts/auth-pass-t02/`
+- Boundary: no custom SMTP credential, real buyer email domain, MFA provider,
+  real payment, or bank account was added.
+
+---
+
+## QUALITY-T01 - Full Local Security And Regression Verification
+
+- Date: 2026-07-27
+- Status: completed
+- Result: final source passed lint, TypeScript, a 66-route Production build,
+  full Playwright `34/34`, and local final QA with zero findings.
+- Security and architecture: 226-file architecture scan, cross-device migration
+  checks `15/15`, password assurance `9/9`, 1,598-file secret scan, security
+  headers, no-demo copy, notification boundaries, isolated QR source checks,
+  and runtime mock-payment lock with HTTP `401` all passed.
+- Commerce and UX: catalog total `500` with `250/250` language parity,
+  homepage/catalog/detail responsive checks, keyboard focus, reduced motion,
+  assistant malformed/out-of-scope handling, productization configuration, and
+  buyer handoff boundaries passed.
+- Database: live reconciliation confirmed the experience table, all 16
+  columns, RLS, atomic completion RPC, no public grants, and unchanged counts
+  of `0` orders, `0` order items, `0` payments, and `3` promotion definitions.
+- Cleanup: post-test reconciliation found zero QA Auth users, profiles, orders,
+  promotions, catalog rows, or inventory adjustments.
+- Dependency boundary: runtime audit reports zero vulnerabilities. Full audit
+  reports nine high advisories limited to the ESLint/minimatch development
+  chain; the available fix requires a breaking ESLint major and is deferred
+  rather than forced into this release.
+- Evidence:
+  - `.agent/artifacts/quality-t01/`
+  - `.agent/artifacts/quality-t01-final/`
+  - `.agent/artifacts/quality-t01-cleanup/`
+  - `.agent/artifacts/quality-t01-qr-runtime/`
+- Boundary: no real payment, bank credential, buyer SMTP/domain, logistics
+  provider, or real-business legal configuration was introduced.
+
+---
+
+## RELEASE-T01 - Production Migration, Deployment, And Release v1.16.0
+
+- Date: 2026-07-28
+- Status: completed
+- Environment: sensitive `CHECKOUT_EXPERIENCE_TOKEN_SECRET` and
+  `OPERATIONS_PASSWORD_CHANGE_SECRET` are configured for Vercel Preview and
+  Production and absent from tracked source/client bundles.
+- Preview: deployment `dpl_r19fSbgu8q6fUgBEJJwnsbNvMqHb` reached Ready.
+  Deployment Protection blocked direct anonymous browser automation; protected
+  Vercel CLI route/API checks passed, and the same source received full browser
+  verification after Production promotion.
+- Production: deployment `dpl_9Nmny2kZdcvM2NgHNMcP4vdgjG5X` reached Ready and
+  is aliased to `https://caseflow-store.vercel.app`.
+- Verification:
+  - Production smoke: PASS.
+  - security headers/no-store: PASS.
+  - mock-payment Production lock: PASS, HTTP `401`.
+  - final QA: PASS, zero findings.
+  - full Production Playwright: PASS, `34/34`.
+  - productization and secret scan: PASS, zero findings.
+  - live schema/RLS/RPC reconciliation: PASS.
+  - post-test cleanup: PASS, zero QA accounts or records.
+- Release: annotated tag `v1.16.0`, remote `main`, and GitHub Release `v1.16.0`
+  publish `docs/v1.16.0-cross-device-security-experience-release-notes.md`.
+- Evidence:
+  - `.agent/artifacts/release-t01-production-smoke/`
+  - `.agent/artifacts/release-t01-production-security/`
+  - `.agent/artifacts/release-t01-production-qr/`
+  - `.agent/artifacts/release-t01-production-final/`
+  - `.agent/artifacts/release-t01-production-cleanup/`
+  - `.agent/artifacts/release-t01-productization/`
+  - `.agent/artifacts/release-t01-secret/`
+- Remaining boundary: custom SMTP/domain authentication, enterprise MFA,
+  real settlement, logistics, observability, and legal/business configuration
+  are not included in the showroom release.

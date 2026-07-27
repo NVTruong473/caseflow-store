@@ -4,6 +4,10 @@ import Link from "next/link";
 import * as React from "react";
 
 import { Badge, Button, Container, ErrorMessage } from "@/components/ui";
+import {
+  CustomerGuidanceAutoOpen,
+  CustomerGuidanceButton,
+} from "@/features/guidance";
 import { formatVnd } from "@/lib/format/currency";
 import type { Language } from "@/lib/i18n/language";
 import type { SupabaseOrderRecord } from "@/lib/repositories/supabase-orders";
@@ -142,6 +146,7 @@ export function CustomerOrdersPage({
       className="bg-background py-case-2xl text-foreground"
       data-customer-orders-page
     >
+      <CustomerGuidanceAutoOpen tourId="orders" />
       <Container className="flex flex-col gap-case-xl">
         <Link
           href="/account"
@@ -150,11 +155,18 @@ export function CustomerOrdersPage({
           {copy.account}
         </Link>
 
-        <div className="max-w-3xl">
-          <Badge variant="primary">{copy.badge}</Badge>
-          <h1 className="mt-case-md text-heading-1 font-semibold text-foreground">
-            {copy.title}
-          </h1>
+        <div className="flex flex-col gap-case-md sm:flex-row sm:items-end sm:justify-between">
+          <div className="max-w-3xl">
+            <Badge variant="primary">{copy.badge}</Badge>
+            <h1 className="mt-case-md text-heading-1 font-semibold text-foreground">
+              {copy.title}
+            </h1>
+          </div>
+          <CustomerGuidanceButton
+            className="w-fit"
+            language={language}
+            tourId="orders"
+          />
         </div>
 
         {orderRecords.length === 0 ? (

@@ -1270,6 +1270,74 @@ export type Database = {
           },
         ];
       };
+      checkout_experience_sessions: {
+        Row: {
+          id: string;
+          customer_id: string;
+          client_request_id: string;
+          token_hash: string;
+          confirmation_code_hash: string;
+          confirmation_code_salt: string;
+          cart_fingerprint: string;
+          amount_vnd: number;
+          currency: "VND";
+          status:
+            | "pending"
+            | "completed"
+            | "expired"
+            | "locked"
+            | "cancelled";
+          transfer_content: string;
+          failed_attempts: number;
+          expires_at: string;
+          completed_at: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          customer_id: string;
+          client_request_id: string;
+          token_hash: string;
+          confirmation_code_hash: string;
+          confirmation_code_salt: string;
+          cart_fingerprint: string;
+          amount_vnd: number;
+          currency?: "VND";
+          status?:
+            | "pending"
+            | "completed"
+            | "expired"
+            | "locked"
+            | "cancelled";
+          transfer_content: string;
+          failed_attempts?: number;
+          expires_at: string;
+          completed_at?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          status?:
+            | "pending"
+            | "completed"
+            | "expired"
+            | "locked"
+            | "cancelled";
+          failed_attempts?: number;
+          completed_at?: string | null;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "checkout_experience_sessions_customer_id_fkey";
+            columns: ["customer_id"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
       notification_outbox: {
         Row: {
           id: string;
@@ -1474,6 +1542,14 @@ export type Database = {
           p_customer_id: string;
           p_otp_hash: string;
           p_verified_at: string;
+        };
+        Returns: Json;
+      };
+      complete_checkout_experience_session: {
+        Args: {
+          p_token_hash: string;
+          p_amount_vnd: number;
+          p_confirmation_code_hash: string;
         };
         Returns: Json;
       };

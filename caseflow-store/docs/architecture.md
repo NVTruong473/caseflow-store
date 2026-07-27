@@ -83,6 +83,7 @@ production runtime path.
 | `src/features/customer` | Account, profile readiness, order history, and public tracking UI |
 | `src/features/admin` | Dashboard, orders, catalog, inventory, promotions, customers, settings, exports |
 | `src/features/assistant` | Rule-based bookstore assistant and guided result links |
+| `src/features/guidance` | Browser-local, bilingual customer tours for storefront, cart, checkout, and order history |
 | `src/components/ui` | Shared accessible UI primitives |
 | `src/lib/use-cases` | Application workflows for high-risk mutating actions such as order creation |
 | `src/lib/validation` | Zod schemas for public, customer, checkout, and admin inputs |
@@ -143,6 +144,24 @@ Browser localStorage cart
 
 The cart deliberately does not store trusted price, subtotal, tax, role, or
 order status. It remains browser-local rather than cross-device.
+
+### Contextual customer guidance
+
+```text
+Authenticated customer opens a supported surface
+  -> server layout supplies only the current customer ID and language
+  -> CustomerGuidanceProvider checks completed tour IDs in localStorage
+  -> an incomplete surface-specific tour opens once for that browser
+  -> customer can close without completion or choose Understood
+  -> Understood stores only the tour ID and schema version
+  -> a visible surface control can replay the tour at any time
+```
+
+Guidance is presentation state, not commerce state. It stores no email,
+address, phone, order code, cart content, payment data, or profile field. The
+browser-local tradeoff is deliberate: completion does not synchronize across
+devices, while account, checkout, order, cancellation, and payment behavior
+remain server-authorized and unchanged.
 
 ### Account-gated checkout
 
@@ -332,11 +351,15 @@ Additional controls:
 
 - RLS is enabled on catalog, profile, order, promotion, and inventory tables.
 - Public/admin mutating bodies are validated with Zod.
-- Signed-in users can change only their own Supabase Auth password. The
-  password-change route reads the current auth user on the server, verifies the
-  current password through Supabase re-authentication, and then calls Supabase
-  Auth to update the password. Admin/staff password resets for other accounts
-  are intentionally outside the application UI.
+- Customer password changes require a single-use Supabase recovery link sent
+  to the signed-in account email. The dedicated no-index recovery page accepts
+  only a recovery token pair, removes bearer tokens from the visible URL,
+  updates the password through the recovery session, and signs out afterward.
+  The normal customer password endpoint fails closed.
+- Admin/staff password changes require both current-password reauthentication
+  and the server-only `OPERATIONS_PASSWORD_CHANGE_SECRET`. The shared secret is
+  a bounded showroom control, not enterprise MFA; changing passwords for other
+  accounts remains outside the application UI.
 - The service-role key is read only by server modules and never exposed through
   `NEXT_PUBLIC_*`.
 - Server code recalculates price, promotion, VAT, shipping, payment fee, and
@@ -352,6 +375,12 @@ Additional controls:
   cache policy headers.
 - The application does not collect card fields, real e-wallet credentials, or
   bank credentials.
+- Cross-device QR checkout experiences use an isolated
+  `checkout_experience_sessions` table with RLS, hashed capability/code
+  material, server-owned totals, bounded attempts, server-time expiry, and an
+  atomic completion RPC. Completing one never creates or pays an order,
+  reserves stock, redeems a voucher, emits a commerce notification, or counts
+  as revenue.
 - QR demo webhook completion requires an HMAC signature and idempotent server
   update. Mock payment simulation is locked outside development/sandbox and is
   never a production settlement path.
@@ -418,8 +447,8 @@ rollout controls are recorded in
 ## Deployment and verification
 
 - Production alias: `https://caseflow-store.vercel.app`.
-- Current production deployment ID: `dpl_9N1HSkydBBzsrM1UmtT2Lfvpo7np`
-  (`v1.13.0`).
+- Current production deployment ID: `dpl_9Nmny2kZdcvM2NgHNMcP4vdgjG5X`
+  (`v1.16.0`).
 - Supabase hosts PostgreSQL and Auth.
 - Production runtime variables include the public Supabase URL, public anon key,
   and server-only service-role key. Canonical metadata defaults to the

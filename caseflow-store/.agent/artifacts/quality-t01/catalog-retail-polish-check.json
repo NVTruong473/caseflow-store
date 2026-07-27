@@ -1,0 +1,117 @@
+{
+  "api": {
+    "coverResponses": [
+      {
+        "contentType": "image/jpeg",
+        "ok": true,
+        "path": "/images/books/gutenberg-covers/a-christmas-carol.jpg",
+        "status": 200
+      },
+      {
+        "contentType": "image/jpeg",
+        "ok": true,
+        "path": "/images/books/gutenberg-covers/a-christmas-carol.jpg",
+        "status": 200
+      },
+      {
+        "contentType": "image/jpeg",
+        "ok": true,
+        "path": "/images/books/gutenberg-covers/a-christmas-carol.jpg",
+        "status": 200
+      },
+      {
+        "contentType": "image/jpeg",
+        "ok": true,
+        "path": "/images/books/gutenberg-covers/a-christmas-carol.jpg",
+        "status": 200
+      },
+      {
+        "contentType": "image/jpeg",
+        "ok": true,
+        "path": "/images/books/gutenberg-covers/a-tale-of-two-cities.jpg",
+        "status": 200
+      },
+      {
+        "contentType": "image/jpeg",
+        "ok": true,
+        "path": "/images/books/gutenberg-covers/a-tale-of-two-cities.jpg",
+        "status": 200
+      },
+      {
+        "contentType": "image/jpeg",
+        "ok": true,
+        "path": "/images/books/gutenberg-covers/a-tale-of-two-cities.jpg",
+        "status": 200
+      },
+      {
+        "contentType": "image/jpeg",
+        "ok": true,
+        "path": "/images/books/gutenberg-covers/a-tale-of-two-cities.jpg",
+        "status": 200
+      }
+    ],
+    "coverSamples": 8,
+    "coverSamplesOk": true,
+    "firstPageCount": 24,
+    "firstPageStatus": 200,
+    "total": 500,
+    "v16SearchCount": 12,
+    "v16SearchStatus": 200
+  },
+  "baseURL": "http://127.0.0.1:3000",
+  "browser": {
+    "catalog": {
+      "englishResultTotal": 250,
+      "noHorizontalOverflow": true,
+      "resultBox": {
+        "height": 34,
+        "lineHeight": 24,
+        "width": 266
+      },
+      "resultCountStable": true,
+      "resultText": "Đang hiển thị 1-24 trong 500 ấn bản",
+      "vietnameseResultTotal": 250
+    },
+    "home": {
+      "includesCatalogTotal": true,
+      "noHorizontalOverflow": true,
+      "textSample": "Nhà sách trực tuyến\nCaseFlow Books\n\nNhà sách song ngữ giúp bạn so sánh ấn bản, thấy tồn kho và đặt hàng mà không phải đoán bước tiếp theo.\n\nTìm theo tên sách, tác giả hoặc ISBN\nTìm trong catalog\n\nLối vào nhanh\n\nVăn học\nVăn học kinh điển\nTrinh thám và hồi hộp\nGiả tưởng và khoa học viễn tưởng\n\nĐăng ký ngay để nhận mã giảm giá\n\nTài khoản khách hàng mới nhận 3 mã chào mừng cho các đơn đầu tiên.\n\nĐăng ký nhận mã\nDuyệt sách\nTra cứu đơn\nXem hướng dẫn\nTủ sách chọn lọc\n500 ấn bản\nẤn bản song ngữ\nAnh & Việt\nThanh toán\nCOD & chuyển khoản\n\nGiá checkout giữ theo VND. Giao hàng và phương thức thanh toán đượ"
+    },
+    "screenshots": {
+      "catalog": ".agent/artifacts/quality-t01/catalog-920-vi.png",
+      "home": ".agent/artifacts/quality-t01/home-1440-vi.png"
+    }
+  },
+  "db": {
+    "activeEditions": 500,
+    "activeEnglishEditions": 250,
+    "activeV16Editions": 400,
+    "activeVietnameseEditions": 250,
+    "maximumActivePriceVnd": 871000,
+    "minimumActivePriceVnd": 120000
+  },
+  "generatedAt": "2026-07-27T17:02:28.787Z",
+  "localAssets": {
+    "directory": "/Users/vantruong/Documents/TSNN 2/caseflow-store/public/images/books/v16-covers",
+    "fileCount": 400,
+    "sample": [
+      "a-christmas-carol-english-collector-special.svg",
+      "a-christmas-carol-english-library-hardcover.svg",
+      "a-christmas-carol-english-reader-paperback.svg",
+      "a-christmas-carol-english-reading-group-box-set.svg",
+      "a-christmas-carol-vietnamese-collector-special.svg"
+    ]
+  },
+  "ok": true,
+  "pass": {
+    "apiTotal": true,
+    "catalogResultCountLayout": true,
+    "coverAssets": true,
+    "databaseTotal": true,
+    "heroCopy": true,
+    "languageParity": true,
+    "noHorizontalOverflow": true,
+    "priceFloor": true,
+    "v16EditionCount": true
+  }
+}

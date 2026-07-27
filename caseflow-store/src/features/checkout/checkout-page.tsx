@@ -29,6 +29,10 @@ import {
   CheckoutModeSelector,
   type CheckoutMode,
 } from "@/features/checkout/checkout-mode-selector";
+import {
+  CustomerGuidanceAutoOpen,
+  CustomerGuidanceButton,
+} from "@/features/guidance";
 import type { CustomerAuthState } from "@/lib/auth/customer";
 import { calculateBookCheckoutTotals } from "@/lib/checkout/book-totals";
 import { formatUsd, formatVnd } from "@/lib/format/currency";
@@ -514,6 +518,7 @@ export function CheckoutPage({
       className="bg-background py-case-2xl text-foreground"
       data-checkout-page
     >
+      <CustomerGuidanceAutoOpen tourId="checkout" />
       <Container className="flex flex-col gap-case-xl">
         <div className="flex flex-col gap-case-md">
           <Link
@@ -531,6 +536,11 @@ export function CheckoutPage({
               {copy.description}
             </p>
           </div>
+          <CustomerGuidanceButton
+            className="w-fit"
+            language={language}
+            tourId="checkout"
+          />
           <CheckoutAssuranceStrip copy={copy} />
         </div>
 

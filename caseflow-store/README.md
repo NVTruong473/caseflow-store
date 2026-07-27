@@ -10,8 +10,10 @@ evidence, and portfolio notes.
 > expiry, real bank credentials, or real MoMo/ZaloPay/VNPay credentials. QR
 > demo payment is available only in development/sandbox and is locked in
 > production. The in-app notification inbox works without an external vendor.
-> Email/SMS delivery and SMS OTP are disabled in production until approved
-> provider credentials and sender configuration are supplied.
+> External order email/SMS delivery and SMS OTP are disabled in production
+> until approved provider credentials and sender configuration are supplied.
+> Customer password recovery currently uses Supabase Auth's default sender;
+> custom SMTP remains a buyer prerequisite.
 
 ## Current scope
 
@@ -22,9 +24,14 @@ evidence, and portfolio notes.
   mode.
 - Account-gated checkout with simulated COD, bank transfer, wallet/provider
   choices, and development-only QR demo payment flows.
+- An isolated cross-device QR practice flow with server-owned totals,
+  expiring capability sessions, a separate desktop code, and no commerce
+  mutation.
 - Account-bound signup welcome vouchers with one-code-per-order enforcement.
 - Customer order history, eligible order cancellation, and guarded public
   tracking.
+- Replayable customer guidance plus role-aware password assurance: mailbox
+  recovery links for customers and a server-only operations key for staff/admin.
 - Customer in-app order notifications, with optional provider-gated email/SMS
   delivery and SMS phone verification.
 - Admin/staff dashboard, order operations, simulated-transfer decisions,
@@ -72,19 +79,19 @@ runtime.
 
 ## Latest release evidence
 
-- Release tag: `v1.15.0`
+- Release tag: `v1.16.0`
 - GitHub Release:
-  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.15.0`
+  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.16.0`
 - Production alias: `https://caseflow-store.vercel.app`
-- Vercel deployment ID: `dpl_Deq7FXB7AC9npqoNCoY3ebJpNJU6`
+- Vercel deployment ID: `dpl_9Nmny2kZdcvM2NgHNMcP4vdgjG5X`
 - Local gates: runtime dependency audit with zero vulnerabilities, TypeScript,
-  ESLint, 59-route production build, architecture boundary, no-demo/secret/QR
-  safety gates, full Playwright `26/26`, and final focused checkout Playwright
-  `4/4` passed.
-- Production smoke: release smoke, security posture, QR lock, focused checkout
-  Playwright `4/4`, and desktop/mobile visual review passed. Evidence is under
-  `.agent/artifacts/checkout-mode-t02-production*`.
+  ESLint, 66-route production build, architecture/migration/password,
+  no-demo/secret/QR safety gates, full Playwright `34/34`, and final QA passed.
+- Production: release smoke, security posture, QR lock, final QA with zero
+  findings, full Playwright `34/34`, and post-test cleanup passed. Evidence is
+  under `.agent/artifacts/release-t01-production-*`.
 - Release notes:
+  [`docs/v1.16.0-cross-device-security-experience-release-notes.md`](docs/v1.16.0-cross-device-security-experience-release-notes.md),
   [`docs/v1.15.0-checkout-qr-experience-release-notes.md`](docs/v1.15.0-checkout-qr-experience-release-notes.md),
   [`docs/v1.14.0-sellable-demo-productization-release-notes.md`](docs/v1.14.0-sellable-demo-productization-release-notes.md),
   [`docs/v1.13.1-order-response-reliability-patch-release-notes.md`](docs/v1.13.1-order-response-reliability-patch-release-notes.md),
@@ -105,10 +112,10 @@ runtime.
   [`docs/auth-email-t03-real-email-confirmation-uat.md`](docs/auth-email-t03-real-email-confirmation-uat.md)
   and
   [`docs/postv111-t01-final-release-consistency-audit.md`](docs/postv111-t01-final-release-consistency-audit.md)
-- Known boundaries: simulated payments, QR demo locked from production
-  settlement, external email/SMS/OTP disabled without approved credentials,
-  no real shipping carrier integration, and no licensed commercial metadata
-  feed.
+- Known boundaries: simulated payments, no real QR settlement, default
+  Supabase recovery sender without custom SMTP, external order email/SMS
+  disabled without approved credentials, no real shipping carrier integration,
+  and no licensed commercial metadata feed.
 
 Architecture and decision records are under [`docs/`](docs/).
 The portfolio handoff packet is

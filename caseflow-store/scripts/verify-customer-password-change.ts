@@ -9,7 +9,7 @@ import { createSupabaseAdminClient } from "../src/lib/supabase/admin";
 
 loadEnvConfig(process.cwd());
 
-const ARTIFACT_DIR = path.join(".agent", "artifacts", "auth-password-t01");
+const ARTIFACT_DIR = path.join(".agent", "artifacts", "auth-pass-t02");
 const OLD_PASSWORD = "CaseflowBooks#Old31";
 const NEW_PASSWORD = "CaseflowBooks#New31";
 
@@ -31,7 +31,11 @@ async function main() {
   try {
     userId = await createVerifiedCustomer(email);
 
-    const changed = await changePasswordThroughAccount(browser, baseURL, email);
+    const changed = await changePasswordThroughRecoveryLink(
+      browser,
+      baseURL,
+      email,
+    );
     const oldPasswordRejected = await inspectLoginAttempt(
       browser,
       baseURL,
@@ -122,41 +126,60 @@ async function createVerifiedCustomer(email: string) {
   return data.user.id;
 }
 
-async function changePasswordThroughAccount(
+async function changePasswordThroughRecoveryLink(
   browser: Browser,
   baseURL: string,
   email: string,
 ) {
   const context = await createContext(browser, baseURL);
   const page = await context.newPage();
+  const admin = createSupabaseAdminClient();
+  const { data, error } = await admin.auth.admin.generateLink({
+    email,
+    options: {
+      redirectTo: `${baseURL}/account/password-reset`,
+    },
+    type: "recovery",
+  });
 
-  await page.goto("/account", { waitUntil: "domcontentloaded" });
-  await waitForHydratedAccountForm(page);
-  await page.locator("[data-customer-auth-email]").fill(email);
-  await page.locator("[data-customer-auth-password]").fill(OLD_PASSWORD);
-  await page.locator("[data-customer-auth-submit]").click();
-  await page.locator("[data-customer-account-panel]").waitFor({ timeout: 20_000 });
-  await page.waitForLoadState("networkidle").catch(() => undefined);
-  await page.waitForTimeout(500);
-  await page.locator("[data-customer-password-current]").fill(OLD_PASSWORD);
-  await page.locator("[data-customer-password-new]").fill(NEW_PASSWORD);
-  await page.locator("[data-customer-password-confirm]").fill(NEW_PASSWORD);
-  await page.locator("[data-customer-password-submit]").click();
-  await page.locator("[data-customer-password-success]").waitFor({ timeout: 20_000 });
+  if (error || !data.properties.action_link) {
+    throw new Error(`Could not create recovery link: ${error?.message}`);
+  }
+
+  await page.goto(data.properties.action_link, {
+    waitUntil: "domcontentloaded",
+  });
+  await page
+    .locator("[data-customer-password-recovery-form]")
+    .waitFor({ timeout: 20_000 });
+  await page
+    .locator("[data-customer-password-recovery-new]")
+    .fill(NEW_PASSWORD);
+  await page
+    .locator("[data-customer-password-recovery-confirm]")
+    .fill(NEW_PASSWORD);
+  await page.locator("[data-customer-password-recovery-submit]").click();
+  await page
+    .locator("[data-customer-password-reset-complete]")
+    .waitFor({ timeout: 20_000 });
 
   const bodyText = await page.locator("body").innerText();
   const hasHorizontalOverflow = await hasOverflow(page);
+  const tokensRemovedFromUrl =
+    !page.url().includes("access_token") &&
+    !page.url().includes("refresh_token");
 
-  await page.locator("[data-customer-password-form]").scrollIntoViewIfNeeded();
   await page.screenshot({
     fullPage: false,
-    path: path.join(ARTIFACT_DIR, "customer-password-changed.png"),
+    path: path.join(ARTIFACT_DIR, "customer-password-recovery-changed.png"),
   });
   await context.close();
 
   return {
     hasHorizontalOverflow,
-    passwordChanged: bodyText.includes("Password changed"),
+    passwordChanged:
+      bodyText.includes("Password changed") && tokensRemovedFromUrl,
+    tokensRemovedFromUrl,
   };
 }
 

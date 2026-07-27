@@ -1,9 +1,9 @@
 # CaseFlow Books Portfolio Handoff
 
-- Latest release: `v1.15.0`
+- Latest release: `v1.16.0`
 - Production URL: `https://caseflow-store.vercel.app`
-- GitHub Release: `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.15.0`
-- Vercel deployment: `dpl_Deq7FXB7AC9npqoNCoY3ebJpNJU6`
+- GitHub Release: `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.16.0`
+- Vercel deployment: `dpl_9Nmny2kZdcvM2NgHNMcP4vdgjG5X`
 - Project type: full-stack bookstore and small-business operations portfolio
 - Stack: Next.js 16, React 19, TypeScript 5, Tailwind CSS 4, Supabase
   PostgreSQL/Auth/RLS, Zod, Playwright, Vercel
@@ -130,7 +130,10 @@ See `docs/architecture.md` for the full architecture notes.
 
 | Evidence | Location |
 |---|---|
-| Latest release notes | `docs/v1.15.0-checkout-qr-experience-release-notes.md` |
+| Latest release notes | `docs/v1.16.0-cross-device-security-experience-release-notes.md` |
+| v1.16.0 Production smoke/security/QR lock | `.agent/artifacts/release-t01-production-smoke/`; `.agent/artifacts/release-t01-production-security/`; `.agent/artifacts/release-t01-production-qr/` |
+| v1.16.0 full Production browser QA | Full Playwright `34/34`; `.agent/artifacts/release-t01-production-final/` |
+| v1.16.0 post-test cleanup | `.agent/artifacts/release-t01-production-cleanup/release-cleanup-check.json` |
 | v1.15.0 production checkout UAT | `.agent/artifacts/checkout-mode-t02-production/` |
 | v1.15.0 production smoke/security/QR lock | `.agent/artifacts/checkout-mode-t02-production-smoke/`; `.agent/artifacts/checkout-mode-t02-production-security/`; `.agent/artifacts/checkout-mode-t02-production-qr-safety/` |
 | v1.14.0 release consistency audit | `docs/postv140-t01-final-release-consistency-audit.md` |

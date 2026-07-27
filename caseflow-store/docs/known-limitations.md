@@ -1,8 +1,8 @@
 # Known Limitations
 
 This document records the intentional boundaries and accepted risks of
-CaseFlow Books through the latest `v1.13.0` transactional notification
-release.
+CaseFlow Books through the latest `v1.16.0` cross-device experience and
+password-assurance release.
 These items are not hidden production capabilities; they define where the
 portfolio release stops.
 
@@ -54,6 +54,22 @@ available.
 **Next step:** use an official provider, real merchant onboarding, webhook
 secret management, HTTPS callback validation, reconciliation, refunds,
 chargeback/failure handling, monitoring, and a separate security review.
+
+### Cross-device QR is an isolated practice session
+
+`v1.16.0` lets a phone scan an HTTPS QR, enter the exact server-owned amount
+and a separate desktop code, then update the desktop without reload. Completion
+is deliberately not an order, payment, inventory reservation, voucher use,
+notification, or revenue event.
+
+**Current control:** raw capabilities and codes are not stored; the database
+uses hashes, RLS, server-time expiry, five-attempt locking, and an atomic
+idempotent completion RPC. The phone receives no customer profile or cart-line
+PII and never asks for a password or bank credential.
+
+**Next step:** do not convert this table into settlement history. A buyer who
+needs live collection must add an official provider behind a separately
+reviewed payment boundary.
 
 ### External notification delivery is provider-gated
 
@@ -167,6 +183,21 @@ permission checks. UI hiding is not treated as an authorization boundary.
 **Next step:** add MFA, audit events, staff lifecycle management, finer-grained
 permissions, and alerting before expanding real operational access.
 
+### Password assurance is showroom-grade, not enterprise identity
+
+Customers change passwords through a single-use Supabase recovery link sent to
+their account email. Admin/staff must supply their current password and a
+server-only shared operations secret.
+
+**Current control:** the normal customer password endpoint fails closed,
+recovery bearer tokens are removed from the visible URL, recovery sessions end
+after the update, and the operations secret is never committed or sent to a
+customer client.
+
+**Next step:** configure buyer-owned SMTP with SPF/DKIM/DMARC and replace the
+shared operations secret with per-user MFA or an identity-provider policy
+before real staff use.
+
 ## Catalog and content scope
 
 ### Book metadata is curated demo content
@@ -227,22 +258,12 @@ availability.
 
 ## Accepted dependency advisory
 
-At the latest release gate, `npm audit --audit-level=high` passed. The known
-moderate advisory remains inherited through Next.js/PostCSS and is documented
-because the available automated forced fix proposes a breaking downgrade path.
-At the original `v1.2` release audit, `npm audit --audit-level=moderate`
-reported:
+At the `v1.16.0` gate, `npm audit --omit=dev --audit-level=high` reports zero
+runtime vulnerabilities. Full `npm audit --audit-level=high` reports nine high
+advisories in the ESLint/minimatch/brace-expansion development-tooling chain.
+The available automated fix requires a breaking ESLint major; a forced upgrade
+also broke the compatible lint stack during evaluation, so it was reverted.
 
-- 0 critical
-- 0 high
-- 2 moderate
-- 0 low
-
-Both moderate findings are inherited through Next.js 16.2.10 and PostCSS
-8.4.31. `npm view next version` reported Next.js 16.2.10 as the current latest
-version during the check, and `npm audit fix --force` proposed a breaking
-downgrade to Next.js 9.3.3, so the unsafe automated fix was rejected.
-
-**Next step:** monitor upstream Next.js/PostCSS updates and apply a compatible
-patched release, then rerun TypeScript, lint, build, Playwright, production
-smoke, and dependency audit.
+**Next step:** monitor compatible ESLint/Next.js tooling updates, apply the
+patched dependency chain without `--force`, then rerun lint, TypeScript, build,
+full Playwright, production smoke, and both runtime/full dependency audits.

@@ -1,0 +1,38 @@
+{
+  "after": {
+    "completionRpcReady": true,
+    "expectedColumnCount": 16,
+    "orderCount": 0,
+    "orderItemCount": 0,
+    "paymentCount": 0,
+    "publicGrantCount": 0,
+    "rlsReady": true,
+    "tableReady": true,
+    "voucherCount": 3
+  },
+  "applyRequested": false,
+  "before": {
+    "completionRpcReady": true,
+    "expectedColumnCount": 16,
+    "orderCount": 0,
+    "orderItemCount": 0,
+    "paymentCount": 0,
+    "publicGrantCount": 0,
+    "rlsReady": true,
+    "tableReady": true,
+    "voucherCount": 3
+  },
+  "checkedAt": "2026-07-27T17:22:16.807Z",
+  "checks": {
+    "commerceCountsPreserved": true,
+    "completionRpcReady": true,
+    "expectedColumnsReady": true,
+    "noAnonAuthenticatedGrants": true,
+    "rlsReady": true,
+    "tableReady": true
+  },
+  "connectionMode": "session-pooler",
+  "migration": "supabase/migrations/0014_cross_device_checkout_experience.sql",
+  "migrationSha256": "e9119d1c70a288bf7368615b58d8130e778828cb89c3d630bb59422a21614d29",
+  "ok": true
+}

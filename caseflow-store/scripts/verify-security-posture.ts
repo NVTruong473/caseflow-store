@@ -113,6 +113,11 @@ const checks: RouteCheck[] = [
   },
   {
     expectations: [...globalExpectations, noStoreExpectation],
+    label: "account-password-reset",
+    path: "/account/password-reset",
+  },
+  {
+    expectations: [...globalExpectations, noStoreExpectation],
     label: "admin-login",
     path: "/admin/login",
   },
@@ -120,6 +125,11 @@ const checks: RouteCheck[] = [
     expectations: [...globalExpectations, noStoreExpectation],
     label: "checkout",
     path: "/checkout",
+  },
+  {
+    expectations: [...globalExpectations, noStoreExpectation],
+    label: "checkout-experience",
+    path: "/experience/transfer",
   },
   {
     expectations: [...globalExpectations, noStoreExpectation],

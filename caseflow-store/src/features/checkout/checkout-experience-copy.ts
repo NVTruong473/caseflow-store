@@ -4,71 +4,118 @@ export const checkoutExperienceCopy = {
   en: {
     accountName: "Recipient",
     accountNumber: "Experience account",
-    amount: "Experience amount",
-    bank: "Internal QR environment",
-    bankValue: "CaseFlow Experience",
-    completedDescription:
-      "The interaction is complete. No order, payment, stock, voucher, or sales record was created.",
-    completedTitle: "Transfer experience completed",
-    create: "Create experience QR",
+    amount: "Exact experience amount",
+    amountStep: "Enter the exact amount shown here on the phone.",
+    bank: "Transfer environment",
+    cancelledDescription:
+      "This session was closed without creating an order or payment.",
+    codeStep: "Enter the six-digit confirmation code from this screen.",
+    confirmationCode: "Confirmation code",
+    create: "Create phone QR",
     createDescription:
-      "The QR uses the current server-validated cart estimate but cannot open a bank or wallet app.",
-    createTitle: "Generate a safe QR experience",
+      "Scan on a phone to practise a bank-transfer confirmation. The server fixes the amount and this flow never creates an order or payment.",
+    createError: "The QR experience could not be created. Please try again.",
+    createTitle: "Practise the transfer on your phone",
     disclaimer:
       "Experience only. Do not transfer real money. Completion is not proof of payment.",
-    expired: "Experience QR expired",
     modeExperienceDescription:
-      "Generate a safe QR and practise the transfer steps without creating an order.",
+      "Scan a safe QR and practise the transfer steps without creating an order.",
     modeExperienceLabel: "QR experience",
     modeOfficialDescription:
       "Create an order using the current shipping, voucher, and payment workflow.",
     modeOfficialLabel: "Place order",
     modeTitle: "Choose checkout mode",
-    pending: "Waiting for the transfer experience",
-    qrAlt: `Experience QR for ${storefrontConfig.name}`,
+    openOnDevice: "Open the phone experience in this browser",
+    pending: "Waiting for phone confirmation",
+    pendingDescription:
+      "Keep this screen open. It updates automatically after the phone confirms the experience.",
+    pollingError:
+      "The latest status could not be checked. Automatic checking will retry.",
+    qrAlt: `Phone transfer experience QR for ${storefrontConfig.name}`,
     qrError: "The experience QR could not be generated.",
     qrLabel: "EXPERIENCE QR - NOT A PAYMENT CODE",
-    reset: "Start again",
-    simulate: "Complete experience",
-    simulating: "Completing experience",
+    reset: "Close and create another QR",
+    scanStep: "Scan the QR with the phone camera.",
+    statusDescriptions: {
+      cancelled:
+        "This session was closed without creating an order or payment.",
+      completed:
+        "The phone confirmation matched. No order, payment, stock, voucher, or sales record was created.",
+      expired:
+        "This QR can no longer be used. Create another session to continue.",
+      locked:
+        "Too many confirmation attempts were incorrect. Create another session.",
+      pending:
+        "Keep this screen open. It updates automatically after the phone confirms the experience.",
+    },
+    statusTitles: {
+      cancelled: "Experience closed",
+      completed: "Transfer experience completed",
+      expired: "Experience QR expired",
+      locked: "Experience session locked",
+      pending: "Waiting for phone confirmation",
+    },
     timeLeft: "Time left",
     transferContent: "Transfer content",
     validatedCart:
-      "Amount based on the latest server-validated cart. Discounts are not consumed.",
+      "The final experience amount is recalculated by the server. Discounts are not consumed.",
   },
   vi: {
     accountName: "Người nhận",
     accountNumber: "Tài khoản trải nghiệm",
-    amount: "Số tiền trải nghiệm",
-    bank: "Môi trường QR nội bộ",
-    bankValue: "CaseFlow Experience",
-    completedDescription:
-      "Tương tác đã hoàn tất. Hệ thống không tạo đơn, thanh toán, trừ tồn kho, dùng voucher hay ghi nhận doanh số.",
-    completedTitle: "Đã hoàn tất trải nghiệm chuyển khoản",
-    create: "Tạo QR trải nghiệm",
+    amount: "Số tiền trải nghiệm chính xác",
+    amountStep: "Nhập đúng số tiền đang hiển thị vào trang trên điện thoại.",
+    bank: "Môi trường chuyển khoản",
+    cancelledDescription:
+      "Phiên đã đóng và không tạo đơn hàng hoặc giao dịch thanh toán.",
+    codeStep: "Nhập mã xác nhận sáu số đang hiển thị trên màn hình này.",
+    confirmationCode: "Mã xác nhận",
+    create: "Tạo QR cho điện thoại",
     createDescription:
-      "QR dùng số tiền ước tính từ giỏ hàng đã được server kiểm tra nhưng không thể mở ứng dụng ngân hàng hoặc ví.",
-    createTitle: "Tạo trải nghiệm QR an toàn",
+      "Quét bằng điện thoại để thực hành bước xác nhận chuyển khoản. Server cố định số tiền và luồng này không tạo đơn hàng hoặc thanh toán.",
+    createError: "Không thể tạo phiên QR trải nghiệm. Hãy thử lại.",
+    createTitle: "Thực hành chuyển khoản trên điện thoại",
     disclaimer:
       "Chỉ để trải nghiệm. Không chuyển tiền thật. Hoàn tất ở đây không phải xác nhận thanh toán.",
-    expired: "QR trải nghiệm đã hết hạn",
     modeExperienceDescription:
-      "Tạo QR an toàn và thực hành quy trình chuyển khoản mà không tạo đơn hàng.",
+      "Quét QR an toàn và thực hành quy trình chuyển khoản mà không tạo đơn hàng.",
     modeExperienceLabel: "Trải nghiệm QR",
     modeOfficialDescription:
       "Tạo đơn bằng luồng giao hàng, voucher và phương thức thanh toán hiện tại.",
     modeOfficialLabel: "Đặt hàng",
     modeTitle: "Chọn chế độ thanh toán",
-    pending: "Đang chờ hoàn tất trải nghiệm chuyển khoản",
-    qrAlt: `QR trải nghiệm cho ${storefrontConfig.name}`,
+    openOnDevice: "Mở trang trải nghiệm ngay trên trình duyệt này",
+    pending: "Đang chờ điện thoại xác nhận",
+    pendingDescription:
+      "Giữ màn hình này mở. Trạng thái sẽ tự cập nhật sau khi điện thoại xác nhận.",
+    pollingError:
+      "Chưa thể kiểm tra trạng thái mới nhất. Hệ thống sẽ tự thử lại.",
+    qrAlt: `QR trải nghiệm chuyển khoản trên điện thoại cho ${storefrontConfig.name}`,
     qrError: "Không thể tạo QR trải nghiệm.",
     qrLabel: "QR TRẢI NGHIỆM - KHÔNG PHẢI MÃ THANH TOÁN",
-    reset: "Trải nghiệm lại",
-    simulate: "Hoàn tất trải nghiệm",
-    simulating: "Đang hoàn tất trải nghiệm",
+    reset: "Đóng và tạo QR khác",
+    scanStep: "Dùng camera điện thoại quét QR.",
+    statusDescriptions: {
+      cancelled:
+        "Phiên đã đóng và không tạo đơn hàng hoặc giao dịch thanh toán.",
+      completed:
+        "Điện thoại đã xác nhận đúng. Hệ thống không tạo đơn, thanh toán, trừ tồn kho, dùng voucher hay ghi nhận doanh số.",
+      expired: "QR này không còn hiệu lực. Hãy tạo phiên mới để tiếp tục.",
+      locked:
+        "Đã nhập sai thông tin quá số lần cho phép. Hãy tạo phiên mới.",
+      pending:
+        "Giữ màn hình này mở. Trạng thái sẽ tự cập nhật sau khi điện thoại xác nhận.",
+    },
+    statusTitles: {
+      cancelled: "Đã đóng phiên trải nghiệm",
+      completed: "Đã hoàn tất trải nghiệm chuyển khoản",
+      expired: "QR trải nghiệm đã hết hạn",
+      locked: "Phiên trải nghiệm đã bị khóa",
+      pending: "Đang chờ điện thoại xác nhận",
+    },
     timeLeft: "Thời gian còn lại",
     transferContent: "Nội dung chuyển khoản",
     validatedCart:
-      "Số tiền dựa trên giỏ hàng vừa được server kiểm tra. Voucher không bị sử dụng.",
+      "Server sẽ tính lại số tiền trải nghiệm cuối cùng. Voucher không bị sử dụng.",
   },
 } as const;

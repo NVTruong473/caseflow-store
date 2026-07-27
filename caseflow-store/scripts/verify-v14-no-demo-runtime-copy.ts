@@ -47,7 +47,10 @@ const intentionalQrDemoFiles = new Set([
   "src/app/api/webhooks/mock-payment/route.ts",
   "src/app/checkout/payment/page.tsx",
   "src/features/checkout/checkout-page.tsx",
+  "src/features/checkout/checkout-experience-copy.ts",
+  "src/features/checkout/checkout-experience-panel.tsx",
   "src/features/checkout/qr-payment-page.tsx",
+  "src/features/checkout/transfer-experience-page.tsx",
   // Operations users must see that transfer evidence is simulated; this copy
   // is not rendered on public or customer account surfaces.
   "src/features/admin/admin-orders-page.tsx",

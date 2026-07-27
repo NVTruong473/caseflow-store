@@ -10,11 +10,195 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: stable `v1.15.0` showroom plus private bookstore template
-- Current gate: `CHECKOUT-MODE-T02` production release accepted
-- Current task: none; await a real buyer discovery
+- Mode: stable `v1.16.0` showroom; feature development closed
+- Current gate: `v1.16.0` released and verified
+- Current task: none
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-27
+
+## Phase v1.16 - Cross-device Experience And Password Assurance
+
+- [x] `SECURITY-UX-PLAN-T01` Accept Architecture And Execution Contract. -
+  2026-07-27
+  - Acceptance criteria:
+    - ADR-0021 governs cross-device QR experience persistence and capability
+      security.
+    - ADR-0022 governs customer email recovery and admin/staff server-secret
+      password assurance.
+    - The implementation roadmap covers schema, APIs, UI, security, QA,
+      migration, rollback, deployment, and honest SMTP limitations.
+    - Existing local work and deployed `v1.15.0` state remain preserved.
+    - `git diff --check` passes.
+  - Result: accepted ADR-0021 and ADR-0022 plus the ordered `v1.16`
+    implementation, QA, migration, rollback, Production, and release contract.
+  - Verification: document links and `git diff --check` passed.
+
+- [x] `QR-XDEVICE-T02` Add Experience Domain, Migration, Repository, And APIs.
+  - Result: added the isolated session domain, strict DTO validation, additive
+    RLS migration, atomic completion RPC, server-only credential derivation,
+    repository/use-case layers, and create/status/complete/cancel APIs.
+  - Result: the live Supabase schema apply and idempotent reapply both passed
+    with 16 columns, RLS enabled, service-role-only access, the completion RPC,
+    and unchanged commerce counts.
+  - Verification: migration static checks `15/15`, lint, TypeScript, 63-route
+    build, and focused Playwright API integration `1/1` passed. The API test
+    covered trusted totals, strict request validation, idempotency, ownership,
+    completion replay, five-attempt lock, cancellation, and zero commerce
+    mutations.
+  - Acceptance criteria: see
+    `docs/v1.16-security-experience-roadmap.md#qr-xdevice-t02---domain-schema-repository-and-apis`.
+
+- [x] `QR-XDEVICE-T03` Build Desktop And Mobile Cross-device Experience.
+  - Result: desktop now creates a server session and renders an HTTPS fragment
+    QR, exact server amount, separate six-digit code, server-time countdown,
+    polling, terminal states, open-on-device link, and cancel/reset.
+  - Result: added a bilingual, mobile-first, no-index transfer page requiring
+    exact amount plus confirmation code; it contains no password input or
+    customer/cart PII.
+  - Verification: lint, TypeScript, 64-route build, focused two-context
+    Playwright, QR geometry, cancel persistence, no-PII/no-password checks,
+    375px/1440px overflow checks, and visual review passed.
+  - Acceptance criteria: see
+    `docs/v1.16-security-experience-roadmap.md#qr-xdevice-t03---desktop-qr-and-mobile-transfer-ui`.
+
+- [x] `AUTH-PASS-T02` Add Role-aware Password Change Assurance.
+  - Result: customer password changes now require the single-use recovery link
+    sent to the signed-in account email; the dedicated no-index reset page
+    removes bearer tokens from the URL before collecting the new password and
+    ends the recovery session afterward.
+  - Result: admin/staff require current-password reauthentication plus the
+    constant-time server-only operations secret; customer and operations forms
+    are separated by server-derived role.
+  - Verification: Supabase Secure password change was enabled; the attempted
+    nonce design was rejected after a focused test proved fresh sessions accept
+    an invalid nonce. Lint, TypeScript, 66-route build, static assurance checks
+    `9/9`, and focused Playwright customer/admin/staff matrix `3/3` passed.
+  - Email boundary: authorized mailbox delivery of the default Supabase reset
+    email passed. Custom SMTP, branded templates, and domain authentication
+    remain buyer-owned Production prerequisites.
+  - Acceptance criteria: see
+    `docs/v1.16-security-experience-roadmap.md#auth-pass-t02---role-aware-password-assurance`.
+
+- [x] `QUALITY-T01` Run Full Local Security And Regression Verification. -
+  2026-07-27
+  - Result: final source passed lint, TypeScript, a 66-route Production build,
+    full Playwright `34/34`, local final QA with zero findings, architecture,
+    migration, password-assurance, notification, productization, catalog,
+    assistant, responsive/accessibility, security-header, no-demo, secret-scan,
+    and mock-payment-lock gates.
+  - Result: live schema reconciliation confirmed the additive experience table,
+    16 columns, RLS, atomic completion RPC, no public grants, and unchanged
+    commerce counts. Post-test cleanup found zero QA users or commerce records.
+  - Dependency boundary: `npm audit --omit=dev --audit-level=high` reports zero
+    runtime vulnerabilities. Full audit still reports nine high advisories in
+    the ESLint/minimatch development chain; the available force fix requires a
+    breaking ESLint major and is not applied.
+  - Acceptance criteria: see
+    `docs/v1.16-security-experience-roadmap.md#quality-t01---full-verification`.
+
+- [x] `RELEASE-T01` Migrate, Deploy, Smoke Test, And Release When Gates Pass. -
+  2026-07-28
+  - Result: sensitive experience and operations secrets were configured for
+    Preview and Production without entering tracked source or client bundles.
+  - Result: Preview deployment `dpl_r19fSbgu8q6fUgBEJJwnsbNvMqHb` reached
+    Ready. Vercel CLI route/API checks passed; Deployment Protection blocked
+    direct preview browser automation, so the same source received full browser
+    verification on Production.
+  - Result: Production deployment `dpl_9Nmny2kZdcvM2NgHNMcP4vdgjG5X` reached
+    Ready and owns `https://caseflow-store.vercel.app`.
+  - Verification: Production smoke, security headers/no-store, mock-payment
+    lock with HTTP `401`, final QA with zero findings, full Playwright `34/34`,
+    secret scan with zero findings, productization gate, live schema
+    reconciliation, and post-test cleanup all passed.
+  - Release: commit, annotated tag `v1.16.0`, remote `main`, and GitHub Release
+    `v1.16.0` publish the verified source and professional release notes.
+  - Acceptance criteria: see
+    `docs/v1.16-security-experience-roadmap.md#release-t01---production-migration-deployment-and-uat`.
+
+## Phase AUTH-UX - Customer Sign-in Return And Header Identity
+
+- [x] `AUTH-UX-T01` Return Signed-in Customers To The Storefront And Show Their
+  Name In Navigation. - 2026-07-27
+  - Acceptance criteria:
+    - A customer signing in from the default account page returns to `/`.
+    - An explicit safe `next` destination such as `/checkout` remains honored.
+    - The authenticated desktop header shows the customer's profile name
+      without displacing language or cart controls.
+    - The mobile account navigation shows the same customer identity.
+    - Anonymous, admin/staff authorization, profile, and checkout behavior
+      remain unchanged.
+    - Focused Playwright, lint, TypeScript, build, and diff checks pass.
+  - Result: direct customer sign-in now returns to `/`; safe explicit return
+    paths such as `/checkout` remain honored.
+  - Result: authenticated desktop and mobile navigation render the profile
+    name with constrained, truncation-safe identity treatment.
+  - Verification: lint, TypeScript, 59-route Production build, focused
+    Playwright `2/2`, desktop/mobile visual review, and `git diff --check`
+    passed.
+  - Evidence:
+    - `tests/e2e/customer-auth-ux.spec.ts`
+    - `.agent/artifacts/auth-ux-t01/customer-name-desktop.png`
+    - `.agent/artifacts/auth-ux-t01/customer-name-mobile.png`
+
+## Phase GUIDANCE - Contextual Customer Onboarding
+
+- [x] `GUIDANCE-T01` Add First-use And Replayable Customer Guidance. -
+  2026-07-27
+  - Acceptance criteria:
+    - The first authenticated storefront visit can open a concise end-to-end
+      buying guide once per customer/browser.
+    - Cart, checkout, and order-history surfaces each expose a contextual
+      guide covering only controls and business behavior that actually exist.
+    - Every tour supports previous/next, progress, close, `Understood`, and
+      explicit replay.
+    - `Understood` suppresses future automatic opening for that tour while
+      replay remains available.
+    - Guidance state stores no email, address, order code, payment data, or
+      other customer content.
+    - The dialog traps focus, returns focus, supports Escape, has semantic
+      labels, and remains usable at 375px and 1440px.
+    - Existing auth, cart, checkout, order, cancellation, payment, role, and
+      server-total behavior remain unchanged.
+    - Focused and regression Playwright, lint, TypeScript, build,
+      architecture, and diff checks pass.
+  - Result: added one bilingual guidance system with separate storefront,
+    cart, checkout, and order-history tours. Authenticated customers see each
+    tour once per browser until choosing `Understood`; every surface keeps a
+    visible replay control.
+  - Result: guidance has progress, previous/next, close, Escape, focus trap,
+    focus return, responsive scrolling, and truthful copy for official
+    checkout, isolated QR experience, cart removal, order status, and eligible
+    cancellation.
+  - Safety: persisted guidance stores only version `1` and completed tour IDs
+    under a customer-ID-scoped localStorage key. No customer email, contact,
+    address, order, cart, voucher, payment, or credential content is stored.
+  - Verification: lint, TypeScript, 59-route Production build,
+    226-file architecture gate, focused Playwright `4/4`, full Playwright
+    `30/30`, desktop/mobile visual review, and `git diff --check` passed.
+  - Evidence:
+    - `docs/adr/0020-contextual-customer-guidance.md`
+    - `tests/e2e/customer-guidance.spec.ts`
+    - `.agent/artifacts/guidance-t01/getting-started-desktop.png`
+    - `.agent/artifacts/guidance-t01/checkout-guide-mobile.png`
+
+## Phase CUSTOMER-RESET - Customer QA Data Reset
+
+- [x] `CUSTOMER-RESET-T01` Remove Existing Customer Accounts And Preserve
+  Operations Roles. - 2026-07-27
+  - Result: dry-run classified 14 customer profiles, 1 admin, 1 staff, and no
+    orphan Auth users; role sets did not overlap.
+  - Result: deleted 14 customer Auth users, 19 customer orders, 19 order
+    items through cascade, 2 payments, 33 account vouchers, 51 notification
+    outbox rows, and 17 customer inbox rows.
+  - Safety: deletion used `profiles.role='customer'`, exact expected-count
+    gates, a transaction for dependent commerce data, and a separate protected
+    role reconciliation before/after Auth deletion.
+  - Verification: post-delete audit reports 0 customer profiles, 0 customer
+    Auth users, 0 orphans, 1 admin profile/Auth user, and 1 staff profile/Auth
+    user.
+  - Evidence:
+    - `scripts/purge-customer-accounts.mjs`
+    - `.agent/artifacts/customer-reset-t01/customer-account-purge-check.json`
 
 ## Phase CHECKOUT-MODE - Official Checkout And Isolated QR Experience
 

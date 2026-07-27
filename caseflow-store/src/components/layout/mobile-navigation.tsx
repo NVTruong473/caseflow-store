@@ -178,7 +178,15 @@ export function MobileNavigation({
               data-customer-auth-state={account.state}
             >
               <span>{copy.account}</span>
-              <span className="truncate text-small font-normal text-text-muted">
+              <span
+                className="truncate text-small font-normal text-text-muted"
+                data-customer-auth-mobile-name={
+                  account.state === "signed-in" ? account.description : undefined
+                }
+                title={
+                  account.state === "signed-in" ? account.description : undefined
+                }
+              >
                 {account.description}
               </span>
             </Link>

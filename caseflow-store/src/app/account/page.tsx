@@ -40,6 +40,7 @@ export default async function AccountPage({ searchParams }: AccountPageProps) {
   const params = await searchParams;
   const authState = await getCustomerAuthState();
   const nextPath = normalizeNextPath(params?.next);
+  const passwordChanged = firstParam(params?.passwordChanged) === "1";
   const signupVouchers =
     authState.status === "authenticated" && authState.user.role === "customer"
       ? await ensureAndListCustomerSignupVouchers(authState.user.id)
@@ -50,6 +51,7 @@ export default async function AccountPage({ searchParams }: AccountPageProps) {
       authState={authState}
       language={language}
       nextPath={nextPath}
+      passwordChanged={passwordChanged}
       signupVouchers={signupVouchers}
     />
   );
@@ -73,4 +75,8 @@ function normalizeNextPath(value: string | string[] | undefined) {
   }
 
   return rawValue;
+}
+
+function firstParam(value: string | string[] | undefined) {
+  return Array.isArray(value) ? value[0] : value;
 }

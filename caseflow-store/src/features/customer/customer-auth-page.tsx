@@ -83,7 +83,10 @@ const customerAuthCopy = {
     logoutFailed: "Could not sign out. Try again before continuing.",
     noPhoneVerification:
       "Phone and shipping details are completed in the customer profile before checkout.",
-    openingAccount: "Signed in. Opening your account.",
+    passwordResetComplete:
+      "Password changed. Sign in again with your new password.",
+    continuingAfterSignIn: "Signed in. Continuing where you left off.",
+    openingStorefront: "Signed in. Returning to the bookstore.",
     orderHistory: "Order history",
     password: "Password",
     passwordError: "Password must be at least 8 characters.",
@@ -139,7 +142,11 @@ const customerAuthCopy = {
     logoutFailed: "Chưa thể đăng xuất. Vui lòng thử lại trước khi tiếp tục.",
     noPhoneVerification:
       "Số điện thoại và địa chỉ giao hàng được hoàn tất trong hồ sơ khách hàng trước khi thanh toán.",
-    openingAccount: "Đã đăng nhập. Đang mở tài khoản.",
+    passwordResetComplete:
+      "Đã đổi mật khẩu. Hãy đăng nhập lại bằng mật khẩu mới.",
+    continuingAfterSignIn:
+      "Đã đăng nhập. Đang tiếp tục từ bước bạn đang thực hiện.",
+    openingStorefront: "Đã đăng nhập. Đang trở về trang chủ.",
     orderHistory: "Lịch sử đơn hàng",
     password: "Mật khẩu",
     passwordError: "Mật khẩu phải có ít nhất 8 ký tự.",
@@ -171,11 +178,13 @@ export function CustomerAuthPage({
   authState,
   language,
   nextPath,
+  passwordChanged,
   signupVouchers,
 }: {
   authState: CustomerAuthState;
   language: Language;
   nextPath: string | null;
+  passwordChanged: boolean;
   signupVouchers: CustomerSignupVoucher[];
 }) {
   const copy = customerAuthCopy[language];
@@ -293,10 +302,12 @@ export function CustomerAuthPage({
 
       setSubmitState({
         status: "success",
-        message: copy.openingAccount,
+        message: nextPath
+          ? copy.continuingAfterSignIn
+          : copy.openingStorefront,
         verification: payload.data.verification,
       });
-      window.location.replace(nextPath ?? "/account");
+      window.location.replace(nextPath ?? "/");
     } catch {
       setSubmitState({ status: "error", message: copy.submitFailed });
     }
@@ -384,6 +395,16 @@ export function CustomerAuthPage({
             className="rounded-lg border border-operations/25 bg-surface p-case-lg"
             data-customer-auth-panel
           >
+            {passwordChanged ? (
+              <div
+                className="mb-case-md rounded-md border border-success bg-success/10 p-case-md text-small font-medium leading-6 text-success"
+                data-customer-password-reset-complete
+                role="status"
+              >
+                {copy.passwordResetComplete}
+              </div>
+            ) : null}
+
             {authState.status === "error" ? (
               <div className="mb-case-md" data-customer-auth-state-error>
                 <ErrorMessage>
@@ -650,7 +671,7 @@ function SignedInPanel({
         </Button>
       </div>
 
-      <CustomerPasswordForm language={language} />
+      <CustomerPasswordForm language={language} role={currentUser.role} />
 
       {currentUser.role === "customer" ? (
         <CustomerProfileForm

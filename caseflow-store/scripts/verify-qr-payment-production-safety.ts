@@ -62,16 +62,31 @@ const sourceChecks: Array<{
     check: "isolated-checkout-experience",
     file: "src/features/checkout/checkout-experience-panel.tsx",
     required: [
-      "caseflow-experience://transfer",
+      '"/api/checkout-experience"',
+      "activeSession.scanUrl",
       'data-experience-persists-payment="false"',
     ],
+  },
+  {
+    check: "cross-device-transfer-page",
+    file: "src/features/checkout/transfer-experience-page.tsx",
+    required: [
+      '"/api/checkout-experience/status"',
+      '"/api/checkout-experience/complete"',
+      "TOKEN_PATTERN",
+    ],
+  },
+  {
+    check: "cross-device-transfer-noindex",
+    file: "src/app/experience/transfer/page.tsx",
+    required: ["robots", "index: false", "follow: false"],
   },
   {
     check: "isolated-checkout-experience-copy",
     file: "src/features/checkout/checkout-experience-copy.ts",
     required: [
       "không tạo đơn hàng",
-      "Hoàn tất trải nghiệm",
+      "Đã hoàn tất trải nghiệm chuyển khoản",
       "KHÔNG PHẢI MÃ THANH TOÁN",
     ],
   },
@@ -142,7 +157,6 @@ function inspectCheckoutExperienceIsolation(): Finding[] {
     "/api/payments",
     "simulate-success",
     "buildVietQrPayload",
-    "fetch(",
   ];
 
   for (const token of prohibitedTokens) {
@@ -167,7 +181,8 @@ function scanForUnsafeClientSecrets(): Finding[] {
 
     if (
       content.includes("NEXT_PUBLIC_MOCK_PAYMENT_WEBHOOK_SECRET") ||
-      content.includes("NEXT_PUBLIC_DEMO_BANK_ACCOUNT_NUMBER")
+      content.includes("NEXT_PUBLIC_DEMO_BANK_ACCOUNT_NUMBER") ||
+      content.includes("NEXT_PUBLIC_CHECKOUT_EXPERIENCE_TOKEN_SECRET")
     ) {
       findings.push({
         check: "no-public-payment-secrets",

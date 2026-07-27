@@ -103,6 +103,7 @@ test("checkout happy path creates a simulated book order and clears the cart", a
 
 test("checkout separates order placement from the isolated QR experience", async ({
   baseURL,
+  browser,
   context,
   page,
 }) => {
@@ -135,7 +136,14 @@ test("checkout separates order placement from the isolated QR experience", async
 
     await page.goto("/checkout", { waitUntil: "domcontentloaded" });
     await expect(page.locator("[data-checkout-form-shell]")).toBeVisible();
+    const languageResponse = page.waitForResponse(
+      (response) =>
+        new URL(response.url()).pathname === "/api/preferences/language" &&
+        response.request().method() === "POST",
+    );
     await clickElement(page, "[data-language-option='vi']:visible");
+    expect((await languageResponse).status()).toBe(200);
+    await page.reload({ waitUntil: "domcontentloaded" });
     await expect(page.getByRole("heading", { level: 1 })).toHaveText(
       "Thanh toán",
     );
@@ -152,6 +160,12 @@ test("checkout separates order placement from the isolated QR experience", async
     await clickElement(page, "[data-checkout-experience-create]");
 
     await expect(page.locator("[data-checkout-experience-qr]")).toBeVisible();
+    const qrBox = await page
+      .locator("[data-checkout-experience-qr]")
+      .boundingBox();
+    expect(qrBox).toBeTruthy();
+    expect(Math.abs(qrBox!.width - qrBox!.height)).toBeLessThanOrEqual(1);
+    expect(qrBox!.width).toBeLessThanOrEqual(320);
     await expect(page.locator("[data-checkout-experience-status='pending']"))
       .toBeVisible();
     await expect(page.locator("[data-checkout-experience-countdown]"))
@@ -159,9 +173,84 @@ test("checkout separates order placement from the isolated QR experience", async
     await expect(page.locator("[data-checkout-experience-amount]"))
       .toContainText("₫");
 
-    await clickElement(page, "[data-checkout-experience-simulate]");
-    await expect(page.locator("[data-checkout-experience-status='paid']"))
-      .toBeVisible();
+    const scanUrl = await page
+      .locator("[data-checkout-experience-open]")
+      .getAttribute("href");
+    const confirmationCode = (
+      await page.locator("[data-checkout-experience-code]").innerText()
+    ).trim();
+    const amountVnd = Number(
+      (
+        await page.locator("[data-checkout-experience-amount]").innerText()
+      ).replace(/\D/g, ""),
+    );
+    const parsedScanUrl = new URL(scanUrl!);
+    expect(parsedScanUrl.pathname).toBe("/experience/transfer");
+    expect(parsedScanUrl.searchParams.get("lang")).toBe("vi");
+    expect(parsedScanUrl.hash.length).toBeGreaterThan(40);
+    expect(confirmationCode).toMatch(/^\d{6}$/);
+    expect(amountVnd).toBeGreaterThan(0);
+
+    const phoneContext = await browser.newContext({
+      viewport: { height: 812, width: 375 },
+    });
+    try {
+      const phonePage = await phoneContext.newPage();
+      phonePage.on("request", (request) => {
+        const pathname = new URL(request.url()).pathname;
+
+        if (
+          request.method() === "POST" &&
+          (pathname === "/api/orders" ||
+            pathname === "/api/payments" ||
+            pathname.includes("/api/dev/payments/"))
+        ) {
+          businessMutationRequests.push(pathname);
+        }
+      });
+      await phonePage.goto(scanUrl!, { waitUntil: "domcontentloaded" });
+      await expect(
+        phonePage.locator("[data-transfer-experience-warning]"),
+      ).toContainText("KHÔNG CHUYỂN TIỀN THẬT");
+      await expect(
+        phonePage.locator("meta[name='robots']"),
+      ).toHaveAttribute("content", /noindex/);
+      await expect(
+        phonePage.locator("[data-transfer-experience-form]"),
+      ).toBeVisible();
+      await expect(phonePage.locator("input[type='password']")).toHaveCount(0);
+      const phoneDocument = await phonePage.locator("body").innerText();
+      expect(phoneDocument).not.toContain(customer.email);
+      expect(phoneDocument).not.toContain(customer.password);
+      expect(phoneDocument).not.toContain(book.title);
+      await phonePage.screenshot({
+        fullPage: false,
+        path: ".agent/artifacts/qr-xdevice-t03/phone-pending-375-vi.png",
+      });
+      await phonePage
+        .locator("[data-transfer-experience-amount-input]")
+        .fill(amountVnd.toString());
+      await phonePage
+        .locator("[data-transfer-experience-code-input]")
+        .fill(confirmationCode);
+      await phonePage
+        .locator("[data-transfer-experience-submit]")
+        .click();
+      await expect(
+        phonePage.locator("[data-transfer-experience-status='success']"),
+      ).toBeVisible();
+      await expectNoHorizontalOverflow(phonePage);
+      await phonePage.screenshot({
+        fullPage: true,
+        path: ".agent/artifacts/qr-xdevice-t03/phone-completed-375-vi.png",
+      });
+    } finally {
+      await phoneContext.close();
+    }
+
+    await expect(
+      page.locator("[data-checkout-experience-status='completed']"),
+    ).toBeVisible({ timeout: 10_000 });
     expect(businessMutationRequests).toEqual([]);
     await expect(page.locator("[data-cart-count]").first())
       .toHaveAttribute("data-cart-count", "1");
@@ -169,15 +258,39 @@ test("checkout separates order placement from the isolated QR experience", async
     await expectNoHorizontalOverflow(page);
     await page.screenshot({
       fullPage: true,
-      path: ".agent/artifacts/checkout-mode-t01-experience-desktop-vi.png",
+      path: ".agent/artifacts/qr-xdevice-t03/desktop-completed-1440-vi.png",
     });
 
     await page.setViewportSize({ width: 375, height: 812 });
     await expectNoHorizontalOverflow(page);
     await page.screenshot({
       fullPage: true,
-      path: ".agent/artifacts/checkout-mode-t01-experience-mobile-vi.png",
+      path: ".agent/artifacts/qr-xdevice-t03/desktop-session-mobile-375-vi.png",
     });
+
+    await clickElement(page, "[data-checkout-experience-reset]");
+    await clickElement(page, "[data-checkout-experience-create]");
+    const cancellableScanUrl = await page
+      .locator("[data-checkout-experience-open]")
+      .getAttribute("href");
+    const cancellableToken = new URL(cancellableScanUrl!).hash.slice(1);
+    const cancelResponse = page.waitForResponse(
+      (response) =>
+        new URL(response.url()).pathname ===
+          "/api/checkout-experience/cancel" &&
+        response.request().method() === "POST",
+    );
+    await clickElement(page, "[data-checkout-experience-reset]");
+    expect((await cancelResponse).status()).toBe(200);
+    const cancelledStatusResponse = await page.request.post(
+      "/api/checkout-experience/status",
+      { data: { token: cancellableToken } },
+    );
+    expect(cancelledStatusResponse.status()).toBe(200);
+    const cancelledStatus = (await cancelledStatusResponse.json()) as {
+      data?: { status?: string };
+    };
+    expect(cancelledStatus.data?.status).toBe("cancelled");
 
     await clickElement(page, "[data-checkout-mode='official']");
     await expect(page.locator("[data-checkout-form-shell]")).toBeVisible();

@@ -24,6 +24,9 @@ verified implementation outcome of each decision.
 | [ADR-0017](0017-sellable-demo-productization.md) | Accepted | Productize the single-store reference app for buyer demonstration and handoff | Governs `v1.14`: centralized public identity, optional support contacts, buyer customization/data handoff, productization verification, and honest separation from buyer-specific real integrations. |
 | [ADR-0018](0018-showroom-template-buyer-repository-strategy.md) | Accepted | Separate the public showroom, private bookstore template, and future buyer repositories | Governs the `2 + N` repository model, deterministic private-template export, buyer isolation, and commercial source boundaries. |
 | [ADR-0019](0019-isolated-checkout-qr-experience.md) | Accepted | Split official checkout from a non-persisted QR experience | Governs the Production-safe checkout experience that generates an internal QR and simulates completion without creating or paying an order. |
+| [ADR-0020](0020-contextual-customer-guidance.md) | Accepted | Add contextual first-use and replayable customer guidance | Governs bilingual, accessible, browser-local tours for buying, cart controls, checkout modes, and order cancellation without changing commerce state. |
+| [ADR-0021](0021-cross-device-qr-experience.md) | Accepted | Add a cross-device HTTPS QR checkout experience | Governs server-owned experience totals, fragment capability tokens, mobile confirmation, bounded polling, and isolated session persistence without creating orders or payments. |
+| [ADR-0022](0022-role-aware-password-change-assurance.md) | Accepted | Require role-aware assurance before password changes | Governs customer single-use recovery links and server-only admin/staff operations-secret verification without hardcoded credentials. |
 
 ## Status meanings
 
