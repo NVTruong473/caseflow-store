@@ -131,6 +131,7 @@ See `docs/architecture.md` for the full architecture notes.
 | Evidence | Location |
 |---|---|
 | Latest release notes | `docs/v1.17.0-accelerated-checkout-release-notes.md` |
+| Report-ready complete layer architecture | `docs/layer-architecture-v1.17.md`; `.agent/artifacts/buy-now-t05/layer-architecture-check.json` |
 | v1.17.0 Buy Now/motion Production E2E | Playwright `4/4`; `.agent/artifacts/buy-now-t06/` |
 | v1.17.0 Production smoke/security/QR lock | `.agent/artifacts/buy-now-t06/`; `.agent/artifacts/buy-now-t06-security/` |
 | v1.17.0 final QA/cleanup | `.agent/artifacts/buy-now-t06-final/`; `.agent/artifacts/buy-now-t06/release-cleanup-check.json` |

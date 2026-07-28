@@ -18,6 +18,65 @@ CaseFlow Books is a layered Next.js modular monolith:
 - Supabase provides authentication and PostgreSQL;
 - Vercel hosts the application runtime.
 
+## Report-ready Summary Diagram
+
+Use this compact diagram when a report needs one full-system architecture
+figure before the detailed module and sequence diagrams.
+
+```mermaid
+flowchart TB
+  Users["Customer / Staff / Admin"]
+
+  subgraph Presentation["1. Presentation"]
+    Pages["Next.js App Router pages"]
+    Features["Storefront, Cart, Checkout, Account, Admin"]
+    BrowserState["Cart / Guidance / Checkout Intent"]
+  end
+
+  subgraph Controllers["2. HTTP Controllers"]
+    Routes["Next.js Route Handlers"]
+  end
+
+  subgraph Application["3. Application Services"]
+    UseCases["Order, Cancellation, Operations,<br/>Notification, Checkout Experience"]
+  end
+
+  subgraph Domain["4. Domain And Policy"]
+    Validation["Zod / DTO Contracts"]
+    Policies["Auth, Ownership, State Transitions"]
+    Commerce["Trusted Totals, VAT, Voucher, Stock"]
+    Payment["Payment Provider And Webhook Policies"]
+  end
+
+  subgraph Data["5. Data And Integration"]
+    Repositories["Supabase Repositories And Mappers"]
+    Providers["Payment / Email / SMS Adapters"]
+  end
+
+  subgraph Infrastructure["6. Infrastructure"]
+    Auth["Supabase Auth"]
+    Database["PostgreSQL, RLS, RPC, Transactions"]
+    Hosting["Vercel"]
+  end
+
+  Users --> Pages
+  Pages --> Features
+  Features <--> BrowserState
+  Pages --> Routes
+  Features --> Routes
+  Routes --> UseCases
+  Routes --> Validation
+  UseCases --> Policies
+  UseCases --> Commerce
+  UseCases --> Payment
+  UseCases --> Repositories
+  Payment --> Providers
+  Repositories --> Auth
+  Repositories --> Database
+  Hosting --> Pages
+  Hosting --> Routes
+```
+
 ## 1. System And Deployment Context
 
 ```mermaid
@@ -363,3 +422,20 @@ The architecture is verified by:
 The authoritative implementation details remain in
 [`architecture.md`](architecture.md), the ADR index under
 [`adr/README.md`](adr/README.md), and the source paths named above.
+
+## 15. Report Reuse
+
+- Recommended placement: the report chapter `System Design / Overall
+  Architecture`, after the technology-stack overview and before module or
+  database details.
+- Recommended Vietnamese caption: `Hinh: Kien truc phan lop tong the cua he
+  thong CaseFlow Books`.
+- Recommended English caption: `Figure: CaseFlow Books complete layered
+  architecture`.
+- Use the compact summary diagram for the main report. Move the detailed
+  deployment, commerce, authentication, operations, payment, and notification
+  diagrams to their corresponding subsections or appendix.
+- Render from this Mermaid source when the report is generated. Do not keep a
+  separately edited screenshot as the source of truth.
+- If runtime boundaries change after `v1.17.0`, update this document and rerun
+  `npm run verify:architecture` before reusing the figure.
