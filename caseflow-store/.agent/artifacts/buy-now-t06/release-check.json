@@ -1,0 +1,61 @@
+{
+  "taskId": "BUY-NOW-T06",
+  "checkedAt": "2026-07-28T15:39:36Z",
+  "status": "PASS",
+  "version": "v1.17.0",
+  "production": {
+    "alias": "https://caseflow-store.vercel.app",
+    "deploymentId": "dpl_79ccQjZHA3KBTvGP2JQ48SN8eHLX",
+    "deploymentUrl": "https://caseflow-store-1rbkahb5i-nvt-ruong473.vercel.app",
+    "readyState": "READY"
+  },
+  "gates": {
+    "buyNowAndMotionPlaywright": {
+      "status": "PASS",
+      "passed": 4,
+      "failed": 0
+    },
+    "productionBuild": {
+      "status": "PASS",
+      "routesGenerated": 66
+    },
+    "productionSmoke": {
+      "status": "PASS",
+      "checks": 9
+    },
+    "securityPosture": {
+      "status": "PASS",
+      "routes": 9,
+      "findings": 0
+    },
+    "productionMockPaymentLock": {
+      "status": "PASS",
+      "runtimeStatus": 401
+    },
+    "productizationConsistency": {
+      "status": "PASS",
+      "findings": 0
+    },
+    "releaseSecretScan": {
+      "status": "PASS",
+      "filesChecked": 1642,
+      "findings": 0
+    },
+    "finalPostReleaseQa": {
+      "status": "PASS",
+      "findings": 0,
+      "horizontalOverflowFindings": 0,
+      "activeEditions": 500
+    },
+    "cleanup": {
+      "status": "PASS",
+      "temporaryMatches": 0
+    }
+  },
+  "releaseMetadata": {
+    "gitTag": "v1.17.0",
+    "githubRelease": "https://github.com/NVTruong473/caseflow-store/releases/tag/v1.17.0",
+    "releaseNotes": "docs/v1.17.0-accelerated-checkout-release-notes.md"
+  },
+  "ok": true
+}

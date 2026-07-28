@@ -16,8 +16,8 @@ account password-change release, the `v1.11.1` security dependency patch, the
 expert UI/accessibility polish patch, and the `v1.12.0` layered architecture
 hardening release, followed by the `v1.12.1` atomic order reliability patch
 and the `v1.13.0` transactional notification and simulated-transfer operations
-release, through the current `v1.16.0` cross-device checkout showroom release.
-The accepted `v1.17.0` candidate adds isolated accelerated checkout without
+release, through the current `v1.17.0` accelerated-checkout showroom release.
+The `v1.17.0` release adds isolated accelerated checkout without
 changing the deployment, database, auth, order, or payment boundaries.
 The system is
 intentionally a Next.js modular monolith: it demonstrates a realistic
@@ -475,8 +475,8 @@ rollout controls are recorded in
 ## Deployment and verification
 
 - Production alias: `https://caseflow-store.vercel.app`.
-- Current production deployment ID: `dpl_9Nmny2kZdcvM2NgHNMcP4vdgjG5X`
-  (`v1.16.0`).
+- Current production deployment ID: `dpl_79ccQjZHA3KBTvGP2JQ48SN8eHLX`
+  (`v1.17.0`).
 - Supabase hosts PostgreSQL and Auth.
 - Production runtime variables include the public Supabase URL, public anon key,
   and server-only service-role key. Canonical metadata defaults to the

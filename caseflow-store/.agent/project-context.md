@@ -6,7 +6,7 @@
   `v1.3.0`, `v1.3.1`, `v1.4.0`, `v1.4.1`, `v1.4.2`, `v1.5.0`, `v1.6.0`,
   `v1.7.0`, `v1.8.0`, `v1.9.0`, `v1.10.0`, `v1.11.0`, `v1.11.1`,
   `v1.11.2`, `v1.11.3`, `v1.12.0`, `v1.12.1`, `v1.13.0`, `v1.13.1`, and
-  `v1.14.0`, `v1.15.0`, and `v1.16.0` released
+  `v1.14.0`, `v1.15.0`, `v1.16.0`, and `v1.17.0` released
 - Repository folder: `/Users/vantruong/Documents/TSNN 2`
 - Product domain: books for released `v1.1.0` and `v1.2.0`; phone
   accessories for released `v1.0.0`
@@ -14,11 +14,9 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: `v1.17.0` accelerated-checkout implementation approved while
-  Production remains the verified `v1.16.0` release.
-- Current gate: Buy Now implementation, full local verification, and complete
-  layer-architecture redraw passed.
-- Current task: `BUY-NOW-T06`.
+- Current mode: stable `v1.17.0` showroom; feature development closed.
+- Current gate: accelerated checkout Production release passed.
+- Current task: no active implementation task.
 
 ## Confirmed Facts
 
@@ -54,6 +52,13 @@
   payment, notification, and data ownership. The document maps MVC concepts to
   the actual Next.js modular monolith rather than claiming a textbook MVC or
   microservice architecture.
+
+- `BUY-NOW-T06` deployed Production
+  `dpl_79ccQjZHA3KBTvGP2JQ48SN8eHLX` and verified the canonical alias.
+  Production Buy Now and commerce motion passed `4/4`; smoke, security posture,
+  mock-payment lock, final tester QA, responsive overflow checks, 500-edition
+  catalog checks, and cleanup passed. Annotated tag and GitHub Release
+  `v1.17.0` publish the verified source and release notes.
 
 - `ORIGINKIT-T01` accepted ADR-0023 after auditing the live Originkit catalog
   against product relevance, commerce clarity, accessibility, layout

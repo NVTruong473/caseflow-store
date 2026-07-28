@@ -13,19 +13,20 @@ series, the `v1.12.0` layered architecture hardening release, the
 `v1.12.1` atomic order reliability patch, the `v1.13.0` transactional
 notification release, the `v1.13.1` order-response reliability patch, and the
 `v1.14.0` sellable-demo productization release, the `v1.15.0` isolated
-checkout QR experience release, and the `v1.16.0` cross-device experience and
-password-assurance release, into a Vietnam-first,
+checkout QR experience release, the `v1.16.0` cross-device experience and
+password-assurance release, and the `v1.17.0` accelerated-checkout release,
+into a Vietnam-first,
 bilingual e-commerce application for book discovery,
 account-gated checkout, customer order history/cancellation, order tracking,
-and admin/staff operations. The latest release adds an expiring cross-device
-QR practice flow, contextual customer guidance, mailbox-based customer
-password recovery, and server-only second-factor control for admin/staff
-password changes without turning the showroom into a real payment system.
+and admin/staff operations. The latest release adds isolated Buy Now checkout,
+bounded commerce motion, and a complete layer-architecture map while preserving
+the existing cross-device QR practice, password assurance, and non-settlement
+showroom boundaries.
 
 [Open the production deployment](https://caseflow-store.vercel.app)
 
 Latest release:
-[`v1.16.0`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.16.0)
+[`v1.17.0`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.17.0)
 
 The public repository remains the showroom. A fresh-history, private,
 bookstore-first buyer template is tracked through
@@ -175,13 +176,13 @@ boundaries are described in [`SUPPORT.md`](SUPPORT.md).
 
 | Gate | Result |
 |---|---|
-| Release tag | `v1.16.0` |
-| GitHub Release | [`v1.16.0 - Cross-device Experience And Password Assurance`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.16.0) |
+| Release tag | `v1.17.0` |
+| GitHub Release | [`v1.17.0 - Isolated Accelerated Checkout`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.17.0) |
 | Production URL | `https://caseflow-store.vercel.app` |
-| Vercel deployment | `READY`, deployment `dpl_9Nmny2kZdcvM2NgHNMcP4vdgjG5X` |
+| Vercel deployment | `READY`, deployment `dpl_79ccQjZHA3KBTvGP2JQ48SN8eHLX` |
 | TypeScript | `npx tsc --noEmit --pretty false` passed |
 | ESLint | `npm run lint` passed |
-| Production build | 59 App Router routes plus proxy generated |
+| Production build | 66 App Router routes plus proxy generated |
 | Architecture boundary | `npm run verify:architecture` passed; `POST /api/orders` delegates to `createBookOrderUseCase` |
 | Signup voucher QA | 3 account codes granted, homepage/account CTAs visible, checkout applies `WELCOME30K`, persisted 30,000 VND discount, reuse rejected, cross-account use rejected, multi-code request rejected, used voucher relation verified |
 | Modern bookstore QA | Search-first header, live category menu, mobile search/category links, cover provenance manifest, object-contain covers, product-card motion, back-to-top, no-overflow screenshots, and reduced-motion guard passed |
@@ -190,7 +191,8 @@ boundaries are described in [`SUPPORT.md`](SUPPORT.md).
 | Notification QA | Provider/OTP contracts, account ownership, minimized staff/admin operations, 8/8 anonymous boundaries, migration lifecycle, and disabled external-delivery controls passed |
 | Productization QA | Shared store configuration, zero invented contacts, zero runtime source brand-coupling findings, buyer override, catalog handoff, and commercial/provider boundary gates passed |
 | Password assurance QA | Customer single-use recovery link and recovery-session sign-out passed; admin/staff current-password plus server-only operations-secret matrix passed |
-| Production QA | v1.16.0 smoke, security posture, QR production lock, final QA with zero findings, full Production Playwright `34/34`, and post-test cleanup passed |
+| Accelerated checkout QA | Anonymous auth resume, direct item/quantity isolation, server-owned totals, official and QR-experience paths, malformed intent, and saved-cart preservation passed |
+| Production QA | v1.17.0 Buy Now/motion Playwright `4/4`, smoke, security posture, QR production lock, final QA with zero findings/no overflow, and post-test cleanup passed |
 | v1.4.2 security QA | Security headers/no-store verifier and final QA smoke passed locally and in production; external agent repos were mapped as QA references, not runtime dependencies |
 | v1.4.1 local QA | TypeScript, lint, production build, no-demo copy scan, compact-card overlap, customer order history/cancellation, admin order rejection/cancellation, cleanup, secret scan, audit-high, and `git diff --check` passed |
 | v1.4.1 production QA | Production release smoke, final QA smoke, compact-card overlap, customer order history/cancellation, and admin order rejection/cancellation passed |
@@ -220,6 +222,7 @@ Release evidence is recorded in
 [`caseflow-store/docs/v1.14.0-sellable-demo-productization-release-notes.md`](caseflow-store/docs/v1.14.0-sellable-demo-productization-release-notes.md),
 [`caseflow-store/docs/v1.15.0-checkout-qr-experience-release-notes.md`](caseflow-store/docs/v1.15.0-checkout-qr-experience-release-notes.md),
 [`caseflow-store/docs/v1.16.0-cross-device-security-experience-release-notes.md`](caseflow-store/docs/v1.16.0-cross-device-security-experience-release-notes.md),
+[`caseflow-store/docs/v1.17.0-accelerated-checkout-release-notes.md`](caseflow-store/docs/v1.17.0-accelerated-checkout-release-notes.md),
 [`caseflow-store/docs/postv130-t01-final-release-consistency-audit.md`](caseflow-store/docs/postv130-t01-final-release-consistency-audit.md),
 [`caseflow-store/docs/postv140-t01-final-release-consistency-audit.md`](caseflow-store/docs/postv140-t01-final-release-consistency-audit.md),
 [`caseflow-store/docs/uat-owner-t01-production-acceptance.md`](caseflow-store/docs/uat-owner-t01-production-acceptance.md),

@@ -79,18 +79,20 @@ runtime.
 
 ## Latest release evidence
 
-- Release tag: `v1.16.0`
+- Release tag: `v1.17.0`
 - GitHub Release:
-  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.16.0`
+  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.17.0`
 - Production alias: `https://caseflow-store.vercel.app`
-- Vercel deployment ID: `dpl_9Nmny2kZdcvM2NgHNMcP4vdgjG5X`
+- Vercel deployment ID: `dpl_79ccQjZHA3KBTvGP2JQ48SN8eHLX`
 - Local gates: runtime dependency audit with zero vulnerabilities, TypeScript,
-  ESLint, 66-route production build, architecture/migration/password,
-  no-demo/secret/QR safety gates, full Playwright `34/34`, and final QA passed.
-- Production: release smoke, security posture, QR lock, final QA with zero
-  findings, full Playwright `34/34`, and post-test cleanup passed. Evidence is
-  under `.agent/artifacts/release-t01-production-*`.
+  ESLint, 66-route production build, 246-file architecture verification,
+  no-demo/secret/QR safety gates, focused Buy Now/motion Playwright `4/4`, and
+  full sequential Playwright passed with two documented retry passes.
+- Production: Buy Now/motion Playwright `4/4`, release smoke, security posture,
+  QR lock, final QA with zero findings/no overflow, and post-test cleanup
+  passed. Evidence is under `.agent/artifacts/buy-now-t06*`.
 - Release notes:
+  [`docs/v1.17.0-accelerated-checkout-release-notes.md`](docs/v1.17.0-accelerated-checkout-release-notes.md),
   [`docs/v1.16.0-cross-device-security-experience-release-notes.md`](docs/v1.16.0-cross-device-security-experience-release-notes.md),
   [`docs/v1.15.0-checkout-qr-experience-release-notes.md`](docs/v1.15.0-checkout-qr-experience-release-notes.md),
   [`docs/v1.14.0-sellable-demo-productization-release-notes.md`](docs/v1.14.0-sellable-demo-productization-release-notes.md),

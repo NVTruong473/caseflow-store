@@ -10,9 +10,9 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: stable `v1.16.0` showroom; feature development closed
-- Current gate: local implementation, architecture, and release verification passed
-- Current task: `BUY-NOW-T06`
+- Mode: stable `v1.17.0` showroom; feature development closed
+- Current gate: `v1.17.0` deployed and verified
+- Current task: no active implementation task
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-28
 
@@ -87,12 +87,18 @@
   - Verification: architecture boundary verifier passed 246 files with zero
     findings; `git diff --check` passed.
 
-- [/] `BUY-NOW-T06` Release And Verify `v1.17.0`.
+- [x] `BUY-NOW-T06` Release And Verify `v1.17.0`. - 2026-07-28
   - Acceptance criteria:
     - Commit only intended source, documentation, tests, and evidence.
     - Deploy Production with no mock-payment unlock or secret exposure.
     - Pass Production smoke, security, Buy Now, responsive, and cleanup gates.
     - Push `main`, create and verify tag and GitHub Release `v1.17.0`.
+  - Result: Production deployment
+    `dpl_79ccQjZHA3KBTvGP2JQ48SN8eHLX` reached Ready and the canonical alias
+    serves the accelerated checkout release. Production Buy Now/motion
+    Playwright `4/4`, smoke, security, QR lock, final QA, and cleanup passed.
+  - Release: `main`, annotated tag `v1.17.0`, professional release notes, and
+    GitHub Release publish the verified source.
 
 - [x] `UAT-AUTO-T03` Automate Customer Cart, Checkout, QR, And Order UAT. -
   2026-07-28

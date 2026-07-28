@@ -4,17 +4,17 @@
 
 | Field | Value |
 |---|---|
-| Current mode | stable portfolio and operations handoff after `v1.12.0` |
-| Current gate | `v1.12.0` layered architecture release complete; custom SMTP remains externally blocked |
+| Current mode | stable `v1.17.0` showroom; feature development closed |
+| Current gate | `v1.17.0` accelerated checkout release deployed and verified |
 | Implementation started | Yes |
 | Next implementation task | No active implementation task |
 | App initialized | Yes, in `caseflow-store` |
-| Local server verified | Yes, v1.12.0 local lint, TypeScript, build, full E2E, architecture verifier, payment/security/asset gates, and QR demo flow passed |
-| Lint verified | Yes, v1.12.0 lint passed |
-| Build verified | Yes, v1.12.0 production build generated 52 App Router routes plus proxy locally and on Vercel |
+| Local server verified | Yes, v1.17.0 local lint, TypeScript, build, full E2E, architecture, payment/security/asset gates, Buy Now, and QR experience passed |
+| Lint verified | Yes, v1.17.0 lint passed with zero warnings |
+| Build verified | Yes, v1.17.0 Production build generated 66 App Router routes plus proxy locally and on Vercel |
 | Database connected | Yes; live catalog, orders, Auth, role checks, and admin status updates use Supabase |
-| Deployed | Yes, v1.12.0 production deployment `dpl_8MCASvEYjndhtQJuvbPJeqkFF1gA` is aliased to `https://caseflow-store.vercel.app` |
-| Last updated | 2026-07-22 |
+| Deployed | Yes, v1.17.0 Production deployment `dpl_79ccQjZHA3KBTvGP2JQ48SN8eHLX` is aliased to `https://caseflow-store.vercel.app` |
+| Last updated | 2026-07-28 |
 
 ## Result Index
 
@@ -16513,3 +16513,29 @@ GitHub Release.
 - Evidence:
   - `docs/layer-architecture-v1.17.md`
   - `.agent/artifacts/buy-now-t05/layer-architecture-check.json`
+
+---
+
+## BUY-NOW-T06 - Release And Verify v1.17.0
+
+- Date: 2026-07-28
+- Status: completed
+- Production: deployment `dpl_79ccQjZHA3KBTvGP2JQ48SN8eHLX` reached Ready
+  and is aliased to `https://caseflow-store.vercel.app`.
+- Production verification:
+  - Buy Now and commerce-motion Playwright: PASS, `4/4`.
+  - Production smoke: PASS, nine public/protected/SEO/API checks.
+  - Security posture: PASS, nine routes and zero findings.
+  - QR mock-payment Production lock: PASS, runtime completion returned `401`.
+  - Productization consistency: PASS, zero findings.
+  - Final release secret scan: PASS, 1,642 files and zero findings.
+  - Final post-release QA: PASS, zero findings and no horizontal overflow.
+  - Active catalog check: PASS, 500 editions.
+  - Cleanup: PASS, zero temporary accounts or commerce records.
+- Release: runtime commit `b34d24d`, annotated tag `v1.17.0`, pushed `main`,
+  and GitHub Release `v1.17.0`.
+- Evidence:
+  - `.agent/artifacts/buy-now-t06/`
+  - `.agent/artifacts/buy-now-t06-security/`
+  - `.agent/artifacts/buy-now-t06-final/`
+  - `docs/v1.17.0-accelerated-checkout-release-notes.md`
