@@ -38,6 +38,10 @@ Intentional asymmetry:
 - The homepage hero can place editorial copy in a narrower left column and the book stack in a wider proof column.
 - Catalog can use a narrow spine metadata column beside a broader filter/result area.
 - Product detail can use a cover column, purchase rail, and edition ledger with different visual weights.
+- In the purchase rail, `Mua ngay / Buy now` is the primary command and
+  `Them vao gio / Add to cart` is secondary. Buy Now is not repeated on dense
+  catalog cards. Direct checkout labels its one-edition scope and preserves
+  the saved cart after success.
 - Asymmetry must still align to the grid and must not rely on random rotations or arbitrary offsets.
 
 ## 2. Color Palette
@@ -258,6 +262,12 @@ Use transitions for:
   hover lift and border/surface feedback.
 - Long pages may use the bottom-left back-to-top control; it must not overlap
   the assistant button or checkout controls.
+- The homepage category spine rail may use the ADR-0023 category-cover reveal:
+  a catalog-backed cover changes from a subdued preview to full color inside a
+  fixed card region on hover or keyboard focus.
+- The primary product-detail cover may use the ADR-0023 bounded magnifier for
+  fine pointers. The ordinary local cover remains the complete touch,
+  reduced-motion, and no-JavaScript experience.
 
 Avoid:
 
@@ -266,10 +276,15 @@ Avoid:
 - Large entrance animations.
 - Bouncing.
 - Cursor-following effects.
+- Originkit-style showcase effects outside the two ADR-0023 adaptations.
+- Scroll-coupled text, particle backgrounds, shader folds, magnetic controls,
+  physics galleries, and ambient loops.
 
 Reduced motion:
 
 - Disable non-essential transitions and transforms under `prefers-reduced-motion`.
+- Show the complete category cover without a reveal transition.
+- Do not render or activate the detail-page magnifier lens.
 
 ## 9. Border Radius
 
@@ -384,6 +399,15 @@ Long-page helper:
 - File: `src/components/layout/back-to-top-button.tsx`
 - Appears only after scroll, has a clear accessible name, and respects reduced
   motion when scrolling back to the top.
+
+Book-specific motion:
+
+- File: `src/features/books/book-cover-magnifier.tsx`
+- Implements a dependency-free, bounded adaptation of Originkit's documented
+  Image Magnifier behavior for the primary detail-page cover.
+- File: `src/features/books/merchandising-layouts.tsx`
+- Implements the fixed, focus-accessible category-cover reveal inspired by
+  Originkit's Hover Image Reveal without a cursor-following overlay.
 
 ## 15. Anti-Patterns
 

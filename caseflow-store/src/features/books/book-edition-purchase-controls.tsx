@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import * as React from "react";
 
 import {
@@ -13,6 +14,10 @@ import {
   Input,
 } from "@/components/ui";
 import { useCart } from "@/features/cart";
+import {
+  buildBuyNowCheckoutHref,
+  MAX_BUY_NOW_QUANTITY,
+} from "@/lib/checkout/buy-now-intent";
 import type { Language } from "@/lib/i18n/language";
 import type { InventoryStatus } from "@/types/domain";
 
@@ -36,13 +41,19 @@ const purchaseCopy = {
     availableStock: (count: number) => `${count} available`,
     cardDescription: "Choose a quantity for this specific edition.",
     cardTitle: "Buy this edition",
+    buyNow: "Buy now",
+    buyNowDescription:
+      "Checkout only this edition. Your saved cart stays unchanged.",
     decrease: (title: string) => `Decrease ${title} quantity`,
     feedback: (quantity: number, title: string) =>
       `Added ${quantity} x ${title} to cart.`,
     increase: (title: string) => `Increase ${title} quantity`,
     inCart: (cartQuantity: number, remainingQuantity: number) =>
       `In cart: ${cartQuantity}. Remaining to add: ${remainingQuantity}.`,
+    openingCheckout: "Opening checkout...",
     quantity: "Quantity",
+    selectedExceedsCartCapacity: (count: number) =>
+      `Choose ${count} or fewer to add to cart. Buy now still uses the selected quantity.`,
     unavailable: "This edition is currently unavailable.",
   },
   vi: {
@@ -51,13 +62,19 @@ const purchaseCopy = {
     availableStock: (count: number) => `Còn ${count} cuốn`,
     cardDescription: "Chọn số lượng cho đúng ấn bản này.",
     cardTitle: "Mua ấn bản này",
+    buyNow: "Mua ngay",
+    buyNowDescription:
+      "Thanh toán riêng ấn bản này. Giỏ hàng đã lưu vẫn được giữ nguyên.",
     decrease: (title: string) => `Giảm số lượng ${title}`,
     feedback: (quantity: number, title: string) =>
       `Đã thêm ${quantity} x ${title} vào giỏ hàng.`,
     increase: (title: string) => `Tăng số lượng ${title}`,
     inCart: (cartQuantity: number, remainingQuantity: number) =>
       `Trong giỏ: ${cartQuantity}. Có thể thêm: ${remainingQuantity}.`,
+    openingCheckout: "Đang mở thanh toán...",
     quantity: "Số lượng",
+    selectedExceedsCartCapacity: (count: number) =>
+      `Chọn tối đa ${count} để thêm vào giỏ. Mua ngay vẫn dùng số lượng đang chọn.`,
     unavailable: "Ấn bản này hiện chưa thể mua.",
   },
 } as const;
@@ -81,23 +98,29 @@ export function BookEditionPurchaseControls({
   language,
   stockQuantity,
 }: BookEditionPurchaseControlsProps) {
+  const router = useRouter();
   const copy = purchaseCopy[language];
   const availableStock = Math.max(0, Math.floor(stockQuantity));
   const canSellEdition = isSellable(inventoryStatus, availableStock);
   const [quantity, setQuantity] = React.useState(canSellEdition ? 1 : 0);
   const [feedback, setFeedback] = React.useState<FeedbackState | null>(null);
+  const [isOpeningCheckout, setIsOpeningCheckout] = React.useState(false);
   const { addItem, items } = useCart();
   const cartQuantity =
     items.find((item) => item.productId === editionId)?.quantity ?? 0;
   const remainingQuantity = Math.max(0, availableStock - cartQuantity);
   const canAddToCart = canSellEdition && remainingQuantity > 0;
-  const selectableMax = canAddToCart ? remainingQuantity : 0;
-  const selectedQuantity = canAddToCart
+  const selectableMax = canSellEdition
+    ? Math.min(availableStock, MAX_BUY_NOW_QUANTITY)
+    : 0;
+  const selectedQuantity = canSellEdition
     ? clampQuantity(quantity || 1, 1, selectableMax)
     : 0;
+  const canAddSelectedQuantity =
+    canAddToCart && selectedQuantity <= remainingQuantity;
 
   function updateQuantity(nextQuantity: number) {
-    if (!canAddToCart) {
+    if (!canSellEdition) {
       return;
     }
 
@@ -119,8 +142,14 @@ export function BookEditionPurchaseControls({
       return;
     }
 
-    if (!canAddToCart) {
-      setFeedback({ tone: "error", message: copy.allStockInCart });
+    if (!canAddSelectedQuantity) {
+      setFeedback({
+        tone: "error",
+        message:
+          remainingQuantity > 0
+            ? copy.selectedExceedsCartCapacity(remainingQuantity)
+            : copy.allStockInCart,
+      });
       return;
     }
 
@@ -129,6 +158,22 @@ export function BookEditionPurchaseControls({
       tone: "success",
       message: copy.feedback(selectedQuantity, editionTitle),
     });
+  }
+
+  function handleBuyNow() {
+    if (!canSellEdition) {
+      setFeedback({ tone: "error", message: copy.unavailable });
+      return;
+    }
+
+    setFeedback(null);
+    setIsOpeningCheckout(true);
+    router.push(
+      buildBuyNowCheckoutHref({
+        editionId,
+        quantity: selectedQuantity,
+      }),
+    );
   }
 
   return (
@@ -165,7 +210,7 @@ export function BookEditionPurchaseControls({
             variant="secondary"
             size="icon"
             aria-label={copy.decrease(editionTitle)}
-            disabled={!canAddToCart || selectedQuantity <= 1}
+            disabled={!canSellEdition || selectedQuantity <= 1}
             onClick={() => updateQuantity(selectedQuantity - 1)}
             data-book-quantity-decrement
           >
@@ -177,11 +222,11 @@ export function BookEditionPurchaseControls({
             label={copy.quantity}
             type="number"
             inputMode="numeric"
-            min={canAddToCart ? 1 : 0}
+            min={canSellEdition ? 1 : 0}
             max={selectableMax}
             step={1}
             value={selectedQuantity}
-            disabled={!canAddToCart}
+            disabled={!canSellEdition}
             onChange={handleQuantityInputChange}
             wrapperClassName="min-w-0 flex-1"
             data-book-quantity-input
@@ -192,7 +237,7 @@ export function BookEditionPurchaseControls({
             variant="secondary"
             size="icon"
             aria-label={copy.increase(editionTitle)}
-            disabled={!canAddToCart || selectedQuantity >= selectableMax}
+            disabled={!canSellEdition || selectedQuantity >= selectableMax}
             onClick={() => updateQuantity(selectedQuantity + 1)}
             data-book-quantity-increment
           >
@@ -200,20 +245,50 @@ export function BookEditionPurchaseControls({
           </Button>
         </div>
 
-        <Button
-          type="button"
-          size="lg"
-          className="w-full"
-          disabled={!canAddToCart}
-          onClick={handleAddToCart}
-          data-book-add-to-cart-button
-        >
-          {copy.addToCart}
-        </Button>
+        <div className="grid gap-case-sm sm:grid-cols-2">
+          <Button
+            type="button"
+            size="lg"
+            className="w-full"
+            disabled={!canSellEdition || isOpeningCheckout}
+            onClick={handleBuyNow}
+            data-book-buy-now-button
+          >
+            {isOpeningCheckout ? copy.openingCheckout : copy.buyNow}
+          </Button>
+
+          <Button
+            type="button"
+            size="lg"
+            variant="secondary"
+            className="w-full"
+            disabled={!canAddSelectedQuantity || isOpeningCheckout}
+            onClick={handleAddToCart}
+            data-book-add-to-cart-button
+          >
+            {copy.addToCart}
+          </Button>
+        </div>
+
+        {canSellEdition ? (
+          <p
+            className="text-small leading-6 text-text-muted"
+            data-book-buy-now-description
+          >
+            {copy.buyNowDescription}
+          </p>
+        ) : null}
 
         {!canSellEdition ? <ErrorMessage>{copy.unavailable}</ErrorMessage> : null}
         {canSellEdition && !canAddToCart ? (
           <ErrorMessage>{copy.allStockInCart}</ErrorMessage>
+        ) : null}
+        {canSellEdition &&
+        remainingQuantity > 0 &&
+        selectedQuantity > remainingQuantity ? (
+          <ErrorMessage>
+            {copy.selectedExceedsCartCapacity(remainingQuantity)}
+          </ErrorMessage>
         ) : null}
 
         {feedback ? (

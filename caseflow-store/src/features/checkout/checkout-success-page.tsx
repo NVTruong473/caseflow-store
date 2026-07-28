@@ -26,6 +26,8 @@ const checkoutSuccessCopy = {
   en: {
     browseMoreBooks: "Browse more books",
     cartCleared: "Cart was cleared after the order was created.",
+    cartPreserved:
+      "Your saved cart was not changed by this direct purchase.",
     continueShopping: "Continue shopping",
     directOpenDescription:
       "For privacy, this confirmation page only shows details from the current checkout. Use order tracking with your order code and contact information for later updates.",
@@ -53,6 +55,8 @@ const checkoutSuccessCopy = {
   vi: {
     browseMoreBooks: "Duyệt thêm sách",
     cartCleared: "Giỏ hàng đã được xóa sau khi đơn hàng được tạo.",
+    cartPreserved:
+      "Giỏ hàng đã lưu không bị thay đổi bởi lần Mua ngay này.",
     continueShopping: "Tiếp tục mua sách",
     directOpenDescription:
       "Vì lý do riêng tư, trang xác nhận này chỉ hiển thị chi tiết từ lần checkout hiện tại. Hãy dùng mã đơn và thông tin liên hệ để theo dõi đơn sau đó.",
@@ -238,7 +242,11 @@ function CheckoutSuccessDetails({
         <ul className="mt-case-md flex flex-col gap-case-sm text-small leading-6 text-text-muted">
           <li>{copy.orderStatus}</li>
           <li>{copy.noCard}</li>
-          <li>{copy.cartCleared}</li>
+          <li data-checkout-success-cart-behavior>
+            {snapshot.checkoutSource === "buy-now"
+              ? copy.cartPreserved
+              : copy.cartCleared}
+          </li>
         </ul>
         <div className="mt-case-lg grid gap-case-sm">
           <Link

@@ -14,11 +14,79 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: stable `v1.16.0` showroom; feature development closed.
-- Current gate: `v1.16.0` released and verified.
-- Current task: none.
+- Current mode: `v1.17.0` accelerated-checkout implementation approved while
+  Production remains the verified `v1.16.0` release.
+- Current gate: Buy Now implementation, full local verification, and complete
+  layer-architecture redraw passed.
+- Current task: `BUY-NOW-T06`.
 
 ## Confirmed Facts
+
+- `BUY-NOW-T01` accepts ADR-0024. Product detail will expose Buy Now beside Add
+  to Cart, carry only edition ID and quantity through a validated same-origin
+  URL, resume after account sign-in, and reuse the current trusted cart/order
+  validation boundaries. Buy Now must never merge, replace, or clear the
+  browser cart. One-click order creation, browser-trusted totals, and
+  cart-mutating shortcuts are rejected.
+
+- `BUY-NOW-T02` adds a strict UUID/quantity Buy Now URL contract and bilingual
+  product-detail actions. The selection is bounded to the same maximum accepted
+  by cart validation, does not mutate Cart Context, and passed focused ESLint
+  plus TypeScript.
+
+- `BUY-NOW-T03` integrates the direct-purchase item with the existing
+  `/api/cart/validate`, official order, and QR experience flows. Valid intent
+  survives account sign-in; malformed intent fails closed. A Buy Now order
+  records a truthful success snapshot and never clears the browser cart, while
+  standard cart checkout behavior remains unchanged.
+
+- `BUY-NOW-T04` passed lint with zero warnings, TypeScript, the 66-route
+  Production build, architecture, runtime dependency audit, asset metadata,
+  no-demo copy, secret scan, Production mock-payment static lock, focused Buy
+  Now/Originkit Playwright `4/4`, and cleanup. The full sequential suite passed
+  with 37 direct and two retry-pass password tests; those three password
+  scenarios then passed `3/3` in an isolated clean rerun.
+
+- `BUY-NOW-T05` redraws the complete system in
+  `docs/layer-architecture-v1.17.md`: browser/deployment, presentation, Route
+  Handler controllers, application use cases, domain/policy, repositories,
+  Supabase infrastructure, storefront, cart/Buy Now, auth, admin/staff,
+  payment, notification, and data ownership. The document maps MVC concepts to
+  the actual Next.js modular monolith rather than claiming a textbook MVC or
+  microservice architecture.
+
+- `ORIGINKIT-T01` accepted ADR-0023 after auditing the live Originkit catalog
+  against product relevance, commerce clarity, accessibility, layout
+  stability, performance, and maintainability. Only two dependency-free
+  adaptations are allowed: a product-detail cover magnifier and a fixed
+  category cover reveal. Text effects, shaders, cursor trails, particles,
+  ambient backgrounds, and physics galleries remain rejected.
+
+- `ORIGINKIT-T02` and `ORIGINKIT-T03` implemented and verified the two accepted
+  adaptations without a new dependency or commerce-boundary change. Focused
+  Playwright passed `3/3` across desktop focus, mobile touch, tablet
+  reduced-motion, local cover sources, magnifier bounds, and horizontal
+  overflow. Five screenshots and a structured QA record are stored under
+  `.agent/artifacts/originkit-t03/`.
+
+- `ORIGINKIT-T04` completed the final local gate. Lint passed with zero errors
+  and one unrelated pre-existing warning, TypeScript passed, the 66-route
+  Production build passed, architecture verification covered 246 source files,
+  the high-severity runtime dependency audit found zero vulnerabilities, and
+  cleanup found zero temporary records. The full sequential dev-server suite
+  passed with 35 clean and three retry-pass tests; the three affected
+  password/UAT scenarios then passed cleanly as isolated Production-build
+  reruns (`3/3` and `1/1`). Production has not been changed by this task.
+
+- `UAT-AUTO-T03` independently reverified the released Production customer
+  journey with a temporary confirmed customer and separate desktop/phone
+  browser contexts. Cart quantity, single-item removal, clear-cart, three
+  account-bound signup vouchers, `WELCOME30K`, isolated QR experience,
+  official COD checkout, order history, customer cancellation, database
+  status, console errors, responsive overflow, and post-test cleanup all
+  passed. The QR experience did not create or mutate an order or payment, the
+  phone received no password/customer/cart PII, and all temporary records were
+  removed after the run.
 
 - `RELEASE-T01` released `v1.16.0`. Preview
   `dpl_r19fSbgu8q6fUgBEJJwnsbNvMqHb` and Production

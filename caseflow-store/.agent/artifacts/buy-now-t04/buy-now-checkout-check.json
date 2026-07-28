@@ -1,0 +1,15 @@
+{
+  "checks": {
+    "authenticationResume": true,
+    "cartPreserved": true,
+    "directQuantityIsolated": true,
+    "invalidIntentFailsClosed": true,
+    "qrExperienceUsesDirectTotal": true,
+    "serverOwnedTotals": true
+  },
+  "editionId": "00000000-0000-4000-8000-000000003027",
+  "experienceAmount": 374800,
+  "generatedAt": "2026-07-28T15:16:59.066Z",
+  "ok": true,
+  "orderCode": "CF-MS4SU6E3-B7DFC79938"
+}

@@ -34,6 +34,10 @@ import {
   CustomerGuidanceButton,
 } from "@/features/guidance";
 import type { CustomerAuthState } from "@/lib/auth/customer";
+import type {
+  BuyNowIntentResult,
+  CheckoutPurchaseSource,
+} from "@/lib/checkout/buy-now-intent";
 import { calculateBookCheckoutTotals } from "@/lib/checkout/book-totals";
 import { formatUsd, formatVnd } from "@/lib/format/currency";
 import {
@@ -146,6 +150,16 @@ const checkoutCopy = {
     backToBooks: "Back to books",
     badge: "Book checkout",
     browseBooks: "Browse books",
+    buyNowBadge: "Buy now",
+    buyNowDescription:
+      "Confirm this edition, delivery details, and final store-calculated total without changing your saved cart.",
+    buyNowReview: "Direct purchase review",
+    buyNowScopeDescription: (count: number) =>
+      count === 0
+        ? "Only this edition will be checked out. Your cart is currently empty."
+        : `Only this edition will be checked out. Your saved cart with ${count} ${count === 1 ? "item" : "items"} stays unchanged.`,
+    buyNowScopeTitle: "This checkout is separate from your cart",
+    buyNowTitle: "Buy now",
     cartChecked: "Checked",
     cartChecking: "Checking",
     cartEmptyDescription: "Add at least one book before starting checkout.",
@@ -154,7 +168,8 @@ const checkoutCopy = {
     cartReview: "Cart review",
     cartReviewReadiness:
       "Cart review must be checked before placing the order.",
-    cartValidationFallback: "Cart could not be validated for checkout.",
+    cartValidationFallback:
+      "The selected books could not be validated for checkout.",
     clearCart: "Clear cart",
     checkoutAssuranceAccount:
       "Account, phone, and delivery address are checked before confirmation.",
@@ -184,12 +199,16 @@ const checkoutCopy = {
     fullNameLabel: "Full name",
     item: "item",
     items: "items",
-    networkError: "Cart validation is unavailable. Try again before ordering.",
+    invalidBuyNowDescription:
+      "The direct-purchase link is incomplete or invalid. Return to a book detail page and choose Buy now again.",
+    invalidBuyNowTitle: "Buy Now selection is unavailable",
+    networkError:
+      "Purchase validation is unavailable. Try again before ordering.",
     noCardFields:
       "Choose a payment method for the order. The bookstore confirms transfer or provider status before fulfillment.",
     openCart: "Open cart",
     orderCouldNotBeCreated:
-      "Order could not be created. Review the cart and try again.",
+      "Order could not be created. Review the selected books and try again.",
     orderServiceUnavailable:
       "Order service is unavailable. Try again before ordering.",
     orderSummary: "Order summary",
@@ -248,7 +267,8 @@ const checkoutCopy = {
     profileRequirementTitle: "Customer profile requirement",
     profileRequiredAction: "Complete profile",
     resolveCartReview:
-      "Resolve cart review before placing the order.",
+      "Resolve the purchase review before placing the order.",
+    selectBookAgain: "Choose a book again",
     shipping: "Shipping",
     shippingAddressError: "Enter your shipping address.",
     shippingAddressHint:
@@ -286,6 +306,16 @@ const checkoutCopy = {
     backToBooks: "Quay lại danh sách sách",
     badge: "Thanh toán sách",
     browseBooks: "Duyệt sách",
+    buyNowBadge: "Mua ngay",
+    buyNowDescription:
+      "Xác nhận ấn bản, thông tin giao hàng và tổng tiền do cửa hàng tính lại mà không thay đổi giỏ đã lưu.",
+    buyNowReview: "Kiểm tra đơn Mua ngay",
+    buyNowScopeDescription: (count: number) =>
+      count === 0
+        ? "Chỉ ấn bản này được thanh toán. Giỏ hàng hiện đang trống."
+        : `Chỉ ấn bản này được thanh toán. ${count} sản phẩm trong giỏ đã lưu vẫn được giữ nguyên.`,
+    buyNowScopeTitle: "Lần thanh toán này tách biệt với giỏ hàng",
+    buyNowTitle: "Mua ngay",
     cartChecked: "Đã kiểm tra",
     cartChecking: "Đang kiểm tra",
     cartEmptyDescription: "Hãy thêm ít nhất một cuốn sách trước khi thanh toán.",
@@ -294,7 +324,8 @@ const checkoutCopy = {
     cartReview: "Kiểm tra giỏ hàng",
     cartReviewReadiness:
       "Cần kiểm tra giỏ hàng trước khi đặt đơn.",
-    cartValidationFallback: "Không thể kiểm tra giỏ hàng cho bước thanh toán.",
+    cartValidationFallback:
+      "Không thể kiểm tra các sách đã chọn cho bước thanh toán.",
     clearCart: "Xóa giỏ hàng",
     checkoutAssuranceAccount:
       "Tài khoản, số điện thoại và địa chỉ giao hàng được kiểm tra trước khi xác nhận.",
@@ -324,12 +355,16 @@ const checkoutCopy = {
     fullNameLabel: "Họ và tên",
     item: "sản phẩm",
     items: "sản phẩm",
-    networkError: "Chưa thể kiểm tra giỏ hàng. Vui lòng thử lại trước khi đặt.",
+    invalidBuyNowDescription:
+      "Liên kết Mua ngay chưa đầy đủ hoặc không hợp lệ. Hãy quay lại trang chi tiết sách và chọn Mua ngay lần nữa.",
+    invalidBuyNowTitle: "Chưa thể sử dụng lựa chọn Mua ngay",
+    networkError:
+      "Chưa thể kiểm tra lựa chọn mua. Vui lòng thử lại trước khi đặt.",
     noCardFields:
       "Chọn phương thức thanh toán cho đơn hàng. Nhà sách sẽ xác nhận chuyển khoản hoặc trạng thái nhà cung cấp trước khi xử lý.",
     openCart: "Mở giỏ hàng",
     orderCouldNotBeCreated:
-      "Không thể tạo đơn hàng. Hãy kiểm tra giỏ hàng rồi thử lại.",
+      "Không thể tạo đơn hàng. Hãy kiểm tra sách đã chọn rồi thử lại.",
     orderServiceUnavailable:
       "Dịch vụ đơn hàng chưa khả dụng. Vui lòng thử lại trước khi đặt.",
     orderSummary: "Tóm tắt đơn hàng",
@@ -388,7 +423,8 @@ const checkoutCopy = {
       "Hoàn tất hồ sơ khách hàng trước khi đặt đơn bằng tài khoản.",
     profileRequirementTitle: "Yêu cầu hồ sơ khách hàng",
     profileRequiredAction: "Hoàn tất hồ sơ",
-    resolveCartReview: "Hãy xử lý kiểm tra giỏ hàng trước khi đặt đơn.",
+    resolveCartReview: "Hãy xử lý kiểm tra lựa chọn mua trước khi đặt đơn.",
+    selectBookAgain: "Chọn lại sách",
     shipping: "Giao hàng",
     shippingAddressError: "Nhập địa chỉ giao hàng.",
     shippingAddressHint:
@@ -423,12 +459,14 @@ const checkoutCopy = {
 } as const;
 
 export function CheckoutPage({
+  buyNowIntentResult,
   currencyRules,
   customerAuthState,
   language,
   qrDemoPaymentsEnabled,
   signupVouchers,
 }: {
+  buyNowIntentResult: BuyNowIntentResult;
   currencyRules: CurrencyDisplayRules;
   customerAuthState: CustomerAuthState;
   language: Language;
@@ -436,8 +474,33 @@ export function CheckoutPage({
   signupVouchers: CustomerSignupVoucher[];
 }) {
   const copy = checkoutCopy[language];
-  const { clearCart, hasLoadedStorage, items, openCart, totalQuantity } =
-    useCart();
+  const {
+    clearCart,
+    hasLoadedStorage,
+    items: cartItems,
+    openCart,
+    totalQuantity: cartTotalQuantity,
+  } = useCart();
+  const purchaseSource: CheckoutPurchaseSource =
+    buyNowIntentResult.requested ? "buy-now" : "cart";
+  const checkoutItems = React.useMemo<CartItem[]>(
+    () =>
+      buyNowIntentResult.requested
+        ? buyNowIntentResult.intent
+          ? [
+              {
+                productId: buyNowIntentResult.intent.editionId,
+                quantity: buyNowIntentResult.intent.quantity,
+              },
+            ]
+          : []
+        : cartItems,
+    [buyNowIntentResult, cartItems],
+  );
+  const checkoutTotalQuantity = checkoutItems.reduce(
+    (total, item) => total + item.quantity,
+    0,
+  );
   const [reviewState, setReviewState] = React.useState<CartReviewState>({
     status: "idle",
   });
@@ -462,7 +525,7 @@ export function CheckoutPage({
       return;
     }
 
-    if (items.length === 0) {
+    if (checkoutItems.length === 0) {
       return;
     }
 
@@ -477,7 +540,7 @@ export function CheckoutPage({
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ items }),
+          body: JSON.stringify({ items: checkoutItems }),
           signal: abortController.signal,
         });
         const payload =
@@ -509,14 +572,26 @@ export function CheckoutPage({
     void validateCart();
 
     return () => abortController.abort();
-  }, [copy.cartValidationFallback, copy.networkError, hasLoadedStorage, items]);
+  }, [
+    checkoutItems,
+    copy.cartValidationFallback,
+    copy.networkError,
+    hasLoadedStorage,
+  ]);
 
-  const isCartEmpty = hasLoadedStorage && items.length === 0;
+  const isCheckoutEmpty =
+    hasLoadedStorage && checkoutItems.length === 0;
+  const clearPurchasedSource = React.useCallback(() => {
+    if (purchaseSource === "cart") {
+      clearCart();
+    }
+  }, [clearCart, purchaseSource]);
 
   return (
     <main
       className="bg-background py-case-2xl text-foreground"
       data-checkout-page
+      data-checkout-purchase-source={purchaseSource}
     >
       <CustomerGuidanceAutoOpen tourId="checkout" />
       <Container className="flex flex-col gap-case-xl">
@@ -528,12 +603,16 @@ export function CheckoutPage({
             {copy.backToBooks}
           </Link>
           <div className="flex max-w-3xl flex-col gap-case-sm">
-            <Badge variant="primary">{copy.badge}</Badge>
+            <Badge variant="primary">
+              {purchaseSource === "buy-now" ? copy.buyNowBadge : copy.badge}
+            </Badge>
             <h1 className="text-heading-1 font-semibold text-foreground">
-              {copy.title}
+              {purchaseSource === "buy-now" ? copy.buyNowTitle : copy.title}
             </h1>
             <p className="text-body leading-7 text-text-muted">
-              {copy.description}
+              {purchaseSource === "buy-now"
+                ? copy.buyNowDescription
+                : copy.description}
             </p>
           </div>
           <CustomerGuidanceButton
@@ -542,18 +621,30 @@ export function CheckoutPage({
             tourId="checkout"
           />
           <CheckoutAssuranceStrip copy={copy} />
+          {purchaseSource === "buy-now" &&
+          buyNowIntentResult.intent ? (
+            <BuyNowScopeNotice
+              cartTotalQuantity={cartTotalQuantity}
+              copy={copy}
+            />
+          ) : null}
         </div>
 
-        <CheckoutModeSelector
-          language={language}
-          mode={checkoutMode}
-          onModeChange={setCheckoutMode}
-        />
+        {!isCheckoutEmpty ? (
+          <CheckoutModeSelector
+            language={language}
+            mode={checkoutMode}
+            onModeChange={setCheckoutMode}
+          />
+        ) : null}
 
         {!hasLoadedStorage ? (
           <CheckoutLoadingState />
-        ) : isCartEmpty ? (
-          <CheckoutEmptyState copy={copy} />
+        ) : isCheckoutEmpty ? (
+          <CheckoutEmptyState
+            copy={copy}
+            purchaseSource={purchaseSource}
+          />
         ) : checkoutMode === "experience" ? (
           <CheckoutExperiencePanel
             cartData={
@@ -577,17 +668,18 @@ export function CheckoutPage({
             tabIndex={0}
           >
             <CheckoutDetailsForm
-              clearCart={clearCart}
+              clearPurchasedSource={clearPurchasedSource}
               copy={copy}
               customerAuthState={customerAuthState}
               currencyRules={currencyRules}
-              items={items}
+              items={checkoutItems}
               language={language}
               paymentMethod={paymentMethod}
               estimatedPromotionDiscountVnd={estimatedPromotionDiscountVnd}
               promotionCode={promotionCode}
               qrDemoPaymentsEnabled={qrDemoPaymentsEnabled}
               reviewState={reviewState}
+              purchaseSource={purchaseSource}
               setPaymentMethod={setPaymentMethod}
               setPromotionCode={setPromotionCode}
               setShippingMethod={setShippingMethod}
@@ -603,8 +695,9 @@ export function CheckoutPage({
               paymentMethod={paymentMethod}
               estimatedPromotionDiscountVnd={estimatedPromotionDiscountVnd}
               reviewState={reviewState}
+              purchaseSource={purchaseSource}
               shippingMethod={shippingMethod}
-              totalQuantity={totalQuantity}
+              totalQuantity={checkoutTotalQuantity}
             />
           </div>
         )}
@@ -727,9 +820,13 @@ function CheckoutLoadingState() {
 
 function CheckoutEmptyState({
   copy,
+  purchaseSource,
 }: {
   copy: (typeof checkoutCopy)[Language];
+  purchaseSource: CheckoutPurchaseSource;
 }) {
+  const isBuyNow = purchaseSource === "buy-now";
+
   return (
     <section
       className="rounded-lg border border-border bg-surface p-case-xl"
@@ -737,16 +834,18 @@ function CheckoutEmptyState({
     >
       <div className="flex max-w-xl flex-col gap-case-md">
         <h2 className="text-heading-2 font-semibold text-foreground">
-          {copy.cartEmptyTitle}
+          {isBuyNow ? copy.invalidBuyNowTitle : copy.cartEmptyTitle}
         </h2>
         <p className="text-body leading-7 text-text-muted">
-          {copy.cartEmptyDescription}
+          {isBuyNow
+            ? copy.invalidBuyNowDescription
+            : copy.cartEmptyDescription}
         </p>
         <Link
           href="/#featured"
           className="inline-flex min-h-11 w-fit min-w-0 items-center justify-center rounded-md border border-primary bg-primary px-4 py-2 text-body font-medium text-surface transition-colors hover:border-primary-hover hover:bg-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
         >
-          {copy.browseBooks}
+          {isBuyNow ? copy.selectBookAgain : copy.browseBooks}
         </Link>
       </div>
     </section>
@@ -779,6 +878,28 @@ function CheckoutAssuranceStrip({
           {item}
         </p>
       ))}
+    </section>
+  );
+}
+
+function BuyNowScopeNotice({
+  cartTotalQuantity,
+  copy,
+}: {
+  cartTotalQuantity: number;
+  copy: (typeof checkoutCopy)[Language];
+}) {
+  return (
+    <section
+      className="max-w-3xl border-l-4 border-discovery bg-discovery-muted px-case-md py-case-sm"
+      data-checkout-buy-now-scope
+    >
+      <h2 className="text-heading-3 font-semibold text-foreground">
+        {copy.buyNowScopeTitle}
+      </h2>
+      <p className="mt-case-xs text-small leading-6 text-text-muted">
+        {copy.buyNowScopeDescription(cartTotalQuantity)}
+      </p>
     </section>
   );
 }
@@ -816,7 +937,7 @@ function CheckoutPolicyLinks({
 }
 
 function CheckoutDetailsForm({
-  clearCart,
+  clearPurchasedSource,
   copy,
   currencyRules,
   customerAuthState,
@@ -825,6 +946,7 @@ function CheckoutDetailsForm({
   paymentMethod,
   estimatedPromotionDiscountVnd,
   promotionCode,
+  purchaseSource,
   qrDemoPaymentsEnabled,
   reviewState,
   setPaymentMethod,
@@ -833,7 +955,7 @@ function CheckoutDetailsForm({
   shippingMethod,
   signupVouchers,
 }: {
-  clearCart: () => void;
+  clearPurchasedSource: () => void;
   copy: (typeof checkoutCopy)[Language];
   currencyRules: CurrencyDisplayRules;
   customerAuthState: CustomerAuthState;
@@ -842,6 +964,7 @@ function CheckoutDetailsForm({
   paymentMethod: PaymentMethod;
   estimatedPromotionDiscountVnd: number;
   promotionCode: string;
+  purchaseSource: CheckoutPurchaseSource;
   qrDemoPaymentsEnabled: boolean;
   reviewState: CartReviewState;
   setPaymentMethod: (paymentMethod: PaymentMethod) => void;
@@ -973,11 +1096,14 @@ function CheckoutDetailsForm({
 
       writeCheckoutSuccessSnapshot(
         window.sessionStorage,
-        createCheckoutSuccessSnapshot(payload.data),
+        createCheckoutSuccessSnapshot({
+          ...payload.data,
+          checkoutSource: purchaseSource,
+        }),
       );
       clearCheckoutAttemptId(window.sessionStorage, checkoutAttemptId);
       checkoutAttemptIdRef.current = null;
-      clearCart();
+      clearPurchasedSource();
 
       if (
         qrDemoPaymentsEnabled &&
@@ -1012,6 +1138,7 @@ function CheckoutDetailsForm({
       data-checkout-profile-state={
         profileRequirement.blocksCheckout ? "blocked" : "ready"
       }
+      data-checkout-form-source={purchaseSource}
     >
       <div className="flex flex-col gap-case-sm">
         <h2 className="text-heading-2 font-semibold text-foreground">
@@ -1590,6 +1717,7 @@ function CheckoutCartReview({
   language,
   openCart,
   paymentMethod,
+  purchaseSource,
   estimatedPromotionDiscountVnd,
   reviewState,
   shippingMethod,
@@ -1601,6 +1729,7 @@ function CheckoutCartReview({
   language: Language;
   openCart: () => void;
   paymentMethod: PaymentMethod;
+  purchaseSource: CheckoutPurchaseSource;
   estimatedPromotionDiscountVnd: number;
   reviewState: CartReviewState;
   shippingMethod: ShippingMethod;
@@ -1611,7 +1740,9 @@ function CheckoutCartReview({
       <div className="flex items-start justify-between gap-case-md">
         <div className="min-w-0">
           <h2 className="text-heading-2 font-semibold text-foreground">
-            {copy.stepCart}
+            {purchaseSource === "buy-now"
+              ? copy.buyNowReview
+              : copy.stepCart}
           </h2>
           <p className="mt-case-xs text-small text-text-muted">
             {totalQuantity} {totalQuantity === 1 ? copy.item : copy.items}
@@ -1648,19 +1779,28 @@ function CheckoutCartReview({
           data-checkout-validation-error={reviewState.code}
         >
           <ErrorMessage>{reviewState.message}</ErrorMessage>
-          <div className="mt-case-md grid gap-case-sm sm:grid-cols-2 lg:grid-cols-1">
-            <Button type="button" variant="secondary" onClick={openCart}>
-              {copy.openCart}
-            </Button>
-            <Button
-              type="button"
-              variant="destructive"
-              onClick={clearCart}
-              data-checkout-clear-cart
+          {purchaseSource === "cart" ? (
+            <div className="mt-case-md grid gap-case-sm sm:grid-cols-2 lg:grid-cols-1">
+              <Button type="button" variant="secondary" onClick={openCart}>
+                {copy.openCart}
+              </Button>
+              <Button
+                type="button"
+                variant="destructive"
+                onClick={clearCart}
+                data-checkout-clear-cart
+              >
+                {copy.clearCart}
+              </Button>
+            </div>
+          ) : (
+            <Link
+              href="/#featured"
+              className="mt-case-md inline-flex min-h-11 items-center justify-center rounded-md border border-border bg-surface px-4 py-2 text-body font-medium text-foreground transition-colors hover:border-primary hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
             >
-              {copy.clearCart}
-            </Button>
-          </div>
+              {copy.selectBookAgain}
+            </Link>
+          )}
         </div>
       ) : null}
 

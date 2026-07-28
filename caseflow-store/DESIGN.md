@@ -73,6 +73,10 @@ CaseFlow Books should feel like a practical specialist bookstore and small-busin
 - Use a balanced bookstore palette: warm paper/ink foundations, retail red for primary commerce actions, teal for trust/discovery surfaces, wine for editorial emphasis, amber for offers, and navy for admin trust surfaces.
 - For v1.4 merchandising variety, use role-based accents rather than recoloring one repeated card: clay red for translation pairs, ink blue for academic/classic detail, muted teal for trust and service surfaces, olive for new-arrival/reading-path surfaces, amber only for real offers, and graphite/navy for operations.
 - Avoid overly decorative gradients, floating blobs, oversized hero cards, or animation-heavy UI.
+- ADR-0023 permits only two Originkit-informed motion adaptations: the
+  product-detail cover magnifier and the homepage category-cover reveal. Both
+  are progressive enhancements using local cover assets, stable geometry,
+  reduced-motion fallbacks, and no new runtime dependency.
 - Use restrained polish: consistent spacing, clear hierarchy, good focus states, stable layouts, and visible cover density.
 - Avoid one-note blue/slate, beige-only, purple-gradient, or random one-off color systems.
 
@@ -110,6 +114,18 @@ CaseFlow Books should feel like a practical specialist bookstore and small-busin
 - Do not put long marketing copy inside product cards.
 - Cards should use cover art, language/format chips, price clarity, and one primary action.
 - v1.4 card variants must differ by structure and information hierarchy, not only color. Acceptable variants include compact search rows, retail grid cards, editorial feature panels, translation pair comparisons, deal strips, and admin quality cards.
+
+### Product-detail Purchase Actions
+
+- `Mua ngay / Buy now` is the primary action for the selected edition and
+  quantity. `Them vao gio / Add to cart` remains a visible secondary action.
+- Buy Now belongs on product detail, not on dense catalog cards where another
+  commerce control would reduce scan quality and increase accidental action.
+- Direct checkout must identify its one-edition scope and state that the saved
+  cart remains unchanged. Standard cart checkout keeps its clear-after-success
+  behavior.
+- Loading, disabled, sold-out, and long bilingual labels must not resize or
+  overflow the purchase rail.
 
 ### Cart Drawer
 

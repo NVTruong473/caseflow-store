@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { Badge } from "@/components/ui";
@@ -38,6 +39,8 @@ export type CategorySpineItem = {
   description: string;
   href: string;
   label: string;
+  previewAlt?: string;
+  previewSrc?: string;
   tone?: "academic" | "arrival" | "discovery" | "editorial" | "translation";
 };
 
@@ -288,9 +291,15 @@ export function CategorySpineRail({
           <Link
             key={item.href}
             className={cn(
-              "group grid min-h-36 min-w-0 grid-cols-[12px_minmax(0,1fr)] overflow-hidden rounded-md border bg-surface transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary",
+              "group grid min-h-36 min-w-0 overflow-hidden rounded-md border bg-surface transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary",
+              item.previewSrc
+                ? "grid-cols-[12px_minmax(0,1fr)_64px]"
+                : "grid-cols-[12px_minmax(0,1fr)]",
               getToneBorderClass(item.tone ?? "discovery"),
             )}
+            data-origin-effect={
+              item.previewSrc ? "category-cover-reveal" : undefined
+            }
             href={item.href}
           >
             <span
@@ -305,6 +314,29 @@ export function CategorySpineRail({
                 {item.description}
               </span>
             </span>
+            {item.previewSrc ? (
+              <span
+                aria-hidden="true"
+                className="relative my-case-sm mr-case-sm aspect-[2/3] w-14 self-center overflow-hidden rounded-sm border border-border bg-paper shadow-[var(--case-shadow-cover)]"
+                data-origin-category-cover
+              >
+                <Image
+                  alt=""
+                  className="object-contain grayscale opacity-60"
+                  fill
+                  sizes="56px"
+                  src={item.previewSrc}
+                />
+                <Image
+                  alt=""
+                  className="case-origin-category-cover object-contain"
+                  fill
+                  sizes="56px"
+                  src={item.previewSrc}
+                />
+                <span className="sr-only">{item.previewAlt}</span>
+              </span>
+            ) : null}
           </Link>
         ))}
       </div>

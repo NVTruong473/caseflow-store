@@ -16320,3 +16320,196 @@ GitHub Release.
 - Remaining boundary: custom SMTP/domain authentication, enterprise MFA,
   real settlement, logistics, observability, and legal/business configuration
   are not included in the showroom release.
+
+---
+
+## UAT-AUTO-T03 - Automated Customer Cart, QR, Checkout, And Order UAT
+
+- Date: 2026-07-28
+- Status: completed
+- Target: `https://caseflow-store.vercel.app`
+- Result: a temporary confirmed customer completed the released customer
+  journey through separate desktop and phone browser contexts. Cart quantity,
+  item removal, clear-cart, three signup vouchers, `WELCOME30K`, QR experience,
+  COD checkout, account order history, and customer cancellation all passed.
+- Commerce boundary: the QR experience confirmed the exact server amount and
+  six-digit code without creating or mutating an order or payment. The phone
+  flow exposed no password field or customer/cart PII.
+- Persistence: the created COD order stored the expected `30,000 VND`
+  discount, then persisted both order and payment status as `cancelled` after
+  customer cancellation.
+- Verification:
+  - Production Playwright: PASS, `1/1` in `58.4s`.
+  - Focused lint: PASS.
+  - TypeScript: PASS.
+  - Console/page errors and horizontal overflow: PASS, zero findings.
+  - Post-test cleanup: PASS, zero QA accounts or records.
+- Evidence:
+  - `.agent/artifacts/uat-auto-t03/`
+
+---
+
+## ORIGINKIT-T01 - Originkit Commerce Motion Audit And ADR
+
+- Date: 2026-07-28
+- Status: completed
+- Result: evaluated the current Originkit catalog against the operational
+  bookstore design system and accepted exactly two adaptations: a bounded
+  book-cover magnifier and a fixed category cover reveal.
+- Rejected: scroll-coupled text, per-letter text motion, shaders, 3D/physics
+  galleries, cursor trails, particles, ambient backgrounds, and novelty button
+  effects.
+- Architecture: implementations must be original, dependency-free adaptations
+  of the documented interactions because Originkit source copy requires an
+  external account. No Originkit credential, MCP, remote script, or runtime
+  dependency is introduced.
+- Evidence:
+  - `docs/adr/0023-bounded-originkit-commerce-motion.md`
+  - `docs/originkit-commerce-motion-audit.md`
+
+---
+
+## ORIGINKIT-T02 - Implement Bounded Commerce Motion
+
+- Date: 2026-07-28
+- Status: completed
+- Result: added a dependency-free product-detail cover magnifier and a
+  CSS-first category cover reveal backed by live catalog records and local
+  cover paths.
+- Boundaries: no API, database, auth, checkout, order, payment, or package
+  change.
+- Verification: focused lint, TypeScript, and `git diff --check` passed before
+  responsive QA.
+
+---
+
+## ORIGINKIT-T03 - Responsive, Accessibility, And Motion QA
+
+- Date: 2026-07-28
+- Status: completed
+- Result: focused Playwright passed `3/3` at desktop, tablet, and mobile
+  conditions. Keyboard focus reveal, stable geometry, touch fallback,
+  reduced-motion fallback, bounded magnification, local image sources, no
+  horizontal overflow, and zero captured homepage runtime errors passed.
+- Evidence:
+  - `.agent/artifacts/originkit-t03/qa-check.json`
+  - `.agent/artifacts/originkit-t03/*.png`
+
+---
+
+## ORIGINKIT-T04 - Final Gates And Documentation
+
+- Date: 2026-07-28
+- Status: completed
+- Result: the bounded Originkit enhancement passed the final local quality and
+  cleanup gate. Production was not changed.
+- Verification:
+  - `npm run lint`: PASS with zero errors and one unrelated pre-existing
+    warning in `scripts/verify-password-assurance.mjs`.
+  - `npm exec -- tsc --noEmit --pretty false`: PASS.
+  - `npm run build`: PASS, `66/66` routes generated.
+  - `npm run verify:architecture`: PASS, 246 files and zero findings.
+  - `npm audit --omit=dev --audit-level=high`: PASS, zero vulnerabilities.
+  - Focused Originkit Playwright: PASS, `3/3`.
+  - Full sequential dev-server Playwright: PASS with 35 clean tests and three
+    tests that passed on retry.
+  - Isolated Production-build reruns: password assurance `3/3` and customer
+    UAT `1/1`, both PASS without retry.
+  - Release cleanup: PASS, zero temporary accounts or records.
+- Evidence:
+  - `.agent/artifacts/originkit-t04/final-quality-check.json`
+  - `.agent/artifacts/originkit-t04/release-cleanup-check.json`
+
+---
+
+## BUY-NOW-T01 - Accelerated Checkout Boundary And ADR
+
+- Date: 2026-07-28
+- Status: completed
+- Result: accepted ADR-0024 for an isolated URL-carried Buy Now intent that
+  resumes through authentication and reuses trusted server cart/order
+  validation without mutating the existing browser cart.
+- Rejected: adding then redirecting, replacing the cart, session-only intent,
+  and one-click order creation.
+- Runtime/dependencies: unchanged.
+- Evidence:
+  - `docs/adr/0024-isolated-accelerated-checkout.md`
+
+---
+
+## BUY-NOW-T02 - Shared Intent And Product-detail Actions
+
+- Date: 2026-07-28
+- Status: completed
+- Result: added a strict, shared Buy Now URL intent plus bilingual primary Buy
+  Now and secondary Add to Cart actions on the product-detail purchase panel.
+- Cart behavior: Buy Now never dispatches a cart action; Add to Cart remains
+  bounded by existing cart quantity and current available stock.
+- Verification:
+  - Focused ESLint: PASS.
+  - TypeScript: PASS.
+
+---
+
+## BUY-NOW-T03 - Checkout, Authentication Resume, And Cart Preservation
+
+- Date: 2026-07-28
+- Status: completed
+- Result: integrated valid Buy Now selections with the existing checkout
+  validation, official order, QR experience, and account return-path flows.
+- Cart behavior: direct purchase submits only the selected edition and does not
+  clear the saved cart; standard cart checkout still clears after success.
+- Failure behavior: malformed UUID/quantity intent returns to an explicit
+  recoverable state rather than silently checking out the cart.
+- Verification:
+  - Focused ESLint: PASS.
+  - TypeScript: PASS.
+  - Valid and invalid authentication redirect headers: PASS.
+  - `git diff --check`: PASS.
+
+---
+
+## BUY-NOW-T04 - Focused And Full Release Verification
+
+- Date: 2026-07-28
+- Status: completed
+- Result: the isolated Buy Now path passed authentication resume, direct
+  edition/quantity isolation, QR experience, official COD order creation,
+  server-owned totals, success-copy truthfulness, cart preservation, malformed
+  intent, desktop, and mobile checks.
+- Verification:
+  - Lint: PASS, zero warnings.
+  - TypeScript: PASS.
+  - Production build: PASS, `66/66` routes.
+  - Architecture: PASS, 246 files and zero findings.
+  - Runtime dependency audit: PASS, zero vulnerabilities.
+  - Asset metadata, no-demo copy, secret scan, and Production mock-payment
+    static lock: PASS.
+  - Focused Production-build Playwright: PASS, Buy Now `1/1` and Originkit
+    `3/3`.
+  - Full sequential Playwright: PASS with 37 direct and two retry-pass tests.
+  - Isolated password-assurance rerun: PASS, `3/3` without retry.
+  - Release cleanup: PASS, zero temporary accounts or records.
+- Evidence:
+  - `.agent/artifacts/buy-now-t04/`
+
+---
+
+## BUY-NOW-T05 - Complete Layer Architecture Redraw
+
+- Date: 2026-07-28
+- Status: completed
+- Result: redrew the full project architecture from browser and Vercel through
+  presentation, controller, application, domain/policy, data/integration,
+  Supabase/Auth, payment, notification, and database layers. Cart checkout and
+  isolated Buy Now are shown as separate browser-state entry points that
+  converge at trusted server validation and order creation.
+- Architecture stance: the system is a layered Next.js modular monolith. It
+  uses MVC responsibilities and DTO contracts where useful, but does not claim
+  a textbook MVC folder structure or microservice deployment.
+- Verification:
+  - `npm run verify:architecture`: PASS, 246 files and zero findings.
+  - `git diff --check`: PASS.
+- Evidence:
+  - `docs/layer-architecture-v1.17.md`
+  - `.agent/artifacts/buy-now-t05/layer-architecture-check.json`

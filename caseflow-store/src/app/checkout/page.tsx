@@ -4,6 +4,10 @@ import { redirect } from "next/navigation";
 import { storefrontConfig } from "@/config/storefront";
 import { CheckoutPage } from "@/features/checkout";
 import { getCustomerAuthState } from "@/lib/auth/customer";
+import {
+  buildBuyNowCheckoutHref,
+  parseBuyNowIntent,
+} from "@/lib/checkout/buy-now-intent";
 import { getCurrencyDisplayRules } from "@/lib/format/currency-display.server";
 import { getRequestLanguage } from "@/lib/i18n/server";
 import { getDemoPaymentConfig } from "@/lib/payments/config";
@@ -12,6 +16,10 @@ import {
   listCustomerSignupVouchers,
 } from "@/lib/repositories/supabase-customer-vouchers";
 import { createPageMetadata } from "@/lib/seo/metadata";
+
+type CheckoutRouteProps = {
+  searchParams?: Promise<Record<string, string | string[] | undefined>>;
+};
 
 export async function generateMetadata(): Promise<Metadata> {
   const language = await getRequestLanguage();
@@ -34,17 +42,27 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
-export default async function CheckoutRoute() {
+export default async function CheckoutRoute({
+  searchParams,
+}: CheckoutRouteProps) {
   const language = await getRequestLanguage();
   const currencyRules = getCurrencyDisplayRules();
   const customerAuthState = await getCustomerAuthState();
   const paymentConfig = getDemoPaymentConfig();
+  const params = await searchParams;
+  const buyNowIntentResult = parseBuyNowIntent(params);
 
   if (
     customerAuthState.status !== "authenticated" ||
     customerAuthState.user.role !== "customer"
   ) {
-    redirect("/account?next=/checkout");
+    const nextPath = buyNowIntentResult.requested
+      ? buyNowIntentResult.intent
+        ? buildBuyNowCheckoutHref(buyNowIntentResult.intent)
+        : "/checkout?mode=buy-now"
+      : "/checkout";
+
+    redirect(`/account?next=${encodeURIComponent(nextPath)}`);
   }
 
   const signupVouchers = await ensureAndListCustomerSignupVouchers(
@@ -53,6 +71,7 @@ export default async function CheckoutRoute() {
 
   return (
     <CheckoutPage
+      buyNowIntentResult={buyNowIntentResult}
       currencyRules={currencyRules}
       customerAuthState={customerAuthState}
       language={language}

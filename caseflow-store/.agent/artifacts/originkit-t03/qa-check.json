@@ -1,0 +1,40 @@
+{
+  "taskId": "ORIGINKIT-T03",
+  "checkedAt": "2026-07-28",
+  "status": "PASS",
+  "reference": "https://www.originkit.dev/",
+  "acceptedEffects": [
+    {
+      "adaptation": "bounded book-cover magnifier",
+      "originkitPattern": "Image Magnifier",
+      "surface": "book detail"
+    },
+    {
+      "adaptation": "fixed category cover reveal",
+      "originkitPattern": "Hover Image Reveal",
+      "surface": "homepage category spine rail"
+    }
+  ],
+  "checks": {
+    "categoryFocusReveal": true,
+    "categoryGeometryStable": true,
+    "localCoverSourcesOnly": true,
+    "magnifierBounded": true,
+    "mobileTouchFallback": true,
+    "noHorizontalOverflow": true,
+    "reducedMotionFallback": true,
+    "runtimeErrors": 0
+  },
+  "playwright": {
+    "command": "PLAYWRIGHT_BASE_URL=http://127.0.0.1:3001 npm exec -- playwright test tests/e2e/originkit-motion.spec.ts --project=chromium --workers=1",
+    "passed": 3,
+    "failed": 0
+  },
+  "screenshots": [
+    "homepage-desktop-focus-reveal.png",
+    "homepage-mobile-touch-fallback.png",
+    "homepage-tablet-reduced-motion.png",
+    "product-detail-desktop-magnifier.png",
+    "product-detail-mobile-touch-fallback.png"
+  ]
+}

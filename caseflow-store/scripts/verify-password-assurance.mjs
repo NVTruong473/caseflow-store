@@ -14,8 +14,6 @@ const recoveryPage = read(
   "src/features/customer/customer-password-recovery-page.tsx",
 );
 const envExample = read(".env.example");
-const sourceFiles = listFiles(path.join(root, "src"));
-const source = sourceFiles.map((file) => fs.readFileSync(file, "utf8")).join("\n");
 const configuredOperationsSecret =
   process.env.OPERATIONS_PASSWORD_CHANGE_SECRET?.trim();
 const trackedSource = readTrackedSource();
@@ -71,18 +69,6 @@ if (!report.ok) {
 
 function read(relativePath) {
   return fs.readFileSync(path.join(root, relativePath), "utf8");
-}
-
-function listFiles(directory) {
-  return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
-    const absolutePath = path.join(directory, entry.name);
-
-    if (entry.isDirectory()) {
-      return listFiles(absolutePath);
-    }
-
-    return /\.(?:ts|tsx|js|mjs)$/.test(entry.name) ? [absolutePath] : [];
-  });
 }
 
 function readTrackedSource() {

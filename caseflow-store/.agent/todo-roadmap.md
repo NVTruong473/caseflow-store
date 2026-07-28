@@ -11,10 +11,181 @@
 
 - Project: CaseFlow Books
 - Mode: stable `v1.16.0` showroom; feature development closed
-- Current gate: `v1.16.0` released and verified
-- Current task: none
+- Current gate: local implementation, architecture, and release verification passed
+- Current task: `BUY-NOW-T06`
 - Implementation day: Day 40 complete
-- Last updated: 2026-07-27
+- Last updated: 2026-07-28
+
+## Post-release Customer UAT
+
+## Phase v1.17 - Isolated Accelerated Checkout
+
+- [x] `BUY-NOW-T01` Audit And Accept The Accelerated Checkout Boundary. -
+  2026-07-28
+  - Acceptance criteria:
+    - Compare the current cart-only purchase path with accelerated-checkout
+      practice and current checkout research.
+    - Preserve the local cart and server-owned price, stock, tax, shipping,
+      voucher, and total boundaries.
+    - Record authentication resume, invalid-intent handling, cart isolation,
+      UI rules, rejected alternatives, and verification in an ADR.
+    - Add no runtime change or dependency in this task.
+  - Result: ADR-0024 accepted a strict URL-carried edition/quantity intent,
+    trusted server revalidation, authentication resume, explicit UI scope, and
+    complete cart isolation. Runtime and dependencies remained unchanged.
+  - Verification: `git diff --check` passed.
+
+- [x] `BUY-NOW-T02` Implement Shared Intent And Product-detail Actions. -
+  2026-07-28
+  - Acceptance criteria:
+    - Add a strict shared Buy Now intent parser and URL builder.
+    - Add bilingual primary Buy Now and secondary Add to Cart actions.
+    - Preserve stock and quantity boundaries without mutating the cart.
+  - Result: added the strict UUID/quantity intent contract and bilingual
+    product-detail actions. Buy Now routes without touching Cart Context; Add
+    to Cart remains bounded by the existing cart and available stock.
+  - Verification: focused ESLint and TypeScript passed.
+
+- [x] `BUY-NOW-T03` Integrate Checkout, Authentication Resume, And Cart
+  Preservation.
+  - Acceptance criteria:
+    - Resume the exact valid intent after customer sign-in.
+    - Validate and submit only the direct-purchase item.
+    - Keep the existing cart unchanged before and after successful Buy Now.
+    - Preserve standard cart-checkout behavior and both checkout modes.
+  - Result: checkout now selects either cart items or one strict Buy Now item,
+    resumes valid intents through account sign-in, uses the same server
+    validation/order APIs, preserves the cart after direct orders, and records
+    truthful cart behavior in the success snapshot.
+  - Verification: focused ESLint, TypeScript, valid/invalid auth redirect
+    headers, and `git diff --check` passed.
+
+- [x] `BUY-NOW-T04` Run Focused And Full Release Verification. - 2026-07-28
+  - Acceptance criteria:
+    - Cover anonymous resume, direct item/quantity isolation, QR experience,
+      official order creation, cart preservation, invalid intent, mobile,
+      accessibility, and server-owned totals.
+    - Pass lint, TypeScript, architecture, build, security, focused Playwright,
+      full Playwright, cleanup, and diff review.
+  - Result: all static, build, security, focused commerce, responsive, and
+    cleanup gates passed. The full sequential suite completed with 37 direct
+    passes and two password-assurance retry passes; the affected password
+    suite then passed `3/3` in isolation without retry.
+
+- [x] `BUY-NOW-T05` Redraw And Verify The Complete Layer Architecture. -
+  2026-07-28
+  - Acceptance criteria:
+    - Update the complete browser, Next.js UI/controller, use-case/policy,
+      repository, Supabase, auth, payment, notification, and deployment
+      architecture.
+    - Include cart and isolated Buy Now request flows.
+    - Ensure diagrams and prose match implemented source boundaries.
+  - Result: added the complete six-layer system, feature, commerce, auth,
+    operations, payment, notification, deployment, and data-ownership diagrams
+    in `docs/layer-architecture-v1.17.md`; linked the canonical architecture
+    document and recorded the practical MVC mapping.
+  - Verification: architecture boundary verifier passed 246 files with zero
+    findings; `git diff --check` passed.
+
+- [/] `BUY-NOW-T06` Release And Verify `v1.17.0`.
+  - Acceptance criteria:
+    - Commit only intended source, documentation, tests, and evidence.
+    - Deploy Production with no mock-payment unlock or secret exposure.
+    - Pass Production smoke, security, Buy Now, responsive, and cleanup gates.
+    - Push `main`, create and verify tag and GitHub Release `v1.17.0`.
+
+- [x] `UAT-AUTO-T03` Automate Customer Cart, Checkout, QR, And Order UAT. -
+  2026-07-28
+  - Acceptance criteria:
+    - Test the released Production site with a temporary confirmed customer.
+    - Verify cart quantity, item removal, clear-cart, and checkout navigation.
+    - Verify all three account-bound signup vouchers exist and one voucher
+      changes the trusted order total.
+    - Verify the QR experience with separate authenticated desktop and
+      anonymous phone contexts without creating an order or payment.
+    - Verify official COD order creation, order history, customer
+      cancellation, and persisted order/payment status.
+    - Detect console errors and horizontal overflow on the tested surfaces.
+    - Remove every temporary customer, voucher, order, and related QA record.
+  - Result: Production Playwright passed `1/1` in `58.4s`; all nine journey
+    checks passed, database state matched the UI, and cleanup found zero
+    remaining QA records.
+  - Verification:
+    - `PLAYWRIGHT_BASE_URL=https://caseflow-store.vercel.app npm exec -- playwright test tests/e2e/uat-auto-customer.spec.ts --project=chromium --workers=1`: passed.
+    - `npm run lint -- --quiet tests/e2e/uat-auto-customer.spec.ts`: passed.
+    - `npm exec -- tsc --noEmit --pretty false`: passed.
+    - `RELEASE_CLEANUP_TASK_ID=uat-auto-t03 npm exec -- tsx scripts/verify-release-cleanup.ts`: passed with zero matches.
+  - Evidence:
+    - `.agent/artifacts/uat-auto-t03/uat-auto-t03-check.json`
+    - `.agent/artifacts/uat-auto-t03/release-cleanup-check.json`
+    - `.agent/artifacts/uat-auto-t03/desktop-qr-completed.png`
+    - `.agent/artifacts/uat-auto-t03/phone-qr-completed.png`
+    - `.agent/artifacts/uat-auto-t03/order-history-cancelled.png`
+
+## Post-release Originkit Commerce Motion
+
+- [x] `ORIGINKIT-T01` Audit Originkit And Accept A Bounded Motion ADR. -
+  2026-07-28
+  - Acceptance criteria:
+    - Evaluate current Originkit patterns against bookstore relevance,
+      commerce clarity, accessibility, layout stability, performance, and
+      maintainability.
+    - Select only effects that improve a real customer task.
+    - Record accepted adaptations, rejected patterns, and the 95% confidence
+      gate in an ADR before runtime changes.
+    - Add no dependency or runtime code in the planning task.
+  - Result: accepted a dependency-free product-cover magnifier and fixed
+    category-cover reveal; rejected text, shader, cursor, particle, gallery,
+    and ambient effects that reduce commerce usability.
+  - Evidence:
+    - `docs/adr/0023-bounded-originkit-commerce-motion.md`
+    - `docs/originkit-commerce-motion-audit.md`
+
+- [x] `ORIGINKIT-T02` Implement The Accepted Commerce Motion. - 2026-07-28
+  - Acceptance criteria:
+    - Add the detail-page magnifier as a bounded progressive enhancement.
+    - Add catalog-backed category cover reveals with hover, focus, and touch
+      behavior.
+    - Reuse local cover provenance, design tokens, and current routes.
+    - Add no runtime dependency and change no commerce/auth/API boundary.
+  - Result: added a small Client Component for the primary detail cover and a
+    CSS-first, catalog-backed category reveal. No dependency, API, schema,
+    auth, checkout, or order change was introduced.
+
+- [x] `ORIGINKIT-T03` Run Responsive, Accessibility, And Motion QA. -
+  2026-07-28
+  - Acceptance criteria:
+    - Render homepage and product detail at `375px`, `768px`, and `1440px`.
+    - Verify focus, touch fallback, reduced motion, no overflow, and no console
+      or hydration errors.
+    - Add focused Playwright coverage and screenshot evidence.
+  - Result: focused Playwright passed `3/3`; desktop focus, mobile touch,
+    tablet reduced-motion, magnifier bounds, local image sources, zero
+    horizontal overflow, and five screenshots passed.
+  - Evidence:
+    - `.agent/artifacts/originkit-t03/qa-check.json`
+    - `.agent/artifacts/originkit-t03/homepage-desktop-focus-reveal.png`
+    - `.agent/artifacts/originkit-t03/homepage-mobile-touch-fallback.png`
+    - `.agent/artifacts/originkit-t03/homepage-tablet-reduced-motion.png`
+    - `.agent/artifacts/originkit-t03/product-detail-desktop-magnifier.png`
+    - `.agent/artifacts/originkit-t03/product-detail-mobile-touch-fallback.png`
+
+- [x] `ORIGINKIT-T04` Run Final Gates And Document The Result. - 2026-07-28
+  - Acceptance criteria:
+    - Lint, TypeScript, build, focused Playwright, and `git diff --check` pass.
+    - Design documentation matches the implementation.
+    - Final evidence records accepted/rejected effects and any residual limit.
+  - Result: the bounded enhancement passed lint with zero errors, TypeScript,
+    the 66-route Production build, architecture verification, high-severity
+    runtime dependency audit, focused motion Playwright `3/3`, and cleanup with
+    zero temporary records.
+  - Regression result: the full sequential dev-server suite passed with `35`
+    clean tests and `3` retry-pass tests. The three affected password/UAT tests
+    then passed cleanly as isolated Production-build reruns (`3/3` and `1/1`);
+    no product defect remained reproducible.
+  - Evidence:
+    - `.agent/artifacts/originkit-t04/final-quality-check.json`
+    - `.agent/artifacts/originkit-t04/release-cleanup-check.json`
 
 ## Phase v1.16 - Cross-device Experience And Password Assurance
 

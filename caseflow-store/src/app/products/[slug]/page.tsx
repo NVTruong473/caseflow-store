@@ -8,6 +8,7 @@ import {
 } from "@/components/currency/currency-amount";
 import { Badge, Container } from "@/components/ui";
 import { storefrontConfig } from "@/config/storefront";
+import { BookCoverMagnifier } from "@/features/books/book-cover-magnifier";
 import { BookCoverFrame } from "@/features/books/cover-merchandising";
 import { BookEditionPurchaseControls } from "@/features/books/book-edition-purchase-controls";
 import { formatVnd } from "@/lib/format/currency";
@@ -230,6 +231,8 @@ export default async function ProductDetailPage({
     .slice(0, 4);
   const editionOptions = getEditionOptions(record, relatedEditions);
   const editionTitle = getEditionTitle(record, language);
+  const coverAlt = getCoverAlt(record, language);
+  const coverPath = getCoverPath(record);
   const authorLine = getAuthorLine(record);
   const displayFacts = record.edition.displayFacts;
   const editionIdentityFacts = getEditionIdentityFacts(record, language, copy);
@@ -296,15 +299,12 @@ export default async function ProductDetailPage({
               className="case-retail-ledger mx-auto w-full max-w-[220px] rounded-lg border border-primary/15 p-case-md shadow-[var(--case-shadow-soft)] sm:max-w-[280px] lg:max-w-none"
               data-book-detail-image
             >
-              <BookCoverFrame
+              <BookCoverMagnifier
+                alt={coverAlt}
                 className="w-full"
-                imageClassName="transition duration-300 hover:scale-[1.01]"
-                language={language}
                 priority
                 sizes="(min-width: 1024px) 400px, 100vw"
-                record={record}
-                showBadges={false}
-                size="hero"
+                src={coverPath}
               />
             </div>
           </div>

@@ -6,18 +6,21 @@ import type {
   PaymentMethod,
   PaymentStatus,
 } from "@/types/domain";
+import type { CheckoutPurchaseSource } from "@/lib/checkout/buy-now-intent";
 
 export const CHECKOUT_SUCCESS_STORAGE_KEY =
   "caseflow-store.checkout.success.v1";
 export const CHECKOUT_SUCCESS_STORAGE_VERSION = 2;
 
 export type CheckoutSuccessOrderData = {
+  checkoutSource?: CheckoutPurchaseSource;
   order: Order;
   items: OrderItem[];
 };
 
 export type CheckoutSuccessSnapshot = {
   version: typeof CHECKOUT_SUCCESS_STORAGE_VERSION;
+  checkoutSource: CheckoutPurchaseSource;
   orderCode: string;
   status: OrderStatus;
   subtotal: number;
@@ -35,11 +38,13 @@ export type CheckoutSuccessSnapshotItem = {
 };
 
 export function createCheckoutSuccessSnapshot({
+  checkoutSource = "cart",
   items,
   order,
 }: CheckoutSuccessOrderData): CheckoutSuccessSnapshot {
   return {
     version: CHECKOUT_SUCCESS_STORAGE_VERSION,
+    checkoutSource,
     orderCode: order.orderCode,
     status: order.status,
     paymentMethod: order.paymentMethod ?? "cod",
@@ -96,6 +101,7 @@ function parseCheckoutSuccessSnapshot(
 
     const {
       createdAt,
+      checkoutSource,
       itemCount,
       items,
       orderCode,
@@ -126,6 +132,9 @@ function parseCheckoutSuccessSnapshot(
 
     return {
       version: CHECKOUT_SUCCESS_STORAGE_VERSION,
+      checkoutSource: isCheckoutPurchaseSource(checkoutSource)
+        ? checkoutSource
+        : "cart",
       orderCode,
       paymentMethod,
       paymentStatus,
@@ -138,6 +147,12 @@ function parseCheckoutSuccessSnapshot(
   } catch {
     return null;
   }
+}
+
+function isCheckoutPurchaseSource(
+  value: unknown,
+): value is CheckoutPurchaseSource {
+  return value === "cart" || value === "buy-now";
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {

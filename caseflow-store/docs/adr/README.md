@@ -27,6 +27,8 @@ verified implementation outcome of each decision.
 | [ADR-0020](0020-contextual-customer-guidance.md) | Accepted | Add contextual first-use and replayable customer guidance | Governs bilingual, accessible, browser-local tours for buying, cart controls, checkout modes, and order cancellation without changing commerce state. |
 | [ADR-0021](0021-cross-device-qr-experience.md) | Accepted | Add a cross-device HTTPS QR checkout experience | Governs server-owned experience totals, fragment capability tokens, mobile confirmation, bounded polling, and isolated session persistence without creating orders or payments. |
 | [ADR-0022](0022-role-aware-password-change-assurance.md) | Accepted | Require role-aware assurance before password changes | Governs customer single-use recovery links and server-only admin/staff operations-secret verification without hardcoded credentials. |
+| [ADR-0023](0023-bounded-originkit-commerce-motion.md) | Accepted | Use only bounded product-relevant Originkit motion | Governs the dependency-free book-cover magnifier and category-cover reveal with touch, focus, reduced-motion, and stable-layout fallbacks. |
+| [ADR-0024](0024-isolated-accelerated-checkout.md) | Accepted | Add isolated Buy Now checkout without mutating the cart | Governs URL-carried edition/quantity intent, authentication resume, trusted server revalidation, cart preservation, focused QA, and the `v1.17.0` release. |
 
 ## Status meanings
 

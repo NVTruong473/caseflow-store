@@ -16,6 +16,8 @@ import {
 import {
   BookCoverFrame,
   BookCoverStack,
+  getBookCoverAlt,
+  getBookCoverPath,
 } from "@/features/books/cover-merchandising";
 import {
   CustomerGuidanceAutoOpen,
@@ -397,12 +399,25 @@ export default async function Home() {
   );
   const categoryCards = categories.slice(0, HOME_LIMITS.categoryCards);
   const heroQuickLinks = categoryCards.slice(0, 4);
-  const categorySpineItems = categoryCards.map((category, index) => ({
-    description: getCategoryDescription(category, language),
-    href: `/catalog?category=${category.slug}`,
-    label: getCategoryLabel(category, language),
-    tone: categorySpineTones[index % categorySpineTones.length],
-  }));
+  const categorySpineItems = categoryCards.map((category, index) => {
+    const previewRecord =
+      records.find((record) =>
+        record.categories.some(
+          (recordCategory) => recordCategory.id === category.id,
+        ),
+      ) ?? heroRecords[index % Math.max(heroRecords.length, 1)];
+
+    return {
+      description: getCategoryDescription(category, language),
+      href: `/catalog?category=${category.slug}`,
+      label: getCategoryLabel(category, language),
+      previewAlt: previewRecord
+        ? getBookCoverAlt(previewRecord, language)
+        : undefined,
+      previewSrc: previewRecord ? getBookCoverPath(previewRecord) : undefined,
+      tone: categorySpineTones[index % categorySpineTones.length],
+    };
+  });
   const translationPairs = translatedEditionGroups.map((group) => ({
     english: group.english,
     vietnamese: group.vietnamese,

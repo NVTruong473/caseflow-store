@@ -1,0 +1,22 @@
+{
+  "amountVnd": 199900,
+  "book": {
+    "editionId": "00000000-0000-4000-8000-000000003027",
+    "slug": "a-christmas-carol-english-paperback",
+    "title": "A Christmas Carol"
+  },
+  "checks": {
+    "cartClear": true,
+    "cartQuantity": true,
+    "cartRemove": true,
+    "customerCancellation": true,
+    "officialCodOrder": true,
+    "orderHistory": true,
+    "phoneQrExperience": true,
+    "qrCommerceIsolation": true,
+    "voucherApplied": true
+  },
+  "generatedAt": "2026-07-28T15:22:57.352Z",
+  "ok": true,
+  "orderCode": "CF-MS4T1U6X-0D05EE4900"
+}

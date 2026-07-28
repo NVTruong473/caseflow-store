@@ -16,7 +16,9 @@ account password-change release, the `v1.11.1` security dependency patch, the
 expert UI/accessibility polish patch, and the `v1.12.0` layered architecture
 hardening release, followed by the `v1.12.1` atomic order reliability patch
 and the `v1.13.0` transactional notification and simulated-transfer operations
-release.
+release, through the current `v1.16.0` cross-device checkout showroom release.
+The accepted `v1.17.0` candidate adds isolated accelerated checkout without
+changing the deployment, database, auth, order, or payment boundaries.
 The system is
 intentionally a Next.js modular monolith: it demonstrates a realistic
 specialist e-commerce workflow without claiming marketplace scale, real payment
@@ -41,6 +43,13 @@ flowchart LR
 Vercel runs one Next.js application. Supabase is the only external data and
 identity service. There is no separate API deployment, payment provider,
 shipping-carrier integration, SMS provider, or external AI assistant service.
+
+The complete layer, feature, request-flow, data-ownership, and deployment
+diagrams are maintained in
+[`layer-architecture-v1.17.md`](layer-architecture-v1.17.md). That document
+maps the Next.js implementation to presentation, controller, application,
+domain/policy, data/integration, and infrastructure layers without pretending
+the modular monolith is a microservice system or textbook MVC application.
 
 ## Runtime containers
 
@@ -144,6 +153,25 @@ Browser localStorage cart
 
 The cart deliberately does not store trusted price, subtotal, tax, role, or
 order status. It remains browser-local rather than cross-device.
+
+### Isolated Buy Now checkout
+
+```text
+Product-detail edition and quantity
+  -> strict /checkout?mode=buy-now intent with editionId and quantity only
+  -> authentication return path preserves the validated intent
+  -> POST /api/cart/validate reloads trusted edition, stock, and price
+  -> official checkout or isolated QR experience uses that one selection
+  -> POST /api/orders repeats trusted total and policy calculation
+  -> success preserves the existing browser cart
+```
+
+Buy Now is an accelerated entry point, not a separate commerce backend. It
+never copies price or totals into the URL, never creates an order from the
+product page, and never merges, replaces, or clears saved cart lines. Invalid
+intent fails closed rather than silently falling back to cart checkout. See
+ADR-0024 and the complete flow in
+[`layer-architecture-v1.17.md`](layer-architecture-v1.17.md).
 
 ### Contextual customer guidance
 

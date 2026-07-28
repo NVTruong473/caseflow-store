@@ -1,0 +1,35 @@
+{
+  "taskId": "BUY-NOW-T05",
+  "checkedAt": "2026-07-28T15:29:57Z",
+  "status": "PASS",
+  "architectureVerifier": {
+    "checkedFiles": 246,
+    "findings": 0
+  },
+  "documentedLayers": [
+    "presentation",
+    "http controllers",
+    "application use cases",
+    "domain and policy",
+    "data and integration",
+    "infrastructure"
+  ],
+  "documentedFlows": [
+    "storefront catalog read",
+    "cart checkout",
+    "isolated Buy Now checkout",
+    "order creation",
+    "authentication and authorization",
+    "admin and staff operations",
+    "payment providers and webhook",
+    "transactional notifications"
+  ],
+  "boundaryClaims": {
+    "modularMonolith": true,
+    "textbookMvcClaimed": false,
+    "microservicesClaimed": false,
+    "realPaymentClaimed": false
+  },
+  "gitDiffCheck": "PASS",
+  "ok": true
+}

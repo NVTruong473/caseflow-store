@@ -1,0 +1,85 @@
+{
+  "taskId": "BUY-NOW-T04",
+  "checkedAt": "2026-07-28T15:25:06Z",
+  "status": "PASS_WITH_DOCUMENTED_FLAKES",
+  "productionChanged": false,
+  "confidencePercent": 95,
+  "gates": {
+    "architecture": {
+      "status": "PASS",
+      "filesChecked": 246,
+      "findings": 0
+    },
+    "assetMetadata": {
+      "status": "PASS",
+      "filesChecked": 565,
+      "findings": 0
+    },
+    "build": {
+      "status": "PASS",
+      "routesGenerated": 66
+    },
+    "cleanup": {
+      "status": "PASS",
+      "temporaryMatches": 0
+    },
+    "focusedProductionBuildPlaywright": {
+      "status": "PASS",
+      "buyNowPassed": 1,
+      "originkitPassed": 3,
+      "failed": 0
+    },
+    "fullSequentialPlaywright": {
+      "status": "PASS_WITH_RETRIES",
+      "passedWithoutRetry": 37,
+      "passedOnRetry": 2,
+      "failed": 0
+    },
+    "isolatedPasswordAssuranceRerun": {
+      "status": "PASS",
+      "passed": 3,
+      "failed": 0,
+      "retries": 0
+    },
+    "lint": {
+      "status": "PASS",
+      "errors": 0,
+      "warnings": 0
+    },
+    "noDemoRuntimeCopy": {
+      "status": "PASS",
+      "filesChecked": 146,
+      "findings": 0
+    },
+    "productionMockPaymentStaticLock": {
+      "status": "PASS"
+    },
+    "runtimeDependencyAudit": {
+      "status": "PASS",
+      "vulnerabilities": 0
+    },
+    "secretScan": {
+      "status": "PASS",
+      "filesChecked": 1626,
+      "findings": 0
+    },
+    "typescript": {
+      "status": "PASS"
+    }
+  },
+  "buyNowChecks": {
+    "authenticationResume": true,
+    "cartPreserved": true,
+    "directQuantityIsolated": true,
+    "invalidIntentFailsClosed": true,
+    "officialOrderUsesDirectSelection": true,
+    "qrExperienceUsesDirectTotal": true,
+    "serverOwnedTotals": true,
+    "successCopyMatchesCartBehavior": true
+  },
+  "residuals": [
+    "Two admin/staff password tests timed out once under the full sequential local load and passed on retry; the isolated rerun then passed 3/3 without retry.",
+    "Production remains v1.16.0 until BUY-NOW-T06 completes.",
+    "Real payment settlement remains outside the showroom scope."
+  ]
+}
