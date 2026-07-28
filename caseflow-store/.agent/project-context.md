@@ -15,10 +15,21 @@
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
 - Current mode: stable `v1.17.0` showroom; feature development closed.
-- Current gate: accelerated checkout Production release passed.
-- Current task: no active implementation task.
+- Current gate: `PORTFOLIO-T01` completed; stable showroom handoff.
+- Current task: none; feature development remains closed.
 
 ## Confirmed Facts
+
+- `PORTFOLIO-T01` completed the documentation/evidence package on top of the
+  verified `v1.17.0` Production release. It includes a 4:16 Vietnamese
+  walkthrough with disclosed synthetic narration, SRT, 14 screenshots, case
+  study, role matrix, evidence-backed CV/interview pack, claims index,
+  reproducible scripts, and machine-readable QA. Capture completed the
+  customer, cross-device QR, order-history, and admin-order journeys with zero
+  collected console/page errors. Cleanup found zero temporary records.
+  Runtime behavior, deployment, version, and release tag were unchanged. The
+  local `codex-video-wizard-complete` project informed storyboard, FFmpeg,
+  subtitle, rights, and QA process only.
 
 - `BUY-NOW-T01` accepts ADR-0024. Product detail will expose Buy Now beside Add
   to Cart, carry only edition ID and quantity through a validated same-origin

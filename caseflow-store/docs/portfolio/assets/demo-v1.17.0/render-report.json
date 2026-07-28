@@ -1,0 +1,66 @@
+{
+  "audioCodec": "aac",
+  "durationSeconds": 256.322,
+  "generatedAt": "2026-07-28T16:31:11.136Z",
+  "intermediateAssetsRetained": false,
+  "language": "vi",
+  "ok": true,
+  "output": "docs/portfolio/assets/demo-v1.17.0/caseflow-books-demo-v1.17.0-vi.mp4",
+  "resolution": "1280x720",
+  "scenes": [
+    {
+      "audioDurationSeconds": 16.296,
+      "clip": "clips/01-intro.mp4",
+      "id": "01-intro",
+      "source": "cards/title-card.png",
+      "sourceDurationSeconds": 0,
+      "targetDurationSeconds": 17.496,
+      "title": "CaseFlow Books v1.17.0"
+    },
+    {
+      "audioDurationSeconds": 94.392,
+      "clip": "clips/02-customer-journey.mp4",
+      "id": "02-customer-journey",
+      "source": "raw/customer-journey.webm",
+      "sourceDurationSeconds": 111.6,
+      "targetDurationSeconds": 125,
+      "title": "Khám phá, Mua ngay và quản lý đơn"
+    },
+    {
+      "audioDurationSeconds": 38.064,
+      "clip": "clips/03-operations.mp4",
+      "id": "03-operations",
+      "source": "raw/admin-operations.webm",
+      "sourceDurationSeconds": 30.8,
+      "targetDurationSeconds": 48,
+      "title": "Vận hành dành cho admin và staff"
+    },
+    {
+      "audioDurationSeconds": 45.192,
+      "clip": "clips/04-architecture.mp4",
+      "id": "04-architecture",
+      "source": "cards/architecture-card.png",
+      "sourceDurationSeconds": 0,
+      "targetDurationSeconds": 46.392,
+      "title": "Kiến trúc modular monolith có phân lớp"
+    },
+    {
+      "audioDurationSeconds": 18.192,
+      "clip": "clips/05-outro.mp4",
+      "id": "05-outro",
+      "source": "cards/outro-card.png",
+      "sourceDurationSeconds": 0,
+      "targetDurationSeconds": 19.392,
+      "title": "Bằng chứng kỹ thuật thay cho lời quảng cáo"
+    }
+  ],
+  "subtitle": "docs/portfolio/assets/demo-v1.17.0/caseflow-books-demo-v1.17.0-vi.srt",
+  "subtitleCueCount": 37,
+  "syntheticVoice": {
+    "engine": "Microsoft Edge TTS",
+    "rate": "-4%",
+    "voice": "vi-VN-NamMinhNeural"
+  },
+  "thumbnail": "docs/portfolio/assets/demo-v1.17.0/caseflow-books-demo-thumbnail.png",
+  "videoCodec": "h264"
+}

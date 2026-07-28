@@ -1,0 +1,42 @@
+{
+  "baseUrl": "https://caseflow-store.vercel.app",
+  "cards": [
+    "cards/architecture-card.png",
+    "cards/outro-card.png",
+    "cards/title-card.png"
+  ],
+  "checks": {
+    "adminOrderUpdated": true,
+    "consoleErrors": 0,
+    "customerOrderCreated": true,
+    "qrExperienceCompleted": true,
+    "temporaryDataRemoved": true
+  },
+  "generatedAt": "2026-07-28T16:21:54.345Z",
+  "ok": true,
+  "rawVideos": [
+    "raw/admin-operations.webm",
+    "raw/customer-journey.webm"
+  ],
+  "screenshots": [
+    "screenshots/01-homepage-desktop.png",
+    "screenshots/02-catalog-desktop.png",
+    "screenshots/03-product-buy-now-desktop.png",
+    "screenshots/04-buy-now-checkout-desktop.png",
+    "screenshots/05-qr-experience-pending-desktop.png",
+    "screenshots/06-qr-experience-completed-desktop.png",
+    "screenshots/06-qr-phone-completed-mobile.png",
+    "screenshots/07-order-success-desktop.png",
+    "screenshots/08-customer-order-history-desktop.png",
+    "screenshots/09-admin-dashboard-desktop.png",
+    "screenshots/10-admin-order-detail-desktop.png",
+    "screenshots/11-admin-order-confirmed-desktop.png",
+    "screenshots/12-homepage-mobile.png",
+    "screenshots/13-customer-orders-mobile.png"
+  ],
+  "targetBook": {
+    "editionId": "00000000-0000-4000-8000-000000003027",
+    "slug": "a-christmas-carol-english-paperback",
+    "title": "A Christmas Carol"
+  }
+}

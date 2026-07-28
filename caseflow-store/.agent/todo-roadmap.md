@@ -11,12 +11,36 @@
 
 - Project: CaseFlow Books
 - Mode: stable `v1.17.0` showroom; feature development closed
-- Current gate: `v1.17.0` deployed and verified
-- Current task: no active implementation task
+- Current gate: `PORTFOLIO-T01` completed; stable showroom handoff
+- Current task: none; feature development remains closed
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-28
 
 ## Post-release Customer UAT
+
+## Phase Portfolio Handoff
+
+- [x] `PORTFOLIO-T01` Build A Verified Portfolio And Case Study Package. -
+  2026-07-28
+  - Acceptance criteria:
+    - Capture a 3-5 minute Production walkthrough without exposing credentials
+      or leaving temporary commerce data.
+    - Produce video, audio, Vietnamese subtitles, thumbnail, curated
+      screenshots, case study, role matrix, CV/interview guide, and evidence
+      index.
+    - Use only verified repository/release claims and preserve the explicit
+      showroom/non-settlement boundary.
+    - Pass stream, duration, resolution, subtitle, screenshot, secret,
+      architecture, cleanup, and diff checks.
+  - Plan: `docs/portfolio/portfolio-package-plan.md`.
+  - Result: published a 4:16 Production walkthrough with Vietnamese synthetic
+    narration and SRT, 14 curated screenshots, case study, role matrix,
+    CV/interview pack, evidence index, reproducible capture/render scripts, and
+    machine-readable QA. Temporary Production data was removed and runtime
+    behavior remained unchanged.
+  - Verification: focused ESLint, TypeScript, 248-file architecture verifier,
+    portfolio media/privacy/timing verifier, Production cleanup, visual frame
+    review, loudness sanity, and `git diff --check` passed.
 
 ## Phase v1.17 - Isolated Accelerated Checkout
 

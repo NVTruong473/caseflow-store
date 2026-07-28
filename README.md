@@ -28,6 +28,23 @@ showroom boundaries.
 Latest release:
 [`v1.17.0`](https://github.com/NVTruong473/caseflow-store/releases/tag/v1.17.0)
 
+## Portfolio Showcase
+
+[![Watch the CaseFlow Books Production demo](caseflow-store/docs/portfolio/assets/demo-v1.17.0/caseflow-books-demo-thumbnail.png)](caseflow-store/docs/portfolio/assets/demo-v1.17.0/caseflow-books-demo-v1.17.0-vi.mp4)
+
+Watch the verified
+[4:16 Vietnamese Production demo](caseflow-store/docs/portfolio/assets/demo-v1.17.0/caseflow-books-demo-v1.17.0-vi.mp4)
+with
+[captions](caseflow-store/docs/portfolio/assets/demo-v1.17.0/caseflow-books-demo-v1.17.0-vi.srt),
+then inspect the
+[case study](caseflow-store/docs/portfolio/case-study.md),
+[role matrix](caseflow-store/docs/portfolio/role-feature-matrix.md),
+[CV/interview pack](caseflow-store/docs/portfolio/cv-and-interview-pack.md),
+and
+[claims-to-evidence index](caseflow-store/docs/portfolio/claims-evidence-index.md).
+The capture used temporary Production data that was removed after verification;
+the synthetic Vietnamese narration is explicitly disclosed in the package.
+
 The public repository remains the showroom. A fresh-history, private,
 bookstore-first buyer template is tracked through
 [`caseflow-store/docs/private-template-handoff.md`](caseflow-store/docs/private-template-handoff.md);

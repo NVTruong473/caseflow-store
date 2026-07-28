@@ -16539,3 +16539,40 @@ GitHub Release.
   - `.agent/artifacts/buy-now-t06-security/`
   - `.agent/artifacts/buy-now-t06-final/`
   - `docs/v1.17.0-accelerated-checkout-release-notes.md`
+
+---
+
+## PORTFOLIO-T01 - Verified Portfolio And Case Study Package
+
+- Date: 2026-07-28
+- Status: completed
+- Scope: documentation, Production capture, media composition, and evidence
+  QA only; no runtime, database schema, provider, or Production change.
+- Result:
+  - Added a 256.322-second H.264/AAC Production walkthrough at 1280x720 with
+    disclosed Vietnamese synthetic narration and 37-cue SRT.
+  - Captured 14 desktop/mobile screenshots across storefront, catalog, Buy Now,
+    QR practice, order history, dashboard, and admin order operation.
+  - Added recruiter/buyer case study, role matrix, CV/interview pack,
+    claim-to-evidence index, storyboard, media QA, and README showcase.
+  - Added reproducible Playwright capture, FFmpeg/TTS render, and portfolio
+    package verification scripts without adding application dependencies.
+  - Removed raw recording, scene, and narration intermediates from the handoff.
+- Production evidence:
+  - Customer order created: PASS.
+  - Cross-device QR practice: PASS.
+  - Customer order history: PASS.
+  - Admin order update: PASS.
+  - Captured console/page errors: `0`.
+  - Temporary data cleanup: PASS, `0` remaining matches.
+- Verification:
+  - Focused ESLint: PASS.
+  - TypeScript: PASS.
+  - Portfolio verifier: PASS, all 15 checks.
+  - Architecture: PASS, 248 files and zero findings.
+  - Visual frame and screenshot review: PASS.
+  - Audio sanity: mean `-21.1 dB`, maximum `-2.6 dB`.
+  - `git diff --check`: PASS.
+- Evidence:
+  - `docs/portfolio/`
+  - `.agent/artifacts/portfolio-t01/`

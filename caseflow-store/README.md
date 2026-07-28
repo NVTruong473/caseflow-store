@@ -120,6 +120,9 @@ runtime.
   and no licensed commercial metadata feed.
 
 Architecture and decision records are under [`docs/`](docs/).
+The verified portfolio showcase, Production demo video, case study, role
+matrix, and interview material are under
+[`docs/portfolio/`](docs/portfolio/README.md).
 The portfolio handoff packet is
 [`docs/portfolio-handoff.md`](docs/portfolio-handoff.md).
 The latest operational handoff packet is
