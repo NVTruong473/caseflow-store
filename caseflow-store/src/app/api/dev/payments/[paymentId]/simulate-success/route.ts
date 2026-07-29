@@ -1,5 +1,6 @@
 import { apiError, apiSuccess } from "@/lib/api/response";
 import { getCustomerAuthState } from "@/lib/auth/customer";
+import { getDemoPaymentConfig } from "@/lib/payments/config";
 import { simulatePaymentSuccessForCustomer } from "@/lib/payments/service";
 import { paymentIdSchema } from "@/lib/validation/payments";
 
@@ -13,6 +14,13 @@ export async function POST(
   _request: Request,
   { params }: SimulatePaymentRouteProps,
 ) {
+  if (!getDemoPaymentConfig().allowSimulation) {
+    return apiError(
+      { code: "PAYMENT_NOT_FOUND", message: "Payment simulation is not available" },
+      404,
+    );
+  }
+
   const { paymentId } = await params;
   const parsedPaymentId = paymentIdSchema.safeParse(paymentId);
 

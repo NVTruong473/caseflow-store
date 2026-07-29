@@ -23,6 +23,7 @@ import {
   CustomerGuidanceAutoOpen,
   CustomerGuidanceButton,
 } from "@/features/guidance";
+import { IntroVideoDialog } from "@/features/storefront/intro-video-dialog";
 import {
   CategorySpineRail,
   DealStripShelf,
@@ -540,7 +541,7 @@ export default async function Home() {
               </Link>
             </div>
 
-            <div className="flex flex-col gap-case-sm sm:flex-row">
+            <div className="flex flex-col flex-wrap gap-case-sm sm:flex-row">
               <Link
                 href="/catalog"
                 className="inline-flex min-h-11 w-full items-center justify-center rounded-md border border-primary bg-primary px-4 py-2 text-body font-medium text-surface transition-colors hover:border-primary-hover hover:bg-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary motion-reduce:transition-none sm:w-auto"
@@ -560,6 +561,7 @@ export default async function Home() {
                 language={language}
                 tourId="getting-started"
               />
+              <IntroVideoDialog language={language} />
             </div>
 
             <dl

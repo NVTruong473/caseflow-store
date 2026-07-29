@@ -1,0 +1,149 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:08.029
+CaseFlow Books là một website thương mại điện tử bán sách song ngữ, đồng thời cung cấp không gian vận hành cho nhân viên và quản trị viên.
+
+2
+00:00:07.979 --> 00:00:11.872
+Video này trình bày trực tiếp bản Production v1.
+
+3
+00:00:11.872 --> 00:00:16.286
+17. 0 và chỉ sử dụng những năng lực đã được kiểm thử.
+
+4
+00:00:17.596 --> 00:00:23.155
+Trang chủ ưu tiên sách và khả năng khám phá thay vì các tuyên bố marketing chung chung.
+
+5
+00:00:23.105 --> 00:00:33.926
+Người đọc có thể tìm theo tên sách, tác giả, ISBN, danh mục và ngôn ngữ; sau đó chuyển sang catalog với bộ lọc, phân trang và trạng thái tồn kho rõ ràng.
+
+6
+00:00:33.926 --> 00:00:43.288
+Trang chi tiết trình bày bìa, tác giả, giá Việt Nam đồng, tồn kho, định dạng, thông tin ấn bản và lựa chọn bản tiếng Anh hoặc tiếng Việt.
+
+7
+00:00:43.288 --> 00:00:50.488
+Hiệu ứng phóng đại bìa chỉ là progressive enhancement: bố cục vẫn ổn định trên cảm ứng và khi người dùng giảm chuyển động.
+
+8
+00:00:50.488 --> 00:00:58.105
+Khi đã chọn đúng ấn bản, khách hàng có thể thêm vào giỏ để mua nhiều sách, hoặc dùng Mua ngay để bỏ qua bước xem lại giỏ.
+
+9
+00:00:58.105 --> 00:01:02.142
+Mua ngay chỉ mang mã ấn bản và số lượng qua đường dẫn.
+
+10
+00:01:02.260 --> 00:01:09.499
+Giá, tồn kho, voucher, thuế, phí giao hàng và tổng tiền đều được tải lại và tính trên server.
+
+11
+00:01:09.449 --> 00:01:12.808
+Giỏ hàng đã lưu không bị thay thế hoặc xóa.
+
+12
+00:01:12.808 --> 00:01:15.647
+Checkout chia rõ hai ngữ cảnh.
+
+13
+00:01:15.647 --> 00:01:22.144
+Chế độ Trải nghiệm tạo một phiên QR tách biệt, dùng tổng tiền do server xác nhận và mã xác nhận riêng.
+
+14
+00:01:22.144 --> 00:01:27.939
+Điện thoại có thể hoàn thành phiên trải nghiệm, sau đó giao diện máy tính cập nhật không cần tải lại.
+
+15
+00:01:27.939 --> 00:01:33.564
+Phiên này không tạo đơn, không ghi nhận thanh toán, không trừ kho và không tính doanh thu.
+
+16
+00:01:33.564 --> 00:01:41.389
+Quay lại chế độ Chính thức, khách hàng có thể sử dụng một voucher gắn với tài khoản, chọn giao hàng và COD, rồi xác nhận đơn.
+
+17
+00:01:41.389 --> 00:01:46.493
+Sau khi tạo thành công, trang kết quả hiển thị mã đơn và trạng thái thanh toán.
+
+18
+00:01:46.612 --> 00:01:51.937
+Khách hàng tiếp tục xem đơn trong lịch sử tài khoản mà không cần ghi nhớ mã tra cứu.
+
+19
+00:02:22.596 --> 00:02:27.257
+Ở lớp vận hành, admin và staff có giao diện khác với khách hàng.
+
+20
+00:02:27.207 --> 00:02:34.603
+Dashboard tổng hợp doanh số, trạng thái đơn, thanh toán, sách bán tốt và rủi ro tồn kho theo khoảng thời gian.
+
+21
+00:02:34.603 --> 00:02:42.559
+Mỗi Route Handler vẫn kiểm tra session, vai trò và quyền trên server; việc ẩn menu không được xem là biện pháp phân quyền.
+
+22
+00:02:42.559 --> 00:02:46.230
+Danh sách đơn hỗ trợ tìm kiếm và lọc trạng thái.
+
+23
+00:02:46.230 --> 00:02:55.228
+Nhân viên có thể mở đúng đơn vừa tạo, kiểm tra snapshot sản phẩm, số tiền và thông tin xử lý, sau đó chuyển trạng thái theo policy nghiệp vụ.
+
+24
+00:02:55.228 --> 00:03:00.553
+Các thao tác nhạy cảm hơn như cấu hình hoặc quyền khuyến mãi vẫn được giới hạn cho admin.
+
+25
+00:03:10.596 --> 00:03:13.135
+CaseFlow Books là một Next.
+
+26
+00:03:13.085 --> 00:03:16.756
+js modular monolith có sáu lớp trách nhiệm.
+
+27
+00:03:16.756 --> 00:03:21.704
+Presentation gồm App Router, feature components và trạng thái trình duyệt.
+
+28
+00:03:21.704 --> 00:03:25.415
+Route Handlers đóng vai trò controller HTTP.
+
+29
+00:03:25.415 --> 00:03:29.960
+Use case điều phối các workflow rủi ro cao như tạo hoặc hủy đơn.
+
+30
+00:03:29.960 --> 00:03:34.335
+Zod, policy và module tính tiền tạo thành lớp domain.
+
+31
+00:03:34.335 --> 00:03:38.306
+Repository sở hữu truy vấn và chuyển đổi dữ liệu.
+
+32
+00:03:38.306 --> 00:03:45.376
+Cuối cùng, Supabase Auth, PostgreSQL, RLS, RPC và Vercel tạo thành infrastructure.
+
+33
+00:03:45.376 --> 00:03:50.715
+Cách tổ chức này áp dụng các trách nhiệm MVC và DTO phù hợp với Next.
+
+34
+00:03:50.715 --> 00:03:55.663
+js, thay vì ép dự án vào một cấu trúc thư mục MVC hình thức.
+
+35
+00:03:56.988 --> 00:04:04.553
+Repository công khai kèm release notes, sơ đồ kiến trúc, test, báo cáo QA và các giới hạn còn tồn tại.
+
+36
+00:04:04.503 --> 00:04:10.180
+CaseFlow Books là showroom source code, không tự nhận là một doanh nghiệp đang thu tiền thật.
+
+37
+00:04:10.180 --> 00:04:15.063
+Toàn bộ liên kết và bằng chứng được đặt trong portfolio package của dự án.

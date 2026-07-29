@@ -5,9 +5,9 @@
 | Field | Value |
 |---|---|
 | Current mode | stable `v1.17.0` showroom; feature development closed |
-| Current gate | `v1.17.0` accelerated checkout release deployed and verified |
+| Current gate | `HANDOFF-T01` completed; ADR-0025 accepted |
 | Implementation started | Yes |
-| Next implementation task | No active implementation task |
+| Next implementation task | `HANDOFF-T02 - Add Homepage Introduction Video` |
 | App initialized | Yes, in `caseflow-store` |
 | Local server verified | Yes, v1.17.0 local lint, TypeScript, build, full E2E, architecture, payment/security/asset gates, Buy Now, and QR experience passed |
 | Lint verified | Yes, v1.17.0 lint passed with zero warnings |
@@ -16576,3 +16576,114 @@ GitHub Release.
 - Evidence:
   - `docs/portfolio/`
   - `.agent/artifacts/portfolio-t01/`
+## HANDOFF-T01 - Define Final Handoff Boundaries
+
+- Date: 2026-07-29
+- Status: completed
+- Decision: ADR-0025 separates storefront media, the clean public source
+  export, and the printable academic report/worklog package.
+- Public export boundary: generated `dist-public/`, no destructive cleanup of
+  the working repository, exactly one Markdown file (`README.md`), and no
+  internal process material or local secrets.
+- Worklog boundary: four consecutive seven-day periods from 01/07/2026 through
+  28/07/2026, four Sundays excluded, Saturdays included, 24 entries at five
+  hours each, total 120 hours.
+- Media boundary: user-initiated homepage playback with poster and captions;
+  no video embedded in Word/PDF.
+- Verification:
+  - ADR and roadmap scope reconciliation: PASS.
+  - Working-tree preservation review: PASS; unrelated modified artifacts and
+    existing untracked documentation output remain untouched.
+
+---
+
+## HANDOFF-T02 - Add Homepage Introduction Video
+
+- Date: 2026-07-29
+- Status: completed
+- Result: the existing 4:16 walkthrough is available from the homepage
+  introduction as an opt-in accessible dialog. The local player uses a poster,
+  native controls, inline playback, metadata-only preload, and Vietnamese
+  WebVTT captions; no video is embedded into the printable report.
+- Accessibility and interaction:
+  - no autoplay;
+  - close-button initial focus, Tab containment, Escape close, backdrop close,
+    body scroll lock, and focus return;
+  - mobile bottom-sheet and desktop centered-dialog geometry;
+  - bilingual introduction copy.
+- Verification:
+  - focused ESLint: PASS.
+  - TypeScript: PASS.
+  - Production build: PASS, 66 routes.
+  - focused Playwright: PASS, `2/2`.
+  - local MP4 response and `video/mp4` content type: PASS.
+  - desktop 1440px and mobile 375px screenshots: visually reviewed, no
+    clipping or horizontal overflow.
+- Evidence:
+  - `.agent/artifacts/handoff-t02/`
+  - `public/media/`
+
+---
+
+## HANDOFF-T03 - Finalize Four-Week Worklog And TDTU Report
+
+- Date: 2026-07-29
+- Status: completed
+- Result:
+  - produced an 82-page TDTU report and a 10-page four-week worklog in both
+    DOCX and PDF;
+  - reconciled 24 five-hour entries from 01/07/2026 through 28/07/2026,
+    including four Saturdays and excluding four Sundays, for 120 hours;
+  - retained the supplied TDTU identity and student signature while leaving
+    supervisor-owned signature fields blank;
+  - kept the 4:16 walkthrough outside the printable files.
+- Verification:
+  - DOCX package integrity: PASS for both files.
+  - structured OOXML/date/hour/metadata audit: PASS.
+  - editable Word equations: PASS, three OMML equations.
+  - PDF pagination: PASS, 82 report pages and 10 worklog pages.
+  - blank-page scan: PASS, zero candidates across 92 rendered pages.
+  - visual render review: PASS for all worklog pages and report contact sheets
+    plus changed representative pages.
+  - forbidden placeholder, local path, internal-tool term, and PDF personal
+    metadata scans: PASS.
+- Evidence:
+  - `../project-documentation-output/final/`
+  - `../project-documentation-output/validation/handoff-documents-validation.json`
+
+---
+
+## HANDOFF-T04 - Build Clean Public Source Export
+
+- Date: 2026-07-29
+- Status: completed
+- Result:
+  - generated a separate `/dist-public` export from an explicit allowlist
+    without modifying or deleting the development repository;
+  - retained runtime source/assets, Supabase base schema and ordered
+    migrations, safe environment/configuration files, `LICENSE`, and one
+    documentation file, `README.md`;
+  - replaced the obsolete phone-accessory SQL seed with a generated,
+    customer-data-free catalog/merchandising seed containing 500 active book
+    editions;
+  - removed dead mock repositories/data, default Next assets, internal docs,
+    tests, reports, caches, local environment, and build output from the
+    publishable package.
+- Verification:
+  - independent `npm ci`: PASS.
+  - public-export ESLint: PASS.
+  - public-export typecheck: PASS.
+  - public-export Production build: PASS, 66 routes.
+  - public-export startup smoke: PASS for homepage, catalog, protected account,
+    security headers, and ranged MP4 delivery.
+  - Production mock-payment route boundary: PASS, `404`.
+  - runtime dependency audit: PASS, zero vulnerabilities.
+  - exported-file policy, internal-content, local-path, local-secret, customer
+    data, and Markdown scans: PASS, zero findings.
+  - runtime asset metadata scan: PASS, 566 files and zero findings.
+- Evidence:
+  - `../dist-public/`
+  - `../project-documentation-output/validation/public-release-validation.json`
+  - `../project-documentation-output/validation/dist-public-tree.txt`
+
+---

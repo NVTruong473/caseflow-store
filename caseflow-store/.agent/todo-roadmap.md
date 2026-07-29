@@ -11,8 +11,84 @@
 
 - Project: CaseFlow Books
 - Mode: stable `v1.17.0` showroom; feature development closed
-- Current gate: `PORTFOLIO-T01` completed; stable showroom handoff
-- Current task: none; feature development remains closed
+- Current gate: `HANDOFF-T04` completed; clean public source export verified
+- Current task: `HANDOFF-T05 - Final Verification And Production Handoff`
+
+## Final Public And Academic Handoff
+
+- [x] `HANDOFF-T01` Define Final Handoff Boundaries. - 2026-07-29
+  - Scope:
+    - Accept ADR-0025 and separate storefront media, public source export, and
+      printable academic records.
+    - Preserve the working repository and all unrelated existing changes.
+  - Acceptance criteria:
+    - Runtime media, public export, and academic outputs have explicit,
+      non-conflicting ownership and validation boundaries.
+    - The 120-hour worklog model uses 24 eligible days at five hours without
+      presenting every day as feature implementation.
+  - Verification:
+    - ADR and roadmap consistency scan
+    - `git diff --check`
+
+- [x] `HANDOFF-T02` Add Homepage Introduction Video. - 2026-07-29
+  - Scope:
+    - Publish the existing 4:16 walkthrough as an opt-in homepage introduction
+      with poster, captions, responsive player, and accessible dialog behavior.
+  - Acceptance criteria:
+    - No autoplay or first-load blocking.
+    - Keyboard, mobile, captions, close/reopen, focus return, media loading,
+      and bilingual copy work without overflow or console errors.
+  - Verification:
+    - focused ESLint and TypeScript
+    - desktop/mobile Playwright and screenshots
+    - Production build
+
+- [x] `HANDOFF-T03` Finalize Four-Week Worklog And TDTU Report. - 2026-07-29
+  - Scope:
+    - Reconcile the worklog to 01/07-28/07/2026, excluding Sundays and
+      including Saturdays.
+    - Produce final DOCX/PDF records outside the public export.
+  - Acceptance criteria:
+    - 24 eligible entries x 5 hours = 120 hours.
+    - The report uses the retained TDTU template identity, editable OOXML
+      equations, supplied student identity/signature, and no embedded video.
+    - DOCX and PDF render without clipping, overlap, blank pages, or unresolved
+      placeholders other than genuinely buyer/school-owned fields.
+  - Verification:
+    - structured OOXML/date/hour/metadata audit
+    - DOCX render and PDF page render
+    - visual contact-sheet and representative page review
+
+- [x] `HANDOFF-T04` Build Clean Public Source Export. - 2026-07-29
+  - Scope:
+    - Generate `/dist-public` from an allowlist without modifying or deleting
+      the development repository.
+    - Include only runnable source/data/configuration, `README.md`, and
+      `LICENSE`.
+  - Acceptance criteria:
+    - `README.md` is the only Markdown file.
+    - No internal docs, prompts, agent state, tests, local environment,
+      credentials, machine paths, caches, or build artifacts are present.
+    - The README covers the product, architecture, setup, environment,
+      database, local run, build, deployment, testing, and license.
+  - Verification:
+    - export policy verifier and complete tree inventory
+    - secret, private path, local username, metadata, and Markdown scans
+    - clean `npm ci`, lint, typecheck, build, and startup smoke
+
+- [/] `HANDOFF-T05` Final Verification And Production Handoff.
+  - Scope:
+    - Re-run affected application QA, deploy the approved homepage media
+      change, verify Production, and freeze the resulting handoff state.
+  - Acceptance criteria:
+    - Production homepage and media load successfully with no critical console,
+      accessibility, responsive, security-header, or route regressions.
+    - Final artifact paths and limitations are recorded without overstating
+      checks that were not run.
+  - Verification:
+    - application quality gate and focused E2E
+    - Production smoke and media response checks
+    - report/public-export validation summaries
 - Implementation day: Day 40 complete
 - Last updated: 2026-07-28
 

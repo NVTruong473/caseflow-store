@@ -14,9 +14,35 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: stable `v1.17.0` showroom; feature development closed.
-- Current gate: `PORTFOLIO-T01` completed; stable showroom handoff.
-- Current task: none; feature development remains closed.
+- Current mode: stable `v1.17.0` showroom with an approved final handoff phase.
+- Current gate: `HANDOFF-T04` completed under accepted ADR-0025.
+- Current task: `HANDOFF-T05 - Final Verification And Production Handoff`.
+
+## Active Final Handoff
+
+- ADR-0025 separates three deliverables: an opt-in homepage introduction video,
+  a generated runnable `dist-public/` source export, and printable academic
+  report/worklog files outside the public export.
+- The public export preserves the development repository and permits exactly
+  one Markdown document, `README.md`, plus the proprietary `LICENSE`.
+- The final four-week worklog covers 01/07/2026-28/07/2026, excludes Sundays,
+  includes Saturdays, and reconciles 24 entries at five hours to 120 hours.
+  Feature implementation, QA, documentation, and handoff remain distinct.
+- `HANDOFF-T02` adds a user-initiated homepage introduction dialog backed by
+  local MP4, poster, and Vietnamese WebVTT assets. It does not autoplay or
+  affect commerce boundaries. Focus, Escape, focus return, desktop/mobile
+  containment, media response, lint, TypeScript, and the 66-route Production
+  build passed.
+- `HANDOFF-T03` finalizes separate 82-page report and 10-page worklog DOCX/PDF
+  packages. Structured verification passed for 24 eligible workdays, 120
+  hours, editable OOXML equations, package integrity, blank-page detection,
+  metadata privacy, forbidden placeholders, and the no-embedded-video rule.
+- `HANDOFF-T04` generates a separate 832-file `dist-public/` allowlist export.
+  It contains runtime source/assets, a customer-data-free 500-edition catalog
+  seed, Supabase base schema/migrations, safe environment template,
+  proprietary license, and `README.md` as the only Markdown file. A clean
+  install, lint, TypeScript, 66-route build, startup smoke, runtime dependency
+  audit, asset metadata scan, secret scan, and Production mock lock passed.
 
 ## Confirmed Facts
 
