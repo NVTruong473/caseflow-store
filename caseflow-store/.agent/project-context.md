@@ -6,8 +6,8 @@
   `v1.3.0`, `v1.3.1`, `v1.4.0`, `v1.4.1`, `v1.4.2`, `v1.5.0`, `v1.6.0`,
   `v1.7.0`, `v1.8.0`, `v1.9.0`, `v1.10.0`, `v1.11.0`, `v1.11.1`,
   `v1.11.2`, `v1.11.3`, `v1.12.0`, `v1.12.1`, `v1.13.0`, `v1.13.1`,
-  `v1.14.0`, `v1.15.0`, `v1.16.0`, `v1.17.0`, `v1.18.0`, and `v1.18.1`
-  released
+  `v1.14.0`, `v1.15.0`, `v1.16.0`, `v1.17.0`, `v1.18.0`, `v1.18.1`, and
+  `v1.18.2` released
 - Repository folder: `/Users/vantruong/Documents/TSNN 2`
 - Product domain: books for released `v1.1.0` and `v1.2.0`; phone
   accessories for released `v1.0.0`
@@ -15,9 +15,9 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: stable `v1.18.1` showroom; feature development closed.
-- Current gate: `BUYER-ACCEPTANCE-T01` completed under accepted ADR-0025.
-- Current task: `EXPERIENCE-HISTORY-T01` in progress under accepted ADR-0026.
+- Current mode: stable `v1.18.2` showroom; feature development closed.
+- Current gate: `EXPERIENCE-HISTORY-T01` completed under accepted ADR-0026.
+- Current task: none.
 
 ## Active Final Handoff
 
@@ -65,6 +65,16 @@
   unrelated human setup remain explicitly unverified.
 
 ## Confirmed Facts
+
+- `EXPERIENCE-HISTORY-T01` keeps practice and commerce honest: recent
+  customer-owned QR experience sessions appear separately from official
+  orders, expose no capability/code/hash/cart/PII data, and never clear the
+  cart or mutate orders, payments, stock, vouchers, notifications, or sales.
+  A wrong six-digit code clears and refocuses for a corrected attempt until
+  the existing five-attempt lock. Local Playwright passed `41/41` without
+  retries. Production deployment `dpl_Ec21W3aoeZPvcoSozq1jr7wz95js` passed
+  the focused two-device flow, smoke `9/9`, nine-route security review, QR
+  lock `404`, responsive review, and zero-record cleanup.
 
 - `PORTFOLIO-T01` completed the documentation/evidence package on top of the
   verified `v1.17.0` Production release. It includes a 4:16 Vietnamese

@@ -79,19 +79,21 @@ runtime.
 
 ## Latest release evidence
 
-- Release tag: `v1.17.0`
+- Release tag: `v1.18.2`
 - GitHub Release:
-  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.17.0`
+  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.18.2`
 - Production alias: `https://caseflow-store.vercel.app`
-- Vercel deployment ID: `dpl_79ccQjZHA3KBTvGP2JQ48SN8eHLX`
+- Vercel deployment ID: `dpl_Ec21W3aoeZPvcoSozq1jr7wz95js`
 - Local gates: runtime dependency audit with zero vulnerabilities, TypeScript,
-  ESLint, 66-route production build, 246-file architecture verification,
-  no-demo/secret/QR safety gates, focused Buy Now/motion Playwright `4/4`, and
-  full sequential Playwright passed with two documented retry passes.
-- Production: Buy Now/motion Playwright `4/4`, release smoke, security posture,
-  QR lock, final QA with zero findings/no overflow, and post-test cleanup
-  passed. Evidence is under `.agent/artifacts/buy-now-t06*`.
+  ESLint, 66-route Production build, 249-file architecture verification,
+  secret/QR safety gates, focused two-device QR recovery, and full sequential
+  Playwright `41/41` without retries.
+- Production: focused wrong-code recovery and account-history flow, smoke
+  `9/9`, security posture, QR lock, responsive review, and post-test cleanup
+  passed. Evidence is under `.agent/artifacts/experience-history-t01*`.
 - Release notes:
+  [`docs/v1.18.2-qr-experience-history-patch-release-notes.md`](docs/v1.18.2-qr-experience-history-patch-release-notes.md),
+  [`docs/v1.18.1-buyer-handoff-release-notes.md`](docs/v1.18.1-buyer-handoff-release-notes.md),
   [`docs/v1.17.0-accelerated-checkout-release-notes.md`](docs/v1.17.0-accelerated-checkout-release-notes.md),
   [`docs/v1.16.0-cross-device-security-experience-release-notes.md`](docs/v1.16.0-cross-device-security-experience-release-notes.md),
   [`docs/v1.15.0-checkout-qr-experience-release-notes.md`](docs/v1.15.0-checkout-qr-experience-release-notes.md),

@@ -10,13 +10,13 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: stable `v1.18.1` showroom; feature development closed
-- Current gate: `BUYER-ACCEPTANCE-T01` completed with external prerequisites
-- Current task: `EXPERIENCE-HISTORY-T01` in progress
+- Mode: stable `v1.18.2` showroom; feature development closed
+- Current gate: `EXPERIENCE-HISTORY-T01` completed
+- Current task: none
 
 ## Post-handoff Hotfix
 
-- [/] `EXPERIENCE-HISTORY-T01` Separate QR Experience History And Retry Recovery. - 2026-07-29
+- [x] `EXPERIENCE-HISTORY-T01` Separate QR Experience History And Retry Recovery. - 2026-07-29
   - Scope:
     - Preserve the official-order, payment, stock, voucher, analytics, and cart
       boundaries accepted by ADR-0021.
@@ -36,6 +36,22 @@
     - Experience completion creates no order/payment and preserves the cart.
     - Focused E2E, lint, TypeScript, build, architecture, and Production-safety
       checks pass before release.
+  - Result:
+    - Added an owner-filtered, safe QR experience read model and a distinct
+      account-history section without creating fake orders or payments.
+    - Invalid confirmation now clears/refocuses the code field and accepts a
+      corrected submission until the existing five-attempt lock.
+    - Completed experience keeps the cart and links back to official checkout.
+    - Released as `v1.18.2` on Vercel deployment
+      `dpl_Ec21W3aoeZPvcoSozq1jr7wz95js`.
+  - Verification:
+    - local lint, TypeScript, 66-route build, 249-file architecture, runtime
+      dependency audit, secret scan, QR Production safety, and cleanup: PASS.
+    - focused API and browser tests: PASS, `1/1` each.
+    - full local Playwright: PASS, `41/41`, no retries.
+    - Production focused browser flow: PASS, `1/1`.
+    - Production smoke `9/9`, security nine routes, QR lock `404`, and cleanup:
+      PASS.
 
 ## Buyer Acceptance
 

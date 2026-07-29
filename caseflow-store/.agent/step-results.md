@@ -4,16 +4,16 @@
 
 | Field | Value |
 |---|---|
-| Current mode | stable `v1.18.1` showroom; feature development closed |
-| Current gate | `BUYER-ACCEPTANCE-T01` completed with external prerequisites |
+| Current mode | stable `v1.18.2` showroom; feature development closed |
+| Current gate | `EXPERIENCE-HISTORY-T01` completed |
 | Implementation started | Yes |
 | Next implementation task | None |
 | App initialized | Yes, in `caseflow-store` |
-| Local server verified | Yes, v1.18.1 clean-room install/build and application full Playwright `41/41` passed |
-| Lint verified | Yes, v1.18.1 application and public-package lint passed |
-| Build verified | Yes, v1.18.1 generated 66 App Router routes with live and unavailable-catalog checks |
+| Local server verified | Yes, v1.18.2 focused QR recovery and full Playwright `41/41` passed |
+| Lint verified | Yes, v1.18.2 application lint passed |
+| Build verified | Yes, v1.18.2 generated 66 App Router routes |
 | Database connected | Yes; live catalog, orders, Auth, role checks, and admin status updates use Supabase |
-| Deployed | Yes, v1.18.1 Production deployment `dpl_6quY8MtzRvSsC4UZ1iporZF3gcTj` is aliased to `https://caseflow-store.vercel.app` |
+| Deployed | Yes, v1.18.2 Production deployment `dpl_Ec21W3aoeZPvcoSozq1jr7wz95js` is aliased to `https://caseflow-store.vercel.app` |
 | Last updated | 2026-07-29 |
 
 ## Result Index
@@ -138,6 +138,52 @@
 | SR-190 | 2026-07-21 | POSTV110-T01 | completed | Audited v1.10.0 release consistency across local Git, origin/main, annotated tag, GitHub latest release, Vercel production alias, release docs, production smoke, security posture, QR production lock, and final QA |
 | SR-191 | 2026-07-21 | UAT-MANUAL-T01 | blocked finding | Executed production customer UAT with a controlled customer account: sign-in, vouchers, profile, add-to-cart, checkout, server totals, QR/payment production lock, and order history passed; self-service sign-up is blocked by Supabase Auth rate-limit 429 |
 | SR-192 | 2026-07-22 | ARCH-LAYER-T01..T07 | completed | Shipped v1.12.0 layered architecture hardening: extracted order creation into a use case, added architecture boundary verifier, passed local/production E2E and security gates, deployed Vercel `dpl_8MCASvEYjndhtQJuvbPJeqkFF1gA`, and published the tag/GitHub Release |
+| SR-193 | 2026-07-29 | EXPERIENCE-HISTORY-T01 | completed | Released v1.18.2 with owner-filtered QR experience history, recoverable wrong-code entry, preserved cart, full local Playwright 41/41, and verified Production deployment `dpl_Ec21W3aoeZPvcoSozq1jr7wz95js` |
+
+---
+
+## EXPERIENCE-HISTORY-T01 - Separate QR Experience History And Retry Recovery
+
+- Date: 2026-07-29
+- Status: completed and released as `v1.18.2`
+- Runtime commit: `1af3b2da4ef4b99bbb16143b64238d6a35125d62`
+- Production deployment: `dpl_Ec21W3aoeZPvcoSozq1jr7wz95js`
+- Production URL: `https://caseflow-store.vercel.app`
+- Result:
+  - added a customer-owned safe read model and separate QR experience history
+    without representing practice as an order or payment;
+  - kept cart, inventory, voucher, notification, sales, and admin metrics
+    unchanged after experience completion;
+  - added an explicit continuation to official checkout;
+  - fixed invalid six-digit confirmation recovery by clearing/refocusing the
+    input and preserving the pending session until the existing attempt limit;
+  - synchronized the phone page shell with the QR language selection.
+- Local verification:
+  - ESLint, TypeScript, 66-route Production build: PASS.
+  - architecture: PASS, 249 files and zero findings.
+  - runtime dependency audit: PASS, zero vulnerabilities.
+  - secret scan: PASS, 1,686 files and zero findings.
+  - QR Production-safety static gate: PASS.
+  - focused API and two-device browser tests: PASS, `1/1` each.
+  - full Playwright: PASS, `41/41`, no retries.
+  - mobile/desktop render and overflow review: PASS.
+  - cleanup: PASS, zero temporary records.
+- Production verification:
+  - deployment READY and canonical alias verified.
+  - focused wrong-code recovery, history, and cart-preservation test: PASS,
+    `1/1`.
+  - smoke: PASS, `9/9`.
+  - security posture: PASS, nine routes and zero findings.
+  - mock-payment lock: PASS, HTTP `404`.
+  - cleanup: PASS, zero temporary records.
+- Evidence:
+  - `.agent/artifacts/experience-history-t01/`
+  - `.agent/artifacts/experience-history-t01-production-smoke/`
+  - `.agent/artifacts/experience-history-t01-production-security/`
+  - `.agent/artifacts/experience-history-t01-production-qr/`
+  - `.agent/artifacts/experience-history-t01-production-cleanup/`
+  - `docs/adr/0026-account-visible-checkout-experience-history.md`
+  - `docs/v1.18.2-qr-experience-history-patch-release-notes.md`
 
 ---
 
