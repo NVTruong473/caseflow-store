@@ -1,4 +1,4 @@
-# External Buyer UAT Charter - CaseFlow Books v1.18.2
+# External Buyer UAT Charter - CaseFlow Books v1.18.3
 
 ## Purpose
 

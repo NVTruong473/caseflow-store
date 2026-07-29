@@ -1,0 +1,57 @@
+{
+  "taskId": "BUYER-READY-T02",
+  "release": "v1.18.3",
+  "generatedAt": "2026-07-29T10:30:00.000Z",
+  "archive": {
+    "file": "CaseFlow-Books-v1.18.3-public-source.zip",
+    "fileCount": 832,
+    "sha256": "23d8aa9661c4b58ed2e2aab407849126c75853b8ab4b661b81521b4d33693f0b",
+    "reproducibleAcrossTwoRuns": true,
+    "status": "PASS"
+  },
+  "cleanRoom": {
+    "archiveChecksum": "PASS",
+    "install": "PASS",
+    "lint": "PASS",
+    "typecheck": "PASS",
+    "runtimeDependencyAudit": "PASS",
+    "build66Routes": "PASS",
+    "processStartup": "PASS",
+    "accountRoute": "PASS",
+    "catalogFallback": "PASS",
+    "adminBoundary": "PASS",
+    "mockPaymentProductionLock": "PASS",
+    "mediaRangeDelivery": "PASS",
+    "securityHeaders": "PASS",
+    "dataBackedHomeWithoutBuyerDatabase": "BLOCKED_BY_REQUIRED_BUYER_DATABASE"
+  },
+  "application": {
+    "architecture": "PASS",
+    "secretScan": "PASS",
+    "qrStaticSafety": "PASS",
+    "fullPlaywright": {
+      "passed": 41,
+      "failed": 0,
+      "retries": 0,
+      "status": "PASS"
+    }
+  },
+  "production": {
+    "deploymentId": "dpl_GjHNy7YZke4rUhWwjc58w2wedFrw",
+    "url": "https://caseflow-store.vercel.app",
+    "automatedCustomerUat": "PASS",
+    "smoke9Of9": "PASS",
+    "security9Routes": "PASS",
+    "seo": "PASS",
+    "responsiveBrowserQa": "PASS",
+    "mockPaymentLock404": "PASS",
+    "cleanupZeroRecords": "PASS"
+  },
+  "externalHumanUat": "NOT_RUN",
+  "openAutomatedFindings": {
+    "p0": 0,
+    "p1": 0,
+    "p2": 0
+  },
+  "ok": true
+}

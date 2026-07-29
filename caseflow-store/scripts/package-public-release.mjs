@@ -14,11 +14,21 @@ const releaseRoot = path.resolve(
   "project-documentation-output",
   "release",
 );
-const version = process.env.PUBLIC_RELEASE_VERSION ?? "1.18.2";
+const version = process.env.PUBLIC_RELEASE_VERSION ?? "1.18.3";
 const packageName = `CaseFlow-Books-v${version}`;
 const archiveName = `${packageName}-public-source.zip`;
 const archivePath = path.join(releaseRoot, archiveName);
 const checksumPath = `${archivePath}.sha256`;
+const runtimeSourcePaths = [
+  "public",
+  "src",
+  "supabase",
+  "package.json",
+  "package-lock.json",
+  "next.config.ts",
+  "postcss.config.mjs",
+  "tsconfig.json",
+];
 const stagingParent = await fs.mkdtemp(
   path.join(os.tmpdir(), "caseflow-public-package-"),
 );
@@ -99,7 +109,7 @@ async function resolveSourceDate() {
 
   const { stdout } = await execFileAsync(
     "git",
-    ["log", "-1", "--format=%ct", "HEAD"],
+    ["log", "-1", "--format=%ct", "HEAD", "--", ...runtimeSourcePaths],
     { cwd: sourceRoot },
   );
   const epoch = Number(stdout.trim());

@@ -6,8 +6,8 @@
   `v1.3.0`, `v1.3.1`, `v1.4.0`, `v1.4.1`, `v1.4.2`, `v1.5.0`, `v1.6.0`,
   `v1.7.0`, `v1.8.0`, `v1.9.0`, `v1.10.0`, `v1.11.0`, `v1.11.1`,
   `v1.11.2`, `v1.11.3`, `v1.12.0`, `v1.12.1`, `v1.13.0`, `v1.13.1`,
-  `v1.14.0`, `v1.15.0`, `v1.16.0`, `v1.17.0`, `v1.18.0`, `v1.18.1`, and
-  `v1.18.2` released
+  `v1.14.0`, `v1.15.0`, `v1.16.0`, `v1.17.0`, `v1.18.0`, `v1.18.1`,
+  `v1.18.2`, and `v1.18.3` released
 - Repository folder: `/Users/vantruong/Documents/TSNN 2`
 - Product domain: books for released `v1.1.0` and `v1.2.0`; phone
   accessories for released `v1.0.0`
@@ -15,8 +15,8 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: stable `v1.18.2` showroom; feature development closed.
-- Current gate: `EXPERIENCE-HISTORY-T01` completed under accepted ADR-0026.
+- Current mode: stable `v1.18.3` showroom; feature development closed.
+- Current gate: `BUYER-READY-T02` completed.
 - Current task: none.
 
 ## Active Final Handoff
@@ -65,6 +65,17 @@
   unrelated human setup remain explicitly unverified.
 
 ## Confirmed Facts
+
+- `BUYER-READY-T02` fixed two pre-hydration interaction losses and the
+  assistant/cart overlay conflict before external UAT. The 832-file public
+  source export identifies `1.18.3`, matches runtime source, excludes internal
+  test/database tooling, and has a reproducible checksum. Clean-room install,
+  lint, TypeScript, runtime audit, 66-route build, server startup, public media,
+  protected-route, and Production mock-lock checks passed. Full local
+  Playwright passed `41/41`; Production customer automation, smoke, security,
+  SEO, responsive browser QA, QR lock, and cleanup passed. A fresh
+  buyer-supplied database and independent human UAT remain prerequisites and
+  are not represented as completed.
 
 - `EXPERIENCE-HISTORY-T01` keeps practice and commerce honest: recent
   customer-owned QR experience sessions appear separately from official

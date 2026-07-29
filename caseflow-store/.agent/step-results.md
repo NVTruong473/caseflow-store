@@ -4,7 +4,7 @@
 
 | Field | Value |
 |---|---|
-| Current mode | stable `v1.18.2` showroom; feature development closed |
+| Current mode | stable `v1.18.3` showroom; feature development closed |
 | Current gate | `EXPERIENCE-HISTORY-T01` completed |
 | Implementation started | Yes |
 | Next implementation task | None |
@@ -139,6 +139,48 @@
 | SR-191 | 2026-07-21 | UAT-MANUAL-T01 | blocked finding | Executed production customer UAT with a controlled customer account: sign-in, vouchers, profile, add-to-cart, checkout, server totals, QR/payment production lock, and order history passed; self-service sign-up is blocked by Supabase Auth rate-limit 429 |
 | SR-192 | 2026-07-22 | ARCH-LAYER-T01..T07 | completed | Shipped v1.12.0 layered architecture hardening: extracted order creation into a use case, added architecture boundary verifier, passed local/production E2E and security gates, deployed Vercel `dpl_8MCASvEYjndhtQJuvbPJeqkFF1gA`, and published the tag/GitHub Release |
 | SR-193 | 2026-07-29 | EXPERIENCE-HISTORY-T01 | completed | Released v1.18.2 with owner-filtered QR experience history, recoverable wrong-code entry, preserved cart, full local Playwright 41/41, and verified Production deployment `dpl_Ec21W3aoeZPvcoSozq1jr7wz95js` |
+| SR-194 | 2026-07-29 | BUYER-READY-T02 | completed | Shipped v1.18.3 buyer-readiness patch with hydration-safe interactions, reproducible public source package, clean-room validation, full Playwright 41/41, and verified Production automation; independent human UAT remains NOT RUN |
+
+---
+
+## BUYER-READY-T02 - Automated Buyer Readiness And External UAT Preflight
+
+- Date: 2026-07-29
+- Status: completed and released as `v1.18.3`
+- Runtime commits:
+  - `2f2efa5` fixes buyer handoff interactions and public export gates.
+  - `0bc417b` gates order actions until customer state hydration completes.
+- Production deployment: `dpl_GjHNy7YZke4rUhWwjc58w2wedFrw`
+- Production URL: `https://caseflow-store.vercel.app`
+- Result:
+  - prevented assistant controls from intercepting cart actions;
+  - prevented pre-hydration add-to-cart and order-cancellation clicks from
+    being silently discarded;
+  - normalized public package and lock versions to `1.18.3`;
+  - excluded browser/database test tooling from the buyer archive;
+  - added runtime parity, secret, policy, catalog, clean-room, and deterministic
+    archive checks;
+  - added an external no-coaching UAT charter without claiming a human run.
+- Verification:
+  - source export: PASS, 832 files and one Markdown document.
+  - archive reproducibility: PASS, two runs produced the same SHA-256.
+  - clean-room install, lint, TypeScript, runtime audit, build, startup, media,
+    protected routes, headers, and Production mock lock: PASS.
+  - clean-room data-backed homepage without buyer Supabase:
+    `BLOCKED_BY_REQUIRED_BUYER_DATABASE`.
+  - local Playwright: PASS, `41/41`, no retries.
+  - Production automated customer UAT: PASS, cart, voucher, QR experience,
+    official COD order, history, and cancellation.
+  - Production smoke `9/9`, nine-route security posture, SEO, responsive final
+    browser QA, QR lock `404`, and cleanup with zero records: PASS.
+  - independent external human UAT: `NOT RUN`.
+- Evidence:
+  - `.agent/artifacts/buyer-ready-t02/`
+  - `.agent/artifacts/buyer-ready-t02-local-uat-final/`
+  - `.agent/artifacts/buyer-ready-t02-production-*/`
+  - `docs/buyer-readiness-v1.18.3.md`
+  - `docs/external-buyer-uat-v1.18.3.md`
+  - `docs/v1.18.3-buyer-readiness-release-notes.md`
 
 ---
 

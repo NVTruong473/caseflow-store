@@ -10,15 +10,15 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: stable `v1.18.2` showroom; feature development closed
-- Current gate: `EXPERIENCE-HISTORY-T01` completed
-- Current task: `BUYER-READY-T02` in progress
+- Mode: stable `v1.18.3` showroom; feature development closed
+- Current gate: `BUYER-READY-T02` completed
+- Current task: none
 
 ## Buyer Readiness
 
-- [/] `BUYER-READY-T02` Automated Buyer Readiness And External UAT Preflight. - 2026-07-29
+- [x] `BUYER-READY-T02` Automated Buyer Readiness And External UAT Preflight. - 2026-07-29
   - Scope:
-    - Regenerate the public source package from the verified `v1.18.2`
+    - Regenerate the public source package from the verified runtime
       working tree without copying local secrets or internal evidence.
     - Prove package/lock consistency, runtime parity, clean installation,
       lint, typecheck, Production build, startup, security, and archive
@@ -28,7 +28,7 @@
     - Prepare a no-coaching external UAT charter without presenting the
       independent human run as completed.
   - Acceptance criteria:
-    - `dist-public/` identifies `1.18.2`, includes the current QR experience
+    - `dist-public/` identifies `1.18.3`, includes the current QR experience
       history/retry runtime, and has matching `package.json`/lock metadata.
     - The clean-room package installs, lints, typechecks, builds, starts, and
       passes policy, secret, runtime-dependency, route, and media checks.
@@ -39,6 +39,20 @@
       operator boundaries, mobile, keyboard, and bilingual behavior.
     - Independent human execution remains explicitly `NOT RUN` until a person
       outside the project performs it.
+  - Result:
+    - Fixed cart-assistant overlap and gated product/order actions until client
+      state hydration, preventing fast customer clicks from being discarded.
+    - Regenerated an 832-file `v1.18.3` public package with source parity,
+      normalized lock metadata, one README, no internal tooling, and a
+      reproducible SHA-256 archive.
+    - Clean-room install, lint, typecheck, runtime audit, 66-route build,
+      process startup, media delivery, protected-route checks, and Production
+      mock lock passed. A data-backed homepage without a buyer database remains
+      `BLOCKED_BY_REQUIRED_BUYER_DATABASE`, as documented.
+    - Full local Playwright passed `41/41` without retries. Production UAT
+      automation, smoke `9/9`, security, SEO, responsive browser QA, QR lock,
+      and zero-record cleanup passed.
+    - Independent external human UAT remains `NOT RUN`.
 
 ## Post-handoff Hotfix
 

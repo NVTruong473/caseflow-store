@@ -79,19 +79,21 @@ runtime.
 
 ## Latest release evidence
 
-- Release tag: `v1.18.2`
+- Release tag: `v1.18.3`
 - GitHub Release:
-  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.18.2`
+  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.18.3`
 - Production alias: `https://caseflow-store.vercel.app`
-- Vercel deployment ID: `dpl_Ec21W3aoeZPvcoSozq1jr7wz95js`
-- Local gates: runtime dependency audit with zero vulnerabilities, TypeScript,
-  ESLint, 66-route Production build, 249-file architecture verification,
-  secret/QR safety gates, focused two-device QR recovery, and full sequential
-  Playwright `41/41` without retries.
-- Production: focused wrong-code recovery and account-history flow, smoke
-  `9/9`, security posture, QR lock, responsive review, and post-test cleanup
-  passed. Evidence is under `.agent/artifacts/experience-history-t01*`.
+- Vercel deployment ID: `dpl_GjHNy7YZke4rUhWwjc58w2wedFrw`
+- Local gates: public-package parity and reproducibility, clean-room install,
+  runtime dependency audit with zero vulnerabilities, TypeScript, ESLint,
+  66-route Production build, 249-file architecture verification, secret/QR
+  safety gates, and full sequential Playwright `41/41` without retries.
+- Production: automated customer cart, voucher, QR experience, official order,
+  history and cancellation flow, smoke `9/9`, security posture, SEO, QR lock,
+  responsive browser review, and post-test cleanup passed. Independent external
+  human UAT remains `NOT RUN`.
 - Release notes:
+  [`docs/v1.18.3-buyer-readiness-release-notes.md`](docs/v1.18.3-buyer-readiness-release-notes.md),
   [`docs/v1.18.2-qr-experience-history-patch-release-notes.md`](docs/v1.18.2-qr-experience-history-patch-release-notes.md),
   [`docs/v1.18.1-buyer-handoff-release-notes.md`](docs/v1.18.1-buyer-handoff-release-notes.md),
   [`docs/v1.17.0-accelerated-checkout-release-notes.md`](docs/v1.17.0-accelerated-checkout-release-notes.md),

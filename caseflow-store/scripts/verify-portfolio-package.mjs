@@ -2,7 +2,6 @@ import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 
-const projectRoot = process.cwd();
 const packageRoot = path.resolve(
   process.env.PORTFOLIO_DEMO_OUTPUT_DIR ??
     "docs/portfolio/assets/demo-v1.17.0",
