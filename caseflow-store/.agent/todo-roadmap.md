@@ -10,13 +10,13 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: stable `v1.18.3` showroom; bounded media polish in progress
-- Current gate: `BUYER-READY-T02` completed
-- Current task: `VIDEO-AUDIO-T01` in progress
+- Mode: stable `v1.18.4` showroom; feature development closed
+- Current gate: `VIDEO-AUDIO-T01` completed
+- Current task: none
 
 ## Portfolio Media Polish
 
-- [/] `VIDEO-AUDIO-T01` Tighten Narration Pacing And Add Original Background
+- [x] `VIDEO-AUDIO-T01` Tighten Narration Pacing And Add Original Background
   Score. - 2026-07-29
   - Scope:
     - Preserve ADR-0025 storefront-media boundaries and all commerce runtime.
@@ -39,6 +39,18 @@
       responsive, captioned, and reproducible from repository scripts.
     - Focused media/browser tests, lint, TypeScript, build, Production media
       delivery, and visual/audio QA pass before a release is recorded.
+  - Result:
+    - Replaced the 4:16 mono walkthrough with a 3:34 H.264/AAC stereo render
+      while preserving all five chapters and 37 Vietnamese subtitle cues.
+    - Bounded each narration tail to 0.7 seconds and retimed the long customer
+      capture to 1.305x without accelerating the voice.
+    - Added a deterministic, sample-free 96 BPM score with narration-keyed
+      sidechain ducking and reusable generation, render, publish, and audio QA
+      scripts.
+    - Media package, audio, subtitle, metadata, architecture, dependency,
+      TypeScript, lint, 66-route build, and local browser gates passed.
+    - Production deployment `dpl_14SEYunY4jvsqmqkUsE4reavkJa9` is READY;
+      ranged MP4, VTT, mock lock, and desktop/mobile browser checks passed.
 
 ## Buyer Readiness
 

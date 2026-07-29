@@ -1,0 +1,24 @@
+{
+  "taskId": "VIDEO-AUDIO-T01",
+  "generatedAt": "2026-07-29T13:24:20.000Z",
+  "deployment": {
+    "id": "dpl_14SEYunY4jvsqmqkUsE4reavkJa9",
+    "status": "READY",
+    "target": "production",
+    "url": "https://caseflow-store-8t2flhoy9-nvt-ruong473.vercel.app",
+    "alias": "https://caseflow-store.vercel.app"
+  },
+  "checks": {
+    "homepageHttp200": true,
+    "videoRangeHttp206": true,
+    "videoContentType": "video/mp4",
+    "videoContentLengthBytes": 8547270,
+    "captionsHttp200": true,
+    "captionsLastCueSeconds": 213.223,
+    "productionMockPaymentHttp404": true,
+    "desktopIntroductionBrowserTest": "PASS",
+    "mobileIntroductionBrowserTest": "PASS",
+    "browserDurationSecondsBetween213And215": true
+  },
+  "ok": true
+}

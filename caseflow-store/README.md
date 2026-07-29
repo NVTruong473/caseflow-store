@@ -79,20 +79,22 @@ runtime.
 
 ## Latest release evidence
 
-- Release tag: `v1.18.3`
+- Release tag: `v1.18.4`
 - GitHub Release:
-  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.18.3`
+  `https://github.com/NVTruong473/caseflow-store/releases/tag/v1.18.4`
 - Production alias: `https://caseflow-store.vercel.app`
-- Vercel deployment ID: `dpl_GjHNy7YZke4rUhWwjc58w2wedFrw`
-- Local gates: public-package parity and reproducibility, clean-room install,
-  runtime dependency audit with zero vulnerabilities, TypeScript, ESLint,
-  66-route Production build, 249-file architecture verification, secret/QR
-  safety gates, and full sequential Playwright `41/41` without retries.
-- Production: automated customer cart, voucher, QR experience, official order,
-  history and cancellation flow, smoke `9/9`, security posture, SEO, QR lock,
-  responsive browser review, and post-test cleanup passed. Independent external
-  human UAT remains `NOT RUN`.
+- Vercel deployment ID: `dpl_14SEYunY4jvsqmqkUsE4reavkJa9`
+- Local gates: portfolio package, original-score provenance, loudness/peak/
+  silence analysis, subtitle timing, public asset metadata, runtime dependency
+  audit with zero vulnerabilities, TypeScript, ESLint, 66-route Production
+  build, 249-file architecture verification, and introduction Playwright
+  `2/2`.
+- Production: homepage and captions `200`, ranged MP4 `206`, exact 3:34 browser
+  duration, desktop/mobile dialog Playwright `2/2`, and QR mock-payment lock
+  `404`. Commerce behavior is unchanged. Independent external human UAT
+  remains `NOT RUN`.
 - Release notes:
+  [`docs/v1.18.4-video-audio-polish-release-notes.md`](docs/v1.18.4-video-audio-polish-release-notes.md),
   [`docs/v1.18.3-buyer-readiness-release-notes.md`](docs/v1.18.3-buyer-readiness-release-notes.md),
   [`docs/v1.18.2-qr-experience-history-patch-release-notes.md`](docs/v1.18.2-qr-experience-history-patch-release-notes.md),
   [`docs/v1.18.1-buyer-handoff-release-notes.md`](docs/v1.18.1-buyer-handoff-release-notes.md),

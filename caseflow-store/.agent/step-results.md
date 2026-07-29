@@ -4,16 +4,16 @@
 
 | Field | Value |
 |---|---|
-| Current mode | stable `v1.18.3` showroom; feature development closed |
-| Current gate | `EXPERIENCE-HISTORY-T01` completed |
+| Current mode | stable `v1.18.4` showroom; feature development closed |
+| Current gate | `VIDEO-AUDIO-T01` completed |
 | Implementation started | Yes |
 | Next implementation task | None |
 | App initialized | Yes, in `caseflow-store` |
-| Local server verified | Yes, v1.18.2 focused QR recovery and full Playwright `41/41` passed |
-| Lint verified | Yes, v1.18.2 application lint passed |
-| Build verified | Yes, v1.18.2 generated 66 App Router routes |
+| Local server verified | Yes, v1.18.4 introduction video Playwright `2/2` passed |
+| Lint verified | Yes, v1.18.4 application lint passed |
+| Build verified | Yes, v1.18.4 generated 66 App Router routes |
 | Database connected | Yes; live catalog, orders, Auth, role checks, and admin status updates use Supabase |
-| Deployed | Yes, v1.18.2 Production deployment `dpl_Ec21W3aoeZPvcoSozq1jr7wz95js` is aliased to `https://caseflow-store.vercel.app` |
+| Deployed | Yes, v1.18.4 Production deployment `dpl_14SEYunY4jvsqmqkUsE4reavkJa9` is aliased to `https://caseflow-store.vercel.app` |
 | Last updated | 2026-07-29 |
 
 ## Result Index
@@ -140,6 +140,47 @@
 | SR-192 | 2026-07-22 | ARCH-LAYER-T01..T07 | completed | Shipped v1.12.0 layered architecture hardening: extracted order creation into a use case, added architecture boundary verifier, passed local/production E2E and security gates, deployed Vercel `dpl_8MCASvEYjndhtQJuvbPJeqkFF1gA`, and published the tag/GitHub Release |
 | SR-193 | 2026-07-29 | EXPERIENCE-HISTORY-T01 | completed | Released v1.18.2 with owner-filtered QR experience history, recoverable wrong-code entry, preserved cart, full local Playwright 41/41, and verified Production deployment `dpl_Ec21W3aoeZPvcoSozq1jr7wz95js` |
 | SR-194 | 2026-07-29 | BUYER-READY-T02 | completed | Shipped v1.18.3 buyer-readiness patch with hydration-safe interactions, reproducible public source package, clean-room validation, full Playwright 41/41, and verified Production automation; independent human UAT remains NOT RUN |
+| SR-195 | 2026-07-29 | VIDEO-AUDIO-T01 | completed | Replaced the 4:16 mono introduction with a verified 3:34 stereo walkthrough, original sample-free score, bounded scene tails, synchronized captions, and Production deployment `dpl_14SEYunY4jvsqmqkUsE4reavkJa9` |
+
+---
+
+## VIDEO-AUDIO-T01 - Tighten Narration Pacing And Add Original Background Score
+
+- Date: 2026-07-29
+- Status: completed
+- Runtime commit: `143296c`
+- Production deployment: `dpl_14SEYunY4jvsqmqkUsE4reavkJa9`
+- Production URL: `https://caseflow-store.vercel.app`
+- Result:
+  - recaptured the current Production customer, QR experience, official order,
+    history, admin operations, architecture, and evidence chapters;
+  - reduced the introduction from 256.322 to 214.017 seconds without clipping
+    narration or removing a chapter;
+  - bounded all scene tails to 0.7 seconds and kept customer screen recording
+    acceleration at 1.305x;
+  - generated an original 96 BPM G-major pentatonic score with no external
+    samples and sidechain-ducked it under the Vietnamese narration;
+  - published synchronized MP4, poster, SRT, and WebVTT assets and updated the
+    homepage copy to 3:34.
+- Verification:
+  - portfolio package: PASS, H.264 1280x720, AAC stereo 48 kHz, 37 monotonic
+    subtitle cues, 14 screenshots, zero captured console errors, and no
+    sensitive artifact text;
+  - audio: PASS, `-19.2 LUFS` integrated, `2.8 LU` LRA, `-4.6 dBFS` true peak,
+    no mid-video silence at or above 1.2 seconds;
+  - visual: PASS, six-scene contact sheet plus local and Production
+    desktop/mobile dialog renders;
+  - quality: PASS, lint, TypeScript, 66-route Production build, architecture
+    249/0 findings, runtime dependency audit 0 vulnerabilities, public asset
+    metadata 566/0 findings, and `git diff --check`;
+  - local browser: PASS `2/2`; Production browser: PASS `2/2`, including
+    HTMLVideoElement duration between 213 and 215 seconds;
+  - Production delivery: PASS, homepage `200`, MP4 range `206` with
+    `8,547,270` bytes, VTT `200`, and mock-payment endpoint `404`.
+- Evidence:
+  - `.agent/artifacts/video-audio-t01/`
+  - `docs/portfolio/assets/demo-v1.18.3/`
+  - `docs/v1.18.4-video-audio-polish-release-notes.md`
 
 ---
 

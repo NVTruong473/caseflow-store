@@ -7,7 +7,7 @@
   `v1.7.0`, `v1.8.0`, `v1.9.0`, `v1.10.0`, `v1.11.0`, `v1.11.1`,
   `v1.11.2`, `v1.11.3`, `v1.12.0`, `v1.12.1`, `v1.13.0`, `v1.13.1`,
   `v1.14.0`, `v1.15.0`, `v1.16.0`, `v1.17.0`, `v1.18.0`, `v1.18.1`,
-  `v1.18.2`, and `v1.18.3` released
+  `v1.18.2`, `v1.18.3`, and `v1.18.4` released
 - Repository folder: `/Users/vantruong/Documents/TSNN 2`
 - Product domain: books for released `v1.1.0` and `v1.2.0`; phone
   accessories for released `v1.0.0`
@@ -15,12 +15,21 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: stable `v1.18.3` showroom; feature development closed.
-- Current gate: `BUYER-READY-T02` completed.
+- Current mode: stable `v1.18.4` showroom; feature development closed.
+- Current gate: `VIDEO-AUDIO-T01` completed.
 - Current task: none.
 
 ## Active Final Handoff
 
+- `VIDEO-AUDIO-T01` replaces the homepage introduction media with a 3:34
+  Production walkthrough. The five scene tails are bounded to 0.7 seconds,
+  customer footage is retimed to 1.305x, and a deterministic 96 BPM
+  sample-free score is sidechain-ducked under Vietnamese narration. The final
+  H.264/AAC stereo media, monotonic SRT/WebVTT, local/Production browser checks,
+  loudness/peak/silence gate, 66-route build, and metadata scan passed.
+- The v1.18.4 Production deployment is
+  `dpl_14SEYunY4jvsqmqkUsE4reavkJa9` at
+  `https://caseflow-store.vercel.app`.
 - ADR-0025 separates three deliverables: an opt-in homepage introduction video,
   a generated runnable `dist-public/` source export, and printable academic
   report/worklog files outside the public export.
