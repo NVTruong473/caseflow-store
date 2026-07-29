@@ -5,7 +5,6 @@ import { listSupabaseBookCatalog } from "@/lib/repositories/supabase-books";
 import { absoluteUrl } from "@/lib/seo/metadata";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const records = await listSupabaseBookCatalog({ sort: "title-asc" });
   const now = new Date();
   const publicPages: MetadataRoute.Sitemap = [
     {
@@ -33,6 +32,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: absoluteUrl(policy.path),
     })),
   ];
+  let records: Awaited<ReturnType<typeof listSupabaseBookCatalog>> = [];
+
+  try {
+    records = await listSupabaseBookCatalog({ sort: "title-asc" });
+  } catch {
+    // Giữ build/deploy hoạt động khi catalog tạm thời không truy cập được.
+    console.warn("Sitemap catalog unavailable; using static routes only.");
+  }
+
   const bookPages = records.map((record) => ({
     changeFrequency: "weekly" as const,
     lastModified: new Date(record.edition.updatedAt),

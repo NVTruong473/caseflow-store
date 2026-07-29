@@ -30,23 +30,25 @@ export function getCurrencyDisplayRules(): CurrencyDisplayRules {
   const parsedRules = currencyDisplayRulesSchema.safeParse({
     displayCurrency: "USD",
     exchangeRateVndPerUsd:
-      process.env.CASEFLOW_FX_VND_PER_USD ??
+      readOptionalEnvironmentValue("CASEFLOW_FX_VND_PER_USD") ??
       defaultCurrencyDisplayRules.exchangeRateVndPerUsd,
     internationalPaymentFeeBasisPoints:
-      process.env.CASEFLOW_INTL_PAYMENT_FEE_BASIS_POINTS ??
+      readOptionalEnvironmentValue(
+        "CASEFLOW_INTL_PAYMENT_FEE_BASIS_POINTS",
+      ) ??
       defaultCurrencyDisplayRules.internationalPaymentFeeBasisPoints,
     quotedAt:
-      process.env.CASEFLOW_FX_QUOTED_AT ??
+      readOptionalEnvironmentValue("CASEFLOW_FX_QUOTED_AT") ??
       defaultCurrencyDisplayRules.quotedAt,
     sourceCurrency: "VND",
     sourceLabel:
-      process.env.CASEFLOW_FX_SOURCE_LABEL ??
+      readOptionalEnvironmentValue("CASEFLOW_FX_SOURCE_LABEL") ??
       defaultCurrencyDisplayRules.sourceLabel,
     sourceUrl:
-      process.env.CASEFLOW_FX_SOURCE_URL ??
+      readOptionalEnvironmentValue("CASEFLOW_FX_SOURCE_URL") ??
       defaultCurrencyDisplayRules.sourceUrl,
     vatBasisPoints:
-      process.env.CASEFLOW_VAT_BASIS_POINTS ??
+      readOptionalEnvironmentValue("CASEFLOW_VAT_BASIS_POINTS") ??
       defaultCurrencyDisplayRules.vatBasisPoints,
   });
 
@@ -57,4 +59,10 @@ export function getCurrencyDisplayRules(): CurrencyDisplayRules {
   }
 
   return parsedRules.data;
+}
+
+function readOptionalEnvironmentValue(name: string) {
+  const value = process.env[name]?.trim();
+
+  return value ? value : undefined;
 }

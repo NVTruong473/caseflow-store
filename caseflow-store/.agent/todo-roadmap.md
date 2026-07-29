@@ -12,7 +12,33 @@
 - Project: CaseFlow Books
 - Mode: stable `v1.18.0` showroom; feature development closed
 - Current gate: `HANDOFF-T05` completed; final public and academic handoff frozen
-- Current task: none
+- Current task: `BUYER-ACCEPTANCE-T01 - Independent Clean-room Buyer Handoff`
+
+## Buyer Acceptance
+
+- [/] `BUYER-ACCEPTANCE-T01` Independent Clean-room Buyer Handoff. - 2026-07-29
+  - Scope:
+    - Extract the published `v1.18.0` source archive into a new clean-room
+      directory and evaluate it using only the included `README.md`.
+    - Verify archive integrity, install, lint, typecheck, Production build,
+      startup behavior, public/protected routes, media delivery, environment
+      boundaries, database setup completeness, license clarity, and release
+      reproducibility.
+    - Do not create paid external resources, mutate Production data, reuse
+      local secrets, or add new product features.
+  - Acceptance criteria:
+    - A downstream developer can obtain, verify, install, build, and start the
+      release without files from the development repository.
+    - Missing buyer-owned Supabase, SMTP, payment, legal, or infrastructure
+      inputs are stated as handoff prerequisites rather than silently reused.
+    - Every discovered blocker is either fixed and reverified or recorded with
+      an exact owner and next action.
+  - Verification:
+    - published-release asset and SHA-256 verification
+    - clean extraction and source policy scan
+    - `npm ci`, lint, typecheck, build, runtime dependency audit
+    - Production startup and route/media/security smoke
+    - README/environment/schema/migration/license consistency audit
 
 ## Final Public And Academic Handoff
 

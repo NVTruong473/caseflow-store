@@ -7,7 +7,7 @@
 | Current mode | stable `v1.18.0` showroom; feature development closed |
 | Current gate | `HANDOFF-T05` completed; final handoff frozen |
 | Implementation started | Yes |
-| Next implementation task | None |
+| Next implementation task | `BUYER-ACCEPTANCE-T01 - Independent Clean-room Buyer Handoff` |
 | App initialized | Yes, in `caseflow-store` |
 | Local server verified | Yes, v1.18.0 lint, TypeScript, build, architecture, security/payment/asset gates, and full Playwright `41/41` passed |
 | Lint verified | Yes, v1.18.0 lint passed with zero warnings |

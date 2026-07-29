@@ -4,6 +4,7 @@ import path from "node:path";
 const SOURCE_ROOT = process.cwd();
 const OUTPUT_ROOT = path.resolve(SOURCE_ROOT, "..", "dist-public");
 const OUTPUT_NAME = "dist-public";
+const PUBLIC_RELEASE_VERSION = process.env.PUBLIC_RELEASE_VERSION ?? "1.18.1";
 
 const COPY_DIRECTORIES = ["public", "src", "supabase"];
 const COPY_FILES = [
@@ -143,6 +144,9 @@ cp .env.example .env.local
 \`\`\`
 
 Fill in the required Supabase values before starting the application.
+The package does not include a mock database fallback. A reachable Supabase
+project with the checked-in schema, migrations, and catalog seed is required
+for storefront and commerce runtime checks.
 
 ## Environment variables
 
@@ -226,7 +230,13 @@ developers:
 npm run lint
 npm run typecheck
 npm run build
+npm audit --omit=dev --audit-level=high
 \`\`\`
+
+Runtime dependencies must pass the audit above. Development-only advisories
+should be reviewed against the current Next.js/ESLint compatibility matrix;
+do not apply a forced major downgrade or upgrade merely to hide an audit
+warning.
 
 Before commercial launch, add organization-specific component and end-to-end
 tests for the configured catalog, authentication, payments, notifications, and
@@ -330,6 +340,7 @@ npm-debug.log*
 `;
 
 async function main() {
+  assertPublicReleaseVersion();
   assertSafeOutputPath();
   await fs.rm(OUTPUT_ROOT, { force: true, recursive: true });
   await fs.mkdir(OUTPUT_ROOT, { recursive: true });
@@ -381,6 +392,14 @@ function assertSafeOutputPath() {
   }
 }
 
+function assertPublicReleaseVersion() {
+  if (!/^\d+\.\d+\.\d+$/.test(PUBLIC_RELEASE_VERSION)) {
+    throw new Error(
+      `PUBLIC_RELEASE_VERSION must be a stable semantic version, received ${PUBLIC_RELEASE_VERSION}`,
+    );
+  }
+}
+
 async function copyDirectory(source, destination) {
   const sourceRelative = path
     .relative(SOURCE_ROOT, source)
@@ -420,7 +439,7 @@ async function writePublicPackageManifest() {
   const packageJson = JSON.parse(await fs.readFile(packagePath, "utf8"));
 
   packageJson.name = "caseflow-books";
-  packageJson.version = "1.0.0";
+  packageJson.version = PUBLIC_RELEASE_VERSION;
   packageJson.private = true;
   packageJson.license = "UNLICENSED";
   packageJson.scripts = {

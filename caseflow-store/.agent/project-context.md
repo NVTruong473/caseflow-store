@@ -16,7 +16,7 @@
 - Journal entries: 30, with entries 21-30 as retrospective documentation
 - Current mode: stable `v1.18.0` showroom; feature development closed.
 - Current gate: `HANDOFF-T05` completed under accepted ADR-0025.
-- Current task: none.
+- Current task: `BUYER-ACCEPTANCE-T01 - Independent Clean-room Buyer Handoff`.
 
 ## Active Final Handoff
 
@@ -51,6 +51,10 @@
   `206 video/mp4`, the mock-payment simulate endpoint returned `404`, and
   security posture, QR Production safety, focused media Playwright `2/2`, and
   final browser QA passed with zero findings and no horizontal overflow.
+- `BUYER-ACCEPTANCE-T01` is a post-release, non-feature audit of the published
+  source archive. It must not borrow `.env.local`, create paid infrastructure,
+  mutate Production data, or treat unavailable buyer-owned Supabase, SMTP,
+  payment, legal, and operations inputs as verified.
 
 ## Confirmed Facts
 
