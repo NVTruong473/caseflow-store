@@ -17,7 +17,7 @@
 - Journal entries: 30, with entries 21-30 as retrospective documentation
 - Current mode: stable `v1.18.1` showroom; feature development closed.
 - Current gate: `BUYER-ACCEPTANCE-T01` completed under accepted ADR-0025.
-- Current task: none.
+- Current task: `EXPERIENCE-HISTORY-T01` in progress under accepted ADR-0026.
 
 ## Active Final Handoff
 

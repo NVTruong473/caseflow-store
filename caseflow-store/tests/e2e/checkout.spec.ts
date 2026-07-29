@@ -209,6 +209,10 @@ test("checkout separates order placement from the isolated QR experience", async
         }
       });
       await phonePage.goto(scanUrl!, { waitUntil: "domcontentloaded" });
+      await expect(phonePage.locator("html")).toHaveAttribute("lang", "vi");
+      await expect(phonePage.locator("[data-site-footer]")).toContainText(
+        "Khung giờ hỗ trợ",
+      );
       await expect(
         phonePage.locator("[data-transfer-experience-warning]"),
       ).toContainText("KHÔNG CHUYỂN TIỀN THẬT");
@@ -225,11 +229,33 @@ test("checkout separates order placement from the isolated QR experience", async
       expect(phoneDocument).not.toContain(book.title);
       await phonePage.screenshot({
         fullPage: false,
-        path: ".agent/artifacts/qr-xdevice-t03/phone-pending-375-vi.png",
+        path: ".agent/artifacts/experience-history-t01/phone-pending-375-vi.png",
       });
       await phonePage
         .locator("[data-transfer-experience-amount-input]")
         .fill(amountVnd.toString());
+      const invalidConfirmationCode =
+        confirmationCode === "000000" ? "000001" : "000000";
+      await phonePage
+        .locator("[data-transfer-experience-code-input]")
+        .fill(invalidConfirmationCode);
+      await phonePage
+        .locator("[data-transfer-experience-submit]")
+        .click();
+      await expect(
+        phonePage.getByText(
+          "Số tiền hoặc mã xác nhận chưa đúng. Hãy kiểm tra màn hình máy tính và thử lại.",
+        ),
+      ).toBeVisible();
+      await expect(
+        phonePage.locator("[data-transfer-experience-code-input]"),
+      ).toBeFocused();
+      await expect(
+        phonePage.locator("[data-transfer-experience-code-input]"),
+      ).toHaveValue("");
+      await expect(
+        phonePage.locator("[data-transfer-experience-form]"),
+      ).toContainText("Còn 4 lần thử");
       await phonePage
         .locator("[data-transfer-experience-code-input]")
         .fill(confirmationCode);
@@ -242,7 +268,7 @@ test("checkout separates order placement from the isolated QR experience", async
       await expectNoHorizontalOverflow(phonePage);
       await phonePage.screenshot({
         fullPage: true,
-        path: ".agent/artifacts/qr-xdevice-t03/phone-completed-375-vi.png",
+        path: ".agent/artifacts/experience-history-t01/phone-completed-375-vi.png",
       });
     } finally {
       await phoneContext.close();
@@ -258,17 +284,58 @@ test("checkout separates order placement from the isolated QR experience", async
     await expectNoHorizontalOverflow(page);
     await page.screenshot({
       fullPage: true,
-      path: ".agent/artifacts/qr-xdevice-t03/desktop-completed-1440-vi.png",
+      path: ".agent/artifacts/experience-history-t01/desktop-completed-1440-vi.png",
     });
 
     await page.setViewportSize({ width: 375, height: 812 });
     await expectNoHorizontalOverflow(page);
     await page.screenshot({
       fullPage: true,
-      path: ".agent/artifacts/qr-xdevice-t03/desktop-session-mobile-375-vi.png",
+      path: ".agent/artifacts/experience-history-t01/desktop-completed-375-vi.png",
     });
 
-    await clickElement(page, "[data-checkout-experience-reset]");
+    await clickElement(
+      page,
+      "[data-checkout-experience-continue-official]",
+    );
+    await expect(page.locator("[data-checkout-mode='official']"))
+      .toHaveAttribute("aria-selected", "true");
+    await expect(page.locator("[data-checkout-mode='official']")).toBeFocused();
+    await expect(page.locator("[data-checkout-form-shell]")).toBeVisible();
+    await expect(page.locator("[data-cart-count]").first())
+      .toHaveAttribute("data-cart-count", "1");
+
+    await page.goto("/account/orders", { waitUntil: "domcontentloaded" });
+    await expect(page.locator("[data-customer-orders-empty]")).toBeVisible();
+    await expect(
+      page.locator("[data-customer-experience-history]"),
+    ).toBeVisible();
+    await expect(
+      page.locator("[data-customer-experience-card]").first(),
+    ).toContainText("Đã hoàn tất");
+    await expect(
+      page.locator("[data-customer-experience-card]").first(),
+    ).toContainText("₫");
+    await expect(page.locator("body")).not.toContainText(confirmationCode);
+    await expect(page.locator("[data-cart-count]").first())
+      .toHaveAttribute("data-cart-count", "1");
+    await expectNoHorizontalOverflow(page);
+    await page.screenshot({
+      fullPage: true,
+      path: ".agent/artifacts/experience-history-t01/account-history-375-vi.png",
+    });
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await expectNoHorizontalOverflow(page);
+    await page.screenshot({
+      fullPage: true,
+      path: ".agent/artifacts/experience-history-t01/account-history-1440-vi.png",
+    });
+
+    await page.goto("/checkout", { waitUntil: "domcontentloaded" });
+    await expect(page.locator("[data-checkout-mode='official']"))
+      .toHaveAttribute("aria-selected", "true");
+    await clickElement(page, "[data-checkout-mode='experience']");
+
     await clickElement(page, "[data-checkout-experience-create]");
     const cancellableScanUrl = await page
       .locator("[data-checkout-experience-open]")

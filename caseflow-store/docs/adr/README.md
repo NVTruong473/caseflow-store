@@ -29,6 +29,8 @@ verified implementation outcome of each decision.
 | [ADR-0022](0022-role-aware-password-change-assurance.md) | Accepted | Require role-aware assurance before password changes | Governs customer single-use recovery links and server-only admin/staff operations-secret verification without hardcoded credentials. |
 | [ADR-0023](0023-bounded-originkit-commerce-motion.md) | Accepted | Use only bounded product-relevant Originkit motion | Governs the dependency-free book-cover magnifier and category-cover reveal with touch, focus, reduced-motion, and stable-layout fallbacks. |
 | [ADR-0024](0024-isolated-accelerated-checkout.md) | Accepted | Add isolated Buy Now checkout without mutating the cart | Governs URL-carried edition/quantity intent, authentication resume, trusted server revalidation, cart preservation, focused QA, and the `v1.17.0` release. |
+| [ADR-0025](0025-public-handoff-media-and-academic-records.md) | Accepted | Separate public source, introduction media, and academic records | Governs the homepage introduction video, clean public export, printable report/worklog, and final handoff verification. |
+| [ADR-0026](0026-account-visible-checkout-experience-history.md) | Accepted | Show isolated QR experience activity without creating fake orders | Governs customer-owned experience history, cart preservation, official-checkout continuation, safe read data, and recoverable confirmation-code errors. |
 
 ## Status meanings
 

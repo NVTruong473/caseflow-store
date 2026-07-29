@@ -11,6 +11,10 @@ import {
 import { formatVnd } from "@/lib/format/currency";
 import type { Language } from "@/lib/i18n/language";
 import type { SupabaseOrderRecord } from "@/lib/repositories/supabase-orders";
+import type {
+  CheckoutExperienceHistoryRecord,
+  CheckoutExperienceStatus,
+} from "@/types/checkout-experience";
 import type { OrderStatus, PaymentMethod, PaymentStatus } from "@/types/domain";
 
 type ApiErrorBody = {
@@ -42,6 +46,16 @@ const customerOrdersCopy = {
       "This order is already too far in processing for self-service cancellation.",
     emptyDescription: "Orders created with this customer account will appear here.",
     emptyTitle: "No orders yet",
+    experienceAmount: "Practice amount",
+    experienceBoundary:
+      "These are practice records, not orders or payments. They do not consume stock, vouchers, or cart items.",
+    experienceCompletedAt: "Completed at",
+    experienceCreatedAt: "Started at",
+    experienceHistory: "QR experience history",
+    experienceReference: "Experience reference",
+    experienceStatus: "Experience status",
+    experienceTitle: "Your transfer practice",
+    officialCheckout: "Continue to official checkout",
     item: "item",
     items: "items",
     orderCode: "Order code",
@@ -66,6 +80,16 @@ const customerOrdersCopy = {
       "Đơn này đã xử lý quá xa để tự hủy trong tài khoản.",
     emptyDescription: "Các đơn hàng tạo bằng tài khoản này sẽ xuất hiện tại đây.",
     emptyTitle: "Chưa có đơn hàng",
+    experienceAmount: "Số tiền thực hành",
+    experienceBoundary:
+      "Đây là lịch sử thực hành, không phải đơn hàng hay thanh toán. Phiên trải nghiệm không trừ kho, dùng voucher hoặc xóa sản phẩm trong giỏ.",
+    experienceCompletedAt: "Hoàn tất lúc",
+    experienceCreatedAt: "Bắt đầu lúc",
+    experienceHistory: "Lịch sử trải nghiệm QR",
+    experienceReference: "Mã phiên trải nghiệm",
+    experienceStatus: "Trạng thái trải nghiệm",
+    experienceTitle: "Các lần thực hành chuyển khoản",
+    officialCheckout: "Tiếp tục đặt hàng chính thức",
     item: "sản phẩm",
     items: "sản phẩm",
     orderCode: "Mã đơn",
@@ -82,9 +106,11 @@ const customerOrdersCopy = {
 } as const;
 
 export function CustomerOrdersPage({
+  experiences,
   language,
   records,
 }: {
+  experiences: CheckoutExperienceHistoryRecord[];
   language: Language;
   records: SupabaseOrderRecord[];
 }) {
@@ -195,8 +221,101 @@ export function CustomerOrdersPage({
             ))}
           </section>
         )}
+
+        {experiences.length > 0 ? (
+          <section
+            aria-labelledby="customer-experience-history-title"
+            className="border-t border-border pt-case-xl"
+            data-customer-experience-history
+          >
+            <div className="grid gap-case-md md:grid-cols-[minmax(0,1fr)_auto] md:items-end">
+              <div className="max-w-3xl">
+                <Badge variant="success">{copy.experienceHistory}</Badge>
+                <h2
+                  className="mt-case-sm text-heading-2 font-semibold text-foreground"
+                  id="customer-experience-history-title"
+                >
+                  {copy.experienceTitle}
+                </h2>
+                <p className="mt-case-sm leading-7 text-text-muted">
+                  {copy.experienceBoundary}
+                </p>
+              </div>
+              <Link
+                className="inline-flex min-h-11 w-fit items-center justify-center rounded-md border border-primary bg-primary px-4 py-2 font-medium text-surface transition-colors hover:border-primary-hover hover:bg-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                href="/checkout"
+              >
+                {copy.officialCheckout}
+              </Link>
+            </div>
+
+            <div className="mt-case-lg divide-y divide-border border-y border-border">
+              {experiences.map((experience) => (
+                <CustomerExperienceRow
+                  copy={copy}
+                  experience={experience}
+                  key={experience.id}
+                  language={language}
+                />
+              ))}
+            </div>
+          </section>
+        ) : null}
       </Container>
     </main>
+  );
+}
+
+function CustomerExperienceRow({
+  copy,
+  experience,
+  language,
+}: {
+  copy: (typeof customerOrdersCopy)[Language];
+  experience: CheckoutExperienceHistoryRecord;
+  language: Language;
+}) {
+  return (
+    <article
+      className="grid gap-case-md py-case-md sm:grid-cols-[minmax(0,1fr)_minmax(180px,0.55fr)] sm:items-start"
+      data-customer-experience-card={experience.id}
+    >
+      <div className="min-w-0 border-l-4 border-discovery pl-case-md">
+        <p className="text-small text-text-muted">{copy.experienceReference}</p>
+        <h3 className="mt-case-xs break-words font-semibold text-foreground">
+          {experience.transferContent}
+        </h3>
+        <p className="mt-case-xs text-small text-text-muted">
+          {copy.experienceCreatedAt}:{" "}
+          {formatDateTime(experience.createdAt, language)}
+        </p>
+        {experience.completedAt ? (
+          <p className="mt-case-xs text-small text-text-muted">
+            {copy.experienceCompletedAt}:{" "}
+            {formatDateTime(experience.completedAt, language)}
+          </p>
+        ) : null}
+      </div>
+      <dl className="grid min-w-0 grid-cols-2 gap-case-sm sm:text-right">
+        <div>
+          <dt className="text-small text-text-muted">{copy.experienceAmount}</dt>
+          <dd className="mt-case-xs break-words font-semibold text-foreground">
+            {formatVnd(experience.amountVnd)}
+          </dd>
+        </div>
+        <div>
+          <dt className="text-small text-text-muted">{copy.experienceStatus}</dt>
+          <dd className="mt-case-xs">
+            <Badge
+              variant={getExperienceStatusVariant(experience.status)}
+              data-customer-experience-status={experience.status}
+            >
+              {getExperienceStatusLabel(experience.status, language)}
+            </Badge>
+          </dd>
+        </div>
+      </dl>
+    </article>
   );
 }
 
@@ -368,6 +487,46 @@ function canCustomerCancelOrder(record: SupabaseOrderRecord) {
     record.order.paymentStatus === "awaiting-provider-confirmation";
 
   return statusAllowsCancel && paymentAllowsCancel;
+}
+
+function getExperienceStatusVariant(status: CheckoutExperienceStatus) {
+  if (status === "completed") {
+    return "success" as const;
+  }
+  if (status === "pending") {
+    return "warning" as const;
+  }
+  if (status === "locked") {
+    return "error" as const;
+  }
+  return "neutral" as const;
+}
+
+function getExperienceStatusLabel(
+  status: CheckoutExperienceStatus,
+  language: Language,
+) {
+  const labels: Record<
+    Language,
+    Record<CheckoutExperienceStatus, string>
+  > = {
+    en: {
+      cancelled: "Closed",
+      completed: "Completed",
+      expired: "Expired",
+      locked: "Locked",
+      pending: "Pending",
+    },
+    vi: {
+      cancelled: "Đã đóng",
+      completed: "Đã hoàn tất",
+      expired: "Đã hết hạn",
+      locked: "Đã khóa",
+      pending: "Đang chờ",
+    },
+  };
+
+  return labels[language][status];
 }
 
 function getPaymentMethodLabel(

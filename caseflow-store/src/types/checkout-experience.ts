@@ -28,6 +28,17 @@ export type CheckoutExperienceSession = {
   transferContent: string;
 };
 
+export type CheckoutExperienceHistoryRecord = {
+  amountVnd: number;
+  completedAt: string | null;
+  createdAt: string;
+  currency: "VND";
+  expiresAt: string;
+  id: string;
+  status: CheckoutExperienceStatus;
+  transferContent: string;
+};
+
 export type CheckoutExperienceCreatedSession = CheckoutExperienceSession & {
   accessToken: string;
   clientRequestId: string;

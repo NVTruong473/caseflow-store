@@ -3,6 +3,7 @@ import { z } from "zod";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import {
   checkoutExperienceStatuses,
+  type CheckoutExperienceHistoryRecord,
   type CheckoutExperienceStatus,
 } from "@/types/checkout-experience";
 import type { Json, TableInsert, TableRow } from "@/types/supabase";
@@ -38,6 +39,17 @@ const completionResultSchema = z.object({
     "not_found",
   ]),
   status: z.enum(checkoutExperienceStatuses).optional(),
+});
+
+const checkoutExperienceHistoryRowSchema = checkoutExperienceRowSchema.pick({
+  amount_vnd: true,
+  completed_at: true,
+  created_at: true,
+  currency: true,
+  expires_at: true,
+  id: true,
+  status: true,
+  transfer_content: true,
 });
 
 export type CheckoutExperienceRow = z.infer<
@@ -126,6 +138,50 @@ export async function getCheckoutExperienceByTokenHash(tokenHash: string) {
   }
 
   return record;
+}
+
+export async function listCheckoutExperiencesForCustomer(
+  customerId: string,
+  limit = 20,
+): Promise<CheckoutExperienceHistoryRecord[]> {
+  const safeLimit = Math.min(Math.max(Math.trunc(limit), 1), 50);
+  const supabase = createSupabaseAdminClient();
+  const { data, error } = await supabase
+    .from("checkout_experience_sessions")
+    .select(
+      "id,amount_vnd,currency,status,transfer_content,expires_at,completed_at,created_at",
+    )
+    .eq("customer_id", customerId)
+    .order("created_at", { ascending: false })
+    .limit(safeLimit);
+
+  if (error) {
+    throw new Error("Failed to list customer checkout experiences", {
+      cause: error,
+    });
+  }
+
+  const serverTime = Date.now();
+
+  return (data ?? []).map((value) => {
+    const row = checkoutExperienceHistoryRowSchema.parse(value);
+    const status =
+      row.status === "pending" &&
+      new Date(row.expires_at).getTime() <= serverTime
+        ? "expired"
+        : row.status;
+
+    return {
+      amountVnd: row.amount_vnd,
+      completedAt: row.completed_at,
+      createdAt: row.created_at,
+      currency: row.currency,
+      expiresAt: row.expires_at,
+      id: row.id,
+      status,
+      transferContent: row.transfer_content,
+    };
+  });
 }
 
 export async function completeCheckoutExperience(input: {

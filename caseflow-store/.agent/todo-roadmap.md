@@ -12,7 +12,30 @@
 - Project: CaseFlow Books
 - Mode: stable `v1.18.1` showroom; feature development closed
 - Current gate: `BUYER-ACCEPTANCE-T01` completed with external prerequisites
-- Current task: none
+- Current task: `EXPERIENCE-HISTORY-T01` in progress
+
+## Post-handoff Hotfix
+
+- [/] `EXPERIENCE-HISTORY-T01` Separate QR Experience History And Retry Recovery. - 2026-07-29
+  - Scope:
+    - Preserve the official-order, payment, stock, voucher, analytics, and cart
+      boundaries accepted by ADR-0021.
+    - Show recent customer-owned QR experience sessions separately from
+      official orders.
+    - Allow a phone user to correct and resubmit an invalid six-digit
+      confirmation code until the existing attempt limit.
+    - Add a completed-experience action that returns the customer to official
+      checkout without clearing the cart.
+  - Acceptance criteria:
+    - Experience records are owner-filtered and expose no token, code, hash,
+      salt, cart fingerprint, or customer PII.
+    - Completed experiences appear in account history with explicit
+      non-payment language.
+    - Invalid confirmation clears and refocuses the code input; a subsequent
+      valid attempt completes the same session.
+    - Experience completion creates no order/payment and preserves the cart.
+    - Focused E2E, lint, TypeScript, build, architecture, and Production-safety
+      checks pass before release.
 
 ## Buyer Acceptance
 

@@ -652,6 +652,12 @@ export function CheckoutPage({
             }
             currencyRules={currencyRules}
             language={language}
+            onContinueOfficial={() => {
+              setCheckoutMode("official");
+              window.requestAnimationFrame(() => {
+                document.getElementById("checkout-official-tab")?.focus();
+              });
+            }}
             validationError={
               reviewState.status === "error" ? reviewState.message : null
             }

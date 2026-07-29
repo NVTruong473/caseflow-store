@@ -41,7 +41,37 @@ export function TransferExperiencePage({ language }: { language: Language }) {
   const [formError, setFormError] = React.useState<string | null>(null);
   const [serverOffsetMs, setServerOffsetMs] = React.useState(0);
   const [now, setNow] = React.useState(() => Date.now());
+  const codeInputRef = React.useRef<HTMLInputElement>(null);
   const token = useFragmentToken();
+
+  React.useEffect(() => {
+    if (document.documentElement.lang === language) {
+      return;
+    }
+
+    const abortController = new AbortController();
+
+    async function synchronizePageLanguage() {
+      try {
+        const response = await fetch("/api/preferences/language", {
+          body: JSON.stringify({ language }),
+          headers: { "Content-Type": "application/json" },
+          method: "POST",
+          signal: abortController.signal,
+        });
+
+        if (response.ok) {
+          window.location.reload();
+        }
+      } catch {
+        // Đồng bộ ngôn ngữ là best-effort; phiên QR vẫn phải tiếp tục tải.
+      }
+    }
+
+    void synchronizePageLanguage();
+
+    return () => abortController.abort();
+  }, [language]);
 
   const loadSession = React.useCallback(
     async (options: { quiet?: boolean } = {}) => {
@@ -130,6 +160,7 @@ export function TransferExperiencePage({ language }: { language: Language }) {
     }
     if (!/^\d{6}$/.test(confirmationCode)) {
       setFormError(copy.codeInvalid);
+      codeInputRef.current?.focus();
       return;
     }
 
@@ -147,6 +178,10 @@ export function TransferExperiencePage({ language }: { language: Language }) {
 
       if (!response.ok || !payload.data) {
         await loadSession({ quiet: true });
+        if (response.status !== 423 && response.status !== 410) {
+          setConfirmationCode("");
+          window.requestAnimationFrame(() => codeInputRef.current?.focus());
+        }
         setFormError(
           response.status === 423
             ? copy.lockedError
@@ -221,13 +256,20 @@ export function TransferExperiencePage({ language }: { language: Language }) {
         {pageState.status === "ready" ? (
           <TransferSession
             amount={amount}
+            codeInputRef={codeInputRef}
             confirmationCode={confirmationCode}
             copy={copy}
             formError={formError}
             language={language}
             now={now + serverOffsetMs}
-            onAmountChange={setAmount}
-            onCodeChange={setConfirmationCode}
+            onAmountChange={(value) => {
+              setAmount(value);
+              setFormError(null);
+            }}
+            onCodeChange={(value) => {
+              setConfirmationCode(value);
+              setFormError(null);
+            }}
             onSubmit={submitExperience}
             session={pageState.session}
             submitState={submitState}
@@ -244,6 +286,7 @@ export function TransferExperiencePage({ language }: { language: Language }) {
 
 function TransferSession({
   amount,
+  codeInputRef,
   confirmationCode,
   copy,
   formError,
@@ -256,6 +299,7 @@ function TransferSession({
   submitState,
 }: {
   amount: string;
+  codeInputRef: React.RefObject<HTMLInputElement | null>;
   confirmationCode: string;
   copy: (typeof transferExperienceCopy)[Language];
   formError: string | null;
@@ -361,6 +405,7 @@ function TransferSession({
             onCodeChange(event.target.value.replace(/\D/g, "").slice(0, 6))
           }
           placeholder="000000"
+          ref={codeInputRef}
           value={confirmationCode}
           data-transfer-experience-code-input
         />

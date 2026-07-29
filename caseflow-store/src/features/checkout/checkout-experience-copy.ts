@@ -11,6 +11,9 @@ export const checkoutExperienceCopy = {
       "This session was closed without creating an order or payment.",
     codeStep: "Enter the six-digit confirmation code from this screen.",
     confirmationCode: "Confirmation code",
+    continueOfficial: "Continue to official checkout",
+    continueOfficialDescription:
+      "Your cart is unchanged. Place an official order when you are ready to buy.",
     create: "Create phone QR",
     createDescription:
       "Scan on a phone to practise a bank-transfer confirmation. The server fixes the amount and this flow never creates an order or payment.",
@@ -70,6 +73,9 @@ export const checkoutExperienceCopy = {
       "Phiên đã đóng và không tạo đơn hàng hoặc giao dịch thanh toán.",
     codeStep: "Nhập mã xác nhận sáu số đang hiển thị trên màn hình này.",
     confirmationCode: "Mã xác nhận",
+    continueOfficial: "Tiếp tục đặt hàng chính thức",
+    continueOfficialDescription:
+      "Giỏ hàng vẫn được giữ nguyên. Hãy đặt đơn chính thức khi bạn đã sẵn sàng mua.",
     create: "Tạo QR cho điện thoại",
     createDescription:
       "Quét bằng điện thoại để thực hành bước xác nhận chuyển khoản. Server cố định số tiền và luồng này không tạo đơn hàng hoặc thanh toán.",

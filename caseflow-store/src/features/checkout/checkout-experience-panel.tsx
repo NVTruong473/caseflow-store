@@ -42,12 +42,14 @@ const TERMINAL_STATUSES = new Set<CheckoutExperienceStatus>([
 export function CheckoutExperiencePanel({
   cartData,
   language,
+  onContinueOfficial,
   validationError,
   validationPending,
 }: {
   cartData: ValidatedCartData | null;
   currencyRules: CurrencyDisplayRules;
   language: Language;
+  onContinueOfficial: () => void;
   validationError: string | null;
   validationPending: boolean;
 }) {
@@ -355,6 +357,15 @@ export function CheckoutExperiencePanel({
               </dl>
 
               <div className="mt-case-md flex flex-wrap gap-case-sm">
+                {displayStatus === "completed" ? (
+                  <Button
+                    onClick={onContinueOfficial}
+                    type="button"
+                    data-checkout-experience-continue-official
+                  >
+                    {copy.continueOfficial}
+                  </Button>
+                ) : null}
                 <Button
                   isLoading={requestState.status === "loading"}
                   onClick={() => void resetExperience()}
@@ -365,6 +376,11 @@ export function CheckoutExperiencePanel({
                   {copy.reset}
                 </Button>
               </div>
+              {displayStatus === "completed" ? (
+                <p className="mt-case-sm text-small leading-6 text-text-muted">
+                  {copy.continueOfficialDescription}
+                </p>
+              ) : null}
             </div>
           </div>
         )}
