@@ -4,17 +4,17 @@
 
 | Field | Value |
 |---|---|
-| Current mode | stable `v1.17.0` showroom; feature development closed |
-| Current gate | `HANDOFF-T01` completed; ADR-0025 accepted |
+| Current mode | stable `v1.18.0` showroom; feature development closed |
+| Current gate | `HANDOFF-T05` completed; final handoff frozen |
 | Implementation started | Yes |
-| Next implementation task | `HANDOFF-T02 - Add Homepage Introduction Video` |
+| Next implementation task | None |
 | App initialized | Yes, in `caseflow-store` |
-| Local server verified | Yes, v1.17.0 local lint, TypeScript, build, full E2E, architecture, payment/security/asset gates, Buy Now, and QR experience passed |
-| Lint verified | Yes, v1.17.0 lint passed with zero warnings |
-| Build verified | Yes, v1.17.0 Production build generated 66 App Router routes plus proxy locally and on Vercel |
+| Local server verified | Yes, v1.18.0 lint, TypeScript, build, architecture, security/payment/asset gates, and full Playwright `41/41` passed |
+| Lint verified | Yes, v1.18.0 lint passed with zero warnings |
+| Build verified | Yes, v1.18.0 Production build generated 66 App Router routes plus proxy locally and on Vercel |
 | Database connected | Yes; live catalog, orders, Auth, role checks, and admin status updates use Supabase |
-| Deployed | Yes, v1.17.0 Production deployment `dpl_79ccQjZHA3KBTvGP2JQ48SN8eHLX` is aliased to `https://caseflow-store.vercel.app` |
-| Last updated | 2026-07-28 |
+| Deployed | Yes, v1.18.0 Production deployment `dpl_5UKtZRKxRnsLyw4642wYPTuz8A2j` is aliased to `https://caseflow-store.vercel.app` |
+| Last updated | 2026-07-29 |
 
 ## Result Index
 
@@ -16685,5 +16685,40 @@ GitHub Release.
   - `../dist-public/`
   - `../project-documentation-output/validation/public-release-validation.json`
   - `../project-documentation-output/validation/dist-public-tree.txt`
+
+---
+
+## HANDOFF-T05 - Final Verification And Production Handoff
+
+- Date: 2026-07-29
+- Status: completed
+- Runtime commit: `57c301f`
+- Production deployment: `dpl_5UKtZRKxRnsLyw4642wYPTuz8A2j`
+- Production URL: `https://caseflow-store.vercel.app`
+- Result:
+  - the first remote build exposed that a local capture script imported a test
+    helper while `/tests` was excluded from the Vercel upload;
+  - `/scripts` is now excluded from Production deployment because these files
+    are local QA/export utilities and are not required by application runtime;
+  - the corrected Vercel build completed TypeScript and generated all 66
+    routes before reaching `READY`.
+- Final verification:
+  - full local Playwright: PASS, `41/41`;
+  - local lint, TypeScript, architecture, build, runtime audit, secret scan,
+    QR static safety, and public-asset metadata: PASS;
+  - Production homepage, catalog, and VTT: PASS, `200`;
+  - Production ranged MP4: PASS, `206 video/mp4`;
+  - Production security posture: PASS, nine routes and zero findings;
+  - Production QR mock-payment lock: PASS, runtime `404`;
+  - Production homepage introduction Playwright: PASS, `2/2`;
+  - Production final browser QA: PASS, zero findings and no overflow;
+  - clean public export/package and academic document validation: PASS.
+- Evidence:
+  - `.agent/artifacts/handoff-t05-local-final/`
+  - `.agent/artifacts/handoff-t05-production-security/`
+  - `.agent/artifacts/handoff-t05-production-qr/`
+  - `.agent/artifacts/handoff-t05-production-final/`
+  - `../project-documentation-output/validation/`
+  - `../project-documentation-output/release/`
 
 ---

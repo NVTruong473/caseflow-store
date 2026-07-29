@@ -10,9 +10,9 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: stable `v1.17.0` showroom; feature development closed
-- Current gate: `HANDOFF-T04` completed; clean public source export verified
-- Current task: `HANDOFF-T05 - Final Verification And Production Handoff`
+- Mode: stable `v1.18.0` showroom; feature development closed
+- Current gate: `HANDOFF-T05` completed; final public and academic handoff frozen
+- Current task: none
 
 ## Final Public And Academic Handoff
 
@@ -76,7 +76,7 @@
     - secret, private path, local username, metadata, and Markdown scans
     - clean `npm ci`, lint, typecheck, build, and startup smoke
 
-- [/] `HANDOFF-T05` Final Verification And Production Handoff.
+- [x] `HANDOFF-T05` Final Verification And Production Handoff. - 2026-07-29
   - Scope:
     - Re-run affected application QA, deploy the approved homepage media
       change, verify Production, and freeze the resulting handoff state.
@@ -89,8 +89,24 @@
     - application quality gate and focused E2E
     - Production smoke and media response checks
     - report/public-export validation summaries
+  - Result:
+    - Application lint, TypeScript, architecture, runtime dependency, secret,
+      payment-safety, asset-metadata, 66-route build, and full local Playwright
+      gates passed; full Playwright completed `41/41`.
+    - The first Vercel build exposed a deployment-only boundary: an internal
+      capture script imported a test helper while `/tests` was excluded from
+      upload. `/scripts` is now excluded from the Production bundle because it
+      contains local QA/export tooling rather than runtime code.
+    - Vercel deployment `dpl_5UKtZRKxRnsLyw4642wYPTuz8A2j` reached `READY`
+      and is aliased to `https://caseflow-store.vercel.app`.
+    - Production homepage/catalog/VTT returned `200`, ranged MP4 returned
+      `206 video/mp4`, the mock-payment simulate endpoint returned `404`, and
+      security posture, QR Production safety, focused media Playwright `2/2`,
+      and final browser QA passed with zero findings or overflow.
+    - The 832-file public source archive and checksum, 82-page report, and
+      10-page worklog were packaged as final handoff artifacts.
 - Implementation day: Day 40 complete
-- Last updated: 2026-07-28
+- Last updated: 2026-07-29
 
 ## Post-release Customer UAT
 

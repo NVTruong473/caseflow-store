@@ -5,8 +5,8 @@
 - Project name: CaseFlow Store `v1.0.0`; CaseFlow Books `v1.1.0`, `v1.2.0`,
   `v1.3.0`, `v1.3.1`, `v1.4.0`, `v1.4.1`, `v1.4.2`, `v1.5.0`, `v1.6.0`,
   `v1.7.0`, `v1.8.0`, `v1.9.0`, `v1.10.0`, `v1.11.0`, `v1.11.1`,
-  `v1.11.2`, `v1.11.3`, `v1.12.0`, `v1.12.1`, `v1.13.0`, `v1.13.1`, and
-  `v1.14.0`, `v1.15.0`, `v1.16.0`, and `v1.17.0` released
+  `v1.11.2`, `v1.11.3`, `v1.12.0`, `v1.12.1`, `v1.13.0`, `v1.13.1`,
+  `v1.14.0`, `v1.15.0`, `v1.16.0`, `v1.17.0`, and `v1.18.0` released
 - Repository folder: `/Users/vantruong/Documents/TSNN 2`
 - Product domain: books for released `v1.1.0` and `v1.2.0`; phone
   accessories for released `v1.0.0`
@@ -14,9 +14,9 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: stable `v1.17.0` showroom with an approved final handoff phase.
-- Current gate: `HANDOFF-T04` completed under accepted ADR-0025.
-- Current task: `HANDOFF-T05 - Final Verification And Production Handoff`.
+- Current mode: stable `v1.18.0` showroom; feature development closed.
+- Current gate: `HANDOFF-T05` completed under accepted ADR-0025.
+- Current task: none.
 
 ## Active Final Handoff
 
@@ -43,6 +43,14 @@
   proprietary license, and `README.md` as the only Markdown file. A clean
   install, lint, TypeScript, 66-route build, startup smoke, runtime dependency
   audit, asset metadata scan, secret scan, and Production mock lock passed.
+- `HANDOFF-T05` released the final handoff runtime to Vercel deployment
+  `dpl_5UKtZRKxRnsLyw4642wYPTuz8A2j` at the canonical
+  `https://caseflow-store.vercel.app` alias. The Production bundle excludes
+  local QA/export scripts, while runtime source remains unchanged. Production
+  homepage/catalog/VTT checks returned `200`, ranged MP4 delivery returned
+  `206 video/mp4`, the mock-payment simulate endpoint returned `404`, and
+  security posture, QR Production safety, focused media Playwright `2/2`, and
+  final browser QA passed with zero findings and no horizontal overflow.
 
 ## Confirmed Facts
 
