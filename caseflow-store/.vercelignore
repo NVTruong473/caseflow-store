@@ -1,6 +1,7 @@
 /.agent/
 /docs/
 /playwright-report/
+/scripts/
 /supabase/
 /test-results/
 /tests/
