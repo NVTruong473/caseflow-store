@@ -6,7 +6,7 @@ import { promisify } from "node:util";
 const SOURCE_ROOT = process.cwd();
 const OUTPUT_ROOT = path.resolve(SOURCE_ROOT, "..", "dist-public");
 const OUTPUT_NAME = "dist-public";
-const PUBLIC_RELEASE_VERSION = process.env.PUBLIC_RELEASE_VERSION ?? "1.18.3";
+const PUBLIC_RELEASE_VERSION = process.env.PUBLIC_RELEASE_VERSION ?? "1.18.4";
 const execFileAsync = promisify(execFile);
 
 const COPY_DIRECTORIES = ["public", "src", "supabase"];

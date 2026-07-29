@@ -4,10 +4,12 @@ import path from "node:path";
 
 const packageRoot = path.resolve(
   process.env.PORTFOLIO_DEMO_OUTPUT_DIR ??
-    "docs/portfolio/assets/demo-v1.17.0",
+    "docs/portfolio/assets/demo-v1.18.3",
 );
 const ffprobe = process.env.FFPROBE_PATH ?? "ffprobe";
-const artifactDirectory = path.resolve(".agent/artifacts/portfolio-t01");
+const artifactDirectory = path.resolve(
+  ".agent/artifacts/video-audio-t01",
+);
 const reportPath = path.join(
   artifactDirectory,
   "portfolio-package-check.json",
@@ -16,11 +18,11 @@ const captureReport = readJson(path.join(packageRoot, "capture-report.json"));
 const renderReport = readJson(path.join(packageRoot, "render-report.json"));
 const videoPath = path.join(
   packageRoot,
-  "caseflow-books-demo-v1.17.0-vi.mp4",
+  "caseflow-books-demo-v1.18.3-vi.mp4",
 );
 const subtitlePath = path.join(
   packageRoot,
-  "caseflow-books-demo-v1.17.0-vi.srt",
+  "caseflow-books-demo-v1.18.3-vi.srt",
 );
 const screenshotDirectory = path.join(packageRoot, "screenshots");
 const requiredDocuments = [
@@ -61,7 +63,7 @@ const screenshotDimensions = screenshotFiles.map((fileName) => ({
 const artifactText = [
   "capture-report.json",
   "render-report.json",
-  "caseflow-books-demo-v1.17.0-vi.srt",
+  "caseflow-books-demo-v1.18.3-vi.srt",
 ]
   .map((fileName) => fs.readFileSync(path.join(packageRoot, fileName), "utf8"))
   .join("\n");
@@ -73,6 +75,11 @@ const checks = {
     captureReport.checks.adminOrderUpdated === true,
   captureHasNoConsoleErrors: captureReport.checks.consoleErrors === 0,
   crossDeviceQrCompleted: captureReport.checks.qrExperienceCompleted === true,
+  backgroundMusicIsOriginal:
+    renderReport.backgroundMusic?.source ===
+      "Repository generator; no external samples" &&
+    renderReport.backgroundMusic?.ducking ===
+      "Sidechain compression keyed by narration",
   documentsPresent: requiredDocuments.every((filePath) =>
     fs.existsSync(path.resolve(filePath)),
   ),
@@ -81,6 +88,10 @@ const checks = {
     durationSeconds >= 180 &&
     durationSeconds <= 300,
   finalMediaHasAudioAndVideo: Boolean(audioStream && videoStream),
+  finalAudioIsWebReady:
+    audioStream?.codec_name === "aac" &&
+    audioStream?.channels === 2 &&
+    Number(audioStream?.sample_rate) === 48_000,
   finalVideoIs720p:
     videoStream?.width === 1280 && videoStream?.height === 720,
   finalVideoIsGitHubSized:
@@ -91,6 +102,15 @@ const checks = {
       artifactText,
     ),
   renderCompleted: renderReport.ok === true,
+  sceneTailGapsAreBounded:
+    Array.isArray(renderReport.scenes) &&
+    renderReport.scenes.length > 0 &&
+    renderReport.scenes.every(
+      (scene) =>
+        Number.isFinite(scene.tailGapSeconds) &&
+        scene.tailGapSeconds >= 0 &&
+        scene.tailGapSeconds <= 1.2,
+    ),
   screenshotsComplete: screenshotFiles.length >= 14,
   screenshotsHaveExpectedDimensions: screenshotDimensions.every(
     ({ fileName, height, width }) =>
@@ -106,7 +126,7 @@ const checks = {
       (cue, index) =>
         cue.endSeconds > cue.startSeconds &&
         (index === 0 ||
-          cue.startSeconds >= subtitles[index - 1].startSeconds),
+          cue.startSeconds >= subtitles[index - 1].endSeconds),
     ) &&
     subtitles.at(-1).endSeconds <= durationSeconds + 0.5,
   temporaryDataRemoved: captureReport.checks.temporaryDataRemoved === true,
@@ -117,6 +137,8 @@ const report = {
   generatedAt: new Date().toISOString(),
   media: {
     audioCodec: audioStream?.codec_name ?? null,
+    audioChannels: audioStream?.channels ?? null,
+    audioSampleRate: Number(audioStream?.sample_rate) || null,
     durationSeconds: round(durationSeconds),
     fileSizeBytes: fs.statSync(videoPath).size,
     resolution: videoStream
@@ -130,7 +152,7 @@ const report = {
     count: screenshotFiles.length,
     dimensions: screenshotDimensions,
   },
-  taskId: "PORTFOLIO-T01",
+  taskId: "VIDEO-AUDIO-T01",
 };
 
 fs.mkdirSync(artifactDirectory, { recursive: true });

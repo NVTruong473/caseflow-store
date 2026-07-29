@@ -1,23 +1,30 @@
 {
-  "version": 1,
+  "version": 2,
   "language": "vi",
   "voice": "vi-VN-NamMinhNeural",
-  "rate": "-4%",
+  "rate": "-2%",
+  "maximumNarrationChunkLength": 420,
+  "interChunkPauseSeconds": 0.45,
+  "postNarrationHoldSeconds": 0.7,
+  "maximumVideoPlaybackRate": 1.35,
+  "backgroundMusic": {
+    "bpm": 96,
+    "key": "G major pentatonic",
+    "style": "warm bookstore technology ambient"
+  },
   "scenes": [
     {
       "id": "01-intro",
-      "title": "CaseFlow Books v1.17.0",
+      "title": "CaseFlow Books v1.18.3",
       "source": "cards/title-card.png",
       "sourceType": "image",
-      "minimumDurationSeconds": 14,
-      "narration": "CaseFlow Books là một website thương mại điện tử bán sách song ngữ, đồng thời cung cấp không gian vận hành cho nhân viên và quản trị viên. Video này trình bày trực tiếp bản Production v1.17.0 và chỉ sử dụng những năng lực đã được kiểm thử."
+      "narration": "CaseFlow Books là một website thương mại điện tử bán sách song ngữ, đồng thời cung cấp không gian vận hành cho nhân viên và quản trị viên. Video này trình bày trực tiếp bản Production v1.18.3 và chỉ sử dụng những năng lực đã được kiểm thử."
     },
     {
       "id": "02-customer-journey",
       "title": "Khám phá, Mua ngay và quản lý đơn",
       "source": "raw/customer-journey.webm",
       "sourceType": "video",
-      "minimumDurationSeconds": 125,
       "narration": "Trang chủ ưu tiên sách và khả năng khám phá thay vì các tuyên bố marketing chung chung. Người đọc có thể tìm theo tên sách, tác giả, ISBN, danh mục và ngôn ngữ; sau đó chuyển sang catalog với bộ lọc, phân trang và trạng thái tồn kho rõ ràng. Trang chi tiết trình bày bìa, tác giả, giá Việt Nam đồng, tồn kho, định dạng, thông tin ấn bản và lựa chọn bản tiếng Anh hoặc tiếng Việt. Hiệu ứng phóng đại bìa chỉ là progressive enhancement: bố cục vẫn ổn định trên cảm ứng và khi người dùng giảm chuyển động. Khi đã chọn đúng ấn bản, khách hàng có thể thêm vào giỏ để mua nhiều sách, hoặc dùng Mua ngay để bỏ qua bước xem lại giỏ. Mua ngay chỉ mang mã ấn bản và số lượng qua đường dẫn. Giá, tồn kho, voucher, thuế, phí giao hàng và tổng tiền đều được tải lại và tính trên server. Giỏ hàng đã lưu không bị thay thế hoặc xóa. Checkout chia rõ hai ngữ cảnh. Chế độ Trải nghiệm tạo một phiên QR tách biệt, dùng tổng tiền do server xác nhận và mã xác nhận riêng. Điện thoại có thể hoàn thành phiên trải nghiệm, sau đó giao diện máy tính cập nhật không cần tải lại. Phiên này không tạo đơn, không ghi nhận thanh toán, không trừ kho và không tính doanh thu. Quay lại chế độ Chính thức, khách hàng có thể sử dụng một voucher gắn với tài khoản, chọn giao hàng và COD, rồi xác nhận đơn. Sau khi tạo thành công, trang kết quả hiển thị mã đơn và trạng thái thanh toán. Khách hàng tiếp tục xem đơn trong lịch sử tài khoản mà không cần ghi nhớ mã tra cứu."
     },
     {
@@ -25,7 +32,6 @@
       "title": "Vận hành dành cho admin và staff",
       "source": "raw/admin-operations.webm",
       "sourceType": "video",
-      "minimumDurationSeconds": 48,
       "narration": "Ở lớp vận hành, admin và staff có giao diện khác với khách hàng. Dashboard tổng hợp doanh số, trạng thái đơn, thanh toán, sách bán tốt và rủi ro tồn kho theo khoảng thời gian. Mỗi Route Handler vẫn kiểm tra session, vai trò và quyền trên server; việc ẩn menu không được xem là biện pháp phân quyền. Danh sách đơn hỗ trợ tìm kiếm và lọc trạng thái. Nhân viên có thể mở đúng đơn vừa tạo, kiểm tra snapshot sản phẩm, số tiền và thông tin xử lý, sau đó chuyển trạng thái theo policy nghiệp vụ. Các thao tác nhạy cảm hơn như cấu hình hoặc quyền khuyến mãi vẫn được giới hạn cho admin."
     },
     {
@@ -33,7 +39,6 @@
       "title": "Kiến trúc modular monolith có phân lớp",
       "source": "cards/architecture-card.png",
       "sourceType": "image",
-      "minimumDurationSeconds": 38,
       "narration": "CaseFlow Books là một Next.js modular monolith có sáu lớp trách nhiệm. Presentation gồm App Router, feature components và trạng thái trình duyệt. Route Handlers đóng vai trò controller HTTP. Use case điều phối các workflow rủi ro cao như tạo hoặc hủy đơn. Zod, policy và module tính tiền tạo thành lớp domain. Repository sở hữu truy vấn và chuyển đổi dữ liệu. Cuối cùng, Supabase Auth, PostgreSQL, RLS, RPC và Vercel tạo thành infrastructure. Cách tổ chức này áp dụng các trách nhiệm MVC và DTO phù hợp với Next.js, thay vì ép dự án vào một cấu trúc thư mục MVC hình thức."
     },
     {
@@ -41,7 +46,6 @@
       "title": "Bằng chứng kỹ thuật thay cho lời quảng cáo",
       "source": "cards/outro-card.png",
       "sourceType": "image",
-      "minimumDurationSeconds": 16,
       "narration": "Repository công khai kèm release notes, sơ đồ kiến trúc, test, báo cáo QA và các giới hạn còn tồn tại. CaseFlow Books là showroom source code, không tự nhận là một doanh nghiệp đang thu tiền thật. Toàn bộ liên kết và bằng chứng được đặt trong portfolio package của dự án."
     }
   ]

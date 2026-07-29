@@ -11,9 +11,10 @@
 | QR practice does not mutate commerce | Checkout experience APIs and repository | `tests/e2e/uat-auto-customer.spec.ts`, Production capture report |
 | Mock payment completion is locked in Production | Payment environment guards and dev endpoint | No-demo/QR Production safety gates |
 | Order creation is layered and transactional | ADR-0014, order use case, RPC migration | Architecture verifier and order reliability verification |
-| Product has zero observed console errors in portfolio journey | Capture script listeners | `assets/demo-v1.17.0/capture-report.json` |
+| Product has zero observed console errors in portfolio journey | Capture script listeners | `assets/demo-v1.18.3/capture-report.json` |
 | Portfolio capture data was removed | Temporary-customer cleanup helper | Capture report plus release-cleanup verification artifact |
 | Video contains Production footage, audio, captions, and no real PII | Capture/render scripts | `render-report.json` and portfolio-package verifier |
+| Video score is reproducible and sample-free | Background-score generator and render manifest | `scripts/generate-portfolio-background-music.mjs` and v1.18.3 render report |
 
 ## Claims Deliberately Not Made
 

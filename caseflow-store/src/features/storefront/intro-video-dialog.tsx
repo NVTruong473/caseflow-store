@@ -17,7 +17,7 @@ const copy = {
   en: {
     close: "Close introduction",
     description:
-      "A 4-minute 16-second walkthrough of the storefront, checkout, customer account, and store operations. Vietnamese narration and captions are included.",
+      "A 3-minute 34-second walkthrough of the storefront, checkout, customer account, and store operations. Vietnamese narration, captions, and an original background score are included.",
     dialogLabel: "Product introduction",
     fallback:
       "Your browser cannot play this video. Use the catalog to explore CaseFlow Books.",
@@ -28,7 +28,7 @@ const copy = {
   vi: {
     close: "Đóng phần giới thiệu",
     description:
-      "Video dài 4 phút 16 giây giới thiệu trang bán sách, checkout, tài khoản khách hàng và khu vực vận hành. Video có lời đọc và phụ đề tiếng Việt.",
+      "Video dài 3 phút 34 giây giới thiệu trang bán sách, checkout, tài khoản khách hàng và khu vực vận hành. Video có lời đọc, phụ đề tiếng Việt và nhạc nền nguyên bản.",
     dialogLabel: "Giới thiệu sản phẩm",
     fallback:
       "Trình duyệt không phát được video này. Bạn vẫn có thể mở catalog để khám phá CaseFlow Books.",

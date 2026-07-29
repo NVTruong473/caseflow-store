@@ -2,7 +2,8 @@
 
 ## Result
 
-`PASS` for the CaseFlow Books v1.17.0 portfolio media package.
+`PASS` for the CaseFlow Books v1.18.3 portfolio media package shipped with the
+v1.18.4 runtime patch.
 
 ## Capture
 
@@ -22,11 +23,15 @@
 |---|---|
 | Container | PASS - MP4 |
 | Video | PASS - H.264, 1280x720, 30 fps |
-| Audio | PASS - AAC, 48 kHz mono |
-| Duration | PASS - 256.322 seconds |
-| File size | PASS - approximately 7.4 MB |
+| Audio | PASS - AAC, 48 kHz stereo |
+| Duration | PASS - 214.017 seconds |
+| File size | PASS - approximately 8.2 MB |
 | Captions | PASS - Vietnamese SRT, 37 cues |
-| Loudness sanity | PASS - mean `-21.1 dB`, maximum `-2.6 dB` |
+| Narration tail | PASS - 0.7 seconds for every scene |
+| Mid-video silence | PASS - no interval at or above 1.2 seconds |
+| Loudness | PASS - integrated `-19.2 LUFS`, LRA `2.8 LU`, true peak `-4.6 dBFS` |
+| Background score | PASS - original 96 BPM procedural composition, no samples |
+| Speech priority | PASS - music sidechain-ducked beneath narration |
 | Embedded source metadata | PASS - inherited metadata removed; only normal encoder/container fields remain |
 
 ## Visual Review
@@ -47,10 +52,11 @@ inspected at original 1280x720 resolution.
   API key, or service-role secret is shown.
 - The QR practice scene is described as non-settlement and non-mutating.
 - Synthetic narration is disclosed by voice and engine.
-- No music, stock footage, testimonials, logos, ratings, or business statistics
-  were added.
+- No third-party music or samples, stock footage, testimonials, logos, ratings,
+  or business statistics were added.
 
 ## Known Limitation
 
 Automated visual and media checks cannot prove pronunciation quality for every
-Vietnamese proper noun. The separate SRT is the canonical accessible transcript.
+Vietnamese proper noun or replace a final listening pass by the project owner.
+The separate SRT is the canonical accessible transcript.

@@ -5,7 +5,7 @@ import path from "node:path";
 const SOURCE_ROOT = process.cwd();
 const PUBLIC_ROOT = path.resolve(SOURCE_ROOT, "..", "dist-public");
 const EXPECTED_PUBLIC_VERSION =
-  process.env.PUBLIC_RELEASE_VERSION ?? "1.18.3";
+  process.env.PUBLIC_RELEASE_VERSION ?? "1.18.4";
 const OUTPUT_PATH = path.resolve(
   SOURCE_ROOT,
   "..",

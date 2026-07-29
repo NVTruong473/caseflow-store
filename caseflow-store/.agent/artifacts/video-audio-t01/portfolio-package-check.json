@@ -1,0 +1,110 @@
+{
+  "checks": {
+    "captureCompleted": true,
+    "captureHasNoConsoleErrors": true,
+    "crossDeviceQrCompleted": true,
+    "backgroundMusicIsOriginal": true,
+    "documentsPresent": true,
+    "durationWithinPortfolioRange": true,
+    "finalMediaHasAudioAndVideo": true,
+    "finalAudioIsWebReady": true,
+    "finalVideoIs720p": true,
+    "finalVideoIsGitHubSized": true,
+    "noSensitiveArtifactText": true,
+    "renderCompleted": true,
+    "sceneTailGapsAreBounded": true,
+    "screenshotsComplete": true,
+    "screenshotsHaveExpectedDimensions": true,
+    "subtitleCuesPresent": true,
+    "subtitleTimelineValid": true,
+    "temporaryDataRemoved": true
+  },
+  "generatedAt": "2026-07-29T13:05:03.566Z",
+  "media": {
+    "audioCodec": "aac",
+    "audioChannels": 2,
+    "audioSampleRate": 48000,
+    "durationSeconds": 214.017,
+    "fileSizeBytes": 8547270,
+    "resolution": "1280x720",
+    "subtitleCueCount": 37,
+    "videoCodec": "h264"
+  },
+  "ok": true,
+  "screenshots": {
+    "count": 14,
+    "dimensions": [
+      {
+        "fileName": "01-homepage-desktop.png",
+        "height": 720,
+        "width": 1280
+      },
+      {
+        "fileName": "02-catalog-desktop.png",
+        "height": 720,
+        "width": 1280
+      },
+      {
+        "fileName": "03-product-buy-now-desktop.png",
+        "height": 720,
+        "width": 1280
+      },
+      {
+        "fileName": "04-buy-now-checkout-desktop.png",
+        "height": 720,
+        "width": 1280
+      },
+      {
+        "fileName": "05-qr-experience-pending-desktop.png",
+        "height": 720,
+        "width": 1280
+      },
+      {
+        "fileName": "06-qr-experience-completed-desktop.png",
+        "height": 720,
+        "width": 1280
+      },
+      {
+        "fileName": "06-qr-phone-completed-mobile.png",
+        "height": 1905,
+        "width": 390
+      },
+      {
+        "fileName": "07-order-success-desktop.png",
+        "height": 720,
+        "width": 1280
+      },
+      {
+        "fileName": "08-customer-order-history-desktop.png",
+        "height": 720,
+        "width": 1280
+      },
+      {
+        "fileName": "09-admin-dashboard-desktop.png",
+        "height": 720,
+        "width": 1280
+      },
+      {
+        "fileName": "10-admin-order-detail-desktop.png",
+        "height": 720,
+        "width": 1280
+      },
+      {
+        "fileName": "11-admin-order-confirmed-desktop.png",
+        "height": 720,
+        "width": 1280
+      },
+      {
+        "fileName": "12-homepage-mobile.png",
+        "height": 844,
+        "width": 390
+      },
+      {
+        "fileName": "13-customer-orders-mobile.png",
+        "height": 2796,
+        "width": 390
+      }
+    ]
+  },
+  "taskId": "VIDEO-AUDIO-T01"
+}

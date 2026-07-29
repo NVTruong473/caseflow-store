@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-const ARTIFACT_DIR = ".agent/artifacts/handoff-t02";
+const ARTIFACT_DIR = ".agent/artifacts/video-audio-t01/browser";
 
 test("homepage introduction opens an accessible local video dialog", async ({
   page,
@@ -42,6 +42,16 @@ test("homepage introduction opens an accessible local video dialog", async ({
     "src",
     "/media/caseflow-books-introduction-vi.vtt",
   );
+  await expect
+    .poll(() =>
+      video.evaluate((element: HTMLVideoElement) => element.duration),
+    )
+    .toBeGreaterThan(213);
+  await expect
+    .poll(() =>
+      video.evaluate((element: HTMLVideoElement) => element.duration),
+    )
+    .toBeLessThan(215);
   await expect(page.locator("body")).toHaveCSS("overflow", "hidden");
   expect(await getHorizontalOverflow(page)).toBeLessThanOrEqual(1);
 

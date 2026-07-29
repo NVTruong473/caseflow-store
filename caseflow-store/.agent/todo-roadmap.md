@@ -10,9 +10,35 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: stable `v1.18.3` showroom; feature development closed
+- Mode: stable `v1.18.3` showroom; bounded media polish in progress
 - Current gate: `BUYER-READY-T02` completed
-- Current task: none
+- Current task: `VIDEO-AUDIO-T01` in progress
+
+## Portfolio Media Polish
+
+- [/] `VIDEO-AUDIO-T01` Tighten Narration Pacing And Add Original Background
+  Score. - 2026-07-29
+  - Scope:
+    - Preserve ADR-0025 storefront-media boundaries and all commerce runtime.
+    - Remove avoidable end-of-scene voice gaps without cutting a spoken phrase
+      or making Vietnamese narration sound rushed.
+    - Generate a reproducible, sample-free light bookstore/technology score
+      instead of adding a third-party track with ambiguous redistribution
+      rights.
+    - Duck music under narration, fade chapter boundaries, and replace the
+      homepage MP4/VTT from the verified render.
+  - Acceptance criteria:
+    - No spoken sentence is clipped and subtitles remain monotonic and within
+      the final media duration.
+    - The longest scene-tail gap after narration is at most 1.2 seconds; longer
+      customer footage is paced with bounded sentence pauses or video timing,
+      not one long silent tail.
+    - Voice remains dominant, final audio does not clip, and music fades
+      cleanly at the beginning and end.
+    - Final media remains H.264/AAC, 1280x720, web optimized, metadata-clean,
+      responsive, captioned, and reproducible from repository scripts.
+    - Focused media/browser tests, lint, TypeScript, build, Production media
+      delivery, and visual/audio QA pass before a release is recorded.
 
 ## Buyer Readiness
 

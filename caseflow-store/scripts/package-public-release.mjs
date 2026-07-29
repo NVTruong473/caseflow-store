@@ -14,7 +14,7 @@ const releaseRoot = path.resolve(
   "project-documentation-output",
   "release",
 );
-const version = process.env.PUBLIC_RELEASE_VERSION ?? "1.18.3";
+const version = process.env.PUBLIC_RELEASE_VERSION ?? "1.18.4";
 const packageName = `CaseFlow-Books-v${version}`;
 const archiveName = `${packageName}-public-source.zip`;
 const archivePath = path.join(releaseRoot, archiveName);

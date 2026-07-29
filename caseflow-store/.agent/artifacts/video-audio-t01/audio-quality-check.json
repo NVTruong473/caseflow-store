@@ -1,0 +1,18 @@
+{
+  "checks": {
+    "backgroundScoreIsOriginal": true,
+    "integratedLoudnessIsWebReady": true,
+    "maximumSceneTailIsBounded": true,
+    "noMidVideoSilenceAtOrAbove1Point2Seconds": true,
+    "truePeakHasHeadroom": true
+  },
+  "finalFadeSilenceSeconds": 1.569,
+  "generatedAt": "2026-07-29T13:19:03.596Z",
+  "integratedLufs": -19.2,
+  "loudnessRangeLu": 2.8,
+  "maximumTailGapSeconds": 0.7,
+  "midVideoSilenceIntervals": [],
+  "ok": true,
+  "taskId": "VIDEO-AUDIO-T01",
+  "truePeakDbfs": -4.6
+}

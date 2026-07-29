@@ -25,7 +25,7 @@ const BASE_URL = normalizeBaseUrl(
 );
 const OUTPUT_ROOT = path.resolve(
   process.env.PORTFOLIO_DEMO_OUTPUT_DIR ??
-    "docs/portfolio/assets/demo-v1.17.0",
+    "docs/portfolio/assets/demo-v1.18.3",
 );
 const RAW_DIR = path.join(OUTPUT_ROOT, "raw");
 const CARD_DIR = path.join(OUTPUT_ROOT, "cards");
@@ -492,7 +492,7 @@ async function captureCards(
         <p class="eyebrow">FULL-STACK E-COMMERCE SHOWROOM</p>
         <h1>CaseFlow Books</h1>
         <p class="lead">Book discovery, trusted checkout and small-business operations in one Next.js modular monolith.</p>
-        <div class="meta"><span>v1.17.0</span><span>500 editions</span><span>VI / EN</span></div>
+        <div class="meta"><span>v1.18.3</span><span>500 editions</span><span>VI / EN</span></div>
       `,
     );
     await renderCard(
