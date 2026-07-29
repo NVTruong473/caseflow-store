@@ -4,16 +4,16 @@
 
 | Field | Value |
 |---|---|
-| Current mode | stable `v1.18.0` showroom; feature development closed |
-| Current gate | `HANDOFF-T05` completed; final handoff frozen |
+| Current mode | stable `v1.18.1` showroom; feature development closed |
+| Current gate | `BUYER-ACCEPTANCE-T01` completed with external prerequisites |
 | Implementation started | Yes |
-| Next implementation task | `BUYER-ACCEPTANCE-T01 - Independent Clean-room Buyer Handoff` |
+| Next implementation task | None |
 | App initialized | Yes, in `caseflow-store` |
-| Local server verified | Yes, v1.18.0 lint, TypeScript, build, architecture, security/payment/asset gates, and full Playwright `41/41` passed |
-| Lint verified | Yes, v1.18.0 lint passed with zero warnings |
-| Build verified | Yes, v1.18.0 Production build generated 66 App Router routes plus proxy locally and on Vercel |
+| Local server verified | Yes, v1.18.1 clean-room install/build and application full Playwright `41/41` passed |
+| Lint verified | Yes, v1.18.1 application and public-package lint passed |
+| Build verified | Yes, v1.18.1 generated 66 App Router routes with live and unavailable-catalog checks |
 | Database connected | Yes; live catalog, orders, Auth, role checks, and admin status updates use Supabase |
-| Deployed | Yes, v1.18.0 Production deployment `dpl_5UKtZRKxRnsLyw4642wYPTuz8A2j` is aliased to `https://caseflow-store.vercel.app` |
+| Deployed | Yes, v1.18.1 Production deployment `dpl_6quY8MtzRvSsC4UZ1iporZF3gcTj` is aliased to `https://caseflow-store.vercel.app` |
 | Last updated | 2026-07-29 |
 
 ## Result Index
@@ -16719,6 +16719,54 @@ GitHub Release.
   - `.agent/artifacts/handoff-t05-production-qr/`
   - `.agent/artifacts/handoff-t05-production-final/`
   - `../project-documentation-output/validation/`
+  - `../project-documentation-output/release/`
+
+---
+
+## BUYER-ACCEPTANCE-T01 - Independent Clean-room Buyer Handoff
+
+- Date: 2026-07-29
+- Status: completed with buyer-owned infrastructure prerequisites
+- Runtime commit: `26da1ef`
+- Production deployment: `dpl_6quY8MtzRvSsC4UZ1iporZF3gcTj`
+- Production URL: `https://caseflow-store.vercel.app`
+- Result:
+  - downloaded and checksum-verified the published source archive before
+    extracting it outside the development application;
+  - found and fixed build-time sitemap coupling, blank optional FX environment
+    values, and public package/release version drift;
+  - regenerated an 832-file `v1.18.1` source package with one Markdown file,
+    customer-data-free 500-edition seed, proprietary license, and no internal
+    process or secret findings.
+- Clean-room verification:
+  - archive SHA-256: PASS,
+    `bdb4c9d9d0d566cc2744057997b7eb048dd3747b30a66a7b4f8144cd3d2f7e17`;
+  - `npm ci`, lint, typecheck, runtime dependency audit: PASS;
+  - build with an intentionally unreachable Supabase endpoint: PASS, 66
+    routes and static sitemap fallback;
+  - Next.js Production startup, static SEO/media/security routes, protected
+    redirect, ranged MP4, and mock-payment lock: PASS;
+  - fresh buyer-owned Supabase runtime: BLOCKED because no isolated project
+    credentials were supplied;
+  - independent human setup: NOT RUN;
+  - Docker: NOT APPLICABLE.
+- Application and Production verification:
+  - architecture: PASS, 249 files and zero findings;
+  - Production build: PASS, 66 routes;
+  - full Playwright: PASS, `41/41`;
+  - Production smoke: PASS, `9/9`;
+  - Production SEO/robots/sitemap/JSON-LD: PASS;
+  - Production security: PASS, nine routes and zero findings;
+  - Production QR simulation lock: PASS, HTTP `404`;
+  - Production introduction video: PASS, `2/2`.
+- Evidence:
+  - `docs/buyer-acceptance-v1.18.1.md`
+  - `.agent/artifacts/buyer-acceptance-t01/`
+  - `.agent/artifacts/buyer-acceptance-t01-production-smoke/`
+  - `.agent/artifacts/buyer-acceptance-t01-production-seo/`
+  - `.agent/artifacts/buyer-acceptance-t01-production-security/`
+  - `.agent/artifacts/buyer-acceptance-t01-production-qr/`
+  - `../project-documentation-output/buyer-acceptance-t01/`
   - `../project-documentation-output/release/`
 
 ---

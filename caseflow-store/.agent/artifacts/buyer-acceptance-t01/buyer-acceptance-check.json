@@ -1,0 +1,88 @@
+{
+  "task": "BUYER-ACCEPTANCE-T01",
+  "version": "1.18.1",
+  "status": "PASS_WITH_BUYER_OWNED_INFRASTRUCTURE_PREREQUISITES",
+  "archive": {
+    "file": "CaseFlow-Books-v1.18.1-public-source.zip",
+    "sha256": "bdb4c9d9d0d566cc2744057997b7eb048dd3747b30a66a7b4f8144cd3d2f7e17",
+    "fileCount": 832,
+    "markdownFiles": [
+      "README.md"
+    ],
+    "packageVersion": "1.18.1"
+  },
+  "cleanRoom": {
+    "checksum": "PASS",
+    "extract": "PASS",
+    "policyScan": "PASS",
+    "npmCi": "PASS",
+    "lint": "PASS",
+    "typecheck": "PASS",
+    "runtimeDependencyAudit": {
+      "status": "PASS",
+      "vulnerabilities": 0
+    },
+    "developmentDependencyAudit": {
+      "status": "ACCEPTED_UPSTREAM_LIMITATION",
+      "high": 9,
+      "runtimeAffected": false,
+      "forcedFixRejected": true
+    },
+    "buildWithUnreachableSupabase": {
+      "status": "PASS",
+      "routes": 66,
+      "sitemapFallback": true
+    },
+    "startup": "PASS",
+    "freshBuyerSupabaseRuntime": "BLOCKED",
+    "independentHumanReviewer": "NOT_RUN",
+    "dockerBuild": "NOT_APPLICABLE"
+  },
+  "application": {
+    "architecture": {
+      "status": "PASS",
+      "checkedFiles": 249,
+      "findings": 0
+    },
+    "build": {
+      "status": "PASS",
+      "routes": 66
+    },
+    "playwright": {
+      "status": "PASS",
+      "passed": 41,
+      "failed": 0
+    }
+  },
+  "production": {
+    "url": "https://caseflow-store.vercel.app",
+    "deploymentId": "dpl_6quY8MtzRvSsC4UZ1iporZF3gcTj",
+    "ready": true,
+    "smoke": {
+      "status": "PASS",
+      "passed": 9,
+      "failed": 0
+    },
+    "seo": "PASS",
+    "security": {
+      "status": "PASS",
+      "routes": 9,
+      "findings": 0
+    },
+    "qrSimulationLock": {
+      "status": "PASS",
+      "httpStatus": 404
+    },
+    "introductionVideo": {
+      "status": "PASS",
+      "passed": 2,
+      "failed": 0
+    }
+  },
+  "blockersFixed": [
+    "BA-01 sitemap build dependency",
+    "BA-02 blank optional FX environment values",
+    "BA-03 public package version mismatch"
+  ],
+  "checkedAt": "2026-07-29"
+}

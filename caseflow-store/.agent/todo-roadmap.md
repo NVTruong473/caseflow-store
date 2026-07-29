@@ -10,13 +10,13 @@
 ## Current State
 
 - Project: CaseFlow Books
-- Mode: stable `v1.18.0` showroom; feature development closed
-- Current gate: `HANDOFF-T05` completed; final public and academic handoff frozen
-- Current task: `BUYER-ACCEPTANCE-T01 - Independent Clean-room Buyer Handoff`
+- Mode: stable `v1.18.1` showroom; feature development closed
+- Current gate: `BUYER-ACCEPTANCE-T01` completed with external prerequisites
+- Current task: none
 
 ## Buyer Acceptance
 
-- [/] `BUYER-ACCEPTANCE-T01` Independent Clean-room Buyer Handoff. - 2026-07-29
+- [x] `BUYER-ACCEPTANCE-T01` Independent Clean-room Buyer Handoff. - 2026-07-29
   - Scope:
     - Extract the published `v1.18.0` source archive into a new clean-room
       directory and evaluate it using only the included `README.md`.
@@ -39,6 +39,18 @@
     - `npm ci`, lint, typecheck, build, runtime dependency audit
     - Production startup and route/media/security smoke
     - README/environment/schema/migration/license consistency audit
+  - Result:
+    - Found and fixed three handoff blockers: build-time sitemap dependency,
+      blank optional FX environment values, and package/release version drift.
+    - Final 832-file ZIP passed checksum, policy, secret, one-Markdown,
+      500-edition seed, clean install, lint, typecheck, runtime audit, and
+      unreachable-database build checks.
+    - Application build/architecture/full Playwright passed; Production
+      deployment `dpl_6quY8MtzRvSsC4UZ1iporZF3gcTj` reached `READY`, and
+      smoke, SEO, security, QR lock, and introduction-video checks passed.
+    - Fresh buyer Supabase execution is `BLOCKED`, independent human setup is
+      `NOT RUN`, and Docker is `NOT APPLICABLE`; these are not reported as
+      passed.
 
 ## Final Public And Academic Handoff
 

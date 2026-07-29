@@ -6,7 +6,8 @@
   `v1.3.0`, `v1.3.1`, `v1.4.0`, `v1.4.1`, `v1.4.2`, `v1.5.0`, `v1.6.0`,
   `v1.7.0`, `v1.8.0`, `v1.9.0`, `v1.10.0`, `v1.11.0`, `v1.11.1`,
   `v1.11.2`, `v1.11.3`, `v1.12.0`, `v1.12.1`, `v1.13.0`, `v1.13.1`,
-  `v1.14.0`, `v1.15.0`, `v1.16.0`, `v1.17.0`, and `v1.18.0` released
+  `v1.14.0`, `v1.15.0`, `v1.16.0`, `v1.17.0`, `v1.18.0`, and `v1.18.1`
+  released
 - Repository folder: `/Users/vantruong/Documents/TSNN 2`
 - Product domain: books for released `v1.1.0` and `v1.2.0`; phone
   accessories for released `v1.0.0`
@@ -14,9 +15,9 @@
 - Purpose: portfolio/CV project for Web or Full-Stack Developer applications
 - Implementation duration: exactly 20 days
 - Journal entries: 30, with entries 21-30 as retrospective documentation
-- Current mode: stable `v1.18.0` showroom; feature development closed.
-- Current gate: `HANDOFF-T05` completed under accepted ADR-0025.
-- Current task: `BUYER-ACCEPTANCE-T01 - Independent Clean-room Buyer Handoff`.
+- Current mode: stable `v1.18.1` showroom; feature development closed.
+- Current gate: `BUYER-ACCEPTANCE-T01` completed under accepted ADR-0025.
+- Current task: none.
 
 ## Active Final Handoff
 
@@ -55,6 +56,13 @@
   source archive. It must not borrow `.env.local`, create paid infrastructure,
   mutate Production data, or treat unavailable buyer-owned Supabase, SMTP,
   payment, legal, and operations inputs as verified.
+- The audit found and fixed sitemap build coupling, empty optional FX values,
+  and public-package version drift. The final archive passes clean install,
+  lint, typecheck, runtime audit, 66-route unreachable-database build, policy,
+  secret, catalog-seed, and checksum checks. Production deployment
+  `dpl_6quY8MtzRvSsC4UZ1iporZF3gcTj` passes smoke, SEO, security, QR lock, and
+  introduction-video verification. Fresh buyer-owned Supabase execution and an
+  unrelated human setup remain explicitly unverified.
 
 ## Confirmed Facts
 
