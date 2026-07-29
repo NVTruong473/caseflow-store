@@ -34,6 +34,18 @@ type CancelState =
   | { status: "success"; message: string; orderCode: string }
   | { status: "error"; message: string; orderCode: string };
 
+function subscribeToInteractiveState() {
+  return () => {};
+}
+
+function getClientInteractiveState() {
+  return true;
+}
+
+function getServerInteractiveState() {
+  return false;
+}
+
 const customerOrdersCopy = {
   en: {
     account: "Account",
@@ -117,6 +129,11 @@ export function CustomerOrdersPage({
   const copy = customerOrdersCopy[language];
   const [orderRecords, setOrderRecords] =
     React.useState<SupabaseOrderRecord[]>(() => records);
+  const isInteractive = React.useSyncExternalStore(
+    subscribeToInteractiveState,
+    getClientInteractiveState,
+    getServerInteractiveState,
+  );
   const [cancelState, setCancelState] = React.useState<CancelState>({
     status: "idle",
   });
@@ -170,7 +187,9 @@ export function CustomerOrdersPage({
   return (
     <main
       className="bg-background py-case-2xl text-foreground"
+      aria-busy={!isInteractive}
       data-customer-orders-page
+      data-customer-orders-ready={isInteractive ? "true" : "false"}
     >
       <CustomerGuidanceAutoOpen tourId="orders" />
       <Container className="flex flex-col gap-case-xl">
@@ -213,6 +232,7 @@ export function CustomerOrdersPage({
               <CustomerOrderCard
                 cancelState={cancelState}
                 copy={copy}
+                isInteractive={isInteractive}
                 key={record.order.id}
                 language={language}
                 onCancelOrder={handleCancelOrder}
@@ -322,12 +342,14 @@ function CustomerExperienceRow({
 function CustomerOrderCard({
   cancelState,
   copy,
+  isInteractive,
   language,
   onCancelOrder,
   record,
 }: {
   cancelState: CancelState;
   copy: (typeof customerOrdersCopy)[Language];
+  isInteractive: boolean;
   language: Language;
   onCancelOrder: (orderCode: string) => void;
   record: SupabaseOrderRecord;
@@ -405,7 +427,7 @@ function CustomerOrderCard({
             type="button"
             variant="secondary"
             isLoading={isCancelling}
-            disabled={isCancelling}
+            disabled={!isInteractive || isCancelling}
             onClick={() => onCancelOrder(orderCode)}
             data-customer-order-cancel={orderCode}
           >

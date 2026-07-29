@@ -253,6 +253,8 @@ test("customer manages cart, completes phone QR experience, places and cancels a
     await expect(
       orderCard.locator(`[data-customer-order-cancel="${orderCode}"]`),
     ).toBeVisible();
+    await expect(page.locator("[data-customer-orders-page]"))
+      .toHaveAttribute("data-customer-orders-ready", "true");
 
     const cancelResponsePromise = page.waitForResponse(
       (response) =>
