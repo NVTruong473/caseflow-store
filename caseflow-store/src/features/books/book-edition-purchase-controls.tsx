@@ -105,7 +105,7 @@ export function BookEditionPurchaseControls({
   const [quantity, setQuantity] = React.useState(canSellEdition ? 1 : 0);
   const [feedback, setFeedback] = React.useState<FeedbackState | null>(null);
   const [isOpeningCheckout, setIsOpeningCheckout] = React.useState(false);
-  const { addItem, items } = useCart();
+  const { addItem, hasLoadedStorage, items } = useCart();
   const cartQuantity =
     items.find((item) => item.productId === editionId)?.quantity ?? 0;
   const remainingQuantity = Math.max(0, availableStock - cartQuantity);
@@ -117,7 +117,9 @@ export function BookEditionPurchaseControls({
     ? clampQuantity(quantity || 1, 1, selectableMax)
     : 0;
   const canAddSelectedQuantity =
-    canAddToCart && selectedQuantity <= remainingQuantity;
+    hasLoadedStorage &&
+    canAddToCart &&
+    selectedQuantity <= remainingQuantity;
 
   function updateQuantity(nextQuantity: number) {
     if (!canSellEdition) {
@@ -180,7 +182,9 @@ export function BookEditionPurchaseControls({
     <Card
       padding="md"
       className="flex flex-col gap-case-sm"
+      aria-busy={!hasLoadedStorage}
       data-book-purchase-controls={editionId}
+      data-book-purchase-ready={hasLoadedStorage ? "true" : "false"}
     >
       <CardHeader>
         <CardTitle>{copy.cardTitle}</CardTitle>
@@ -210,7 +214,9 @@ export function BookEditionPurchaseControls({
             variant="secondary"
             size="icon"
             aria-label={copy.decrease(editionTitle)}
-            disabled={!canSellEdition || selectedQuantity <= 1}
+            disabled={
+              !hasLoadedStorage || !canSellEdition || selectedQuantity <= 1
+            }
             onClick={() => updateQuantity(selectedQuantity - 1)}
             data-book-quantity-decrement
           >
@@ -226,7 +232,7 @@ export function BookEditionPurchaseControls({
             max={selectableMax}
             step={1}
             value={selectedQuantity}
-            disabled={!canSellEdition}
+            disabled={!hasLoadedStorage || !canSellEdition}
             onChange={handleQuantityInputChange}
             wrapperClassName="min-w-0 flex-1"
             data-book-quantity-input
@@ -237,7 +243,11 @@ export function BookEditionPurchaseControls({
             variant="secondary"
             size="icon"
             aria-label={copy.increase(editionTitle)}
-            disabled={!canSellEdition || selectedQuantity >= selectableMax}
+            disabled={
+              !hasLoadedStorage ||
+              !canSellEdition ||
+              selectedQuantity >= selectableMax
+            }
             onClick={() => updateQuantity(selectedQuantity + 1)}
             data-book-quantity-increment
           >
@@ -250,7 +260,9 @@ export function BookEditionPurchaseControls({
             type="button"
             size="lg"
             className="w-full"
-            disabled={!canSellEdition || isOpeningCheckout}
+            disabled={
+              !hasLoadedStorage || !canSellEdition || isOpeningCheckout
+            }
             onClick={handleBuyNow}
             data-book-buy-now-button
           >

@@ -1,12 +1,10 @@
 import fs from "node:fs";
 import path from "node:path";
 
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
 
 import {
   addSupabaseSessionCookies,
-  clickElement,
-  clickFirstVisible,
   createTemporaryCustomer,
   createTestServiceClient,
   deleteTemporaryCustomer,
@@ -17,7 +15,11 @@ import {
 } from "./helpers/supabase";
 import { ensureCustomerSignupVouchers } from "@/lib/repositories/supabase-customer-vouchers";
 
-const ARTIFACT_DIR = ".agent/artifacts/uat-auto-t03";
+const ARTIFACT_DIR = path.join(
+  ".agent",
+  "artifacts",
+  process.env.UAT_AUTO_ARTIFACT_ID ?? "uat-auto-t03",
+);
 
 test("customer manages cart, completes phone QR experience, places and cancels an order", async ({
   baseURL,
@@ -58,46 +60,50 @@ test("customer manages cart, completes phone QR experience, places and cancels a
     await page.goto(`/products/${book.slug}`, {
       waitUntil: "domcontentloaded",
     });
+    await expect(page.locator("[data-book-purchase-controls]"))
+      .toHaveAttribute("data-book-purchase-ready", "true");
     await fillField(page, "[data-book-quantity-input]", "1");
-    await clickElement(page, "[data-book-add-to-cart-button]");
+    await clickCustomerElement(page, "[data-book-add-to-cart-button]");
     await expect(page.locator("[data-book-add-to-cart-feedback='success']"))
       .toBeVisible();
 
-    await clickFirstVisible(page, "[data-cart-drawer-open]");
+    await clickFirstCustomerVisible(page, "[data-cart-drawer-open]");
     await expect(page.locator("[data-cart-drawer]")).toBeVisible();
-    await clickElement(
+    await expect(page.locator("[data-book-assistant-root]")).toHaveCount(0);
+    await clickCustomerElement(
       page,
       `[data-cart-drawer-quantity-increment="${book.edition.id}"]`,
     );
     await expect(
       page.locator(`[data-cart-drawer-quantity="${book.edition.id}"]`),
     ).toHaveText("2");
-    await clickElement(
+    await clickCustomerElement(
       page,
       `[data-cart-drawer-quantity-decrement="${book.edition.id}"]`,
     );
     await expect(
       page.locator(`[data-cart-drawer-quantity="${book.edition.id}"]`),
     ).toHaveText("1");
-    await clickElement(
+    await clickCustomerElement(
       page,
       `[data-cart-drawer-remove="${book.edition.id}"]`,
     );
     await expect(page.locator("[data-cart-drawer-empty]")).toBeVisible();
-    await clickElement(page, "[data-cart-drawer-close]");
+    await clickCustomerElement(page, "[data-cart-drawer-close]");
+    await expect(page.locator("[data-book-assistant-root]")).toBeVisible();
 
-    await clickElement(page, "[data-book-add-to-cart-button]");
-    await clickFirstVisible(page, "[data-cart-drawer-open]");
-    await clickElement(page, "[data-cart-drawer-clear]");
+    await clickCustomerElement(page, "[data-book-add-to-cart-button]");
+    await clickFirstCustomerVisible(page, "[data-cart-drawer-open]");
+    await clickCustomerElement(page, "[data-cart-drawer-clear]");
     await expect(page.locator("[data-cart-drawer-empty]")).toBeVisible();
-    await clickElement(page, "[data-cart-drawer-close]");
+    await clickCustomerElement(page, "[data-cart-drawer-close]");
 
-    await clickElement(page, "[data-book-add-to-cart-button]");
-    await clickFirstVisible(page, "[data-cart-drawer-open]");
+    await clickCustomerElement(page, "[data-book-add-to-cart-button]");
+    await clickFirstCustomerVisible(page, "[data-cart-drawer-open]");
     await expect(
       page.locator(`[data-cart-drawer-item="${book.edition.id}"]`),
     ).toContainText(book.title);
-    await clickElement(page, "[data-cart-drawer-checkout]");
+    await clickCustomerElement(page, "[data-cart-drawer-checkout]");
     await expect(page).toHaveURL("/checkout");
 
     page.on("request", (request) => {
@@ -120,8 +126,8 @@ test("customer manages cart, completes phone QR experience, places and cancels a
         .eq("customer_id", customer.id);
     expect(orderCountBeforeError).toBeNull();
 
-    await clickElement(page, "[data-checkout-mode='experience']");
-    await clickElement(page, "[data-checkout-experience-create]");
+    await clickCustomerElement(page, "[data-checkout-mode='experience']");
+    await clickCustomerElement(page, "[data-checkout-experience-create]");
     await expect(page.locator("[data-checkout-experience-qr]")).toBeVisible();
 
     const scanUrl = await page
@@ -204,15 +210,15 @@ test("customer manages cart, completes phone QR experience, places and cancels a
     });
 
     commerceRequestsDuringExperience.length = 0;
-    await clickElement(page, "[data-checkout-mode='official']");
+    await clickCustomerElement(page, "[data-checkout-mode='official']");
     await expect(page.locator("[data-checkout-form-shell]")).toBeVisible();
-    await clickElement(
+    await clickCustomerElement(
       page,
       "[data-checkout-apply-signup-voucher='WELCOME30K']",
     );
     await expect(page.locator("[data-checkout-promotion-code]"))
       .toHaveValue("WELCOME30K");
-    await clickElement(page, "[data-checkout-payment-method='cod']");
+    await clickCustomerElement(page, "[data-checkout-payment-method='cod']");
 
     const orderResponsePromise = page.waitForResponse(
       (response) =>
@@ -220,7 +226,7 @@ test("customer manages cart, completes phone QR experience, places and cancels a
         response.request().method() === "POST",
       { timeout: NETWORK_OPERATION_TIMEOUT },
     );
-    await clickElement(page, "[data-checkout-submit]");
+    await clickCustomerElement(page, "[data-checkout-submit]");
     const orderResponse = await orderResponsePromise;
     expect(orderResponse.status()).toBe(201);
 
@@ -255,7 +261,7 @@ test("customer manages cart, completes phone QR experience, places and cancels a
         response.request().method() === "PATCH",
       { timeout: NETWORK_OPERATION_TIMEOUT },
     );
-    await clickElement(
+    await clickCustomerElement(
       page,
       `[data-customer-order-cancel="${orderCode}"]`,
     );
@@ -321,3 +327,17 @@ test("customer manages cart, completes phone QR experience, places and cancels a
     await deleteTemporaryCustomer(customer);
   }
 });
+
+async function clickCustomerElement(page: Page, selector: string) {
+  const element = page.locator(selector).first();
+
+  await element.waitFor({ state: "visible" });
+  await element.click();
+}
+
+async function clickFirstCustomerVisible(page: Page, selector: string) {
+  const element = page.locator(`${selector}:visible`).first();
+
+  await element.waitFor({ state: "visible" });
+  await element.click();
+}

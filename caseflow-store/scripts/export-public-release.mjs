@@ -1,10 +1,13 @@
 import fs from "node:fs/promises";
+import { execFile } from "node:child_process";
 import path from "node:path";
+import { promisify } from "node:util";
 
 const SOURCE_ROOT = process.cwd();
 const OUTPUT_ROOT = path.resolve(SOURCE_ROOT, "..", "dist-public");
 const OUTPUT_NAME = "dist-public";
-const PUBLIC_RELEASE_VERSION = process.env.PUBLIC_RELEASE_VERSION ?? "1.18.1";
+const PUBLIC_RELEASE_VERSION = process.env.PUBLIC_RELEASE_VERSION ?? "1.18.2";
+const execFileAsync = promisify(execFile);
 
 const COPY_DIRECTORIES = ["public", "src", "supabase"];
 const COPY_FILES = [
@@ -363,6 +366,7 @@ async function main() {
     force: true,
   });
   await writePublicPackageManifest();
+  await normalizePublicPackageLock();
   await fs.writeFile(path.join(OUTPUT_ROOT, "README.md"), README, "utf8");
   await fs.writeFile(path.join(OUTPUT_ROOT, ".env.example"), ENV_EXAMPLE, "utf8");
   await fs.writeFile(path.join(OUTPUT_ROOT, ".gitignore"), GITIGNORE, "utf8");
@@ -458,6 +462,46 @@ async function writePublicPackageManifest() {
     `${JSON.stringify(packageJson, null, 2)}\n`,
     "utf8",
   );
+}
+
+async function normalizePublicPackageLock() {
+  const npmCommand = process.platform === "win32" ? "npm.cmd" : "npm";
+
+  await execFileAsync(
+    npmCommand,
+    [
+      "install",
+      "--package-lock-only",
+      "--ignore-scripts",
+      "--no-audit",
+      "--no-fund",
+      "--prefer-offline",
+    ],
+    {
+      cwd: OUTPUT_ROOT,
+      env: {
+        ...process.env,
+        npm_config_update_notifier: "false",
+      },
+    },
+  );
+
+  const packageJson = JSON.parse(
+    await fs.readFile(path.join(OUTPUT_ROOT, "package.json"), "utf8"),
+  );
+  const packageLock = JSON.parse(
+    await fs.readFile(path.join(OUTPUT_ROOT, "package-lock.json"), "utf8"),
+  );
+  const lockRoot = packageLock.packages?.[""];
+
+  if (
+    packageLock.name !== packageJson.name ||
+    packageLock.version !== packageJson.version ||
+    lockRoot?.name !== packageJson.name ||
+    lockRoot?.version !== packageJson.version
+  ) {
+    throw new Error("Public package-lock metadata does not match package.json");
+  }
 }
 
 async function writeCatalogSeed() {

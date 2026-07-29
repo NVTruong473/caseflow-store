@@ -215,7 +215,7 @@ const formatRules: Array<{
 export function BookstoreAssistant({ language }: { language: Language }) {
   const pathname = usePathname();
   const copy = assistantCopy[language];
-  const { openCart, totalQuantity } = useCart();
+  const { isCartOpen, openCart, totalQuantity } = useCart();
   const [isOpen, setIsOpen] = React.useState(false);
   const [input, setInput] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(false);
@@ -231,7 +231,7 @@ export function BookstoreAssistant({ language }: { language: Language }) {
     pathname.startsWith("/admin") ||
     pathname.startsWith("/checkout");
 
-  if (isFormOrOperationsRoute) {
+  if (isFormOrOperationsRoute || isCartOpen) {
     return null;
   }
 

@@ -1,8 +1,11 @@
 import fs from "node:fs/promises";
+import { createHash } from "node:crypto";
 import path from "node:path";
 
 const SOURCE_ROOT = process.cwd();
 const PUBLIC_ROOT = path.resolve(SOURCE_ROOT, "..", "dist-public");
+const EXPECTED_PUBLIC_VERSION =
+  process.env.PUBLIC_RELEASE_VERSION ?? "1.18.2";
 const OUTPUT_PATH = path.resolve(
   SOURCE_ROOT,
   "..",
@@ -192,6 +195,10 @@ async function main() {
   const packageJson = JSON.parse(
     await fs.readFile(path.join(PUBLIC_ROOT, "package.json"), "utf8"),
   );
+  const packageLock = JSON.parse(
+    await fs.readFile(path.join(PUBLIC_ROOT, "package-lock.json"), "utf8"),
+  );
+  const lockRoot = packageLock.packages?.[""] ?? {};
   const seedText = await fs.readFile(
     path.join(PUBLIC_ROOT, "supabase", "catalog-seed.sql"),
     "utf8",
@@ -215,6 +222,20 @@ async function main() {
     "## Testing",
     "## License",
   ];
+  const runtimeParityFindings = await inspectRuntimeParity(files);
+  const currentRuntimeFiles = [
+    "src/features/customer/customer-orders-page.tsx",
+    "src/features/checkout/transfer-experience-page.tsx",
+    "src/lib/repositories/supabase-checkout-experience.ts",
+    "src/types/checkout-experience.ts",
+  ];
+  const currentRuntimeMissing = [];
+
+  for (const relativePath of currentRuntimeFiles) {
+    if (!(await exists(path.join(PUBLIC_ROOT, relativePath)))) {
+      currentRuntimeMissing.push(relativePath);
+    }
+  }
 
   const checks = {
     topLevelAllowlist:
@@ -231,8 +252,28 @@ async function main() {
     publicPackageHasFocusedScripts:
       Object.keys(packageJson.scripts).sort().join(",") ===
       ["build", "dev", "lint", "start", "typecheck"].sort().join(","),
+    publicPackageVersionMatchesRelease:
+      packageJson.version === EXPECTED_PUBLIC_VERSION &&
+      packageLock.version === EXPECTED_PUBLIC_VERSION &&
+      lockRoot.version === EXPECTED_PUBLIC_VERSION,
+    publicPackageLockMatchesManifest:
+      packageLock.name === packageJson.name &&
+      lockRoot.name === packageJson.name &&
+      JSON.stringify(lockRoot.dependencies ?? {}) ===
+        JSON.stringify(packageJson.dependencies ?? {}) &&
+      JSON.stringify(lockRoot.devDependencies ?? {}) ===
+        JSON.stringify(packageJson.devDependencies ?? {}),
     publicPackageExcludesBrowserTests:
-      !packageJson.devDependencies?.["@playwright/test"],
+      !packageJson.devDependencies?.["@playwright/test"] &&
+      !lockRoot.devDependencies?.["@playwright/test"] &&
+      !packageLock.packages?.["node_modules/@playwright/test"],
+    publicPackageExcludesDatabaseTooling:
+      !packageJson.devDependencies?.pg &&
+      !packageJson.devDependencies?.["@types/pg"] &&
+      !lockRoot.devDependencies?.pg &&
+      !lockRoot.devDependencies?.["@types/pg"],
+    currentRuntimeFilesPresent: currentRuntimeMissing.length === 0,
+    exportedRuntimeMatchesWorkingTree: runtimeParityFindings.length === 0,
     catalogSeedHas500ActiveEditions: seedText.includes(
       "-- Active editions: 500.",
     ),
@@ -252,6 +293,9 @@ async function main() {
     markdownFiles: markdownFiles.map((file) =>
       path.relative(PUBLIC_ROOT, file).replaceAll(path.sep, "/"),
     ),
+    currentRuntimeMissing,
+    expectedPublicVersion: EXPECTED_PUBLIC_VERSION,
+    runtimeParityFindings,
     secretFindings,
     status: Object.values(checks).every(Boolean) ? "PASS" : "FAIL",
     topLevel: topLevel.sort(),
@@ -276,6 +320,43 @@ async function main() {
   );
   console.log(JSON.stringify(result, null, 2));
   raiseOnFailure(result);
+}
+
+async function inspectRuntimeParity(publicFiles) {
+  const findings = [];
+  const parityRoots = ["public/", "src/"];
+
+  for (const publicFile of publicFiles) {
+    const relative = path
+      .relative(PUBLIC_ROOT, publicFile)
+      .replaceAll(path.sep, "/");
+
+    if (!parityRoots.some((root) => relative.startsWith(root))) {
+      continue;
+    }
+
+    const sourceFile = path.join(SOURCE_ROOT, relative);
+
+    if (!(await exists(sourceFile))) {
+      findings.push({ file: relative, reason: "missing-working-tree-source" });
+      continue;
+    }
+
+    const [publicBytes, sourceBytes] = await Promise.all([
+      fs.readFile(publicFile),
+      fs.readFile(sourceFile),
+    ]);
+
+    if (sha256(publicBytes) !== sha256(sourceBytes)) {
+      findings.push({ file: relative, reason: "content-mismatch" });
+    }
+  }
+
+  return findings;
+}
+
+function sha256(value) {
+  return createHash("sha256").update(value).digest("hex");
 }
 
 async function readSensitiveLocalValues() {
@@ -322,6 +403,15 @@ async function listFiles(directory) {
     }
   }
   return files.sort();
+}
+
+async function exists(targetPath) {
+  try {
+    await fs.stat(targetPath);
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 function raiseOnFailure(result) {

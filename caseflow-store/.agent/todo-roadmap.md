@@ -12,7 +12,33 @@
 - Project: CaseFlow Books
 - Mode: stable `v1.18.2` showroom; feature development closed
 - Current gate: `EXPERIENCE-HISTORY-T01` completed
-- Current task: none
+- Current task: `BUYER-READY-T02` in progress
+
+## Buyer Readiness
+
+- [/] `BUYER-READY-T02` Automated Buyer Readiness And External UAT Preflight. - 2026-07-29
+  - Scope:
+    - Regenerate the public source package from the verified `v1.18.2`
+      working tree without copying local secrets or internal evidence.
+    - Prove package/lock consistency, runtime parity, clean installation,
+      lint, typecheck, Production build, startup, security, and archive
+      integrity from an isolated directory.
+    - Recheck the deployed customer journeys, responsive surfaces, security
+      boundaries, and test-data cleanup that an external reviewer depends on.
+    - Prepare a no-coaching external UAT charter without presenting the
+      independent human run as completed.
+  - Acceptance criteria:
+    - `dist-public/` identifies `1.18.2`, includes the current QR experience
+      history/retry runtime, and has matching `package.json`/lock metadata.
+    - The clean-room package installs, lints, typechecks, builds, starts, and
+      passes policy, secret, runtime-dependency, route, and media checks.
+    - Production automation reports no P0/P1 finding and leaves no temporary
+      account, order, payment, or experience record.
+    - The external charter covers official commerce versus QR experience,
+      cart semantics, wrong-code recovery, order history/cancellation,
+      operator boundaries, mobile, keyboard, and bilingual behavior.
+    - Independent human execution remains explicitly `NOT RUN` until a person
+      outside the project performs it.
 
 ## Post-handoff Hotfix
 
